@@ -611,7 +611,7 @@
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
       e.preventDefault();
       try { sessionStorage.setItem('apostilo-scroll-top', '1'); } catch (err) {}
-      location.replace(location.pathname + location.search);
+      location.replace(el.getAttribute('href') || '/');
     });
   });
   try {
@@ -1122,7 +1122,7 @@
     status.style.color = ok ? '#EFB01F' : '#FFFFFF';
   }
 
-  form.addEventListener('submit', function (e) {
+  if (form) form.addEventListener('submit', function (e) {   // формы нет на подстраницах
     var name = document.getElementById('name');
     var phone = document.getElementById('phone');
     var service = document.getElementById('service');
