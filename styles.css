@@ -984,3 +984,25 @@ details[open] .chev{ transform:rotate(45deg) }
 /* Ссылка-стрелка k-where-link на светлом фоне (анонс «Gdzie» на главной) */
 .k-where-link--dark{ color:var(--c-ink); }
 .k-where-link--dark:hover, .k-where-link--dark:focus-visible{ color:var(--c-terra); }
+
+/* ===== Страница /apostille/ ===== */
+/* Две текстовые колонки */
+.ap-cols{ display:grid; gap:1.5rem; max-width:120ch; }
+@media (min-width:1024px){ .ap-cols{ grid-template-columns:1fr 1fr; gap:3rem; } }
+/* Три урядa на тёмной плите – как .gdz, но в три колонки */
+.ap3{ display:grid; grid-template-columns:1fr; }
+.ap3-cell + .ap3-cell{ border-top:1px solid rgba(255,255,255,.15); }
+.ap3-cell .gdz-full{ max-width:none; }
+@media (min-width:1024px){
+  .ap3{ grid-template-columns:repeat(3, minmax(0,1fr)); }
+  .ap3-cell + .ap3-cell{ border-top:0; border-left:1px solid rgba(255,255,255,.15); }
+  .ap3-cell .gdz-full{ min-height:3em; }
+}
+.ap3-cell .ap-desc{ margin-top:1rem; font-size:15.5px; line-height:1.55; color:rgba(255,255,255,.65); }
+/* Типы документов – карточки */
+.ap-docs{ display:grid; gap:1.25rem; }
+@media (min-width:640px){ .ap-docs{ grid-template-columns:1fr 1fr; gap:1.5rem 2.5rem; } }
+@media (min-width:1024px){ .ap-docs{ grid-template-columns:repeat(3, minmax(0,1fr)); } }
+.ap-doc{ padding-top:1rem; border-top:2px solid rgba(31,33,32,.15); }
+.ap-doc h3{ font-size:20px; font-weight:700; letter-spacing:-.01em; line-height:1.2; }
+.ap-doc p{ margin-top:.5rem; font-size:15.5px; line-height:1.55; color:rgba(31,33,32,.72); }
