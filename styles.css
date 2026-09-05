@@ -957,3 +957,30 @@ details[open] .chev{ transform:rotate(45deg) }
   -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,.66) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,.66) 100%);
           mask-image:linear-gradient(to bottom, rgba(0,0,0,.66) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,.66) 100%);
 }
+
+/* ===== Страница /kontakt/ ===== */
+/* H1 подстраниц: ограничение ширины строки (утилита max-w-[22ch] в сборке Tailwind отсутствует) */
+.h1-page{ max-width:22ch; }
+
+/* Каналы связи – четыре карточки на тёмной плите */
+.kt-channels{ display:grid; gap:1.25rem; list-style:none; margin:0; padding:0; }
+@media (min-width:640px){ .kt-channels{ grid-template-columns:1fr 1fr; gap:1.5rem 2rem; } }
+.kt-ch{ display:flex; flex-direction:column; gap:.3rem; padding-top:.9rem;
+        border-top:2px solid rgba(255,255,255,.2); }
+.kt-ch-h{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
+          letter-spacing:.16em; font-size:12px; font-weight:600; color:rgba(255,255,255,.55); }
+.kt-ch-v{ font-weight:700; font-size:24px; letter-spacing:-.02em; line-height:1.15;
+          color:var(--c-ochre); text-decoration:none; transition:color .25s ease; word-break:break-word; }
+.kt-ch-v:hover, .kt-ch-v:focus-visible{ color:var(--c-paper); }
+.kt-ch-t{ font-size:15.5px; line-height:1.5; color:rgba(255,255,255,.6); max-width:36ch; }
+
+/* Пять шагов заказа – нумерованный список */
+.kt-steps-list{ margin:1.5rem 0 0; padding:0; list-style:none; counter-reset:kt; display:grid; gap:1rem; max-width:70ch; }
+.kt-steps-list li{ position:relative; padding-left:3.2rem; font-size:17px; line-height:1.55; color:rgba(31,33,32,.75); }
+.kt-steps-list li b{ color:var(--c-ink); font-weight:700; }
+.kt-steps-list li::before{ counter-increment:kt; content:counter(kt, decimal-leading-zero);
+  position:absolute; left:0; top:.1em; font-family:'Fira Sans Condensed','Fira Sans',sans-serif;
+  font-weight:700; font-size:20px; letter-spacing:-.02em; color:var(--c-terra); }
+/* Ссылка-стрелка k-where-link на светлом фоне (анонс «Gdzie» на главной) */
+.k-where-link--dark{ color:var(--c-ink); }
+.k-where-link--dark:hover, .k-where-link--dark:focus-visible{ color:var(--c-terra); }
