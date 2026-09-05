@@ -101,7 +101,7 @@
         "priceSpecification": { "@type": "UnitPriceSpecification", "priceCurrency": "PLN", "minPrice": 90,
           "unitText": "strona rozliczeniowa 1125 znaków ze spacjami", "valueAddedTaxIncluded": true } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Apostille dokumentów z Ukrainy" },
-        "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "PLN", "minPrice": 500, "valueAddedTaxIncluded": true } }
+        "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "PLN", "minPrice": 550, "valueAddedTaxIncluded": true } }
     ]
   }
 }
@@ -116,11 +116,11 @@
     { "@type": "Question", "name": "Czy muszę przyjeżdżać osobiście?",
       "acceptedAnswer": { "@type": "Answer", "text": "Nie. Wystarczy skan na WhatsApp do wyceny, a oryginał można przekazać na spotkaniu w centrum Warszawy lub wysłać Paczkomatem InPost. Z zagranicy przyjmujemy przesyłki DHL Express, a z Ukrainy Nową Pocztą. Gotowy dokument odsyłamy tą samą drogą." } },
     { "@type": "Question", "name": "Czy zrobicie apostille na dokumenty z Ukrainy?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Tak. Dokumenty z Ukrainy uzyskujemy przez sprawdzonego partnera na miejscu, więc apostille załatwiamy bez wyjazdu klienta z Polski. Zakres sprawy i potrzebne dane ustalamy indywidualnie przy wycenie – apostille na dokument z Ukrainy kosztuje od 500,- zł." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Tak. Dokumenty z Ukrainy uzyskujemy przez sprawdzonego partnera na miejscu, więc apostille załatwiamy bez wyjazdu klienta z Polski. Zakres sprawy i potrzebne dane ustalamy indywidualnie przy wycenie – apostille na dokument z Ukrainy kosztuje od 550,- zł, a uzyskanie odpisu w Ukrainie – od 550,- zł. Akt stanu cywilnego sprzed 2016 roku lub z czasów ZSRR wymaga obu etapów, razem od 1 100,- zł." } },
     { "@type": "Question", "name": "Czy odpowiada bot?",
       "acceptedAnswer": { "@type": "Answer", "text": "Nie. Wiadomości czyta i odpisuje człowiek – ta sama osoba prowadzi potem sprawę w urzędzie. Nie używamy botów ani sztucznej inteligencji do przetwarzania dokumentów, bo akty stanu cywilnego, dyplomy i zaświadczenia zawierają dane osobowe." } },
     { "@type": "Question", "name": "Ile kosztuje apostille i tłumaczenie przysięgłe?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Apostille w MSZ – od 260,- zł, apostille w sądzie okręgowym – od 120,- zł, tłumaczenie przysięgłe – od 90,- zł za stronę 1125 znaków, apostille na dokument z Ukrainy – od 500,- zł. Ceny zawierają opłaty urzędowe i sądowe; przy tłumaczeniu od 6 stron udzielamy 10% rabatu. Ostateczna wycena po zobaczeniu dokumentu." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Apostille w MSZ – od 260,- zł, apostille w sądzie okręgowym – od 120,- zł, tłumaczenie przysięgłe – od 90,- zł za stronę 1125 znaków, apostille na dokument z Ukrainy – od 550,- zł, uzyskanie dokumentu w Ukrainie – od 550,- zł. Ceny zawierają opłaty urzędowe i sądowe; przy tłumaczeniu od 6 stron udzielamy 10% rabatu. Ostateczna wycena po zobaczeniu dokumentu." } },
     { "@type": "Question", "name": "Tłumaczenie robi się przed apostille czy po?",
       "acceptedAnswer": { "@type": "Answer", "text": "Najpierw apostille, potem tłumaczenie. Klauzula apostille to część dokumentu i też podlega tłumaczeniu, więc tekst przetłumaczony wcześniej trzeba byłoby uzupełniać drugi raz. Kolejność podpowiadamy przy wycenie, zanim cokolwiek zlecimy." } },
     { "@type": "Question", "name": "Apostille stawia się na oryginale czy na kopii?",
@@ -376,7 +376,9 @@ tailwind.config = {
             <div class="slab-panel-in">
               <h3 class="text-[19px] md:text-[22px] font-bold tracking-tight mb-3">Apostille Ukraina</h3>
               <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Dokumenty wydane w&nbsp;Ukrainie – akty stanu cywilnego, dyplomy, świadectwa i&nbsp;zaświadczenia – wymagają apostille w&nbsp;ukraińskich ministerstwach, zanim zostaną użyte w&nbsp;Polsce. Prowadzimy sprawę zdalnie: uzyskujemy apostille w&nbsp;Ukrainie, a&nbsp;następnie wykonujemy tłumaczenie przysięgłe na polski. Klient nie musi jechać do Ukrainy.</p>
-              <p class="slab-price"><span>Apostille Ukraina</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="500">500</span>,-&nbsp;zł</b></span> / dokument</p>
+              <p class="slab-price"><span>Apostille Ukraina</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</p>
+              <p class="slab-price"><span>Uzyskanie dokumentu z&nbsp;Ukrainy</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</p>
+              <p class="text-[15px] leading-[1.6] text-paper/55 mt-3 max-w-[92ch]">Akt stanu cywilnego wydany przed 2016&nbsp;rokiem lub w&nbsp;czasach ZSRR nie przyjmuje apostille – najpierw uzyskujemy nowy odpis, potem apostille. To dwa etapy, razem od&nbsp;1&nbsp;100,-&nbsp;zł. Tłumaczenie przysięgłe nie jest wliczone; dostawa do&nbsp;Polski – tak.</p>
             </div>
           </div>
         </div>
@@ -643,7 +645,12 @@ tailwind.config = {
               gotowy dokument z&nbsp;apostille dostarczamy pod wskazany przez Ciebie adres.
             </p>
             <p class="mt-3 font-cond uppercase tracking-[0.14em] text-[14px]">
-              Apostille Ukraina <span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="500">500</span>,-&nbsp;zł</b></span> / dokument
+              Apostille Ukraina <span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument<br>
+              Uzyskanie dokumentu <span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument
+            </p>
+            <p class="mt-3 text-[15px] text-ink/70 max-w-[60ch]">
+              Dokument sprzed 2016&nbsp;roku lub z&nbsp;czasów ZSRR wymaga dwóch etapów –
+              najpierw nowy odpis, potem apostille: razem od&nbsp;1&nbsp;100,-&nbsp;zł.
             </p>
           </div>
           <a href="#wycena" data-service="apostille-ua-by"
@@ -969,7 +976,11 @@ tailwind.config = {
             </div>
             <div class="flex items-baseline gap-4">
               <span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Dok. z UA</span>
-              <span class="text-[16px]"><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="500">500</span>,-&nbsp;zł</b></span> / dokument</span>
+              <span class="text-[16px]"><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span>
+            </div>
+            <div class="flex items-baseline gap-4">
+              <span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Odpis z UA</span>
+              <span class="text-[16px]"><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span>
             </div>
             <div class="pt-6">
               <p class="font-cond uppercase tracking-[0.14em] text-[12px] text-ink/50 mb-3">Wolisz zapytać bezpośrednio?</p>
@@ -1207,7 +1218,8 @@ tailwind.config = {
             <li><span>Apostille MSZ</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></li>
             <li><span>Apostille – sąd okręgowy</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span></li>
             <li><span>Tłumaczenie przysięgłe</span><b><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> / strona = 1125 znaków ze spacjami</b></li>
-            <li><span>Apostille Ukraina</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="500">500</span>,-&nbsp;zł</b></span> / dokument</li>
+            <li><span>Apostille Ukraina</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</li>
+            <li><span>Uzyskanie dokumentu z&nbsp;Ukrainy</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</li>
           </ul>
           <p class="mt-4">Ceny zawierają opłaty urzędowe i&nbsp;sądowe. Przy tłumaczeniu od&nbsp;6&nbsp;stron udzielamy 10% rabatu. Ostateczną kwotę podajemy po zobaczeniu dokumentu – zwykle w&nbsp;15 minut.</p>
         </div>
@@ -1242,7 +1254,9 @@ tailwind.config = {
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
           Tak. Dokumenty z&nbsp;Ukrainy uzyskujemy przez sprawdzonego partnera na&nbsp;miejscu, więc apostille
           załatwiamy bez wyjazdu klienta z&nbsp;Polski. Zakres sprawy i&nbsp;potrzebne dane ustalamy indywidualnie
-          przy wycenie – apostille na dokument z&nbsp;Ukrainy kosztuje od&nbsp;500,-&nbsp;zł.
+          przy wycenie – apostille na dokument z&nbsp;Ukrainy kosztuje od&nbsp;550,-&nbsp;zł,
+          a&nbsp;uzyskanie odpisu w&nbsp;Ukrainie – od&nbsp;550,-&nbsp;zł. Akt stanu cywilnego sprzed 2016&nbsp;roku
+          lub z&nbsp;czasów ZSRR wymaga obu etapów, razem od&nbsp;1&nbsp;100,-&nbsp;zł.
         </p>
       </details>
 
