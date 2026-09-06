@@ -539,6 +539,30 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 :is(a,button):hover > .btn-mark, :is(a,button):focus-visible > .btn-mark{ grid-template-columns:1fr; opacity:1; }
 @media (prefers-reduced-motion:reduce){ .ws-cta-mark, .btn-mark{ transition:opacity .2s ease } }
 
+/* ===== Кнопки =====
+   Фон – цвет секции (прозрачный), обводка акцентом, текст наследует цвет контекста
+   и при наведении не меняется. Наведение: белая пелена 24% поверх фона.
+   Стрелка: у кнопок с .btn-mark выезжает сама разметка, у остальных – ::after. */
+.btn{ background-color:transparent; color:inherit;
+      border:2px solid var(--c-terra); border-radius:12px;
+      transition:background-color .3s ease, border-color .3s ease; }
+.btn:hover, .btn:focus-visible{ background-color:rgba(255,255,255,.24); color:inherit; }
+.ws-cta{ background:transparent; color:inherit; border-color:var(--c-ochre); }
+.ws-cta:hover, .ws-cta:focus-visible{ background:rgba(255,255,255,.24); color:inherit; }
+
+.btn:not(:has(.btn-mark))::after{
+  content:''; display:inline-block; flex:0 0 auto; width:0; opacity:0;
+  height:1.05em; background:currentColor; vertical-align:-.12em;
+  -webkit-mask:var(--chev) no-repeat center / contain;
+          mask:var(--chev) no-repeat center / contain;
+  --chev:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 4l8 8-8 8' fill='none' stroke='%23000' stroke-width='3.4'/%3E%3C/svg%3E");
+  transition:width .38s cubic-bezier(.2,.7,.25,1), margin-left .38s cubic-bezier(.2,.7,.25,1), opacity .28s ease; }
+.btn:not(:has(.btn-mark)):hover::after,
+.btn:not(:has(.btn-mark)):focus-visible::after{ width:1.05em; margin-left:9px; opacity:1; }
+@media (prefers-reduced-motion:reduce){
+  .btn:not(:has(.btn-mark))::after{ transition:opacity .2s ease; width:1.05em; margin-left:9px; opacity:0; }
+  .btn:not(:has(.btn-mark)):hover::after{ opacity:1; } }
+
 /* Календарь: красным обведены дни, когда urzędy nie pracują */
 .cal{ position:relative; margin-top:30px; padding-top:24px; }
 .cal-head{ display:flex; align-items:center; gap:12px; margin-bottom:14px; }
