@@ -1012,9 +1012,10 @@ details[open] .chev{ transform:rotate(45deg) }
 /* Заголовки из двух строк (страницы прайса): 22ch рвёт вторую строку на три,
    поэтому для них отдельный, более широкий лимит – общий .h1-page не трогаем. */
 .h1-wide{ max-width:34ch; }
-/* Хвост заголовка «w Warszawie»: отдельная строка, прижата вправо и слегка
-   выступает за правый край остального текста. */
-.h1-out{ display:block; text-align:right; margin-right:-.6ch; }
+/* Хвост заголовка «w Warszawie»: отдельная строка. Сдвиг подобран так, чтобы
+   «W» встало под «si» в слове «Przysięgłych» строкой выше (замерено в браузере
+   при 64px сдвиг 489px = 7.64em; в em – держится на любом кегле, пока строка не рвётся). */
+.h1-out{ display:block; text-align:right; margin-right:7.64em; }
 /* Абзац под ценами: каждое предложение своей строкой, поэтому лимит шире 62ch. */
 .lead-lines{ max-width:80ch; }
 
@@ -1039,7 +1040,7 @@ details[open] .chev{ transform:rotate(45deg) }
 .mark{ background-image:linear-gradient(var(--c-terra),var(--c-terra));
        background-repeat:no-repeat; background-position:0 88%; background-size:0 .42em;
        white-space:nowrap;
-       animation:mark-in .45s cubic-bezier(.2,.7,.25,1) var(--d,0s) forwards; }
+       animation:mark-in .15s cubic-bezier(.2,.7,.25,1) var(--d,0s) forwards; }
 @keyframes mark-in{ to{ background-size:100% .42em; } }
 @media (prefers-reduced-motion:reduce){
   .mark{ animation:none; background-size:100% .42em; } }
