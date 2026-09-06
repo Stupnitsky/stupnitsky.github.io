@@ -964,6 +964,9 @@ details[open] .chev{ transform:rotate(45deg) }
 /* ===== Страница /kontakt/ ===== */
 /* H1 подстраниц: ограничение ширины строки (утилита max-w-[22ch] в сборке Tailwind отсутствует) */
 .h1-page{ max-width:22ch; }
+/* Заголовки из двух строк (страницы прайса): 22ch рвёт вторую строку на три,
+   поэтому для них отдельный, более широкий лимит – общий .h1-page не трогаем. */
+.h1-wide{ max-width:34ch; }
 
 /* Каналы связи – четыре карточки на тёмной плите */
 .kt-channels{ display:grid; gap:1.25rem; list-style:none; margin:0; padding:0; }
