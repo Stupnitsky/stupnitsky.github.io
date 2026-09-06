@@ -1198,31 +1198,6 @@
   });
 })();
 
-  /* --- счётчик, который набирается один раз при загрузке ---
-     Разметка: <span class="price-num count-once" data-price="15">15</span>.
-     Логика та же, что у цен, только старт от 1 и запуск не по наведению. */
-  (function(){
-    var els = document.querySelectorAll('.count-once');
-    if (!els.length) return;
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var DUR = 620, DELAY = 350;   // data-delay в разметке перебивает значение по умолчанию
-    Array.prototype.forEach.call(els, function(el){
-      var target = parseInt(el.dataset.price, 10);
-      if (!target) return;
-      if (reduce) { el.textContent = target; return; }
-      el.textContent = '1';
-      setTimeout(function(){
-        var start = performance.now();
-        (function tick(now){
-          var t = Math.min((now - start) / DUR, 1);
-          var e = 1 - Math.pow(1 - t, 3);          // easeOutCubic
-          el.textContent = Math.round(1 + (target - 1) * e);
-          if (t < 1) requestAnimationFrame(tick); else el.textContent = target;
-        })(performance.now());
-      }, parseInt(el.dataset.delay, 10) || DELAY);
-    });
-  })();
-
   /* --- price count-up on hover --- */
   (function(){
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
