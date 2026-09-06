@@ -549,8 +549,26 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
       border:1px solid var(--c-terra); border-radius:12px;
       transition:background-color .3s ease, border-color .3s ease; }
 .btn:hover, .btn:focus-visible{ background-color:var(--c-terra); color:var(--c-ink); }
-.ws-cta{ background:transparent; color:inherit; border-width:1px; border-color:var(--c-ochre); }
-.ws-cta:hover, .ws-cta:focus-visible{ background:var(--c-ochre); color:var(--c-ink); }
+
+/* Вариант .btn--pop: инверсия обычной кнопки.
+   В покое – сплошная заливка охрой без обводки; при наведении заливка уплывает
+   вниз по диагонали (приём с mammothmurals.com: 3D-разворот слоя + translateY),
+   а следом проявляется обводка. Стрелка видна всегда, не только на наведении. */
+.btn--pop{ position:relative; overflow:clip; isolation:isolate; perspective:600px;
+           background-color:transparent; color:var(--c-ink); border-color:transparent;
+           transition:border-color .3s ease .18s, color .3s ease; }
+.btn--pop::before{ content:''; position:absolute; inset:-1px; z-index:-1; border-radius:inherit;
+           background:var(--c-terra); transform-style:preserve-3d; transform-origin:0 100%;
+           transform:none; transition:transform .5s cubic-bezier(.2,.7,.25,1); }
+.btn--pop:hover, .btn--pop:focus-visible{ background-color:transparent; color:inherit;
+           border-color:var(--c-terra); }
+.btn--pop:hover::before, .btn--pop:focus-visible::before{
+           transform:rotateX(28deg) rotateY(28deg) rotate(10deg) translateY(105%); }
+/* стрелка у этой кнопки раскрыта постоянно */
+.btn--pop > .btn-mark{ grid-template-columns:1fr; opacity:1; }
+@media (prefers-reduced-motion:reduce){
+  .btn--pop::before{ transition:opacity .2s ease; transform:none; }
+  .btn--pop:hover::before{ opacity:0; } }
 
 .btn:not(:has(.btn-mark))::after{
   content:''; display:inline-block; flex:0 0 auto; width:0; opacity:0;
