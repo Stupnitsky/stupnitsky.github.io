@@ -1033,10 +1033,16 @@ details[open] .chev{ transform:rotate(45deg) }
 
 /* CTA под текстовым блоком – по центру колонки. */
 .btn-center{ display:flex; width:fit-content; margin-left:auto; margin-right:auto; }
-/* Цена во вводном абзаце: постоянная подсветка маркером, без наведения. */
-.mark{ --c-mark:#F2E23A; background-image:linear-gradient(var(--c-mark),var(--c-mark));
-       background-repeat:no-repeat; background-position:0 88%; background-size:100% .42em;
-       white-space:nowrap; }
+/* Цена во вводном абзаце: маркер основного цвета, как у кикера. Появляются
+   по очереди, в темпе чтения (~200 слов в минуту), с учётом времени на заголовок:
+   задержка каждого задана инлайном через --d. */
+.mark{ background-image:linear-gradient(var(--c-terra),var(--c-terra));
+       background-repeat:no-repeat; background-position:0 88%; background-size:0 .42em;
+       white-space:nowrap;
+       animation:mark-in .45s cubic-bezier(.2,.7,.25,1) var(--d,0s) forwards; }
+@keyframes mark-in{ to{ background-size:100% .42em; } }
+@media (prefers-reduced-motion:reduce){
+  .mark{ animation:none; background-size:100% .42em; } }
 
 /* Каналы связи – четыре карточки на тёмной плите */
 .kt-channels{ display:grid; gap:1.25rem; list-style:none; margin:0; padding:0; }
