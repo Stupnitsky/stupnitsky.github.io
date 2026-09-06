@@ -1018,6 +1018,14 @@ details[open] .chev{ transform:rotate(45deg) }
 /* Абзац под ценами: каждое предложение своей строкой, поэтому лимит шире 62ch. */
 .lead-lines{ max-width:80ch; }
 
+/* Кикер прайса: маркер основного цвета выезжает слева при загрузке страницы. */
+.kick-mark{ background-image:linear-gradient(var(--c-terra),var(--c-terra));
+            background-repeat:no-repeat; background-position:0 92%; background-size:0 .4em;
+            animation:kick-mark-in .8s cubic-bezier(.2,.7,.25,1) .35s forwards; }
+@keyframes kick-mark-in{ to{ background-size:100% .4em; } }
+@media (prefers-reduced-motion:reduce){
+  .kick-mark{ animation:none; background-size:100% .4em; } }
+
 /* Плавающая круглая кнопка WhatsApp – тот же принцип, что у остальных. */
 .fab{ background:transparent; color:var(--c-ink); border:1px solid var(--c-terra);
       transition:background-color .3s ease, color .3s ease; }
