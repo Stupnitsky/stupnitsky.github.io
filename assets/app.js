@@ -1,4 +1,56 @@
 (function () {
+  // Словарь для часов и календаря: язык берётся из <html lang>
+  var I18N = {
+    pl: { months: ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec','Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'],
+          wd: ['Pn','Wt','Śr','Cz','Pt','So','Nd'], summer: 'czas letni', winter: 'czas zimowy',
+          open: 'Teraz pracujemy', closed: 'Poza godzinami', sat: 'Sobota – po uzgodnieniu', sun: 'Niedziela – nieczynne',
+          msgOpenLate: 'Zdążymy dziś – piszemy zwykle w ciągu 15 minut.', msgOpen: 'Odpowiadamy zwykle w ciągu 15 minut.',
+          msgToday: 'Napisz teraz – odpowiemy dziś od 7:00.', msgTomorrow: 'Napisz teraz – odpowiemy jutro od 7:00.',
+          msgFri: 'Napisz teraz – w sobotę pracujemy po uzgodnieniu, najpóźniej odpiszemy w poniedziałek od 7:00.',
+          msgSat: 'Napisz, a potwierdzimy termin. Standardowo wracamy w poniedziałek od 7:00.',
+          msgSun: 'Zgłoszenie przyjmiemy teraz, odpowiemy w poniedziałek od 7:00.',
+          hol: { ny: 'Nowy Rok', epi: 'Święto Trzech Króli', may1: 'Święto Pracy', may3: 'Święto Konstytucji 3 Maja',
+                 aug15: 'Wniebowzięcie NMP · Święto Wojska Polskiego', nov1: 'Wszystkich Świętych', nov11: 'Narodowe Święto Niepodległości',
+                 xmas1: 'Boże Narodzenie – pierwszy dzień', xmas2: 'Boże Narodzenie – drugi dzień', easter: 'Wielkanoc',
+                 easterMon: 'Poniedziałek Wielkanocny', pent: 'Zielone Świątki', corpus: 'Boże Ciało' } },
+    uk: { months: ['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'],
+          wd: ['Пн','Вт','Ср','Чт','Пт','Сб','Нд'], summer: 'літній час', winter: 'зимовий час',
+          open: 'Зараз працюємо', closed: 'Поза робочими годинами', sat: 'Субота – за домовленістю', sun: 'Неділя – вихідний',
+          msgOpenLate: 'Встигнемо сьогодні – відповідаємо зазвичай за 15 хвилин.', msgOpen: 'Відповідаємо зазвичай за 15 хвилин.',
+          msgToday: 'Напишіть зараз – відповімо сьогодні з 7:00.', msgTomorrow: 'Напишіть зараз – відповімо завтра з 7:00.',
+          msgFri: 'Напишіть зараз – у суботу працюємо за домовленістю, найпізніше відповімо в понеділок з 7:00.',
+          msgSat: 'Напишіть, і ми підтвердимо термін. Зазвичай повертаємося в понеділок з 7:00.',
+          msgSun: 'Заявку приймемо зараз, відповімо в понеділок з 7:00.',
+          hol: { ny: 'Новий рік', epi: 'Богоявлення (Трьох Королів)', may1: 'День праці', may3: 'День Конституції 3 Травня',
+                 aug15: 'Успіння Богородиці · День Війська Польського', nov1: 'День усіх святих', nov11: 'День Незалежності Польщі',
+                 xmas1: 'Різдво – перший день', xmas2: 'Різдво – другий день', easter: 'Великдень',
+                 easterMon: 'Великодній понеділок', pent: 'Зелені свята', corpus: 'Свято Тіла Господнього' } },
+    ru: { months: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+          wd: ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'], summer: 'летнее время', winter: 'зимнее время',
+          open: 'Сейчас работаем', closed: 'Вне рабочих часов', sat: 'Суббота – по договорённости', sun: 'Воскресенье – выходной',
+          msgOpenLate: 'Успеем сегодня – отвечаем обычно за 15 минут.', msgOpen: 'Отвечаем обычно за 15 минут.',
+          msgToday: 'Напишите сейчас – ответим сегодня с 7:00.', msgTomorrow: 'Напишите сейчас – ответим завтра с 7:00.',
+          msgFri: 'Напишите сейчас – в субботу работаем по договорённости, самое позднее ответим в понедельник с 7:00.',
+          msgSat: 'Напишите, и мы подтвердим срок. Обычно возвращаемся в понедельник с 7:00.',
+          msgSun: 'Заявку примем сейчас, ответим в понедельник с 7:00.',
+          hol: { ny: 'Новый год', epi: 'Богоявление (Трёх Королей)', may1: 'День труда', may3: 'День Конституции 3 Мая',
+                 aug15: 'Успение Богородицы · День Войска Польского', nov1: 'День всех святых', nov11: 'День Независимости Польши',
+                 xmas1: 'Рождество – первый день', xmas2: 'Рождество – второй день', easter: 'Пасха',
+                 easterMon: 'Пасхальный понедельник', pent: 'Троица', corpus: 'Праздник Тела Господня' } },
+    en: { months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+          wd: ['Mo','Tu','We','Th','Fr','Sa','Su'], summer: 'summer time', winter: 'winter time',
+          open: 'Open now', closed: 'Outside working hours', sat: 'Saturday – by arrangement', sun: 'Sunday – closed',
+          msgOpenLate: 'Still today – we usually reply within 15 minutes.', msgOpen: 'We usually reply within 15 minutes.',
+          msgToday: 'Write now – we reply today from 7:00.', msgTomorrow: 'Write now – we reply tomorrow from 7:00.',
+          msgFri: 'Write now – Saturdays by arrangement, we reply by Monday 7:00 at the latest.',
+          msgSat: 'Write and we will confirm a time. Normally we are back on Monday from 7:00.',
+          msgSun: 'We take your request now and reply on Monday from 7:00.',
+          hol: { ny: 'New Year', epi: 'Epiphany', may1: 'Labour Day', may3: 'Constitution Day (3 May)',
+                 aug15: 'Assumption · Polish Armed Forces Day', nov1: 'All Saints', nov11: 'Independence Day',
+                 xmas1: 'Christmas Day', xmas2: 'Second day of Christmas', easter: 'Easter Sunday',
+                 easterMon: 'Easter Monday', pent: 'Pentecost', corpus: 'Corpus Christi' } }
+  };
+  var L = I18N[(document.documentElement.lang || 'pl').slice(0, 2)] || I18N.pl;
   // Логотип: плавно уменьшается пропорционально прокрутке (1.36 → 1.00 на первых 160px)
   var header = document.getElementById('top');
   var LOGO_MAX = 1.36, LOGO_MIN = 1, LOGO_RANGE = 160;
@@ -699,8 +751,7 @@
 
     var offEl = ws.querySelector('.ws-tz-off'), dstEl = ws.querySelector('.ws-tz-dst');
     var dateEl = ws.querySelector('.ws-date');
-    var PL_MONTHS = ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec',
-                     'Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'];
+    var PL_MONTHS = L.months;
     function paintDate() {
       if (!dateEl) return;
       var o = {};
@@ -721,7 +772,7 @@
       var winter = warsawOffset(new Date(now.getFullYear(), 0, 15));
       var summer = off > winter;
       if (offEl) offEl.textContent = 'UTC+' + off;
-      if (dstEl) dstEl.textContent = summer ? 'czas letni' : 'czas zimowy';
+      if (dstEl) dstEl.textContent = summer ? L.summer : L.winter;
     }
 
     function tick() {
@@ -732,25 +783,23 @@
       var state, msg;
 
       if (open) {
-        state = 'Teraz pracujemy';
-        msg = mins >= CLOSE - 60
-          ? 'Zdążymy dziś – piszemy zwykle w ciągu 15 minut.'
-          : 'Odpowiadamy zwykle w ciągu 15 minut.';
+        state = L.open;
+        msg = mins >= CLOSE - 60 ? L.msgOpenLate : L.msgOpen;
       } else if (weekday && mins < OPEN) {
-        state = 'Poza godzinami';
-        msg = 'Napisz teraz – odpowiemy dziś od 7:00.';
+        state = L.closed;
+        msg = L.msgToday;
       } else if (t.wd >= 1 && t.wd <= 4) {
-        state = 'Poza godzinami';
-        msg = 'Napisz teraz – odpowiemy jutro od 7:00.';
+        state = L.closed;
+        msg = L.msgTomorrow;
       } else if (t.wd === 5) {
-        state = 'Poza godzinami';
-        msg = 'Napisz teraz – w sobotę pracujemy po uzgodnieniu, najpóźniej odpiszemy w poniedziałek od 7:00.';
+        state = L.closed;
+        msg = L.msgFri;
       } else if (t.wd === 6) {
-        state = 'Sobota – po uzgodnieniu';
-        msg = 'Napisz, a potwierdzimy termin. Standardowo wracamy w poniedziałek od 7:00.';
+        state = L.sat;
+        msg = L.msgSat;
       } else {
-        state = 'Niedziela – nieczynne';
-        msg = 'Zgłoszenie przyjmiemy teraz, odpowiemy w poniedziałek od 7:00.';
+        state = L.sun;
+        msg = L.msgSun;
       }
 
       ws.classList.toggle('is-open', open);
@@ -828,9 +877,8 @@
     var next = cal.querySelector('.cal-btn.is-next');
     if (!grid || !title) return;
 
-    var MONTHS = ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec',
-                  'Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'];
-    var WD = ['Pn','Wt','Śr','Cz','Pt','So','Nd'];
+    var MONTHS = L.months;
+    var WD = L.wd;
 
     // Пасха по алгоритму Meeus/Jones/Butcher – подвижные праздники считаются, а не зашиты
     function easter(y) {
@@ -850,20 +898,20 @@
       var map = {};
       function put(mo, da, name) { map[mo + '-' + da] = name; }
       function putDate(d, name) { put(d.getMonth() + 1, d.getDate(), name); }
-      put(1, 1, 'Nowy Rok');
-      put(1, 6, 'Święto Trzech Króli');
-      put(5, 1, 'Święto Pracy');
-      put(5, 3, 'Święto Konstytucji 3 Maja');
-      put(8, 15, 'Wniebowzięcie NMP · Święto Wojska Polskiego');
-      put(11, 1, 'Wszystkich Świętych');
-      put(11, 11, 'Narodowe Święto Niepodległości');
-      put(12, 25, 'Boże Narodzenie – pierwszy dzień');
-      put(12, 26, 'Boże Narodzenie – drugi dzień');
+      put(1, 1, L.hol.ny);
+      put(1, 6, L.hol.epi);
+      put(5, 1, L.hol.may1);
+      put(5, 3, L.hol.may3);
+      put(8, 15, L.hol.aug15);
+      put(11, 1, L.hol.nov1);
+      put(11, 11, L.hol.nov11);
+      put(12, 25, L.hol.xmas1);
+      put(12, 26, L.hol.xmas2);
       var e = easter(y);
-      putDate(e, 'Wielkanoc');
-      putDate(new Date(y, e.getMonth(), e.getDate() + 1), 'Poniedziałek Wielkanocny');
-      putDate(new Date(y, e.getMonth(), e.getDate() + 49), 'Zielone Świątki');
-      putDate(new Date(y, e.getMonth(), e.getDate() + 60), 'Boże Ciało');
+      putDate(e, L.hol.easter);
+      putDate(new Date(y, e.getMonth(), e.getDate() + 1), L.hol.easterMon);
+      putDate(new Date(y, e.getMonth(), e.getDate() + 49), L.hol.pent);
+      putDate(new Date(y, e.getMonth(), e.getDate() + 60), L.hol.corpus);
       cache[y] = map;
       return map;
     }
