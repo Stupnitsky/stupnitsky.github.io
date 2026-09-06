@@ -406,7 +406,10 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 @media (prefers-reduced-motion:reduce){ .s247-col{ position:static } }
 
 /* Блок 24/7: живой статус работы */
-.ws-legal-item{ border:0; }
+/* Юридические аккордеоны: во всю ширину блока, линейки и кегль как у FAQ, только на тёмном */
+.ws-legal{ margin-top:3rem; border-top:1px solid rgba(255,255,255,.2); }
+@media (min-width:1024px){ .ws-legal{ margin-top:4rem; } }
+.ws-legal-item{ border:0; border-bottom:1px solid rgba(255,255,255,.2); }
 .ws-legal summary{ cursor:pointer; list-style:none; }
 .ws-legal summary::-webkit-details-marker{ display:none; }
 /* плавное раскрытие – как у «godziny pracy» */
@@ -414,13 +417,13 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
              --ws-open:1.05s; --ws-close:.8s;
              transition:grid-template-rows var(--ws-close) cubic-bezier(.2,.7,.25,1),
                         opacity calc(var(--ws-close) * .7) ease,
-                        margin-top var(--ws-close) cubic-bezier(.2,.7,.25,1);
-             margin-top:0; }
+                        margin-bottom var(--ws-close) cubic-bezier(.2,.7,.25,1);
+             margin-top:0; margin-bottom:0; }
 .legal-wrap > *{ overflow:hidden; min-height:0; margin-top:0; }
-.ws-legal-item.is-open .legal-wrap{ grid-template-rows:1fr; opacity:1; margin-top:1.25rem;
+.ws-legal-item.is-open .legal-wrap{ grid-template-rows:1fr; opacity:1; margin-bottom:1.5rem;
              transition:grid-template-rows var(--ws-open) cubic-bezier(.16,.84,.3,1),
                         opacity calc(var(--ws-open) * .8) ease,
-                        margin-top var(--ws-open) cubic-bezier(.16,.84,.3,1); }
+                        margin-bottom var(--ws-open) cubic-bezier(.16,.84,.3,1); }
 @media (prefers-reduced-motion:reduce){ .legal-wrap{ transition:none } }
 .human-note{ display:flex; gap:14px; align-items:flex-start; padding-top:20px;
              font-size:16px; line-height:1.55; color:rgba(255,255,255,.7); }
@@ -501,7 +504,7 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 .ws-clockbox.is-open .ws-hours-wrap{ grid-template-rows:1fr; opacity:1; margin-top:8px;
                 transition:grid-template-rows var(--ws-open) cubic-bezier(.16,.84,.3,1),
                            opacity calc(var(--ws-open) * .8) ease,
-                           margin-top var(--ws-open) cubic-bezier(.16,.84,.3,1); }
+                           margin-bottom var(--ws-open) cubic-bezier(.16,.84,.3,1); }
 @media (prefers-reduced-motion:reduce){
   .ws-hours-wrap{ transition:none }
 }
