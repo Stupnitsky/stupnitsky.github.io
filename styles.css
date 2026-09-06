@@ -1018,7 +1018,11 @@ details[open] .chev{ transform:rotate(45deg) }
 .h1-out{ display:block; text-align:left; padding-left:1em; }
 /* выезд справа – тот же приём, что у «Cztery proste kroki» на главной;
    .slide-in делает элемент inline-block, поэтому возвращаем блочность */
-.h1-out.slide-in{ display:block; }
+/* слова заголовка поднимаются снизу, «w Warszawie» выезжает справа после них */
+.slide-in.rise{ transform:translateY(.42em); }
+.slide-in.rise.is-in{ transform:none; }
+.slide-in.rise-2{ transition-delay:.28s; }
+.h1-out.slide-in{ display:block; transition-delay:.62s; }
 /* Вводный абзац прайса: ширина подобрана так, чтобы первая строка кончалась
    на «550 zł,» и дальше текст переносился сам – без жёстких <br>, которые
    на узком экране рвали бы строки где попало. Замер при 24px: строка до «550 zł,» = 32.4em, следующее слово «Tłumaczenia»
