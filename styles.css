@@ -1006,3 +1006,28 @@ details[open] .chev{ transform:rotate(45deg) }
 .ap-doc{ padding-top:1rem; border-top:2px solid rgba(31,33,32,.15); }
 .ap-doc h3{ font-size:20px; font-weight:700; letter-spacing:-.01em; line-height:1.2; }
 .ap-doc p{ margin-top:.5rem; font-size:15.5px; line-height:1.55; color:rgba(31,33,32,.72); }
+
+/* ===== Страница /cennik/ ===== */
+.cn-groups{ display:grid; gap:2.5rem; }
+@media (min-width:1024px){ .cn-groups{ grid-template-columns:1fr 1fr; gap:3rem 4rem; } }
+.cn-group-h{ font-size:24px; font-weight:800; letter-spacing:-.02em; line-height:1.1; }
+.cn-group-t{ margin-top:.4rem; font-size:15px; line-height:1.5; color:rgba(31,33,32,.6); }
+.cn-list{ margin:1rem 0 0; padding:0; list-style:none; border-top:2px solid rgba(31,33,32,.15); }
+.cn-list li{ display:flex; align-items:flex-start; justify-content:space-between; gap:1.5rem;
+             padding:1rem 0; border-bottom:1px solid rgba(31,33,32,.12); }
+.cn-name{ display:flex; flex-direction:column; gap:.2rem; font-size:17px; font-weight:600; letter-spacing:-.01em; line-height:1.3; }
+.cn-name small{ font-size:14px; font-weight:400; line-height:1.45; color:rgba(31,33,32,.6); max-width:44ch; }
+.cn-price{ display:flex; flex-direction:column; align-items:flex-end; text-align:right; flex:0 0 auto; }
+.cn-price b, .cn-price .price-hit b{ font-size:19px; font-weight:700; white-space:nowrap; letter-spacing:-.01em; }
+.cn-price small{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase; letter-spacing:.12em;
+                 font-size:11px; color:rgba(31,33,32,.5); margin-top:.15rem; white-space:nowrap; }
+
+/* ===== Страница /apostille-ukraina/ ===== */
+/* Таблица сроков: случай · срок · пояснение */
+.ua-terms{ border-top:2px solid rgba(31,33,32,.15); }
+.ua-term{ display:grid; gap:.35rem 1.5rem; padding:1rem 0; border-bottom:1px solid rgba(31,33,32,.12); }
+@media (min-width:768px){ .ua-term{ grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,2fr); align-items:baseline; } }
+.ua-term-h{ display:flex; flex-direction:column; gap:.15rem; font-size:17px; font-weight:600; letter-spacing:-.01em; line-height:1.3; }
+.ua-term-h small{ font-size:14px; font-weight:400; color:rgba(31,33,32,.6); }
+.ua-term-v{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; font-weight:700; font-size:22px; letter-spacing:-.01em; color:var(--c-terra); white-space:nowrap; }
+.ua-term-t{ font-size:15px; line-height:1.5; color:rgba(31,33,32,.65); }
