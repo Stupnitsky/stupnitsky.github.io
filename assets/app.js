@@ -1205,7 +1205,7 @@
     var els = document.querySelectorAll('.count-once');
     if (!els.length) return;
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var DUR = 620, DELAY = 350;
+    var DUR = 620, DELAY = 350;   // data-delay в разметке перебивает значение по умолчанию
     Array.prototype.forEach.call(els, function(el){
       var target = parseInt(el.dataset.price, 10);
       if (!target) return;
@@ -1219,7 +1219,7 @@
           el.textContent = Math.round(1 + (target - 1) * e);
           if (t < 1) requestAnimationFrame(tick); else el.textContent = target;
         })(performance.now());
-      }, DELAY);
+      }, parseInt(el.dataset.delay, 10) || DELAY);
     });
   })();
 
