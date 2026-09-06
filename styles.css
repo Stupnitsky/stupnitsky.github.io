@@ -967,6 +967,13 @@ details[open] .chev{ transform:rotate(45deg) }
 /* Заголовки из двух строк (страницы прайса): 22ch рвёт вторую строку на три,
    поэтому для них отдельный, более широкий лимит – общий .h1-page не трогаем. */
 .h1-wide{ max-width:34ch; }
+/* Хвост заголовка «w Warszawie»: отдельная строка, прижата вправо и слегка
+   выступает за правый край остального текста. */
+.h1-out{ display:block; text-align:right; margin-right:-.6ch; }
+/* Цена во вводном абзаце: постоянная подсветка маркером, без наведения. */
+.mark{ --c-mark:#F2E23A; background-image:linear-gradient(var(--c-mark),var(--c-mark));
+       background-repeat:no-repeat; background-position:0 88%; background-size:100% .42em;
+       white-space:nowrap; }
 
 /* Каналы связи – четыре карточки на тёмной плите */
 .kt-channels{ display:grid; gap:1.25rem; list-style:none; margin:0; padding:0; }
