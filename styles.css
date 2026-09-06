@@ -1024,6 +1024,17 @@ details[open] .chev{ transform:rotate(45deg) }
 .cn-price b, .cn-price .price-hit b{ font-size:19px; font-weight:700; white-space:nowrap; letter-spacing:-.01em; }
 .cn-price small{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase; letter-spacing:.12em;
                  font-size:11px; color:rgba(31,33,32,.5); margin-top:.15rem; white-space:nowrap; }
+/* Маркер под ценой: вырастает снизу вверх при наведении на строку.
+   У строк без числа (wycena) это единственный эффект, у остальных – вместе с накруткой. */
+.cn-list li > .cn-price > b,
+.cn-list li > .cn-price > .price-hit > b{ --c-mark:#F2E23A;
+  background-image:linear-gradient(var(--c-mark),var(--c-mark));
+  background-repeat:no-repeat; background-position:0 90%; background-size:100% 0;
+  transition:background-size .5s cubic-bezier(.4,.65,.35,1); }
+.cn-list li:hover > .cn-price > b,
+.cn-list li:hover > .cn-price > .price-hit > b{ background-size:100% .46em; }
+@media (prefers-reduced-motion:reduce){ .cn-list li > .cn-price > b,
+  .cn-list li > .cn-price > .price-hit > b{ transition:none; } }
 
 /* ===== Страница /apostille-ukraina/ ===== */
 /* Таблица сроков: случай · срок · пояснение */

@@ -1202,13 +1202,16 @@
   (function(){
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) return;
-    var DUR = 320;          // длительность накрутки, мс
-    var FROM = 0.55;        // старт = 55% от цены
-    document.querySelectorAll('.price-hit').forEach(function(hit){
-      var el = hit.querySelector('.price-num');
+    var DUR = 620;          // длительность накрутки, мс
+    var FROM = 0.15;        // старт = 15% от цены
+    document.querySelectorAll('.price-hit').forEach(function(box){
+      var el = box.querySelector('.price-num');
       if (!el) return;
+      /* курсор ловим на всей строке прайса, а не только на самой цене */
+      var hit = box.closest('li, .flex') || box;
       var target = parseInt(el.dataset.price, 10);
       var raf = null;
+      function fmt(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0'); }
       el.style.minWidth = el.getBoundingClientRect().width + 'px';
       hit.addEventListener('mouseenter', function(){
         if (raf) cancelAnimationFrame(raf);
@@ -1216,13 +1219,13 @@
         (function tick(now){
           var t = Math.min((now - start) / DUR, 1);
           var e = 1 - Math.pow(1 - t, 3);            // easeOutCubic
-          el.textContent = Math.round(from + (target - from) * e);
-          if (t < 1) raf = requestAnimationFrame(tick); else el.textContent = target;
+          el.textContent = fmt(Math.round(from + (target - from) * e));
+          if (t < 1) raf = requestAnimationFrame(tick); else el.textContent = fmt(target);
         })(start);
       });
       hit.addEventListener('mouseleave', function(){
         if (raf) cancelAnimationFrame(raf);
-        el.textContent = target;
+        el.textContent = fmt(target);
       });
     });
   })();
