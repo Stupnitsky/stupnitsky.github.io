@@ -1017,16 +1017,11 @@ details[open] .chev{ transform:rotate(45deg) }
    при 64px сдвиг 497px = 7.76em; курсивная W начинается на ~4px правее
    своей рамки, плюс наклон – поэтому сдвиг чуть больше геометрического; в em – держится на любом кегле, пока строка не рвётся). */
 .h1-out{ display:block; text-align:right; margin-right:7.76em; }
-/* Абзац под ценами: каждое предложение своей строкой, поэтому лимит шире 62ch. */
-.lead-lines{ max-width:80ch; }
-
-/* Кикер прайса: маркер основного цвета выезжает слева при загрузке страницы. */
-.kick-mark{ background-image:linear-gradient(var(--c-terra),var(--c-terra));
-            background-repeat:no-repeat; background-position:0 92%; background-size:0 .4em;
-            animation:kick-mark-in .8s cubic-bezier(.2,.7,.25,1) .35s forwards; }
-@keyframes kick-mark-in{ to{ background-size:100% .4em; } }
-@media (prefers-reduced-motion:reduce){
-  .kick-mark{ animation:none; background-size:100% .4em; } }
+/* Вводный абзац прайса: ширина подобрана так, чтобы первая строка кончалась
+   на «550 zł,» и дальше текст переносился сам – без жёстких <br>, которые
+   на узком экране рвали бы строки где попало. Замер при 24px: строка = 32.4em,
+   ближайшее слово «Tłumaczenia» упирается в 38.4em, поэтому лимит между ними. */
+.lead-lines{ max-width:35em; }
 
 /* Плавающая круглая кнопка WhatsApp – тот же принцип, что у остальных. */
 .fab{ background:transparent; color:var(--c-ink); border:1px solid var(--c-terra);
