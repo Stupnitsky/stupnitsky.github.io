@@ -235,13 +235,6 @@
     });
   })();
 
-  // Клик по логотипу – перезагрузка страницы (удобно смотреть новую версию)
-  Array.prototype.slice.call(document.querySelectorAll('a.logo')).forEach(function (el) {
-    el.addEventListener('click', function (e) {
-      e.preventDefault();
-      location.reload();
-    });
-  });
 
   // Переключатель языка в шапке (пока только метка, сайт не переводится)
   (function () {
@@ -615,28 +608,21 @@
     check();
   })();
 
-  // Клик по логотипу: полная перезагрузка страницы и возврат на самый верх
-  // (scrollRestoration трогаем только на момент этого перехода, а не насовсем —
-  // иначе обычный F5 тоже перестаёт восстанавливать прокрутку)
+  // Клик по логотипу: на главной – плавно наверх без перезагрузки,
+  // с подстраницы – обычный переход на главную (своей языковой версии)
   Array.prototype.slice.call(document.querySelectorAll('[data-home]')).forEach(function (el) {
     el.addEventListener('click', function (e) {
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
-      e.preventDefault();
-      try { sessionStorage.setItem('apostilo-scroll-top', '1'); } catch (err) {}
-      location.replace(el.getAttribute('href') || '/');
+      var home = el.getAttribute('href') || '/';
+      if (location.pathname === home) {
+        e.preventDefault();
+        if (location.hash) history.replaceState(null, '', home);
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      }
+      // иначе браузер сам переходит по href без preventDefault
     });
   });
-  try {
-    if (sessionStorage.getItem('apostilo-scroll-top') === '1') {
-      sessionStorage.removeItem('apostilo-scroll-top');
-      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-      window.scrollTo(0, 0);
-      window.addEventListener('load', function () {
-        window.scrollTo(0, 0);
-        if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
-      });
-    }
-  } catch (err) {}
 
   // Появление строк с выездом справа – повторяется при каждом новом прокруте
   (function () {
