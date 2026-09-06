@@ -271,20 +271,32 @@
       });
     }
 
+    /* та же страница в другой языковой версии: /ua/kontakt/ ↔ /kontakt/ ↔ /en/kontakt/ */
+    var LANG_DIRS = ['ua', 'ru', 'en'];
+    function samePageIn(code) {
+      var parts = location.pathname.split('/').filter(Boolean);
+      if (parts.length && LANG_DIRS.indexOf(parts[0]) !== -1) parts.shift();
+      if (code !== 'pl') parts.unshift(code);
+      return '/' + parts.join('/') + (parts.length ? '/' : '') + location.hash;
+    }
+    function goTo(o) {
+      var code = o.getAttribute('data-lang');
+      var already = o.classList.contains('is-current');
+      setLang(o.textContent.trim(), o);
+      close();
+      if (code && !already) location.href = samePageIn(code);
+    }
     opts.forEach(function (o) {
       o.addEventListener('click', function () {
-        setLang(o.textContent.trim(), o);
-        close();
+        goTo(o);
         if (document.activeElement) document.activeElement.blur();
       });
     });
-    /* клик по самому переключателю – сразу следующий язык, список при этом закрыт */
+    /* клик по самому переключателю – следующий язык по кругу */
     btn.addEventListener('click', function () {
       var cur = opts.filter(function (o) { return o.classList.contains('is-current'); })[0];
       var i = cur ? opts.indexOf(cur) : -1;
-      var nextOpt = opts[(i + 1) % opts.length];
-      setLang(nextOpt.textContent.trim(), nextOpt);
-      close();
+      goTo(opts[(i + 1) % opts.length]);
       btn.blur();
     });
   })();
