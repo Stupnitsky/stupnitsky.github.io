@@ -145,8 +145,9 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 
 /* Кнопка WhatsApp: по умолчанию только логотип, подпись выезжает при наведении */
 .wa-btn{ padding:5px; background:transparent; color:var(--c-ink);
+         border:1px solid var(--c-terra); border-radius:12px;
          transition:background-color .3s ease, color .3s ease, padding .38s cubic-bezier(.2,.7,.25,1); }
-.wa-btn:hover, .wa-btn:focus-visible{ background:#fff; color:var(--c-ink); padding:5px 0 5px 18px; }
+.wa-btn:hover, .wa-btn:focus-visible{ background:var(--c-terra); color:var(--c-ink); padding:5px 0 5px 18px; }
 .wa-ico{ display:block; width:31.5px; height:31.5px; flex:0 0 auto; }
 .wa-label{ display:grid; grid-template-columns:0fr; opacity:0;
            transition:grid-template-columns .42s cubic-bezier(.2,.7,.25,1), opacity .3s ease; }
@@ -541,14 +542,15 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 
 /* ===== Кнопки =====
    Фон – цвет секции (прозрачный), обводка акцентом, текст наследует цвет контекста
-   и при наведении не меняется. Наведение: белая пелена 24% поверх фона.
+   и при наведении не меняется. Наведение: сплошная заливка охрой, текст – чернила
+   (на светлых секциях он и так чернильный, меняется только на тёмных).
    Стрелка: у кнопок с .btn-mark выезжает сама разметка, у остальных – ::after. */
 .btn{ background-color:transparent; color:inherit;
-      border:2px solid var(--c-terra); border-radius:12px;
+      border:1px solid var(--c-terra); border-radius:12px;
       transition:background-color .3s ease, border-color .3s ease; }
-.btn:hover, .btn:focus-visible{ background-color:rgba(255,255,255,.24); color:inherit; }
-.ws-cta{ background:transparent; color:inherit; border-color:var(--c-ochre); }
-.ws-cta:hover, .ws-cta:focus-visible{ background:rgba(255,255,255,.24); color:inherit; }
+.btn:hover, .btn:focus-visible{ background-color:var(--c-terra); color:var(--c-ink); }
+.ws-cta{ background:transparent; color:inherit; border-width:1px; border-color:var(--c-ochre); }
+.ws-cta:hover, .ws-cta:focus-visible{ background:var(--c-ochre); color:var(--c-ink); }
 
 .btn:not(:has(.btn-mark))::after{
   content:''; display:inline-block; flex:0 0 auto; width:0; opacity:0;
@@ -956,10 +958,11 @@ select.field option{ background:#1F2120; color:#FFFFFF }
 .file-input-hidden{ position:absolute; width:1px; height:1px; padding:0; margin:-1px;
   overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
 .field-file{ padding-top:.55rem; padding-bottom:.55rem; }
-.file-btn{ flex:0 0 auto; background:var(--c-ochre); color:var(--c-ink); border-radius:12px;
+.file-btn{ flex:0 0 auto; background:transparent; color:inherit; border-radius:12px;
+  border:1px solid var(--c-terra);
   padding:.5rem 1.1rem; font-weight:600; cursor:pointer; font-family:inherit;
-  transition:background-color .25s ease; }
-.file-btn:hover{ background:var(--c-sand); }
+  transition:background-color .25s ease, color .25s ease; }
+.file-btn:hover{ background:var(--c-terra); color:var(--c-ink); }
 .file-input-hidden:focus-visible + .field-file .file-btn{ outline:2px solid var(--c-ochre); outline-offset:2px; }
 .file-name{ min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   font-size:14px; opacity:.6; }
@@ -994,6 +997,16 @@ details[open] .chev{ transform:rotate(45deg) }
 /* Хвост заголовка «w Warszawie»: отдельная строка, прижата вправо и слегка
    выступает за правый край остального текста. */
 .h1-out{ display:block; text-align:right; margin-right:-.6ch; }
+/* Абзац под ценами: каждое предложение своей строкой, поэтому лимит шире 62ch. */
+.lead-lines{ max-width:80ch; }
+
+/* Плавающая круглая кнопка WhatsApp – тот же принцип, что у остальных. */
+.fab{ background:transparent; color:var(--c-ink); border:1px solid var(--c-terra);
+      transition:background-color .3s ease, color .3s ease; }
+.fab:hover, .fab:focus-visible{ background:var(--c-terra); color:var(--c-ink); }
+
+/* CTA под текстовым блоком – по центру колонки. */
+.btn-center{ display:flex; width:fit-content; margin-left:auto; margin-right:auto; }
 /* Цена во вводном абзаце: постоянная подсветка маркером, без наведения. */
 .mark{ --c-mark:#F2E23A; background-image:linear-gradient(var(--c-mark),var(--c-mark));
        background-repeat:no-repeat; background-position:0 88%; background-size:100% .42em;
