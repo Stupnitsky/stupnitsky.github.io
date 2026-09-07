@@ -55,6 +55,7 @@
     { "@type": "Offer", "name": "Duplicate + Apostille – document from Ukraine", "priceCurrency": "PLN", "price": "1100" },
     { "@type": "Offer", "name": "Diploma with supplement – Apostille of the Ukrainian Ministry of Education", "priceCurrency": "PLN", "price": "1100" },
     { "@type": "Offer", "name": "Sworn translation – page of 1,125 characters", "priceCurrency": "PLN", "price": "90" },
+    { "@type": "Offer", "name": "Consular translation – per page", "priceCurrency": "PLN", "price": "120" },
     { "@type": "Offer", "name": "Apostille on a translation", "priceCurrency": "PLN", "price": "260" }
   ] }
 }
@@ -74,7 +75,11 @@
     { "@type": "Question", "name": "When and how do I pay?",
       "acceptedAnswer": { "@type": "Answer", "text": "After you accept the quote, up front: BLIK, bank transfer or cash at the meeting on Krucza. The payment details come with the quote. The order starts once the payment clears – we count the deadline from that day. Details in §4 of the Regulamin (PL)." } },
     { "@type": "Question", "name": "How much is an Apostille in express mode and what are the conditions?",
-      "acceptedAnswer": { "@type": "Answer", "text": "350 zł per document. We issue it the same day if the original reaches us by 11:00 together with the payment confirmation and needs no translation before the Apostille. Notarial and court documents have no express option – they need at least 2 working days at the District Court first." } }
+      "acceptedAnswer": { "@type": "Answer", "text": "350 zł per document. We issue it the same day if the original reaches us by 11:00 together with the payment confirmation and needs no translation before the Apostille. Notarial and court documents have no express option – they need at least 2 working days at the District Court first." } },
+    { "@type": "Question", "name": "How much do several documents in one order cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The same as each of them separately – documents in one order are not cheaper, but they are one quote, one payment and one deadline. The most common sets have their own lines in the price list: a set for a wedding abroad 520 zł, a Polish diploma with its supplement 520 zł, a company set 1 220 zł. Sworn Translation is charged separately, 90 zł per page, and from 6 pages in one order there is a 10% discount." } },
+    { "@type": "Question", "name": "What if the office refuses the Apostille?",
+      "acceptedAnswer": { "@type": "Answer", "text": "For a Polish document we refund the payment less the 60 zł stamp duty, which the MFA takes on filing and does not return. That is why we check the document before we accept the order – and say plainly when an Apostille cannot be issued: a plain photocopy, a laminated document, a Ukrainian record issued before 2016. For documents from Ukraine, if the archive refuses to issue a duplicate, we refund the prepayment – less the cost of shipping." } }
   ]
 }
 </script>
@@ -199,6 +204,7 @@
         <p class="cn-group-t">Languages, timing and rules – <a href="/en/tlumaczenia-przysiegle/" class="underline font-semibold">Sworn Translations in&nbsp;Warsaw</a></p>
         <ul class="cn-list">
           <li><span class="cn-name">Sworn translation<small>Ukrainian, Russian, English ↔ Polish · page = 1125 characters with spaces · 2–4 working days</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span><small>/ page</small></span></li>
+          <li><span class="cn-name">Consular translation<small>The consulate sets the requirements – we confirm them before the order · 2–4 working days</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span><small>/ page</small></span></li>
           <li><span class="cn-name">Other languages<small>German, Spanish, French, Italian, Dutch</small></span><span class="cn-price"><b class="font-bold">quote</b><small>by language</small></span></li>
           <li><span class="cn-name">From 6 pages in&nbsp;one order<small>A set for a Residence Card, Registry Office, Bank</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold">−<span class="price-num" data-price="10">10</span>%</b></span><small>discount</small></span></li>
           <li><span class="cn-name">Apostille on a translation<small>The MFA certifies the translator’s signature – for use abroad · +&nbsp;1–3 working days</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span><small>/ document</small></span></li>
@@ -217,12 +223,18 @@
       </div>
     </div>
     <div class="cn-group cn-razem" id="razem">
-      <h3 class="cn-group-h">Together – the most common combinations</h3>
-      <p class="cn-group-t">Two or three steps in&nbsp;one order – one quote, one payment. The order of steps: the Apostille on the original first, then the translation.</p>
+      <h3 class="cn-group-h">How much will it be – the most common cases</h3>
+      <p class="cn-group-t">Two or three steps in&nbsp;one order – one quote, one payment. The order of steps: the Apostille on the original first, then the translation. A set costs exactly what its parts cost – page counts for the translation are an estimate: a civil record or a KRK certificate – 1&nbsp;page, a diploma – 1, a supplement – 2–3, a power of attorney – 1–2.</p>
       <ul class="cn-list">
         <li><span class="cn-name">Notarial document going abroad<small>Power of attorney, notarial deed, certification · District Court <span class="price-num" data-price="120">120</span>&nbsp;zł + Apostille MFA <span class="price-num" data-price="260">260</span>&nbsp;zł · min.&nbsp;3–5 working days</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="380">380</span>,-&nbsp;zł</b></span><small>/ document</small></span></li>
         <li><span class="cn-name">Criminal record certificate with Apostille<small>Obtaining it from the KRK <span class="price-num" data-price="200">200</span>&nbsp;zł + Apostille MFA <span class="price-num" data-price="260">260</span>&nbsp;zł · 2–5 working days</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="460">460</span>,-&nbsp;zł</b></span><small>/ document</small></span></li>
+        <li><span class="cn-name">Set for a wedding abroad<small>Birth certificate + certificate of marital status – you obtain both at the Registry Office or in mObywatel · 2&nbsp;× Apostille MFA <span class="price-num" data-price="260">260</span>&nbsp;zł · 1–3 working days</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="520">520</span>,-&nbsp;zł</b></span><small>/ set</small></span></li>
+        <li><span class="cn-name">Polish diploma with supplement<small>The diploma and the supplement are two documents · 2&nbsp;× Apostille MFA <span class="price-num" data-price="260">260</span>&nbsp;zł · 1–3 working days</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="520">520</span>,-&nbsp;zł</b></span><small>/ set</small></span></li>
+        <li><span class="cn-name">Company set<small>KRS extract (obtaining <span class="price-num" data-price="200">200</span>&nbsp;zł + Apostille <span class="price-num" data-price="260">260</span>&nbsp;zł) + articles of association and a power of attorney, each through the District Court <span class="price-num" data-price="120">120</span>&nbsp;zł + Apostille <span class="price-num" data-price="260">260</span>&nbsp;zł · 3–5 working days</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1220">1&nbsp;220</span>,-&nbsp;zł</b></span><small>/ set</small></span></li>
         <li><span class="cn-name">Document with a translation going abroad<small>Apostille on the original <span class="price-num" data-price="260">260</span>&nbsp;zł + Apostille on the translation <span class="price-num" data-price="260">260</span>&nbsp;zł – when the authority in the destination country requires it · plus Sworn Translation <span class="price-num" data-price="90">90</span>&nbsp;zł / page</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="520">520</span>,-&nbsp;zł</b></span><small>+ translation / page</small></span></li>
+        <li><span class="cn-name">Ukrainian birth certificate issued after&nbsp;2016, for a residence card<small>Apostille in Kyiv <span class="price-num" data-price="550">550</span>&nbsp;zł + Sworn Translation, 1&nbsp;page <span class="price-num" data-price="90">90</span>&nbsp;zł · 2–3 weeks, then 2–4 working days</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span><small>+ translation / page</small></span></li>
+        <li><span class="cn-name">Ukrainian record issued before&nbsp;2016<small>Duplicate at the Ukrainian registry office + Apostille <span class="price-num" data-price="1100">1&nbsp;100</span>&nbsp;zł + Sworn Translation, 1&nbsp;page <span class="price-num" data-price="90">90</span>&nbsp;zł · 5–6 weeks</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>+ translation / page</small></span></li>
+        <li><span class="cn-name">Ukrainian diploma with supplement, for work or university<small>Diploma and supplement, Apostille of the Ukrainian Ministry of Education <span class="price-num" data-price="1100">1&nbsp;100</span>&nbsp;zł + Sworn Translation of 3–4 pages · 2 weeks – 1.5 months</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>+ translation / page</small></span></li>
       </ul>
     </div>
 
@@ -248,7 +260,7 @@
     </div>
 
     <p class="mt-8 text-[15px] leading-[1.6] text-ink/50 max-w-[70ch]">
-      Indicative and final prices – we add no VAT. The quote made after seeing the document is binding – it lists every item separately: the Apostille, the translation, the shipping. No hidden extras. Payment up front: BLIK, bank transfer or cash. The order starts once the payment clears. We count deadlines from the day we have the original and&nbsp;the payment confirmation; public holidays do not count – the offices are closed then. Details in the <a href="/#regulamin" class="underline">Regulamin</a> (PL). We review the price list every quarter – last update: <span class="cennik-updated">September 2026</span>.
+      Final prices – we add no VAT. The quote made after seeing the document is binding – it lists every item separately: the Apostille, the translation, the shipping. No hidden extras. Payment up front: BLIK, bank transfer or cash. The order starts once the payment clears. We count deadlines from the day we have the original and&nbsp;the payment confirmation; public holidays do not count – the offices are closed then. Details in the <a href="/#regulamin" class="underline">Regulamin</a> (PL). We review the price list every quarter – last update: <span class="cennik-updated">September 2026</span>.
     </p>
   </div>
 </section>
@@ -311,6 +323,26 @@
           <span class="price-num" data-price="350">350</span>&nbsp;zł per document. We issue it the same day if the original reaches us by 11:00 together with the payment confirmation and needs no translation before the Apostille. Notarial and court documents have no express option – they need at least 2 working days at the District Court first.
         </p>
       </details>
+
+      <details class="group border-b border-ink/15">
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">How much do several documents in one order cost?</h3>
+          <span class="chev shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+          The same as each of them separately – documents in one order are not cheaper, but they are one quote, one payment and one deadline. The most common sets have their own lines in the price list: a set for a wedding abroad <span class="price-num" data-price="520">520</span>&nbsp;zł, a Polish diploma with its supplement <span class="price-num" data-price="520">520</span>&nbsp;zł, a company set <span class="price-num" data-price="1220">1&nbsp;220</span>&nbsp;zł. Sworn Translation is charged separately, <span class="price-num" data-price="90">90</span>&nbsp;zł per page, and from 6&nbsp;pages in one order there is a <span class="price-num" data-price="10">10</span>% discount.
+        </p>
+      </details>
+
+      <details class="group border-b border-ink/15">
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">What if the office refuses the Apostille?</h3>
+          <span class="chev shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+          For a Polish document we refund the payment less the <span class="price-num" data-price="60">60</span>&nbsp;zł stamp duty, which the MFA takes on filing and does not return. That is why we check the document before we accept the order – and say plainly when an Apostille cannot be issued: a plain photocopy, a laminated document, a Ukrainian record issued before 2016. For documents from Ukraine, if the archive refuses to issue a duplicate, we refund the prepayment – less the cost of shipping.
+        </p>
+      </details>
     </div>
 
     <p class="mt-8 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
@@ -351,7 +383,7 @@
                 <li><a class="underline underline-offset-4 decoration-ink/25 hover:decoration-ink transition-colors" href="mailto:apostilo@gmail.com">apostilo@gmail.com</a></li>
               </ul>
             </div>
-            <p class="text-[13px] text-ink/45 pt-2">Indicative prices, official and court fees included. From&nbsp;6&nbsp;pages of translation – 10% off.<br>Final quote – once we see the document.</p>
+            <p class="text-[13px] text-ink/45 pt-2">Final prices, official fees included. From&nbsp;6&nbsp;pages of translation – 10% off.<br>Final quote – once we see the document.</p>
           </div>
         </div>
         <div class="col-span-12 lg:col-span-7 bg-bluedp text-paper p-7 sm:p-12 lg:p-14">

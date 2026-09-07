@@ -55,6 +55,7 @@
     { "@type": "Offer", "name": "Дублікат + Апостиль – документ з України", "priceCurrency": "PLN", "price": "1100" },
     { "@type": "Offer", "name": "Диплом з додатком – Апостиль МОН України", "priceCurrency": "PLN", "price": "1100" },
     { "@type": "Offer", "name": "Присяжний переклад – сторінка 1125 знаків", "priceCurrency": "PLN", "price": "90" },
+    { "@type": "Offer", "name": "Консульський переклад – сторінка", "priceCurrency": "PLN", "price": "120" },
     { "@type": "Offer", "name": "Апостиль на переклад", "priceCurrency": "PLN", "price": "260" }
   ] }
 }
@@ -74,7 +75,11 @@
     { "@type": "Question", "name": "Коли і як я плачу?",
       "acceptedAnswer": { "@type": "Answer", "text": "Після погодження розрахунку, наперед: BLIK, переказ або готівка при зустрічі на Kruczej. Дані для оплати надходять разом із розрахунком. Замовлення стартує після надходження оплати – від цього дня рахуємо термін. Подробиці в §4 Regulaminu (PL)." } },
     { "@type": "Question", "name": "Скільки коштує Апостиль в експрес-режимі і які умови?",
-      "acceptedAnswer": { "@type": "Answer", "text": "350 zł за документ. Видаємо того самого дня, якщо оригінал потрапить до нас до 11:00 разом із підтвердженням оплати і не потребує перекладу перед Апостилем. Нотаріальні та судові документи експресу не мають – спершу мін. 2 робочі дні в Окружному суді." } }
+      "acceptedAnswer": { "@type": "Answer", "text": "350 zł за документ. Видаємо того самого дня, якщо оригінал потрапить до нас до 11:00 разом із підтвердженням оплати і не потребує перекладу перед Апостилем. Нотаріальні та судові документи експресу не мають – спершу мін. 2 робочі дні в Окружному суді." } },
+    { "@type": "Question", "name": "Скільки коштує кілька документів в одному замовленні?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Стільки, скільки кожен окремо – документи в одному замовленні не дешевші, але це один розрахунок, одна оплата і один термін. Найчастіші комплекти мають у прайсі власні рядки: комплект на шлюб за кордоном 520 zł, польський диплом з додатком 520 zł, комплект для фірми 1 220 zł. Присяжний переклад рахуємо окремо, 90 zł за сторінку, а від 6 сторінок в одному замовленні діє знижка 10%." } },
+    { "@type": "Question", "name": "Що, якщо установа відмовить в Апостилі?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Для польського документа повертаємо оплату за вирахуванням держмита 60 zł, яке MSZ бере при поданні і не повертає. Тому перевіряємо документ, перш ніж прийняти замовлення, – і кажемо прямо, коли Апостиль поставити не можна: звичайна ксерокопія, ламінований документ, український акт до 2016 року. Для документів з України, якщо архів відмовить у видачі дубліката, повертаємо передоплату – крім вартості пересилання." } }
   ]
 }
 </script>
@@ -201,6 +206,7 @@
         <p class="cn-group-t">Мови, терміни і&nbsp;правила – <a href="/ua/tlumaczenia-przysiegle/" class="underline font-semibold">Присяжні Переклади у&nbsp;Варшаві</a></p>
         <ul class="cn-list">
           <li><span class="cn-name">Присяжний переклад<small>Українська, Російська, Англійська ↔ Польська · сторінка = 1125 знаків із&nbsp;пробілами · 2–4 робочі дні</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span><small>/ сторінка</small></span></li>
+          <li><span class="cn-name">Консульський переклад<small>Вимоги встановлює консульська установа – підтверджуємо їх перед замовленням · 2–4 робочі дні</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span><small>/ сторінка</small></span></li>
           <li><span class="cn-name">Інші мови<small>Німецька, Іспанська, Французька, Італійська, Нідерландська</small></span><span class="cn-price"><b class="font-bold">розрахунок</b><small>за мовою</small></span></li>
           <li><span class="cn-name">Від 6 сторінок в&nbsp;одному замовленні<small>Комплект на Карту Побиту, USC, Банк</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold">−<span class="price-num" data-price="10">10</span>%</b></span><small>знижка</small></span></li>
           <li><span class="cn-name">Апостиль на переклад<small>Підпис перекладача підтверджує MSZ – для використання за кордоном · +&nbsp;1–3 робочі дні</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
@@ -219,12 +225,18 @@
       </div>
     </div>
     <div class="cn-group cn-razem" id="razem">
-      <h3 class="cn-group-h">Разом – найчастіші комплекти</h3>
-      <p class="cn-group-t">Два або три кроки в&nbsp;одному замовленні – один розрахунок, одна оплата. Порядок: спочатку Апостиль на оригінал, потім переклад.</p>
+      <h3 class="cn-group-h">Скільки коштує… – найчастіші випадки</h3>
+      <p class="cn-group-t">Два або три кроки в&nbsp;одному замовленні – один розрахунок, одна оплата. Порядок: спочатку Апостиль на оригінал, потім переклад. Комплект коштує рівно стільки, скільки його частини – кількість сторінок перекладу вказуємо орієнтовно: свідоцтво РАЦС або довідка KRK – 1&nbsp;сторінка, диплом – 1, додаток – 2–3, довіреність – 1–2.</p>
       <ul class="cn-list">
         <li><span class="cn-name">Нотаріальний документ за кордон<small>Довіреність, нотаріальний акт, засвідчення · Окружний суд <span class="price-num" data-price="120">120</span>&nbsp;zł + Апостиль MSZ <span class="price-num" data-price="260">260</span>&nbsp;zł · мін.&nbsp;3–5 робочих днів</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="380">380</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
         <li><span class="cn-name">Довідка про&nbsp;несудимість з&nbsp;Апостилем<small>Отримання з&nbsp;KRK <span class="price-num" data-price="200">200</span>&nbsp;zł + Апостиль MSZ <span class="price-num" data-price="260">260</span>&nbsp;zł · 2–5 робочих днів</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="460">460</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
+        <li><span class="cn-name">Комплект на&nbsp;шлюб за&nbsp;кордоном<small>Свідоцтво про народження + довідка про сімейний стан – обидва отримуєте в&nbsp;USC або в&nbsp;mObywatel · 2&nbsp;× Апостиль MSZ <span class="price-num" data-price="260">260</span>&nbsp;zł · 1–3 робочі дні</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="520">520</span>,-&nbsp;zł</b></span><small>/ комплект</small></span></li>
+        <li><span class="cn-name">Польський диплом з&nbsp;додатком<small>Диплом і&nbsp;додаток – два документи · 2&nbsp;× Апостиль MSZ <span class="price-num" data-price="260">260</span>&nbsp;zł · 1–3 робочі дні</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="520">520</span>,-&nbsp;zł</b></span><small>/ комплект</small></span></li>
+        <li><span class="cn-name">Комплект для фірми<small>Витяг з&nbsp;KRS (отримання <span class="price-num" data-price="200">200</span>&nbsp;zł + Апостиль <span class="price-num" data-price="260">260</span>&nbsp;zł) + статут і&nbsp;довіреність, кожен через Окружний суд <span class="price-num" data-price="120">120</span>&nbsp;zł + Апостиль <span class="price-num" data-price="260">260</span>&nbsp;zł · 3–5 робочих днів</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1220">1&nbsp;220</span>,-&nbsp;zł</b></span><small>/ комплект</small></span></li>
         <li><span class="cn-name">Документ із&nbsp;перекладом за кордон<small>Апостиль на оригінал <span class="price-num" data-price="260">260</span>&nbsp;zł + Апостиль на переклад <span class="price-num" data-price="260">260</span>&nbsp;zł – якщо цього вимагає установа в&nbsp;країні призначення · плюс Присяжний переклад <span class="price-num" data-price="90">90</span>&nbsp;zł / сторінка</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="520">520</span>,-&nbsp;zł</b></span><small>+ переклад / сторінка</small></span></li>
+        <li><span class="cn-name">Український акт про народження після&nbsp;2016 на&nbsp;карту побиту<small>Апостиль у&nbsp;Києві <span class="price-num" data-price="550">550</span>&nbsp;zł + Присяжний переклад 1&nbsp;сторінка <span class="price-num" data-price="90">90</span>&nbsp;zł · 2–3 тижні, потім 2–4 робочі дні</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span><small>+ переклад / сторінка</small></span></li>
+        <li><span class="cn-name">Український акт до&nbsp;2016<small>Дублікат в&nbsp;українському РАЦС + Апостиль <span class="price-num" data-price="1100">1&nbsp;100</span>&nbsp;zł + Присяжний переклад 1&nbsp;сторінка <span class="price-num" data-price="90">90</span>&nbsp;zł · 5–6 тижнів</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>+ переклад / сторінка</small></span></li>
+        <li><span class="cn-name">Український диплом з&nbsp;додатком на&nbsp;роботу або на&nbsp;навчання<small>Диплом і&nbsp;додаток, Апостиль МОН України <span class="price-num" data-price="1100">1&nbsp;100</span>&nbsp;zł + Присяжний переклад 3–4 сторінок · 2 тижні – 1,5 місяця</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>+ переклад / сторінка</small></span></li>
       </ul>
     </div>
 
@@ -250,7 +262,7 @@
     </div>
 
     <p class="mt-8 text-[15px] leading-[1.6] text-ink/50 max-w-[70ch]">
-      Ціни орієнтовні й&nbsp;кінцеві – ПДВ не нараховуємо. Обов’язковим є розрахунок після перегляду документа – у&nbsp;ньому кожна позиція вказана окремо: Апостиль, переклад, пересилання. Без прихованих доплат. Оплата наперед: BLIK, переказ або готівка. Замовлення стартує після надходження оплати. Терміни рахуємо від дня, коли маємо оригінал і&nbsp;підтвердження оплати; вихідні та&nbsp;святкові дні не рахуються – установи тоді зачинені. Подробиці в&nbsp;<a href="/#regulamin" class="underline">Regulaminie</a> (PL). Ціни переглядаємо щокварталу – останнє оновлення: <span class="cennik-updated">вересень 2026</span>.
+      Ціни кінцеві – ПДВ не нараховуємо. Обов’язковим є розрахунок після перегляду документа – у&nbsp;ньому кожна позиція вказана окремо: Апостиль, переклад, пересилання. Без прихованих доплат. Оплата наперед: BLIK, переказ або готівка. Замовлення стартує після надходження оплати. Терміни рахуємо від дня, коли маємо оригінал і&nbsp;підтвердження оплати; вихідні та&nbsp;святкові дні не рахуються – установи тоді зачинені. Подробиці в&nbsp;<a href="/#regulamin" class="underline">Regulaminie</a> (PL). Ціни переглядаємо щокварталу – останнє оновлення: <span class="cennik-updated">вересень 2026</span>.
     </p>
   </div>
 </section>
@@ -311,6 +323,26 @@
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
           <span class="price-num" data-price="350">350</span>&nbsp;zł за документ. Видаємо того самого дня, якщо оригінал потрапить до нас до 11:00 разом із&nbsp;підтвердженням оплати і&nbsp;не потребує перекладу перед Апостилем. Нотаріальні та&nbsp;судові документи експресу не мають – спершу мін.&nbsp;2 робочі дні в&nbsp;Окружному суді.
+        </p>
+      </details>
+
+      <details class="group border-b border-ink/15">
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Скільки коштує кілька документів в одному замовленні?</h3>
+          <span class="chev shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+          Стільки, скільки кожен окремо – документи в&nbsp;одному замовленні не дешевші, але це один розрахунок, одна оплата і&nbsp;один термін. Найчастіші комплекти мають у&nbsp;прайсі власні рядки: комплект на&nbsp;шлюб за&nbsp;кордоном <span class="price-num" data-price="520">520</span>&nbsp;zł, польський диплом з&nbsp;додатком <span class="price-num" data-price="520">520</span>&nbsp;zł, комплект для фірми <span class="price-num" data-price="1220">1&nbsp;220</span>&nbsp;zł. Присяжний переклад рахуємо окремо, <span class="price-num" data-price="90">90</span>&nbsp;zł за сторінку, а&nbsp;від 6&nbsp;сторінок в&nbsp;одному замовленні діє знижка <span class="price-num" data-price="10">10</span>%.
+        </p>
+      </details>
+
+      <details class="group border-b border-ink/15">
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Що, якщо установа відмовить в Апостилі?</h3>
+          <span class="chev shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+          Для польського документа повертаємо оплату за вирахуванням держмита <span class="price-num" data-price="60">60</span>&nbsp;zł, яке MSZ бере при поданні і&nbsp;не повертає. Тому перевіряємо документ, перш ніж прийняти замовлення, – і&nbsp;кажемо прямо, коли Апостиль поставити не можна: звичайна ксерокопія, ламінований документ, український акт до&nbsp;2016&nbsp;року. Для документів з&nbsp;України, якщо архів відмовить у&nbsp;видачі дубліката, повертаємо передоплату – крім вартості пересилання.
         </p>
       </details>
     </div>
@@ -376,7 +408,7 @@
               </ul>
             </div>
             <p class="text-[13px] text-ink/45 pt-2">
-              Ціни орієнтовні, включають державні та судові збори. Від&nbsp;6&nbsp;сторінок перекладу – знижка 10%.<br>Остаточний розрахунок – після перегляду документа.
+              Ціни кінцеві, включають держмито. Від&nbsp;6&nbsp;сторінок перекладу – знижка 10%.<br>Остаточний розрахунок – після перегляду документа.
             </p>
           </div>
         </div>
