@@ -1092,6 +1092,8 @@ details[open] .chev{ transform:rotate(45deg) }
 /* ===== Страница /cennik/ ===== */
 .cn-groups{ display:grid; gap:2.5rem; }
 @media (min-width:1024px){ .cn-groups{ grid-template-columns:1fr 1fr; gap:3rem 4rem; } }
+.cn-razem{ margin-top:2.5rem; }
+@media (min-width:1024px){ .cn-razem{ margin-top:3rem; } }
 .cn-group-h{ font-size:24px; font-weight:800; letter-spacing:-.02em; line-height:1.1; }
 .cn-group-t{ margin-top:.4rem; font-size:15px; line-height:1.5; color:rgba(31,33,32,.6); }
 .cn-list{ margin:1rem 0 0; padding:0; list-style:none; border-top:2px solid rgba(31,33,32,.15); }
