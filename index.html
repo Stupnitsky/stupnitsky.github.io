@@ -97,16 +97,16 @@
     "name": "Usługi",
     "itemListElement": [
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Apostille MSZ" },
-        "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "PLN", "minPrice": 260, "valueAddedTaxIncluded": true } },
+        "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "PLN", "price": 260, "valueAddedTaxIncluded": true } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Apostille Sąd Okręgowy" },
-        "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "PLN", "minPrice": 120, "valueAddedTaxIncluded": true } },
+        "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "PLN", "price": 120, "valueAddedTaxIncluded": true } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Uzyskanie zaświadczeń z KRK i KRS" },
-        "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "PLN", "minPrice": 200, "valueAddedTaxIncluded": true } },
+        "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "PLN", "price": 200, "valueAddedTaxIncluded": true } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tłumaczenia przysięgłe" },
-        "priceSpecification": { "@type": "UnitPriceSpecification", "priceCurrency": "PLN", "minPrice": 90,
+        "priceSpecification": { "@type": "UnitPriceSpecification", "priceCurrency": "PLN", "price": 90,
           "unitText": "strona rozliczeniowa 1125 znaków ze spacjami", "valueAddedTaxIncluded": true } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Apostille dokumentów z Ukrainy" },
-        "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "PLN", "minPrice": 550, "valueAddedTaxIncluded": true } }
+        "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "PLN", "price": 550, "valueAddedTaxIncluded": true } }
     ]
   }
 }
@@ -121,9 +121,9 @@
     { "@type": "Question", "name": "Czy muszę przyjeżdżać osobiście?",
       "acceptedAnswer": { "@type": "Answer", "text": "Nie. Do wyceny wystarczy zdjęcie, oryginał przekazujesz na spotkaniu w centrum Warszawy albo wysyłasz Paczkomatem InPost." } },
     { "@type": "Question", "name": "Czy zrobicie Apostille na dokumenty z Ukrainy?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Tak, bez wyjazdu klienta z Polski: Apostille od 550,- zł za dokument, duplikat aktu sprzed 2016 roku plus Apostille od 1 100,- zł. Szczegóły na stronie Apostille-ukraina." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Tak, bez wyjazdu klienta z Polski: Apostille 550,- zł za dokument, duplikat aktu sprzed 2016 roku plus Apostille 1 100,- zł. Szczegóły na stronie Apostille-ukraina." } },
     { "@type": "Question", "name": "Ile kosztuje Apostille i Tłumaczenie Przysięgłe?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Apostille w MSZ – od 260,- zł, Apostille w sądzie okręgowym – od 120,- zł, Tłumaczenie Przysięgłe – od 90,- zł za stronę 1125 znaków, Apostille na dokument z Ukrainy – od 550,- zł, uzyskanie dokumentu w Ukrainie – od 550,- zł. Ceny zawierają opłaty skarbowe; przy tłumaczeniu od 6 stron udzielamy 10% rabatu. Ostateczna wycena po zobaczeniu dokumentu." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Apostille w MSZ – 260,- zł, Apostille w sądzie okręgowym – 120,- zł, Tłumaczenie Przysięgłe – 90,- zł za stronę 1125 znaków, Apostille na dokument z Ukrainy – 550,- zł, uzyskanie dokumentu w Ukrainie – 550,- zł. Ceny zawierają opłaty skarbowe; przy tłumaczeniu od 6 stron udzielamy 10% rabatu. Ostateczna wycena po zobaczeniu dokumentu." } },
     { "@type": "Question", "name": "Czy mogę zlecić kilka dokumentów naraz?",
       "acceptedAnswer": { "@type": "Answer", "text": "Tak, i jest to najczęstszy przypadek. Przy większych kompletach wyceniamy pakietowo – cena za dokument i za stronę tłumaczenia jest wtedy niższa, a wszystkie dokumenty składamy w urzędzie w jednym terminie." } }
   ]
@@ -273,8 +273,8 @@
         </div>
 
         <p class="mt-6 flex flex-wrap justify-center items-baseline gap-x-5 gap-y-1 text-[15px]">
-          <span class="price-hit text-ink/60">Apostille <b class="font-bold text-ink">od <span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span>
-          <span class="price-hit text-ink/60">Tłumaczenie <b class="font-bold text-ink">od <span class="price-num" data-price="90">90</span>,-&nbsp;zł</b> / strona</span>
+          <span class="price-hit text-ink/60">Apostille <b class="font-bold text-ink"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span>
+          <span class="price-hit text-ink/60">Tłumaczenie <b class="font-bold text-ink"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b> / strona</span>
         </p>
 
         <p class="mt-5 text-[14px] text-ink/55 leading-relaxed text-center">
@@ -322,7 +322,7 @@
             <div class="slab-panel-in">
               <h3 class="text-[19px] md:text-[22px] font-bold tracking-tight mb-3">MSZ – Ministerstwo Spraw Zagranicznych</h3>
               <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Akty USC, zaświadczenia z&nbsp;KRK, dokumenty firmowe i&nbsp;Tłumaczenia Przysięgłe. Składamy i&nbsp;odbieramy osobiście – klient nie rezerwuje terminu w&nbsp;MSZ. <a href="/apostille/" class="underline">Więcej o&nbsp;Apostille</a>.</p>
-              <p class="slab-price"><span>Apostille MSZ</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></p>
+              <p class="slab-price"><span>Apostille MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></p>
             </div>
           </div>
         </div>
@@ -331,7 +331,7 @@
             <div class="slab-panel-in">
               <h3 class="text-[19px] md:text-[22px] font-bold tracking-tight mb-3">Sąd Okręgowy w&nbsp;Warszawie</h3>
               <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Poświadczenie podpisu notariusza i&nbsp;dokumentów sądowych – krok przed Apostille w&nbsp;MSZ. Prowadzimy całą ścieżkę: sąd, potem ministerstwo. <a href="/apostille/#urzedy" class="underline">Więcej</a>.</p>
-              <p class="slab-price"><span>Sąd Okręgowy</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span></p>
+              <p class="slab-price"><span>Sąd Okręgowy</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span></p>
             </div>
           </div>
         </div>
@@ -340,7 +340,7 @@
             <div class="slab-panel-in">
               <h3 class="text-[19px] md:text-[22px] font-bold tracking-tight mb-3">Zaświadczenie KRK&nbsp;/&nbsp;KRS</h3>
               <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Zaświadczenie z&nbsp;KRK, odpisy z&nbsp;KRS – uzyskujemy w&nbsp;imieniu klienta i&nbsp;dopełniamy Apostille w&nbsp;MSZ. <a href="/apostille/#urzedy" class="underline">Więcej</a>.</p>
-              <p class="slab-price"><span>Uzyskanie dokumentu</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="200">200</span>,-&nbsp;zł</b></span></p>
+              <p class="slab-price"><span>Uzyskanie dokumentu</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>,-&nbsp;zł</b></span></p>
             </div>
           </div>
         </div>
@@ -349,9 +349,9 @@
             <div class="slab-panel-in">
               <h3 class="text-[19px] md:text-[22px] font-bold tracking-tight mb-3">Apostille Ukraina</h3>
               <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Akty, dyplomy i&nbsp;świadectwa z&nbsp;Ukrainy – Apostille przez partnera na miejscu, duplikaty aktów sprzed 2016, tłumaczenie w&nbsp;Warszawie. Klient nie wyjeżdża z&nbsp;Polski. <a href="/apostille-ukraina/" class="underline">Więcej</a>.</p>
-              <p class="slab-price"><span>Apostille Ukraina</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</p>
-              <p class="slab-price"><span>Uzyskanie dokumentu z&nbsp;Ukrainy</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</p>
-              <p class="text-[15px] leading-[1.6] text-paper/55 mt-3 max-w-[92ch]">Akt stanu cywilnego wydany przed 2016&nbsp;rokiem lub w&nbsp;czasach ZSRR nie przyjmuje Apostille – najpierw uzyskujemy nowy odpis, potem Apostille. To dwa etapy, razem od&nbsp;1&nbsp;100,-&nbsp;zł. Tłumaczenie przysięgłe nie jest wliczone; dostawa do&nbsp;Polski – tak.</p>
+              <p class="slab-price"><span>Apostille Ukraina</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</p>
+              <p class="slab-price"><span>Uzyskanie dokumentu z&nbsp;Ukrainy</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</p>
+              <p class="text-[15px] leading-[1.6] text-paper/55 mt-3 max-w-[92ch]">Akt stanu cywilnego wydany przed 2016&nbsp;rokiem lub w&nbsp;czasach ZSRR nie przyjmuje Apostille – najpierw uzyskujemy nowy odpis, potem Apostille. To dwa etapy, razem 1&nbsp;100,-&nbsp;zł. Tłumaczenie przysięgłe nie jest wliczone; dostawa do&nbsp;Polski – tak.</p>
             </div>
           </div>
         </div>
@@ -366,8 +366,8 @@
 <div class="ticker-bar bg-terra overflow-hidden py-4" aria-hidden="true">
   <div class="ticker-track">
     <div class="flex shrink-0 items-center font-cond uppercase tracking-[0.16em] text-[17px] font-extrabold text-ink">
-      <span class="px-6">Apostille MSZ <span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></span><span class="ticker-dot" aria-hidden="true">●</span>
-      <span class="px-6">Tłumaczenia przysięgłe <span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span></span><span class="ticker-dot" aria-hidden="true">●</span>
+      <span class="px-6">Apostille MSZ <span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></span><span class="ticker-dot" aria-hidden="true">●</span>
+      <span class="px-6">Tłumaczenia przysięgłe <span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span></span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Legalizacja dokumentów</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Karta pobytu</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6 ticker-247">24/7</span><span class="ticker-dot" aria-hidden="true">●</span>
@@ -384,8 +384,8 @@
       <span class="px-6 ticker-247">24/7</span><span class="ticker-dot" aria-hidden="true">●</span>
     </div>
     <div class="flex shrink-0 items-center font-cond uppercase tracking-[0.16em] text-[17px] font-extrabold text-ink">
-      <span class="px-6">Apostille MSZ <span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></span><span class="ticker-dot" aria-hidden="true">●</span>
-      <span class="px-6">Tłumaczenia przysięgłe <span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span></span><span class="ticker-dot" aria-hidden="true">●</span>
+      <span class="px-6">Apostille MSZ <span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></span><span class="ticker-dot" aria-hidden="true">●</span>
+      <span class="px-6">Tłumaczenia przysięgłe <span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span></span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Legalizacja dokumentów</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Karta pobytu</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6 ticker-247">24/7</span><span class="ticker-dot" aria-hidden="true">●</span>
@@ -579,21 +579,21 @@
                 <h3 class="text-[21px] md:text-[24px] font-bold tracking-tight">MSZ – Ministerstwo Spraw Zagranicznych</h3>
                 <p class="text-[15px] text-paper/60 mt-1">Akty USC, dokumenty notarialne, zaświadczenia o niekaralności, dokumenty firmowe</p>
               </div>
-              <span class="font-cond text-ochre whitespace-nowrap text-[15px]"><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></span>
+              <span class="font-cond text-ochre whitespace-nowrap text-[15px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></span>
             </li>
             <li class="soft-row relative flex items-baseline justify-between gap-6 px-5 sm:px-9 lg:pl-5 lg:pr-11 py-6 sm:py-9">
               <div>
                 <h3 class="text-[21px] md:text-[24px] font-bold tracking-tight">Sąd Okręgowy</h3>
                 <p class="text-[15px] text-paper/60 mt-1">Poświadczenie podpisu notariusza i&nbsp;dokumentów sądowych</p>
               </div>
-              <span class="font-cond text-ochre whitespace-nowrap text-[15px]"><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span></span>
+              <span class="font-cond text-ochre whitespace-nowrap text-[15px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span></span>
             </li>
             <li class="soft-row relative flex items-baseline justify-between gap-6 px-5 sm:px-9 lg:pl-5 lg:pr-11 py-6 sm:py-9">
               <div>
                 <h3 class="text-[21px] md:text-[24px] font-bold tracking-tight">Uzyskanie dokumentu</h3>
                 <p class="text-[15px] text-paper/60 mt-1">Zaświadczenie z&nbsp;KRK, odpisy i&nbsp;zaświadczenia z&nbsp;KRS – załatwiamy w&nbsp;imieniu klienta</p>
               </div>
-              <span class="font-cond text-ochre whitespace-nowrap text-[15px]"><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="200">200</span>,-&nbsp;zł</b></span></span>
+              <span class="font-cond text-ochre whitespace-nowrap text-[15px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>,-&nbsp;zł</b></span></span>
             </li>
           </ul>
           </div>
@@ -615,12 +615,12 @@
               nie da się uzyskać, zwracamy przedpłatę.
             </p>
             <p class="mt-3 font-cond uppercase tracking-[0.14em] text-[14px]">
-              Apostille Ukraina <span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument<br>
-              Uzyskanie dokumentu <span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument
+              Apostille Ukraina <span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument<br>
+              Uzyskanie dokumentu <span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument
             </p>
             <p class="mt-3 text-[15px] text-ink/70 max-w-[60ch]">
               Dokument sprzed 2016&nbsp;roku lub z&nbsp;czasów ZSRR wymaga dwóch etapów –
-              najpierw nowy odpis, potem Apostille: razem od&nbsp;1&nbsp;100,-&nbsp;zł.
+              najpierw nowy odpis, potem Apostille: razem 1&nbsp;100,-&nbsp;zł.
               <a href="/apostille-ukraina/" class="underline font-semibold">Terminy, scenariusze i&nbsp;FAQ</a>.
             </p>
           </div>
@@ -679,7 +679,7 @@
 
           <a href="/tlumaczenia-przysiegle/" class="price-card mt-9 inline-flex flex-col bg-ink text-paper rounded-[12px] px-7 py-[18px]">
             <span class="font-cond uppercase tracking-[0.16em] text-[11px] text-paper/60">strona = 1125 znaków ze spacjami</span>
-            <span class="mt-2 flex items-center font-bold text-[30px] leading-none tracking-tight"><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span><span class="chip-mark chip-mark--arrow" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="chip-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></span>
+            <span class="mt-2 flex items-center font-bold text-[30px] leading-none tracking-tight"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span><span class="chip-mark chip-mark--arrow" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="chip-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></span>
           </a>
         </div>
 
@@ -900,23 +900,23 @@
           <div class="hairline mt-10 pt-7 space-y-4">
             <div class="flex items-baseline gap-4">
               <span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Apostille MSZ</span>
-              <span class="text-[16px]"><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></span>
+              <span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></span>
             </div>
             <div class="flex items-baseline gap-4">
               <span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Sąd Okr.</span>
-              <span class="text-[16px]"><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span></span>
+              <span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span></span>
             </div>
             <div class="flex items-baseline gap-4">
               <span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Tłumaczenie</span>
-              <span class="text-[16px]"><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> / strona</span>
+              <span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> / strona</span>
             </div>
             <div class="flex items-baseline gap-4">
               <span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Dok. z UA</span>
-              <span class="text-[16px]"><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span>
+              <span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span>
             </div>
             <div class="flex items-baseline gap-4">
               <span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Odpis z UA</span>
-              <span class="text-[16px]"><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span>
+              <span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span>
             </div>
             <div class="pt-6">
               <p class="font-cond uppercase tracking-[0.14em] text-[12px] text-ink/50 mb-3">Wolisz zapytać bezpośrednio?</p>
@@ -1053,11 +1053,11 @@
         </summary>
         <div class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
           <ul class="faq-price">
-            <li><span>Apostille MSZ</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></li>
-            <li><span>Apostille – sąd okręgowy</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span></li>
-            <li><span>Tłumaczenie przysięgłe</span><b><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> / strona = 1125 znaków ze spacjami</b></li>
-            <li><span>Apostille Ukraina</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</li>
-            <li><span>Uzyskanie dokumentu z&nbsp;Ukrainy</span><span class="price-hit"><b class="font-bold">od <span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</li>
+            <li><span>Apostille MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></li>
+            <li><span>Apostille – sąd okręgowy</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span></li>
+            <li><span>Tłumaczenie przysięgłe</span><b><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> / strona = 1125 znaków ze spacjami</b></li>
+            <li><span>Apostille Ukraina</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</li>
+            <li><span>Uzyskanie dokumentu z&nbsp;Ukrainy</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</li>
           </ul>
           <p class="mt-4">Ceny zawierają opłaty skarbowe. Przy tłumaczeniu od&nbsp;6&nbsp;stron udzielamy 10% rabatu. Ostateczną kwotę podajemy po zobaczeniu dokumentu – zwykle w&nbsp;15 minut.</p>
         </div>
@@ -1069,8 +1069,8 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Tak, bez wyjazdu klienta z&nbsp;Polski: Apostille od&nbsp;550,-&nbsp;zł za dokument, duplikat aktu sprzed
-          2016&nbsp;roku plus Apostille od&nbsp;1&nbsp;100,-&nbsp;zł. <a href="/apostille-ukraina/" class="underline font-semibold">Scenariusze, terminy i&nbsp;FAQ</a>.
+          Tak, bez wyjazdu klienta z&nbsp;Polski: Apostille 550,-&nbsp;zł za dokument, duplikat aktu sprzed
+          2016&nbsp;roku plus Apostille 1&nbsp;100,-&nbsp;zł. <a href="/apostille-ukraina/" class="underline font-semibold">Scenariusze, terminy i&nbsp;FAQ</a>.
         </p>
       </details>
 
