@@ -49,10 +49,33 @@
     { "@type": "Offer", "name": "Апостиль MSZ", "priceCurrency": "PLN", "price": "260" },
     { "@type": "Offer", "name": "Апостиль – окружной суд", "priceCurrency": "PLN", "price": "120" },
     { "@type": "Offer", "name": "Получение документа KRK / KRS", "priceCurrency": "PLN", "price": "200" },
+    { "@type": "Offer", "name": "Апостиль MSZ Экспресс", "priceCurrency": "PLN", "price": "350" },
     { "@type": "Offer", "name": "Апостиль на документ из Украины", "priceCurrency": "PLN", "price": "550" },
     { "@type": "Offer", "name": "Истребование документа в Украине", "priceCurrency": "PLN", "price": "550" },
-    { "@type": "Offer", "name": "Присяжный перевод – страница 1125 знаков", "priceCurrency": "PLN", "price": "90" }
+    { "@type": "Offer", "name": "Дубликат + Апостиль – документ из Украины", "priceCurrency": "PLN", "price": "1100" },
+    { "@type": "Offer", "name": "Диплом с приложением – Апостиль МОН Украины", "priceCurrency": "PLN", "price": "1100" },
+    { "@type": "Offer", "name": "Присяжный перевод – страница 1125 знаков", "priceCurrency": "PLN", "price": "90" },
+    { "@type": "Offer", "name": "Апостиль на перевод", "priceCurrency": "PLN", "price": "260" }
   ] }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "ru",
+  "mainEntity": [
+    { "@type": "Question", "name": "Почему Апостиль стоит 260 zł, если госпошлина в MSZ – 60 zł?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Госпошлина – 60 zł, и она в цене. Остальное – наша работа: бронирование даты в системе MSZ – свободные бывают только через несколько дней – два визита на Kruczej при подаче и получении, проверка документа перед заказом, скан готового документа сразу и ответ с ценой обычно за 15 минут. Самостоятельно: 60 zł, бронирование онлайн, дважды в учреждении в рабочие часы и отгул на работе. У нас: фото в WhatsApp и 1–3 рабочих дня." } },
+    { "@type": "Question", "name": "Может ли цена из расчёта измениться?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Нет. Сумма из расчёта – окончательная: столько вы платите и столько видите в подтверждении. Она меняется только тогда, когда документ на встрече оказывается другим, чем на фото: больше страниц для перевода или другой тип документа. Тогда мы говорим об этом, прежде чем что-то заказывать." } },
+    { "@type": "Question", "name": "Что считается одним документом?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Один документ – это одна подпись чиновника, нотариуса или переводчика и один штамп Апостиля. Диплом и приложение – два документа (2 × 260 zł). Нотариальный акт с приложениями, прошитый нотариусом, – один. Присяжный перевод нескольких документов – это несколько переводов, каждый со своей формулой переводчика." } },
+    { "@type": "Question", "name": "Когда и как я плачу?",
+      "acceptedAnswer": { "@type": "Answer", "text": "После согласования расчёта, заранее: BLIK, перевод или наличные при встрече на Kruczej. Данные для оплаты приходят вместе с расчётом. Заказ стартует после поступления оплаты – с этого дня считаем срок. Подробности в §4 Regulaminu (PL)." } },
+    { "@type": "Question", "name": "Сколько стоит Апостиль в экспресс-режиме и какие условия?",
+      "acceptedAnswer": { "@type": "Answer", "text": "350 zł за документ. Выдаём в тот же день, если оригинал попадёт к нам до 11:00 вместе с подтверждением оплаты и не требует перевода перед Апостилем. Нотариальные и судебные документы экспресса не имеют – сначала мин. 2 рабочих дня в Окружном суде." } }
+  ]
 }
 </script>
 </head>
@@ -149,36 +172,36 @@
     <p class="kicker">/ Цены</p>
     <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">Сколько стоит <span class="font-light italic">Апостиль и&nbsp;Перевод</span></h2>
     <div class="cn-groups mt-9 md:mt-12">
-      <div class="cn-group">
+      <div class="cn-group" id="apostille">
         <h3 class="cn-group-h">Апостиль в&nbsp;Польше</h3>
         <p class="cn-group-t">Детали, учреждения и&nbsp;сроки – <a href="/ru/apostille/" class="underline font-semibold">Апостиль в&nbsp;Варшаве</a></p>
         <ul class="cn-list">
-          <li><span class="cn-name">Апостиль MSZ<small>Акты ЗАГС, KRK, Документы фирм,<br>Присяжные Переводы · Госпошлина в&nbsp;цене</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
-          <li><span class="cn-name">Апостиль – Окружной суд<small>Заверение подписи нотариуса или Судебного документа · Госпошлина в&nbsp;цене · →&nbsp;MSZ</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span><small>/ подпись</small></span></li>
-          <li><span class="cn-name">Получение документа KRK / KRS<small>Справка о&nbsp;Несудимости, Выписка из&nbsp;KRS от имени клиента, без Апостиля</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
-          <li><span class="cn-name">Апостиль MSZ Экспресс<small>без предварительного перевода</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="350">350</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
+          <li><span class="cn-name">Апостиль MSZ<small>Акты ЗАГС, KRK, Документы фирм,<br>Присяжные Переводы · Госпошлина в&nbsp;цене · 1–3 рабочих дня</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
+          <li><span class="cn-name">Апостиль – Окружной суд<small>Заверение подписи нотариуса или Судебного документа · Госпошлина в&nbsp;цене · мин.&nbsp;2 рабочих дня в&nbsp;суде, потом MSZ</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span><small>/ подпись</small></span></li>
+          <li><span class="cn-name">Получение документа KRK / KRS<small>Справка о&nbsp;Несудимости, Выписка из&nbsp;KRS от имени клиента, без Апостиля · KRK 1–2 рабочих дня, KRS сразу</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
+          <li><span class="cn-name">Апостиль MSZ Экспресс<small>В тот же день – оригинал у&nbsp;нас до 11:00 с&nbsp;подтверждением оплаты, документ без предварительного перевода</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="350">350</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
         </ul>
       </div>
 
-      <div class="cn-group">
+      <div class="cn-group" id="ukraina">
         <h3 class="cn-group-h">Документы из&nbsp;Украины</h3>
         <p class="cn-group-t">Без выезда из&nbsp;Польши – <a href="/ru/apostille-ukraina/" class="underline font-semibold">Апостиль на документы из&nbsp;Украины</a></p>
         <ul class="cn-list">
-          <li><span class="cn-name">Апостиль на документ из&nbsp;Украины<small>Диплом, Аттестат, Свидетельство ЗАГС после 2016 · пошлины в&nbsp;Украине в&nbsp;цене</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
-          <li><span class="cn-name">Истребование документа в&nbsp;Украине<small>Дубликат Свидетельства, Выписка из&nbsp;Реестра ЗАГС</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
-          <li><span class="cn-name">Дубликат + Апостиль<small>Свидетельство до 2016&nbsp;года или советского образца – два этапа</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
-          <li><span class="cn-name">Диплом с&nbsp;приложением<small>Два документа, Апостиль МОН Украины</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>/ комплект</small></span></li>
+          <li><span class="cn-name">Апостиль на документ из&nbsp;Украины<small>Диплом, Аттестат, Свидетельство ЗАГС после 2016 · пошлины в&nbsp;Украине в&nbsp;цене · 2–3 недели</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
+          <li><span class="cn-name">Истребование документа в&nbsp;Украине<small>Дубликат Свидетельства, Выписка из&nbsp;Реестра ЗАГС · от 3 недель</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
+          <li><span class="cn-name">Дубликат + Апостиль<small>Свидетельство до 2016&nbsp;года или советского образца – два этапа · 5–6 недель</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
+          <li><span class="cn-name">Диплом с&nbsp;приложением<small>Два документа, Апостиль МОН Украины · ок. 2 недель, с&nbsp;бумажным приложением 1–1,5 месяца</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>/ комплект</small></span></li>
         </ul>
       </div>
 
-      <div class="cn-group">
+      <div class="cn-group" id="tlumaczenia">
         <h3 class="cn-group-h">Присяжные переводы</h3>
         <p class="cn-group-t">Языки, сроки и&nbsp;правила – <a href="/ru/tlumaczenia-przysiegle/" class="underline font-semibold">Присяжные Переводы в&nbsp;Варшаве</a></p>
         <ul class="cn-list">
-          <li><span class="cn-name">Присяжный перевод<small>Украинский, Русский, Английский ↔ Польский · страница = 1125 знаков с&nbsp;пробелами</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span><small>/ страница</small></span></li>
+          <li><span class="cn-name">Присяжный перевод<small>Украинский, Русский, Английский ↔ Польский · страница = 1125 знаков с&nbsp;пробелами · 2–4 рабочих дня</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span><small>/ страница</small></span></li>
           <li><span class="cn-name">Остальные языки<small>Немецкий, Испанский, Французский, Итальянский, Нидерландский</small></span><span class="cn-price"><b class="font-bold">расчёт</b><small>по языку</small></span></li>
           <li><span class="cn-name">От 6 страниц в&nbsp;одном заказе<small>Комплект на Карту Побыта, USC, Банк</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold">−<span class="price-num" data-price="10">10</span>%</b></span><small>скидка</small></span></li>
-          <li><span class="cn-name">Апостиль на перевод<small>Подпись переводчика подтверждает MSZ – для использования за границей</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
+          <li><span class="cn-name">Апостиль на перевод<small>Подпись переводчика подтверждает MSZ – для использования за границей · +&nbsp;1–3 рабочих дня</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
         </ul>
       </div>
 
@@ -193,8 +216,106 @@
         </ul>
       </div>
     </div>
+    <div class="cn-group cn-razem" id="razem">
+      <h3 class="cn-group-h">Вместе – самые частые комплекты</h3>
+      <p class="cn-group-t">Два или три шага в&nbsp;одном заказе – один расчёт, одна оплата. Порядок: сначала Апостиль на оригинал, потом перевод.</p>
+      <ul class="cn-list">
+        <li><span class="cn-name">Нотариальный документ за границу<small>Доверенность, нотариальный акт, заверение · Окружной суд <span class="price-num" data-price="120">120</span>&nbsp;zł + Апостиль MSZ <span class="price-num" data-price="260">260</span>&nbsp;zł · мин.&nbsp;3–5 рабочих дней</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="380">380</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
+        <li><span class="cn-name">Справка о&nbsp;несудимости с&nbsp;Апостилем<small>Получение из&nbsp;KRK <span class="price-num" data-price="200">200</span>&nbsp;zł + Апостиль MSZ <span class="price-num" data-price="260">260</span>&nbsp;zł · 2–5 рабочих дней</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="460">460</span>,-&nbsp;zł</b></span><small>/ документ</small></span></li>
+        <li><span class="cn-name">Документ с&nbsp;переводом за границу<small>Апостиль на оригинал <span class="price-num" data-price="260">260</span>&nbsp;zł + Апостиль на перевод <span class="price-num" data-price="260">260</span>&nbsp;zł – если этого требует учреждение в&nbsp;стране назначения · плюс Присяжный перевод <span class="price-num" data-price="90">90</span>&nbsp;zł / страница</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="520">520</span>,-&nbsp;zł</b></span><small>+ перевод / страница</small></span></li>
+      </ul>
+    </div>
+
+    <div class="cn-groups cn-incl">
+      <div class="cn-group">
+        <h3 class="cn-group-h">В&nbsp;цене</h3>
+        <ul class="cn-plain">
+          <li>Госпошлины – <span class="price-num" data-price="60">60</span>&nbsp;zł за Апостиль в&nbsp;MSZ, <span class="price-num" data-price="26">26</span>&nbsp;zł за заверение подписи в&nbsp;суде</li>
+          <li>Бронирование даты в&nbsp;MSZ, подача и&nbsp;получение документа в&nbsp;учреждении</li>
+          <li>Проверка документа перед заказом – подходит ли он для Апостиля</li>
+          <li>Скан готового документа сразу, как только заберём его из&nbsp;учреждения</li>
+          <li>Документы из&nbsp;Украины – пошлины и&nbsp;сборы в&nbsp;Украине</li>
+        </ul>
+      </div>
+      <div class="cn-group">
+        <h3 class="cn-group-h">Вне цены</h3>
+        <ul class="cn-plain">
+          <li>Присяжный перевод – считаем отдельно, <span class="price-num" data-price="90">90</span>&nbsp;zł за страницу 1125 знаков</li>
+          <li>Апостиль на перевод – <span class="price-num" data-price="260">260</span>&nbsp;zł, если его требует учреждение за границей</li>
+          <li>Нотариальные сборы – заверение копии или подписи у&nbsp;нотариуса, если документ этого требует</li>
+        </ul>
+      </div>
+    </div>
+
     <p class="mt-8 text-[15px] leading-[1.6] text-ink/50 max-w-[70ch]">
-      Цены ориентировочные и&nbsp;окончательные – НДС не начисляем. Обязателен расчёт после просмотра документа: он включает госпошлины и, если нужны, присяжный перевод и&nbsp;пересылку – без скрытых доплат. Оплата заранее: BLIK, перевод или наличные. Заказ стартует после поступления оплаты. Подробности в&nbsp;<a href="/#regulamin" class="underline">Regulaminie</a> (PL). Цены пересматриваем ежеквартально – последнее обновление: <span class="cennik-updated">сентябрь 2026</span>.
+      Цены ориентировочные и&nbsp;окончательные – НДС не начисляем. Обязателен расчёт после просмотра документа – в&nbsp;нём каждая позиция указана отдельно: Апостиль, перевод, пересылка. Без скрытых доплат. Оплата заранее: BLIK, перевод или наличные. Заказ стартует после поступления оплаты. Сроки считаем со дня, когда у&nbsp;нас есть оригинал и&nbsp;подтверждение оплаты; выходные и&nbsp;праздничные дни не считаются – учреждения тогда закрыты. Подробности в&nbsp;<a href="/#regulamin" class="underline">Regulaminie</a> (PL). Цены пересматриваем ежеквартально – последнее обновление: <span class="cennik-updated">сентябрь 2026</span>.
+    </p>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq" class="pb-28 md:pb-44">
+  <div class="mx-auto max-w-site px-5 sm:px-8">
+    <p class="kicker">/ FAQ</p>
+    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black mb-9">
+      Цены – частые вопросы
+    </h2>
+
+    <div class="border-t border-ink/15">
+      <details class="group border-b border-ink/15" open>
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Почему Апостиль стоит <span class="price-num" data-price="260">260</span> zł, если госпошлина в MSZ – <span class="price-num" data-price="60">60</span> zł?</h3>
+          <span class="chev shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+          Госпошлина – <span class="price-num" data-price="60">60</span>&nbsp;zł, и&nbsp;она в&nbsp;цене. Остальное – наша работа: бронирование даты в&nbsp;системе MSZ – свободные бывают только через несколько дней – два визита на Kruczej при подаче и&nbsp;получении, проверка документа перед заказом, скан готового документа сразу и&nbsp;ответ с&nbsp;ценой обычно за&nbsp;15 минут. Самостоятельно: <span class="price-num" data-price="60">60</span>&nbsp;zł, бронирование онлайн, дважды в&nbsp;учреждении в&nbsp;рабочие часы и&nbsp;отгул на работе. У&nbsp;нас: фото в&nbsp;WhatsApp и&nbsp;1–3 рабочих дня.
+        </p>
+      </details>
+
+      <details class="group border-b border-ink/15">
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Может ли цена из расчёта измениться?</h3>
+          <span class="chev shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+          Нет. Сумма из&nbsp;расчёта – окончательная: столько вы платите и&nbsp;столько видите в&nbsp;подтверждении. Она меняется только тогда, когда документ на встрече оказывается другим, чем на фото: больше страниц для перевода или другой тип документа. Тогда мы говорим об&nbsp;этом, прежде чем что-то заказывать.
+        </p>
+      </details>
+
+      <details class="group border-b border-ink/15">
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Что считается одним документом?</h3>
+          <span class="chev shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+          Один документ – это одна подпись чиновника, нотариуса или переводчика и&nbsp;один штамп Апостиля. Диплом и&nbsp;приложение – два документа (2&nbsp;× <span class="price-num" data-price="260">260</span>&nbsp;zł). Нотариальный акт с&nbsp;приложениями, прошитый нотариусом, – один. Присяжный перевод нескольких документов – это несколько переводов, каждый со&nbsp;своей формулой переводчика.
+        </p>
+      </details>
+
+      <details class="group border-b border-ink/15">
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Когда и как я плачу?</h3>
+          <span class="chev shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+          После согласования расчёта, заранее: BLIK, перевод или наличные при встрече на Kruczej. Данные для оплаты приходят вместе с&nbsp;расчётом. Заказ стартует после поступления оплаты – с&nbsp;этого дня считаем срок. Подробности в&nbsp;§4 <a href="/#regulamin" class="underline font-semibold">Regulaminu</a> (PL).
+        </p>
+      </details>
+
+      <details class="group border-b border-ink/15">
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Сколько стоит Апостиль в экспресс-режиме и какие условия?</h3>
+          <span class="chev shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+          <span class="price-num" data-price="350">350</span>&nbsp;zł за документ. Выдаём в&nbsp;тот же день, если оригинал попадёт к&nbsp;нам до 11:00 вместе с&nbsp;подтверждением оплаты и&nbsp;не требует перевода перед Апостилем. Нотариальные и&nbsp;судебные документы экспресса не имеют – сначала мин.&nbsp;2 рабочих дня в&nbsp;Окружном суде.
+        </p>
+      </details>
+    </div>
+
+    <p class="mt-8 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+      Вопросы об&nbsp;учреждениях и&nbsp;штампе – на странице <a href="/ru/apostille/#faq" class="underline font-semibold">Апостиль</a>,
+      о&nbsp;выдаче, пересылке и&nbsp;оплате – на странице <a href="/ru/kontakt/#faq" class="underline font-semibold">контактов</a>.
     </p>
   </div>
 </section>
@@ -207,6 +328,14 @@
           <p class="kicker">/ Расчёт</p>
           <h2 class="slide-group tracking-tightest leading-[0.94] text-[38px] sm:text-[52px] lg:text-[56px] font-black"><span class="slide-in">Экспресс-</span><br><span class="slide-in">расчёт</span><br><span class="font-light italic slide-in sd-2">документа</span></h2>
           <p class="mt-7 text-[17px] leading-[1.55] text-ink/70 max-w-[40ch]">Заполните форму, напишите в&nbsp;WhatsApp или позвоните – как вам удобнее. Отвечаем с&nbsp;ценой и&nbsp;сроком – без обязательств.<span class="block mt-3 text-ink/90">Расчёт делает человек, а&nbsp;не автомат.</span></p>
+          <p class="font-cond uppercase tracking-[0.14em] text-[12px] text-ink/50 mt-7 mb-2">Что прислать для расчёта</p>
+          <ul class="cn-send">
+            <li>фото всего документа – обе стороны, читаемые печати и&nbsp;подписи</li>
+            <li>в&nbsp;какую страну и&nbsp;для чего документ нужен</li>
+            <li>нужен ли перевод и&nbsp;на какой язык</li>
+            <li>к&nbsp;какому сроку документ должен быть готов</li>
+          </ul>
+
           <div class="hairline mt-10 pt-7 space-y-4">
             <div class="flex items-baseline gap-4"><span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Апостиль MSZ</span><span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>&nbsp;zł</b></span></span></div>
             <div class="flex items-baseline gap-4"><span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Окружной суд</span><span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>&nbsp;zł</b></span></span></div>
@@ -235,7 +364,7 @@
                 <option value="" disabled selected>Выберите услугу…</option>
                 <option value="apostille-msz">Апостиль – MSZ</option>
                 <option value="apostille-sad">Апостиль – окружной суд</option>
-                <option value="apostille-ua-by">Апостиль – документы из Украины</option>
+                <option value="apostille-ua">Апостиль – документы из Украины</option>
                 <option value="tlumaczenie">Присяжный перевод</option>
                 <option value="tlumaczenie-konsularne">Консульский перевод</option>
                 <option value="istrebowanie">Истребование дубликата документа</option>
