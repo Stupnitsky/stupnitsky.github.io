@@ -55,13 +55,32 @@
   var header = document.getElementById('top');
   var LOGO_MAX = 1.36, LOGO_MIN = 1, LOGO_RANGE = 160;
   var logoTicking = false, logoLast = null;
+  var logoEl = header && header.querySelector('.logo-brand');
+  var logoW = 0; // ширина логотипа с исходными буквами – по ней считается плашка
   function applyLogoScale() {
     logoTicking = false;
     var p = Math.min(Math.max(window.scrollY, 0) / LOGO_RANGE, 1);
     p = p * p * (3 - 2 * p); // сглаживание на концах – без рывка в начале и в конце
     var s = (LOGO_MAX - (LOGO_MAX - LOGO_MIN) * p).toFixed(4);
-    if (s !== logoLast) { header.style.setProperty('--logo-scale', s); logoLast = s; }
+    if (s !== logoLast) {
+      header.style.setProperty('--logo-scale', s); logoLast = s;
+      // плашка логотипа: transform не меняет габарит, поэтому запас справа считаем сами
+      if (logoEl) header.style.setProperty('--logo-extra', ((s - 1) * logoW).toFixed(1) + 'px');
+    }
   }
+  // Ширина логотипа фиксируется (--logo-w): при наведении буквы подменяются знаками других
+  // алфавитов и слово меняет ширину, а плашка должна стоять. Меряем без фиксации и не под курсором;
+  // повторяем при смене ширины окна (кегль другой) и после загрузки шрифта.
+  function measureLogo() {
+    if (!logoEl || logoEl.matches(':hover')) return;
+    header.style.removeProperty('--logo-w');
+    logoW = logoEl.offsetWidth;
+    header.style.setProperty('--logo-w', logoW + 'px');
+    logoLast = null; applyLogoScale();
+  }
+  measureLogo();
+  window.addEventListener('resize', measureLogo, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureLogo);
   window.addEventListener('scroll', function () {
     if (!logoTicking) { logoTicking = true; requestAnimationFrame(applyLogoScale); }
   }, { passive: true });
@@ -1352,4 +1371,48 @@
         }
       });
     });
+  })();
+
+  /* /cennik/ v2: линия под заголовком группы заливается жёлтым по мере прокрутки блока,
+     а после полной заливки жёлтый уходит слева направо.
+     --p – правая кромка (0..1): 0 – верх списка на 85% высоты окна, 1 – низ списка там же.
+     --q – левая кромка (0..1): начинает расти, когда линию прошло 70% высоты списка,
+     и доходит до 1 на оставшихся 30% (но не быстрее, чем за 20% высоты окна). */
+  (function(){
+    var lists = document.querySelectorAll('.cn-v2 .cn-list, .cn-v2 .cn-plain');
+    if(!lists.length) return;
+    var ticking = false;
+    function clamp(v){ return Math.min(Math.max(v, 0), 1); }
+    function apply(){
+      ticking = false;
+      var vh = window.innerHeight, line = vh * 0.85;
+      lists.forEach(function(ul){
+        var r = ul.getBoundingClientRect();
+        var p = clamp((line - r.top) / r.height);
+        var span = Math.max(r.height * 0.3, vh * 0.2);
+        var q = clamp((line - (r.top + r.height * 0.7)) / span);
+        ul.style.setProperty('--p', p.toFixed(3));
+        ul.style.setProperty('--q', q.toFixed(3));
+      });
+    }
+    function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(apply); } }
+    window.addEventListener('scroll', onScroll, { passive:true });
+    window.addEventListener('resize', onScroll);
+    apply();
+  })();
+  /* /cennik/ v2: заголовок «Ile kosztuje…» – начертания меняются местами, когда заголовок
+     при прокрутке вниз поднялся выше 55% высоты окна; обратно – только при прокрутке вверх */
+  (function(){
+    var hs = document.querySelectorAll('.h2-swap');
+    if(!hs.length) return;
+    var ticking = false;
+    function apply(){
+      ticking = false;
+      var line = window.innerHeight * 0.55;
+      hs.forEach(function(h){ h.classList.toggle('is-swap', h.getBoundingClientRect().top < line); });
+    }
+    function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(apply); } }
+    window.addEventListener('scroll', onScroll, { passive:true });
+    window.addEventListener('resize', onScroll);
+    apply();
   })();

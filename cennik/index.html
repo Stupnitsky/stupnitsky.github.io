@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/styles.css?v=20260916">
 
 <script type="application/ld+json">
 {
@@ -87,12 +87,15 @@
 
 <!-- sync:header -->
 <header id="top" class="sticky top-[9px] z-50 px-3 sm:px-5 pt-[9px]">
-  <div class="grad-blur ml-auto max-w-[1234px] px-5 sm:px-8 rounded-[12px]" style="margin-right:max(0px, calc((100% - 1162px) / 2))">
-    <div class="flex items-center justify-between h-[72px] md:h-[90px]">
-
+  <!-- Ряд шапки по образцу andabove.com: две стеклянные плашки вплотную друг к другу –
+       слева логотип в своей плашке, справа плашка с меню и языком. Стили – .hdr-* в styles.css -->
+  <div class="hdr-row ml-auto max-w-[1234px] flex items-stretch h-[72px] md:h-[90px]" style="margin-right:max(0px, calc((100% - 1162px) / 2))">
+    <div class="hdr-seg hdr-seg--logo hdr-glass flex items-center shrink-0">
       <a href="/" data-home class="logo logo-brand text-[30px] md:text-[40px] text-ink" aria-label="Apostilo – strona główna">
         <b>A</b><b>p</b><b>o</b><b>s</b><b>t</b><b>i</b><b>l</b><b>o</b><b>✦</b>
       </a>
+    </div>
+    <div class="hdr-seg hdr-seg--menu hdr-glass flex items-center justify-end px-5 sm:px-8">
 
       <nav id="nav-main" class="nav-main relative hidden lg:flex self-stretch items-center gap-3 xl:gap-6 ml-auto mr-[28px] xl:mr-[48px]" aria-label="Nawigacja główna">
         <a href="/apostille/"   class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Apostille</span><span class="nl-b" aria-hidden="true">Apostille</span></span></a>
@@ -102,17 +105,6 @@
       </nav>
 
       <div class="flex items-center gap-[3px] mr-[4px]">
-        <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20potrzebuj%C4%99%20wyceny%20apostille%2Ft%C5%82umaczenia"
-           target="_blank" rel="noopener" aria-label="Napisz na WhatsApp"
-           class="wa-btn hidden sm:inline-flex items-center rounded-[12px] text-[23px] font-bold">
-          <span class="wa-ico" aria-hidden="true">
-            <svg viewBox="0 0 24 24" class="w-full h-full">
-              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Z" fill="#25D366" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/>
-              <path d="M17.84 16.16c-.25.7-1.44 1.33-1.99 1.41-.53.08-1.2.11-1.94-.12-.45-.14-1.02-.33-1.76-.65-3.1-1.34-5.12-4.46-5.28-4.67-.15-.21-1.26-1.67-1.26-3.19s.8-2.26 1.08-2.57c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.86 2.08.94 2.23.08.16.13.34.02.55-.1.21-.16.34-.31.52-.16.18-.33.4-.47.54-.16.16-.32.33-.14.64.18.31.8 1.32 1.72 2.14 1.18 1.05 2.18 1.38 2.49 1.54.31.16.49.13.67-.08.18-.21.77-.9.98-1.21.2-.31.41-.26.69-.16.28.11 1.77.84 2.07.99.31.16.51.23.59.36.08.13.08.75-.17 1.45Z" fill="#fff"/>
-            </svg>
-          </span>
-          <span class="wa-label"><span>507&nbsp;588&nbsp;155</span></span>
-        </a>
 
         <div class="lang-wrap">
           <button type="button" id="lang-switch" class="lang-switch text-[17px] font-bold tracking-tight"
@@ -172,50 +164,54 @@
 </section>
 
 <!-- ================= TABELA ================= -->
-<section id="ceny" class="pb-16 md:pb-28">
+<section id="ceny" class="cn-v2 pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ Ceny</p>
-    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
-      Ile kosztuje <span class="font-light italic">Apostille i&nbsp;Tłumaczenie</span>
+    <h2 class="h2-swap tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
+      <span class="h2-a">Ile kosztuje</span> <span class="h2-b font-light italic">Apostille i&nbsp;Tłumaczenie</span>
     </h2>
 
-    <div class="cn-groups mt-9 md:mt-12">
-
-      <div class="cn-group" id="apostille">
+    <nav class="cn-nav" aria-label="Sekcje cennika">
+      <a href="#apostille">Apostille w&nbsp;Polsce</a>
+      <a href="#ukraina">Dokumenty z&nbsp;Ukrainy</a>
+      <a href="#tlumaczenia">Tłumaczenia</a>
+      <a href="#odbior">Odbiór i&nbsp;wysyłka</a>
+      <a href="#razem">Najczęstsze przypadki</a>
+    </nav>
+    <p class="cn-status"><b>Cennik</b><span>ostatnia aktualizacja: <span class="cennik-updated">wrzesień 2026</span> · sprawdzamy co kwartał · ceny zawierają opłaty skarbowe</span></p>
+    <div class="cn-groups">
+      <div class="cn-group cn-l" id="apostille">
         <h3 class="cn-group-h">Apostille w&nbsp;Polsce</h3>
         <p class="cn-group-t">Szczegóły, urzędy i&nbsp;terminy – <a href="/apostille/" class="underline font-semibold">Apostille w&nbsp;Warszawie</a></p>
         <ul class="cn-list">
-          <li><span class="cn-name">Apostille MSZ<small>Akty USC, KRK, Dokumenty firmowe,<br>Tłumaczenia Przysięgłe · Opłata skarbowa w&nbsp;cenie · 1–3 dni robocze</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span><small>/ dokument</small></span></li>
-          <li><span class="cn-name">Apostille – Sąd Okręgowy<small>Poświadczenie podpisu notariusza lub Dokumentu sądowego · Opłata skarbowa w&nbsp;cenie · min.&nbsp;2 dni robocze w&nbsp;sądzie, potem MSZ</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span><small>/ podpis</small></span></li>
-          <li><span class="cn-name">Uzyskanie dokumentu KRK / KRS<small>Zaświadczenie o&nbsp;Niekaralności, Odpis z&nbsp;KRS w&nbsp;imieniu klienta, bez Apostille · KRK 1–2 dni robocze, KRS od ręki</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>,-&nbsp;zł</b></span><small>/ dokument</small></span></li>
-          <li><span class="cn-name">Apostille MSZ Ekspres<small>Tego samego dnia – oryginał u&nbsp;nas do 11:00 z&nbsp;potwierdzeniem płatności, dokument bez wcześniejszego tłumaczenia</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="350">350</span>,-&nbsp;zł</b></span><small>/ dokument</small></span></li>
+          <li><span class="cn-name">Apostille MSZ</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span><small>/ dokument</small></span><span class="cn-desc">Akty USC, KRK, Dokumenty firmowe, Tłumaczenia Przysięgłe</span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">1–3 dni robocze</span></span><span class="cn-tags"><span class="cn-pill">Opłata skarbowa w&nbsp;cenie</span></span></span></li>
+          <li><span class="cn-name">Apostille – Sąd Okręgowy</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span><small>/ podpis</small></span><span class="cn-desc">Poświadczenie podpisu notariusza lub Dokumentu sądowego – najpierw min.&nbsp;2 dni robocze w&nbsp;sądzie, potem MSZ</span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">min.&nbsp;3–5 dni roboczych</span></span><span class="cn-tags"><span class="cn-pill">Opłata skarbowa w&nbsp;cenie</span></span></span></li>
+          <li><span class="cn-name">Uzyskanie dokumentu KRK / KRS</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>,-&nbsp;zł</b></span><small>/ dokument</small></span><span class="cn-desc">Zaświadczenie o&nbsp;Niekaralności, Odpis z&nbsp;KRS w&nbsp;imieniu klienta</span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">KRK 1–2 dni robocze</span><span class="cn-pill">KRS od ręki</span></span><span class="cn-tags"><span class="cn-pill">bez Apostille</span></span></span></li>
+          <li><span class="cn-name">Apostille MSZ Ekspres</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="350">350</span>,-&nbsp;zł</b></span><small>/ dokument</small></span><span class="cn-desc">Oryginał u&nbsp;nas do 11:00 z&nbsp;potwierdzeniem płatności, dokument bez wcześniejszego tłumaczenia</span><span class="cn-meta"><span class="cn-term"><span class="cn-pill cn-pill--hot">Tego samego dnia</span></span><span class="cn-tags"><span class="cn-pill">Opłata skarbowa w&nbsp;cenie</span></span></span></li>
         </ul>
       </div>
-
-      <div class="cn-group" id="ukraina">
+      <div class="cn-group cn-r" id="ukraina">
         <h3 class="cn-group-h">Dokumenty z&nbsp;Ukrainy</h3>
         <p class="cn-group-t">Bez wyjazdu z&nbsp;Polski – <a href="/apostille-ukraina/" class="underline font-semibold">Apostille na dokumenty z&nbsp;Ukrainy</a></p>
         <ul class="cn-list">
-          <li><span class="cn-name">Apostille na dokument z&nbsp;Ukrainy<small>Dyplom, Świadectwo, Akt Stanu Cywilnego po 2016 · opłaty urzędowe w&nbsp;Ukrainie w&nbsp;cenie · 2–3 tygodnie</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span><small>/ dokument</small></span></li>
-          <li><span class="cn-name">Uzyskanie dokumentu w&nbsp;Ukrainie<small>Duplikat Aktu, Wyciąg z&nbsp;Rejestru Stanu Cywilnego · od 3 tygodni</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span><small>/ dokument</small></span></li>
-          <li><span class="cn-name">Duplikat + Apostille<small>Akt sprzed 2016&nbsp;roku lub z&nbsp;czasów ZSRR – dwa etapy · 5–6 tygodni</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>/ dokument</small></span></li>
-          <li><span class="cn-name">Dyplom z&nbsp;dodatkiem<small>Dwa dokumenty, Apostille MON Ukrainy · ok. 2 tygodnie, z&nbsp;papierowym dodatkiem 1–1,5 miesiąca</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>/ komplet</small></span></li>
+          <li><span class="cn-name">Apostille na dokument z&nbsp;Ukrainy</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span><small>/ dokument</small></span><span class="cn-desc">Dyplom, Świadectwo, Akt Stanu Cywilnego po 2016</span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">2–3 tygodnie</span></span><span class="cn-tags"><span class="cn-pill">Opłaty urzędowe w&nbsp;Ukrainie w&nbsp;cenie</span></span></span></li>
+          <li><span class="cn-name">Uzyskanie dokumentu w&nbsp;Ukrainie</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span><small>/ dokument</small></span><span class="cn-desc">Duplikat Aktu, Wyciąg z&nbsp;Rejestru Stanu Cywilnego</span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">od 3 tygodni</span></span></span></li>
+          <li><span class="cn-name">Duplikat + Apostille</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>/ dokument</small></span><span class="cn-desc">Akt sprzed 2016&nbsp;roku lub z&nbsp;czasów ZSRR</span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">5–6 tygodni</span></span><span class="cn-tags"><span class="cn-pill">dwa etapy</span></span></span></li>
+          <li><span class="cn-name">Dyplom z&nbsp;dodatkiem</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>/ komplet</small></span><span class="cn-desc">Dwa dokumenty, Apostille MON Ukrainy – z&nbsp;papierowym dodatkiem 1–1,5 miesiąca</span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">ok. 2 tygodnie</span></span></span></li>
         </ul>
       </div>
-
-      <div class="cn-group" id="tlumaczenia">
+      <div class="cn-group cn-l" id="tlumaczenia">
         <h3 class="cn-group-h">Tłumaczenia przysięgłe</h3>
         <p class="cn-group-t">Języki, terminy i&nbsp;zasady – <a href="/tlumaczenia-przysiegle/" class="underline font-semibold">Tłumaczenia Przysięgłe w&nbsp;Warszawie</a></p>
         <ul class="cn-list">
-          <li><span class="cn-name">Tłumaczenie przysięgłe<small>Ukraiński, Rosyjski, Angielski ↔ Polski · strona = 1125 znaków ze spacjami · 2–4 dni robocze</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span><small>/ strona</small></span></li>
-          <li><span class="cn-name">Tłumaczenie konsularne<small>Wymagania ustala urząd konsularny – potwierdzamy je przed zleceniem · 2–4 dni robocze</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span><small>/ strona</small></span></li>
-          <li><span class="cn-name">Pozostałe języki<small>Niemiecki, Hiszpański, Francuski, Włoski, Niderlandzki</small></span><span class="cn-price"><b class="font-bold">wycena</b><small>wg języka</small></span></li>
-          <li><span class="cn-name">Od 6 stron w&nbsp;jednym zleceniu<small>Komplet do Karty Pobytu, USC, Banku</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold">−<span class="price-num" data-price="10">10</span>%</b></span><small>rabat</small></span></li>
-          <li><span class="cn-name">Apostille na tłumaczenie<small>Podpis tłumacza potwierdza MSZ – do użycia za granicą · +&nbsp;1–3 dni robocze</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span><small>/ dokument</small></span></li>
+          <li><span class="cn-name">Tłumaczenie przysięgłe</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span><small>/ strona</small></span><span class="cn-desc">Ukraiński, Rosyjski, Angielski ↔ Polski</span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">2–4 dni robocze</span></span><span class="cn-tags"><span class="cn-pill">strona = 1125 znaków ze spacjami</span></span></span></li>
+          <li><span class="cn-name">Tłumaczenie konsularne</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span><small>/ strona</small></span><span class="cn-desc">Wymagania ustala urząd konsularny – potwierdzamy je przed zleceniem</span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">2–4 dni robocze</span></span></span></li>
+          <li><span class="cn-name">Pozostałe języki</span><span class="cn-price"><b class="font-bold">wycena</b><small>wg języka</small></span><span class="cn-desc">Niemiecki, Hiszpański, Francuski, Włoski, Niderlandzki</span></li>
+          <li><span class="cn-name">Od 6 stron w&nbsp;jednym zleceniu</span><span class="cn-price"><span class="price-hit"><b class="font-bold">−<span class="price-num" data-price="10">10</span>%</b></span><small>rabat</small></span><span class="cn-desc">Komplet do Karty Pobytu, USC, Banku</span></li>
+          <li><span class="cn-name">Apostille na tłumaczenie</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span><small>/ dokument</small></span><span class="cn-desc">Podpis tłumacza potwierdza MSZ – do użycia za granicą</span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">+&nbsp;1–3 dni robocze</span></span></span></li>
         </ul>
       </div>
-
-      <div class="cn-group">
+      <div class="cn-group cn-r" id="odbior">
         <h3 class="cn-group-h">Odbiór i&nbsp;wysyłka</h3>
         <p class="cn-group-t">Jak przekazać dokument – <a href="/kontakt/#odbior" class="underline font-semibold">strona kontaktu</a></p>
         <ul class="cn-list">
@@ -225,49 +221,48 @@
           <li><span class="cn-name">Nowa Poczta – Ukraina<small>przy dokumentach z&nbsp;Ukrainy w&nbsp;obie strony</small></span><span class="cn-price"><b class="font-bold">w&nbsp;cenie</b><small>wg cennika Nowa Poczta</small></span></li>
         </ul>
       </div>
-    </div>
-
-
-    <div class="cn-group cn-razem" id="razem">
-      <h3 class="cn-group-h">Ile zapłacę za… – najczęstsze przypadki</h3>
-      <p class="cn-group-t">Dwa lub trzy kroki w&nbsp;jednym zleceniu – jedna wycena, jedna płatność. Kolejność: najpierw Apostille na oryginał, potem tłumaczenie. Komplet kosztuje dokładnie tyle, ile jego części – liczbę stron tłumaczenia podajemy orientacyjnie: akt USC lub zaświadczenie KRK – 1&nbsp;strona, dyplom – 1, suplement lub dodatek – 2–3, pełnomocnictwo – 1–2.</p>
-      <ul class="cn-list">
-        <li><span class="cn-name">Dokument notarialny za granicę<small>Pełnomocnictwo, akt notarialny, poświadczenie · Sąd Okręgowy <span class="price-num" data-price="120">120</span>&nbsp;zł + Apostille MSZ <span class="price-num" data-price="260">260</span>&nbsp;zł · min.&nbsp;3–5 dni roboczych</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="380">380</span>,-&nbsp;zł</b></span><small>/ dokument</small></span></li>
-        <li><span class="cn-name">Zaświadczenie o&nbsp;niekaralności z&nbsp;Apostille<small>Uzyskanie z&nbsp;KRK <span class="price-num" data-price="200">200</span>&nbsp;zł + Apostille MSZ <span class="price-num" data-price="260">260</span>&nbsp;zł · 2–5 dni roboczych</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="460">460</span>,-&nbsp;zł</b></span><small>/ dokument</small></span></li>
-        <li><span class="cn-name">Komplet do&nbsp;ślubu za granicą<small>Akt urodzenia + zaświadczenie o&nbsp;stanie cywilnym – oba odbierasz w&nbsp;USC albo w&nbsp;mObywatelu · 2&nbsp;× Apostille MSZ <span class="price-num" data-price="260">260</span>&nbsp;zł · 1–3 dni robocze</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="520">520</span>,-&nbsp;zł</b></span><small>/ komplet</small></span></li>
-        <li><span class="cn-name">Dyplom polski z&nbsp;suplementem<small>Dyplom i&nbsp;suplement to dwa dokumenty · 2&nbsp;× Apostille MSZ <span class="price-num" data-price="260">260</span>&nbsp;zł · 1–3 dni robocze</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="520">520</span>,-&nbsp;zł</b></span><small>/ komplet</small></span></li>
-        <li><span class="cn-name">Komplet firmowy<small>Odpis z&nbsp;KRS (uzyskanie <span class="price-num" data-price="200">200</span>&nbsp;zł + Apostille <span class="price-num" data-price="260">260</span>&nbsp;zł) + umowa spółki i&nbsp;pełnomocnictwo, każde przez Sąd Okręgowy <span class="price-num" data-price="120">120</span>&nbsp;zł + Apostille <span class="price-num" data-price="260">260</span>&nbsp;zł · 3–5 dni roboczych</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1220">1&nbsp;220</span>,-&nbsp;zł</b></span><small>/ komplet</small></span></li>
-        <li><span class="cn-name">Dokument z&nbsp;tłumaczeniem za granicę<small>Apostille na oryginał <span class="price-num" data-price="260">260</span>&nbsp;zł + Apostille na tłumaczenie <span class="price-num" data-price="260">260</span>&nbsp;zł – gdy wymaga tego urząd w&nbsp;kraju docelowym · do tego Tłumaczenie Przysięgłe <span class="price-num" data-price="90">90</span>&nbsp;zł / strona</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="520">520</span>,-&nbsp;zł</b></span><small>+ tłumaczenie / strona</small></span></li>
-        <li><span class="cn-name">Ukraiński akt urodzenia po&nbsp;2016 do&nbsp;karty pobytu<small>Apostille w&nbsp;Kijowie <span class="price-num" data-price="550">550</span>&nbsp;zł + Tłumaczenie Przysięgłe 1&nbsp;strona <span class="price-num" data-price="90">90</span>&nbsp;zł · 2–3 tygodnie, potem 2–4 dni robocze</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span><small>+ tłumaczenie / strona</small></span></li>
-        <li><span class="cn-name">Ukraiński akt sprzed 2016<small>Duplikat w&nbsp;ukraińskim USC + Apostille <span class="price-num" data-price="1100">1&nbsp;100</span>&nbsp;zł + Tłumaczenie Przysięgłe 1&nbsp;strona <span class="price-num" data-price="90">90</span>&nbsp;zł · 5–6 tygodni</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>+ tłumaczenie / strona</small></span></li>
-        <li><span class="cn-name">Ukraiński dyplom z&nbsp;dodatkiem do&nbsp;pracy lub na&nbsp;uczelnię<small>Dyplom i&nbsp;dodatek, Apostille MON Ukrainy <span class="price-num" data-price="1100">1&nbsp;100</span>&nbsp;zł + Tłumaczenie Przysięgłe 3–4 stron · 2 tygodnie – 1,5 miesiąca</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>+ tłumaczenie / strona</small></span></li>
-      </ul>
-    </div>
-
-    <div class="cn-groups cn-incl">
-      <div class="cn-group">
-        <h3 class="cn-group-h">W&nbsp;cenie</h3>
-        <ul class="cn-plain">
-          <li>Opłaty skarbowe – <span class="price-num" data-price="60">60</span>&nbsp;zł za Apostille w&nbsp;MSZ, <span class="price-num" data-price="26">26</span>&nbsp;zł za poświadczenie podpisu w&nbsp;sądzie</li>
-          <li>Rezerwacja terminu w&nbsp;MSZ, złożenie i&nbsp;odbiór dokumentu w&nbsp;urzędzie</li>
-          <li>Sprawdzenie dokumentu przed zleceniem – czy nadaje się do Apostille</li>
-          <li>Skan gotowego dokumentu od ręki, gdy tylko odbierzemy go z&nbsp;urzędu</li>
-          <li>Dokumenty z&nbsp;Ukrainy – opłaty urzędowe w&nbsp;Ukrainie</li>
+      <div class="cn-group cn-razem cn-full" id="razem">
+        <h3 class="cn-group-h">Ile zapłacę za… – najczęstsze przypadki</h3>
+        <p class="cn-group-t">Dwa lub trzy kroki w&nbsp;jednym zleceniu – jedna wycena, jedna płatność. Kolejność: najpierw Apostille na oryginał, potem tłumaczenie.</p>
+        <ul class="cn-list">
+          <li><span class="cn-name">Dokument notarialny za granicę</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="380">380</span>,-&nbsp;zł</b></span><small>/ dokument</small></span><span class="cn-desc">Pełnomocnictwo, akt notarialny, poświadczenie</span><span class="cn-sum"><span>Sąd Okręgowy <span class="price-num" data-price="120">120</span>&nbsp;zł</span><i>+</i><span>Apostille MSZ <span class="price-num" data-price="260">260</span>&nbsp;zł</span></span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">min.&nbsp;3–5 dni roboczych</span></span></span></li>
+          <li><span class="cn-name">Zaświadczenie o&nbsp;niekaralności z&nbsp;Apostille</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="460">460</span>,-&nbsp;zł</b></span><small>/ dokument</small></span><span class="cn-sum"><span>Uzyskanie z&nbsp;KRK <span class="price-num" data-price="200">200</span>&nbsp;zł</span><i>+</i><span>Apostille MSZ <span class="price-num" data-price="260">260</span>&nbsp;zł</span></span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">2–5 dni roboczych</span></span></span></li>
+          <li><span class="cn-name">Komplet do&nbsp;ślubu za granicą</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="520">520</span>,-&nbsp;zł</b></span><small>/ komplet</small></span><span class="cn-desc">Akt urodzenia + zaświadczenie o&nbsp;stanie cywilnym – oba odbierasz w&nbsp;USC albo w&nbsp;mObywatelu</span><span class="cn-sum"><span>2&nbsp;× Apostille MSZ <span class="price-num" data-price="260">260</span>&nbsp;zł</span></span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">1–3 dni robocze</span></span></span></li>
+          <li><span class="cn-name">Dyplom polski z&nbsp;suplementem</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="520">520</span>,-&nbsp;zł</b></span><small>/ komplet</small></span><span class="cn-desc">Dyplom i&nbsp;suplement to dwa dokumenty</span><span class="cn-sum"><span>2&nbsp;× Apostille MSZ <span class="price-num" data-price="260">260</span>&nbsp;zł</span></span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">1–3 dni robocze</span></span></span></li>
+          <li><span class="cn-name">Komplet firmowy</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1220">1&nbsp;220</span>,-&nbsp;zł</b></span><small>/ komplet</small></span><span class="cn-sum"><span>Odpis z&nbsp;KRS: uzyskanie <span class="price-num" data-price="200">200</span>&nbsp;zł + Apostille <span class="price-num" data-price="260">260</span>&nbsp;zł</span><i>+</i><span>Umowa spółki: Sąd Okręgowy <span class="price-num" data-price="120">120</span>&nbsp;zł + Apostille <span class="price-num" data-price="260">260</span>&nbsp;zł</span><i>+</i><span>Pełnomocnictwo: Sąd Okręgowy <span class="price-num" data-price="120">120</span>&nbsp;zł + Apostille <span class="price-num" data-price="260">260</span>&nbsp;zł</span></span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">3–5 dni roboczych</span></span></span></li>
+          <li><span class="cn-name">Dokument z&nbsp;tłumaczeniem za granicę</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="520">520</span>,-&nbsp;zł</b></span><small>+ tłumaczenie / strona</small></span><span class="cn-desc">Gdy urząd w&nbsp;kraju docelowym wymaga Apostille także na tłumaczeniu</span><span class="cn-sum"><span>Apostille na oryginał <span class="price-num" data-price="260">260</span>&nbsp;zł</span><i>+</i><span>Apostille na tłumaczenie <span class="price-num" data-price="260">260</span>&nbsp;zł</span><i>+</i><span>Tłumaczenie Przysięgłe <span class="price-num" data-price="90">90</span>&nbsp;zł / strona</span></span></li>
+          <li><span class="cn-name">Ukraiński akt urodzenia po&nbsp;2016 do&nbsp;karty pobytu</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span><small>+ tłumaczenie / strona</small></span><span class="cn-sum"><span>Apostille w&nbsp;Kijowie <span class="price-num" data-price="550">550</span>&nbsp;zł</span><i>+</i><span>Tłumaczenie Przysięgłe 1&nbsp;strona <span class="price-num" data-price="90">90</span>&nbsp;zł</span></span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">2–3 tygodnie</span><span class="cn-pill">potem 2–4 dni robocze</span></span></span></li>
+          <li><span class="cn-name">Ukraiński akt sprzed 2016</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>+ tłumaczenie / strona</small></span><span class="cn-sum"><span>Duplikat w&nbsp;ukraińskim USC + Apostille <span class="price-num" data-price="1100">1&nbsp;100</span>&nbsp;zł</span><i>+</i><span>Tłumaczenie Przysięgłe 1&nbsp;strona <span class="price-num" data-price="90">90</span>&nbsp;zł</span></span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">5–6 tygodni</span></span></span></li>
+          <li><span class="cn-name">Ukraiński dyplom z&nbsp;dodatkiem do&nbsp;pracy lub na&nbsp;uczelnię</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>+ tłumaczenie / strona</small></span><span class="cn-sum"><span>Dyplom i&nbsp;dodatek, Apostille MON Ukrainy <span class="price-num" data-price="1100">1&nbsp;100</span>&nbsp;zł</span><i>+</i><span>Tłumaczenie Przysięgłe 3–4 stron</span></span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">2 tygodnie – 1,5 miesiąca</span></span></span></li>
         </ul>
+        <p class="cn-note">Komplet kosztuje dokładnie tyle, ile jego części – liczbę stron tłumaczenia podajemy orientacyjnie: akt USC lub zaświadczenie KRK – 1&nbsp;strona, dyplom – 1, suplement lub dodatek – 2–3, pełnomocnictwo – 1–2.</p>
       </div>
-      <div class="cn-group">
-        <h3 class="cn-group-h">Poza ceną</h3>
-        <ul class="cn-plain">
-          <li>Tłumaczenie Przysięgłe – liczone osobno, <span class="price-num" data-price="90">90</span>&nbsp;zł za stronę 1125 znaków</li>
-          <li>Apostille na tłumaczenie – <span class="price-num" data-price="260">260</span>&nbsp;zł, gdy wymaga go urząd za granicą</li>
-          <li>Opłaty notarialne – poświadczenie kopii lub podpisu u&nbsp;notariusza, jeśli dokument tego wymaga</li>
-        </ul>
+      <div class="cn-groups cn-incl cn-full">
+        <div class="cn-group">
+          <h3 class="cn-group-h">W&nbsp;cenie</h3>
+          <ul class="cn-plain cn-plain--in">
+            <li>Opłaty skarbowe – <span class="price-num" data-price="60">60</span>&nbsp;zł&nbsp;za Apostille w&nbsp;MSZ, <span class="price-num" data-price="26">26</span>&nbsp;zł&nbsp;za poświadczenie podpisu w&nbsp;sądzie</li>
+            <li>Rezerwacja terminu w&nbsp;MSZ, złożenie i&nbsp;odbiór dokumentu w&nbsp;urzędzie</li>
+            <li>Sprawdzenie dokumentu przed zleceniem – czy nadaje się do Apostille</li>
+            <li>Skan gotowego dokumentu od ręki, gdy tylko odbierzemy go z&nbsp;urzędu</li>
+            <li>Dokumenty z&nbsp;Ukrainy – opłaty urzędowe w&nbsp;Ukrainie</li>
+          </ul>
+        </div>
+        <div class="cn-group">
+          <h3 class="cn-group-h">Poza ceną</h3>
+          <ul class="cn-plain cn-plain--out">
+            <li>Tłumaczenie Przysięgłe – liczone osobno, <span class="price-num" data-price="90">90</span>&nbsp;zł&nbsp;za stronę 1125&nbsp;znaków</li>
+            <li>Apostille na tłumaczenie – <span class="price-num" data-price="260">260</span>&nbsp;zł, gdy wymaga go urząd za&nbsp;granicą</li>
+            <li>Opłaty notarialne – poświadczenie kopii lub podpisu u&nbsp;notariusza, jeśli dokument tego wymaga</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cn-foot cn-l">
+        <p>Ceny końcowe – nie doliczamy VAT. Wiążąca jest wycena po zobaczeniu dokumentu – wymienia osobno każdą pozycję: Apostille, tłumaczenie, wysyłkę. Bez ukrytych dopłat.</p>
+        <p>Płatność z&nbsp;góry: BLIK, przelew lub gotówka. Zlecenie rusza po zaksięgowaniu wpłaty.</p>
+        <p>Terminy liczymy od dnia, w&nbsp;którym mamy oryginał i&nbsp;potwierdzenie płatności; dni ustawowo wolne od pracy nie liczą się – urzędy są wtedy zamknięte. Szczegóły w&nbsp;<a href="/#regulamin" class="underline">Regulaminie</a>.</p>
       </div>
     </div>
-
-    <p class="mt-8 text-[15px] leading-[1.6] text-ink/50 max-w-[70ch]">
-      Ceny końcowe – nie doliczamy VAT. Wiążąca jest wycena po zobaczeniu dokumentu – wymienia osobno każdą pozycję: Apostille, tłumaczenie, wysyłkę. Bez ukrytych dopłat. Płatność z&nbsp;góry: BLIK, przelew lub gotówka. Zlecenie rusza po zaksięgowaniu wpłaty. Terminy liczymy od dnia, w&nbsp;którym mamy oryginał i&nbsp;potwierdzenie płatności; dni ustawowo wolne od pracy nie liczą się – urzędy są wtedy zamknięte. Szczegóły w&nbsp;<a href="/#regulamin" class="underline">Regulaminie</a>. Cennik aktualizujemy co kwartał – ostatnia aktualizacja: <span class="cennik-updated">wrzesień 2026</span>.
-    </p>
   </div>
 </section>
 
@@ -275,8 +270,8 @@
 <section id="faq" class="pb-28 md:pb-44">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ FAQ</p>
-    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black mb-9">
-      Ceny – częste pytania
+    <h2 class="h2-swap tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black mb-9">
+      <span class="h2-a">Częste pytania</span> <span class="h2-b font-light italic">Ceny</span>
     </h2>
 
     <div class="border-t border-ink/15">
@@ -359,7 +354,7 @@
 </section>
 
 <!-- ================= WYCENA (formularz – kopia z głównej) ================= -->
-<section id="wycena" class="pb-28 md:pb-44">
+<section id="wycena" class="wy-v2 pb-28 md:pb-44">
   <div class="mx-auto max-w-site px-5 sm:px-8">
 
     <div class="bg-sand text-ink rounded-[26px] overflow-hidden">
@@ -423,7 +418,7 @@
         </div>
 
         <!-- Форма -->
-        <div class="col-span-12 lg:col-span-7 bg-bluedp text-paper p-7 sm:p-12 lg:p-14">
+        <div class="col-span-12 lg:col-span-7 bg-paper text-ink p-7 sm:p-12 lg:p-14">
 
           <!-- ZMIEŃ action na swój endpoint (Formspree / Web3Forms / własny backend) -->
           <form id="quote-form"
@@ -489,7 +484,7 @@
 
             <div class="pt-2 flex flex-col sm:flex-row gap-3">
               <button type="submit"
-                      class="inline-flex items-center justify-center gap-2 rounded-[12px] px-8 py-[18px] text-[16px] font-bold btn">
+                      class="inline-flex items-center justify-center gap-2 rounded-[12px] px-8 py-[18px] text-[16px] font-bold btn btn--pop">
                 Wyślij i&nbsp;otrzymaj wycenę
               </button>
               <a href="https://wa.me/48507588155" target="_blank" rel="noopener"
@@ -583,7 +578,7 @@
 </footer>
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260908g" defer></script>
+<script src="/assets/app.js?v=20260917g" defer></script>
 
 </body>
 </html>

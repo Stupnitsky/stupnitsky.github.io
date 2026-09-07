@@ -94,14 +94,27 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 /* над тёмным блоком пункты меню светлеют */
 .navlink.on-dark{ color:var(--c-paper); }
 
-/* Кнопка WhatsApp в шапке: при наведении – фирменный зелёный */
-/* При наведении на WhatsApp пункты меню поджимаются друг к другу;
-   меню прижато к кнопке, поэтому расстояние до неё постоянно */
+/* Шапка по образцу andabove.com (07.09.2026): две стеклянные плашки стоят вплотную,
+   у каждой свои скруглённые углы, поэтому на стыке получается «перетяжка».
+   Слева плашка с логотипом, справа – с меню и переключателем языка; она тянется до правого края
+   ряда, и пункты меню остались на прежних местах. Левое поле логотипной плашки равно прежнему
+   полю общей плашки, так что логотип тоже не сдвинулся. Кнопка WhatsApp из шапки убрана
+   временно, стили .wa-btn ниже оставлены до её возвращения. */
+.hdr-seg{ border-radius:16px; }
+@media (min-width:768px){ .hdr-seg{ border-radius:20px; } }
+/* Логотип увеличен скриптом до 1.36 на верху страницы (transform не меняет габарит),
+   поэтому правое поле плашки растёт на --logo-extra – его считает app.js вместе с --logo-scale. */
+/* Поля слева и справа от логотипа равны (до стыка плашек): логотип сдвинут transform'ом на 18px
+   вправо, поэтому слева видимое поле = padding-left + 18px; справа столько же и ещё 12px по просьбе
+   владельца (07.09.2026), чтобы стык плашек стоял чуть правее. */
+.hdr-seg--logo{ --hdr-pad:1.25rem; padding-left:var(--hdr-pad);
+                padding-right:calc(var(--hdr-pad) + 18px + 12px + var(--logo-extra,0px)); }
+/* Ширина логотипа зафиксирована скриптом (--logo-w): при наведении буквы меняются на знаки
+   других алфавитов и слово становится шире или уже – плашка при этом не дышит. */
+.hdr-seg--logo .logo-brand{ width:var(--logo-w,auto); }
+@media (min-width:640px){ .hdr-seg--logo{ --hdr-pad:2rem; } }
+.hdr-seg--menu{ flex:1 1 auto; min-width:0; }
 .nav-main{ transition:gap .55s cubic-bezier(.2,.7,.25,1); }
-@media (hover:hover){
-  header:has(.wa-btn:hover) .nav-main,
-  header:has(.wa-btn:focus-visible) .nav-main{ gap:.55rem; }
-}
 
 /* Переключатель языка в шапке */
 .lang-switch{ border:0; background:none; padding:6px 0; color:var(--c-ink); cursor:pointer;
@@ -997,13 +1010,15 @@ details[open] .chev{ transform:rotate(45deg) }
 .ws-legal-item .chev{ transform:rotate(0deg) }
 .ws-legal-item.is-open .chev{ transform:rotate(45deg) }
 
-/* Градиентный блюр в шапке: максимум сверху, 0 снизу */
-.grad-blur{ position:relative; border-radius:12px; }
-.grad-blur::before{
+/* Стекло плашек шапки – как у andabove.com: размытие 8px, чуть насыщеннее и светлее, без заливки.
+   На белой бумаге плашка не видна, проявляется над текстом и картинками при прокрутке.
+   Фильтр стоит на ::before, а не на самой плашке: иначе выпадающий список языков
+   (у него своё размытие) оказался бы внутри отфильтрованного слоя и терял бы фон. */
+.hdr-glass{ position:relative; }
+.hdr-glass::before{
   content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; border-radius:inherit;
-  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-  -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,.66) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,.66) 100%);
-          mask-image:linear-gradient(to bottom, rgba(0,0,0,.66) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,.66) 100%);
+  backdrop-filter:blur(8px) saturate(1.35) brightness(1.2);
+  -webkit-backdrop-filter:blur(8px) saturate(1.35) brightness(1.2);
 }
 
 /* ===== Страница /kontakt/ ===== */
@@ -1126,6 +1141,169 @@ details[open] .chev{ transform:rotate(45deg) }
   transition:background-size .5s cubic-bezier(.4,.65,.35,1); }
 .cn-list li:hover > .cn-price > b,
 .cn-list li:hover > .cn-price > .price-hit > b{ background-size:100% .46em; }
+
+/* ===== /cennik/ v2 (пока только PL, класс cn-v2 на секции #ceny) =====
+   Крупнее кегль, группы лестницей (л/п/л/п), строка = сетка областей:
+   название | цена, под названием описание, формула суммы и плашки. */
+.cn-v2 .cn-nav{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2rem; }
+.cn-v2 .cn-nav a{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
+  letter-spacing:.12em; font-size:13px; font-weight:700; line-height:1; padding:.75em 1em .8em;
+  background:var(--c-sand); border-radius:6px; color:var(--c-ink); text-decoration:none;
+  position:relative; overflow:clip; isolation:isolate; perspective:600px; }
+/* При наведении жёлтый слой выталкивается снизу вверх – тот же 3D-приём, что у .btn--pop
+   на главной, только в обратную сторону: в покое слой спрятан внизу, на наведении встаёт на место */
+.cn-v2 .cn-nav a::before{ content:''; position:absolute; inset:-1px; z-index:-1; border-radius:inherit;
+  background:var(--c-terra); transform-style:preserve-3d; transform-origin:0 100%;
+  transform:rotateX(28deg) rotateY(28deg) rotate(10deg) translateY(105%);
+  transition:transform .5s cubic-bezier(.2,.7,.25,1); }
+.cn-v2 .cn-nav a:hover::before, .cn-v2 .cn-nav a:focus-visible::before{ transform:none; }
+@media (prefers-reduced-motion:reduce){
+  .cn-v2 .cn-nav a::before{ transform:none; opacity:0; transition:opacity .2s ease; }
+  .cn-v2 .cn-nav a:hover::before, .cn-v2 .cn-nav a:focus-visible::before{ opacity:1; } }
+
+/* Статусная строка: две плашки рядом со скруглением 6px – серый ярлык и жёлтая с текстом,
+   по ширине содержимого, без растяжки на всю строку */
+.cn-v2 .cn-status{ display:flex; flex-wrap:wrap; align-items:center; gap:3px; margin-top:2rem;
+  font-size:14px; font-weight:600; line-height:1.3; }
+.cn-v2 .cn-status b{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase; letter-spacing:.14em;
+  font-size:13px; font-weight:700; background:#D0D0CB; color:var(--c-ink); padding:.7em 1em .75em; border-radius:6px; }
+.cn-v2 .cn-status > span{ background:var(--c-terra); color:var(--c-ink); padding:.55em .9em .6em; border-radius:6px; }
+
+/* Заголовок раздела: при наведении начертания меняются местами (мгновенно, шрифт статичный).
+   Класс is-swap ставит app.js: снимается через 750 мс после ухода курсора. */
+.h2-swap.is-swap .h2-a{ font-weight:300; font-style:italic; }
+.h2-swap.is-swap .h2-b{ font-weight:900; font-style:normal; }
+
+.cn-v2 .cn-groups{ display:grid; gap:3.5rem; margin-top:3rem; }
+.cn-v2 .cn-incl{ margin-top:0; gap:2.5rem; }
+.cn-v2 .cn-razem{ margin-top:0; }
+@media (min-width:1024px){
+  .cn-v2 .cn-groups{ grid-template-columns:repeat(12,1fr); column-gap:2rem; row-gap:5.5rem; margin-top:4rem; }
+  .cn-v2 .cn-groups > .cn-l{ grid-column:1 / span 8; }
+  .cn-v2 .cn-groups > .cn-r{ grid-column:5 / span 8; }
+  .cn-v2 .cn-groups > .cn-full{ grid-column:1 / -1; }
+  .cn-v2 .cn-incl{ grid-template-columns:1fr 1fr; column-gap:4rem; row-gap:0; margin-top:0; }
+  .cn-v2 .cn-razem{ margin-top:0; }
+  .cn-v2 .cn-razem .cn-list{ column-gap:3rem; }
+}
+
+/* Заголовки групп и лиды */
+.cn-v2 .cn-group-h{ font-size:32px; font-weight:900; letter-spacing:-.025em; }
+@media (min-width:640px){ .cn-v2 .cn-group-h{ font-size:36px; } }
+.cn-v2 .cn-group-t{ margin-top:.6rem; font-size:17px; font-weight:500; line-height:1.5; color:rgba(31,33,32,.65); max-width:60ch; }
+.cn-v2 .cn-note{ margin-top:1.25rem; font-size:16px; font-weight:500; line-height:1.55; color:rgba(31,33,32,.6); max-width:70ch; }
+
+/* Строка прайса */
+/* Линия под заголовком группы: серая 3px, поверх неё жёлтая от --q до --p (обе 0..1, из app.js) */
+.cn-v2 .cn-list, .cn-v2 .cn-plain{ position:relative; border-top-width:3px; }
+.cn-v2 .cn-list::before, .cn-v2 .cn-plain::before{ content:""; position:absolute; top:-3px; height:3px;
+  left:calc(var(--q,0) * 100%); width:calc((var(--p,0) - var(--q,0)) * 100%); background:var(--c-terra); }
+.cn-v2 .cn-list{ margin-top:1.5rem; }
+.cn-v2 .cn-list li{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:0 1.25rem; align-items:start;
+  grid-template-areas:"name price" "desc desc" "sum sum" "meta meta"; padding:1.25rem 0; }
+@media (min-width:640px){
+  .cn-v2 .cn-list li{ gap:0 2rem; grid-template-areas:"name price" "desc price" "sum price" "meta price"; }
+}
+.cn-v2 .cn-name{ grid-area:name; font-size:21px; font-weight:700; line-height:1.25; }
+@media (min-width:640px){ .cn-v2 .cn-name{ font-size:22px; } }
+.cn-v2 .cn-desc, .cn-v2 .cn-name small{ font-size:16px; font-weight:500; line-height:1.45; color:rgba(31,33,32,.65); max-width:48ch; }
+.cn-v2 .cn-desc{ grid-area:desc; display:block; margin-top:.3rem; }
+.cn-v2 .cn-name small{ margin-top:.1rem; }
+
+/* Маркер под ценой при наведении – фирменная terra, а не лимонный #F2E23A из базового правила */
+.cn-v2 .cn-list li > .cn-price > .price-hit > b{ --c-mark:var(--c-terra); }
+/* Цена прижата к низу строки, единица над ней как кикер: «/ DOKUMENT» сверху, «260,- zł» под ней,
+   низ цены на одной линии с плашками. На телефоне цена в первой строке рядом с названием – как было. */
+.cn-v2 .cn-price{ grid-area:price; }
+@media (min-width:640px){
+  .cn-v2 .cn-price{ align-self:end; flex-direction:column-reverse; padding-bottom:.1rem; }
+  .cn-v2 .cn-price small{ margin:0 0 .35rem; }
+}
+.cn-v2 .cn-price b, .cn-v2 .cn-price .price-hit b{ font-size:24px; font-weight:800; letter-spacing:-.02em; }
+@media (min-width:640px){ .cn-v2 .cn-price b, .cn-v2 .cn-price .price-hit b{ font-size:28px; } }
+.cn-v2 .cn-price small{ font-size:12px; font-weight:500; letter-spacing:.1em; color:rgba(31,33,32,.6); margin-top:.25rem; }
+/* Значение без числа (wycena, w cenie) – плашка вместо жирного текста */
+.cn-v2 .cn-price > b{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
+  font-size:12.5px; font-weight:700; letter-spacing:.1em; line-height:1.2; padding:.45em .75em .5em;
+  border:0; border-radius:6px; background:var(--c-sand); color:var(--c-ink);
+  background-image:none !important; margin-top:.35em; }
+/* Одинокий прочерк (odbiór osobisty) – без плашки */
+.cn-v2 .cn-price > b:only-child{ padding:0; background:none; font:inherit; font-size:24px; font-weight:800; margin-top:0; }
+
+/* Формула суммы в «Ile zapłacę za…» */
+.cn-v2 .cn-sum{ grid-area:sum; display:block; margin-top:.5rem;
+  font-size:16px; font-weight:500; line-height:1.5; font-style:italic; color:rgba(31,33,32,.8); max-width:52ch; }
+.cn-v2 .cn-sum > i{ font-style:normal; font-weight:700; color:var(--c-ink); margin:0 .35em; }
+
+/* Плашки: срок – залитая, условия – контурные */
+.cn-v2 .cn-meta{ grid-area:meta; display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.75rem; }
+.cn-v2 .cn-term, .cn-v2 .cn-tags{ display:contents; }
+.cn-v2 .cn-pill{ display:inline-block; font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
+  letter-spacing:.1em; font-size:12.5px; font-weight:700; line-height:1.2; padding:.45em .75em .5em;
+  border-radius:6px; background:var(--c-sand); color:var(--c-ink); white-space:nowrap; transition:background-color .25s ease; }
+/* срок – серый темнее условий; при наведении на строку становится жёлтым, у всех строк */
+.cn-v2 .cn-term .cn-pill{ background:#D0D0CB; color:var(--c-ink); }
+.cn-v2 .cn-list li:hover .cn-term .cn-pill{ background:var(--c-terra); }
+@media (max-width:379px){ .cn-v2 .cn-pill{ white-space:normal; } }
+
+/* «W cenie» с галочкой, «Poza ceną» с плюсом */
+.cn-v2 .cn-plain{ margin-top:1.25rem; }
+.cn-v2 .cn-plain li{ position:relative; padding:.85rem 0 .85rem 1.7rem; font-size:17px; font-weight:500; line-height:1.5; }
+/* Маркер в покое – глиф: «W cenie» – галочка, «Poza ceną» – та же стрелка-шеврон, что у кнопок (.btn-chev);
+   при наведении на строку глиф сменяется залитым кружком terra */
+.cn-v2 .cn-plain li{ text-wrap:pretty; }
+.cn-v2 .cn-plain li::before, .cn-v2 .cn-plain li::after{ content:""; position:absolute; left:0; top:1.15rem;
+  width:14px; height:14px; transition:opacity .25s ease; }
+.cn-v2 .cn-plain li::before{ background:var(--c-terra); border-radius:50%; left:3px; top:calc(1.15rem + 3px); width:8px; height:8px; opacity:0; }
+.cn-v2 .cn-plain li::after{ background-repeat:no-repeat; background-size:contain; background-position:center; }
+.cn-v2 .cn-plain--in li::after{ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M4 12.5l5.5 5.5L20 7' fill='none' stroke='%23EFB01F' stroke-width='3.8' stroke-linecap='butt' stroke-linejoin='miter'/></svg>"); }
+.cn-v2 .cn-plain--out li::after{ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M8 4l8 8-8 8' fill='none' stroke='%23EFB01F' stroke-width='3.8' stroke-linecap='butt' stroke-linejoin='miter'/></svg>"); }
+.cn-v2 .cn-plain li:hover::before{ opacity:1; }
+.cn-v2 .cn-plain li:hover::after{ opacity:0; }
+
+/* Сноска */
+.cn-v2 .cn-foot p{ font-size:16px; font-weight:500; line-height:1.6; color:rgba(31,33,32,.65); max-width:70ch; }
+.cn-v2 .cn-foot p + p{ margin-top:.6rem; }
+.cn-v2 .cn-foot a{ text-decoration:underline; text-underline-offset:3px; }
+
+/* ===== Блок wyceny на /cennik/ (класс wy-v2 на секции): светлая форма вместо тёмной ===== */
+.wy-v2 .field{ border-bottom-color:rgba(31,33,32,.25); color:var(--c-ink); }
+.wy-v2 .field::placeholder{ color:rgba(31,33,32,.4); }
+.wy-v2 .field:focus{ border-bottom-color:var(--c-terra); border-bottom-width:2px; padding-bottom:calc(.85rem - 1px); }
+.wy-v2 select.field option{ background:var(--c-paper); color:var(--c-ink); }
+.wy-v2 select.field{ cursor:pointer; }
+.wy-v2 label{ color:rgba(31,33,32,.55) !important; }
+.wy-v2 label[for="consent"]{ color:rgba(31,33,32,.7) !important; font-weight:500; }
+.wy-v2 label[for="consent"] a:hover{ color:var(--c-ink); }
+.wy-v2 #quote-form p{ color:rgba(31,33,32,.5); font-weight:500; }
+.wy-v2 #form-status{ color:var(--c-ink); font-weight:600; }
+.wy-v2 #consent{ accent-color:var(--c-terra); }
+.wy-v2 .file-btn{ border-radius:6px; font-weight:700; font-family:'Fira Sans Condensed','Fira Sans',sans-serif;
+  text-transform:uppercase; letter-spacing:.1em; font-size:12.5px; padding:.6rem 1rem; background:var(--c-sand); border-color:transparent; }
+.wy-v2 .file-btn:hover{ background:var(--c-terra); }
+.wy-v2 .file-name{ opacity:.55; font-weight:500; }
+/* кнопки: главная залита terra (btn--pop, как на главной), вторая – контурная */
+.wy-v2 .btn{ border-radius:6px; }
+.wy-v2 .btn:not(.btn--pop){ border-color:rgba(31,33,32,.25); }
+.wy-v2 .btn:not(.btn--pop):hover, .wy-v2 .btn:not(.btn--pop):focus-visible{ background-color:var(--c-sand); border-color:transparent; color:var(--c-ink); }
+/* левая колонка: список «co wysłać» с кружками terra, при наведении – квадрат */
+.wy-v2 .cn-send{ list-style:none; padding:0; font-size:16px; font-weight:500; color:rgba(31,33,32,.75); }
+.wy-v2 .cn-send li{ position:relative; padding-left:1.4rem; margin:.35rem 0; }
+.wy-v2 .cn-send li::before{ content:""; position:absolute; left:0; top:.55em; width:9px; height:9px;
+  background:var(--c-terra); border-radius:50%; transition:border-radius .25s ease; }
+.wy-v2 .cn-send li:hover::before{ border-radius:0; }
+/* мини-прайс слева: маркер под ценой – terra, подписи тяжелее */
+.wy-v2 .hairline .price-hit b{ --c-mark:var(--c-terra); background-image:linear-gradient(var(--c-mark),var(--c-mark));
+  background-repeat:no-repeat; background-position:0 90%; background-size:100% 0; transition:background-size .5s cubic-bezier(.4,.65,.35,1); }
+.wy-v2 .hairline .flex:hover .price-hit b{ background-size:100% .46em; }
+.wy-v2 .hairline > .flex > span:first-child{ font-weight:700; }
+.wy-v2 .hairline .text-\[13px\], .wy-v2 .text-ink\/45{ font-weight:500; }
+
+@media print{
+  .cn-v2 .cn-nav{ display:none; }
+  .cn-v2 .cn-groups{ display:block; }
+  .cn-v2 .cn-group{ margin-top:2rem; break-inside:avoid; }
+}
 @media (prefers-reduced-motion:reduce){ .cn-list li > .cn-price > b,
   .cn-list li > .cn-price > .price-hit > b{ transition:none; } }
 

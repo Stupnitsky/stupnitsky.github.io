@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/styles.css?v=20260916">
 
 <script type="application/ld+json">
 {
@@ -89,12 +89,15 @@
 
 <!-- sync:header -->
 <header id="top" class="sticky top-[9px] z-50 px-3 sm:px-5 pt-[9px]">
-  <div class="grad-blur ml-auto max-w-[1234px] px-5 sm:px-8 rounded-[12px]" style="margin-right:max(0px, calc((100% - 1162px) / 2))">
-    <div class="flex items-center justify-between h-[72px] md:h-[90px]">
-
+  <!-- Ряд шапки по образцу andabove.com: две стеклянные плашки вплотную друг к другу –
+       слева логотип в своей плашке, справа плашка с меню и языком. Стили – .hdr-* в styles.css -->
+  <div class="hdr-row ml-auto max-w-[1234px] flex items-stretch h-[72px] md:h-[90px]" style="margin-right:max(0px, calc((100% - 1162px) / 2))">
+    <div class="hdr-seg hdr-seg--logo hdr-glass flex items-center shrink-0">
       <a href="/ru/" data-home class="logo logo-brand text-[30px] md:text-[40px] text-ink" aria-label="Apostilo – главная">
         <b>A</b><b>p</b><b>o</b><b>s</b><b>t</b><b>i</b><b>l</b><b>o</b><b>✦</b>
       </a>
+    </div>
+    <div class="hdr-seg hdr-seg--menu hdr-glass flex items-center justify-end px-5 sm:px-8">
 
       <nav id="nav-main" class="nav-main relative hidden lg:flex self-stretch items-center gap-3 xl:gap-6 ml-auto mr-[28px] xl:mr-[48px]" aria-label="Главная навигация">
         <a href="/ru/apostille/"   class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Апостиль</span><span class="nl-b" aria-hidden="true">Апостиль</span></span></a>
@@ -104,17 +107,6 @@
       </nav>
 
       <div class="flex items-center gap-[3px] mr-[4px]">
-        <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20potrzebuj%C4%99%20wyceny%20apostille%2Ft%C5%82umaczenia"
-           target="_blank" rel="noopener" aria-label="Напишите в WhatsApp"
-           class="wa-btn hidden sm:inline-flex items-center rounded-[12px] text-[23px] font-bold">
-          <span class="wa-ico" aria-hidden="true">
-            <svg viewBox="0 0 24 24" class="w-full h-full">
-              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Z" fill="#25D366" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/>
-              <path d="M17.84 16.16c-.25.7-1.44 1.33-1.99 1.41-.53.08-1.2.11-1.94-.12-.45-.14-1.02-.33-1.76-.65-3.1-1.34-5.12-4.46-5.28-4.67-.15-.21-1.26-1.67-1.26-3.19s.8-2.26 1.08-2.57c.28-.31.61-.39.82-.39.2 0 .41 0 .59.01.19.01.44-.07.69.53.25.6.86 2.08.94 2.23.08.16.13.34.02.55-.1.21-.16.34-.31.52-.16.18-.33.4-.47.54-.16.16-.32.33-.14.64.18.31.8 1.32 1.72 2.14 1.18 1.05 2.18 1.38 2.49 1.54.31.16.49.13.67-.08.18-.21.77-.9.98-1.21.2-.31.41-.26.69-.16.28.11 1.77.84 2.07.99.31.16.51.23.59.36.08.13.08.75-.17 1.45Z" fill="#fff"/>
-            </svg>
-          </span>
-          <span class="wa-label"><span>507&nbsp;588&nbsp;155</span></span>
-        </a>
 
         <div class="lang-wrap">
           <button type="button" id="lang-switch" class="lang-switch text-[17px] font-bold tracking-tight"
@@ -269,8 +261,8 @@
 <section id="faq" class="pb-28 md:pb-44">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ FAQ</p>
-    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black mb-9">
-      Цены – частые вопросы
+    <h2 class="h2-swap tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black mb-9">
+      <span class="h2-a">Частые вопросы</span> <span class="h2-b font-light italic">Цены</span>
     </h2>
 
     <div class="border-t border-ink/15">
@@ -491,7 +483,7 @@
 </footer>
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260908g" defer></script>
+<script src="/assets/app.js?v=20260917g" defer></script>
 
 </body>
 </html>
