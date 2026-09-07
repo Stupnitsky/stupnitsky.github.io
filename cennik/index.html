@@ -21,7 +21,7 @@
 <meta property="og:locale" content="pl_PL">
 <meta property="og:url" content="https://apostilo.pl/cennik/">
 <meta property="og:title" content="Cennik Apostille i Tłumaczeń Przysięgłych | Apostilo">
-<meta property="og:description" content="Ile kosztuje Apostille w Warszawie: MSZ od 260 zł, sąd od 120 zł, dokumenty z Ukrainy od 550 zł, tłumaczenie od 90 zł. Wycena po zdjęciu dokumentu.">
+<meta property="og:description" content="Ile kosztuje Apostille w Warszawie: MSZ 260 zł, sąd 120 zł, dokumenty z Ukrainy 550 zł, tłumaczenie 90 zł. Wycena po zdjęciu dokumentu.">
 <meta property="og:image" content="https://apostilo.pl/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -48,9 +48,13 @@
     { "@type": "Offer", "name": "Apostille MSZ", "priceCurrency": "PLN", "price": "260" },
     { "@type": "Offer", "name": "Apostille – Sąd Okręgowy", "priceCurrency": "PLN", "price": "120" },
     { "@type": "Offer", "name": "Uzyskanie dokumentu KRK / KRS", "priceCurrency": "PLN", "price": "200" },
+    { "@type": "Offer", "name": "Apostille MSZ Ekspres", "priceCurrency": "PLN", "price": "350" },
     { "@type": "Offer", "name": "Apostille na dokument z Ukrainy", "priceCurrency": "PLN", "price": "550" },
     { "@type": "Offer", "name": "Uzyskanie dokumentu w Ukrainie", "priceCurrency": "PLN", "price": "550" },
-    { "@type": "Offer", "name": "Tłumaczenie przysięgłe – strona 1125 znaków", "priceCurrency": "PLN", "price": "90" }
+    { "@type": "Offer", "name": "Duplikat + Apostille – dokument z Ukrainy", "priceCurrency": "PLN", "price": "1100" },
+    { "@type": "Offer", "name": "Dyplom z dodatkiem – Apostille MON Ukrainy", "priceCurrency": "PLN", "price": "1100" },
+    { "@type": "Offer", "name": "Tłumaczenie przysięgłe – strona 1125 znaków", "priceCurrency": "PLN", "price": "90" },
+    { "@type": "Offer", "name": "Apostille na tłumaczenie", "priceCurrency": "PLN", "price": "260" }
   ] }
 }
 </script>
@@ -172,7 +176,7 @@
 
     <div class="cn-groups mt-9 md:mt-12">
 
-      <div class="cn-group">
+      <div class="cn-group" id="apostille">
         <h3 class="cn-group-h">Apostille w&nbsp;Polsce</h3>
         <p class="cn-group-t">Szczegóły, urzędy i&nbsp;terminy – <a href="/apostille/" class="underline font-semibold">Apostille w&nbsp;Warszawie</a></p>
         <ul class="cn-list">
@@ -183,7 +187,7 @@
         </ul>
       </div>
 
-      <div class="cn-group">
+      <div class="cn-group" id="ukraina">
         <h3 class="cn-group-h">Dokumenty z&nbsp;Ukrainy</h3>
         <p class="cn-group-t">Bez wyjazdu z&nbsp;Polski – <a href="/apostille-ukraina/" class="underline font-semibold">Apostille na dokumenty z&nbsp;Ukrainy</a></p>
         <ul class="cn-list">
@@ -194,7 +198,7 @@
         </ul>
       </div>
 
-      <div class="cn-group">
+      <div class="cn-group" id="tlumaczenia">
         <h3 class="cn-group-h">Tłumaczenia przysięgłe</h3>
         <p class="cn-group-t">Języki, terminy i&nbsp;zasady – <a href="/tlumaczenia-przysiegle/" class="underline font-semibold">Tłumaczenia Przysięgłe w&nbsp;Warszawie</a></p>
         <ul class="cn-list">
@@ -414,7 +418,7 @@
                 <option value="" disabled selected>Wybierz usługę…</option>
                 <option value="apostille-msz">Apostille – MSZ</option>
                 <option value="apostille-sad">Apostille – Sąd Okręgowy</option>
-                <option value="apostille-ua-by">Apostille – dokumenty z Ukrainy</option>
+                <option value="apostille-ua">Apostille – dokumenty z Ukrainy</option>
                 <option value="tlumaczenie">Tłumaczenie przysięgłe</option>
                 <option value="tlumaczenie-konsularne">Tłumaczenie konsularne</option>
                 <option value="istrebowanie">Uzyskanie duplikatu dokumentu</option>
