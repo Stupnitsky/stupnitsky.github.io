@@ -1093,7 +1093,14 @@ details[open] .chev{ transform:rotate(45deg) }
 .cn-groups{ display:grid; gap:2.5rem; }
 @media (min-width:1024px){ .cn-groups{ grid-template-columns:1fr 1fr; gap:3rem 4rem; } }
 .cn-razem{ margin-top:2.5rem; }
-@media (min-width:1024px){ .cn-razem{ margin-top:3rem; } }
+/* «Ile zapłacę za…» стоит вне сетки .cn-groups и тянется на всю ширину:
+   вводный абзац ограничен той же мерой, что у FAQ, список – в две колонки,
+   как соседние группы; границы строк выравниваются по строкам сетки. */
+.cn-razem .cn-group-t{ max-width:70ch; }
+@media (min-width:1024px){
+  .cn-razem{ margin-top:3rem; }
+  .cn-razem .cn-list{ display:grid; grid-template-columns:1fr 1fr; column-gap:4rem; }
+}
 .cn-incl{ margin-top:2.5rem; }
 .cn-plain{ margin:1rem 0 0; padding:0; list-style:none; border-top:2px solid rgba(31,33,32,.15); }
 .cn-plain li{ padding:.75rem 0; border-bottom:1px solid rgba(31,33,32,.12); font-size:15px; line-height:1.5; }
