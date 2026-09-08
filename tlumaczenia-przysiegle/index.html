@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260916">
+<link rel="stylesheet" href="/styles.css?v=20260920e">
 
 <script type="application/ld+json">
 {
@@ -85,7 +85,7 @@
 <!-- sync:header -->
 <header id="top" class="sticky top-[9px] z-50 px-3 sm:px-5 pt-[9px]">
   <!-- Ряд шапки по образцу andabove.com: две стеклянные плашки вплотную друг к другу –
-       слева логотип в своей плашке, справа плашка с меню и языком. Стили – .hdr-* в styles.css -->
+       слева логотип, в центре меню, справа отдельная плашка с языком. Стили – .hdr-* в styles.css -->
   <div class="hdr-row ml-auto max-w-[1234px] flex items-stretch h-[72px] md:h-[90px]" style="margin-right:max(0px, calc((100% - 1162px) / 2))">
     <div class="hdr-seg hdr-seg--logo hdr-glass flex items-center shrink-0">
       <a href="/" data-home class="logo logo-brand text-[30px] md:text-[40px] text-ink" aria-label="Apostilo – strona główna">
@@ -94,14 +94,18 @@
     </div>
     <div class="hdr-seg hdr-seg--menu hdr-glass flex items-center justify-end px-5 sm:px-8">
 
-      <nav id="nav-main" class="nav-main relative hidden lg:flex self-stretch items-center gap-3 xl:gap-6 ml-auto mr-[28px] xl:mr-[48px]" aria-label="Nawigacja główna">
+      <nav id="nav-main" class="nav-main relative hidden lg:flex self-stretch items-center gap-6 ml-auto" aria-label="Nawigacja główna">
         <a href="/apostille/"   class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Apostille</span><span class="nl-b" aria-hidden="true">Apostille</span></span></a>
         <a href="/tlumaczenia-przysiegle/" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Tłumaczenia</span><span class="nl-b" aria-hidden="true">Tłumaczenia</span></span></a>
+        <a href="/cennik/" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Cennik</span><span class="nl-b" aria-hidden="true">Cennik</span></span></a>
         <a href="/kontakt/#gdzie" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Gdzie</span><span class="nl-b" aria-hidden="true">Gdzie</span></span></a>
-        <a href="/#jak-dzialamy" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Zamów</span><span class="nl-b" aria-hidden="true">Zamów</span></span></a>
+        <a href="/cennik/#wycena" data-quote class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Zamów</span><span class="nl-b" aria-hidden="true">Wycena</span></span></a>
       </nav>
 
-      <div class="flex items-center gap-[3px] mr-[4px]">
+    </div>
+
+    <div class="hdr-seg hdr-seg--lang hdr-glass flex items-center shrink-0 px-4 sm:px-5">
+      <div class="flex items-center gap-[3px]">
 
         <div class="lang-wrap">
           <button type="button" id="lang-switch" class="lang-switch text-[17px] font-bold tracking-tight"
@@ -116,7 +120,7 @@
           </div>
         </div>
 
-        <button id="burger" class="lg:hidden w-11 h-11 -mr-2 flex flex-col items-center justify-center gap-[5px]"
+        <button id="burger" class="lg:hidden w-11 h-11 flex flex-col items-center justify-center gap-[5px]"
                 aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
           <span class="block w-6 h-[2px] bg-ink"></span>
           <span class="block w-6 h-[2px] bg-ink"></span>
@@ -129,8 +133,9 @@
     <div class="mx-auto max-w-site px-5 py-4 flex flex-col">
       <a href="/apostille/"    class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Apostille</a>
       <a href="/tlumaczenia-przysiegle/"  class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Tłumaczenia</a>
+      <a href="/cennik/"               class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Cennik</a>
       <a href="/kontakt/#gdzie"        class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Gdzie załatwić</a>
-      <a href="/#jak-dzialamy" class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Jak zamówić</a>
+      <a href="/cennik/#wycena" data-quote class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Zamów – wycena</a>
       <a href="/#faq"          class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Częste pytania</a>
       <a href="/kontakt/"      class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Kontakt</a>
       <a href="https://wa.me/48507588155" target="_blank" rel="noopener"
@@ -563,7 +568,7 @@
 </footer>
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260917g" defer></script>
+<script src="/assets/app.js?v=20260920c" defer></script>
 
 </body>
 </html>

@@ -59,6 +59,16 @@
   var logoW = 0; // ширина логотипа с исходными буквами – по ней считается плашка
   function applyLogoScale() {
     logoTicking = false;
+    /* до 1280px увеличенный логотип съедал место у меню (шаг между пунктами теперь всегда 24px),
+       поэтому там он всегда обычного размера */
+    if (window.innerWidth < 1280) {
+      if (logoLast !== '1.0000') {
+        header.style.setProperty('--logo-scale', '1');
+        header.style.setProperty('--logo-extra', '0px');
+        logoLast = '1.0000';
+      }
+      return;
+    }
     var p = Math.min(Math.max(window.scrollY, 0) / LOGO_RANGE, 1);
     p = p * p * (3 - 2 * p); // сглаживание на концах – без рывка в начале и в конце
     var s = (LOGO_MAX - (LOGO_MAX - LOGO_MIN) * p).toFixed(4);
@@ -282,15 +292,15 @@
   (function () {
     var btn = document.querySelector('.to-top');
     if (!btn) return;
-    var foot = document.getElementById('stopka');
-    var GAP = 63;                       // зазор между стрелкой и футером
+    var foot = document.querySelector('body > main');   // подвал закреплён, ориентир – конец контента
+    var GAP = 63;                       // зазор между стрелкой и краем контента
     function check(){
       btn.classList.toggle('is-live', window.scrollY > window.innerHeight * 0.6);
       // стрелка упирается в футер и не заходит на него
       var base = window.matchMedia('(max-width:640px)').matches ? 100 : 64;
       var bottom = base;
       if (foot) {
-        var top = foot.getBoundingClientRect().top;
+        var top = foot.getBoundingClientRect().bottom;
         var limit = window.innerHeight - top + GAP;
         if (limit > bottom) bottom = limit;
       }
@@ -343,12 +353,22 @@
       if (code !== 'pl') parts.unshift(code);
       return '/' + parts.join('/') + (parts.length ? '/' : '') + location.hash;
     }
+    function homeIn(code) { return code === 'pl' ? '/' : '/' + code + '/'; }
+    /* остаёмся на той же странице; если её нет в этом языке – уходим на главную языка */
     function goTo(o) {
       var code = o.getAttribute('data-lang');
       var already = o.classList.contains('is-current');
       setLang(o.textContent.trim(), o);
       close();
-      if (code && !already) location.href = samePageIn(code);
+      if (!code || already) return;
+      var url = samePageIn(code), home = homeIn(code);
+      if (url === home) { location.href = url; return; }
+      var done = false;
+      function go(to) { if (!done) { done = true; location.href = to; } }
+      setTimeout(function () { go(url); }, 1500);      /* проверка затянулась – идём как раньше */
+      fetch(url.split('#')[0], { method: 'HEAD' })
+        .then(function (r) { go(r.ok ? url : home); })
+        .catch(function () { go(url); });
     }
     opts.forEach(function (o) {
       o.addEventListener('click', function () {
@@ -653,6 +673,7 @@
     var links = Array.prototype.slice.call(
       document.querySelectorAll('header .navlink, header .lang-switch'));
     if (!logo) return;
+    var segs = Array.prototype.slice.call(document.querySelectorAll('header .hdr-glass'));
     var darks = Array.prototype.slice.call(
       document.querySelectorAll('.slab, section.bg-ink, .footer-tone'));
     if (!darks.length) return;
@@ -668,6 +689,8 @@
       }
       logo.classList.toggle('on-dark', overDark(logo));
       links.forEach(function (a) { a.classList.toggle('on-dark', overDark(a)); });
+      /* плашки шапки непрозрачные, поэтому над тёмным блоком инвертируются целиком */
+      segs.forEach(function (s) { s.classList.toggle('on-dark', overDark(s)); });
     }
     function onScroll() {
       if (ticking) return;
@@ -1177,44 +1200,61 @@
   window.addEventListener('hashchange', openTarget);
   openTarget();
 
-  // Валидация формы + мягкое сообщение вместо браузерного alert
-  var form = document.getElementById('quote-form');
-  var status = document.getElementById('form-status');
+  // Валидация формы + мягкое сообщение вместо браузерного alert.
+  // Форма живёт либо на странице (/cennik/), либо во всплывающей панели – отсюда scope.
+  window.initQuoteForm = function (scope) {
+    var root = scope || document;
+    var form = root.querySelector('form#quote-form, form.quote-form');
+    if (!form || form.dataset.bound) return;
+    form.dataset.bound = '1';
+    var status = form.querySelector('[role="status"]');
 
-  function say(text, ok) {
-    status.textContent = text;
-    status.classList.remove('hidden');
-    status.style.color = ok ? '#EFB01F' : '#FFFFFF';
-  }
-
-  if (form) form.addEventListener('submit', function (e) {   // формы нет на подстраницах
-    var name = document.getElementById('name');
-    var phone = document.getElementById('phone');
-    var service = document.getElementById('service');
-    var consent = document.getElementById('consent');
-    var file = document.getElementById('file');
-
-    if (!name.value.trim() || !phone.value.trim() || !service.value) {
-      e.preventDefault();
-      say('Uzupełnij imię, telefon i wybierz usługę.', false);
-      return;
+    function say(text, ok) {
+      if (!status) return;
+      status.textContent = text;
+      status.classList.remove('hidden');
+      status.style.color = ok ? '#EFB01F' : '#FFFFFF';
     }
-    if (!consent.checked) {
-      e.preventDefault();
-      say('Potrzebujemy zgody na przetwarzanie danych, żeby przygotować wycenę.', false);
-      return;
-    }
-    for (var i = 0; i < file.files.length; i++) {
-      if (file.files[i].size > 10 * 1024 * 1024) {
+
+    form.addEventListener('submit', function (e) {
+      var name = form.querySelector('[name="name"]');
+      var phone = form.querySelector('[name="phone"]');
+      var service = form.querySelector('[name="service"]');
+      var consent = form.querySelector('[name="consent"]');
+      var file = form.querySelector('[name="file"]');
+
+      if (!name.value.trim() || !phone.value.trim() || !service.value) {
         e.preventDefault();
-        say('Plik "' + file.files[i].name + '" jest większy niż 10 MB. Wyślij go proszę na WhatsApp.', false);
+        say('Uzupełnij imię, telefon i wybierz usługę.', false);
         return;
       }
-    }
-    say('Wysyłamy…', true);
-    // Здесь можно повесить событие конверсии Google Ads:
-    // if (window.gtag) gtag('event','conversion',{send_to:'AW-XXXXXXXXX/XXXXXXXX'});
-  });
+      if (!consent.checked) {
+        e.preventDefault();
+        say('Potrzebujemy zgody na przetwarzanie danych, żeby przygotować wycenę.', false);
+        return;
+      }
+      for (var i = 0; i < file.files.length; i++) {
+        if (file.files[i].size > 10 * 1024 * 1024) {
+          e.preventDefault();
+          say('Plik "' + file.files[i].name + '" jest większy niż 10 MB. Wyślij go proszę na WhatsApp.', false);
+          return;
+        }
+      }
+      say('Wysyłamy…', true);
+      // Здесь можно повесить событие конверсии Google Ads:
+      // if (window.gtag) gtag('event','conversion',{send_to:'AW-XXXXXXXXX/XXXXXXXX'});
+    });
+
+    // подпись выбранных файлов
+    var inp = form.querySelector('[name="file"]'), out = form.querySelector('.file-name');
+    if (inp && out) inp.addEventListener('change', function () {
+      var n = inp.files.length;
+      if (!n) { out.textContent = 'Nie wybrano plików'; return; }
+      out.textContent = n === 1 ? inp.files[0].name
+        : n + (n < 5 ? ' wybrane pliki' : ' wybranych plików');
+    });
+  };
+  window.initQuoteForm(document);
 })();
 
   /* --- price count-up on hover --- */
@@ -1246,18 +1286,6 @@
         if (raf) cancelAnimationFrame(raf);
         el.textContent = fmt(target);
       });
-    });
-  })();
-
-  /* --- podpis wybranych plików --- */
-  (function(){
-    var inp = document.getElementById('file'), out = document.getElementById('file-name');
-    if (!inp || !out) return;
-    inp.addEventListener('change', function(){
-      var n = inp.files.length;
-      if (!n) { out.textContent = 'Nie wybrano plików'; return; }
-      out.textContent = n === 1 ? inp.files[0].name
-        : n + (n < 5 ? ' wybrane pliki' : ' wybranych plików');
     });
   })();
 
@@ -1400,8 +1428,185 @@
     window.addEventListener('resize', onScroll);
     apply();
   })();
-  /* /cennik/ v2: заголовок «Ile kosztuje…» – начертания меняются местами, когда заголовок
-     при прокрутке вниз поднялся выше 55% высоты окна; обратно – только при прокрутке вверх */
+
+  /* Панель «Ekspresowa wycena». Разметка панели лежит одним файлом – /assets/wycena.html –
+     и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
+     в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
+  (function(){
+    var FRAG = '/assets/wycena.html?v=20260918q';   /* версию менять вместе с правкой фрагмента */
+    var qd = null, last = null, loading = null;
+
+    /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
+    function uniq(){
+      qd.querySelectorAll('[id]').forEach(function(el){
+        var old = el.id;
+        if (!document.getElementById(old) || document.getElementById(old) === el) return;
+        el.id = old + '-qd';
+        qd.querySelectorAll('[for="' + old + '"]').forEach(function(l){ l.setAttribute('for', el.id); });
+        qd.querySelectorAll('[aria-labelledby="' + old + '"]').forEach(function(l){ l.setAttribute('aria-labelledby', el.id); });
+      });
+    }
+    function bind(){
+      uniq();
+      /* наблюдатель за .slide-in отработал до вставки панели – показываем заголовок сразу */
+      qd.querySelectorAll('.slide-in').forEach(function(el){ el.classList.add('is-in'); });
+      qd.querySelectorAll('[data-close]').forEach(function(el){ el.addEventListener('click', close); });
+      if (window.initQuoteForm) window.initQuoteForm(qd);
+    }
+    function load(){
+      if (qd) return Promise.resolve(qd);
+      if (loading) return loading;
+      loading = fetch(FRAG).then(function(r){
+        if (!r.ok) throw new Error('HTTP ' + r.status + ' ' + FRAG);
+        return r.text();
+      }).then(function(html){
+        var box = document.createElement('div');
+        box.innerHTML = html;
+        qd = box.firstElementChild;
+        document.body.appendChild(qd);
+        bind();
+        return qd;
+      }).catch(function(err){
+        /* file:// или ошибка сети – уводим на страницу с формой, чтобы кнопка не молчала */
+        console.error('Wycena: nie udało się wczytać ' + FRAG, err);
+        loading = null;
+        window.location.href = '/cennik/#wycena';
+      });
+      return loading;
+    }
+    function open(){
+      load().then(function(){
+        last = document.activeElement;
+        qd.hidden = false;
+        document.body.style.overflow = 'hidden';
+        /* кадр на применение hidden=false, плюс страховка таймером: в фоновой вкладке
+           requestAnimationFrame не срабатывает, и панель осталась бы за нижним краем */
+        requestAnimationFrame(function(){ qd.classList.add('is-open'); });
+        setTimeout(function(){ qd.classList.add('is-open'); }, 60);
+        var c = qd.querySelector('.qd-close'); if(c) c.focus();
+      });
+    }
+    function close(){
+      if (!qd) return;
+      qd.classList.remove('is-open');
+      document.body.style.overflow = '';
+      setTimeout(function(){ if(!qd.classList.contains('is-open')) qd.hidden = true; }, 500);
+      if (last && last.focus) last.focus();
+    }
+
+    document.querySelectorAll('[data-quote]').forEach(function(b){
+      b.addEventListener('click', function(e){ e.preventDefault(); open(); });
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && qd && !qd.hidden) close();
+    });
+  })();
+
+
+
+
+  /* Список языков лежит на правой плашке шапки: пока он открыт, плашка расширяется вниз
+     ровно на его высоту. Своей подложки с размытием у списка больше нет. */
+  (function(){
+    var wrap = document.querySelector('header .lang-wrap');
+    var pop  = document.getElementById('lang-pop');
+    if (!wrap || !pop) return;
+    var seg = wrap.closest('.hdr-seg--lang');
+    if (!seg) return;
+    function open(){ seg.style.setProperty('--lang-h', (pop.offsetHeight + 18) + 'px'); }
+    function close(){ seg.style.setProperty('--lang-h', '0px'); }
+    wrap.addEventListener('mouseenter', open);
+    wrap.addEventListener('mouseleave', close);
+    wrap.addEventListener('focusin', open);
+    wrap.addEventListener('focusout', function(e){
+      if (!wrap.contains(e.relatedTarget)) close();
+    });
+    /* язык выбран – список прячется классом is-picked, плашку возвращаем сразу */
+    pop.addEventListener('click', close);
+    window.addEventListener('resize', close);
+  })();
+
+  /* Подвал закреплён внизу окна, страница проезжает над ним: main получает нижний запас
+     ровно в высоту подвала, иначе открыть его прокруткой было бы нечем. */
+  (function(){
+    var foot = document.getElementById('stopka');
+    var main = document.querySelector('body > main');
+    if (!foot || !main) return;
+    if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    function fit(){
+      /* на телефоне подвал в обычном потоке – запас не нужен */
+      var off = window.matchMedia('(max-width:639px)').matches;
+      main.style.marginBottom = off ? '' : foot.offsetHeight + 'px';
+    }
+    window.addEventListener('resize', fit);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    fit();
+  })();
+
+  /* Плавающее меню прайса (.cn-dock) – отдельный элемент: клон кнопок-якорей, который
+     появляется при прокрутке внизу окна и останавливается над подвалом. Сами якоря в потоке
+     живут своей жизнью и никак не меняются. */
+  (function(){
+    var nav = document.querySelector('.cn-v2 .cn-nav');
+    if(!nav) return;
+    /* ниже этого блока («Ceny końcowe – nie doliczamy VAT…») плавающее меню уже не нужно */
+    var navEnd = document.querySelector('.cn-v2 .cn-foot') || document.querySelector('.cn-v2 .cn-nav--end');
+    var sections = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]')).map(function(a){
+      return document.getElementById(a.getAttribute('href').slice(1));
+    });
+    if(!sections.filter(Boolean).length) return;
+
+    var dock = nav.cloneNode(true);
+    dock.className = 'cn-dock';
+    dock.removeAttribute('id');
+    dock.setAttribute('aria-label', 'Sekcje cennika – menu przy krawędzi okna');
+    document.body.appendChild(dock);
+
+    var links = Array.prototype.slice.call(dock.querySelectorAll('a[href^="#"]'));
+    var map = links.map(function(a, i){ return { a:a, sec:sections[i] }; })
+                   .filter(function(x){ return x.sec; });
+
+    /* подвал закреплён внизу (шторка), поэтому нижнюю границу берём по концу <main> */
+    var main = document.querySelector('body > main');
+    var GAP = 24;      /* зазор до нижнего края окна */
+    var FOOT = 63;     /* зазор до края контента – такой же, как у боковой стрелки «наверх» */
+    var EARLY = 0.10;  /* показываем на 10% высоты окна раньше, чем якоря уйдут за верх */
+    var ticking = false;
+
+    function apply(){
+      ticking = false;
+      var vh = window.innerHeight;
+      var on = nav.getBoundingClientRect().top <= GAP + vh * EARLY;
+      /* дошли до сноски внизу прайса – плавающее меню больше не нужно */
+      if (on && navEnd && navEnd.getBoundingClientRect().top < vh) on = false;
+      dock.classList.toggle('is-on', on);
+
+      var h = dock.offsetHeight;
+      var top = vh - GAP - h;
+      if (main) {
+        var max = main.getBoundingClientRect().bottom - FOOT - h;
+        if (max < top) top = max;
+      }
+      dock.style.top = top + 'px';
+      dock.style.bottom = 'auto';
+
+      /* подсветка раздела, который сейчас на экране */
+      var line = vh * 0.35, cur = null;
+      map.forEach(function(x){
+        var r = x.sec.getBoundingClientRect();
+        if(r.top <= line && r.bottom > line) cur = x.sec;
+      });
+      /* подсвечиваем только в доке; список-якоря в потоке остаётся нейтральным */
+      map.forEach(function(x){ x.a.classList.toggle('is-here', x.sec === cur); });
+    }
+    function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(apply); } }
+    window.addEventListener('scroll', onScroll, { passive:true });
+    window.addEventListener('resize', onScroll);
+    apply();
+  })();
+
+  /* Заголовки .h2-swap (cennik, apostille): начертания частей h2-a/h2-b меняются местами,
+     когда верх заголовка поднимается выше 55% высоты окна; ниже этой линии – возвращаются */
   (function(){
     var hs = document.querySelectorAll('.h2-swap');
     if(!hs.length) return;

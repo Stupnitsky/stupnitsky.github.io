@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260916">
+<link rel="stylesheet" href="/styles.css?v=20260920e">
 
 <script type="application/ld+json">
 {
@@ -88,7 +88,7 @@
 <!-- sync:header -->
 <header id="top" class="sticky top-[9px] z-50 px-3 sm:px-5 pt-[9px]">
   <!-- Ряд шапки по образцу andabove.com: две стеклянные плашки вплотную друг к другу –
-       слева логотип в своей плашке, справа плашка с меню и языком. Стили – .hdr-* в styles.css -->
+       слева логотип, в центре меню, справа отдельная плашка с языком. Стили – .hdr-* в styles.css -->
   <div class="hdr-row ml-auto max-w-[1234px] flex items-stretch h-[72px] md:h-[90px]" style="margin-right:max(0px, calc((100% - 1162px) / 2))">
     <div class="hdr-seg hdr-seg--logo hdr-glass flex items-center shrink-0">
       <a href="/" data-home class="logo logo-brand text-[30px] md:text-[40px] text-ink" aria-label="Apostilo – strona główna">
@@ -97,14 +97,18 @@
     </div>
     <div class="hdr-seg hdr-seg--menu hdr-glass flex items-center justify-end px-5 sm:px-8">
 
-      <nav id="nav-main" class="nav-main relative hidden lg:flex self-stretch items-center gap-3 xl:gap-6 ml-auto mr-[28px] xl:mr-[48px]" aria-label="Nawigacja główna">
+      <nav id="nav-main" class="nav-main relative hidden lg:flex self-stretch items-center gap-6 ml-auto" aria-label="Nawigacja główna">
         <a href="/apostille/"   class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Apostille</span><span class="nl-b" aria-hidden="true">Apostille</span></span></a>
         <a href="/tlumaczenia-przysiegle/" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Tłumaczenia</span><span class="nl-b" aria-hidden="true">Tłumaczenia</span></span></a>
+        <a href="/cennik/" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Cennik</span><span class="nl-b" aria-hidden="true">Cennik</span></span></a>
         <a href="/kontakt/#gdzie" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Gdzie</span><span class="nl-b" aria-hidden="true">Gdzie</span></span></a>
-        <a href="/#jak-dzialamy" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Zamów</span><span class="nl-b" aria-hidden="true">Zamów</span></span></a>
+        <a href="/cennik/#wycena" data-quote class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Zamów</span><span class="nl-b" aria-hidden="true">Wycena</span></span></a>
       </nav>
 
-      <div class="flex items-center gap-[3px] mr-[4px]">
+    </div>
+
+    <div class="hdr-seg hdr-seg--lang hdr-glass flex items-center shrink-0 px-4 sm:px-5">
+      <div class="flex items-center gap-[3px]">
 
         <div class="lang-wrap">
           <button type="button" id="lang-switch" class="lang-switch text-[17px] font-bold tracking-tight"
@@ -119,7 +123,7 @@
           </div>
         </div>
 
-        <button id="burger" class="lg:hidden w-11 h-11 -mr-2 flex flex-col items-center justify-center gap-[5px]"
+        <button id="burger" class="lg:hidden w-11 h-11 flex flex-col items-center justify-center gap-[5px]"
                 aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
           <span class="block w-6 h-[2px] bg-ink"></span>
           <span class="block w-6 h-[2px] bg-ink"></span>
@@ -132,8 +136,9 @@
     <div class="mx-auto max-w-site px-5 py-4 flex flex-col">
       <a href="/apostille/"    class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Apostille</a>
       <a href="/tlumaczenia-przysiegle/"  class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Tłumaczenia</a>
+      <a href="/cennik/"               class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Cennik</a>
       <a href="/kontakt/#gdzie"        class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Gdzie załatwić</a>
-      <a href="/#jak-dzialamy" class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Jak zamówić</a>
+      <a href="/cennik/#wycena" data-quote class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Zamów – wycena</a>
       <a href="/#faq"          class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Częste pytania</a>
       <a href="/kontakt/"      class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Kontakt</a>
       <a href="https://wa.me/48507588155" target="_blank" rel="noopener"
@@ -178,7 +183,7 @@
       <a href="#odbior">Odbiór i&nbsp;wysyłka</a>
       <a href="#razem">Najczęstsze przypadki</a>
     </nav>
-    <p class="cn-status"><b>Cennik</b><span>ostatnia aktualizacja: <span class="cennik-updated">wrzesień 2026</span> · sprawdzamy co kwartał · ceny zawierają opłaty skarbowe</span></p>
+    <p class="cn-status"><b>Cennik</b><span>Ostatnia Aktualizacja: <span class="cennik-updated">wrzesień 2026</span> · Sprawdzamy co Kwartał · Ceny zawierają Opłaty&nbsp;Skarbowe</span></p>
     <div class="cn-groups">
       <div class="cn-group cn-l" id="apostille">
         <h3 class="cn-group-h">Apostille w&nbsp;Polsce</h3>
@@ -222,7 +227,7 @@
         </ul>
       </div>
       <div class="cn-group cn-razem cn-full" id="razem">
-        <h3 class="cn-group-h">Ile zapłacę za… – najczęstsze przypadki</h3>
+        <h3 class="cn-group-h h2-swap"><span class="h2-a">Ile zapłacę za…?</span> <span class="h2-b font-light italic">Najczęstsze przypadki</span></h3>
         <p class="cn-group-t">Dwa lub trzy kroki w&nbsp;jednym zleceniu – jedna wycena, jedna płatność. Kolejność: najpierw Apostille na oryginał, potem tłumaczenie.</p>
         <ul class="cn-list">
           <li><span class="cn-name">Dokument notarialny za granicę</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="380">380</span>,-&nbsp;zł</b></span><small>/ dokument</small></span><span class="cn-desc">Pełnomocnictwo, akt notarialny, poświadczenie</span><span class="cn-sum"><span>Sąd Okręgowy <span class="price-num" data-price="120">120</span>&nbsp;zł</span><i>+</i><span>Apostille MSZ <span class="price-num" data-price="260">260</span>&nbsp;zł</span></span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">min.&nbsp;3–5 dni roboczych</span></span></span></li>
@@ -231,9 +236,9 @@
           <li><span class="cn-name">Dyplom polski z&nbsp;suplementem</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="520">520</span>,-&nbsp;zł</b></span><small>/ komplet</small></span><span class="cn-desc">Dyplom i&nbsp;suplement to dwa dokumenty</span><span class="cn-sum"><span>2&nbsp;× Apostille MSZ <span class="price-num" data-price="260">260</span>&nbsp;zł</span></span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">1–3 dni robocze</span></span></span></li>
           <li><span class="cn-name">Komplet firmowy</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1220">1&nbsp;220</span>,-&nbsp;zł</b></span><small>/ komplet</small></span><span class="cn-sum"><span>Odpis z&nbsp;KRS: uzyskanie <span class="price-num" data-price="200">200</span>&nbsp;zł + Apostille <span class="price-num" data-price="260">260</span>&nbsp;zł</span><i>+</i><span>Umowa spółki: Sąd Okręgowy <span class="price-num" data-price="120">120</span>&nbsp;zł + Apostille <span class="price-num" data-price="260">260</span>&nbsp;zł</span><i>+</i><span>Pełnomocnictwo: Sąd Okręgowy <span class="price-num" data-price="120">120</span>&nbsp;zł + Apostille <span class="price-num" data-price="260">260</span>&nbsp;zł</span></span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">3–5 dni roboczych</span></span></span></li>
           <li><span class="cn-name">Dokument z&nbsp;tłumaczeniem za granicę</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="520">520</span>,-&nbsp;zł</b></span><small>+ tłumaczenie / strona</small></span><span class="cn-desc">Gdy urząd w&nbsp;kraju docelowym wymaga Apostille także na tłumaczeniu</span><span class="cn-sum"><span>Apostille na oryginał <span class="price-num" data-price="260">260</span>&nbsp;zł</span><i>+</i><span>Apostille na tłumaczenie <span class="price-num" data-price="260">260</span>&nbsp;zł</span><i>+</i><span>Tłumaczenie Przysięgłe <span class="price-num" data-price="90">90</span>&nbsp;zł / strona</span></span></li>
-          <li><span class="cn-name">Ukraiński akt urodzenia po&nbsp;2016 do&nbsp;karty pobytu</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span><small>+ tłumaczenie / strona</small></span><span class="cn-sum"><span>Apostille w&nbsp;Kijowie <span class="price-num" data-price="550">550</span>&nbsp;zł</span><i>+</i><span>Tłumaczenie Przysięgłe 1&nbsp;strona <span class="price-num" data-price="90">90</span>&nbsp;zł</span></span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">2–3 tygodnie</span><span class="cn-pill">potem 2–4 dni robocze</span></span></span></li>
+          <li><span class="cn-name">Ukraiński akt urodzenia<small>po&nbsp;2016 do&nbsp;karty pobytu</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span><small>+ tłumaczenie / strona</small></span><span class="cn-sum"><span>Apostille w&nbsp;Kijowie <span class="price-num" data-price="550">550</span>&nbsp;zł</span><i>+</i><span>Tłumaczenie Przysięgłe 1&nbsp;strona <span class="price-num" data-price="90">90</span>&nbsp;zł</span></span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">2–3 tygodnie</span><span class="cn-pill">potem 2–4 dni robocze</span></span></span></li>
           <li><span class="cn-name">Ukraiński akt sprzed 2016</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>+ tłumaczenie / strona</small></span><span class="cn-sum"><span>Duplikat w&nbsp;ukraińskim USC + Apostille <span class="price-num" data-price="1100">1&nbsp;100</span>&nbsp;zł</span><i>+</i><span>Tłumaczenie Przysięgłe 1&nbsp;strona <span class="price-num" data-price="90">90</span>&nbsp;zł</span></span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">5–6 tygodni</span></span></span></li>
-          <li><span class="cn-name">Ukraiński dyplom z&nbsp;dodatkiem do&nbsp;pracy lub na&nbsp;uczelnię</span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>+ tłumaczenie / strona</small></span><span class="cn-sum"><span>Dyplom i&nbsp;dodatek, Apostille MON Ukrainy <span class="price-num" data-price="1100">1&nbsp;100</span>&nbsp;zł</span><i>+</i><span>Tłumaczenie Przysięgłe 3–4 stron</span></span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">2 tygodnie – 1,5 miesiąca</span></span></span></li>
+          <li><span class="cn-name">Ukraiński dyplom z&nbsp;dodatkiem<small>do&nbsp;pracy lub na&nbsp;uczelnię</small></span><span class="cn-price"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span><small>+ tłumaczenie / strona</small></span><span class="cn-sum"><span>Dyplom i&nbsp;dodatek, Apostille MON Ukrainy <span class="price-num" data-price="1100">1&nbsp;100</span>&nbsp;zł</span><i>+</i><span>Tłumaczenie Przysięgłe 3–4 stron</span></span><span class="cn-meta"><span class="cn-term"><span class="cn-pill">2 tygodnie – 1,5 miesiąca</span></span></span></li>
         </ul>
         <p class="cn-note">Komplet kosztuje dokładnie tyle, ile jego części – liczbę stron tłumaczenia podajemy orientacyjnie: akt USC lub zaświadczenie KRK – 1&nbsp;strona, dyplom – 1, suplement lub dodatek – 2–3, pełnomocnictwo – 1–2.</p>
       </div>
@@ -263,6 +268,13 @@
         <p>Terminy liczymy od dnia, w&nbsp;którym mamy oryginał i&nbsp;potwierdzenie płatności; dni ustawowo wolne od pracy nie liczą się – urzędy są wtedy zamknięte. Szczegóły w&nbsp;<a href="/#regulamin" class="underline">Regulaminie</a>.</p>
       </div>
     </div>
+    <nav class="cn-nav cn-nav--end" aria-label="Sekcje cennika – powtórzenie">
+      <a href="#apostille">Apostille w&nbsp;Polsce</a>
+      <a href="#ukraina">Dokumenty z&nbsp;Ukrainy</a>
+      <a href="#tlumaczenia">Tłumaczenia</a>
+      <a href="#odbior">Odbiór i&nbsp;wysyłka</a>
+      <a href="#razem">Najczęstsze przypadki</a>
+    </nav>
   </div>
 </section>
 
@@ -276,16 +288,6 @@
 
     <div class="border-t border-ink/15">
       <details class="group border-b border-ink/15" open>
-        <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Dlaczego Apostille kosztuje <span class="price-num" data-price="260">260</span> zł, jeśli opłata skarbowa w MSZ to <span class="price-num" data-price="60">60</span> zł?</h3>
-          <span class="chev shrink-0" aria-hidden="true">+</span>
-        </summary>
-        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Opłata skarbowa to <span class="price-num" data-price="60">60</span>&nbsp;zł i&nbsp;jest w&nbsp;cenie. Reszta to nasza praca: rezerwacja terminu w&nbsp;systemie MSZ – wolne bywają dopiero za kilka dni – dwie wizyty na Kruczej przy złożeniu i&nbsp;odbiorze, sprawdzenie dokumentu przed zleceniem, skan gotowego dokumentu od ręki i&nbsp;odpowiedź na wycenę zwykle w&nbsp;15 minut. Samodzielnie: <span class="price-num" data-price="60">60</span>&nbsp;zł, rezerwacja online, dwa razy w&nbsp;urzędzie w&nbsp;godzinach pracy i&nbsp;wolne wzięte w&nbsp;pracy. U&nbsp;nas: zdjęcie na WhatsAppie i&nbsp;1–3 dni robocze.
-        </p>
-      </details>
-
-      <details class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
           <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Czy cena z wyceny może się zmienić?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
@@ -344,6 +346,16 @@
           Przy dokumencie polskim zwracamy wpłatę pomniejszoną o&nbsp;opłatę skarbową <span class="price-num" data-price="60">60</span>&nbsp;zł, którą MSZ pobiera przy złożeniu i&nbsp;której nie zwraca. Dlatego sprawdzamy dokument, zanim przyjmiemy zlecenie – i&nbsp;mówimy wprost, gdy Apostille nie da się nadać: zwykła kserokopia, dokument zalaminowany, akt sprzed 2016&nbsp;roku z&nbsp;Ukrainy. Przy dokumentach z&nbsp;Ukrainy, gdy archiwum odmówi wydania duplikatu, zwracamy przedpłatę – poza kosztem przesyłki.
         </p>
       </details>
+
+      <details class="group border-b border-ink/15">
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Dlaczego Apostille kosztuje <span class="price-num" data-price="260">260</span> zł, jeśli opłata skarbowa w MSZ to <span class="price-num" data-price="60">60</span> zł?</h3>
+          <span class="chev shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+          Opłata skarbowa to <span class="price-num" data-price="60">60</span>&nbsp;zł i&nbsp;jest w&nbsp;cenie. Reszta to nasza praca: rezerwacja terminu w&nbsp;systemie MSZ – wolne bywają dopiero za kilka dni – dwie wizyty na Kruczej przy złożeniu i&nbsp;odbiorze, sprawdzenie dokumentu przed zleceniem, skan gotowego dokumentu od ręki i&nbsp;odpowiedź na wycenę zwykle w&nbsp;15 minut. Samodzielnie: <span class="price-num" data-price="60">60</span>&nbsp;zł, rezerwacja online, dwa razy w&nbsp;urzędzie w&nbsp;godzinach pracy i&nbsp;wolne wzięte w&nbsp;pracy. U&nbsp;nas: zdjęcie na WhatsAppie i&nbsp;1–3 dni robocze.
+        </p>
+      </details>
     </div>
 
     <p class="mt-8 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
@@ -354,153 +366,6 @@
 </section>
 
 <!-- ================= WYCENA (formularz – kopia z głównej) ================= -->
-<section id="wycena" class="wy-v2 pb-28 md:pb-44">
-  <div class="mx-auto max-w-site px-5 sm:px-8">
-
-    <div class="bg-sand text-ink rounded-[26px] overflow-hidden">
-      <div class="grid grid-cols-12">
-
-        <!-- Левая колонка -->
-        <div class="col-span-12 lg:col-span-5 p-7 sm:p-12 lg:p-14">
-          <p class="kicker">/ Wycena</p>
-          <h2 class="slide-group tracking-tightest leading-[0.94] text-[38px] sm:text-[52px] lg:text-[56px] font-black">
-            <span class="slide-in">Ekspresowa</span><br><span class="slide-in">wycena</span><br>
-            <span class="font-light italic slide-in sd-2">dokumentu</span>
-          </h2>
-          <p class="mt-7 text-[17px] leading-[1.55] text-ink/70 max-w-[40ch]">
-            Wypełnij formularz, napisz na WhatsApp albo zadzwoń – jak Ci wygodniej.
-            Odpowiadamy z&nbsp;ceną i&nbsp;terminem – bez zobowiązań.
-            <span class="block mt-3 text-ink/90">Wycenę pisze człowiek, nie automat.</span>
-          </p>
-
-          <p class="font-cond uppercase tracking-[0.14em] text-[12px] text-ink/50 mt-7 mb-2">Co wysłać do wyceny</p>
-          <ul class="cn-send">
-            <li>zdjęcie całego dokumentu – obie strony, czytelne pieczęcie i&nbsp;podpisy</li>
-            <li>do jakiego kraju i&nbsp;do czego dokument jest potrzebny</li>
-            <li>czy potrzebne tłumaczenie i&nbsp;na jaki język</li>
-            <li>na kiedy dokument musi być gotowy</li>
-          </ul>
-
-          <div class="hairline mt-10 pt-7 space-y-4">
-            <div class="flex items-baseline gap-4">
-              <span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Apostille MSZ</span>
-              <span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></span>
-            </div>
-            <div class="flex items-baseline gap-4">
-              <span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Sąd Okr.</span>
-              <span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span></span>
-            </div>
-            <div class="flex items-baseline gap-4">
-              <span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Tłumaczenie</span>
-              <span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> / strona</span>
-            </div>
-            <div class="flex items-baseline gap-4">
-              <span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Dok. z UA</span>
-              <span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span>
-            </div>
-            <div class="flex items-baseline gap-4">
-              <span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Odpis z UA</span>
-              <span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span>
-            </div>
-            <div class="pt-6">
-              <p class="font-cond uppercase tracking-[0.14em] text-[12px] text-ink/50 mb-3">Wolisz zapytać bezpośrednio?</p>
-              <ul class="flex flex-wrap gap-x-6 gap-y-2 text-[15px] font-semibold">
-                <li><a class="underline underline-offset-4 decoration-ink/25 hover:decoration-ink transition-colors" href="https://wa.me/48507588155" target="_blank" rel="noopener">WhatsApp</a></li>
-                <li><a class="underline underline-offset-4 decoration-ink/25 hover:decoration-ink transition-colors" href="https://t.me/apostilo" target="_blank" rel="noopener">Telegram</a></li>
-                <li><a class="underline underline-offset-4 decoration-ink/25 hover:decoration-ink transition-colors" href="tel:+48507588155">+48&nbsp;507&nbsp;588&nbsp;155</a></li>
-                <li><a class="underline underline-offset-4 decoration-ink/25 hover:decoration-ink transition-colors" href="mailto:apostilo@gmail.com">apostilo@gmail.com</a></li>
-              </ul>
-            </div>
-            <p class="text-[13px] text-ink/45 pt-2">
-              Ceny końcowe, zawierają opłaty skarbowe. Od&nbsp;6&nbsp;stron tłumaczenia – 10% rabatu.<br>Ostateczna wycena – po zobaczeniu dokumentu.
-            </p>
-          </div>
-        </div>
-
-        <!-- Форма -->
-        <div class="col-span-12 lg:col-span-7 bg-paper text-ink p-7 sm:p-12 lg:p-14">
-
-          <!-- ZMIEŃ action na swój endpoint (Formspree / Web3Forms / własny backend) -->
-          <form id="quote-form"
-                action="https://formspree.io/f/FORM_ENDPOINT"
-                method="POST"
-                enctype="multipart/form-data"
-                novalidate
-                class="space-y-7">
-
-            <div>
-              <label for="name" class="block font-cond uppercase tracking-[0.16em] text-[11px] text-paper/50 mb-1">Imię *</label>
-              <input class="field" type="text" id="name" name="name" placeholder="Jak się do Ciebie zwracać?" required autocomplete="given-name">
-            </div>
-
-            <div>
-              <label for="phone" class="block font-cond uppercase tracking-[0.16em] text-[11px] text-paper/50 mb-1">Telefon / WhatsApp *</label>
-              <input class="field" type="tel" id="phone" name="phone" placeholder="+48 600 000 000" required autocomplete="tel"
-                     inputmode="tel" pattern="[+0-9\s()\-]{7,20}">
-            </div>
-
-            <div>
-              <label for="service" class="block font-cond uppercase tracking-[0.16em] text-[11px] text-paper/50 mb-1">Usługa *</label>
-              <select class="field" id="service" name="service" required>
-                <option value="" disabled selected>Wybierz usługę…</option>
-                <option value="apostille-msz">Apostille – MSZ</option>
-                <option value="apostille-sad">Apostille – Sąd Okręgowy</option>
-                <option value="apostille-ua">Apostille – dokumenty z Ukrainy</option>
-                <option value="tlumaczenie">Tłumaczenie przysięgłe</option>
-                <option value="tlumaczenie-konsularne">Tłumaczenie konsularne</option>
-                <option value="istrebowanie">Uzyskanie duplikatu dokumentu</option>
-                <option value="inne">Inne – opiszę w wiadomości</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="message" class="block font-cond uppercase tracking-[0.16em] text-[11px] text-paper/50 mb-1">Krótki opis (opcjonalnie)</label>
-              <input class="field" type="text" id="message" name="message" placeholder="Np. akt urodzenia UA, potrzebne na kartę pobytu">
-            </div>
-
-            <div>
-              <label for="file" class="block font-cond uppercase tracking-[0.16em] text-[11px] text-paper/50 mb-2">Skan lub zdjęcie dokumentu</label>
-              <input class="file-input-hidden" type="file" id="file" name="file"
-                     accept=".pdf,.jpg,.jpeg,.png,.heic,.webp" multiple>
-              <div class="field field-file flex items-center gap-3">
-                <label for="file" class="file-btn">Wybierz pliki</label>
-                <span id="file-name" class="file-name">Nie wybrano plików</span>
-              </div>
-              <p class="mt-2 text-[13px] text-paper/45">PDF, JPG, PNG lub HEIC. Maks. 10&nbsp;MB. Możesz dodać kilka plików.</p>
-            </div>
-
-            <div class="flex items-start gap-3 pt-1">
-              <input type="checkbox" id="consent" name="consent" required
-                     class="mt-1 w-5 h-5 shrink-0 accent-[#EFB01F] cursor-pointer">
-              <label for="consent" class="text-[14px] leading-[1.5] text-paper/70 cursor-pointer">
-                Wyrażam zgodę na przetwarzanie moich danych osobowych w&nbsp;celu przygotowania wyceny
-                i&nbsp;kontaktu zwrotnego, zgodnie z
-                <a href="/#polityka-prywatnosci" class="underline underline-offset-2 hover:text-ochre">Polityką Prywatności</a>. *
-              </label>
-            </div>
-
-            <!-- honeypot: защита от спам-ботов -->
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
-
-            <div class="pt-2 flex flex-col sm:flex-row gap-3">
-              <button type="submit"
-                      class="inline-flex items-center justify-center gap-2 rounded-[12px] px-8 py-[18px] text-[16px] font-bold btn btn--pop">
-                Wyślij i&nbsp;otrzymaj wycenę
-              </button>
-              <a href="https://wa.me/48507588155" target="_blank" rel="noopener"
-                 class="inline-flex items-center justify-center gap-2 rounded-[12px] px-8 py-[18px] text-[16px] font-semibold btn">
-                Wolę WhatsApp
-              </a>
-            </div>
-
-            <p id="form-status" role="status" aria-live="polite" class="text-[15px] text-ochre hidden"></p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 </main>
 
@@ -578,7 +443,7 @@
 </footer>
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260917g" defer></script>
+<script src="/assets/app.js?v=20260920c" defer></script>
 
 </body>
 </html>

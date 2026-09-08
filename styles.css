@@ -78,6 +78,14 @@ section[id]{ scroll-margin-top:88px; }
    выталкивание копии снизу отключено. Кегль не меняется. */
 header .navlink{ font-weight:400; transition:color .25s ease; }
 header .navlink:hover, header .navlink:focus-visible{ font-weight:700; }
+/* «Zamów» (и его переводы, .navlink--cta) всегда полужирный;
+   при наведении меняется только само слово: Zamów → Wycena, Заказать → Оценка и т.д. */
+header .navlink[data-quote], header .navlink--cta{ font-weight:700; }
+header .navlink[data-quote]:hover, header .navlink[data-quote]:focus-visible,
+header .navlink--cta:hover, header .navlink--cta:focus-visible{ font-weight:700; }
+/* при наведении показываем вторую копию слова: у «Zamów» это «Wycena» */
+header .navlink:hover .nl-a, header .navlink:focus-visible .nl-a{ visibility:hidden; }
+header .navlink:hover .nl-b, header .navlink:focus-visible .nl-b{ visibility:visible; opacity:1; }
 header .navlink .nl-swap{ overflow:visible; }
 header .navlink .nl-b{ font-weight:700; visibility:hidden; opacity:0; transform:none; }
 /* номер телефона и переключатель языков – то же правило начертания */
@@ -114,7 +122,9 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 .hdr-seg--logo .logo-brand{ width:var(--logo-w,auto); }
 @media (min-width:640px){ .hdr-seg--logo{ --hdr-pad:2rem; } }
 .hdr-seg--menu{ flex:1 1 auto; min-width:0; }
-.nav-main{ transition:gap .55s cubic-bezier(.2,.7,.25,1); }
+/* отступ от «Zamów» до стыка плашек – всегда 42px: 10px здесь + 32px поле плашки.
+   Задан в styles.css, а не утилитой Tailwind: сборка статичная и новых классов в ней нет. */
+.nav-main{ margin-right:10px; transition:gap .55s cubic-bezier(.2,.7,.25,1); }
 
 /* Переключатель языка в шапке */
 .lang-switch{ border:0; background:none; padding:6px 0; color:var(--c-ink); cursor:pointer;
@@ -129,12 +139,29 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 
 /* Выпадающий список языков – раскрывается при наведении на переключатель */
 .lang-wrap{ position:relative; }
-.lang-pop{ position:absolute; top:100%; left:50%; transform:translate(-50%,-6px);
-           /* габариты карточки увеличены на 30%; фона и тени нет – только размытие фона */
-           min-width:172px; padding:10.4px 13px; margin-top:0; z-index:60;
+/* Список без собственной плашки: вместо неё вниз расширяется правая плашка шапки –
+   высоту ей задаёт app.js (padding-bottom), список ложится прямо на неё. */
+/* Язык – в своей плашке, как логотип; расширяется вниз только она.
+   Продолжение рисует отдельный слой, поэтому ничего в шапке не сдвигается,
+   а высоту (--lang-h) задаёт app.js по фактической высоте списка. */
+.hdr-seg--lang{ position:relative; }
+/* до lg меню скрыто, поэтому средняя плашка пустая – убираем её,
+   а языковая занимает освободившееся место, как было до разделения */
+@media (max-width:1023px){
+  .hdr-seg--menu{ display:none; }
+  .hdr-seg--lang{ flex:1 1 auto; justify-content:flex-end; }
+}
+/* Слой начинается на 24px выше низа плашки и всегда скруглён снизу так же, как она:
+   в покое он просто повторяет её нижний край (не виден), при раскрытии продолжает её вниз.
+   Углы плашки при этом не трогаем – поэтому на стыке ни в один момент нет «зубца». */
+.hdr-seg--lang::after{ content:''; position:absolute; left:0; right:0; top:calc(100% - 24px);
+  height:calc(var(--lang-h, 0px) + 24px); background:inherit; border-radius:0 0 16px 16px; z-index:-1;
+  transition:height .28s cubic-bezier(.2,.7,.25,1); }
+@media (min-width:768px){ .hdr-seg--lang::after{ border-radius:0 0 20px 20px; } }
+.lang-pop{ position:absolute; top:calc(100% + 6px); left:50%; transform:translate(-50%,-6px);
+           min-width:172px; padding:0; margin-top:0; z-index:60;
            display:flex; flex-direction:column;
-           color:inherit; background:transparent; border-radius:14px;
-           -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px);
+           color:inherit; background:transparent; border-radius:0;
            opacity:0; visibility:hidden; pointer-events:none;
            transition:opacity .2s ease, transform .2s ease, visibility 0s linear .2s; }
 /* невидимый «мостик» между переключателем и списком:
@@ -152,6 +179,9 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 /* активный язык в списке не показываем – он уже стоит в шапке */
 .lang-opt{ font-weight:400; }
 .lang-opt.is-current{ display:none; }
+/* пока список раскрыт, название языка в шапке полужирное – как пункт меню при наведении */
+header .lang-wrap:hover .lang-switch,
+header .lang-wrap:focus-within .lang-switch{ font-weight:700; }
 /* инверсия цвета, как у пунктов меню: над тёмным блоком список светлеет */
 .lang-pop{ color:var(--c-ink); }
 .lang-switch.on-dark + .lang-pop{ color:var(--c-paper); }
@@ -377,7 +407,8 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
                  и перехватывал клики по последней ссылке – e-mail. Кликов не ловим. */
               pointer-events:none;
               /* --fm-gap – расстояние от колонок навигации до логотипа */
-              --fm-gap:calc(-5.6rem - 90px); margin-top:var(--fm-gap);
+              /* -108px вместо -90px: футер ниже исходного, просвет над нижней строкой ~160px */
+              --fm-gap:calc(-5.6rem - 108px); margin-top:var(--fm-gap);
               /* логотип опущен так, что уходит за нижний край окна на 0.22em;
                  --fm-drop считается в скрипте (fit) */
               margin-bottom:0; top:var(--fm-drop, 0px);
@@ -714,7 +745,8 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
 /* ===== стрелка «наверх»: справа, отступ 81px, пульсация как у языковой ===== */
 .to-top{ position:fixed; z-index:60;
          /* привязка к правому краю контентной сетки (max-w-site 1320px) */
-         right:max(20px, calc((100vw - 1320px) / 2 - 24px)); bottom:64px;
+         /* сдвинута на 15% ближе к правому краю */
+         right:max(17px, calc(((100vw - 1320px) / 2 - 24px) * .85)); bottom:64px;
          width:42px; height:42px; display:flex; align-items:center; justify-content:center;
          color:var(--c-terra); -webkit-tap-highlight-color:transparent;
          opacity:0; visibility:hidden; transform:translateY(10px);
@@ -1010,16 +1042,9 @@ details[open] .chev{ transform:rotate(45deg) }
 .ws-legal-item .chev{ transform:rotate(0deg) }
 .ws-legal-item.is-open .chev{ transform:rotate(45deg) }
 
-/* Стекло плашек шапки – как у andabove.com: размытие 8px, чуть насыщеннее и светлее, без заливки.
-   На белой бумаге плашка не видна, проявляется над текстом и картинками при прокрутке.
-   Фильтр стоит на ::before, а не на самой плашке: иначе выпадающий список языков
-   (у него своё размытие) оказался бы внутри отфильтрованного слоя и терял бы фон. */
-.hdr-glass{ position:relative; }
-.hdr-glass::before{
-  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; border-radius:inherit;
-  backdrop-filter:blur(8px) saturate(1.35) brightness(1.2);
-  -webkit-backdrop-filter:blur(8px) saturate(1.35) brightness(1.2);
-}
+/* Плашки шапки – просто белые; над тёмным блоком инвертируются вместе с текстом */
+.hdr-glass{ position:relative; background:var(--c-paper); transition:background-color .25s ease; }
+.hdr-glass.on-dark{ background:var(--c-moss); }
 
 /* ===== Страница /kontakt/ ===== */
 /* H1 подстраниц: ограничение ширины строки (утилита max-w-[22ch] в сборке Tailwind отсутствует) */
@@ -1145,21 +1170,36 @@ details[open] .chev{ transform:rotate(45deg) }
 /* ===== /cennik/ v2 (пока только PL, класс cn-v2 на секции #ceny) =====
    Крупнее кегль, группы лестницей (л/п/л/п), строка = сетка областей:
    название | цена, под названием описание, формула суммы и плашки. */
-.cn-v2 .cn-nav{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2rem; }
-.cn-v2 .cn-nav a{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
+/* Кнопки-якоря в потоке (оба списка: под заголовком и после сноски): серые плашки,
+   при наведении белые. Подсветки текущего раздела здесь нет – она только в доке. */
+.cn-v2 .cn-nav{ display:flex; flex-wrap:wrap; gap:.5rem; justify-content:flex-start;
+  margin-top:2rem; }
+.cn-nav a, .cn-dock a{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
   letter-spacing:.12em; font-size:13px; font-weight:700; line-height:1; padding:.75em 1em .8em;
-  background:var(--c-sand); border-radius:6px; color:var(--c-ink); text-decoration:none;
-  position:relative; overflow:clip; isolation:isolate; perspective:600px; }
-/* При наведении жёлтый слой выталкивается снизу вверх – тот же 3D-приём, что у .btn--pop
-   на главной, только в обратную сторону: в покое слой спрятан внизу, на наведении встаёт на место */
-.cn-v2 .cn-nav a::before{ content:''; position:absolute; inset:-1px; z-index:-1; border-radius:inherit;
-  background:var(--c-terra); transform-style:preserve-3d; transform-origin:0 100%;
-  transform:rotateX(28deg) rotateY(28deg) rotate(10deg) translateY(105%);
-  transition:transform .5s cubic-bezier(.2,.7,.25,1); }
-.cn-v2 .cn-nav a:hover::before, .cn-v2 .cn-nav a:focus-visible::before{ transform:none; }
-@media (prefers-reduced-motion:reduce){
-  .cn-v2 .cn-nav a::before{ transform:none; opacity:0; transition:opacity .2s ease; }
-  .cn-v2 .cn-nav a:hover::before, .cn-v2 .cn-nav a:focus-visible::before{ opacity:1; } }
+  border-radius:6px; color:var(--c-ink); text-decoration:none;
+  position:relative; overflow:clip; isolation:isolate;
+  transition:background-color .25s ease, color .25s ease; }
+.cn-v2 .cn-nav a{ background:#D0D0CB; }
+.cn-v2 .cn-nav a:hover, .cn-v2 .cn-nav a:focus-visible{ background:var(--c-paper); }
+/* повтор списка после сноски – отдельным блоком под сеткой групп */
+.cn-v2 .cn-nav--end{ margin-top:2.25rem; }
+
+/* Отдельное плавающее меню внизу окна – клон якорей, который app.js создаёт и показывает
+   при прокрутке; у подвала останавливается над ним. Со списком в потоке не связано. */
+.cn-dock{ position:fixed; left:0; right:0; bottom:24px; z-index:60;
+  display:flex; flex-wrap:wrap; gap:.5rem; justify-content:flex-start;
+  width:100%; max-width:1320px; margin:0 auto; padding:0 1.25rem;
+  pointer-events:none; opacity:0; transform:translateY(12px);
+  transition:opacity .3s ease, transform .3s ease; }
+@media (min-width:640px){ .cn-dock{ padding:0 2rem; } }
+.cn-dock.is-on{ opacity:1; transform:none; }
+.cn-dock a{ background:var(--c-paper); }
+.cn-dock.is-on a{ pointer-events:auto; }
+@media (max-width:639px){ .cn-dock{ display:none; } }
+/* наведение без подсветки – плашка остаётся белой */
+/* текущий раздел – серая плашка, как ярлык «Cennik» */
+.cn-dock a.is-here{ background:#D0D0CB; }
+@media (prefers-reduced-motion:reduce){ .cn-dock{ transition:none; } }
 
 /* Статусная строка: две плашки рядом со скруглением 6px – серый ярлык и жёлтая с текстом,
    по ширине содержимого, без растяжки на всю строку */
@@ -1167,10 +1207,15 @@ details[open] .chev{ transform:rotate(45deg) }
   font-size:14px; font-weight:600; line-height:1.3; }
 .cn-v2 .cn-status b{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase; letter-spacing:.14em;
   font-size:13px; font-weight:700; background:#D0D0CB; color:var(--c-ink); padding:.7em 1em .75em; border-radius:6px; }
-.cn-v2 .cn-status > span{ background:var(--c-terra); color:var(--c-ink); padding:.55em .9em .6em; border-radius:6px; }
+/* месяц с заглавной, хотя в UPDATED он строчный (правится скриптом cennik-date.py) */
+.cn-v2 .cn-status .cennik-updated{ text-transform:capitalize; }
+.cn-v2 .cn-status > span{ flex:1 1 auto; background:var(--c-terra); color:var(--c-ink); padding:.55em .9em .6em; border-radius:6px; }
+/* Плашка тянется по ширине лида в шапке (.lead-lines: 36em при 20/24px) */
+.cn-v2 .cn-status{ max-width:720px; }
+@media (min-width:640px){ .cn-v2 .cn-status{ max-width:864px; } }
 
-/* Заголовок раздела: при наведении начертания меняются местами (мгновенно, шрифт статичный).
-   Класс is-swap ставит app.js: снимается через 750 мс после ухода курсора. */
+/* Заголовок раздела: начертания меняются местами при прокрутке (мгновенно, шрифт статичный).
+   Класс is-swap ставит app.js, когда верх заголовка поднимается выше 55% высоты окна; ниже – снимает. */
 .h2-swap.is-swap .h2-a{ font-weight:300; font-style:italic; }
 .h2-swap.is-swap .h2-b{ font-weight:900; font-style:normal; }
 
@@ -1194,9 +1239,9 @@ details[open] .chev{ transform:rotate(45deg) }
 .cn-v2 .cn-note{ margin-top:1.25rem; font-size:16px; font-weight:500; line-height:1.55; color:rgba(31,33,32,.6); max-width:70ch; }
 
 /* Строка прайса */
-/* Линия под заголовком группы: серая 3px, поверх неё жёлтая от --q до --p (обе 0..1, из app.js) */
-.cn-v2 .cn-list, .cn-v2 .cn-plain{ position:relative; border-top-width:3px; }
-.cn-v2 .cn-list::before, .cn-v2 .cn-plain::before{ content:""; position:absolute; top:-3px; height:3px;
+/* Линия под заголовком группы: серая 1px, как остальные хэйрлайны, поверх неё жёлтая от --q до --p (обе 0..1, из app.js) */
+.cn-v2 .cn-list, .cn-v2 .cn-plain{ position:relative; border-top-width:1px; }
+.cn-v2 .cn-list::before, .cn-v2 .cn-plain::before{ content:""; position:absolute; top:-1px; height:1px;
   left:calc(var(--q,0) * 100%); width:calc((var(--p,0) - var(--q,0)) * 100%); background:var(--c-terra); }
 .cn-v2 .cn-list{ margin-top:1.5rem; }
 .cn-v2 .cn-list li{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:0 1.25rem; align-items:start;
@@ -1225,10 +1270,17 @@ details[open] .chev{ transform:rotate(45deg) }
 /* Значение без числа (wycena, w cenie) – плашка вместо жирного текста */
 .cn-v2 .cn-price > b{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
   font-size:12.5px; font-weight:700; letter-spacing:.1em; line-height:1.2; padding:.45em .75em .5em;
-  border:0; border-radius:6px; background:var(--c-sand); color:var(--c-ink);
-  background-image:none !important; margin-top:.35em; }
+  border:0; border-radius:6px; background-color:var(--c-sand); color:var(--c-ink); margin-top:.35em;
+  background-image:linear-gradient(var(--c-mark),var(--c-mark)); background-repeat:no-repeat;
+  background-position:0 100%; background-size:100% 0;
+  transition:background-size .5s cubic-bezier(.4,.65,.35,1); }
+/* цвет заливки – фирменный terra; селектор длиннее базового правила с лимонным #F2E23A,
+   иначе оно перебивает по специфичности */
+.cn-v2 .cn-list li > .cn-price > b{ --c-mark:var(--c-terra); }
+/* при наведении на строку заливка вырастает снизу вверх */
+.cn-v2 .cn-list li:hover > .cn-price > b{ background-size:100% 100%; }
 /* Одинокий прочерк (odbiór osobisty) – без плашки */
-.cn-v2 .cn-price > b:only-child{ padding:0; background:none; font:inherit; font-size:24px; font-weight:800; margin-top:0; }
+.cn-v2 .cn-price > b:only-child{ padding:0; background:none; background-image:none; font:inherit; font-size:24px; font-weight:800; margin-top:0; }
 
 /* Формула суммы в «Ile zapłacę za…» */
 .cn-v2 .cn-sum{ grid-area:sum; display:block; margin-top:.5rem;
@@ -1241,9 +1293,12 @@ details[open] .chev{ transform:rotate(45deg) }
 .cn-v2 .cn-pill{ display:inline-block; font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
   letter-spacing:.1em; font-size:12.5px; font-weight:700; line-height:1.2; padding:.45em .75em .5em;
   border-radius:6px; background:var(--c-sand); color:var(--c-ink); white-space:nowrap; transition:background-color .25s ease; }
-/* срок – серый темнее условий; при наведении на строку становится жёлтым, у всех строк */
+/* срок – серый темнее условий; при наведении на строку подсвечивается белым, у всех строк */
 .cn-v2 .cn-term .cn-pill{ background:#D0D0CB; color:var(--c-ink); }
-.cn-v2 .cn-list li:hover .cn-term .cn-pill{ background:var(--c-terra); }
+.cn-v2 .cn-list li:hover .cn-term .cn-pill{ background:var(--c-paper); }
+/* несколько плашек срока загораются по очереди, шаг 420 мс; гаснут все сразу */
+.cn-v2 .cn-list li:hover .cn-term .cn-pill:nth-child(2){ transition-delay:.42s; }
+.cn-v2 .cn-list li:hover .cn-term .cn-pill:nth-child(3){ transition-delay:.84s; }
 @media (max-width:379px){ .cn-v2 .cn-pill{ white-space:normal; } }
 
 /* «W cenie» с галочкой, «Poza ceną» с плюсом */
@@ -1264,6 +1319,8 @@ details[open] .chev{ transform:rotate(45deg) }
 /* Сноска */
 .cn-v2 .cn-foot p{ font-size:16px; font-weight:500; line-height:1.6; color:rgba(31,33,32,.65); max-width:70ch; }
 .cn-v2 .cn-foot p + p{ margin-top:.6rem; }
+/* первая строка сноски – тёмная, в тон заголовкам */
+.cn-v2 .cn-foot p:first-child{ color:var(--c-ink); font-weight:600; }
 .cn-v2 .cn-foot a{ text-decoration:underline; text-underline-offset:3px; }
 
 /* ===== Блок wyceny на /cennik/ (класс wy-v2 на секции): светлая форма вместо тёмной ===== */
@@ -1316,3 +1373,97 @@ details[open] .chev{ transform:rotate(45deg) }
 .ua-term-h small{ font-size:14px; font-weight:400; color:rgba(31,33,32,.6); }
 .ua-term-v{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; font-weight:700; font-size:22px; letter-spacing:-.01em; color:var(--c-terra); white-space:nowrap; }
 .ua-term-t{ font-size:15px; line-height:1.5; color:rgba(31,33,32,.65); }
+
+
+/* ===== Панель «Ekspresowa wycena»: выезжает снизу по кнопке «Wyceń dokument» =====
+   Ширина – по контентной сетке (max-w-site 1320px), верхние углы скруглены.
+   Над панелью по центру – пульсирующая стрелка сайта, повёрнутая вниз, жёлтая на белом кружке;
+   при наведении она превращается в крестик и закрывает панель. */
+#quote-drawer[hidden]{ display:none !important; }
+.qd{ position:fixed; inset:0; z-index:110; display:flex; align-items:flex-end; justify-content:center; }
+.qd-backdrop{ position:absolute; inset:0; background:rgba(31,33,32,.55);
+  opacity:0; transition:opacity .35s ease; }
+.qd.is-open .qd-backdrop{ opacity:1; }
+.qd-wrap{ position:relative; z-index:1; width:100%; max-width:1320px;
+  display:flex; flex-direction:column; align-items:flex-end;
+  transform:translateY(100%); transition:transform .5s cubic-bezier(.2,.7,.25,1); }
+.qd.is-open .qd-wrap{ transform:none; }
+.qd-shell{ width:100%; max-height:88vh; background:var(--c-paper);
+  border-radius:26px 26px 0 0; overflow:hidden; }
+/* карточка занимает панель целиком: серая колонка от левого края и на всю высоту */
+.qd-scroll{ max-height:88vh; overflow:auto; -webkit-overflow-scrolling:touch; }
+/* у карточки внутри панели снимаем overflow-hidden: он делает её собственным контейнером
+   прокрутки и ломает sticky у шапки левой колонки */
+.qd-scroll > div{ border-radius:0; min-height:100%; overflow:visible; }
+.qd-scroll > div > .grid{ min-height:88vh; align-items:stretch; }
+/* Правая колонка начинается на уровне абзаца «Wypełnij formularz…» – ниже заголовка:
+   3 строки h2 (56px × 0.94) + кикер ≈ 11.5rem поверх собственного padding колонки */
+@media (min-width:1024px){
+  .qd-scroll .grid > div:last-child{ padding-top:calc(3.5rem + 11.5rem); }
+}
+/* Шапка левой колонки («/ Wycena» + «Ekspresowa wycena dokumentu») закреплена:
+   видна всё время, пока листаешь содержимое панели */
+/* top = верхний padding колонки (p-7 / sm:p-12 / lg:p-14), чтобы при закреплении
+   блок остался ровно на своём месте, без микросдвига */
+.qd-scroll .qd-head{ position:sticky; top:1.75rem; z-index:2; background:var(--c-sand);
+  padding:0 0 .75rem; }
+@media (min-width:640px){ .qd-scroll .qd-head{ top:3rem; } }
+@media (min-width:1024px){ .qd-scroll .qd-head{ top:3.5rem; } }
+/* срок ответа под заголовком */
+.qd-eta{ display:flex; align-items:center; gap:.6rem; margin-top:1rem;
+  font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
+  letter-spacing:.12em; font-size:12px; font-weight:600; color:rgba(31,33,32,.6); }
+.qd-eta b{ font-size:13px; font-weight:700; letter-spacing:.1em; color:var(--c-ink);
+  background:var(--c-terra); border-radius:6px; padding:.45em .75em .5em; }
+
+/* Кнопка-стрелка над плашкой, у правого края – без кружка, белая */
+.qd-close{ margin:0 8px 10px 0; width:56px; height:56px; display:grid; place-items:center;
+  border:0; background:none; color:var(--c-paper); cursor:pointer; }
+@media (min-width:640px){ .qd-close{ margin-right:20px; } }
+.qd-close:hover .qd-ic, .qd-close:focus-visible .qd-ic{ animation:none; }
+.qd-ic{ grid-area:1/1; width:26px; height:26px; transition:opacity .25s ease, transform .25s ease; }
+.qd-ic--chev{ transform:rotate(90deg); animation:qd-pulse 1.8s ease-in-out infinite; }  /* стандартная стрелка сайта, вниз */
+.qd-ic--x{ opacity:0; transform:scale(.8); }
+.qd-close:hover .qd-ic--chev, .qd-close:focus-visible .qd-ic--chev{ opacity:0; transform:rotate(90deg) scale(.8); }
+.qd-close:hover .qd-ic--x, .qd-close:focus-visible .qd-ic--x{ opacity:1; transform:none; }
+/* пульсирует только стрелка внутри кружка, сам кружок стоит на месте */
+@keyframes qd-pulse{
+  0%, 100%{ transform:rotate(90deg) translateX(0); }
+  50%     { transform:rotate(90deg) translateX(5px); }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .qd-wrap, .qd-backdrop, .qd-ic{ transition:none; }
+  .qd-ic--chev{ animation:none; }
+}
+
+
+/* ===== Подвал-«шторка»: закреплён внизу, контент проезжает над ним =====
+   Подвал стоит на месте под страницей, а main с непрозрачным фоном едет поверх него;
+   высоту-запас под main задаёт app.js, чтобы подвал открывался ровно на свою высоту. */
+#stopka{ position:fixed; left:0; right:0; bottom:0; z-index:0; }
+body > header, body > main{ position:relative; z-index:1; }
+body > main{ background:var(--c-page); }
+@media (prefers-reduced-motion:reduce){ #stopka{ position:static; } body > main{ margin-bottom:0 !important; } }
+
+/* ===== Футер на телефоне =====
+   Колонки идут одна под другой, поэтому подвал вырастал до 86% экрана: как «шторка» он
+   на телефоне не работает – возвращаем его в поток и поджимаем внутренние отступы. */
+@media (max-width:639px){
+  #stopka{ position:static; }
+  body > main{ margin-bottom:0 !important; }
+  .footer-tone .fl-cols{ transform:translateY(6%); gap:1.75rem 1.25rem; padding-left:1.25rem; }
+  /* декоративный логотип ближе к нижней строке */
+  .footer-mark{ --fm-gap:calc(-5.6rem - 40px); }
+  .footer-mark .logo{ font-size:var(--fm-size, 30vw); }
+  /* пальцевые цели: ссылки колонок не ниже 36px, между ними зазор убран */
+  .footer-tone .fl-link{ min-height:36px; }
+  .footer-tone .fl-list{ gap:0; }
+  /* строки колонок плотнее: шрифт крупный, поэтому режем только межстрочные зазоры */
+  .footer-tone .fl-h{ padding-bottom:.4rem; margin-bottom:.6rem; }
+  .footer-tone .fl-note{ margin-top:1.1rem; }
+  .footer-bar{ padding-bottom:14px; }
+  .footer-bar .flex{ gap:1.5rem; }
+  /* правый блок с копирайтом на телефоне не сдвигаем влево */
+  .footer-bar [style*="translateX(-20%)"]{ transform:none !important; }
+}
