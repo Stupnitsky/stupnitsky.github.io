@@ -1223,9 +1223,14 @@
       var consent = form.querySelector('[name="consent"]');
       var file = form.querySelector('[name="file"]');
 
-      if (!name.value.trim() || !phone.value.trim() || !service.value) {
+      /* обязательность берём из атрибута required: в панели это документ и телефон,
+         во встроенных формах ua/ru/en – по-прежнему имя, телефон и услуга */
+      var need = function (f) { return f && f.required; };
+      var missing = (need(name) && !name.value.trim()) || (need(phone) && !phone.value.trim()) ||
+                    (need(service) && !service.value) || (need(file) && !file.files.length);
+      if (missing) {
         e.preventDefault();
-        say('Uzupełnij imię, telefon i wybierz usługę.', false);
+        say(form.dataset.msgRequired || 'Uzupełnij imię, telefon i wybierz usługę.', false);
         return;
       }
       if (!consent.checked) {
@@ -1247,8 +1252,10 @@
 
     // подпись выбранных файлов
     var inp = form.querySelector('[name="file"]'), out = form.querySelector('.file-name');
+    var drop = form.querySelector('.qd-drop');
     if (inp && out) inp.addEventListener('change', function () {
       var n = inp.files.length;
+      if (drop) drop.classList.toggle('is-filled', n > 0);
       if (!n) { out.textContent = 'Nie wybrano plików'; return; }
       out.textContent = n === 1 ? inp.files[0].name
         : n + (n < 5 ? ' wybrane pliki' : ' wybranych plików');
@@ -1433,7 +1440,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260922a';   /* версию менять вместе с правкой фрагмента */
+    var FRAG = '/assets/wycena.html?v=20260922b';   /* версию менять вместе с правкой фрагмента */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
