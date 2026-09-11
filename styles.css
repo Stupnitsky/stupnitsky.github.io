@@ -1391,6 +1391,11 @@ details[open] .chev{ transform:rotate(45deg) }
   display:flex; flex-direction:column; align-items:flex-end;
   transform:translateY(100%); transition:transform .5s cubic-bezier(.2,.7,.25,1); }
 .qd.is-open .qd-wrap{ transform:none; }
+/* Обёртка выше панели на высоту кнопки-стрелки (66px) и на всю её ширину – на десктопе это
+   ровно полоса шапки. Сама она клики не ловит: они проходят на подложку и закрывают панель;
+   стрелка и панель остаются кликабельными (11.09.2026). */
+.qd-wrap{ pointer-events:none; }
+.qd-wrap > *{ pointer-events:auto; }
 .qd-shell{ width:100%; max-height:88vh; background:var(--c-paper);
   border-radius:26px 26px 0 0; overflow:hidden; }
 /* карточка занимает панель целиком: серая колонка от левого края и на всю высоту */
