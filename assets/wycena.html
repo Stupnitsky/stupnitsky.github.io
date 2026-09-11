@@ -20,13 +20,13 @@
                 </h2>
                 <p class="qd-eta"><b>15 min</b><span>tyle zwykle czekasz na wycenę</span></p>
               </div>
-              <p class="mt-7 text-[17px] leading-[1.55] text-ink/70 max-w-[40ch]">
+              <p class="qd-lead mt-7 max-w-[40ch]">
                 Wypełnij formularz, napisz na WhatsApp albo zadzwoń – jak Ci wygodniej.
                 Odpowiadamy z&nbsp;ceną i&nbsp;terminem – bez zobowiązań.
                 <span class="block mt-3 text-ink/90">Wycenę pisze człowiek, nie automat.</span>
               </p>
 
-              <p class="font-cond uppercase tracking-[0.14em] text-[12px] text-ink/50 mt-7 mb-2">Co wysłać do wyceny</p>
+              <p class="qd-sub mt-7 mb-2">Co wysłać do wyceny</p>
               <ul class="cn-send">
                 <li>zdjęcie całego dokumentu – obie strony, czytelne pieczęcie i&nbsp;podpisy</li>
                 <li>do jakiego kraju i&nbsp;do czego dokument jest potrzebny</li>
@@ -36,15 +36,15 @@
 
               <div class="hairline mt-10 pt-7 space-y-4">
                 <div>
-                  <p class="font-cond uppercase tracking-[0.14em] text-[12px] text-ink/50 mb-3">Wolisz zapytać bezpośrednio?</p>
-                  <ul class="flex flex-wrap gap-x-6 gap-y-2 text-[15px] font-semibold">
+                  <p class="qd-sub mb-3">Wolisz zapytać bezpośrednio?</p>
+                  <ul class="qd-contacts flex flex-wrap gap-x-6 gap-y-2 font-semibold">
                     <li><a class="underline underline-offset-4 decoration-ink/25 hover:decoration-ink transition-colors" href="https://wa.me/48507588155" target="_blank" rel="noopener">WhatsApp</a></li>
                     <li><a class="underline underline-offset-4 decoration-ink/25 hover:decoration-ink transition-colors" href="https://t.me/apostilo" target="_blank" rel="noopener">Telegram</a></li>
                     <li><a class="underline underline-offset-4 decoration-ink/25 hover:decoration-ink transition-colors" href="tel:+48507588155">+48&nbsp;507&nbsp;588&nbsp;155</a></li>
                     <li><a class="underline underline-offset-4 decoration-ink/25 hover:decoration-ink transition-colors" href="mailto:apostilo@gmail.com">apostilo@gmail.com</a></li>
                   </ul>
                 </div>
-                <p class="text-[13px] text-ink/45 pt-2">
+                <p class="qd-note pt-2">
                   Ceny końcowe, zawierają opłaty skarbowe. Od&nbsp;6&nbsp;stron tłumaczenia – 10% rabatu.<br>Ostateczna wycena – po zobaczeniu dokumentu.
                 </p>
               </div>
@@ -52,6 +52,9 @@
 
             <!-- Форма -->
             <div class="col-span-12 lg:col-span-7 bg-paper text-ink p-7 sm:p-12 lg:p-14">
+
+              <p class="qd-formhead">Zamów wycenę</p>
+              <p class="qd-formsub">Wystarczą imię, telefon i&nbsp;rodzaj usługi. Zdjęcie dokumentu pozwala podać cenę od&nbsp;razu.</p>
 
               <!-- ZMIEŃ action na swój endpoint (Formspree / Web3Forms / własny backend) -->
               <form id="quote-form"
@@ -61,19 +64,21 @@
                     novalidate
                     class="quote-form space-y-7">
 
+                <div class="qd-row">
                 <div>
-                  <label for="name" class="block font-cond uppercase tracking-[0.16em] text-[11px] text-paper/50 mb-1">Imię *</label>
+                  <label for="name" class="qd-label">Imię *</label>
                   <input class="field" type="text" id="name" name="name" placeholder="Jak się do Ciebie zwracać?" required autocomplete="given-name">
                 </div>
 
                 <div>
-                  <label for="phone" class="block font-cond uppercase tracking-[0.16em] text-[11px] text-paper/50 mb-1">Telefon / WhatsApp *</label>
+                  <label for="phone" class="qd-label">Telefon / WhatsApp *</label>
                   <input class="field" type="tel" id="phone" name="phone" placeholder="+48 600 000 000" required autocomplete="tel"
                          inputmode="tel" pattern="[+0-9\s()\-]{7,20}">
                 </div>
+                </div>
 
                 <div>
-                  <label for="service" class="block font-cond uppercase tracking-[0.16em] text-[11px] text-paper/50 mb-1">Usługa *</label>
+                  <label for="service" class="qd-label">Usługa *</label>
                   <select class="field" id="service" name="service" required>
                     <option value="" disabled selected>Wybierz usługę…</option>
                     <option value="apostille-msz">Apostille – MSZ</option>
@@ -87,25 +92,25 @@
                 </div>
 
                 <div>
-                  <label for="message" class="block font-cond uppercase tracking-[0.16em] text-[11px] text-paper/50 mb-1">Krótki opis (opcjonalnie)</label>
+                  <label for="message" class="qd-label">Krótki opis <small>– opcjonalnie</small></label>
                   <input class="field" type="text" id="message" name="message" placeholder="Np. akt urodzenia UA, potrzebne na kartę pobytu">
                 </div>
 
                 <div>
-                  <label for="file" class="block font-cond uppercase tracking-[0.16em] text-[11px] text-paper/50 mb-2">Skan lub zdjęcie dokumentu</label>
+                  <label for="file" class="qd-label">Zdjęcie lub skan dokumentu <small>– przyspiesza wycenę</small></label>
                   <input class="file-input-hidden" type="file" id="file" name="file"
                          accept=".pdf,.jpg,.jpeg,.png,.heic,.webp" multiple>
                   <div class="field field-file flex items-center gap-3">
                     <label for="file" class="file-btn">Wybierz pliki</label>
                     <span id="file-name" class="file-name">Nie wybrano plików</span>
                   </div>
-                  <p class="mt-2 text-[13px] text-paper/45">PDF, JPG, PNG lub HEIC. Maks. 10&nbsp;MB. Możesz dodać kilka plików.</p>
+                  <p class="qd-hint mt-2">PDF, JPG, PNG lub HEIC. Maks. 10&nbsp;MB. Możesz dodać kilka plików.</p>
                 </div>
 
                 <div class="flex items-start gap-3 pt-1">
                   <input type="checkbox" id="consent" name="consent" required
                          class="mt-1 w-5 h-5 shrink-0 accent-[#EFB01F] cursor-pointer">
-                  <label for="consent" class="text-[14px] leading-[1.5] text-paper/70 cursor-pointer">
+                  <label for="consent" class="qd-consent cursor-pointer">
                     Wyrażam zgodę na przetwarzanie moich danych osobowych w&nbsp;celu przygotowania wyceny
                     i&nbsp;kontaktu zwrotnego, zgodnie z
                     <a href="/#polityka-prywatnosci" class="underline underline-offset-2 hover:text-ochre">Polityką Prywatności</a>. *
@@ -126,7 +131,7 @@
                   </a>
                 </div>
 
-                <p id="form-status" role="status" aria-live="polite" class="text-[15px] text-ochre hidden"></p>
+                <p id="form-status" role="status" aria-live="polite" class="qd-status text-ochre hidden"></p>
               </form>
             </div>
           </div>

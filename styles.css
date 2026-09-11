@@ -1406,9 +1406,8 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd-scroll > div > .grid{ min-height:88vh; align-items:stretch; }
 /* Правая колонка начинается на уровне абзаца «Wypełnij formularz…» – ниже заголовка:
    3 строки h2 (56px × 0.94) + кикер ≈ 11.5rem поверх собственного padding колонки */
-@media (min-width:1024px){
-  .qd-scroll .grid > div:last-child{ padding-top:calc(3.5rem + 11.5rem); }
-}
+/* С 11.09.2026 форма начинается с верха панели, под собственным заголовком «Zamów wycenę» –
+   верхние поля обеих колонок равны (p-14), без смещения на высоту h2. */
 /* Шапка левой колонки («/ Wycena» + «Ekspresowa wycena dokumentu») закреплена:
    видна всё время, пока листаешь содержимое панели */
 /* top = верхний padding колонки (p-7 / sm:p-12 / lg:p-14), чтобы при закреплении
@@ -1423,6 +1422,45 @@ details[open] .chev{ transform:rotate(45deg) }
   letter-spacing:.12em; font-size:12px; font-weight:600; color:rgba(31,33,32,.6); }
 .qd-eta b{ font-size:13px; font-weight:700; letter-spacing:.1em; color:var(--c-ink);
   background:var(--c-terra); border-radius:6px; padding:.45em .75em .5em; }
+
+/* ===== Панель wyceny: крупнее и яснее (вариант 11.09.2026). Только панель (.qd),
+   встроенная форма wy-v2 на ua/ru/en не затронута. ===== */
+.qd .wy-v2 .qd-eta{ font-size:14px; }
+.qd .wy-v2 .qd-eta b{ font-size:15px; }
+.qd .wy-v2 .qd-lead{ font-size:19px; line-height:1.5; color:rgba(31,33,32,.82); }
+.qd .wy-v2 .qd-sub{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
+  letter-spacing:.14em; font-size:13px; font-weight:700; color:rgba(31,33,32,.6); }
+.qd .wy-v2 .cn-send{ font-size:17px; color:rgba(31,33,32,.85); }
+.qd .wy-v2 .cn-send li{ margin:.45rem 0; }
+.qd .wy-v2 .qd-contacts{ font-size:16px; }
+.qd .wy-v2 .qd-note{ font-size:14px; line-height:1.5; color:rgba(31,33,32,.6); font-weight:500; }
+/* заголовок формы */
+.qd .wy-v2 .qd-formhead{ font-size:26px; font-weight:800; letter-spacing:-.02em; line-height:1.1; color:var(--c-ink); }
+.qd .wy-v2 .qd-formsub{ font-size:16px; line-height:1.5; color:rgba(31,33,32,.65); font-weight:500; margin:.6rem 0 1.6rem; max-width:46ch; }
+/* подписи полей: обычный регистр, 15px, полный цвет */
+.qd .wy-v2 .qd-label{ display:block; font-size:15px; font-weight:600; line-height:1.3; margin:0 0 .45rem;
+  color:var(--c-ink) !important; }
+.qd .wy-v2 .qd-label small{ font-size:14px; font-weight:500; color:rgba(31,33,32,.5); }
+/* поля в рамке вместо линии снизу */
+.qd .wy-v2 .field{ font-size:18px; line-height:1.3; border:1px solid rgba(31,33,32,.3); border-radius:8px;
+  padding:.8rem 1rem; background:var(--c-paper); }
+.qd .wy-v2 .field:focus{ border-color:var(--c-terra); border-width:2px; padding:calc(.8rem - 1px) calc(1rem - 1px); box-shadow:none; }
+.qd .wy-v2 .field::placeholder{ color:rgba(31,33,32,.45); }
+.qd .wy-v2 select.field{ padding-right:2.4rem; }
+.qd .wy-v2 .quote-form > * + *{ margin-top:1.3rem; }
+.qd .wy-v2 .qd-row{ display:grid; gap:1.3rem; }
+@media (min-width:640px){ .qd .wy-v2 .qd-row{ grid-template-columns:1fr 1fr; } }
+/* файл: пунктирная рамка, крупная кнопка */
+.qd .wy-v2 .field-file{ border-style:dashed; padding:.6rem .6rem .6rem 1rem; gap:1rem; }
+.qd .wy-v2 .file-btn{ font-size:14px; letter-spacing:.08em; padding:.7rem 1.1rem; }
+.qd .wy-v2 .file-name{ font-size:15px; opacity:.7; }
+.qd .wy-v2 .qd-hint{ font-size:14px; color:rgba(31,33,32,.55); font-weight:500; }
+.qd .wy-v2 .qd-consent{ font-size:15px; line-height:1.5; color:rgba(31,33,32,.8) !important; font-weight:500; }
+.qd .wy-v2 .qd-consent a:hover{ color:var(--c-ink); }
+.qd .wy-v2 #consent, .qd .wy-v2 #consent-qd{ width:22px; height:22px; accent-color:var(--c-terra); }
+.qd .wy-v2 .qd-status{ font-size:16px; color:var(--c-ink); font-weight:600; }
+.qd .wy-v2 .btn{ font-size:17px; padding:1rem 2rem; border-radius:8px; }
+.qd .wy-v2 .btn--pop{ flex:1 1 auto; }
 
 /* Кнопка-стрелка над плашкой, у правого края – без кружка, белая */
 .qd-close{ margin:0 8px 10px 0; width:56px; height:56px; display:grid; place-items:center;
