@@ -1566,7 +1566,7 @@ details[open] .chev{ transform:rotate(45deg) }
 
 .qd .wy-v2 .file-input-hidden:focus-visible + .qd-drop{ outline:2px solid var(--c-terra); outline-offset:3px; }
 /* вариант D (14.09.2026): чёрный кружок «+» и надпись; вся рамка – один клик (label for=file) */
-.qd .wy-v2 .qd-drop-row{ display:flex; align-items:center; gap:.75rem; }
+.qd .wy-v2 .qd-drop-row{ display:flex; align-items:center; justify-content:center; gap:.75rem; }
 .qd .wy-v2 .qd-plus{ flex:none; width:44px; height:44px; border-radius:50%; background:var(--c-ink); color:var(--c-paper);
   display:grid; place-items:center; transition:transform .18s ease; }
 .qd .wy-v2 .qd-drop-btn{ flex:0 0 auto; background:none; color:var(--c-ink); font-weight:700; font-size:18px;
