@@ -1874,3 +1874,12 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-drop:hover .qd-plus, .qd .wy-v2 .qd-drop.is-over .qd-plus{ transform:rotate(90deg); }
 /* Линия телефона по длине номера с кодом «+48 600 000 000» (~7.4em) + немного воздуха (14.09.2026) */
 .qd .wy-v2 .quote-form input[type="tel"].field.qd-line{ max-width:8em; }
+
+/* «+» в дропзоне при наведении превращается в стрелку вниз (14.09.2026).
+   Стойка остаётся; половины перекладины опускаются к низу стойки (12,19) и расходятся под 45° – наконечник.
+   Поворот всего кружка на 90° отменён. */
+.qd .wy-v2 .qd-drop:hover .qd-plus, .qd .wy-v2 .qd-drop.is-over .qd-plus{ transform:none; }
+.qd .wy-v2 .qd-plus svg path{ transform-box:view-box; transform-origin:12px 12px; transition:transform .3s ease; }
+.qd .wy-v2 .qd-drop:hover .qd-p-l, .qd .wy-v2 .qd-drop.is-over .qd-p-l{ transform:translateY(7px) rotate(45deg); }
+.qd .wy-v2 .qd-drop:hover .qd-p-r, .qd .wy-v2 .qd-drop.is-over .qd-p-r{ transform:translateY(7px) rotate(-45deg); }
+@media (prefers-reduced-motion:reduce){ .qd .wy-v2 .qd-plus svg path{ transition:none; } }
