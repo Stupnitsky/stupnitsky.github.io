@@ -1540,10 +1540,7 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd .wy-v2 .quote-form > * + *{ margin-top:1.6rem; }
 /* блок телефона отстоит от дропзоны дальше остальных (+24%) */
 .qd .wy-v2 .quote-form > * + *:has(#phone), .qd .wy-v2 .quote-form > * + *:has([id^="phone"]){ margin-top:2rem; }
-/* альтернативный канал под заголовком (v3, 12.09.2026): фото в WhatsApp, а не в форму */
-.qd .wy-v2 .qd-alt{ font-size:14px; line-height:1.5; color:rgba(31,33,32,.65) !important; margin:1.6rem 0 0; padding-top:1.2rem; border-top:1px solid rgba(31,33,32,.12); }
-.qd .wy-v2 .qd-alt a, .qd .wy-v2 .qd-legal a{ text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
-.qd .wy-v2 .qd-alt a:hover{ color:var(--c-ink); }
+.qd .wy-v2 .qd-legal a{ text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
 .qd .wy-v2 .qd-row{ display:grid; gap:1.3rem; }
 @media (min-width:640px){ .qd .wy-v2 .qd-row{ grid-template-columns:1fr 1fr; } }
 /* документ – первое и главное поле: вся рамка кликабельна (label for=file), кнопка terra,
@@ -1585,7 +1582,7 @@ details[open] .chev{ transform:rotate(45deg) }
 /* правая колонка панели – всё по центру (14.09.2026) */
 .qd .wy-v2 .quote-form{ text-align:center; }
 .qd .wy-v2 .quote-form .qd-label, .qd .wy-v2 .quote-form .qd-hint, .qd .wy-v2 .quote-form .qd-legal,
-.qd .wy-v2 .quote-form .qd-alt, .qd .wy-v2 .quote-form .qd-status{ text-align:center; }
+.qd .wy-v2 .quote-form .qd-status{ text-align:center; }
 .qd .wy-v2 .quote-form #phone, .qd .wy-v2 .quote-form [id^="phone"], .qd .wy-v2 .quote-form [id^="email"]{ text-align:center; }
 .qd .wy-v2 .quote-form textarea.field{ text-align:left; }
 .qd .wy-v2 .qd-submit{ display:inline-flex; margin:0 auto; }
