@@ -1854,3 +1854,8 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .quote-form input[type="email"].field.qd-line{ max-width:20rem; margin:0 auto; }
 .qd .wy-v2 .quote-form #phone.qd-line, .qd .wy-v2 .quote-form [id^="phone"].qd-line, .qd .wy-v2 .quote-form [id^="email"].qd-line{ text-align:center; }
 .qd .wy-v2 .quote-form textarea.field.qd-line{ text-align:left; }
+/* «Podaj numer do kontaktu» – те же свойства, что у раскрывашек, но всегда открыт и не сворачивается:
+   стрелка в открытом положении, наведение как у остальных, клик ставит курсор в поле (label for=phone) */
+.qd .wy-v2 .qd-acc--static .qd-acc-head .qd-chev{ transform:rotate(180deg); }
+.qd .wy-v2 .qd-acc--static .qd-acc-head{ cursor:pointer; }
+.qd .wy-v2 .qd-acc--static .qd-acc-head:hover{ color:var(--c-ink) !important; }
