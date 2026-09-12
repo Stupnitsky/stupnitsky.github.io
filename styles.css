@@ -1816,3 +1816,25 @@ body > main{ background:var(--c-page); }
 /* «Podaj numer do kontaktu» со стрелкой вниз – только для симметрии с раскрывашками, поле всегда видно (14.09.2026) */
 .qd .wy-v2 .qd-label--chev{ display:flex; align-items:center; justify-content:center; gap:7px; }
 .qd .wy-v2 .qd-label--chev .qd-chev{ flex:none; }
+
+/* ===== Проба 14.09.2026: вопросы формы – аккордеон как FAQ, поля – тонкая линия вместо рамки =====
+   Ряд: вопрос слева (роль 2), «+» справа, линия снизу; открытый «+» поворачивается в «×» как в FAQ.
+   «Podaj numer do kontaktu» открыт всегда (--static). Откат – git revert этого коммита. */
+.qd .wy-v2 .qd-acc{ border-bottom:1px solid rgba(31,33,32,.15); text-align:left; }
+.qd .wy-v2 .quote-form > .qd-acc + .qd-acc{ margin-top:0; }
+.qd .wy-v2 .qd-acc-head{ display:flex; width:100%; align-items:center; justify-content:space-between; gap:1.5rem;
+  padding:1rem 0; margin:0; background:none; border:0; cursor:pointer; text-align:left;
+  font-family:'Fira Sans',sans-serif; font-size:16px; font-weight:600; line-height:1.3; color:rgba(31,33,32,.7) !important; }
+.qd .wy-v2 .qd-acc--static .qd-acc-head{ cursor:default; }
+.qd .wy-v2 button.qd-acc-head:hover, .qd .wy-v2 button.qd-acc-head:focus-visible{ color:var(--c-ink) !important; }
+.qd .wy-v2 .qd-acc-chev{ font-size:24px; font-weight:600; line-height:1; color:rgba(31,33,32,.7); transition:transform .25s ease; }
+.qd .wy-v2 .qd-acc-head[aria-expanded="true"] .qd-acc-chev, .qd .wy-v2 .qd-acc--static .qd-acc-chev{ transform:rotate(45deg); }
+.qd .wy-v2 .qd-acc-body{ padding:0 0 1.1rem; }
+.qd .wy-v2 .qd-email, .qd .wy-v2 .qd-msg{ margin-top:0; }
+/* поле-линия */
+.qd .wy-v2 .quote-form .field.qd-line{ width:100%; max-width:none; margin:0; border:0; border-bottom:1px solid rgba(31,33,32,.3);
+  border-radius:0; padding:.35rem 0 .55rem; background:transparent; text-align:left; box-shadow:none; }
+.qd .wy-v2 .quote-form .field.qd-line:focus{ border:0; border-bottom:1px solid var(--c-ink); padding:.35rem 0 .55rem; outline:none; box-shadow:none; }
+.qd .wy-v2 .quote-form #phone.qd-line, .qd .wy-v2 .quote-form [id^="phone"].qd-line, .qd .wy-v2 .quote-form [id^="email"].qd-line{ text-align:left; }
+.qd .wy-v2 .quote-form textarea.field.qd-line{ min-height:3.2rem; resize:vertical; }
+.qd .wy-v2 .quote-form > .qd-tags + .qd-acc{ margin-top:1.25rem; }
