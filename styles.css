@@ -1584,7 +1584,7 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd .wy-v2 .qd-tag:hover span{ background:#D0D0CB; }
 .qd .wy-v2 .qd-tag input:checked + span{ background:var(--c-terra); }
 .qd .wy-v2 .qd-tag input:focus-visible + span{ outline:2px solid var(--c-terra); outline-offset:2px; }
-.qd .wy-v2 .qd-tag-more{ font-size:15px; color:rgba(31,33,32,.6); margin-left:.2rem; }
+.qd .wy-v2 .qd-tag-more{ flex:1 0 100%; font-size:15px; color:rgba(31,33,32,.6); margin:.4rem 0 0; }
 .qd .wy-v2 .qd-msg{ flex:1 0 100%; margin-top:.4rem; }
 .qd .wy-v2 textarea.field{ resize:vertical; min-height:5.5rem; }
 /* одна кнопка на всю ширину, под ней строка согласия */
