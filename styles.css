@@ -1892,3 +1892,5 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .quote-form > div:has(> [type="submit"]){ margin-top:2.25rem; }
 /* Номер оператора в левой колонке – по правому краю колонки (14.09.2026) */
 .qd .wy-v2 .qd-call{ display:block; width:fit-content; margin-left:auto; }
+/* строка про оператора с ручными переносами – без ограничения ширины, чтобы строки не ломались сами (14.09.2026) */
+.qd .wy-v2 .qd-human{ max-width:none; }
