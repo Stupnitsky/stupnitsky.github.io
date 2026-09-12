@@ -1795,3 +1795,7 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-tag-more.qd-ask{ margin-top:.75rem; }
 .qd .wy-v2 .qd-email{ margin-top:.5rem; }
 .qd .wy-v2 .qd-msg{ margin-top:.5rem; }
+
+/* Рамка дропзоны той же толщины и тона, что у полей телефона и e-mail (1px, ink .3), только пунктиром (14.09.2026).
+   Наведение, перетаскивание и «файл выбран» перекрашивают её правилами выше – у них специфичность больше. */
+.qd .wy-v2 .qd-drop{ border-width:1px; border-color:rgba(31,33,32,.3); }
