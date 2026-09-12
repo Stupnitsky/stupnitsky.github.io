@@ -341,7 +341,12 @@
       clearTimeout(leaveTimer);
       if (isOpen()) return;
       btn.setAttribute('aria-expanded', 'true');
-      if (seg) seg.style.setProperty('--lang-h', pop.offsetHeight + 'px');
+      if (seg) {
+        /* до lg список центрируется под кнопкой: её середина относительно плашки */
+        var b = btn.getBoundingClientRect(), sr = seg.getBoundingClientRect();
+        seg.style.setProperty('--lang-x', (b.left + b.width / 2 - sr.left) + 'px');
+        seg.style.setProperty('--lang-h', pop.offsetHeight + 'px');
+      }
     }
     function close(focusBtn) {
       clearTimeout(leaveTimer);
