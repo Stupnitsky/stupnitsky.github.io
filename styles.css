@@ -1872,3 +1872,5 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-drop:hover .qd-drop-btn, .qd .wy-v2 .qd-drop.is-over .qd-drop-btn{ text-decoration:none; }
 .qd .wy-v2 .qd-plus{ transition:transform .3s ease, background-color .18s ease; }
 .qd .wy-v2 .qd-drop:hover .qd-plus, .qd .wy-v2 .qd-drop.is-over .qd-plus{ transform:rotate(90deg); }
+/* Линия телефона по длине номера с кодом «+48 600 000 000» (~7.4em) + немного воздуха (14.09.2026) */
+.qd .wy-v2 .quote-form input[type="tel"].field.qd-line{ max-width:8em; }
