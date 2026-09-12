@@ -1515,6 +1515,7 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd .wy-v2 .qd-eta{ font-size:14px; }
 .qd .wy-v2 .qd-eta b{ font-size:15px; }
 .qd .wy-v2 .qd-lead{ font-size:19px; line-height:1.5; color:rgba(31,33,32,.82); }
+.qd .wy-v2 .qd-lead b{ font-weight:700; color:var(--c-ink); }
 .qd .wy-v2 .qd-sub{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
   letter-spacing:.14em; font-size:13px; font-weight:700; color:rgba(31,33,32,.6); }
 .qd .wy-v2 .cn-send{ font-size:17px; color:rgba(31,33,32,.85); }
