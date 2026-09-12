@@ -1884,10 +1884,6 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-drop:hover .qd-p-r, .qd .wy-v2 .qd-drop.is-over .qd-p-r{ transform:translateY(7px) rotate(-45deg); }
 @media (prefers-reduced-motion:reduce){ .qd .wy-v2 .qd-plus svg path{ transition:none; } }
 
-/* Пунктир дропзоны длиннее (14.09.2026): штрих 7px, промежуток 5px. CSS-рамка dashed длину не задаёт,
-   поэтому рамка рисуется SVG-фоном (stroke 2px, половина за краем = видимый 1px, тон как у линий полей).
-   Настоящая рамка остаётся прозрачной 1px, чтобы не менялись размеры. */
-.qd .wy-v2 .qd-drop{ border-color:transparent !important; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' rx='10' ry='10' fill='none' stroke='%231F2120' stroke-opacity='.3' stroke-width='2' stroke-dasharray='7 5'/%3E%3C/svg%3E"); }
-.qd .wy-v2 .qd-drop:hover{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' rx='10' ry='10' fill='none' stroke='%231F2120' stroke-opacity='.7' stroke-width='2' stroke-dasharray='7 5'/%3E%3C/svg%3E"); }
-.qd .wy-v2 .qd-drop.is-over{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' rx='10' ry='10' fill='none' stroke='%231F2120' stroke-opacity='1' stroke-width='2' stroke-dasharray='7 5'/%3E%3C/svg%3E"); }
-.qd .wy-v2 .qd-drop.is-filled{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' rx='10' ry='10' fill='none' stroke='%231F2120' stroke-opacity='.7' stroke-width='2'/%3E%3C/svg%3E"); }
+/* Выбранный чип – серый, не чёрный (14.09.2026): фон и рамка #D0D0CB, текст ink. Остальные свойства чипа без изменений */
+.qd .wy-v2 .qd-tag input:checked + span,
+.qd .wy-v2 .qd-tag:hover input:checked + span{ background:#D0D0CB; border-color:#D0D0CB; color:var(--c-ink); }
