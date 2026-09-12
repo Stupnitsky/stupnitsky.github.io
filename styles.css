@@ -1538,6 +1538,8 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd .wy-v2 .field::placeholder{ color:rgba(31,33,32,.45); }
 .qd .wy-v2 select.field{ padding-right:2.4rem; }
 .qd .wy-v2 .quote-form > * + *{ margin-top:1.6rem; }
+/* блок телефона отстоит от дропзоны дальше остальных (+24%) */
+.qd .wy-v2 .quote-form > * + *:has(#phone), .qd .wy-v2 .quote-form > * + *:has([id^="phone"]){ margin-top:2rem; }
 /* альтернативный канал под заголовком (v3, 12.09.2026): фото в WhatsApp, а не в форму */
 .qd .wy-v2 .qd-alt{ font-size:14px; line-height:1.5; color:rgba(31,33,32,.65) !important; margin:1.6rem 0 0; padding-top:1.2rem; border-top:1px solid rgba(31,33,32,.12); }
 .qd .wy-v2 .qd-alt a, .qd .wy-v2 .qd-legal a{ text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
