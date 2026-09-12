@@ -1521,7 +1521,7 @@ details[open] .chev{ transform:rotate(45deg) }
 @media (min-width:1024px){ .qd .wy-v2 .qd-formhead:first-child{ margin-top:2.25rem; } }
 .qd .wy-v2 .qd-formhead{ margin-bottom:1.4rem; font-size:26px; font-weight:800; letter-spacing:-.02em; line-height:1.1; color:var(--c-ink); }
 /* заголовок над формой – легче и серее, чтобы не спорил с «Ekspresowa» слева */
-.qd .wy-v2 .qd-formhead--light{ font-weight:400; font-size:22px; letter-spacing:0; color:rgba(31,33,32,.65); text-align:center; text-wrap:balance; }
+.qd .wy-v2 .qd-formhead--light{ font-weight:400; font-size:22px; letter-spacing:0; color:rgba(31,33,32,.65); text-align:center; line-height:1.3; }
 .qd .wy-v2 .qd-formsub{ font-size:16px; line-height:1.5; color:rgba(31,33,32,.65); font-weight:500; margin:.6rem 0 1.6rem; max-width:46ch; }
 /* подписи полей: обычный регистр, 15px, полный цвет */
 .qd .wy-v2 .qd-label{ display:block; font-size:15px; font-weight:600; line-height:1.3; margin:0 0 .45rem;
@@ -1567,7 +1567,14 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd .wy-v2 .qd-linkbtn:hover, .qd .wy-v2 .qd-linkbtn:focus-visible{ color:var(--c-ink); }
 .qd .wy-v2 .qd-email{ margin-top:1.2rem; }
 /* чипы «czego dotyczy sprawa»: чекбоксы в виде таблеток, без набора текста (14.09.2026) */
-.qd .wy-v2 .qd-tags{ display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; }
+/* правая колонка панели – всё по центру (14.09.2026) */
+.qd .wy-v2 .quote-form{ text-align:center; }
+.qd .wy-v2 .quote-form .qd-label, .qd .wy-v2 .quote-form .qd-hint, .qd .wy-v2 .quote-form .qd-legal,
+.qd .wy-v2 .quote-form .qd-alt, .qd .wy-v2 .quote-form .qd-status{ text-align:center; }
+.qd .wy-v2 .quote-form #phone, .qd .wy-v2 .quote-form [id^="phone"], .qd .wy-v2 .quote-form [id^="email"]{ text-align:center; }
+.qd .wy-v2 .quote-form textarea.field{ text-align:left; }
+.qd .wy-v2 .qd-submit{ display:inline-flex; margin:0 auto; }
+.qd .wy-v2 .qd-tags{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:.5rem; }
 .qd .wy-v2 .qd-tag{ position:relative; cursor:pointer; margin:0; }
 .qd .wy-v2 .qd-tag input{ position:absolute; opacity:0; width:1px; height:1px; margin:0; }
 .qd .wy-v2 .qd-tag span{ display:inline-block; font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
