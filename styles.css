@@ -1894,3 +1894,5 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-call{ display:block; width:fit-content; margin-left:auto; }
 /* строка про оператора с ручными переносами – без ограничения ширины, чтобы строки не ломались сами (14.09.2026) */
 .qd .wy-v2 .qd-human{ max-width:none; }
+/* Плашка ошибки: переносы из текста (&#10; в data-msg-required), без ограничения ширины (13.09.2026) */
+.qd .wy-v2 .qd-status.is-err:not(.hidden){ white-space:pre-line; max-width:none; }
