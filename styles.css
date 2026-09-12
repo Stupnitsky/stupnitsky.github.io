@@ -1519,7 +1519,7 @@ details[open] .chev{ transform:rotate(45deg) }
 /* плашки не ломаются внутри: на узком экране слоган целиком переносится под «15 min» */
 .qd .wy-v2 .qd-eta b, .qd .wy-v2 .qd-eta span{ white-space:nowrap; }
 /* слоган рядом с «15 min» – на белой плашке той же формы, что и жёлтая */
-.qd .wy-v2 .qd-eta span{ align-self:stretch; display:flex; align-items:center; background:var(--c-paper); color:var(--c-ink); border-radius:6px; padding:0 .75em; }
+.qd .wy-v2 .qd-eta span{ align-self:stretch; min-height:37px; box-sizing:border-box; display:flex; align-items:center; background:var(--c-paper); color:var(--c-ink); border-radius:6px; padding:0 .75em; }
 /* обещание – единственный текст колонки под заголовком, крупно (14.09.2026) */
 .qd .wy-v2 .qd-lead{ font-size:24px; line-height:1.3; letter-spacing:-.01em; color:var(--c-ink); max-width:none; }
 .qd .wy-v2 .qd-lead b{ font-weight:600; color:var(--c-ink); }
