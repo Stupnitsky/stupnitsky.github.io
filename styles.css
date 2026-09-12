@@ -130,6 +130,10 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 .lang-switch{ border:0; background:none; padding:6px 0; color:var(--c-ink); cursor:pointer;
               line-height:1; transition:opacity .2s ease; }
 .lang-switch{ min-width:104px; text-align:center; }   /* ширина фиксирована – смена языка не двигает меню */
+/* шеврон сообщает, что у кнопки есть продолжение (аудит меню 11.09.2026); при раскрытии переворачивается */
+.lang-switch{ display:inline-flex; align-items:center; justify-content:center; gap:7px; }
+.ls-chev{ flex:0 0 auto; transition:transform .18s ease; }
+.lang-switch[aria-expanded="true"] .ls-chev{ transform:rotate(180deg); }
 .lang-switch .nl-swap{ justify-items:center; }
 .lang-switch.on-dark{ color:var(--c-paper); }
 .lang-switch:focus-visible{ outline:2px solid var(--c-ink); outline-offset:3px; }
@@ -137,13 +141,16 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
                       transition:opacity .18s ease, transform .18s ease; }
 .lang-switch.is-changing .ls-now{ opacity:0; transform:translateY(-5px); }
 
-/* Выпадающий список языков – раскрывается при наведении на переключатель */
-.lang-wrap{ position:relative; }
-/* Список без собственной плашки: вместо неё вниз расширяется правая плашка шапки –
-   высоту ей задаёт app.js (padding-bottom), список ложится прямо на неё. */
-/* Язык – в своей плашке, как логотип; расширяется вниз только она.
-   Продолжение рисует отдельный слой, поэтому ничего в шапке не сдвигается,
-   а высоту (--lang-h) задаёт app.js по фактической высоте списка. */
+/* Выпадающий список языков (переделан 12.09.2026 по аудиту меню).
+   Единственное состояние – aria-expanded на кнопке: список открывается по клику, Enter, Space
+   и стрелке вниз, закрывается по Escape, клику мимо и уходу фокуса. Наведение открывает его
+   только при мыши (matchMedia hover:hover в app.js), на тач-устройствах работает тап.
+   Список позиционируется от плашки языка (.lang-wrap без position), поэтому его правый край
+   совпадает с полем плашки на всех ширинах, а не с серединой кнопки. */
+.lang-wrap{ position:static; }
+/* Список без собственной плашки: вниз расширяется сама плашка языка –
+   продолжение рисует отдельный слой ::after, высоту (--lang-h) задаёт app.js
+   по фактической высоте списка, так что ничего в шапке не сдвигается. */
 .hdr-seg--lang{ position:relative; }
 /* до lg меню скрыто, поэтому средняя плашка пустая – убираем её,
    а языковая занимает освободившееся место, как было до разделения */
@@ -154,37 +161,56 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 /* Слой начинается на 24px выше низа плашки и всегда скруглён снизу так же, как она:
    в покое он просто повторяет её нижний край (не виден), при раскрытии продолжает её вниз.
    Углы плашки при этом не трогаем – поэтому на стыке ни в один момент нет «зубца». */
-.hdr-seg--lang::after{ content:''; position:absolute; left:0; right:0; top:calc(100% - 24px);
+/* Ширина слоя – не меньше плашки, а на десктопе (плашка узкая) равна ширине списка с полями
+   (--lang-w из app.js): список никогда не вылезает за подложку; слой прижат к правому краю. */
+.hdr-seg--lang::after{ content:''; position:absolute; left:auto; right:0; top:calc(100% - 24px);
+  width:max(100%, var(--lang-w, 0px));
   height:calc(var(--lang-h, 0px) + 24px); background:inherit; border-radius:0 0 16px 16px; z-index:-1;
   transition:height .28s cubic-bezier(.2,.7,.25,1); }
 @media (min-width:768px){ .hdr-seg--lang::after{ border-radius:0 0 20px 20px; } }
-.lang-pop{ position:absolute; top:calc(100% + 6px); left:50%; transform:translate(-50%,-6px);
-           min-width:172px; padding:0; margin-top:0; z-index:60;
-           display:flex; flex-direction:column;
+/* список ложится под низ плашки, прижат к её правому полю (px-4 / sm:px-5) */
+.lang-pop{ position:absolute; top:100%; right:1rem; transform:translateY(-6px);
+           min-width:188px; padding:2px 0 12px; margin:0; z-index:60;
+           display:flex; flex-direction:column; gap:2px;
            color:inherit; background:transparent; border-radius:0;
            opacity:0; visibility:hidden; pointer-events:none;
            transition:opacity .2s ease, transform .2s ease, visibility 0s linear .2s; }
-/* невидимый «мостик» между переключателем и списком:
-   курсор проходит по нему и меню не закрывается */
-.lang-pop::before{ content:""; position:absolute; left:0; right:0; bottom:100%; height:14px; }
-.lang-wrap.is-picked .lang-pop{ opacity:0 !important; visibility:hidden !important;
-           pointer-events:none !important; transform:translate(-50%,-6px) !important; }
-.lang-wrap:hover .lang-pop, .lang-wrap:focus-within .lang-pop{
+@media (min-width:640px){ .lang-pop{ right:1.25rem; } }
+/* невидимый «мостик» от кнопки до списка: курсор проходит по нему и список не закрывается */
+.lang-pop::before{ content:""; position:absolute; left:0; right:0; bottom:100%; height:34px; }
+.lang-switch[aria-expanded="true"] + .lang-pop{
            opacity:1; visibility:visible; pointer-events:auto;
-           transform:translate(-50%,0); transition-delay:0s; }
-.lang-opt{ border:0; background:none; cursor:pointer; text-align:center;
-           padding:4px 0; font-size:16px; font-weight:400; line-height:1.3;
-           color:inherit; transition:none; }
-.lang-opt:hover, .lang-opt:focus-visible{ font-weight:700; }
-/* активный язык в списке не показываем – он уже стоит в шапке */
-.lang-opt{ font-weight:400; }
-.lang-opt.is-current{ display:none; }
+           transform:none; transition-delay:0s; }
+/* Пункт – строка на всю ширину списка, 41px высотой (тач-цель), код языка слева, галочка у текущего.
+   При наведении подсвечивается строка целиком, начертание не меняется – жирным стоит только текущий. */
+.lang-opt{ display:flex; align-items:center; gap:10px; width:100%; box-sizing:border-box;
+           border:0; background:none; cursor:pointer; text-align:left; text-decoration:none;
+           padding:11px 12px; border-radius:8px; font-size:16px; font-weight:400; line-height:1.2;
+           white-space:nowrap; color:inherit; transition:background-color .15s ease; }
+.lang-opt:hover{ background:rgba(31,33,32,.07); }
+.lang-opt:focus-visible{ outline:2px solid currentColor; outline-offset:-2px; }
+.lang-opt.is-current, .lang-opt[aria-current="true"]{ font-weight:700; }
+.lo-code{ flex:0 0 22px; font-size:11px; font-weight:700; letter-spacing:.07em; opacity:.55; }
+.lo-tick{ flex:0 0 auto; margin-left:auto; opacity:0; }
+.lang-opt.is-current .lo-tick, .lang-opt[aria-current="true"] .lo-tick{ opacity:1; }
+@media (prefers-reduced-motion:reduce){
+  .lang-pop, .ls-chev, .hdr-seg--lang::after, .lang-opt{ transition:none; }
+}
 /* пока список раскрыт, название языка в шапке полужирное – как пункт меню при наведении */
-header .lang-wrap:hover .lang-switch,
-header .lang-wrap:focus-within .lang-switch{ font-weight:700; }
+header .lang-switch[aria-expanded="true"]{ font-weight:700; }
 /* инверсия цвета, как у пунктов меню: над тёмным блоком список светлеет */
 .lang-pop{ color:var(--c-ink); }
-.lang-switch.on-dark + .lang-pop{ color:var(--c-paper); }
+.lang-switch.on-dark + .lang-pop, .hdr-glass.on-dark .lang-pop{ color:var(--c-paper); }
+.hdr-glass.on-dark .lang-opt:hover{ background:rgba(255,255,255,.14); }
+
+/* Мобильное меню (12.09.2026, по аудиту): пока панель открыта, страница под ней не прокручивается,
+   а сама панель прокручивается внутри себя, если не влезает в окно. Бургер складывается в крестик. */
+html.menu-open, html.menu-open body{ overflow:hidden; }
+#mobile-nav{ max-height:calc(100vh - 100px); max-height:calc(100dvh - 100px); overflow-y:auto; }
+#burger span{ transition:transform .2s ease; }
+#burger[aria-expanded="true"] span:first-child{ transform:translateY(3.5px) rotate(45deg); }
+#burger[aria-expanded="true"] span:last-child{ transform:translateY(-3.5px) rotate(-45deg); }
+@media (prefers-reduced-motion:reduce){ #burger span{ transition:none; } }
 
 /* Кнопка WhatsApp: по умолчанию только логотип, подпись выезжает при наведении */
 .wa-btn{ padding:5px; background:transparent; color:var(--c-ink);

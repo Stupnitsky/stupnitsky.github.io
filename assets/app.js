@@ -317,32 +317,43 @@
   })();
 
 
-  // Переключатель языка в шапке (пока только метка, сайт не переводится)
+  // Переключатель языка в шапке (переделан 12.09.2026 по аудиту меню).
+  // Единственное состояние – aria-expanded на кнопке; CSS показывает список по нему.
+  // Открытие: клик / Enter / Space / стрелка вниз, а при мыши – ещё и наведение.
+  // Закрытие: Escape, клик мимо, уход фокуса, выбор пункта, ресайз.
+  // Пункты – ссылки: href ставится на ту же страницу в другом языке, обычный клик
+  // перехватывается ради проверки HEAD (нет страницы – уходим на главную языка),
+  // клик с модификатором или средней кнопкой отдаём браузеру.
   (function () {
     var btn = document.getElementById('lang-switch');
-    if (!btn) return;
+    var pop = document.getElementById('lang-pop');
+    if (!btn || !pop) return;
+    var wrap = btn.closest('.lang-wrap');
+    var seg = btn.closest('.hdr-seg--lang');
     var label = btn.querySelector('.ls-now');
-    var opts = Array.prototype.slice.call(document.querySelectorAll('#lang-pop .lang-opt'));
+    var opts = Array.prototype.slice.call(pop.querySelectorAll('.lang-opt'));
+    var hoverMq = window.matchMedia('(hover:hover) and (pointer:fine)');
+    var byHover = false, leaveTimer = 0;
 
-    function setLang(name, from) {
-      btn.classList.add('is-changing');
-      setTimeout(function () {
-        Array.prototype.slice.call(label.querySelectorAll('.nl-a, .nl-b'))
-          .forEach(function (n) { n.textContent = name; });
-        btn.classList.remove('is-changing');
-      }, 170);
-      opts.forEach(function (o) { o.classList.toggle('is-current', o === from); });
+    function isOpen() { return btn.getAttribute('aria-expanded') === 'true'; }
+    /* плашка языка расширяется вниз ровно на высоту списка (слой ::after, высота --lang-h) */
+    function open() {
+      clearTimeout(leaveTimer);
+      if (isOpen()) return;
+      btn.setAttribute('aria-expanded', 'true');
+      if (seg) {
+        var pad = parseFloat(getComputedStyle(pop).right) || 0;
+        seg.style.setProperty('--lang-w', (pop.offsetWidth + pad * 2) + 'px');
+        seg.style.setProperty('--lang-h', pop.offsetHeight + 'px');
+      }
     }
-
-    /* закрыть список и не открывать снова, пока курсор не уйдёт и не вернётся */
-    function close() {
-      var wrap = btn.closest('.lang-wrap');
-      if (!wrap) return;
-      wrap.classList.add('is-picked');
-      wrap.addEventListener('mouseleave', function once(){
-        wrap.classList.remove('is-picked');
-        wrap.removeEventListener('mouseleave', once);
-      });
+    function close(focusBtn) {
+      clearTimeout(leaveTimer);
+      byHover = false;
+      if (!isOpen()) return;
+      btn.setAttribute('aria-expanded', 'false');
+      if (seg) seg.style.setProperty('--lang-h', '0px');
+      if (focusBtn) btn.focus();
     }
 
     /* та же страница в другой языковой версии: /ua/kontakt/ ↔ /kontakt/ ↔ /en/kontakt/ */
@@ -354,13 +365,37 @@
       return '/' + parts.join('/') + (parts.length ? '/' : '') + location.hash;
     }
     function homeIn(code) { return code === 'pl' ? '/' : '/' + code + '/'; }
+    function nameOf(o) { var n = o.querySelector('.lo-name'); return (n || o).textContent.trim(); }
+    function isCurrent(o) {
+      return o.getAttribute('aria-current') === 'true' || o.classList.contains('is-current');
+    }
+    /* ссылки ведут на ту же страницу в другом языке – работает и средняя кнопка, и «открыть в новой вкладке» */
+    opts.forEach(function (o) {
+      var code = o.getAttribute('data-lang');
+      if (code && o.tagName === 'A') o.setAttribute('href', samePageIn(code));
+    });
+
+    function setLang(name, from) {
+      if (label) {
+        btn.classList.add('is-changing');
+        setTimeout(function () {
+          Array.prototype.slice.call(label.querySelectorAll('.nl-a, .nl-b'))
+            .forEach(function (n) { n.textContent = name; });
+          btn.classList.remove('is-changing');
+        }, 170);
+      }
+      opts.forEach(function (o) {
+        o.classList.toggle('is-current', o === from);
+        if (o === from) o.setAttribute('aria-current', 'true'); else o.removeAttribute('aria-current');
+      });
+    }
     /* остаёмся на той же странице; если её нет в этом языке – уходим на главную языка */
     function goTo(o) {
       var code = o.getAttribute('data-lang');
-      var already = o.classList.contains('is-current');
-      setLang(o.textContent.trim(), o);
-      close();
+      var already = isCurrent(o);
+      close(true);
       if (!code || already) return;
+      setLang(nameOf(o), o);
       var url = samePageIn(code), home = homeIn(code);
       if (url === home) { location.href = url; return; }
       var done = false;
@@ -371,18 +406,66 @@
         .catch(function () { go(url); });
     }
     opts.forEach(function (o) {
-      o.addEventListener('click', function () {
+      o.addEventListener('click', function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        e.preventDefault();
         goTo(o);
-        if (document.activeElement) document.activeElement.blur();
       });
     });
-    /* клик по самому переключателю – следующий язык по кругу */
+
+    /* клик по кнопке только раскрывает и сворачивает список; язык меняют пункты.
+       Если список уже открыт наведением, клик его закрепляет, а не закрывает. */
     btn.addEventListener('click', function () {
-      var cur = opts.filter(function (o) { return o.classList.contains('is-current'); })[0];
-      var i = cur ? opts.indexOf(cur) : -1;
-      goTo(opts[(i + 1) % opts.length]);
-      btn.blur();
+      if (!isOpen()) { open(); byHover = false; }
+      else if (byHover) byHover = false;
+      else close();
     });
+    /* стрелки: вниз с кнопки – открыть и встать на первый пункт; в списке – по кругу, Home/End */
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault(); open(); byHover = false;
+        var o = opts[e.key === 'ArrowDown' ? 0 : opts.length - 1];
+        if (o) o.focus();
+      }
+    });
+    pop.addEventListener('keydown', function (e) {
+      var i = opts.indexOf(document.activeElement);
+      if (i === -1) return;
+      var n = opts.length, to = -1;
+      if (e.key === 'ArrowDown') to = (i + 1) % n;
+      else if (e.key === 'ArrowUp') to = (i - 1 + n) % n;
+      else if (e.key === 'Home') to = 0;
+      else if (e.key === 'End') to = n - 1;
+      if (to === -1) return;
+      e.preventDefault(); opts[to].focus();
+    });
+    /* уход фокуса из обёртки закрывает список (Tab дальше по странице) */
+    if (wrap) wrap.addEventListener('focusout', function (e) {
+      if (!wrap.contains(e.relatedTarget)) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isOpen()) { e.preventDefault(); close(true); }
+    });
+    document.addEventListener('pointerdown', function (e) {
+      if (isOpen() && wrap && !wrap.contains(e.target)) close();
+    });
+    /* наведение – только там, где есть мышь; тач-устройства открывают тапом */
+    if (wrap) {
+      wrap.addEventListener('mouseenter', function () {
+        if (!hoverMq.matches) return;
+        clearTimeout(leaveTimer);
+        if (!isOpen()) { open(); byHover = true; }
+      });
+      wrap.addEventListener('mouseleave', function () {
+        if (!hoverMq.matches || !byHover) return;
+        clearTimeout(leaveTimer);
+        leaveTimer = setTimeout(function () { if (byHover) close(); }, 150);
+      });
+    }
+    window.addEventListener('resize', function () { close(); }, { passive: true });
+    /* бургер открылся – список языков не нужен */
+    var burger = document.getElementById('burger');
+    if (burger) burger.addEventListener('click', function () { close(); });
   })();
 
   // Окно с описанием шага
@@ -1145,19 +1228,42 @@
     window.addEventListener('resize', function () { if (current !== -1) place(); }, { passive: true });
   })();
 
-  // Мобильное меню
-  var burger = document.getElementById('burger');
-  var nav = document.getElementById('mobile-nav');
-  burger.addEventListener('click', function () {
-    var open = nav.classList.toggle('hidden') === false;
-    burger.setAttribute('aria-expanded', String(open));
-  });
-  nav.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () {
-      nav.classList.add('hidden');
-      burger.setAttribute('aria-expanded', 'false');
+  // Мобильное меню (12.09.2026, по аудиту): Escape и клик мимо закрывают панель,
+  // страница под ней не прокручивается (html.menu-open), бургер складывается в крестик,
+  // подпись кнопки меняется на «закрыть» (текст берётся из data-close-label – свой в каждом языке),
+  // фокус переходит в панель и возвращается на бургер при закрытии с клавиатуры.
+  (function () {
+    var burger = document.getElementById('burger');
+    var nav = document.getElementById('mobile-nav');
+    if (!burger || !nav) return;
+    var labelOpen = burger.getAttribute('aria-label') || 'Menu';
+    var labelClose = burger.getAttribute('data-close-label') || labelOpen;
+    function isOpen() { return !nav.classList.contains('hidden'); }
+    function setOpen(open, focusBurger) {
+      nav.classList.toggle('hidden', !open);
+      burger.setAttribute('aria-expanded', String(open));
+      burger.setAttribute('aria-label', open ? labelClose : labelOpen);
+      document.documentElement.classList.toggle('menu-open', open);
+      if (open) {
+        var first = nav.querySelector('a');
+        if (first) first.focus({ preventScroll: true });
+      } else if (focusBurger) burger.focus();
+    }
+    burger.addEventListener('click', function () { setOpen(!isOpen()); });
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setOpen(false); });
     });
-  });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isOpen()) { e.preventDefault(); setOpen(false, true); }
+    });
+    document.addEventListener('pointerdown', function (e) {
+      if (isOpen() && !nav.contains(e.target) && !burger.contains(e.target)) setOpen(false);
+    });
+    /* окно стало широким – панель не нужна, и прокрутку возвращаем */
+    var wide = window.matchMedia('(min-width:1024px)');
+    (wide.addEventListener ? wide.addEventListener('change', onWide) : wide.addListener(onWide));
+    function onWide(e) { if (e.matches && isOpen()) setOpen(false); }
+  })();
 
   // Плавное раскрытие юридических блоков
   document.querySelectorAll('.ws-legal-item').forEach(function (d) {
@@ -1511,27 +1617,6 @@
 
 
 
-
-  /* Список языков лежит на правой плашке шапки: пока он открыт, плашка расширяется вниз
-     ровно на его высоту. Своей подложки с размытием у списка больше нет. */
-  (function(){
-    var wrap = document.querySelector('header .lang-wrap');
-    var pop  = document.getElementById('lang-pop');
-    if (!wrap || !pop) return;
-    var seg = wrap.closest('.hdr-seg--lang');
-    if (!seg) return;
-    function open(){ seg.style.setProperty('--lang-h', (pop.offsetHeight + 18) + 'px'); }
-    function close(){ seg.style.setProperty('--lang-h', '0px'); }
-    wrap.addEventListener('mouseenter', open);
-    wrap.addEventListener('mouseleave', close);
-    wrap.addEventListener('focusin', open);
-    wrap.addEventListener('focusout', function(e){
-      if (!wrap.contains(e.relatedTarget)) close();
-    });
-    /* язык выбран – список прячется классом is-picked, плашку возвращаем сразу */
-    pop.addEventListener('click', close);
-    window.addEventListener('resize', close);
-  })();
 
   /* Подвал закреплён внизу окна, страница проезжает над ним: main получает нижний запас
      ровно в высоту подвала, иначе открыть его прокруткой было бы нечем. */
