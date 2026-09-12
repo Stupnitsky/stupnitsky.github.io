@@ -1867,3 +1867,8 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .quote-form textarea.field.qd-line{ min-height:0; resize:none; }
 /* Линия поля одна во всех состояниях – фокус не перекрашивает её (активное поле видно по курсору) (14.09.2026) */
 .qd .wy-v2 .quote-form .field.qd-line:focus{ border-bottom-color:rgba(31,33,32,.3); }
+
+/* Дропзона при наведении: надпись без подчёркивания, «+» поворачивается (14.09.2026) */
+.qd .wy-v2 .qd-drop:hover .qd-drop-btn, .qd .wy-v2 .qd-drop.is-over .qd-drop-btn{ text-decoration:none; }
+.qd .wy-v2 .qd-plus{ transition:transform .3s ease, background-color .18s ease; }
+.qd .wy-v2 .qd-drop:hover .qd-plus, .qd .wy-v2 .qd-drop.is-over .qd-plus{ transform:rotate(90deg); }
