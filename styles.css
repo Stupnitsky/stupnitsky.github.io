@@ -1838,3 +1838,5 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .quote-form #phone.qd-line, .qd .wy-v2 .quote-form [id^="phone"].qd-line, .qd .wy-v2 .quote-form [id^="email"].qd-line{ text-align:left; }
 .qd .wy-v2 .quote-form textarea.field.qd-line{ min-height:3.2rem; resize:vertical; }
 .qd .wy-v2 .quote-form > .qd-tags + .qd-acc{ margin-top:1.25rem; }
+/* ограничения ширины tel/email (15/20rem) выше по файлу сильнее – для полей-линий снимаем явно */
+.qd .wy-v2 .quote-form input[type="tel"].field.qd-line, .qd .wy-v2 .quote-form input[type="email"].field.qd-line{ max-width:none; }
