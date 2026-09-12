@@ -1812,3 +1812,7 @@ body > main{ background:var(--c-page); }
    Цвет, толщина, рамка, наведение и выбор – прежние. Отступы меньше на 1px рамки: внешний размер = эталону */
 .qd .wy-v2 .qd-tag span{ font-size:12.5px; letter-spacing:.1em; line-height:1.2; border-radius:6px;
   padding:calc(.45em - 1px) calc(.75em - 1px) calc(.5em - 1px); }
+
+/* «Podaj numer do kontaktu» со стрелкой вниз – только для симметрии с раскрывашками, поле всегда видно (14.09.2026) */
+.qd .wy-v2 .qd-label--chev{ display:flex; align-items:center; justify-content:center; gap:7px; }
+.qd .wy-v2 .qd-label--chev .qd-chev{ flex:none; }
