@@ -1515,7 +1515,9 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd .wy-v2 .qd-eta{ font-size:14px; }
 .qd .wy-v2 .qd-eta b{ font-size:15px; }
 /* зазор между плашками – как в строке статуса на /cennik/ (.cn-status, 3px) */
-.qd .wy-v2 .qd-eta{ gap:3px; margin-top:1.75rem; }
+.qd .wy-v2 .qd-eta{ gap:3px; margin-top:1.75rem; flex-wrap:wrap; }
+/* плашки не ломаются внутри: на узком экране слоган целиком переносится под «15 min» */
+.qd .wy-v2 .qd-eta b, .qd .wy-v2 .qd-eta span{ white-space:nowrap; }
 /* слоган рядом с «15 min» – на белой плашке той же формы, что и жёлтая */
 .qd .wy-v2 .qd-eta span{ align-self:stretch; display:flex; align-items:center; background:var(--c-paper); color:var(--c-ink); border-radius:6px; padding:0 .75em; }
 /* обещание – единственный текст колонки под заголовком, крупно (14.09.2026) */
