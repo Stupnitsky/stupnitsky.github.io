@@ -1859,3 +1859,9 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-acc--static .qd-acc-head .qd-chev{ transform:rotate(180deg); }
 .qd .wy-v2 .qd-acc--static .qd-acc-head{ cursor:pointer; }
 .qd .wy-v2 .qd-acc--static .qd-acc-head:hover{ color:var(--c-ink) !important; }
+
+/* Три поля-линии одной ширины и по центру: телефон, e-mail и сообщение – 20rem, текст по центру (14.09.2026) */
+.qd .wy-v2 .quote-form input[type="tel"].field.qd-line,
+.qd .wy-v2 .quote-form input[type="email"].field.qd-line,
+.qd .wy-v2 .quote-form textarea.field.qd-line{ width:100%; max-width:20rem; margin:0 auto; display:block; text-align:center; }
+.qd .wy-v2 .quote-form textarea.field.qd-line{ min-height:0; resize:none; }
