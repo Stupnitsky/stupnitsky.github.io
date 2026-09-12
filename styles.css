@@ -189,7 +189,8 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
            white-space:nowrap; color:inherit; transition:background-color .15s ease; }
 .lang-opt:hover{ background:rgba(31,33,32,.07); }
 .lang-opt:focus-visible{ outline:2px solid currentColor; outline-offset:-2px; }
-.lang-opt.is-current, .lang-opt[aria-current="true"]{ font-weight:700; }
+/* текущий язык в списке не показываем – он стоит на кнопке над списком (решение 12.09.2026) */
+.lang-opt.is-current, .lang-opt[aria-current="true"]{ display:none; }
 @media (prefers-reduced-motion:reduce){
   .lang-pop, .ls-chev, .hdr-seg--lang::after, .lang-opt{ transition:none; }
 }
