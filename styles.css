@@ -169,7 +169,7 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
    плашки – её ширина задана кнопкой (min-width 104px), названия языков помещаются в неё (12.09.2026) */
 .lang-pop{ position:absolute; top:100%; right:1rem; transform:translateY(-6px);
            min-width:0; padding:2px 0 12px; margin:0; z-index:60;
-           display:flex; flex-direction:column; gap:2px;
+           display:flex; flex-direction:column; gap:0;
            color:inherit; background:transparent; border-radius:0;
            opacity:0; visibility:hidden; pointer-events:none;
            transition:opacity .2s ease, transform .2s ease, visibility 0s linear .2s; }
@@ -181,11 +181,11 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 .lang-switch[aria-expanded="true"] + .lang-pop{
            opacity:1; visibility:visible; pointer-events:auto;
            transform:none; transition-delay:0s; }
-/* Пункт – строка на всю ширину списка, 41px высотой (тач-цель).
+/* Пункт – строка на всю ширину списка, текст по центру, 37px высотой (тач-цель; 12.09.2026 отступы чуть меньше).
    При наведении подсвечивается строка целиком, начертание не меняется – жирным стоит только текущий. */
-.lang-opt{ display:flex; align-items:center; width:100%; box-sizing:border-box;
-           border:0; background:none; cursor:pointer; text-align:left; text-decoration:none;
-           padding:11px 21px; border-radius:8px; font-size:16px; font-weight:400; line-height:1.2;
+.lang-opt{ display:flex; align-items:center; justify-content:center; width:100%; box-sizing:border-box;
+           border:0; background:none; cursor:pointer; text-align:center; text-decoration:none;
+           padding:9px 21px; border-radius:8px; font-size:16px; font-weight:400; line-height:1.2;
            white-space:nowrap; color:inherit; transition:background-color .15s ease; }
 .lang-opt:hover{ background:rgba(31,33,32,.07); }
 .lang-opt:focus-visible{ outline:2px solid currentColor; outline-offset:-2px; }
