@@ -1609,7 +1609,10 @@ details[open] .chev{ transform:rotate(45deg) }
 /* одна кнопка на всю ширину, под ней строка согласия */
 .qd .wy-v2 .qd-submit{ width:auto; min-width:16rem; }
 @media (max-width:479px){ .qd .wy-v2 .qd-submit{ width:100%; } }
-.qd .wy-v2 .qd-legal{ font-size:14px; line-height:1.55; color:rgba(31,33,32,.65) !important; margin-top:1rem; }
+/* обещание под кнопкой – единственная тёмная строка среди служебных, на уровне лейблов (16px) */
+.qd .wy-v2 .qd-promise{ font-size:16px; line-height:1.45; color:rgba(31,33,32,.75) !important; margin-top:.9rem; }
+.qd .wy-v2 .qd-promise b{ font-weight:600; color:var(--c-ink); }
+.qd .wy-v2 .qd-legal{ font-size:14px; line-height:1.55; color:rgba(31,33,32,.65) !important; margin-top:.7rem; }
 /* Polityka Prywatności раскрывается внутри панели: текст тянем с главной, там он на тёмном фоне */
 .qd .wy-v2 .qd-policy{ margin-top:1.1rem; text-align:left; }
 .qd .wy-v2 .qd-policy > div{ max-width:none !important; }
