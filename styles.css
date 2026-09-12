@@ -1840,3 +1840,17 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .quote-form > .qd-tags + .qd-acc{ margin-top:1.25rem; }
 /* ограничения ширины tel/email (15/20rem) выше по файлу сильнее – для полей-линий снимаем явно */
 .qd .wy-v2 .quote-form input[type="tel"].field.qd-line, .qd .wy-v2 .quote-form input[type="email"].field.qd-line{ max-width:none; }
+
+/* Проба, шаг 2 (14.09.2026): раскладка по центру как была, вместо «+» справа – стрелка рядом с текстом.
+   Линий между рядами нет; от пробы остаются поля-линии и раскрытие по клику. */
+.qd .wy-v2 .qd-acc{ border-bottom:0; text-align:center; }
+.qd .wy-v2 .qd-acc-head{ display:inline-flex; width:auto; justify-content:center; gap:7px; padding:0; }
+.qd .wy-v2 .qd-acc-head .qd-chev{ flex:none; transition:transform .18s ease; }
+.qd .wy-v2 .qd-acc-head[aria-expanded="true"] .qd-chev{ transform:rotate(180deg); }
+.qd .wy-v2 .qd-acc-body{ padding:0; margin-top:.5rem; }
+.qd .wy-v2 .quote-form > .qd-acc + .qd-acc{ margin-top:.85rem; }
+/* поля-линии по центру прежней ширины: телефон 15rem, e-mail 20rem, сообщение во всю ширину */
+.qd .wy-v2 .quote-form input[type="tel"].field.qd-line{ max-width:15rem; margin:0 auto; }
+.qd .wy-v2 .quote-form input[type="email"].field.qd-line{ max-width:20rem; margin:0 auto; }
+.qd .wy-v2 .quote-form #phone.qd-line, .qd .wy-v2 .quote-form [id^="phone"].qd-line, .qd .wy-v2 .quote-form [id^="email"].qd-line{ text-align:center; }
+.qd .wy-v2 .quote-form textarea.field.qd-line{ text-align:left; }
