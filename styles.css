@@ -1887,3 +1887,6 @@ body > main{ background:var(--c-page); }
 /* Выбранный чип – серый, не чёрный (14.09.2026): фон и рамка #D0D0CB, текст ink. Остальные свойства чипа без изменений */
 .qd .wy-v2 .qd-tag input:checked + span,
 .qd .wy-v2 .qd-tag:hover input:checked + span{ background:#D0D0CB; border-color:#D0D0CB; color:var(--c-ink); }
+/* Отступы (14.09.2026): чипы ближе к дропзоне, кнопка отправки ниже */
+.qd .wy-v2 .quote-form > .qd-tags{ margin-top:1rem; }
+.qd .wy-v2 .quote-form > div:has(> [type="submit"]){ margin-top:2.25rem; }
