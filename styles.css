@@ -1776,3 +1776,9 @@ body > main{ background:var(--c-page); }
 /* Порядок (14.09.2026): заголовок над формой → телефон → дропзона (.qd-photo) → чипы → кнопка */
 .qd .wy-v2 .quote-form > .qd-photo{ margin-top:2rem; }
 .qd .wy-v2 .quote-form > * + *:has(#phone), .qd .wy-v2 .quote-form > * + *:has([id^="phone"]){ margin-top:0; }
+
+/* Сообщение формы над кнопкой (14.09.2026): ошибка – тёмная плашка по центру, служебные – тихий текст */
+.qd .wy-v2 .qd-status:not(.hidden){ display:block; text-align:center; font-size:14px; font-weight:400;
+  color:rgba(31,33,32,.55) !important; margin:0 auto 1rem; }
+.qd .wy-v2 .qd-status.is-err:not(.hidden){ display:table; max-width:34ch; padding:.8rem 1.1rem; border-radius:8px;
+  background:var(--c-ink); color:var(--c-paper) !important; font-size:15px; font-weight:500; line-height:1.4; }
