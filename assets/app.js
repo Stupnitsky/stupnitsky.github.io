@@ -751,66 +751,6 @@
   })();
 
 
-  /* Силуэт плашки шапки: прямоугольник со скруглёнными углами и перетяжками на
-     стыках частей (логотип | меню | язык). Рисуем ОДНИМ контуром и отдаём в CSS
-     как SVG-маску (--hdr-mask): фигуры, наложенные друг на друга, дают в перетяжке
-     либо серый волосок по стыку сглаживаний, либо зубец, если их развести.
-     Пересчитываем при любом изменении размеров – резайз, смена языка,
-     увеличенный логотип на верху страницы. */
-  (function () {
-    var row = document.querySelector('header .hdr-row');
-    if (!row || !window.ResizeObserver) return;
-    var segs = Array.prototype.slice.call(row.querySelectorAll('.hdr-seg'));
-    if (segs.length < 2) return;
-
-    function outline(w, h, r, k, seams) {
-      var d = ['M' + r + ',0'], i;
-      for (i = 0; i < seams.length; i++) {          /* верх: до перетяжки и обратно */
-        d.push('H' + (seams[i] - k));
-        d.push('A' + k + ',' + k + ' 0 0 1 ' + seams[i] + ',' + k);
-        d.push('A' + k + ',' + k + ' 0 0 0 ' + (seams[i] + k) + ',0');
-      }
-      d.push('H' + (w - r));
-      d.push('A' + r + ',' + r + ' 0 0 1 ' + w + ',' + r);
-      d.push('V' + (h - r));
-      d.push('A' + r + ',' + r + ' 0 0 1 ' + (w - r) + ',' + h);
-      for (i = seams.length - 1; i >= 0; i--) {     /* низ: то же в обратную сторону */
-        d.push('H' + (seams[i] + k));
-        d.push('A' + k + ',' + k + ' 0 0 0 ' + seams[i] + ',' + (h - k));
-        d.push('A' + k + ',' + k + ' 0 0 1 ' + (seams[i] - k) + ',' + h);
-      }
-      d.push('H' + r);
-      d.push('A' + r + ',' + r + ' 0 0 1 0,' + (h - r));
-      d.push('V' + r);
-      d.push('A' + r + ',' + r + ' 0 0 1 ' + r + ',0');
-      d.push('Z');
-      return d.join(' ');
-    }
-
-    function update() {
-      var box = row.getBoundingClientRect();
-      var w = Math.round(box.width), h = Math.round(box.height);
-      if (!w || !h) return;
-      var cs = getComputedStyle(row);
-      var r = parseFloat(cs.getPropertyValue('--hdr-r')) || 16;
-      /* радиус перетяжки задаётся отдельно от внешних углов: перетяжка узкая */
-      var k = parseFloat(cs.getPropertyValue('--hdr-r-seam')) || r;
-      var x = 0, seams = [];
-      segs.forEach(function (sg, n) {
-        x += sg.getBoundingClientRect().width;
-        /* стык нужен только между видимыми частями: до lg средней части нет */
-        if (n < segs.length - 1 && sg.getBoundingClientRect().width > 0) seams.push(Math.round(x));
-      });
-      seams = seams.filter(function (v, n) { return v > r + k && v < w - r - k && seams.indexOf(v) === n; });
-      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '">' +
-                '<path d="' + outline(w, h, r, k, seams) + '" fill="#000"/></svg>';
-      row.style.setProperty('--hdr-mask', 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")');
-    }
-    var ro = new ResizeObserver(update);
-    ro.observe(row); segs.forEach(function (sg) { ro.observe(sg); });
-    update();
-  })();
-
   // Логотип светлеет, когда оказывается над тёмным блоком
   (function () {
     var logo = document.querySelector('header .logo-brand');
@@ -1373,63 +1313,158 @@
 
   // Валидация формы + мягкое сообщение вместо браузерного alert.
   // Форма живёт либо на странице (/cennik/), либо во всплывающей панели – отсюда scope.
+  /* Сжатие фото на стороне клиента – до отправки формы.
+     Длинная сторона 2200 px: лист A4 получается ~190 dpi, печати и мелкий текст читаются.
+     Файлы меньше 0,9 MB и всё, что не картинка (PDF), не трогаем. */
+  var IMG_MAX_SIDE   = 2200;
+  var IMG_QUALITY    = 0.82;
+  var IMG_SKIP_BELOW = 900 * 1024;
+
+  function shrinkImage(file){
+    if (!/^image\//.test(file.type) || file.size < IMG_SKIP_BELOW) return Promise.resolve(file);
+    return new Promise(function(resolve){
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function(){
+        URL.revokeObjectURL(url);
+        var w = img.naturalWidth, h = img.naturalHeight;
+        var k = Math.min(1, IMG_MAX_SIDE / Math.max(w, h));
+        var c = document.createElement('canvas');
+        c.width = Math.round(w * k); c.height = Math.round(h * k);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);   /* браузер сам учитывает EXIF-поворот */
+        c.toBlob(function(blob){
+          if (!blob || blob.size >= file.size) return resolve(file);   /* стало не меньше – шлём оригинал */
+          var name = file.name.replace(/\.[^.]+$/, '') + '.jpg';
+          resolve(new File([blob], name, { type: 'image/jpeg', lastModified: Date.now() }));
+        }, 'image/jpeg', IMG_QUALITY);
+      };
+      /* не декодировалось (HEIC в Chrome на компьютере и т.п.) – шлём как есть */
+      img.onerror = function(){ URL.revokeObjectURL(url); resolve(file); };
+      img.src = url;
+    });
+  }
+
   window.initQuoteForm = function (scope) {
     var root = scope || document;
     var form = root.querySelector('form#quote-form, form.quote-form');
     if (!form || form.dataset.bound) return;
     form.dataset.bound = '1';
-    var status = form.querySelector('[role="status"]');
 
+    var MAX_FILE = 20 * 1024 * 1024;   /* Formspree: 25 MB на файл – держим запас */
+    var status = form.querySelector('[role="status"]');
+    var inp    = form.querySelector('[name="file"]');
+    var drop   = form.querySelector('.qd-drop');
+    var list   = form.querySelector('.qd-files');
+    var bar    = form.querySelector('.qd-progress');
+    var btn    = form.querySelector('[type="submit"]');
+    var picked = [];                    /* File[] – то, что реально уйдёт */
+
+    /* цвет – классами, а не инлайном: в панели фон белый, во встроенных формах тёмный */
     function say(text, ok) {
       if (!status) return;
       status.textContent = text;
       status.classList.remove('hidden');
-      status.style.color = ok ? '#EFB01F' : '#FFFFFF';
+      status.classList.toggle('is-ok', !!ok);
+      status.classList.toggle('is-err', !ok);
+    }
+    function hush() { if (status) { status.textContent = ''; status.classList.add('hidden'); } }
+    function fmt(b) { return b < 1048576 ? Math.round(b / 1024) + ' KB' : (b / 1048576).toFixed(1) + ' MB'; }
+
+    /* ---- файлы: накапливаем, сжимаем, подставляем обратно в input ---- */
+    function syncInput() {
+      var dt = new DataTransfer();
+      picked.forEach(function (f) { dt.items.add(f); });
+      inp.files = dt.files;             /* FormData(form) увидит именно этот набор */
+      if (drop) drop.classList.toggle('is-filled', picked.length > 0);
+      var name = form.querySelector('.file-name');
+      if (name && !list) name.textContent = picked.length ? picked.length + (picked.length < 5 ? ' pliki' : ' plików') : 'Nie wybrano plików';
+    }
+    function render() {
+      if (!list) return;
+      list.innerHTML = '';
+      picked.forEach(function (f, i) {
+        var li = document.createElement('li');
+        if (/^image\//.test(f.type)) {
+          var img = document.createElement('img'); img.alt = '';
+          img.src = URL.createObjectURL(f);
+          img.onload = function () { URL.revokeObjectURL(img.src); };
+          li.appendChild(img);
+        } else li.classList.add('is-doc');
+        var s = document.createElement('span'); s.textContent = f.name + ' · ' + fmt(f.size);
+        var x = document.createElement('button'); x.type = 'button'; x.textContent = '×';
+        x.setAttribute('aria-label', 'Usuń ' + f.name);
+        x.addEventListener('click', function () { picked.splice(i, 1); syncInput(); render(); });
+        li.appendChild(s); li.appendChild(x); list.appendChild(li);
+      });
+    }
+    function addFiles(files) {
+      var arr = Array.prototype.slice.call(files || []);
+      if (!arr.length || !inp) return;
+      if (drop) drop.classList.add('is-busy');
+      say('Przygotowujemy zdjęcia…', true);
+      Promise.all(arr.map(shrinkImage)).then(function (out) {
+        var tooBig = null;
+        out.forEach(function (f) {
+          if (f.size > MAX_FILE) { tooBig = f; return; }
+          var dup = picked.some(function (p) { return p.name === f.name && p.size === f.size; });
+          if (!dup) picked.push(f);
+        });
+        if (drop) drop.classList.remove('is-busy');
+        syncInput(); render();
+        if (tooBig) say('Plik „' + tooBig.name + '” jest za duży (' + fmt(tooBig.size) + '). Zrób zdjęcie telefonem albo wyślij ten plik na WhatsApp.', false);
+        else hush();
+      });
+    }
+    if (inp) inp.addEventListener('change', function () { addFiles(inp.files); });
+
+    /* drag & drop на зону; файл, брошенный мимо, не должен открыться вместо страницы */
+    if (drop) {
+      ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('is-over'); }); });
+      ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('is-over'); }); });
+      drop.addEventListener('drop', function (e) { addFiles(e.dataTransfer.files); });
+    }
+    if (!document.body.dataset.dropGuard) {
+      document.body.dataset.dropGuard = '1';
+      document.addEventListener('dragover', function (e) { e.preventDefault(); });
+      document.addEventListener('drop', function (e) { e.preventDefault(); });
     }
 
+    /* ---- отправка: XHR с прогрессом, «Dziękujemy» внутри панели ---- */
     form.addEventListener('submit', function (e) {
-      var name = form.querySelector('[name="name"]');
-      var phone = form.querySelector('[name="phone"]');
-      var service = form.querySelector('[name="service"]');
-      var consent = form.querySelector('[name="consent"]');
-      var file = form.querySelector('[name="file"]');
-
-      /* обязательность берём из атрибута required: в панели это документ и телефон,
-         во встроенных формах ua/ru/en – по-прежнему имя, телефон и услуга */
+      e.preventDefault();
+      var name = form.querySelector('[name="name"]'), phone = form.querySelector('[name="phone"]');
+      var service = form.querySelector('[name="service"]'), consent = form.querySelector('[name="consent"]');
       var need = function (f) { return f && f.required; };
       var missing = (need(name) && !name.value.trim()) || (need(phone) && !phone.value.trim()) ||
-                    (need(service) && !service.value) || (need(file) && !file.files.length);
-      if (missing) {
-        e.preventDefault();
-        say(form.dataset.msgRequired || 'Uzupełnij imię, telefon i wybierz usługę.', false);
-        return;
-      }
-      if (!consent.checked) {
-        e.preventDefault();
-        say('Potrzebujemy zgody na przetwarzanie danych, żeby przygotować wycenę.', false);
-        return;
-      }
-      for (var i = 0; i < file.files.length; i++) {
-        if (file.files[i].size > 10 * 1024 * 1024) {
-          e.preventDefault();
-          say('Plik "' + file.files[i].name + '" jest większy niż 10 MB. Wyślij go proszę na WhatsApp.', false);
-          return;
-        }
-      }
-      say('Wysyłamy…', true);
-      // Здесь можно повесить событие конверсии Google Ads:
-      // if (window.gtag) gtag('event','conversion',{send_to:'AW-XXXXXXXXX/XXXXXXXX'});
-    });
+                    (need(service) && !service.value) || (need(inp) && !picked.length);
+      if (missing) { say(form.dataset.msgRequired || 'Uzupełnij imię, telefon i wybierz usługę.', false); return; }
+      if (consent && !consent.checked) { say('Potrzebujemy zgody na przetwarzanie danych, żeby przygotować wycenę.', false); return; }
+      if (drop && drop.classList.contains('is-busy')) { say('Chwila – jeszcze przygotowujemy zdjęcia.', false); return; }
 
-    // подпись выбранных файлов
-    var inp = form.querySelector('[name="file"]'), out = form.querySelector('.file-name');
-    var drop = form.querySelector('.qd-drop');
-    if (inp && out) inp.addEventListener('change', function () {
-      var n = inp.files.length;
-      if (drop) drop.classList.toggle('is-filled', n > 0);
-      if (!n) { out.textContent = 'Nie wybrano plików'; return; }
-      out.textContent = n === 1 ? inp.files[0].name
-        : n + (n < 5 ? ' wybrane pliki' : ' wybranych plików');
+      btn.disabled = true;
+      if (bar) { bar.hidden = false; bar.firstElementChild.style.width = '0%'; }
+      say('Wysyłamy…', true);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', form.action);
+      xhr.setRequestHeader('Accept', 'application/json');   /* Formspree/Web3Forms: ответ JSON, без редиректа */
+      xhr.upload.onprogress = function (ev) {
+        if (ev.lengthComputable && bar) bar.firstElementChild.style.width = Math.round(ev.loaded / ev.total * 100) + '%';
+      };
+      xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          form.classList.add('is-sent');                      /* CSS прячет поля, показывает .qd-done */
+          var done = form.querySelector('.qd-done'); if (done) { done.hidden = false; done.focus && done.focus(); }
+          hush();
+          if (window.gtag) gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXX/XXXXXXXX' });   /* только после успеха */
+        } else fail();
+      };
+      xhr.onerror = fail; xhr.ontimeout = fail; xhr.timeout = 60000;
+      function fail() {
+        btn.disabled = false; if (bar) bar.hidden = true;
+        say('Nie udało się wysłać. Spróbuj jeszcze raz albo napisz na WhatsApp – zdjęcia możesz wysłać tam.', false);
+      }
+      xhr.send(new FormData(form));
     });
   };
   window.initQuoteForm(document);
@@ -1611,7 +1646,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260922f';   /* версию менять вместе с правкой фрагмента */
+    var FRAG = '/assets/wycena.html?v=20260922g';   /* версию менять вместе с правкой фрагмента */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */

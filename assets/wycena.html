@@ -57,16 +57,18 @@
                     class="quote-form space-y-7">
 
                 <div>
-                  <label for="file" class="qd-label">Dokument do wyceny *</label>
+                  <label for="file" class="qd-label">Zdjęcie lub skan dokumentu *</label>
                   <input class="file-input-hidden" type="file" id="file" name="file"
-                         accept=".pdf,.jpg,.jpeg,.png,.heic,.webp" multiple required>
+                         accept="image/*,application/pdf" multiple required>
                   <label for="file" class="qd-drop">
-                    <span class="qd-drop-btn">Dodaj zdjęcie lub skan</span>
+                    <span class="qd-drop-btn">Dodaj zdjęcie</span>
                     <span class="qd-drop-txt">
-                      <b id="file-name" class="file-name">Nie wybrano plików</b>
-                      <small>Obie strony, czytelne pieczęcie. PDF, JPG, PNG lub HEIC, do&nbsp;10&nbsp;MB, można kilka.</small>
+                      <b id="file-name" class="file-name">Zdjęcie z telefonu wystarczy</b>
+                      <small>Obie strony dokumentu, można kilka naraz. Duże pliki zmniejszymy sami – nic nie musisz robić.</small>
                     </span>
                   </label>
+                  <ul class="qd-files" aria-live="polite"></ul>
+                  <p class="qd-progress" hidden><i></i></p>
                 </div>
 
                 <div class="qd-row">
@@ -124,13 +126,18 @@
                           class="inline-flex items-center justify-center gap-2 rounded-[12px] px-8 py-[18px] text-[16px] font-bold btn btn--pop">
                     Wyślij i&nbsp;otrzymaj wycenę
                   </button>
-                  <a href="https://wa.me/48507588155" target="_blank" rel="noopener"
+                  <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20prosz%C4%99%20o%20wycen%C4%99.%20Wysy%C5%82am%20zdj%C4%99cia%20dokumentu." target="_blank" rel="noopener"
                      class="inline-flex items-center justify-center gap-2 rounded-[12px] px-8 py-[18px] text-[16px] font-semibold btn">
                     Wolę WhatsApp
                   </a>
                 </div>
 
-                <p id="form-status" role="status" aria-live="polite" class="qd-status text-ochre hidden"></p>
+                <p id="form-status" role="status" aria-live="polite" class="qd-status hidden"></p>
+
+                <div class="qd-done" hidden tabindex="-1">
+                  <p class="qd-formhead">Dziękujemy, zdjęcia dotarły.</p>
+                  <p class="qd-formsub">Wycenę wyślemy na WhatsApp lub e-mail – zwykle w&nbsp;ciągu 15&nbsp;minut (7:00–21:00).</p>
+                </div>
               </form>
             </div>
           </div>

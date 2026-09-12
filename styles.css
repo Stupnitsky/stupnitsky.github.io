@@ -22,8 +22,6 @@
   --hdr-shadow:0 1px 2px -1px rgba(31,33,32,.10), 0 8px 12px -8px rgba(31,33,32,.16);
   --hdr-shadow-dark:0 1px 2px -1px rgba(0,0,0,.25), 0 8px 12px -8px rgba(0,0,0,.35);
   --hdr-r:16px;
-  /* радиус перетяжки на стыке частей – меньше внешних углов, перетяжка узкая */
-  --hdr-r-seam:10px;
   --hdr-gap:6px;
 }
 @media (min-width:768px){ :root{ --hdr-r:20px; } }
@@ -115,32 +113,20 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 /* над тёмным блоком пункты меню светлеют */
 .navlink.on-dark{ color:var(--c-paper); }
 
-/* Шапка по образцу andabove.com: плашка с перетяжками на стыках частей (логотип,
-   меню, язык). Части стоят вплотную, но стекло рисует ОДИН слой на весь ряд
-   (.hdr-row::before), а перетяжки вырезаны в нём маской – объединением трёх
-   скруглённых прямоугольников. Так и вид прежний, и швов нет: backdrop-filter
-   обрезается по своему элементу, поэтому три отдельных размытия рядом давали
-   на стыках вертикальные полосы. Границы частей (--seam1/--seam2) считает app.js.
-   Тень – отдельный слой ::after: внешняя box-shadow не рисуется внутри своей
-   рамки, поэтому в перетяжки она не затекает. */
+/* Шапка: одна ровная стеклянная плашка на весь ряд. Части (логотип, меню, язык)
+   остались только разметкой – фон, размытие и тень рисует общий слой .hdr-row::before,
+   тень вынесена в ::after. Перетяжек на стыках нет (13.09.2026). */
 .hdr-row{ position:relative; isolation:isolate; }
 .hdr-row::before, .hdr-row::after{ content:''; position:absolute; inset:0;
-  pointer-events:none; }
-.hdr-row::after{ z-index:1; border-radius:var(--hdr-r); box-shadow:var(--hdr-shadow);
-  transition:box-shadow .25s ease; }
+  border-radius:var(--hdr-r); pointer-events:none; }
+.hdr-row::after{ z-index:1; box-shadow:var(--hdr-shadow); transition:box-shadow .25s ease; }
 .hdr-row.on-dark::after{ box-shadow:var(--hdr-shadow-dark); }
 .hdr-row::before{ z-index:2; background:var(--hdr-bg);
   -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
-  transition:background-color .25s ease;
-  /* Силуэт плашки – ОДИН контур (SVG-маска, её строит app.js по границам частей).
-     Собирать его из трёх наложенных фигур нельзя: в перетяжке их сглаженные края
-     накладываются и дают то серый волосок по стыку, то зубец, если фигуры развести. */
-  -webkit-mask-image:var(--hdr-mask, none); mask-image:var(--hdr-mask, none);
-  -webkit-mask-size:100% 100%; mask-size:100% 100%;
-  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat; }
+  transition:background-color .25s ease; }
 .hdr-row.on-dark::before{ background:var(--hdr-bg-dark); }
 /* содержимое частей – поверх стекла */
-.hdr-glass{ z-index:3; }
+.hdr-glass{ position:relative; z-index:3; }
 /* Логотип увеличен скриптом до 1.36 на верху страницы (transform не меняет габарит),
    поэтому правое поле плашки растёт на --logo-extra – его считает app.js вместе с --logo-scale. */
 /* Поля слева и справа от логотипа равны (до стыка плашек): логотип сдвинут transform'ом на 18px
@@ -1621,3 +1607,39 @@ body > main{ background:var(--c-page); }
   /* правый блок с копирайтом на телефоне не сдвигаем влево */
   .footer-bar [style*="translateX(-20%)"]{ transform:none !important; }
 }
+
+/* ---- Formularz wyceny: pliki, kompresja, status (12.09.2026) ---- */
+/* На телефоне форма идёт первой, текст – под ней */
+@media (max-width:1023px){ .qd .wy-v2 .grid > .bg-paper{ order:-1; } }
+
+/* Сообщения: цвет классами. В панели фон белый, во встроенных формах ua/ru/en – тёмный */
+/* #quote-form-qd – id панели на страницах, где такая же форма уже стоит в потоке (uniq() в app.js) */
+.wy-v2 #quote-form p[role="status"].is-ok,  .wy-v2 #quote-form-qd p[role="status"].is-ok,  .quote-form [role="status"].is-ok { color:var(--c-ink); }
+.wy-v2 #quote-form p[role="status"].is-err, .wy-v2 #quote-form-qd p[role="status"].is-err, .quote-form [role="status"].is-err{ color:#C8102E; }
+.bg-bluedp .quote-form [role="status"].is-ok { color:var(--c-terra); }
+.bg-bluedp .quote-form [role="status"].is-err{ color:#FFD7D7; }
+
+/* Зона загрузки: состояния */
+.qd .wy-v2 .qd-drop.is-over{ border-color:var(--c-terra); background:rgba(239,176,31,.14); }
+.qd .wy-v2 .qd-drop.is-busy{ opacity:.6; pointer-events:none; }
+
+/* Список выбранных файлов с миниатюрами */
+.qd-files{ list-style:none; margin:.6rem 0 0; padding:0; display:flex; flex-direction:column; gap:.4rem; }
+.qd-files:empty{ display:none; }
+.qd-files li{ display:flex; align-items:center; gap:.8rem; padding:.45rem .6rem; border:1px solid rgba(31,33,32,.15);
+  border-radius:8px; font-size:14px; font-weight:500; background:var(--c-paper); }
+.qd-files img{ width:48px; height:48px; object-fit:cover; border-radius:6px; flex:0 0 auto; background:var(--c-sand); }
+.qd-files li.is-doc::before{ content:'PDF'; width:48px; height:48px; border-radius:6px; background:var(--c-sand);
+  display:grid; place-items:center; font-size:12px; font-weight:700; letter-spacing:.06em; flex:0 0 auto; }
+.qd-files span{ min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1 1 auto; }
+.qd-files button{ flex:0 0 auto; width:32px; height:32px; border:0; border-radius:8px; background:transparent;
+  font-size:22px; line-height:1; cursor:pointer; color:rgba(31,33,32,.6); font-family:inherit; }
+.qd-files button:hover{ background:var(--c-sand); color:var(--c-ink); }
+
+/* Прогресс отправки */
+.qd-progress{ height:6px; border-radius:3px; background:var(--c-sand); overflow:hidden; margin:.6rem 0 0; }
+.qd-progress i{ display:block; height:100%; width:0; background:var(--c-terra); transition:width .2s linear; }
+
+/* После отправки: поля прячем, благодарность показываем */
+.quote-form.is-sent > :not(.qd-done){ display:none; }
+.quote-form.is-sent .qd-done{ display:block; }
