@@ -1,3 +1,15 @@
 .DS_Store
 **/.*.bak-*
 .claude/
+
+# Внутренние файлы проекта: живут локально, в репозиторий сайта не попадают
+CLAUDE.md
+README.md
+Claude outputs/
+docs/
+cennik-date.py
+sync.py
+logo-glyphs.md
+logo-preview.html
+tailwind.config.js
+tailwind.src.css
