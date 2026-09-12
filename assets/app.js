@@ -751,6 +751,66 @@
   })();
 
 
+  /* Силуэт плашки шапки: прямоугольник со скруглёнными углами и перетяжками на
+     стыках частей (логотип | меню | язык). Рисуем ОДНИМ контуром и отдаём в CSS
+     как SVG-маску (--hdr-mask): фигуры, наложенные друг на друга, дают в перетяжке
+     либо серый волосок по стыку сглаживаний, либо зубец, если их развести.
+     Пересчитываем при любом изменении размеров – резайз, смена языка,
+     увеличенный логотип на верху страницы. */
+  (function () {
+    var row = document.querySelector('header .hdr-row');
+    if (!row || !window.ResizeObserver) return;
+    var segs = Array.prototype.slice.call(row.querySelectorAll('.hdr-seg'));
+    if (segs.length < 2) return;
+
+    function outline(w, h, r, k, seams) {
+      var d = ['M' + r + ',0'], i;
+      for (i = 0; i < seams.length; i++) {          /* верх: до перетяжки и обратно */
+        d.push('H' + (seams[i] - k));
+        d.push('A' + k + ',' + k + ' 0 0 1 ' + seams[i] + ',' + k);
+        d.push('A' + k + ',' + k + ' 0 0 0 ' + (seams[i] + k) + ',0');
+      }
+      d.push('H' + (w - r));
+      d.push('A' + r + ',' + r + ' 0 0 1 ' + w + ',' + r);
+      d.push('V' + (h - r));
+      d.push('A' + r + ',' + r + ' 0 0 1 ' + (w - r) + ',' + h);
+      for (i = seams.length - 1; i >= 0; i--) {     /* низ: то же в обратную сторону */
+        d.push('H' + (seams[i] + k));
+        d.push('A' + k + ',' + k + ' 0 0 0 ' + seams[i] + ',' + (h - k));
+        d.push('A' + k + ',' + k + ' 0 0 1 ' + (seams[i] - k) + ',' + h);
+      }
+      d.push('H' + r);
+      d.push('A' + r + ',' + r + ' 0 0 1 0,' + (h - r));
+      d.push('V' + r);
+      d.push('A' + r + ',' + r + ' 0 0 1 ' + r + ',0');
+      d.push('Z');
+      return d.join(' ');
+    }
+
+    function update() {
+      var box = row.getBoundingClientRect();
+      var w = Math.round(box.width), h = Math.round(box.height);
+      if (!w || !h) return;
+      var cs = getComputedStyle(row);
+      var r = parseFloat(cs.getPropertyValue('--hdr-r')) || 16;
+      /* радиус перетяжки задаётся отдельно от внешних углов: перетяжка узкая */
+      var k = parseFloat(cs.getPropertyValue('--hdr-r-seam')) || r;
+      var x = 0, seams = [];
+      segs.forEach(function (sg, n) {
+        x += sg.getBoundingClientRect().width;
+        /* стык нужен только между видимыми частями: до lg средней части нет */
+        if (n < segs.length - 1 && sg.getBoundingClientRect().width > 0) seams.push(Math.round(x));
+      });
+      seams = seams.filter(function (v, n) { return v > r + k && v < w - r - k && seams.indexOf(v) === n; });
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '">' +
+                '<path d="' + outline(w, h, r, k, seams) + '" fill="#000"/></svg>';
+      row.style.setProperty('--hdr-mask', 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")');
+    }
+    var ro = new ResizeObserver(update);
+    ro.observe(row); segs.forEach(function (sg) { ro.observe(sg); });
+    update();
+  })();
+
   // Логотип светлеет, когда оказывается над тёмным блоком
   (function () {
     var logo = document.querySelector('header .logo-brand');
@@ -758,6 +818,7 @@
       document.querySelectorAll('header .navlink, header .lang-switch'));
     if (!logo) return;
     var segs = Array.prototype.slice.call(document.querySelectorAll('header .hdr-glass'));
+    var row = document.querySelector('header .hdr-row');
     var darks = Array.prototype.slice.call(
       document.querySelectorAll('.slab, section.bg-ink, .footer-tone'));
     if (!darks.length) return;
@@ -771,10 +832,13 @@
           return d.top < r.bottom && d.bottom > r.top && d.left < r.right && d.right > r.left;
         });
       }
-      logo.classList.toggle('on-dark', overDark(logo));
-      links.forEach(function (a) { a.classList.toggle('on-dark', overDark(a)); });
-      /* плашки шапки непрозрачные, поэтому над тёмным блоком инвертируются целиком */
-      segs.forEach(function (s) { s.classList.toggle('on-dark', overDark(s)); });
+      /* Плашка шапки одна на весь ряд, поэтому решение принимаем один раз по ряду:
+         иначе части инвертировались бы порознь и плашка расслаивалась бы на куски. */
+      var dark = overDark(row || logo);
+      if (row) row.classList.toggle('on-dark', dark);
+      logo.classList.toggle('on-dark', dark);
+      links.forEach(function (a) { a.classList.toggle('on-dark', dark); });
+      segs.forEach(function (s) { s.classList.toggle('on-dark', dark); });
     }
     function onScroll() {
       if (ticking) return;

@@ -13,7 +13,20 @@
   --c-blue:#E5E5E1;  --c-bluedp:#2E3130;
   --c-terra:#EFB01F; --c-ochre:#EFB01F; --c-moss:#2E3130;
   --c-red:#9AA0A0;
+
+  /* Шапка – единый набор параметров стекла для всех страниц и всех частей плашки:
+     фон, размытие, тень, скругление. Менять только здесь. */
+  --hdr-bg:rgba(255,255,255,.88);
+  --hdr-bg-dark:rgba(46,49,48,.9);
+  --hdr-blur:blur(8px);
+  --hdr-shadow:0 1px 2px -1px rgba(31,33,32,.10), 0 8px 12px -8px rgba(31,33,32,.16);
+  --hdr-shadow-dark:0 1px 2px -1px rgba(0,0,0,.25), 0 8px 12px -8px rgba(0,0,0,.35);
+  --hdr-r:16px;
+  /* радиус перетяжки на стыке частей – меньше внешних углов, перетяжка узкая */
+  --hdr-r-seam:10px;
+  --hdr-gap:6px;
 }
+@media (min-width:768px){ :root{ --hdr-r:20px; } }
 html{ scroll-behavior:smooth; }
 html{ background:var(--c-graphite); }
 body{ background:var(--c-page); color:var(--c-ink); -webkit-font-smoothing:antialiased; }
@@ -102,14 +115,32 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 /* над тёмным блоком пункты меню светлеют */
 .navlink.on-dark{ color:var(--c-paper); }
 
-/* Шапка по образцу andabove.com (07.09.2026): две стеклянные плашки стоят вплотную,
-   у каждой свои скруглённые углы, поэтому на стыке получается «перетяжка».
-   Слева плашка с логотипом, справа – с меню и переключателем языка; она тянется до правого края
-   ряда, и пункты меню остались на прежних местах. Левое поле логотипной плашки равно прежнему
-   полю общей плашки, так что логотип тоже не сдвинулся. Кнопка WhatsApp из шапки убрана
-   временно, стили .wa-btn ниже оставлены до её возвращения. */
-.hdr-seg{ border-radius:16px; }
-@media (min-width:768px){ .hdr-seg{ border-radius:20px; } }
+/* Шапка по образцу andabove.com: плашка с перетяжками на стыках частей (логотип,
+   меню, язык). Части стоят вплотную, но стекло рисует ОДИН слой на весь ряд
+   (.hdr-row::before), а перетяжки вырезаны в нём маской – объединением трёх
+   скруглённых прямоугольников. Так и вид прежний, и швов нет: backdrop-filter
+   обрезается по своему элементу, поэтому три отдельных размытия рядом давали
+   на стыках вертикальные полосы. Границы частей (--seam1/--seam2) считает app.js.
+   Тень – отдельный слой ::after: внешняя box-shadow не рисуется внутри своей
+   рамки, поэтому в перетяжки она не затекает. */
+.hdr-row{ position:relative; isolation:isolate; }
+.hdr-row::before, .hdr-row::after{ content:''; position:absolute; inset:0;
+  pointer-events:none; }
+.hdr-row::after{ z-index:1; border-radius:var(--hdr-r); box-shadow:var(--hdr-shadow);
+  transition:box-shadow .25s ease; }
+.hdr-row.on-dark::after{ box-shadow:var(--hdr-shadow-dark); }
+.hdr-row::before{ z-index:2; background:var(--hdr-bg);
+  -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
+  transition:background-color .25s ease;
+  /* Силуэт плашки – ОДИН контур (SVG-маска, её строит app.js по границам частей).
+     Собирать его из трёх наложенных фигур нельзя: в перетяжке их сглаженные края
+     накладываются и дают то серый волосок по стыку, то зубец, если фигуры развести. */
+  -webkit-mask-image:var(--hdr-mask, none); mask-image:var(--hdr-mask, none);
+  -webkit-mask-size:100% 100%; mask-size:100% 100%;
+  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat; }
+.hdr-row.on-dark::before{ background:var(--hdr-bg-dark); }
+/* содержимое частей – поверх стекла */
+.hdr-glass{ z-index:3; }
 /* Логотип увеличен скриптом до 1.36 на верху страницы (transform не меняет габарит),
    поэтому правое поле плашки растёт на --logo-extra – его считает app.js вместе с --logo-scale. */
 /* Поля слева и справа от логотипа равны (до стыка плашек): логотип сдвинут transform'ом на 18px
@@ -157,31 +188,58 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 @media (max-width:1023px){
   .hdr-seg--menu{ display:none; }
   .hdr-seg--lang{ flex:1 1 auto; justify-content:flex-end; }
+  /* На узких экранах двум плашкам не хватало ширины и правая уезжала за край экрана.
+     Поля ужаты до минимума: у логотипа справа ровно столько же, сколько видно слева
+     (поле + сдвиг логотипа на 18px), десктопная добавка +12px здесь не нужна. */
+  .hdr-seg--logo{ --hdr-pad:1rem; padding-right:calc(var(--hdr-pad) + 18px); }
+  .hdr-seg--lang{ padding-left:12px; padding-right:12px; }
 }
-/* Слой начинается на 24px выше низа плашки и всегда скруглён снизу так же, как она:
-   в покое он просто повторяет её нижний край (не виден), при раскрытии продолжает её вниз.
-   Углы плашки при этом не трогаем – поэтому на стыке ни в один момент нет «зубца». */
-.hdr-seg--lang::after{ content:''; position:absolute; left:0; right:0; top:calc(100% - 24px);
-  height:calc(var(--lang-h, 0px) + 24px); background:inherit; border-radius:0 0 16px 16px; z-index:-1;
+@media (max-width:400px){
+  .hdr-seg--logo{ --hdr-pad:.75rem; }
+  .hdr-seg--lang{ padding-left:8px; padding-right:8px; }
+}
+/* На совсем узких экранах (320–359px) ширины не хватает даже так: ужимаем логотип,
+   надпись языка и кнопку меню. Ellipsis – страховка: если название языка окажется
+   ещё длиннее, оно обрежется, но плашка не уедет за край экрана. */
+@media (max-width:359px){
+  .hdr-seg--logo .logo-brand{ font-size:24px; }
+  .hdr-seg--lang{ min-width:0; }
+  .hdr-seg--lang .lang-wrap, .hdr-seg--lang .lang-switch{ min-width:0; }
+  .hdr-seg--lang .lang-switch{ font-size:15px; }
+  .hdr-seg--lang .ls-now{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  #burger{ width:40px; }
+}
+/* Список языков – отдельная плашка под рядом, через тот же зазор --hdr-gap, что и
+   мобильное меню. Приклеить её к ряду встык нельзя: это ещё одно размытие своей
+   рамкой, и на стыке была бы горизонтальная полоса – ровно та же причина, по которой
+   стекло в ряду рисует один слой. Высоту (--lang-h) задаёт app.js по высоте списка. */
+.hdr-seg--lang::after{ content:''; position:absolute; left:0; right:0;
+  top:calc(100% + var(--hdr-gap)); height:var(--lang-h, 0px);
+  background:var(--hdr-bg); border-radius:var(--hdr-r); z-index:-1;
   transition:height .28s cubic-bezier(.2,.7,.25,1); }
-@media (min-width:768px){ .hdr-seg--lang::after{ border-radius:0 0 20px 20px; } }
+.hdr-seg--lang.on-dark::after{ background:var(--hdr-bg-dark); }
+/* Тень и размытие – только у раскрытого: у закрытого высота 0, но тень рисовалась бы полосой. */
+.hdr-seg--lang:has(#lang-switch[aria-expanded="true"])::after{
+  -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
+  box-shadow:var(--hdr-shadow); }
+.hdr-seg--lang.on-dark:has(#lang-switch[aria-expanded="true"])::after{ box-shadow:var(--hdr-shadow-dark); }
 /* список ложится под низ плашки. До lg плашка широкая (в ней ещё бургер), поэтому список
    центрируется под кнопкой языка: её середину относительно плашки (--lang-x) считает app.js.
    На десктопе плашка узкая (144px, ширина задана кнопкой) – список прижат к ней справа. */
-.lang-pop{ position:absolute; top:100%; left:var(--lang-x, 50%); right:auto; transform:translate(-50%,-6px);
-           min-width:0; padding:2px 0 12px; margin:0; z-index:60;
+.lang-pop{ position:absolute; top:100%; left:var(--lang-x, 50%); right:auto; transform:translate(-50%, calc(var(--hdr-gap) - 6px));
+           min-width:0; padding:8px 0; margin:0; z-index:60;
            display:flex; flex-direction:column; gap:0;
            color:inherit; background:transparent; border-radius:0;
            opacity:0; visibility:hidden; pointer-events:none;
            transition:opacity .2s ease, transform .2s ease, visibility 0s linear .2s; }
 /* на десктопе плашка языка узкая (144px): список с полями строк 21px (+27 %, 12.09.2026) центрируем в ней */
-@media (min-width:1024px){ .lang-pop{ left:auto; right:10px; transform:translateY(-6px); } }
+@media (min-width:1024px){ .lang-pop{ left:auto; right:10px; transform:translateY(calc(var(--hdr-gap) - 6px)); } }
 /* невидимый «мостик» от кнопки до списка: курсор проходит по нему и список не закрывается */
 .lang-pop::before{ content:""; position:absolute; left:0; right:0; bottom:100%; height:34px; }
 .lang-switch[aria-expanded="true"] + .lang-pop{
            opacity:1; visibility:visible; pointer-events:auto;
-           transform:translate(-50%,0); transition-delay:0s; }
-@media (min-width:1024px){ .lang-switch[aria-expanded="true"] + .lang-pop{ transform:none; } }
+           transform:translate(-50%, var(--hdr-gap)); transition-delay:0s; }
+@media (min-width:1024px){ .lang-switch[aria-expanded="true"] + .lang-pop{ transform:translateY(var(--hdr-gap)); } }
 /* Пункт – строка на всю ширину списка, текст по центру, 37px высотой (тач-цель; 12.09.2026 отступы чуть меньше).
    При наведении подсвечивается строка целиком, начертание не меняется – жирным стоит только текущий. */
 .lang-opt{ display:flex; align-items:center; justify-content:center; width:100%; box-sizing:border-box;
@@ -205,8 +263,15 @@ header .lang-switch[aria-expanded="true"]{ font-weight:700; }
 /* Мобильное меню (12.09.2026, по аудиту): пока панель открыта, страница под ней не прокручивается,
    а сама панель прокручивается внутри себя, если не влезает в окно. Бургер складывается в крестик. */
 html.menu-open, html.menu-open body{ overflow:hidden; }
-#mobile-nav{ max-height:calc(100vh - 100px); max-height:calc(100dvh - 100px); overflow-y:auto; }
-#burger span{ transition:transform .2s ease; }
+/* Мобильное меню – ещё одна плашка того же семейства: те же параметры стекла,
+   скруглено со всех сторон и отделено от ряда тем же зазором. */
+#mobile-nav{ max-height:calc(100vh - 100px); max-height:calc(100dvh - 100px); overflow-y:auto;
+  margin-top:var(--hdr-gap); background:var(--hdr-bg);
+  -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
+  border-top:0; border-radius:var(--hdr-r); box-shadow:var(--hdr-shadow); }
+header:has(.hdr-row.on-dark) #mobile-nav{ background:var(--hdr-bg-dark); box-shadow:var(--hdr-shadow-dark); }
+header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:rgba(255,255,255,.14); }
+#burger span{ transition:transform .2s ease, background-color .25s ease; }
 #burger[aria-expanded="true"] span:first-child{ transform:translateY(3.5px) rotate(45deg); }
 #burger[aria-expanded="true"] span:last-child{ transform:translateY(-3.5px) rotate(-45deg); }
 @media (prefers-reduced-motion:reduce){ #burger span{ transition:none; } }
@@ -1067,9 +1132,15 @@ details[open] .chev{ transform:rotate(45deg) }
 .ws-legal-item .chev{ transform:rotate(0deg) }
 .ws-legal-item.is-open .chev{ transform:rotate(45deg) }
 
-/* Плашки шапки – просто белые; над тёмным блоком инвертируются вместе с текстом */
-.hdr-glass{ position:relative; background:var(--c-paper); transition:background-color .25s ease; }
-.hdr-glass.on-dark{ background:var(--c-moss); }
+/* Плашки не сплошные, а слегка прозрачные с размытием фона и мягкой тенью
+   (приём с yummygum.com): контент под шапкой чуть просвечивает, плашка
+   отрывается от страницы. Тень только вниз, с отрицательным spread: плашки стоят
+   вплотную, и любой боковой разлёт залил бы выемку между их скруглениями –
+   три плашки слились бы в одну. */
+.hdr-glass{ position:relative; }
+/* Полоски бургера сверстаны утилитой bg-ink, поэтому над тёмным блоком
+   их нужно перекрасить отдельно – вместе с текстом шапки. */
+.hdr-glass.on-dark #burger span{ background:var(--c-paper); }
 
 /* ===== Страница /kontakt/ ===== */
 /* H1 подстраниц: ограничение ширины строки (утилита max-w-[22ch] в сборке Tailwind отсутствует) */
