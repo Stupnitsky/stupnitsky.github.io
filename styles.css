@@ -161,16 +161,14 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 /* Слой начинается на 24px выше низа плашки и всегда скруглён снизу так же, как она:
    в покое он просто повторяет её нижний край (не виден), при раскрытии продолжает её вниз.
    Углы плашки при этом не трогаем – поэтому на стыке ни в один момент нет «зубца». */
-/* Ширина слоя – не меньше плашки, а на десктопе (плашка узкая) равна ширине списка с полями
-   (--lang-w из app.js): список никогда не вылезает за подложку; слой прижат к правому краю. */
-.hdr-seg--lang::after{ content:''; position:absolute; left:auto; right:0; top:calc(100% - 24px);
-  width:max(100%, var(--lang-w, 0px));
+.hdr-seg--lang::after{ content:''; position:absolute; left:0; right:0; top:calc(100% - 24px);
   height:calc(var(--lang-h, 0px) + 24px); background:inherit; border-radius:0 0 16px 16px; z-index:-1;
   transition:height .28s cubic-bezier(.2,.7,.25,1); }
 @media (min-width:768px){ .hdr-seg--lang::after{ border-radius:0 0 20px 20px; } }
-/* список ложится под низ плашки, прижат к её правому полю (px-4 / sm:px-5) */
+/* список ложится под низ плашки, прижат к её правому полю (px-4 / sm:px-5) и не шире самой
+   плашки – её ширина задана кнопкой (min-width 104px), названия языков помещаются в неё (12.09.2026) */
 .lang-pop{ position:absolute; top:100%; right:1rem; transform:translateY(-6px);
-           min-width:188px; padding:2px 0 12px; margin:0; z-index:60;
+           min-width:0; padding:2px 0 12px; margin:0; z-index:60;
            display:flex; flex-direction:column; gap:2px;
            color:inherit; background:transparent; border-radius:0;
            opacity:0; visibility:hidden; pointer-events:none;
@@ -181,18 +179,15 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 .lang-switch[aria-expanded="true"] + .lang-pop{
            opacity:1; visibility:visible; pointer-events:auto;
            transform:none; transition-delay:0s; }
-/* Пункт – строка на всю ширину списка, 41px высотой (тач-цель), код языка слева, галочка у текущего.
+/* Пункт – строка на всю ширину списка, 41px высотой (тач-цель).
    При наведении подсвечивается строка целиком, начертание не меняется – жирным стоит только текущий. */
-.lang-opt{ display:flex; align-items:center; gap:10px; width:100%; box-sizing:border-box;
+.lang-opt{ display:flex; align-items:center; width:100%; box-sizing:border-box;
            border:0; background:none; cursor:pointer; text-align:left; text-decoration:none;
-           padding:11px 12px; border-radius:8px; font-size:16px; font-weight:400; line-height:1.2;
+           padding:11px 8px; border-radius:8px; font-size:16px; font-weight:400; line-height:1.2;
            white-space:nowrap; color:inherit; transition:background-color .15s ease; }
 .lang-opt:hover{ background:rgba(31,33,32,.07); }
 .lang-opt:focus-visible{ outline:2px solid currentColor; outline-offset:-2px; }
 .lang-opt.is-current, .lang-opt[aria-current="true"]{ font-weight:700; }
-.lo-code{ flex:0 0 22px; font-size:11px; font-weight:700; letter-spacing:.07em; opacity:.55; }
-.lo-tick{ flex:0 0 auto; margin-left:auto; opacity:0; }
-.lang-opt.is-current .lo-tick, .lang-opt[aria-current="true"] .lo-tick{ opacity:1; }
 @media (prefers-reduced-motion:reduce){
   .lang-pop, .ls-chev, .hdr-seg--lang::after, .lang-opt{ transition:none; }
 }

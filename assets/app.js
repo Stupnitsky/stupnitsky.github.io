@@ -341,11 +341,7 @@
       clearTimeout(leaveTimer);
       if (isOpen()) return;
       btn.setAttribute('aria-expanded', 'true');
-      if (seg) {
-        var pad = parseFloat(getComputedStyle(pop).right) || 0;
-        seg.style.setProperty('--lang-w', (pop.offsetWidth + pad * 2) + 'px');
-        seg.style.setProperty('--lang-h', pop.offsetHeight + 'px');
-      }
+      if (seg) seg.style.setProperty('--lang-h', pop.offsetHeight + 'px');
     }
     function close(focusBtn) {
       clearTimeout(leaveTimer);
