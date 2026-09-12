@@ -1584,8 +1584,10 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd .wy-v2 .qd-linkbtn:hover, .qd .wy-v2 .qd-linkbtn:focus-visible{ color:var(--c-ink); }
 .qd .wy-v2 .qd-email{ margin-top:1.1rem; }
 /* поля контактов уже дропзоны – короткий ввод не должен растягиваться на всю колонку */
-.qd .wy-v2 .quote-form input.field{ width:55%; margin:0 auto; }
-@media (max-width:639px){ .qd .wy-v2 .quote-form input.field{ width:100%; } }
+/* ширина по содержимому: номер телефона короткий, e-mail длиннее; на узком экране не шире колонки */
+.qd .wy-v2 .quote-form input.field{ width:100%; margin:0 auto; }
+.qd .wy-v2 .quote-form input[type="tel"].field{ max-width:15rem; }
+.qd .wy-v2 .quote-form input[type="email"].field{ max-width:20rem; }
 /* чипы «czego dotyczy sprawa»: чекбоксы в виде таблеток, без набора текста (14.09.2026) */
 /* правая колонка панели – всё по центру (14.09.2026) */
 .qd .wy-v2 .quote-form{ text-align:center; }
