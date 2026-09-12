@@ -1368,6 +1368,9 @@
       status.classList.toggle('is-err', !ok);
     }
     function hush() { if (status) { status.textContent = ''; status.classList.add('hidden'); } }
+    /* крестик на плашке ошибки прячет сообщение */
+    var statusClose = form.querySelector('.qd-status-close');
+    if (statusClose) statusClose.addEventListener('click', hush);
     function fmt(b) { return b < 1048576 ? Math.round(b / 1024) + ' KB' : (b / 1048576).toFixed(1) + ' MB'; }
 
     /* ---- файлы: накапливаем, сжимаем, подставляем обратно в input ---- */
@@ -1678,7 +1681,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260924k';   /* версию менять вместе с правкой фрагмента */
+    var FRAG = '/assets/wycena.html?v=20260924l';   /* версию менять вместе с правкой фрагмента */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */

@@ -1896,3 +1896,14 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-human{ max-width:none; }
 /* Плашка ошибки: переносы из текста (&#10; в data-msg-required), без ограничения ширины (13.09.2026) */
 .qd .wy-v2 .qd-status.is-err:not(.hidden){ white-space:pre-line; max-width:none; }
+
+/* Плашка ошибки крупнее и с белым крестиком справа сверху (13.09.2026).
+   Крестик – соседняя кнопка в обёртке: текст плашки пишется через textContent и затёр бы вложенные элементы */
+.qd .wy-v2 .qd-status-wrap{ position:relative; display:table; margin:0 auto; }
+.qd .wy-v2 .qd-status-wrap:has(.qd-status:not(.hidden)){ margin-bottom:1rem; }
+.qd .wy-v2 .qd-status-wrap .qd-status:not(.hidden){ margin:0; }
+.qd .wy-v2 .qd-status.is-err:not(.hidden){ padding:1.25rem 2.75rem; border-radius:10px; font-size:15px; line-height:1.5; }
+.qd .wy-v2 .qd-status-close{ display:none; position:absolute; top:8px; right:8px; width:28px; height:28px; place-items:center;
+  border:0; border-radius:50%; background:none; color:var(--c-paper); opacity:.75; cursor:pointer; padding:0; }
+.qd .wy-v2 .qd-status-close:hover, .qd .wy-v2 .qd-status-close:focus-visible{ opacity:1; }
+.qd .wy-v2 .qd-status-wrap:has(.qd-status.is-err:not(.hidden)) .qd-status-close{ display:grid; }
