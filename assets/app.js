@@ -1417,6 +1417,24 @@
     }
     if (inp) inp.addEventListener('change', function () { addFiles(inp.files); });
 
+    /* «Polityka Prywatności»: раскрываем тут же, текст берём с главной один раз */
+    var polBtn = form.querySelector('[data-policy]'), polBox = form.querySelector('.qd-policy');
+    if (polBtn && polBox) polBtn.addEventListener('click', function () {
+      var open = polBox.hidden;
+      polBox.hidden = !open;
+      polBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (!open || polBox.dataset.loaded) return;
+      polBox.dataset.loaded = '1';
+      fetch('/').then(function (r) { return r.text(); }).then(function (html) {
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var src = doc.querySelector('#polityka-prywatnosci .legal-wrap');
+        if (!src) throw new Error('brak treści');
+        polBox.innerHTML = src.innerHTML;
+      }).catch(function () {
+        polBox.innerHTML = '<p><a href="/#polityka-prywatnosci">Otwórz Politykę Prywatności na stronie głównej</a></p>';
+      });
+    });
+
     /* «kilka słów o sprawie»: поле спрятано, показываем по клику и ставим фокус */
     var msgBtn = form.querySelector('[data-show-msg]'), msgBox = form.querySelector('.qd-msg');
     if (msgBtn && msgBox) msgBtn.addEventListener('click', function () {
@@ -1659,7 +1677,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260922y';   /* версию менять вместе с правкой фрагмента */
+    var FRAG = '/assets/wycena.html?v=20260922z';   /* версию менять вместе с правкой фрагмента */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */

@@ -1608,6 +1608,14 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd .wy-v2 .qd-submit{ width:auto; min-width:16rem; }
 @media (max-width:479px){ .qd .wy-v2 .qd-submit{ width:100%; } }
 .qd .wy-v2 .qd-legal{ font-size:14px; line-height:1.55; color:rgba(31,33,32,.65) !important; margin-top:1rem; }
+/* Polityka Prywatności раскрывается внутри панели: текст тянем с главной, там он на тёмном фоне */
+.qd .wy-v2 .qd-policy{ margin-top:1rem; padding:1.1rem 1.2rem; max-height:16rem; overflow:auto;
+  text-align:left; background:rgba(31,33,32,.03); border:1px solid rgba(31,33,32,.12); border-radius:10px; }
+.qd .wy-v2 .qd-policy > div{ max-width:none !important; }
+.qd .wy-v2 .qd-policy p{ font-size:14px !important; line-height:1.55 !important; color:rgba(31,33,32,.7) !important; margin:0 0 .7rem; }
+.qd .wy-v2 .qd-policy p:last-child{ margin-bottom:0; }
+.qd .wy-v2 .qd-policy strong{ color:var(--c-ink) !important; font-weight:600; }
+.qd .wy-v2 .qd-policy a{ color:inherit; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
 
 .qd .wy-v2 .qd-legal a:hover{ color:var(--c-ink); }
 .qd .wy-v2 .qd-consent{ font-size:15px; line-height:1.5; color:rgba(31,33,32,.8) !important; font-weight:500; }
