@@ -1572,9 +1572,9 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd .wy-v2 .qd-tag input{ position:absolute; opacity:0; width:1px; height:1px; margin:0; }
 .qd .wy-v2 .qd-tag span{ display:inline-block; font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
   letter-spacing:.12em; font-size:13px; font-weight:700; line-height:1; color:var(--c-ink);
-  padding:.75em 1em .8em; border-radius:6px; background:#D0D0CB; border:0; white-space:nowrap;
+  padding:.75em 1em .8em; border-radius:6px; background:var(--c-sand); border:0; white-space:nowrap;
   transition:background-color .25s ease; }
-.qd .wy-v2 .qd-tag:hover span{ background:var(--c-sand); }
+.qd .wy-v2 .qd-tag:hover span{ background:#D0D0CB; }
 .qd .wy-v2 .qd-tag input:checked + span{ background:var(--c-terra); }
 .qd .wy-v2 .qd-tag input:focus-visible + span{ outline:2px solid var(--c-terra); outline-offset:2px; }
 .qd .wy-v2 .qd-tag-more{ font-size:15px; color:rgba(31,33,32,.6); margin-left:.2rem; }
