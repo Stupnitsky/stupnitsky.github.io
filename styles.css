@@ -1907,3 +1907,8 @@ body > main{ background:var(--c-page); }
   border:0; border-radius:50%; background:none; color:var(--c-paper); opacity:.75; cursor:pointer; padding:0; }
 .qd .wy-v2 .qd-status-close:hover, .qd .wy-v2 .qd-status-close:focus-visible{ opacity:1; }
 .qd .wy-v2 .qd-status-wrap:has(.qd-status.is-err:not(.hidden)) .qd-status-close{ display:grid; }
+/* На узком экране самая длинная строка («Dodaj zdjęcie lub skan dokumentu») не влезала с отступами 44px
+   и ломалась на две – поджимаем отступы и кегль, чтобы остались три строки как заданы (13.09.2026) */
+@media (max-width:479px){
+  .qd .wy-v2 .qd-status.is-err:not(.hidden){ padding:1.1rem 2.25rem; font-size:14px; }
+}
