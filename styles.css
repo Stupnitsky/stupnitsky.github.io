@@ -1542,15 +1542,19 @@ details[open] .chev{ transform:rotate(45deg) }
 @media (min-width:640px){ .qd .wy-v2 .qd-row{ grid-template-columns:1fr 1fr; } }
 /* документ – первое и главное поле: вся рамка кликабельна (label for=file), кнопка terra,
    после выбора файла рамка становится сплошной, имя файла – в строке */
-.qd .wy-v2 .qd-drop{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:.8rem; cursor:pointer;
-  border:2px dashed rgba(31,33,32,.38); border-radius:10px; padding:1.6rem 1.2rem 1.4rem; background:rgba(31,33,32,.03);
-  transition:border-color .2s ease, background-color .2s ease; }
+.qd .wy-v2 .qd-drop{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:.9rem; cursor:pointer;
+  width:70%; margin:0 auto; border:2px dashed rgba(31,33,32,.38); border-radius:10px; padding:2rem 1.2rem 1.8rem;
+  background:rgba(31,33,32,.03); transition:border-color .2s ease, background-color .2s ease; }
+@media (max-width:639px){ .qd .wy-v2 .qd-drop{ width:100%; } }
 .qd .wy-v2 .qd-drop:hover, .qd .wy-v2 .qd-drop.is-over{ border-color:var(--c-terra); background:rgba(239,176,31,.08); }
 .qd .wy-v2 .qd-drop.is-filled{ border-style:solid; border-color:var(--c-terra); background:var(--c-paper); }
+.qd .wy-v2 .qd-drop.is-filled .qd-drop-btn{ background:#D0D0CB; }
 .qd .wy-v2 .file-input-hidden:focus-visible + .qd-drop{ outline:2px solid var(--c-terra); outline-offset:3px; }
-.qd .wy-v2 .qd-drop-btn{ flex:0 0 auto; background:var(--c-terra); color:var(--c-ink); font-weight:700; font-size:17px;
-  line-height:1.2; padding:1rem 1.6rem; border-radius:8px; white-space:nowrap; transition:transform .15s ease; }
-.qd .wy-v2 .qd-drop:hover .qd-drop-btn{ transform:translateY(-1px); }
+.qd .wy-v2 .qd-drop-btn{ flex:0 0 auto; background:var(--c-sand); color:var(--c-ink); font-weight:700; font-size:17px;
+  line-height:1.2; padding:1rem 1.6rem; border-radius:8px; white-space:nowrap;
+  transition:background-color .2s ease, transform .15s ease; }
+.qd .wy-v2 .qd-drop:hover .qd-drop-btn{ background:#D0D0CB; }
+
 .qd .wy-v2 .qd-drop-txt{ min-width:0; display:flex; flex-direction:column; gap:.2rem; align-items:center; }
 /* без подписи в рамке: пустой txt не должен добавлять зазор на телефоне */
 .qd .wy-v2 .qd-drop-txt:empty, .qd .wy-v2 .qd-drop-txt:not(:has(:not(.qd-drop-drag))){ display:contents; }
@@ -1566,6 +1570,9 @@ details[open] .chev{ transform:rotate(45deg) }
   text-decoration:underline; text-underline-offset:3px; }
 .qd .wy-v2 .qd-linkbtn:hover, .qd .wy-v2 .qd-linkbtn:focus-visible{ color:var(--c-ink); }
 .qd .wy-v2 .qd-email{ margin-top:1.2rem; }
+/* поля контактов уже дропзоны – короткий ввод не должен растягиваться на всю колонку */
+.qd .wy-v2 .quote-form input.field{ width:55%; margin:0 auto; }
+@media (max-width:639px){ .qd .wy-v2 .quote-form input.field{ width:100%; } }
 /* чипы «czego dotyczy sprawa»: чекбоксы в виде таблеток, без набора текста (14.09.2026) */
 /* правая колонка панели – всё по центру (14.09.2026) */
 .qd .wy-v2 .quote-form{ text-align:center; }
