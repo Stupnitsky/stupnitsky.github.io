@@ -1417,6 +1417,12 @@
     }
     if (inp) inp.addEventListener('change', function () { addFiles(inp.files); });
 
+    /* «Kilka słów o sprawie»: по раскрытию сразу курсор в поле */
+    var more = form.querySelector('.qd-more');
+    if (more) more.addEventListener('toggle', function () {
+      var ta = more.querySelector('textarea'); if (more.open && ta) ta.focus();
+    });
+
     /* «wolę odpowiedź mailem»: поле e-mail спрятано, показываем по клику и ставим фокус */
     var mailBtn = form.querySelector('[data-show-email]'), mailBox = form.querySelector('.qd-email');
     if (mailBtn && mailBox) mailBtn.addEventListener('click', function () {
@@ -1652,7 +1658,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260922m';   /* версию менять вместе с правкой фрагмента */
+    var FRAG = '/assets/wycena.html?v=20260922n';   /* версию менять вместе с правкой фрагмента */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
