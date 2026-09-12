@@ -1589,8 +1589,9 @@ details[open] .chev{ transform:rotate(45deg) }
 /* «Wolę odpowiedź mailem» – стрелка вниз как у переключателя языка (.ls-chev): поле раскроется ниже */
 .qd .wy-v2 .qd-linkbtn--chev{ display:inline-flex; align-items:center; gap:7px; text-decoration:none; }
 .qd .wy-v2 .qd-linkbtn--chev span{ text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
-.qd .wy-v2 .qd-chev{ flex:none; transition:transform .2s ease; }
-.qd .wy-v2 .qd-linkbtn--chev:hover .qd-chev{ transform:translateY(2px); }
+.qd .wy-v2 .qd-chev{ flex:none; transition:transform .18s ease; }
+.qd .wy-v2 .qd-linkbtn--chev[aria-expanded="true"] .qd-chev{ transform:rotate(180deg); }
+.qd .wy-v2 .qd-tag-more.qd-linkbtn--chev{ justify-content:center; }
 .qd .wy-v2 .qd-email{ margin-top:1.1rem; }
 /* поля контактов уже дропзоны – короткий ввод не должен растягиваться на всю колонку */
 /* ширина по содержимому: номер телефона короткий, e-mail длиннее; на узком экране не шире колонки */

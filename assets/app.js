@@ -1435,19 +1435,20 @@
       });
     });
 
-    /* «kilka słów o sprawie»: поле спрятано, показываем по клику и ставим фокус */
-    var msgBtn = form.querySelector('[data-show-msg]'), msgBox = form.querySelector('.qd-msg');
-    if (msgBtn && msgBox) msgBtn.addEventListener('click', function () {
-      msgBox.hidden = false; msgBtn.hidden = true;
-      var ta = msgBox.querySelector('textarea'); if (ta) ta.focus();
-    });
-
-    /* «wolę odpowiedź mailem»: поле e-mail спрятано, показываем по клику и ставим фокус */
-    var mailBtn = form.querySelector('[data-show-email]'), mailBox = form.querySelector('.qd-email');
-    if (mailBtn && mailBox) mailBtn.addEventListener('click', function () {
-      mailBox.hidden = false; mailBtn.hidden = true;
-      var em = mailBox.querySelector('input'); if (em) em.focus();
-    });
+    /* «Wolę odpowiedź mailem» и «Kilka słów o sprawie» – раскрывашки как переключатель языка:
+       кнопка остаётся на месте, aria-expanded переворачивает стрелку, повторный клик сворачивает */
+    function toggler(btn, box) {
+      if (!btn || !box) return;
+      btn.addEventListener('click', function () {
+        var open = box.hidden;
+        box.hidden = !open;
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        var field = box.querySelector('input, textarea');
+        if (open && field) field.focus();
+      });
+    }
+    toggler(form.querySelector('[data-show-msg]'), form.querySelector('.qd-msg'));
+    toggler(form.querySelector('[data-show-email]'), form.querySelector('.qd-email'));
 
     /* drag & drop на зону; файл, брошенный мимо, не должен открыться вместо страницы */
     if (drop) {
@@ -1677,7 +1678,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260923p';   /* версию менять вместе с правкой фрагмента */
+    var FRAG = '/assets/wycena.html?v=20260923q';   /* версию менять вместе с правкой фрагмента */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
