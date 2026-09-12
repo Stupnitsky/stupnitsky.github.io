@@ -1529,26 +1529,41 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd .wy-v2 .field:focus{ border-color:var(--c-terra); border-width:2px; padding:calc(.8rem - 1px) calc(1rem - 1px); box-shadow:none; }
 .qd .wy-v2 .field::placeholder{ color:rgba(31,33,32,.45); }
 .qd .wy-v2 select.field{ padding-right:2.4rem; }
-.qd .wy-v2 .quote-form > * + *{ margin-top:1.3rem; }
+.qd .wy-v2 .quote-form > * + *{ margin-top:1.6rem; }
+/* альтернативный канал под заголовком (v3, 12.09.2026): фото в WhatsApp, а не в форму */
+.qd .wy-v2 .qd-alt{ font-size:16px; line-height:1.5; color:rgba(31,33,32,.65); font-weight:500; margin:.6rem 0 1.6rem; }
+.qd .wy-v2 .qd-alt a{ text-decoration:underline; text-underline-offset:3px; }
+.qd .wy-v2 .qd-alt a:hover{ color:var(--c-ink); }
 .qd .wy-v2 .qd-row{ display:grid; gap:1.3rem; }
 @media (min-width:640px){ .qd .wy-v2 .qd-row{ grid-template-columns:1fr 1fr; } }
 /* документ – первое и главное поле: вся рамка кликабельна (label for=file), кнопка terra,
    после выбора файла рамка становится сплошной, имя файла – в строке */
 .qd .wy-v2 .qd-drop{ display:flex; align-items:center; gap:1.1rem; cursor:pointer;
-  border:2px dashed rgba(31,33,32,.38); border-radius:10px; padding:.9rem 1rem; background:var(--c-paper);
+  border:2px dashed rgba(31,33,32,.38); border-radius:10px; padding:1.2rem 1.2rem; background:var(--c-paper);
   transition:border-color .2s ease, background-color .2s ease; }
 .qd .wy-v2 .qd-drop:hover{ border-color:var(--c-terra); background:rgba(239,176,31,.08); }
 .qd .wy-v2 .qd-drop.is-filled{ border-style:solid; border-color:var(--c-terra); }
 .qd .wy-v2 .file-input-hidden:focus-visible + .qd-drop{ outline:2px solid var(--c-terra); outline-offset:3px; }
 .qd .wy-v2 .qd-drop-btn{ flex:0 0 auto; background:var(--c-terra); color:var(--c-ink); font-weight:700; font-size:16px;
-  line-height:1.2; padding:.85rem 1.2rem; border-radius:8px; white-space:nowrap; }
+  line-height:1.2; padding:1rem 1.4rem; border-radius:8px; white-space:nowrap; }
 .qd .wy-v2 .qd-drop-txt{ min-width:0; display:flex; flex-direction:column; gap:.2rem; }
-.qd .wy-v2 .qd-drop-txt .file-name{ font-size:16px; font-weight:600; opacity:1; color:var(--c-ink); }
+.qd .wy-v2 .qd-drop-txt .file-name{ font-size:16px; font-weight:600; opacity:1; color:var(--c-ink); white-space:normal; line-height:1.35; }
 .qd .wy-v2 .qd-drop.is-filled .file-name{ color:var(--c-ink); }
 .qd .wy-v2 .qd-drop-txt small{ font-size:14px; line-height:1.4; color:rgba(31,33,32,.6); font-weight:500; white-space:normal; }
 @media (max-width:479px){ .qd .wy-v2 .qd-drop{ flex-direction:column; align-items:stretch; }
   .qd .wy-v2 .qd-drop-btn{ text-align:center; } }
-.qd .wy-v2 .qd-hint{ font-size:14px; color:rgba(31,33,32,.55); font-weight:500; }
+.qd .wy-v2 .qd-hint{ font-size:14px; color:rgba(31,33,32,.55) !important; font-weight:500; margin-top:.5rem; }
+/* «wolę odpowiedź mailem» – кнопка в виде ссылки, показывает поле e-mail под телефоном */
+.qd .wy-v2 .qd-linkbtn{ background:none; border:0; padding:0; margin:0; font:inherit; color:inherit; cursor:pointer;
+  text-decoration:underline; text-underline-offset:3px; }
+.qd .wy-v2 .qd-linkbtn:hover, .qd .wy-v2 .qd-linkbtn:focus-visible{ color:var(--c-ink); }
+.qd .wy-v2 .qd-email{ margin-top:1.2rem; }
+.qd .wy-v2 textarea.field{ resize:vertical; min-height:5.5rem; }
+/* одна кнопка на всю ширину, под ней строка согласия */
+.qd .wy-v2 .qd-submit{ width:100%; }
+.qd .wy-v2 .qd-legal{ font-size:13.5px; line-height:1.45; color:rgba(31,33,32,.55) !important; font-weight:500; margin-top:.8rem; }
+.qd .wy-v2 .qd-legal a{ text-decoration:underline; text-underline-offset:2px; }
+.qd .wy-v2 .qd-legal a:hover{ color:var(--c-ink); }
 .qd .wy-v2 .qd-consent{ font-size:15px; line-height:1.5; color:rgba(31,33,32,.8) !important; font-weight:500; }
 .qd .wy-v2 .qd-consent a:hover{ color:var(--c-ink); }
 .qd .wy-v2 #consent, .qd .wy-v2 #consent-qd{ width:22px; height:22px; accent-color:var(--c-terra); }

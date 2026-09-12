@@ -1417,6 +1417,13 @@
     }
     if (inp) inp.addEventListener('change', function () { addFiles(inp.files); });
 
+    /* «wolę odpowiedź mailem»: поле e-mail спрятано, показываем по клику и ставим фокус */
+    var mailBtn = form.querySelector('[data-show-email]'), mailBox = form.querySelector('.qd-email');
+    if (mailBtn && mailBox) mailBtn.addEventListener('click', function () {
+      mailBox.hidden = false; mailBtn.hidden = true;
+      var em = mailBox.querySelector('input'); if (em) em.focus();
+    });
+
     /* drag & drop на зону; файл, брошенный мимо, не должен открыться вместо страницы */
     if (drop) {
       ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('is-over'); }); });
@@ -1433,12 +1440,11 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var name = form.querySelector('[name="name"]'), phone = form.querySelector('[name="phone"]');
-      var service = form.querySelector('[name="service"]'), consent = form.querySelector('[name="consent"]');
+      var service = form.querySelector('[name="service"]');
       var need = function (f) { return f && f.required; };
       var missing = (need(name) && !name.value.trim()) || (need(phone) && !phone.value.trim()) ||
                     (need(service) && !service.value) || (need(inp) && !picked.length);
       if (missing) { say(form.dataset.msgRequired || 'Uzupełnij imię, telefon i wybierz usługę.', false); return; }
-      if (consent && !consent.checked) { say('Potrzebujemy zgody na przetwarzanie danych, żeby przygotować wycenę.', false); return; }
       if (drop && drop.classList.contains('is-busy')) { say('Chwila – jeszcze przygotowujemy zdjęcia.', false); return; }
 
       btn.disabled = true;
@@ -1646,7 +1652,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260922h';   /* версию менять вместе с правкой фрагмента */
+    var FRAG = '/assets/wycena.html?v=20260922i';   /* версию менять вместе с правкой фрагмента */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */

@@ -45,7 +45,7 @@
             <div class="col-span-12 lg:col-span-7 bg-paper text-ink p-7 sm:p-12 lg:p-14">
 
               <p class="qd-formhead">Zamów wycenę</p>
-              <p class="qd-formsub">Zdjęcie lub skan dokumentu i&nbsp;telefon do kontaktu.<br>Resztę ustalimy w&nbsp;odpowiedzi.</p>
+              <p class="qd-alt">Wolisz WhatsApp? <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20prosz%C4%99%20o%20wycen%C4%99.%20Wysy%C5%82am%20zdj%C4%99cia%20dokumentu." target="_blank" rel="noopener">Wyślij zdjęcie na +48&nbsp;507&nbsp;588&nbsp;155</a></p>
 
               <!-- ZMIEŃ action na swój endpoint (Formspree / Web3Forms / własny backend) -->
               <form id="quote-form"
@@ -54,17 +54,15 @@
                     enctype="multipart/form-data"
                     novalidate
                     data-msg-required="Dodaj zdjęcie lub skan dokumentu i podaj telefon – bez tego nie policzymy ceny."
-                    class="quote-form space-y-7">
+                    class="quote-form">
 
                 <div>
-                  <label for="file" class="qd-label">Zdjęcie lub skan dokumentu *</label>
                   <input class="file-input-hidden" type="file" id="file" name="file"
-                         accept="image/*,application/pdf" multiple required>
+                         accept="image/*,application/pdf" multiple required aria-label="Zdjęcie lub skan dokumentu">
                   <label for="file" class="qd-drop">
-                    <span class="qd-drop-btn">Dodaj zdjęcie</span>
+                    <span class="qd-drop-btn">Dodaj zdjęcie lub skan</span>
                     <span class="qd-drop-txt">
-                      <b id="file-name" class="file-name">Zdjęcie z telefonu wystarczy</b>
-                      <small>Obie strony dokumentu, można kilka naraz. Duże pliki zmniejszymy sami – nic nie musisz robić.</small>
+                      <b id="file-name" class="file-name">Obie strony dokumentu, można kilka zdjęć</b>
                     </span>
                   </label>
                   <ul class="qd-files" aria-live="polite"></ul>
@@ -72,68 +70,37 @@
                 </div>
 
                 <div>
-                  <label for="phone" class="qd-label">Telefon / WhatsApp *</label>
+                  <label for="phone" class="qd-label">Telefon</label>
                   <input class="field" type="tel" id="phone" name="phone" placeholder="+48 600 000 000" required autocomplete="tel"
                          inputmode="tel" pattern="[+0-9\s()\-]{7,20}">
+                  <p class="qd-hint">Odpiszemy na WhatsApp lub SMS. <button type="button" class="qd-linkbtn" data-show-email>wolę odpowiedź mailem</button></p>
+                  <div class="qd-email" hidden>
+                    <label for="email" class="qd-label">E-mail</label>
+                    <input class="field" type="email" id="email" name="email" placeholder="np. anna@gmail.com" autocomplete="email" inputmode="email">
+                  </div>
                 </div>
 
                 <details class="qd-more">
                   <summary>Dodaj szczegóły <small>– opcjonalnie</small></summary>
                   <div class="qd-more-body">
-                    <div class="qd-row">
-                    <div>
-                      <label for="service" class="qd-label">Usługa</label>
-                      <select class="field" id="service" name="service">
-                        <option value="" selected>Nie wiem – doradźcie</option>
-                        <option value="apostille-msz">Apostille – MSZ</option>
-                        <option value="apostille-sad">Apostille – Sąd Okręgowy</option>
-                        <option value="apostille-ua">Apostille – dokumenty z Ukrainy</option>
-                        <option value="tlumaczenie">Tłumaczenie przysięgłe</option>
-                        <option value="tlumaczenie-konsularne">Tłumaczenie konsularne</option>
-                        <option value="istrebowanie">Uzyskanie duplikatu dokumentu</option>
-                        <option value="inne">Inne – opiszę w wiadomości</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label for="email" class="qd-label">E-mail <small>– jeśli wolisz odpowiedź mailem</small></label>
-                      <input class="field" type="email" id="email" name="email" placeholder="np. anna@gmail.com" autocomplete="email" inputmode="email">
-                    </div>
-                    </div>
-                    <div class="qd-row">
-                    <div>
-                      <label for="name" class="qd-label">Imię</label>
-                      <input class="field" type="text" id="name" name="name" placeholder="Jak się do Ciebie zwracać?" autocomplete="given-name">
-                    </div>
-                    <div>
-                      <label for="message" class="qd-label">Do jakiego kraju i&nbsp;na kiedy</label>
-                      <input class="field" type="text" id="message" name="message" placeholder="Np. akt urodzenia UA, do końca miesiąca">
-                    </div>
-                    </div>
+                    <label for="message" class="qd-label">Kilka słów o&nbsp;sprawie</label>
+                    <textarea class="field" id="message" name="message" rows="3" placeholder="np. akt urodzenia do Ukrainy, potrzebny do końca miesiąca"></textarea>
                   </div>
                 </details>
 
-                <div class="flex items-start gap-3 pt-1">
-                  <input type="checkbox" id="consent" name="consent" required
-                         class="mt-1 w-5 h-5 shrink-0 accent-[#EFB01F] cursor-pointer">
-                  <label for="consent" class="qd-consent cursor-pointer">
-                    Wyrażam zgodę na przetwarzanie moich danych osobowych w&nbsp;celu przygotowania wyceny
-                    i&nbsp;kontaktu zwrotnego, zgodnie z
-                    <a href="/#polityka-prywatnosci" class="underline underline-offset-2 hover:text-ochre">Polityką Prywatności</a>. *
-                  </label>
-                </div>
+                <!-- zgoda: bez checkboxa, odnotowana w mailu; tekst pod przyciskiem -->
+                <input type="hidden" name="consent" value="tak">
 
                 <!-- honeypot: защита от спам-ботов -->
                 <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
 
-                <div class="pt-2 flex flex-col sm:flex-row gap-3">
+                <div>
                   <button type="submit"
-                          class="inline-flex items-center justify-center gap-2 rounded-[12px] px-8 py-[18px] text-[16px] font-bold btn btn--pop">
+                          class="inline-flex items-center justify-center gap-2 rounded-[12px] px-8 py-[18px] text-[16px] font-bold btn btn--pop qd-submit">
                     Wyślij i&nbsp;otrzymaj wycenę
                   </button>
-                  <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20prosz%C4%99%20o%20wycen%C4%99.%20Wysy%C5%82am%20zdj%C4%99cia%20dokumentu." target="_blank" rel="noopener"
-                     class="inline-flex items-center justify-center gap-2 rounded-[12px] px-8 py-[18px] text-[16px] font-semibold btn">
-                    Wolę WhatsApp
-                  </a>
+                  <p class="qd-legal">Wysyłając, zgadzasz się na przetwarzanie danych w&nbsp;celu przygotowania wyceny –
+                    <a href="/#polityka-prywatnosci">Polityka Prywatności</a>.</p>
                 </div>
 
                 <p id="form-status" role="status" aria-live="polite" class="qd-status hidden"></p>
