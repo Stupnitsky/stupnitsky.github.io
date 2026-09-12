@@ -1417,10 +1417,11 @@
     }
     if (inp) inp.addEventListener('change', function () { addFiles(inp.files); });
 
-    /* «Kilka słów o sprawie»: по раскрытию сразу курсор в поле */
-    var more = form.querySelector('.qd-more');
-    if (more) more.addEventListener('toggle', function () {
-      var ta = more.querySelector('textarea'); if (more.open && ta) ta.focus();
+    /* «kilka słów o sprawie»: поле спрятано, показываем по клику и ставим фокус */
+    var msgBtn = form.querySelector('[data-show-msg]'), msgBox = form.querySelector('.qd-msg');
+    if (msgBtn && msgBox) msgBtn.addEventListener('click', function () {
+      msgBox.hidden = false; msgBtn.hidden = true;
+      var ta = msgBox.querySelector('textarea'); if (ta) ta.focus();
     });
 
     /* «wolę odpowiedź mailem»: поле e-mail спрятано, показываем по клику и ставим фокус */
@@ -1658,7 +1659,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260922n';   /* версию менять вместе с правкой фрагмента */
+    var FRAG = '/assets/wycena.html?v=20260922o';   /* версию менять вместе с правкой фрагмента */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
