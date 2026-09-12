@@ -71,42 +71,46 @@
                   <p class="qd-progress" hidden><i></i></p>
                 </div>
 
-                <div class="qd-row">
                 <div>
                   <label for="phone" class="qd-label">Telefon / WhatsApp *</label>
                   <input class="field" type="tel" id="phone" name="phone" placeholder="+48 600 000 000" required autocomplete="tel"
                          inputmode="tel" pattern="[+0-9\s()\-]{7,20}">
                 </div>
-                <div>
-                  <label for="email" class="qd-label">E-mail <small>– jeśli wolisz odpowiedź mailem</small></label>
-                  <input class="field" type="email" id="email" name="email" placeholder="np. anna@gmail.com" autocomplete="email" inputmode="email">
-                </div>
-                </div>
 
-                <div class="qd-row">
-                <div>
-                  <label for="service" class="qd-label">Usługa <small>– opcjonalnie</small></label>
-                  <select class="field" id="service" name="service">
-                    <option value="" selected>Nie wiem – doradźcie</option>
-                    <option value="apostille-msz">Apostille – MSZ</option>
-                    <option value="apostille-sad">Apostille – Sąd Okręgowy</option>
-                    <option value="apostille-ua">Apostille – dokumenty z Ukrainy</option>
-                    <option value="tlumaczenie">Tłumaczenie przysięgłe</option>
-                    <option value="tlumaczenie-konsularne">Tłumaczenie konsularne</option>
-                    <option value="istrebowanie">Uzyskanie duplikatu dokumentu</option>
-                    <option value="inne">Inne – opiszę w wiadomości</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="name" class="qd-label">Imię <small>– opcjonalnie</small></label>
-                  <input class="field" type="text" id="name" name="name" placeholder="Jak się do Ciebie zwracać?" autocomplete="given-name">
-                </div>
-                </div>
-
-                <div>
-                  <label for="message" class="qd-label">Do jakiego kraju i&nbsp;na kiedy <small>– opcjonalnie</small></label>
-                  <input class="field" type="text" id="message" name="message" placeholder="Np. akt urodzenia UA na kartę pobytu, do końca miesiąca">
-                </div>
+                <details class="qd-more">
+                  <summary>Dodaj szczegóły <small>– opcjonalnie</small></summary>
+                  <div class="qd-more-body">
+                    <div class="qd-row">
+                    <div>
+                      <label for="service" class="qd-label">Usługa</label>
+                      <select class="field" id="service" name="service">
+                        <option value="" selected>Nie wiem – doradźcie</option>
+                        <option value="apostille-msz">Apostille – MSZ</option>
+                        <option value="apostille-sad">Apostille – Sąd Okręgowy</option>
+                        <option value="apostille-ua">Apostille – dokumenty z Ukrainy</option>
+                        <option value="tlumaczenie">Tłumaczenie przysięgłe</option>
+                        <option value="tlumaczenie-konsularne">Tłumaczenie konsularne</option>
+                        <option value="istrebowanie">Uzyskanie duplikatu dokumentu</option>
+                        <option value="inne">Inne – opiszę w wiadomości</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label for="email" class="qd-label">E-mail <small>– jeśli wolisz odpowiedź mailem</small></label>
+                      <input class="field" type="email" id="email" name="email" placeholder="np. anna@gmail.com" autocomplete="email" inputmode="email">
+                    </div>
+                    </div>
+                    <div class="qd-row">
+                    <div>
+                      <label for="name" class="qd-label">Imię</label>
+                      <input class="field" type="text" id="name" name="name" placeholder="Jak się do Ciebie zwracać?" autocomplete="given-name">
+                    </div>
+                    <div>
+                      <label for="message" class="qd-label">Do jakiego kraju i&nbsp;na kiedy</label>
+                      <input class="field" type="text" id="message" name="message" placeholder="Np. akt urodzenia UA, do końca miesiąca">
+                    </div>
+                    </div>
+                  </div>
+                </details>
 
                 <div class="flex items-start gap-3 pt-1">
                   <input type="checkbox" id="consent" name="consent" required

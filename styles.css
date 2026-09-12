@@ -1643,3 +1643,17 @@ body > main{ background:var(--c-page); }
 /* После отправки: поля прячем, благодарность показываем */
 .quote-form.is-sent > :not(.qd-done){ display:none; }
 .quote-form.is-sent .qd-done{ display:block; }
+
+/* ---- Panel: minimum pól na start, reszta pod „Dodaj szczegóły” (12.09.2026) ---- */
+.qd .wy-v2 .qd-more > summary{ display:inline-flex; align-items:center; gap:.5rem; font-size:16px; font-weight:700; color:var(--c-ink); cursor:pointer; }
+.qd .wy-v2 .qd-more > summary small{ font-weight:500; color:rgba(31,33,32,.55); }
+.qd .wy-v2 .qd-more > summary::before{ content:''; width:8px; height:8px; border-right:2px solid var(--c-terra); border-bottom:2px solid var(--c-terra);
+  transform:rotate(-45deg); transition:transform .25s ease; flex:0 0 auto; }
+.qd .wy-v2 .qd-more[open] > summary::before{ transform:rotate(45deg); }
+.qd .wy-v2 .qd-more-body{ margin-top:1.1rem; display:flex; flex-direction:column; gap:1.3rem; }
+/* druga ścieżka – WhatsApp – widoczna, nie szara */
+.qd .wy-v2 .btn:not(.btn--pop){ border-color:var(--c-terra); }
+/* lista plików na telefonie: większe miniatury i cel dotyku */
+.qd .wy-v2 .qd-files li{ font-size:15px; padding:.5rem .6rem; }
+.qd .wy-v2 .qd-files img, .qd .wy-v2 .qd-files li.is-doc::before{ width:56px; height:56px; }
+.qd .wy-v2 .qd-files button{ width:44px; height:44px; font-size:26px; }
