@@ -1517,6 +1517,8 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd .wy-v2 .qd-contacts{ font-size:16px; }
 .qd .wy-v2 .qd-note{ font-size:14px; line-height:1.5; color:rgba(31,33,32,.6); font-weight:500; }
 /* заголовок формы */
+/* на десктопе заголовок формы на уровне «Ekspresowa», а не кикера */
+@media (min-width:1024px){ .qd .wy-v2 .qd-formhead:first-child{ margin-top:2.25rem; } }
 .qd .wy-v2 .qd-formhead{ margin-bottom:1.4rem; font-size:26px; font-weight:800; letter-spacing:-.02em; line-height:1.1; color:var(--c-ink); }
 .qd .wy-v2 .qd-formsub{ font-size:16px; line-height:1.5; color:rgba(31,33,32,.65); font-weight:500; margin:.6rem 0 1.6rem; max-width:46ch; }
 /* подписи полей: обычный регистр, 15px, полный цвет */
