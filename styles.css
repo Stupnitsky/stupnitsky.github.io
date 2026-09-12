@@ -1567,14 +1567,15 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd .wy-v2 .qd-linkbtn:hover, .qd .wy-v2 .qd-linkbtn:focus-visible{ color:var(--c-ink); }
 .qd .wy-v2 .qd-email{ margin-top:1.2rem; }
 /* чипы «czego dotyczy sprawa»: чекбоксы в виде таблеток, без набора текста (14.09.2026) */
-.qd .wy-v2 .qd-tags{ display:flex; flex-wrap:wrap; align-items:center; gap:.6rem .6rem; }
+.qd .wy-v2 .qd-tags{ display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; }
 .qd .wy-v2 .qd-tag{ position:relative; cursor:pointer; margin:0; }
 .qd .wy-v2 .qd-tag input{ position:absolute; opacity:0; width:1px; height:1px; margin:0; }
-.qd .wy-v2 .qd-tag span{ display:inline-block; font-size:15px; font-weight:600; line-height:1.2; color:var(--c-ink);
-  padding:.55rem .95rem; border:1px solid rgba(31,33,32,.3); border-radius:999px; background:var(--c-paper);
-  transition:background-color .15s ease, border-color .15s ease; white-space:nowrap; }
-.qd .wy-v2 .qd-tag:hover span{ border-color:var(--c-terra); background:rgba(239,176,31,.08); }
-.qd .wy-v2 .qd-tag input:checked + span{ background:var(--c-terra); border-color:var(--c-terra); }
+.qd .wy-v2 .qd-tag span{ display:inline-block; font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
+  letter-spacing:.12em; font-size:13px; font-weight:700; line-height:1; color:var(--c-ink);
+  padding:.75em 1em .8em; border-radius:6px; background:#D0D0CB; border:0; white-space:nowrap;
+  transition:background-color .25s ease; }
+.qd .wy-v2 .qd-tag:hover span{ background:var(--c-sand); }
+.qd .wy-v2 .qd-tag input:checked + span{ background:var(--c-terra); }
 .qd .wy-v2 .qd-tag input:focus-visible + span{ outline:2px solid var(--c-terra); outline-offset:2px; }
 .qd .wy-v2 .qd-tag-more{ font-size:15px; color:rgba(31,33,32,.6); margin-left:.2rem; }
 .qd .wy-v2 .qd-msg{ flex:1 0 100%; margin-top:.4rem; }
