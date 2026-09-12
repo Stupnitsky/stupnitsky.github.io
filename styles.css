@@ -1912,3 +1912,9 @@ body > main{ background:var(--c-page); }
 @media (max-width:479px){
   .qd .wy-v2 .qd-status.is-err:not(.hidden){ padding:1.1rem 2.25rem; font-size:14px; }
 }
+/* Самые узкие экраны (≤359px): текст плашки уходит под крестик сверху, боковые отступы меньше –
+   иначе «Dodaj zdjęcie lub skan dokumentu» ломается на две строки (13.09.2026) */
+@media (max-width:359px){
+  .qd .wy-v2 .qd-status.is-err:not(.hidden){ padding:2rem 1.25rem 1.1rem; font-size:13px; }
+  .qd .wy-v2 .qd-status-close{ top:4px; right:4px; }
+}
