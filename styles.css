@@ -1865,3 +1865,5 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .quote-form input[type="email"].field.qd-line,
 .qd .wy-v2 .quote-form textarea.field.qd-line{ width:100%; max-width:20rem; margin:0 auto; display:block; text-align:center; }
 .qd .wy-v2 .quote-form textarea.field.qd-line{ min-height:0; resize:none; }
+/* Линия поля одна во всех состояниях – фокус не перекрашивает её (активное поле видно по курсору) (14.09.2026) */
+.qd .wy-v2 .quote-form .field.qd-line:focus{ border-bottom-color:rgba(31,33,32,.3); }
