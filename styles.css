@@ -1918,3 +1918,5 @@ body > main{ background:var(--c-page); }
   .qd .wy-v2 .qd-status.is-err:not(.hidden){ padding:2rem 1.25rem 1.1rem; font-size:13px; }
   .qd .wy-v2 .qd-status-close{ top:4px; right:4px; }
 }
+/* Крестик плашки всегда чисто белый, без приглушения (13.09.2026) */
+.qd .wy-v2 .qd-status-close, .qd .wy-v2 .qd-status-close:hover, .qd .wy-v2 .qd-status-close:focus-visible{ opacity:1; }
