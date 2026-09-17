@@ -2072,3 +2072,6 @@ body > main{ background:var(--c-page); }
 /* карточки мессенджеров по ширине текста (обе равны самой широкой), без пустоты внутри (18.09.2026) */
 .qd .wy-v2 .qd-msgr{ width:max-content; max-width:none; }
 .qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{ gap:1rem; padding-left:.9rem; }
+/* кружок мессенджеров: сразу стрелка вправо, без «+» (18.09.2026) */
+.qd .wy-v2 .qd-mplus .qd-m-t{ transform:translateX(7px) rotate(-45deg); }
+.qd .wy-v2 .qd-mplus .qd-m-b{ transform:translateX(7px) rotate(45deg); }
