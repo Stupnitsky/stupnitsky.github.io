@@ -2062,3 +2062,10 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-msgr a:hover .qd-mplus svg, .qd .wy-v2 .qd-msgr a:focus-visible .qd-mplus svg{ transform:none; }
 .qd .wy-v2 .qd-msgr a:hover .qd-m-t, .qd .wy-v2 .qd-msgr a:focus-visible .qd-m-t{ transform:translateX(7px) rotate(-45deg); }
 .qd .wy-v2 .qd-msgr a:hover .qd-m-b, .qd .wy-v2 .qd-msgr a:focus-visible .qd-m-b{ transform:translateX(7px) rotate(45deg); }
+/* карточки мессенджеров меньше: слева углы как у кнопок (8px), справа пилюля с кружком (18.09.2026) */
+.qd .wy-v2 .qd-msgr{ max-width:14.5rem; gap:.5rem; }
+.qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{
+  flex-direction:row-reverse; justify-content:space-between; gap:.6rem; padding:.3rem .3rem .3rem 1rem;
+  border-radius:8px 22px 22px 8px; font-size:16px; }
+.qd .wy-v2 .qd-mplus{ width:32px; height:32px; }
+.qd .wy-v2 .qd-mplus svg{ width:15px; height:15px; }
