@@ -2108,3 +2108,8 @@ body > main{ background:var(--c-page); }
   .qd .wy-v2 .qd-alt{ text-align:center; }
   .qd .wy-v2 .qd-msgr{ justify-content:center; }
 }
+/* кнопки мессенджеров под размер плашек «15 min»: высота 37px, углы 6px, отступ между ними 3px (18.09.2026) */
+.qd .wy-v2 .qd-msgr{ gap:3px; }
+.qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{
+  min-height:37px; box-sizing:border-box; padding:0 .75em; border-radius:6px; font-size:15px; gap:.45rem; }
+.qd .wy-v2 .qd-mplus svg{ width:11px; height:11px; }
