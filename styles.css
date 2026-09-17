@@ -2093,3 +2093,4 @@ body > main{ background:var(--c-page); }
   .qd .wy-v2 .qd-alt{ text-align:center; }
   .qd .wy-v2 .qd-msgr{ justify-content:center; }
 }
+.qd .wy-v2 .qd-mplus svg{ width:14px; height:14px; }
