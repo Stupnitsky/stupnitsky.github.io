@@ -2096,3 +2096,5 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-mplus svg{ width:14px; height:14px; }
 /* зона фото шириной со строку заголовка «każdą stronę dokumentu w całości» (≈14.8em от 30px) (18.09.2026) */
 @media (min-width:640px){ .qd .wy-v2 .qd-drop{ width:min(100%, 444px); } }
+/* строка про чат – тем же шрифтом, что «Dokumenty, od których…» (18.09.2026) */
+.qd .wy-v2 .qd-alt{ font-size:18px; line-height:1.4; font-weight:400; font-style:italic; color:rgba(31,33,32,.7); }
