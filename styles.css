@@ -2075,3 +2075,21 @@ body > main{ background:var(--c-page); }
 /* кружок мессенджеров: сразу стрелка вправо, без «+» (18.09.2026) */
 .qd .wy-v2 .qd-mplus .qd-m-t{ transform:translateX(7px) rotate(-45deg); }
 .qd .wy-v2 .qd-mplus .qd-m-b{ transform:translateX(7px) rotate(45deg); }
+/* Левая колонка, 18.09.2026: номер, строка про чат и кнопки мессенджеров по левому краю, как вся колонка.
+   WhatsApp и Telegram в одну строку: сплошные белые кнопки, углы 8px как у кнопок сайта, стрелка без кружка.
+   ≤639px левая колонка центрирована целиком – там и они по центру */
+.qd .wy-v2 .qd-left .qd-call{ margin-left:0; margin-right:0; }
+.qd .wy-v2 .qd-alt{ text-align:left; margin-top:1.25rem; font-size:16px; }
+.qd .wy-v2 .qd-msgr{ width:auto; max-width:none; margin:.6rem 0 0; display:flex; flex-wrap:wrap; gap:.5rem; }
+.qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{
+  flex-direction:row-reverse; justify-content:flex-end; gap:.55rem; padding:.7rem 1rem .7rem 1.1rem; border:0; border-radius:8px;
+  background:var(--c-paper); font-size:16px; font-weight:700; line-height:1.1; }
+.qd .wy-v2 .qd-msgr a:hover, .qd .wy-v2 .qd-msgr a:focus-visible{ background:var(--c-terra); }
+.qd .wy-v2 .qd-mplus, .qd .wy-v2 .qd-msgr a:hover .qd-mplus, .qd .wy-v2 .qd-msgr a:focus-visible .qd-mplus{
+  width:auto; height:auto; background:none; border-radius:0; }
+.qd .wy-v2 .qd-mplus svg{ width:16px; height:16px; }
+@media (max-width:639px){
+  .qd .wy-v2 .qd-left .qd-call{ margin-left:auto; margin-right:auto; }
+  .qd .wy-v2 .qd-alt{ text-align:center; }
+  .qd .wy-v2 .qd-msgr{ justify-content:center; }
+}
