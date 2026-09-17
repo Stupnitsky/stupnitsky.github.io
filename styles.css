@@ -2131,8 +2131,11 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-formhead--light{ font-size:var(--fh); line-height:1.05; }
 @media (min-width:640px){ .qd .wy-v2 .qd-drop{ width:min(100%, calc(var(--fh) * 14.8)); } }
 /* ≥1024px: WhatsApp и Telegram вместе шириной с плашки «15 min | Wyślij zdjęcia…» (18.09.2026).
-   Ширину плашек app.js кладёт в --eta-w на .qd-msgr, кнопки делят её пополам */
+   Без JS: содержимое колонки обёрнуто сеткой шириной max-content. Все тексты в ней с ручными переносами
+   и уже плашек, поэтому ширина сетки = ширина плашек, а кнопки делят её пополам.
+   Новый текст в левую колонку – только с <br>, иначе он растянет сетку в одну строку */
 @media (min-width:1024px){
-  .qd .wy-v2 .qd-msgr{ display:grid; grid-template-columns:1fr 1fr; width:var(--eta-w, auto); }
+  .qd .wy-v2 .qd-left{ display:grid; grid-template-columns:max-content; }
+  .qd .wy-v2 .qd-msgr{ display:grid; grid-template-columns:1fr 1fr; width:auto; }
   .qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{ justify-content:center; }
 }
