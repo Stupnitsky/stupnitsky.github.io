@@ -2148,3 +2148,5 @@ body > main{ background:var(--c-page); }
 /* кнопки мессенджеров сразу под номером, текст про чат – под ними (19.09.2026) */
 .qd .wy-v2 .qd-msgr{ margin-top:1.1rem; }
 .qd .wy-v2 .qd-alt{ margin-top:.7rem; }
+/* заголовок формы плотный, как «Ekspresowa wycena»: tracking-tightest (-0.045em) и leading .94 (19.09.2026) */
+.qd .wy-v2 .qd-formhead--light{ letter-spacing:-0.045em; line-height:.94; }
