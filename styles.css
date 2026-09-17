@@ -2100,3 +2100,11 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-alt{ font-size:18px; line-height:1.4; font-weight:400; font-style:italic; color:rgba(31,33,32,.7); }
 /* код страны в номере: тонкий курсив, поднят над строкой (18.09.2026) */
 .qd .wy-v2 .qd-call-cc{ font-weight:300; font-style:italic; font-size:.55em; vertical-align:.7em; margin-right:.2em; }
+/* ≤1023px (заголовок «Ekspresowa wycena» скрыт) левая колонка центрирована, как на телефоне (18.09.2026) */
+@media (max-width:1023px){
+  .qd .wy-v2 .qd-left{ text-align:center; }
+  .qd .wy-v2 .qd-eta{ justify-content:center; }
+  .qd .wy-v2 .qd-left .qd-call{ margin-left:auto; margin-right:auto; }
+  .qd .wy-v2 .qd-alt{ text-align:center; }
+  .qd .wy-v2 .qd-msgr{ justify-content:center; }
+}
