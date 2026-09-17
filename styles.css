@@ -1717,22 +1717,19 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-drop.is-over{ border-color:var(--c-ink); background:rgba(31,33,32,.08); }
 .qd .wy-v2 .qd-drop.is-busy{ opacity:.6; pointer-events:none; }
 
-/* Список выбранных файлов с миниатюрами */
-.qd-files{ list-style:none; margin:.6rem 0 0; padding:0; display:flex; flex-direction:column; gap:.4rem; }
+/* Выбранные файлы – миниатюры 72px с крестиком (17.09.2026) */
+.qd-files{ list-style:none; margin:.6rem 0 0; padding:0; display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; }
 .qd-files:empty{ display:none; }
-.qd-files li{ display:flex; align-items:center; gap:.8rem; padding:.45rem .6rem; border:1px solid rgba(31,33,32,.15);
-  border-radius:8px; font-size:14px; font-weight:500; background:var(--c-paper); }
-.qd-files img{ width:48px; height:48px; object-fit:cover; border-radius:6px; flex:0 0 auto; background:var(--c-sand); }
-.qd-files li.is-doc::before{ content:'PDF'; width:48px; height:48px; border-radius:6px; background:var(--c-sand);
-  display:grid; place-items:center; font-size:12px; font-weight:700; letter-spacing:.06em; flex:0 0 auto; }
-.qd-files span{ min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1 1 auto; }
-.qd-files button{ flex:0 0 auto; width:32px; height:32px; border:0; border-radius:8px; background:transparent;
-  font-size:22px; line-height:1; cursor:pointer; color:rgba(31,33,32,.6); font-family:inherit; }
-.qd-files button:hover{ background:var(--c-sand); color:var(--c-ink); }
-
-/* Прогресс отправки */
-.qd-progress{ height:6px; border-radius:3px; background:var(--c-sand); overflow:hidden; margin:.6rem 0 0; }
-.qd-progress i{ display:block; height:100%; width:0; background:var(--c-terra); transition:width .2s linear; }
+.qd-files li{ position:relative; width:72px; height:72px; border-radius:10px; overflow:hidden;
+  border:1px solid rgba(31,33,32,.15); background:var(--c-sand); }
+.qd-files img{ width:100%; height:100%; object-fit:cover; display:block; }
+.qd-files li.is-doc::before{ content:'PDF'; position:absolute; inset:0; display:grid; place-items:center;
+  font-size:12px; font-weight:700; letter-spacing:.06em; color:var(--c-ink); }
+.qd-files .qd-file-x{ position:absolute; top:3px; right:3px; width:22px; height:22px; border:0; border-radius:50%;
+  background:rgba(31,33,32,.75); color:#fff; font-size:16px; line-height:1; cursor:pointer; font-family:inherit; padding:0; }
+.qd-files .qd-file-x:hover{ background:var(--c-ink); }
+.qd-files-cap{ font-size:13px; color:rgba(31,33,32,.55); text-align:center; margin:.4rem 0 0; }
+.qd-files-cap:empty{ display:none; }
 
 /* После отправки: поля прячем, благодарность показываем */
 .quote-form.is-sent > :not(.qd-done){ display:none; }
@@ -1747,12 +1744,6 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-more-body{ margin-top:1.1rem; display:flex; flex-direction:column; gap:1.3rem; }
 /* druga ścieżka – WhatsApp – widoczna, nie szara */
 .qd .wy-v2 .btn:not(.btn--pop){ border-color:var(--c-terra); }
-/* lista plików na telefonie: większe miniatury i cel dotyku */
-.qd .wy-v2 .qd-files{ width:56%; margin-left:auto; margin-right:auto; }
-@media (max-width:639px){ .qd .wy-v2 .qd-files{ width:100%; } }
-.qd .wy-v2 .qd-files li{ font-size:15px; padding:.5rem .6rem; }
-.qd .wy-v2 .qd-files img, .qd .wy-v2 .qd-files li.is-doc::before{ width:56px; height:56px; }
-.qd .wy-v2 .qd-files button{ width:44px; height:44px; font-size:26px; }
 
 /* ===== Панель wyceny: типографика правой колонки – 4 роли (14.09.2026) =====
    Стоит в конце файла намеренно: перекрывает разрозненные правила выше при той же специфичности.
@@ -1963,3 +1954,26 @@ body > main{ background:var(--c-page); }
 /* подпись к телефону «na niego odpiszemy» – мельче и серым (17.09.2026) */
 .qd .wy-v2 .qd-acc--static .qd-acc-head > span{ text-align:center; }
 .qd .wy-v2 .qd-acc--static .qd-acc-note{ display:block; font-size:14px; font-weight:400; color:rgba(31,33,32,.55); }
+
+/* ===== Панель wyceny, этап 2 (17.09.2026, docs/promt-form-ideas.md) ===== */
+/* зона после первого фото – компактная, но остаётся (drag&drop на десктопе) */
+.qd .wy-v2 .qd-drop.is-filled{ padding:.55rem 1rem; }
+.qd .wy-v2 .qd-drop.is-filled .qd-plus{ width:28px; height:28px; }
+.qd .wy-v2 .qd-drop.is-filled .qd-plus svg{ width:14px; height:14px; }
+.qd .wy-v2 .qd-drop.is-filled .qd-drop-drag, .qd .wy-v2 .qd-drop.is-filled .qd-drop-touch{ display:none; }
+/* сохранность документов */
+.qd .wy-v2 .qd-safe{ margin:.5rem 0 0; text-align:center; font-size:13px; color:rgba(31,33,32,.55); }
+/* прогресс отправки внутри кнопки */
+/* ::before у .btn--pop – жёлтая заливка, поэтому прогресс в ::after: z-index -1 ставит его над заливкой, но под текстом */
+.qd .wy-v2 .qd-submit::after{ content:''; position:absolute; top:0; bottom:0; left:0; z-index:-1; width:var(--p,0%);
+  background:rgba(31,33,32,.14); transition:width .2s linear; pointer-events:none; }
+/* под кнопкой: бесплатно → шаги → legal → WhatsApp */
+.qd .wy-v2 .qd-free{ margin:.8rem 0 0; text-align:center; font-size:15px; font-weight:600; color:rgba(31,33,32,.75); }
+.qd .wy-v2 .qd-next{ margin:.5rem 0 0; text-align:center; font-family:'Fira Sans Condensed','Fira Sans',sans-serif;
+  text-transform:uppercase; letter-spacing:.1em; font-size:11.5px; font-weight:600; color:rgba(31,33,32,.5); line-height:1.7; }
+.qd .wy-v2 .qd-next span{ white-space:nowrap; }
+/* стрелка внутри предыдущего шага: перенос только после неё, одна на строке не остаётся */
+.qd .wy-v2 .qd-next i{ font-style:normal; margin-left:.5em; color:var(--c-terra); }
+.qd .wy-v2 .qd-legal{ font-size:13px; color:rgba(31,33,32,.5) !important; margin-top:.9rem; }
+.qd .wy-v2 .qd-alt{ margin:.9rem 0 0; text-align:center; font-size:14px; color:rgba(31,33,32,.6); }
+.qd .wy-v2 .qd-alt a{ color:var(--c-ink); text-decoration:underline; text-underline-offset:3px; }

@@ -1355,7 +1355,6 @@
     var inp    = form.querySelector('[name="file"]');
     var drop   = form.querySelector('.qd-drop');
     var list   = form.querySelector('.qd-files');
-    var bar    = form.querySelector('.qd-progress');
     var btn    = form.querySelector('[type="submit"]');
     var picked = [];                    /* File[] – то, что реально уйдёт */
 
@@ -1382,23 +1381,36 @@
       var name = form.querySelector('.file-name');
       if (name && !list) name.textContent = picked.length ? picked.length + (picked.length < 5 ? ' pliki' : ' plików') : 'Nie wybrano plików';
     }
+    function plural(n, docs) {
+      if (docs) return n === 1 ? '1 plik' : (n < 5 ? n + ' pliki' : n + ' plików');
+      return n === 1 ? '1 zdjęcie' : (n < 5 ? n + ' zdjęcia' : n + ' zdjęć');
+    }
+    function onlyDocs() { return picked.length && picked.every(function (f) { return !/^image\//.test(f.type); }); }
+    /* кнопка со счётчиком: «Wyślij 2 zdjęcia do wyceny»; во встроенных формах .qd-submit-txt нет */
+    function updateBtn() {
+      var t = btn && btn.querySelector('.qd-submit-txt'); if (!t) return;
+      t.textContent = picked.length ? 'Wyślij ' + plural(picked.length, onlyDocs()) + ' do wyceny' : 'Wyślij do\u00a0wyceny';
+    }
+    /* миниатюры 72px с крестиком, подпись «2 zdjęcia» */
     function render() {
       if (!list) return;
       list.innerHTML = '';
       picked.forEach(function (f, i) {
         var li = document.createElement('li');
         if (/^image\//.test(f.type)) {
-          var img = document.createElement('img'); img.alt = '';
-          img.src = URL.createObjectURL(f);
-          img.onload = function () { URL.revokeObjectURL(img.src); };
+          var img = document.createElement('img'); img.alt = f.name;
+          img.src = URL.createObjectURL(f); img.onload = function () { URL.revokeObjectURL(img.src); };
           li.appendChild(img);
-        } else li.classList.add('is-doc');
-        var s = document.createElement('span'); s.textContent = f.name + ' · ' + fmt(f.size);
-        var x = document.createElement('button'); x.type = 'button'; x.textContent = '×';
+        } else { li.classList.add('is-doc'); li.title = f.name; }
+        var x = document.createElement('button'); x.type = 'button'; x.className = 'qd-file-x'; x.textContent = '×';
         x.setAttribute('aria-label', 'Usuń ' + f.name);
         x.addEventListener('click', function () { picked.splice(i, 1); syncInput(); render(); });
-        li.appendChild(s); li.appendChild(x); list.appendChild(li);
+        li.appendChild(x); list.appendChild(li);
       });
+      var cap = form.querySelector('.qd-files-cap'); if (cap) cap.textContent = picked.length ? plural(picked.length, onlyDocs()) : '';
+      var zoneTxt = form.querySelector('.qd-drop-btn');
+      if (zoneTxt) zoneTxt.textContent = picked.length ? 'Dodaj kolejne zdjęcie' : 'Dodaj zdjęcia lub skan';
+      updateBtn();
     }
     function addFiles(files) {
       var arr = Array.prototype.slice.call(files || []);
@@ -1414,6 +1426,11 @@
         });
         if (drop) drop.classList.remove('is-busy');
         syncInput(); render();
+        /* на телефоне после фото подводим к полю телефона, без focus – клавиатура не выскакивает */
+        if (out.length && window.matchMedia('(max-width:1023px)').matches) {
+          var acc = form.querySelector('.qd-acc--static');
+          if (acc) acc.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
         if (tooBig) say('Plik „' + tooBig.name + '” jest za duży (' + fmt(tooBig.size) + '). Zrób zdjęcie telefonem albo wyślij ten plik na WhatsApp.', false);
         else hush();
       });
@@ -1488,14 +1505,14 @@
       if (drop && drop.classList.contains('is-busy')) { say('Chwila – jeszcze przygotowujemy zdjęcia.', false); return; }
 
       btn.disabled = true;
-      if (bar) { bar.hidden = false; bar.firstElementChild.style.width = '0%'; }
-      say('Wysyłamy…', true);
+      var txt = btn.querySelector('.qd-submit-txt'), txt0 = txt ? txt.textContent : '';
+      if (txt) txt.textContent = 'Wysyłamy…'; else say('Wysyłamy…', true);   /* в панели статус – в самой кнопке */
 
       var xhr = new XMLHttpRequest();
       xhr.open('POST', form.action);
       xhr.setRequestHeader('Accept', 'application/json');   /* Formspree/Web3Forms: ответ JSON, без редиректа */
       xhr.upload.onprogress = function (ev) {
-        if (ev.lengthComputable && bar) bar.firstElementChild.style.width = Math.round(ev.loaded / ev.total * 100) + '%';
+        if (ev.lengthComputable) btn.style.setProperty('--p', Math.round(ev.loaded / ev.total * 100) + '%');
       };
       xhr.onload = function () {
         if (xhr.status >= 200 && xhr.status < 300) {
@@ -1509,7 +1526,7 @@
       };
       xhr.onerror = fail; xhr.ontimeout = fail; xhr.timeout = 60000;
       function fail() {
-        btn.disabled = false; if (bar) bar.hidden = true;
+        btn.disabled = false; btn.style.removeProperty('--p'); if (txt) txt.textContent = txt0;
         say('Nie udało się wysłać. Spróbuj jeszcze raz albo napisz na WhatsApp – zdjęcia możesz wysłać tam.', false);
       }
       xhr.send(new FormData(form));
@@ -1694,7 +1711,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260917e';   /* версию менять вместе с правкой фрагмента */
+    var FRAG = '/assets/wycena.html?v=20260917g';   /* версию менять вместе с правкой фрагмента */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
