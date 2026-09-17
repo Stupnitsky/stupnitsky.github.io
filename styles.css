@@ -2130,3 +2130,9 @@ body > main{ background:var(--c-page); }
 @media (min-width:1280px){ .qd .wy-v2{ --fh:40px; } }
 .qd .wy-v2 .qd-formhead--light{ font-size:var(--fh); line-height:1.05; }
 @media (min-width:640px){ .qd .wy-v2 .qd-drop{ width:min(100%, calc(var(--fh) * 14.8)); } }
+/* ≥1024px: WhatsApp и Telegram вместе шириной с плашки «15 min | Wyślij zdjęcia…» (18.09.2026).
+   Ширину плашек app.js кладёт в --eta-w на .qd-msgr, кнопки делят её пополам */
+@media (min-width:1024px){
+  .qd .wy-v2 .qd-msgr{ display:grid; grid-template-columns:1fr 1fr; width:var(--eta-w, auto); }
+  .qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{ justify-content:center; }
+}

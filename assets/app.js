@@ -1776,6 +1776,18 @@
       qd.querySelectorAll('.slide-in').forEach(function(el){ el.classList.add('is-in'); });
       qd.querySelectorAll('[data-close]').forEach(function(el){ el.addEventListener('click', close); });
       if (window.initQuoteForm) window.initQuoteForm(qd);
+      /* кнопки мессенджеров шириной с плашки «15 min | Wyślij zdjęcia…» (CSS применяет только ≥1024px) */
+      var eta = qd.querySelector('.qd-eta'), msgr = qd.querySelector('.qd-msgr');
+      if (eta && msgr && !msgr.dataset.sized) {
+        msgr.dataset.sized = '1';
+        var fit = function () {
+          var k = eta.children; if (!k.length) return;
+          var w = k[k.length - 1].getBoundingClientRect().right - k[0].getBoundingClientRect().left;
+          if (w > 0) msgr.style.setProperty('--eta-w', Math.round(w) + 'px');
+        };
+        qd._fitMsgr = fit; window.addEventListener('resize', fit);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+      }
     }
     function load(){
       if (qd) return Promise.resolve(qd);
@@ -1802,6 +1814,7 @@
       load().then(function(){
         last = document.activeElement;
         qd.hidden = false;
+        if (qd._fitMsgr) setTimeout(qd._fitMsgr, 0);   /* размеры есть только у видимой панели */
         document.body.style.overflow = 'hidden';
         /* кадр на применение hidden=false, плюс страховка таймером: в фоновой вкладке
            requestAnimationFrame не срабатывает, и панель осталась бы за нижним краем */
