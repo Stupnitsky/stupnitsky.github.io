@@ -2014,3 +2014,7 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-legal .qd-policy-btn{ display:flex; width:fit-content; margin:8px auto 0; }
 .qd .wy-v2 .qd-legal .qd-policy-btn + br, .qd .wy-v2 .qd-legal br:last-of-type{ display:none; }
 .qd .wy-v2 .qd-policy{ margin-top:16px; }
+/* чипы меньше и тише – они больше для нас, чем для клиента (18.09.2026); выбранный остаётся терракотой */
+.qd .wy-v2 .qd-tags{ gap:6px; }
+.qd .wy-v2 .qd-tag span{ font-size:11px; letter-spacing:.08em; padding:4px 8px 5px; border-color:rgba(31,33,32,.15); color:rgba(31,33,32,.65); }
+.qd .wy-v2 .qd-tag input:checked + span, .qd .wy-v2 .qd-tag:hover input:checked + span{ color:var(--c-ink); }
