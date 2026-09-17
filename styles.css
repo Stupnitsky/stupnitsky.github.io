@@ -2143,3 +2143,8 @@ body > main{ background:var(--c-page); }
 @media (min-width:640px){ .qd .wy-v2 .qd-drop{ width:min(100%, 30rem); } }
 /* номер телефона: без подчёркивания при наведении (18.09.2026) */
 .qd .wy-v2 .qd-call:hover, .qd .wy-v2 .qd-call:focus-visible{ text-decoration:none; }
+/* «+48» крупнее: 72% номера, тонкий курсив, чуть приподнят (19.09.2026) */
+.qd .wy-v2 .qd-call-cc{ font-size:.72em; vertical-align:.28em; margin-right:.18em; }
+/* кнопки мессенджеров сразу под номером, текст про чат – под ними (19.09.2026) */
+.qd .wy-v2 .qd-msgr{ margin-top:1.1rem; }
+.qd .wy-v2 .qd-alt{ margin-top:.7rem; }
