@@ -2113,3 +2113,6 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{
   min-height:37px; box-sizing:border-box; padding:0 .75em; border-radius:6px; font-size:15px; gap:.45rem; }
 .qd .wy-v2 .qd-mplus svg{ width:11px; height:11px; }
+/* номер целиком курсивом: цифры жирный курсив 28px, «+48» тонкий курсив, поднят (18.09.2026) */
+.qd .wy-v2 .qd-call{ font-style:italic; font-size:28px; font-weight:700; letter-spacing:-.01em; }
+.qd .wy-v2 .qd-call-cc{ font-size:.5em; vertical-align:.8em; margin-right:.25em; font-weight:300; }
