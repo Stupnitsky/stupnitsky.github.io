@@ -1973,7 +1973,9 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-next i{ font-style:normal; display:grid; place-items:center; width:21px; height:21px; border-radius:50%;
   background:var(--c-terra); color:var(--c-ink); font-size:11px; font-weight:700; }
 .qd .wy-v2 .qd-legal{ font-size:13px; color:rgba(31,33,32,.5) !important; margin-top:.9rem; }
-.qd .wy-v2 .qd-alt{ margin:.9rem 0 0; text-align:center; font-size:14px; color:rgba(31,33,32,.6); }
+/* строка мессенджеров – в левой колонке под номером, по правому краю как номер; ≤639px по центру */
+.qd .wy-v2 .qd-alt{ margin:.5rem 0 0; text-align:right; font-size:15px; color:rgba(31,33,32,.7); }
+@media (max-width:639px){ .qd .wy-v2 .qd-alt{ text-align:center; } }
 .qd .wy-v2 .qd-alt a{ color:var(--c-ink); text-decoration:underline; text-underline-offset:3px; }
 
 /* ===== Кнопка «Wyślij do wyceny»: поведение (17.09.2026) ===== */
