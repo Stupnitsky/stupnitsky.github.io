@@ -1990,3 +1990,5 @@ body > main{ background:var(--c-page); }
 /* правило `.wy-v2 #quote-form p` (с id) сильнее классов – цвета подсказок кнопки задаём с id */
 .wy-v2 #quote-form .qd-field-err, .wy-v2 #quote-form .qd-fail-msg{ color:#C8102E; }
 .wy-v2 #quote-form .qd-need, .wy-v2 #quote-form .qd-slow{ color:rgba(31,33,32,.6); }
+/* кнопка отправки в панели: заливка при наведении не уходит вниз (17.09.2026) */
+.qd .wy-v2 .qd-submit:hover::before, .qd .wy-v2 .qd-submit:focus-visible::before{ transform:none; opacity:1; }
