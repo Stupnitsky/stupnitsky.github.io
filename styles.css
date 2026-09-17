@@ -2049,3 +2049,12 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-msgr a:hover .qd-p-l, .qd .wy-v2 .qd-msgr a:focus-visible .qd-p-l{ transform:translateY(7px) rotate(45deg); }
 .qd .wy-v2 .qd-msgr a:hover .qd-p-r, .qd .wy-v2 .qd-msgr a:focus-visible .qd-p-r{ transform:translateY(7px) rotate(-45deg); }
 @media (prefers-reduced-motion:reduce){ .qd .wy-v2 .qd-mplus svg, .qd .wy-v2 .qd-mplus svg path{ transition:none; } }
+/* WhatsApp над Telegram: две одинаковые карточки по центру (18.09.2026) */
+.qd .wy-v2 .qd-msgr{ grid-template-columns:1fr; gap:.6rem; width:100%; max-width:19rem; margin:.9rem auto 0; }
+.qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{
+  justify-self:stretch; flex-direction:row; gap:.85rem; padding:.55rem 1.1rem .55rem .55rem;
+  border:1px solid rgba(31,33,32,.14); border-radius:999px; background:rgba(255,255,255,.45);
+  transition:background-color .18s ease, border-color .18s ease; }
+.qd .wy-v2 .qd-msgr a:hover, .qd .wy-v2 .qd-msgr a:focus-visible{ background:var(--c-paper); border-color:rgba(31,33,32,.3); }
+.qd .wy-v2 .qd-mplus{ background:var(--c-sand); }
+.qd .wy-v2 .qd-msgr a:hover .qd-mplus, .qd .wy-v2 .qd-msgr a:focus-visible .qd-mplus{ background:var(--c-terra); }
