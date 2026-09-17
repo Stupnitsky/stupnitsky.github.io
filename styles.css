@@ -2031,3 +2031,21 @@ body > main{ background:var(--c-page); }
   .qd .wy-v2 .qd-plus{ width:44px; height:44px; }
   .qd .wy-v2 .qd-plus svg{ width:20px; height:20px; }
 }
+/* Левая колонка: номер, строка про мессенджеры и WhatsApp | Telegram – по центру, крупно (18.09.2026).
+   Кружок с «+», при наведении «+» складывается в стрелку, как в зоне фото, и поворачивается вправо.
+   Кружок серый, не терракота: главный путь – форма, мессенджеры – запасной */
+.qd .wy-v2 .qd-left .qd-call{ margin-left:auto; margin-right:auto; }
+.qd .wy-v2 .qd-alt{ margin:1.1rem 0 0; text-align:center; font-size:17px; color:rgba(31,33,32,.7); }
+.qd .wy-v2 .qd-msgr{ margin:.75rem 0 0; display:grid; grid-template-columns:1fr 1fr; gap:.75rem; }
+.qd .wy-v2 .qd-msgr a{ display:flex; align-items:center; gap:.6rem; font-size:19px; font-weight:700; color:var(--c-ink); text-decoration:none; }
+.qd .wy-v2 .qd-msgr a:first-child{ justify-self:start; }
+.qd .wy-v2 .qd-msgr a:last-child{ justify-self:end; flex-direction:row-reverse; }
+.qd .wy-v2 .qd-mplus{ flex:none; display:grid; place-items:center; width:40px; height:40px; border-radius:50%;
+  background:var(--c-paper); color:var(--c-ink); transition:background-color .18s ease; }
+.qd .wy-v2 .qd-mplus svg{ transition:transform .3s ease; }
+.qd .wy-v2 .qd-mplus svg path{ transform-box:view-box; transform-origin:12px 12px; transition:transform .3s ease; }
+.qd .wy-v2 .qd-msgr a:hover .qd-mplus, .qd .wy-v2 .qd-msgr a:focus-visible .qd-mplus{ background:#D0D0CB; }
+.qd .wy-v2 .qd-msgr a:hover .qd-mplus svg, .qd .wy-v2 .qd-msgr a:focus-visible .qd-mplus svg{ transform:rotate(-90deg); }
+.qd .wy-v2 .qd-msgr a:hover .qd-p-l, .qd .wy-v2 .qd-msgr a:focus-visible .qd-p-l{ transform:translateY(7px) rotate(45deg); }
+.qd .wy-v2 .qd-msgr a:hover .qd-p-r, .qd .wy-v2 .qd-msgr a:focus-visible .qd-p-r{ transform:translateY(7px) rotate(-45deg); }
+@media (prefers-reduced-motion:reduce){ .qd .wy-v2 .qd-mplus svg, .qd .wy-v2 .qd-mplus svg path{ transition:none; } }
