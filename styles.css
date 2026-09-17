@@ -1722,7 +1722,7 @@ body > main{ background:var(--c-page); }
 .qd-files li{ position:relative; width:72px; height:102px; border-radius:10px; overflow:hidden;
   border:1px solid rgba(31,33,32,.15); background:var(--c-sand); }
 .qd-files img{ width:100%; height:100%; object-fit:cover; display:block; }
-.qd-files li.is-doc::before{ content:'PDF'; position:absolute; inset:auto 0 10px; display:grid; place-items:center;
+.qd-files li.is-doc::before{ content:attr(data-kind); position:absolute; inset:auto 0 10px; display:grid; place-items:center;
   font-size:12px; font-weight:700; letter-spacing:.06em; color:var(--c-ink); }
 .qd-files .qd-file-x{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:34px; height:34px; border:0; border-radius:50%;
   display:grid; place-items:center; background:rgba(31,33,32,.75); color:#fff; cursor:pointer; padding:0; }
@@ -1948,7 +1948,7 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .quote-form.is-sent{ min-height:320px; justify-content:center; }
 /* ≤1023px: под формой в левой колонке только бейдж, строка про оператора и телефон */
 @media (max-width:1023px){
-  .qd .wy-v2 .qd-left .kicker, .qd .wy-v2 .qd-left h2, .qd .wy-v2 .qd-left .qd-lead{ display:none; }
+  .qd .wy-v2 .qd-left .kicker, .qd .wy-v2 .qd-left h2{ display:none; }
   .qd .wy-v2 .qd-left .qd-eta{ margin-top:0; }
 }
 /* подпись к телефону «na niego odpiszemy» – мельче и серым (17.09.2026) */
@@ -1964,7 +1964,11 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-submit::after{ content:''; position:absolute; top:0; bottom:0; left:0; z-index:-1; width:var(--p,0%);
   background:rgba(31,33,32,.14); transition:width .2s linear; pointer-events:none; }
 /* под кнопкой: бесплатно → шаги → legal → WhatsApp */
-.qd .wy-v2 .qd-free{ margin:.8rem 0 0; text-align:center; font-size:15px; font-weight:600; color:rgba(31,33,32,.75); }
+.qd .wy-v2 .qd-free{ margin:.8rem 0 0; display:flex; align-items:center; justify-content:center; gap:.4rem;
+  font-size:13px; font-weight:500; color:rgba(31,33,32,.55); }
+.qd .wy-v2 .qd-free svg{ flex:none; color:var(--c-ink); opacity:.5; }
+/* обещание под кнопкой нужно только там, где левая колонка с ним скрыта (≤1023px) */
+@media (min-width:1024px){ .qd .wy-v2 .qd-free{ display:none; } }
 /* шаги «что дальше» – 5 колонок: кружок с номером, тонкая линия между ними, подпись под кружком (17.09.2026) */
 .qd .wy-v2 .qd-next{ list-style:none; margin:1.1rem auto 0; padding:0; max-width:28rem; display:grid; grid-template-columns:repeat(5,1fr); gap:0 .25rem; }
 .qd .wy-v2 .qd-next li{ position:relative; display:flex; flex-direction:column; align-items:center; gap:.35rem;
@@ -2008,7 +2012,8 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-tags-cap{ margin:26px 0 8px; }
 .qd .wy-v2 .quote-form > div:has(> [type="submit"]){ margin-top:28px; }
 .qd .wy-v2 .qd-need, .qd .wy-v2 .qd-slow{ margin-top:8px; }
-.qd .wy-v2 .qd-fail, .qd .wy-v2 .qd-free{ margin-top:14px; }
+.qd .wy-v2 .qd-fail{ margin-top:14px; }
+.qd .wy-v2 .qd-free{ margin-top:10px; }
 .qd .wy-v2 .qd-next{ margin-top:14px; }
 .qd .wy-v2 .qd-legal{ margin-top:14px; }
 .qd .wy-v2 .qd-legal .qd-policy-btn{ display:flex; width:fit-content; margin:8px auto 0; }
@@ -2150,3 +2155,113 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-alt{ margin-top:.7rem; }
 /* заголовок формы плотный, как «Ekspresowa wycena»: tracking-tightest (-0.045em) и leading .94 (19.09.2026) */
 .qd .wy-v2 .qd-formhead--light{ letter-spacing:-0.045em; line-height:.94; }
+
+/* ===== Полоска «5 шагов» на главной (17.09.2026) – вариант .qd-next вне панели wyceny ===== */
+.hp-next{ list-style:none; margin:0 auto; padding:0; max-width:34rem; display:grid; grid-template-columns:repeat(5,1fr); gap:0 .25rem; }
+.hp-next li{ position:relative; display:flex; flex-direction:column; align-items:center; gap:.4rem;
+  text-align:center; font-size:14px; line-height:1.25; font-weight:600; color:rgba(31,33,32,.7); }
+.hp-next li + li::before{ content:''; position:absolute; top:12px; right:calc(50% + 17px); width:calc(100% - 34px + .25rem);
+  height:1px; background:rgba(31,33,32,.2); }
+.hp-next i{ font-style:normal; display:grid; place-items:center; width:25px; height:25px; border-radius:50%;
+  background:var(--c-terra); color:var(--c-ink); font-size:12px; font-weight:700; }
+@media (max-width:479px){ .hp-next li{ font-size:12.5px; } }
+/* полоска шагов: вариант на тёмном фоне, по левому краю */
+.hp-next--left{ margin:1.4rem 0 0; }
+.hp-next--light li{ color:rgba(248,247,244,.7); }
+.hp-next--light li + li::before{ background:rgba(248,247,244,.25); }
+/* поле телефона: линия длиннее и цифры примера крупнее (17.09.2026) */
+.qd .wy-v2 .quote-form input[type="tel"].field.qd-line{ max-width:16rem; font-size:21px; letter-spacing:.01em; }
+/* ≥1024px ширину левой колонки задают плашки «15 min | Wyślij zdjęcia…» и кнопки мессенджеров.
+   Заголовок в одну строку шире их и раздувал сетку max-content – он больше не участвует в расчёте
+   ширины (width:0 + min-width:100%) и кегль подобран так, чтобы строка влезала (19.09.2026) */
+@media (min-width:1024px){
+  /* ширину колонки, как и раньше, задаёт строка плашек «15 min | Wyślij zdjęcia…»:
+     плашки по содержимому, кнопки мессенджеров растянуты ровно под них.
+     Заголовок в расчёте ширины не участвует – иначе строка в одну строку раздувает сетку */
+  /* заголовок отвязан от плашек: он занимает всю ширину колонки (100cqw),
+     но в расчёт ширины сетки не входит (width:0), поэтому плашки и кнопки её по-прежнему задают */
+  .qd .wy-v2 .qd-left{ container-type:inline-size; }
+  .qd .wy-v2 .qd-left .qd-head{ width:0; min-width:100%; }
+  /* только заголовок выходит на всю ширину колонки, плашки внутри .qd-head остаются по содержимому */
+  .qd .wy-v2 #qd-title{ width:100cqw; }
+  /* номер – по тем же правилам, что заголовок: во всю ширину колонки, но вне расчёта её ширины */
+  /* кнопки мессенджеров встают на одну линию с «Wyślij do wyceny» в правой колонке (19.09.2026) */
+  .qd .wy-v2 .qd-msgr{ margin-top:120px; }
+  .qd .wy-v2 .qd-callwrap{ width:0; min-width:100%; }
+  .qd .wy-v2 .qd-callwrap .qd-call{ display:block; width:100cqw; }
+  .qd .wy-v2 .qd-eta{ flex-wrap:nowrap; }
+  .qd .wy-v2 .qd-msgr{ display:grid; grid-template-columns:1fr 1fr; width:100%; }
+  .qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{ justify-content:center; }
+  /* заголовок в одну строку должен влезать в эту ширину */
+  .qd .wy-v2 #qd-title{ font-size:42px; }
+}
+/* согласие под кнопкой: по центру, с ручным переносом (19.09.2026) */
+.qd .wy-v2 .qd-legal{ text-align:center; }
+/* заголовок формы: жирная строка крупнее курсивной (19.09.2026).
+   --fh – жирная строка, --fh-b – light italic, ≈0.857 от неё */
+.qd .wy-v2{ --fh:33px; --fh-b:29px; }
+@media (min-width:640px){ .qd .wy-v2{ --fh:33px; --fh-b:29px; } }
+/* планшетный кегль 36/31 оставлен и на десктопе (19.09.2026) */
+.qd .wy-v2 .qd-formhead--light .qd-fh-b{ font-size:var(--fh-b); }
+/* срочность – единственная отметка перед кнопкой, вместо ряда чипов (19.09.2026) */
+.qd .wy-v2 .qd-urgent{ display:flex; justify-content:center; margin:26px 0 0; }
+/* кнопка чуть уже, воздух над и под ней +15% (19.09.2026) */
+.qd .wy-v2 .qd-submit{ min-width:14rem; }
+.qd .wy-v2 .qd-urgent{ margin-top:14px; }
+.qd .wy-v2 .quote-form > div:has(> [type="submit"]){ margin-top:40px; }
+.qd .wy-v2 .qd-legal{ margin-top:16px; }
+/* Telefon, E-mail и Kilka słów – одним кеглем, 16px (19.09.2026) */
+.qd .wy-v2 .qd-acc-head, .qd .wy-v2 .qd-acc:not(.qd-acc--static) .qd-acc-head span{ font-size:16px; }
+/* номер: спокойный кегль, «+48» той же плотности, что цифры, и без большого отрыва от «Zadzwoń!» (19.09.2026) */
+.qd .wy-v2 .qd-call{ font-size:24px; font-weight:700; margin-top:.35rem; }
+.qd .wy-v2 .qd-call-cc{ font-size:.62em; font-weight:600; vertical-align:.1em; margin-right:.2em; }
+/* номер начинается под словом «Zadzwoń!» последней строки (≈8.15em её кегля) (19.09.2026) */
+/* номер выключен вправо – по правому краю кнопки Telegram (19.09.2026) */
+@media (min-width:1024px){
+  .qd .wy-v2 .qd-callwrap .qd-call{ width:fit-content; margin-left:auto; margin-right:0; }
+  .qd .wy-v2 .qd-callwrap{ width:0; min-width:100%; }
+}
+/* текст согласия – теми же параметрами, что подпись «na niego odpiszemy» (19.09.2026) */
+.qd .wy-v2 .qd-legal{ font-size:14px; color:rgba(31,33,32,.55) !important; }
+/* больше воздуха вокруг главной кнопки (19.09.2026) */
+.qd .wy-v2 .quote-form > div:has(> [type="submit"]){ margin-top:52px; }
+.qd .wy-v2 .qd-legal{ margin-top:26px; }
+/* кнопка чуть выше по высоте и ближе к полям (19.09.2026) */
+.qd .wy-v2 .qd-submit{ padding-top:20px; padding-bottom:20px; }
+.qd .wy-v2 .quote-form > div:has(> [type="submit"]){ margin-top:38px; }
+/* Telefon и E-mail крупнее остальных подписей (19.09.2026) */
+.qd .wy-v2 .qd-acc--static .qd-acc-head,
+.qd .wy-v2 .qd-acc--static .qd-acc-head > span,
+.qd .wy-v2 .qd-acc:not(.qd-acc--static) .qd-acc-head[data-show-email],
+.qd .wy-v2 .qd-acc:not(.qd-acc--static) .qd-acc-head[data-show-email] span{ font-size:18px; }
+.qd .wy-v2 .qd-acc--static .qd-acc-head .qd-acc-note{ font-size:14px; }
+/* зона загрузки на 15% меньше: ширина 25.5rem, отступы по высоте пропорционально (19.09.2026) */
+@media (min-width:640px){ .qd .wy-v2 .qd-drop{ width:min(100%, 25.5rem); padding:1.3rem 1.2rem 1.2rem; } }
+/* «Dodaj zdjęcia lub skan» крупнее – это главное действие в зоне (19.09.2026) */
+.qd .wy-v2 .qd-drop-btn{ font-size:20px; }
+/* «Zadzwoń!» насыщеннее остального абзаца, но тем же курсивом (18.09.2026) */
+.qd .wy-v2 .qd-human .qd-human-cta{ font-style:inherit; font-weight:inherit; color:var(--c-ink); }
+/* поле телефона должно читаться как поле, а не как текст: линия ближе к цифрам, пример темнее (18.09.2026) */
+.qd .wy-v2 .quote-form input[type="tel"].field.qd-line{ padding-bottom:.3rem; }
+.qd .wy-v2 .quote-form input[type="tel"].field.qd-line::placeholder{ color:rgba(31,33,32,.55); }
+/* «Sprawa pilna» – круглая точка, после нажатия жёлтая (18.09.2026) */
+.qd .wy-v2 .qd-urgent{ display:flex; align-items:center; justify-content:center; gap:.5rem; margin-top:10px;
+  font-size:15px; color:rgba(31,33,32,.6); cursor:pointer; }
+.qd .wy-v2 .qd-urgent input{ position:absolute; opacity:0; width:1px; height:1px; margin:0; }
+/* переключатель: дорожка с кружком, включённый – охра (18.09.2026) */
+.qd .wy-v2 .qd-urgent i{ position:relative; flex:none; width:34px; height:20px; border-radius:10px;
+  background:rgba(31,33,32,.18); transition:background .18s ease; }
+.qd .wy-v2 .qd-urgent i::after{ content:''; position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%;
+  background:#fff; box-shadow:0 1px 2px rgba(31,33,32,.25); transition:transform .18s ease; }
+.qd .wy-v2 .qd-urgent:hover i{ background:rgba(31,33,32,.3); }
+.qd .wy-v2 .qd-urgent input:checked + i{ background:var(--c-terra); }
+.qd .wy-v2 .qd-urgent input:checked + i::after{ transform:translateX(14px); }
+.qd .wy-v2 .qd-urgent:has(input:checked) span{ color:var(--c-ink); }
+.qd .wy-v2 .qd-urgent input:focus-visible + i{ outline:2px solid var(--c-terra); outline-offset:3px; }
+/* подпись под телефоном и согласие – 15px, «Polityka Prywatności» на 2 пункта крупнее (18.09.2026) */
+.qd .wy-v2 .qd-acc--static .qd-acc-head .qd-acc-note{ font-size:15px; }
+.qd .wy-v2 .qd-legal{ font-size:15px; }
+.qd .wy-v2 .qd-legal .qd-policy-btn{ font-size:17px; }
+.qd .wy-v2 .qd-legal .qd-policy-btn{ text-decoration:none; }
+/* миниатюры – максимум 6 в ряд (18.09.2026) */
+.qd .wy-v2 .qd-files{ max-width:calc(72px * 6 + .5rem * 5); margin-left:auto; margin-right:auto; }

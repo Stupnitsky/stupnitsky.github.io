@@ -1401,18 +1401,42 @@
       var el = form.querySelector('.qd-need'); if (!el || !phoneEl) return;
       el.hidden = !(picked.length && !phoneEl.value.trim()) || phoneEl.classList.contains('is-invalid');
     }
-    if (phoneEl) phoneEl.addEventListener('input', function () { if (phoneEl.value.trim()) fieldErr('phone', ''); updateNeed(); });
+    /* польский номер читается тройками: 433 288 313, с кодом +48 433 288 313 (19.09.2026) */
+    function fmtPhone(raw) {
+      var plus = /^\s*\+/.test(raw), digits = raw.replace(/\D/g, '');
+      var cc = '';
+      if (plus) { cc = digits.slice(0, 2); digits = digits.slice(2); }
+      else if (digits.length > 9 && digits.slice(0, 2) === '48') { cc = '48'; digits = digits.slice(2); plus = true; }
+      if (digits.length > 9) return raw;                    // не польский формат – не трогаем
+      var groups = digits.replace(/(\d{3})(?=\d)/g, '$1 ');
+      return (plus ? '+' + cc + (groups ? ' ' : '') : '') + groups;
+    }
+    if (phoneEl) phoneEl.addEventListener('input', function () {
+      var atEnd = phoneEl.selectionStart === phoneEl.value.length;
+      var next = fmtPhone(phoneEl.value);
+      if (next !== phoneEl.value) {
+        phoneEl.value = next;
+        if (atEnd) phoneEl.setSelectionRange(next.length, next.length);
+      }
+      if (phoneEl.value.trim()) fieldErr('phone', ''); updateNeed();
+    });
     /* миниатюры 72px с крестиком, подпись «2 zdjęcia» */
     function render() {
       if (!list) return;
       list.innerHTML = '';
       picked.forEach(function (f, i) {
         var li = document.createElement('li');
-        if (/^image\//.test(f.type)) {
+        /* HEIC с айфона браузер не рисует – вместо битой картинки ставим плашку с форматом (18.09.2026) */
+        var ext = (f.name.split('.').pop() || '').toUpperCase();
+        var isHeic = /heic|heif/i.test(f.type) || /^(HEIC|HEIF)$/.test(ext);
+        function asDoc(label) { li.classList.add('is-doc'); li.title = f.name; li.dataset.kind = label; }
+        if (isHeic) { asDoc(ext === 'HEIF' ? 'HEIF' : 'HEIC'); }
+        else if (/^image\//.test(f.type)) {
           var img = document.createElement('img'); img.alt = f.name;
           img.src = URL.createObjectURL(f); img.onload = function () { URL.revokeObjectURL(img.src); };
+          img.onerror = function () { URL.revokeObjectURL(img.src); img.remove(); asDoc(ext || 'IMG'); };
           li.appendChild(img);
-        } else { li.classList.add('is-doc'); li.title = f.name; }
+        } else { asDoc(ext === 'PDF' ? 'PDF' : (ext || 'PLIK')); }
         var x = document.createElement('button'); x.type = 'button'; x.className = 'qd-file-x';
         x.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>';
         x.setAttribute('aria-label', 'Usuń ' + f.name);
