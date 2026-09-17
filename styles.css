@@ -1999,3 +1999,18 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-legal .qd-policy-btn{ display:inline-flex; align-items:center; gap:6px; color:var(--c-ink); font-weight:600; }
 /* «Zdjęcia usuwamy…» – теперь на экране «Dziękujemy», под текстом */
 .wy-v2 #quote-form .qd-done .qd-safe{ margin:.75rem 0 1rem; color:rgba(31,33,32,.55); }
+/* ===== Панель: единая шкала вертикальных отступов правой колонки (17.09.2026) =====
+   28px – между группами (заголовок / фото / телефон / опции / чипы / кнопка),
+   16px – между соседними строками одной группы, 8px – подпись и её поле / текст и ссылка */
+.qd .wy-v2 .quote-form > .qd-photo{ margin:0 0 26px; }
+.qd .wy-v2 .quote-form > .qd-acc + .qd-acc{ margin-top:12px; }
+.qd .wy-v2 .qd-acc-body{ margin-top:8px; }
+.qd .wy-v2 .qd-tags-cap{ margin:26px 0 8px; }
+.qd .wy-v2 .quote-form > div:has(> [type="submit"]){ margin-top:28px; }
+.qd .wy-v2 .qd-need, .qd .wy-v2 .qd-slow{ margin-top:8px; }
+.qd .wy-v2 .qd-fail, .qd .wy-v2 .qd-free{ margin-top:14px; }
+.qd .wy-v2 .qd-next{ margin-top:14px; }
+.qd .wy-v2 .qd-legal{ margin-top:14px; }
+.qd .wy-v2 .qd-legal .qd-policy-btn{ display:flex; width:fit-content; margin:8px auto 0; }
+.qd .wy-v2 .qd-legal .qd-policy-btn + br, .qd .wy-v2 .qd-legal br:last-of-type{ display:none; }
+.qd .wy-v2 .qd-policy{ margin-top:16px; }
