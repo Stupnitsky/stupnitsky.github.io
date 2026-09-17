@@ -2139,3 +2139,7 @@ body > main{ background:var(--c-page); }
   .qd .wy-v2 .qd-msgr{ display:grid; grid-template-columns:1fr 1fr; width:auto; }
   .qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{ justify-content:center; }
 }
+/* зона фото чуть шире строки шагов 1–5 (шаги max 28rem): 30rem (18.09.2026) */
+@media (min-width:640px){ .qd .wy-v2 .qd-drop{ width:min(100%, 30rem); } }
+/* номер телефона: без подчёркивания при наведении (18.09.2026) */
+.qd .wy-v2 .qd-call:hover, .qd .wy-v2 .qd-call:focus-visible{ text-decoration:none; }
