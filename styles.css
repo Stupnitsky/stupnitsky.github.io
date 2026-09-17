@@ -2098,3 +2098,5 @@ body > main{ background:var(--c-page); }
 @media (min-width:640px){ .qd .wy-v2 .qd-drop{ width:min(100%, 444px); } }
 /* строка про чат – тем же шрифтом, что «Dokumenty, od których…» (18.09.2026) */
 .qd .wy-v2 .qd-alt{ font-size:18px; line-height:1.4; font-weight:400; font-style:italic; color:rgba(31,33,32,.7); }
+/* код страны в номере: тонкий курсив, поднят над строкой (18.09.2026) */
+.qd .wy-v2 .qd-call-cc{ font-weight:300; font-style:italic; font-size:.55em; vertical-align:.7em; margin-right:.2em; }
