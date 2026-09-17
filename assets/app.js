@@ -1391,6 +1391,17 @@
       var t = btn && btn.querySelector('.qd-submit-txt'); if (!t) return;
       t.textContent = picked.length ? 'Wyślij ' + plural(picked.length, onlyDocs()) + ' do wyceny' : 'Wyślij do\u00a0wyceny';
     }
+    /* подсказки панели (17.09.2026): ошибка под полем, «Podaj numer, aby wysłać» под кнопкой */
+    var phoneEl = form.querySelector('[name="phone"]');
+    function fieldErr(key, text) {
+      var el = form.querySelector('[data-err="' + key + '"]'); if (!el) return;
+      el.textContent = text || ''; el.hidden = !text;
+    }
+    function updateNeed() {
+      var el = form.querySelector('.qd-need'); if (!el || !phoneEl) return;
+      el.hidden = !(picked.length && !phoneEl.value.trim()) || phoneEl.classList.contains('is-invalid');
+    }
+    if (phoneEl) phoneEl.addEventListener('input', function () { if (phoneEl.value.trim()) fieldErr('phone', ''); updateNeed(); });
     /* миниатюры 72px с крестиком, подпись «2 zdjęcia» */
     function render() {
       if (!list) return;
@@ -1410,7 +1421,8 @@
       var cap = form.querySelector('.qd-files-cap'); if (cap) cap.textContent = picked.length ? plural(picked.length, onlyDocs()) : '';
       var zoneTxt = form.querySelector('.qd-drop-btn');
       if (zoneTxt) zoneTxt.textContent = picked.length ? 'Dodaj kolejne zdjęcie' : 'Dodaj zdjęcia lub skan';
-      updateBtn();
+      if (picked.length) fieldErr('file', '');
+      updateBtn(); updateNeed();
     }
     function addFiles(files) {
       var arr = Array.prototype.slice.call(files || []);
@@ -1482,6 +1494,9 @@
       document.addEventListener('drop', function (e) { e.preventDefault(); });
     }
 
+    var retry = form.querySelector('[data-retry]');
+    if (retry) retry.addEventListener('click', function () { form.requestSubmit ? form.requestSubmit() : btn.click(); });
+
     /* ---- отправка: XHR с прогрессом, «Dziękujemy» внутри панели ---- */
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -1493,9 +1508,22 @@
       var noPhone = need(phone) && !phone.value.trim(), noFile = need(inp) && !picked.length;
       var noOther = (need(name) && !name.value.trim()) || (need(service) && !service.value);
       var mark = function (f) {
-        if (!f) return; f.classList.add('is-invalid');
-        f.addEventListener('input', function un() { f.classList.remove('is-invalid'); f.removeEventListener('input', un); });
+        if (!f || f.classList.contains('is-invalid')) return; f.classList.add('is-invalid');
+        f.addEventListener('input', function un() { f.classList.remove('is-invalid'); f.removeEventListener('input', un); updateNeed(); });
       };
+      var panel = !!btn.querySelector('.qd-submit-txt');
+      /* панель: ошибки под полями, прокрутка к первому пустому, кнопка качнётся */
+      if (panel && !noOther && (noFile || noPhone)) {
+        hush();
+        fieldErr('file', noFile ? 'Dodaj zdjęcie – bez niego nie policzymy ceny.' : '');
+        fieldErr('phone', noPhone ? 'Podaj numer – na niego wyślemy wycenę.' : '');
+        if (noPhone) mark(phone);
+        updateNeed();
+        var target = noFile ? form.querySelector('.qd-photo') : form.querySelector('.qd-acc--static');
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        btn.classList.remove('is-shake'); void btn.offsetWidth; btn.classList.add('is-shake');
+        return;
+      }
       if (!noOther) {
         if (noPhone && noFile) { say(form.dataset.msgRequired, false); mark(phone); return; }
         if (noFile)  { say('Dodaj zdjęcie dokumentu – bez niego nie policzymy ceny.', false); return; }
@@ -1507,26 +1535,43 @@
       btn.disabled = true;
       var txt = btn.querySelector('.qd-submit-txt'), txt0 = txt ? txt.textContent : '';
       if (txt) txt.textContent = 'Wysyłamy…'; else say('Wysyłamy…', true);   /* в панели статус – в самой кнопке */
+      var failBox = form.querySelector('.qd-fail'), slow = form.querySelector('.qd-slow');
+      if (failBox) failBox.hidden = true;
+      var slowT = slow ? setTimeout(function () { slow.hidden = false; }, 15000) : 0;
+      function stopSlow() { clearTimeout(slowT); if (slow) slow.hidden = true; }
 
       var xhr = new XMLHttpRequest();
       xhr.open('POST', form.action);
       xhr.setRequestHeader('Accept', 'application/json');   /* Formspree/Web3Forms: ответ JSON, без редиректа */
       xhr.upload.onprogress = function (ev) {
-        if (ev.lengthComputable) btn.style.setProperty('--p', Math.round(ev.loaded / ev.total * 100) + '%');
+        if (!ev.lengthComputable) return;
+        var pc = Math.round(ev.loaded / ev.total * 100);
+        btn.style.setProperty('--p', pc + '%');
+        if (txt) txt.textContent = 'Wysyłamy… ' + pc + '%';
       };
       xhr.onload = function () {
         if (xhr.status >= 200 && xhr.status < 300) {
+          stopSlow();
+          if (window.gtag) gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXX/XXXXXXXX' });   /* только после успеха */
+          if (txt) { txt.textContent = '✓ Wysłane'; setTimeout(showDone, 500); } else showDone();
+        } else fail();
+      };
+      function showDone() {
           form.classList.add('is-sent');                      /* CSS прячет поля, показывает .qd-done */
           var head = form.parentElement.querySelector('.qd-formhead--light'); if (head) head.hidden = true;
           var ph = form.querySelector('.qd-done-phone'); if (ph && phone) ph.textContent = phone.value.trim();
           var done = form.querySelector('.qd-done'); if (done) { done.hidden = false; done.focus && done.focus(); }
           hush();
-          if (window.gtag) gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXX/XXXXXXXX' });   /* только после успеха */
-        } else fail();
-      };
+      }
       xhr.onerror = fail; xhr.ontimeout = fail; xhr.timeout = 60000;
       function fail() {
+        stopSlow();
         btn.disabled = false; btn.style.removeProperty('--p'); if (txt) txt.textContent = txt0;
+        if (failBox) {                                        /* панель: сообщение и два действия под кнопкой */
+          failBox.querySelector('.qd-fail-msg').textContent = navigator.onLine === false
+            ? 'Brak internetu – spróbuj, gdy wróci zasięg.' : 'Nie udało się wysłać.';
+          failBox.hidden = false; hush(); return;
+        }
         say('Nie udało się wysłać. Spróbuj jeszcze raz albo napisz na WhatsApp – zdjęcia możesz wysłać tam.', false);
       }
       xhr.send(new FormData(form));
@@ -1711,7 +1756,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260917g';   /* версию менять вместе с правкой фрагмента */
+    var FRAG = '/assets/wycena.html?v=20260917h';   /* версию менять вместе с правкой фрагмента */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */

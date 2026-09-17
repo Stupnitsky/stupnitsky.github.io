@@ -46,7 +46,8 @@
                 <div class="qd-acc qd-acc--static">
                   <label for="phone" class="qd-acc-head"><span>Podaj numer <small class="qd-acc-note">na niego odpiszemy</small></span><svg class="qd-chev" width="11" height="7" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></label>
                   <div class="qd-acc-body"><input class="field qd-line" type="tel" id="phone" name="phone" placeholder="+48 600 000 000" required autocomplete="tel"
-                         inputmode="tel" pattern="[\+0-9\s\(\)\-]{7,20}"></div>
+                         inputmode="tel" pattern="[\+0-9\s\(\)\-]{7,20}">
+                    <p class="qd-field-err" data-err="phone" role="alert" hidden></p></div>
                 </div>
                 <div class="qd-acc">
                   <button type="button" class="qd-acc-head" data-show-email aria-expanded="false" aria-controls="qd-email"><span>Podaj adres e-mail</span><svg class="qd-chev" width="11" height="7" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -70,6 +71,7 @@
                       </span>
                     </span>
                   </label>
+                  <p class="qd-field-err" data-err="file" role="alert" hidden></p>
                   <ul class="qd-files" aria-live="polite"></ul>
                   <p class="qd-files-cap" aria-live="polite"></p>
                   <p class="qd-safe">Zdjęcia usuwamy po zakończeniu sprawy.</p>
@@ -95,6 +97,13 @@
                           class="inline-flex items-center justify-center gap-2 rounded-[12px] px-8 py-[18px] text-[16px] font-bold btn btn--pop qd-submit">
                     <span class="qd-submit-txt">Wyślij do&nbsp;wyceny</span> <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
                   </button>
+                  <p class="qd-need" hidden>Podaj numer, aby wysłać</p>
+                  <p class="qd-slow" hidden>Wolne łącze – nie zamykaj okna</p>
+                  <div class="qd-fail" role="alert" hidden>
+                    <p class="qd-fail-msg"></p>
+                    <p class="qd-fail-acts"><button type="button" class="qd-linkbtn" data-retry>Spróbuj ponownie</button>
+                      <a class="qd-linkbtn" href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20prosz%C4%99%20o%20wycen%C4%99.%20Wysy%C5%82am%20zdj%C4%99cia%20dokumentu." target="_blank" rel="noopener">Wyślij przez WhatsApp</a></p>
+                  </div>
                   <p class="qd-free">Bezpłatnie, bez zobowiązań</p>
                   <p class="qd-next"><span>Zdjęcia<i>→</i></span> <span>wycena w&nbsp;15&nbsp;min<i>→</i></span> <span>płatność<i>→</i></span> <span>odbiór na&nbsp;Kruczej</span> <span>lub InPost</span></p>
                   <p class="qd-legal">Wysyłając, zgadzasz się na przetwarzanie danych w&nbsp;celu przygotowania wyceny.<br>

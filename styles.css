@@ -1977,3 +1977,18 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-legal{ font-size:13px; color:rgba(31,33,32,.5) !important; margin-top:.9rem; }
 .qd .wy-v2 .qd-alt{ margin:.9rem 0 0; text-align:center; font-size:14px; color:rgba(31,33,32,.6); }
 .qd .wy-v2 .qd-alt a{ color:var(--c-ink); text-decoration:underline; text-underline-offset:3px; }
+
+/* ===== Кнопка «Wyślij do wyceny»: поведение (17.09.2026) ===== */
+.qd .wy-v2 .qd-field-err{ margin:.45rem 0 0; text-align:center; font-size:14px; font-weight:500; color:#C8102E; }
+.qd .wy-v2 .qd-need, .qd .wy-v2 .qd-slow{ margin:.6rem 0 0; text-align:center; font-size:14px; color:rgba(31,33,32,.6); }
+.qd .wy-v2 .qd-fail{ margin:.8rem 0 0; text-align:center; }
+.qd .wy-v2 .qd-fail-msg{ margin:0; font-size:15px; font-weight:600; color:#C8102E; }
+.qd .wy-v2 .qd-fail-acts{ margin:.35rem 0 0; display:flex; justify-content:center; flex-wrap:wrap; gap:.4rem 1.2rem; font-size:14px; }
+.qd .wy-v2 .qd-fail-acts .qd-linkbtn{ color:var(--c-ink); text-decoration:underline; text-underline-offset:3px; }
+.qd .wy-v2 .qd-submit:disabled{ cursor:progress; }
+@keyframes qd-shake{ 0%,100%{ transform:translateX(0) } 20%,60%{ transform:translateX(-6px) } 40%,80%{ transform:translateX(6px) } }
+.qd .wy-v2 .qd-submit.is-shake{ animation:qd-shake .3s ease; }
+@media (prefers-reduced-motion:reduce){ .qd .wy-v2 .qd-submit.is-shake{ animation:none; } }
+/* правило `.wy-v2 #quote-form p` (с id) сильнее классов – цвета подсказок кнопки задаём с id */
+.wy-v2 #quote-form .qd-field-err, .wy-v2 #quote-form .qd-fail-msg{ color:#C8102E; }
+.wy-v2 #quote-form .qd-need, .wy-v2 #quote-form .qd-slow{ color:rgba(31,33,32,.6); }
