@@ -2018,3 +2018,9 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-tags{ gap:6px; }
 .qd .wy-v2 .qd-tag span{ font-size:11px; letter-spacing:.08em; padding:4px 8px 5px; border-color:rgba(31,33,32,.15); color:rgba(31,33,32,.65); }
 .qd .wy-v2 .qd-tag input:checked + span, .qd .wy-v2 .qd-tag:hover input:checked + span{ color:var(--c-ink); }
+/* зона фото крупнее, кружок «+» под текстом (18.09.2026) */
+.qd .wy-v2 .qd-drop{ width:80%; padding:2.6rem 1.2rem 2.4rem; }
+@media (max-width:639px){ .qd .wy-v2 .qd-drop{ width:100%; padding:2.2rem 1rem 2rem; } }
+.qd .wy-v2 .qd-drop-row{ flex-direction:column-reverse; gap:1rem; }
+.qd .wy-v2 .qd-plus{ width:52px; height:52px; }
+.qd .wy-v2 .qd-plus svg{ width:24px; height:24px; }
