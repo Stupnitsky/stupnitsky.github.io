@@ -1748,6 +1748,8 @@ body > main{ background:var(--c-page); }
 /* druga ścieżka – WhatsApp – widoczna, nie szara */
 .qd .wy-v2 .btn:not(.btn--pop){ border-color:var(--c-terra); }
 /* lista plików na telefonie: większe miniatury i cel dotyku */
+.qd .wy-v2 .qd-files{ width:56%; margin-left:auto; margin-right:auto; }
+@media (max-width:639px){ .qd .wy-v2 .qd-files{ width:100%; } }
 .qd .wy-v2 .qd-files li{ font-size:15px; padding:.5rem .6rem; }
 .qd .wy-v2 .qd-files img, .qd .wy-v2 .qd-files li.is-doc::before{ width:56px; height:56px; }
 .qd .wy-v2 .qd-files button{ width:44px; height:44px; font-size:26px; }
@@ -1920,3 +1922,10 @@ body > main{ background:var(--c-page); }
 }
 /* Крестик плашки всегда чисто белый, без приглушения (13.09.2026) */
 .qd .wy-v2 .qd-status-close, .qd .wy-v2 .qd-status-close:hover, .qd .wy-v2 .qd-status-close:focus-visible{ opacity:1; }
+
+/* Мобильная версия: левая колонка панели заявки («Ekspresowa wycena dokumentu», плашка 15 min, текст, телефон) – по центру (17.09.2026) */
+@media (max-width:639px){
+  .qd .wy-v2 .qd-left{ text-align:center; }
+  .qd .wy-v2 .qd-eta{ justify-content:center; }
+  .qd .wy-v2 .qd-call{ margin-left:auto; margin-right:auto; }
+}

@@ -1473,6 +1473,10 @@
       var need = function (f) { return f && f.required; };
       var missing = (need(name) && !name.value.trim()) || (need(phone) && !phone.value.trim()) ||
                     (need(service) && !service.value) || (need(inp) && !picked.length);
+      var noPhone = need(phone) && !phone.value.trim(), noFile = need(inp) && !picked.length;
+      if (noPhone && !noFile && !(need(name) && !name.value.trim()) && !(need(service) && !service.value)) {
+        say(form.dataset.msgPhone || 'Podaj numer telefonu – bez niego nie policzymy ceny.', false); phone.focus(); return;
+      }
       if (missing) { say(form.dataset.msgRequired || 'Uzupełnij imię, telefon i wybierz usługę.', false); return; }
       if (drop && drop.classList.contains('is-busy')) { say('Chwila – jeszcze przygotowujemy zdjęcia.', false); return; }
 
