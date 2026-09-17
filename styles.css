@@ -1886,9 +1886,9 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-drop:hover .qd-p-r, .qd .wy-v2 .qd-drop.is-over .qd-p-r{ transform:translateY(7px) rotate(-45deg); }
 @media (prefers-reduced-motion:reduce){ .qd .wy-v2 .qd-plus svg path{ transition:none; } }
 
-/* Выбранный чип – серый, не чёрный (14.09.2026): фон и рамка #D0D0CB, текст ink. Остальные свойства чипа без изменений */
+/* Выбранный чип – терракота (17.09.2026, вместо серого #D0D0CB). Остальные свойства чипа без изменений */
 .qd .wy-v2 .qd-tag input:checked + span,
-.qd .wy-v2 .qd-tag:hover input:checked + span{ background:#D0D0CB; border-color:#D0D0CB; color:var(--c-ink); }
+.qd .wy-v2 .qd-tag:hover input:checked + span{ background:var(--c-terra); border-color:var(--c-terra); color:var(--c-ink); }
 /* Отступы (14.09.2026): чипы ближе к дропзоне, кнопка отправки ниже */
 .qd .wy-v2 .quote-form > .qd-tags{ margin-top:1rem; }
 .qd .wy-v2 .quote-form > div:has(> [type="submit"]){ margin-top:2.25rem; }
@@ -1928,4 +1928,35 @@ body > main{ background:var(--c-page); }
   .qd .wy-v2 .qd-left{ text-align:center; }
   .qd .wy-v2 .qd-eta{ justify-content:center; }
   .qd .wy-v2 .qd-call{ margin-left:auto; margin-right:auto; }
+}
+
+/* ===== Панель wyceny: фото первым, телефон вторым, опции тише (17.09.2026, docs/promt-form-visual.md) ===== */
+.qd .wy-v2 .quote-form{ display:flex; flex-direction:column; }
+.qd .wy-v2 .quote-form > .qd-photo{ order:-2; margin:0 0 1.6rem; }
+.qd .wy-v2 .qd-acc--static{ order:-1; }
+.qd .wy-v2 .quote-form > .qd-tags{ margin-top:0; }
+/* зона фото – главный элемент экрана */
+.qd .wy-v2 .qd-drop{ border-color:rgba(31,33,32,.55); background:rgba(239,176,31,.07); }
+.qd .wy-v2 .qd-plus{ background:var(--c-terra); color:var(--c-ink); }
+.qd .wy-v2 .qd-drop-btn{ color:var(--c-ink); font-size:17px; }
+.qd .wy-v2 .qd-drop-drag, .qd .wy-v2 .qd-drop-touch{ color:rgba(31,33,32,.6); }
+.qd .wy-v2 .qd-drop-touch{ display:none; }
+@media (hover:none){ .qd .wy-v2 .qd-drop-drag{ display:none; } .qd .wy-v2 .qd-drop-touch{ display:block; } }
+/* телефон: полный контраст, без стрелки (строка не сворачивается); необязательные строки тише */
+.qd .wy-v2 .qd-acc--static .qd-acc-head span{ color:var(--c-ink); }
+.qd .wy-v2 .qd-acc--static .qd-chev{ display:none; }
+.qd .wy-v2 .qd-acc:not(.qd-acc--static) .qd-acc-head span{ color:rgba(31,33,32,.55); font-size:15px; }
+/* подпись над чипами */
+.qd .wy-v2 .qd-tags-cap{ margin:1.4rem 0 .4rem; text-align:center; font-size:13px; color:rgba(31,33,32,.5); }
+/* ошибка поля */
+.qd .wy-v2 .field.is-invalid{ border-bottom-color:#C8102E; }
+/* экран «Dziękujemy»: полный контраст (правило `.wy-v2 #quote-form p` с id иначе сильнее), галочка */
+.wy-v2 #quote-form .qd-done .qd-formhead, .wy-v2 #quote-form-qd .qd-done .qd-formhead{ color:var(--c-ink); font-weight:800; }
+.wy-v2 #quote-form .qd-done .qd-formsub, .wy-v2 #quote-form-qd .qd-done .qd-formsub{ color:rgba(31,33,32,.75); }
+.qd .wy-v2 .qd-done .qd-formhead::before{ content:'✓'; display:inline-grid; place-items:center; width:34px; height:34px; border-radius:50%; background:var(--c-terra); margin-right:.5rem; font-size:20px; vertical-align:-4px; }
+.qd .wy-v2 .quote-form.is-sent{ min-height:320px; justify-content:center; }
+/* ≤1023px: под формой в левой колонке только бейдж, строка про оператора и телефон */
+@media (max-width:1023px){
+  .qd .wy-v2 .qd-left .kicker, .qd .wy-v2 .qd-left h2, .qd .wy-v2 .qd-left .qd-lead{ display:none; }
+  .qd .wy-v2 .qd-left .qd-eta{ margin-top:0; }
 }

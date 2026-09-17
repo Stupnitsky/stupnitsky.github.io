@@ -1474,8 +1474,15 @@
       var missing = (need(name) && !name.value.trim()) || (need(phone) && !phone.value.trim()) ||
                     (need(service) && !service.value) || (need(inp) && !picked.length);
       var noPhone = need(phone) && !phone.value.trim(), noFile = need(inp) && !picked.length;
-      if (noPhone && !noFile && !(need(name) && !name.value.trim()) && !(need(service) && !service.value)) {
-        say(form.dataset.msgPhone || 'Podaj numer telefonu – bez niego nie policzymy ceny.', false); phone.focus(); return;
+      var noOther = (need(name) && !name.value.trim()) || (need(service) && !service.value);
+      var mark = function (f) {
+        if (!f) return; f.classList.add('is-invalid');
+        f.addEventListener('input', function un() { f.classList.remove('is-invalid'); f.removeEventListener('input', un); });
+      };
+      if (!noOther) {
+        if (noPhone && noFile) { say(form.dataset.msgRequired, false); mark(phone); return; }
+        if (noFile)  { say('Dodaj zdjęcie dokumentu – bez niego nie policzymy ceny.', false); return; }
+        if (noPhone) { say('Podaj numer telefonu – na niego wyślemy wycenę.', false); mark(phone); phone.focus(); return; }
       }
       if (missing) { say(form.dataset.msgRequired || 'Uzupełnij imię, telefon i wybierz usługę.', false); return; }
       if (drop && drop.classList.contains('is-busy')) { say('Chwila – jeszcze przygotowujemy zdjęcia.', false); return; }
@@ -1493,6 +1500,8 @@
       xhr.onload = function () {
         if (xhr.status >= 200 && xhr.status < 300) {
           form.classList.add('is-sent');                      /* CSS прячет поля, показывает .qd-done */
+          var head = form.parentElement.querySelector('.qd-formhead--light'); if (head) head.hidden = true;
+          var ph = form.querySelector('.qd-done-phone'); if (ph && phone) ph.textContent = phone.value.trim();
           var done = form.querySelector('.qd-done'); if (done) { done.hidden = false; done.focus && done.focus(); }
           hush();
           if (window.gtag) gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXX/XXXXXXXX' });   /* только после успеха */
@@ -1685,7 +1694,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260924m';   /* версию менять вместе с правкой фрагмента */
+    var FRAG = '/assets/wycena.html?v=20260917a';   /* версию менять вместе с правкой фрагмента */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */

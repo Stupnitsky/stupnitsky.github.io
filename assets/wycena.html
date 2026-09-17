@@ -44,7 +44,7 @@
                     class="quote-form">
 
                 <div class="qd-acc qd-acc--static">
-                  <label for="phone" class="qd-acc-head"><span>Podaj numer</span><svg class="qd-chev" width="11" height="7" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></label>
+                  <label for="phone" class="qd-acc-head"><span>Numer telefonu – na niego odpiszemy</span><svg class="qd-chev" width="11" height="7" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></label>
                   <div class="qd-acc-body"><input class="field qd-line" type="tel" id="phone" name="phone" placeholder="+48 600 000 000" required autocomplete="tel"
                          inputmode="tel" pattern="[+0-9\s()\-]{7,20}"></div>
                 </div>
@@ -66,7 +66,7 @@
                       <span class="qd-plus" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path class="qd-p-stem" d="M12 5v14"/><path class="qd-p-l" d="M5 12h7"/><path class="qd-p-r" d="M12 12h7"/></g></svg></span>
                       <span class="qd-drop-copy">
                         <span class="qd-drop-btn">Dodaj zdjęcia lub skan</span>
-                        <small class="qd-drop-drag">Przeciągnij pliki tutaj</small>
+                        <small class="qd-drop-drag">Przeciągnij pliki tutaj</small><small class="qd-drop-touch">Zrób zdjęcie lub wybierz z&nbsp;galerii</small>
                       </span>
                     </span>
                   </label>
@@ -74,6 +74,7 @@
                   <p class="qd-progress" hidden><i></i></p>
                 </div>
 
+                <p class="qd-tags-cap">Czego dotyczy sprawa? – opcjonalnie</p>
                 <div class="qd-tags" role="group" aria-label="Czego dotyczy sprawa">
                   <label class="qd-tag"><input type="checkbox" name="temat" value="Apostille"><span>Apostille</span></label>
                   <label class="qd-tag"><input type="checkbox" name="temat" value="Tłumaczenie"><span>Tłumaczenie</span></label>
@@ -93,7 +94,7 @@
                           class="inline-flex items-center justify-center gap-2 rounded-[12px] px-8 py-[18px] text-[16px] font-bold btn btn--pop qd-submit">
                     Wyślij do&nbsp;wyceny <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
                   </button>
-                  <p class="qd-legal">Wysyłając, zgadzasz się na przetwarzanie danych<br>w&nbsp;celu przygotowania wyceny.<br>
+                  <p class="qd-legal">Wysyłając, zgadzasz się na przetwarzanie danych w&nbsp;celu przygotowania wyceny.<br>
                     <button type="button" class="qd-linkbtn" data-policy aria-expanded="false" aria-controls="qd-policy">Polityka Prywatności</button></p>
                   <div class="qd-policy" id="qd-policy" hidden>
                     <p class="qd-policy-load">Wczytujemy…</p>
@@ -103,7 +104,9 @@
 
                 <div class="qd-done" hidden tabindex="-1">
                   <p class="qd-formhead">Dziękujemy, zdjęcia dotarły.</p>
-                  <p class="qd-formsub">Wycenę wyślemy na WhatsApp lub e-mail – zwykle w&nbsp;ciągu 15&nbsp;minut (7:00–21:00).</p>
+                  <p class="qd-formsub">Wycenę wyślemy na <b class="qd-done-phone"></b> (WhatsApp lub SMS) –
+                    zwykle w&nbsp;ciągu 15&nbsp;minut, 7:00–21:00.</p>
+                  <button type="button" class="qd-linkbtn" data-close>Zamknij</button>
                 </div>
               </form>
             </div>
