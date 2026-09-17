@@ -1935,7 +1935,8 @@ body > main{ background:var(--c-page); }
 /* телефон: полный контраст, без стрелки (строка не сворачивается); необязательные строки тише */
 .qd .wy-v2 .qd-acc--static .qd-acc-head span{ color:var(--c-ink); }
 .qd .wy-v2 .qd-acc--static .qd-chev{ display:none; }
-.qd .wy-v2 .qd-acc:not(.qd-acc--static) .qd-acc-head span{ color:rgba(31,33,32,.55); font-size:15px; }
+.qd .wy-v2 .qd-acc:not(.qd-acc--static) .qd-acc-head, .qd .wy-v2 .qd-acc:not(.qd-acc--static) .qd-chev{ color:var(--c-ink); }
+.qd .wy-v2 .qd-acc:not(.qd-acc--static) .qd-acc-head span{ color:var(--c-ink); font-size:15px; }
 /* подпись над чипами */
 .qd .wy-v2 .qd-tags-cap{ margin:1.4rem 0 .4rem; text-align:center; font-size:13px; color:rgba(31,33,32,.5); }
 /* ошибка поля */
