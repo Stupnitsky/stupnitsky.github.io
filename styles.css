@@ -2094,3 +2094,5 @@ body > main{ background:var(--c-page); }
   .qd .wy-v2 .qd-msgr{ justify-content:center; }
 }
 .qd .wy-v2 .qd-mplus svg{ width:14px; height:14px; }
+/* зона фото шириной со строку заголовка «każdą stronę dokumentu w całości» (≈14.8em от 30px) (18.09.2026) */
+@media (min-width:640px){ .qd .wy-v2 .qd-drop{ width:min(100%, 444px); } }
