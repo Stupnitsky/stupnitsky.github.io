@@ -1413,7 +1413,8 @@
           img.src = URL.createObjectURL(f); img.onload = function () { URL.revokeObjectURL(img.src); };
           li.appendChild(img);
         } else { li.classList.add('is-doc'); li.title = f.name; }
-        var x = document.createElement('button'); x.type = 'button'; x.className = 'qd-file-x'; x.textContent = '×';
+        var x = document.createElement('button'); x.type = 'button'; x.className = 'qd-file-x';
+        x.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>';
         x.setAttribute('aria-label', 'Usuń ' + f.name);
         x.addEventListener('click', function () { picked.splice(i, 1); syncInput(); render(); });
         li.appendChild(x); list.appendChild(li);

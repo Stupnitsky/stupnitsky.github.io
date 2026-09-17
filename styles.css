@@ -1564,7 +1564,6 @@ details[open] .chev{ transform:rotate(45deg) }
   background:rgba(31,33,32,.03); transition:border-color .2s ease, background-color .2s ease; }
 @media (max-width:639px){ .qd .wy-v2 .qd-drop{ width:100%; } }
 .qd .wy-v2 .qd-drop:hover, .qd .wy-v2 .qd-drop.is-over{ border-color:rgba(31,33,32,.7); background:rgba(31,33,32,.05); }
-.qd .wy-v2 .qd-drop.is-filled{ border-style:solid; border-color:rgba(31,33,32,.7); background:var(--c-paper); }
 
 .qd .wy-v2 .file-input-hidden:focus-visible + .qd-drop{ outline:2px solid var(--c-terra); outline-offset:3px; }
 /* вариант D (14.09.2026): чёрный кружок «+» и надпись; вся рамка – один клик (label for=file) */
@@ -1717,16 +1716,16 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-drop.is-over{ border-color:var(--c-ink); background:rgba(31,33,32,.08); }
 .qd .wy-v2 .qd-drop.is-busy{ opacity:.6; pointer-events:none; }
 
-/* Выбранные файлы – миниатюры 72px с крестиком (17.09.2026) */
+/* Выбранные файлы – миниатюры в пропорции A4 (72×102), крестик как на сайте, по центру (17.09.2026) */
 .qd-files{ list-style:none; margin:.6rem 0 0; padding:0; display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; }
 .qd-files:empty{ display:none; }
-.qd-files li{ position:relative; width:72px; height:72px; border-radius:10px; overflow:hidden;
+.qd-files li{ position:relative; width:72px; height:102px; border-radius:10px; overflow:hidden;
   border:1px solid rgba(31,33,32,.15); background:var(--c-sand); }
 .qd-files img{ width:100%; height:100%; object-fit:cover; display:block; }
-.qd-files li.is-doc::before{ content:'PDF'; position:absolute; inset:0; display:grid; place-items:center;
+.qd-files li.is-doc::before{ content:'PDF'; position:absolute; inset:auto 0 10px; display:grid; place-items:center;
   font-size:12px; font-weight:700; letter-spacing:.06em; color:var(--c-ink); }
-.qd-files .qd-file-x{ position:absolute; top:3px; right:3px; width:22px; height:22px; border:0; border-radius:50%;
-  background:rgba(31,33,32,.75); color:#fff; font-size:16px; line-height:1; cursor:pointer; font-family:inherit; padding:0; }
+.qd-files .qd-file-x{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:34px; height:34px; border:0; border-radius:50%;
+  display:grid; place-items:center; background:rgba(31,33,32,.75); color:#fff; cursor:pointer; padding:0; }
 .qd-files .qd-file-x:hover{ background:var(--c-ink); }
 .qd-files-cap{ font-size:13px; color:rgba(31,33,32,.55); text-align:center; margin:.4rem 0 0; }
 .qd-files-cap:empty{ display:none; }
@@ -1956,11 +1955,7 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-acc--static .qd-acc-note{ display:block; font-size:14px; font-weight:400; color:rgba(31,33,32,.55); }
 
 /* ===== Панель wyceny, этап 2 (17.09.2026, docs/promt-form-ideas.md) ===== */
-/* зона после первого фото – компактная, но остаётся (drag&drop на десктопе) */
-.qd .wy-v2 .qd-drop.is-filled{ padding:.55rem 1rem; }
-.qd .wy-v2 .qd-drop.is-filled .qd-plus{ width:28px; height:28px; }
-.qd .wy-v2 .qd-drop.is-filled .qd-plus svg{ width:14px; height:14px; }
-.qd .wy-v2 .qd-drop.is-filled .qd-drop-drag, .qd .wy-v2 .qd-drop.is-filled .qd-drop-touch{ display:none; }
+/* зона фото после добавления файлов выглядит так же, как пустая (17.09.2026) */
 /* сохранность документов */
 .qd .wy-v2 .qd-safe{ margin:.5rem 0 0; text-align:center; font-size:13px; color:rgba(31,33,32,.55); }
 /* прогресс отправки внутри кнопки */
