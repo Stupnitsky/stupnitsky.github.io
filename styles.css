@@ -2024,3 +2024,10 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-drop-row{ flex-direction:column-reverse; gap:1rem; }
 .qd .wy-v2 .qd-plus{ width:52px; height:52px; }
 .qd .wy-v2 .qd-plus svg{ width:24px; height:24px; }
+/* телефон: зона фото ниже, чтобы кнопка отправки была на первом экране (18.09.2026) */
+@media (max-width:639px){
+  .qd .wy-v2 .qd-drop{ padding:1.3rem 1rem 1.2rem; }
+  .qd .wy-v2 .qd-drop-row{ gap:.7rem; }
+  .qd .wy-v2 .qd-plus{ width:44px; height:44px; }
+  .qd .wy-v2 .qd-plus svg{ width:20px; height:20px; }
+}
