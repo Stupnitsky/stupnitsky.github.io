@@ -1964,8 +1964,8 @@ body > main{ background:var(--c-page); }
   background:rgba(31,33,32,.14); transition:width .2s linear; pointer-events:none; }
 /* под кнопкой: бесплатно → шаги → legal → WhatsApp */
 .qd .wy-v2 .qd-free{ margin:.8rem 0 0; text-align:center; font-size:15px; font-weight:600; color:rgba(31,33,32,.75); }
-/* шаги «что дальше» – 4 колонки: кружок с номером, тонкая линия между ними, подпись под кружком (17.09.2026) */
-.qd .wy-v2 .qd-next{ list-style:none; margin:1.1rem auto 0; padding:0; max-width:26rem; display:grid; grid-template-columns:repeat(4,1fr); gap:0 .25rem; }
+/* шаги «что дальше» – 5 колонок: кружок с номером, тонкая линия между ними, подпись под кружком (17.09.2026) */
+.qd .wy-v2 .qd-next{ list-style:none; margin:1.1rem auto 0; padding:0; max-width:28rem; display:grid; grid-template-columns:repeat(5,1fr); gap:0 .25rem; }
 .qd .wy-v2 .qd-next li{ position:relative; display:flex; flex-direction:column; align-items:center; gap:.35rem;
   text-align:center; font-size:12.5px; line-height:1.25; font-weight:500; color:rgba(31,33,32,.65); }
 .qd .wy-v2 .qd-next li + li::before{ content:''; position:absolute; top:10px; right:calc(50% + 15px); width:calc(100% - 30px + .25rem);
