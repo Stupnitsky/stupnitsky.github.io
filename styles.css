@@ -2058,3 +2058,7 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-msgr a:hover, .qd .wy-v2 .qd-msgr a:focus-visible{ background:var(--c-paper); border-color:rgba(31,33,32,.3); }
 .qd .wy-v2 .qd-mplus{ background:var(--c-sand); }
 .qd .wy-v2 .qd-msgr a:hover .qd-mplus, .qd .wy-v2 .qd-msgr a:focus-visible .qd-mplus{ background:var(--c-terra); }
+/* кружок мессенджеров: «+» сразу складывается в стрелку вправо, без поворота всего значка (18.09.2026) */
+.qd .wy-v2 .qd-msgr a:hover .qd-mplus svg, .qd .wy-v2 .qd-msgr a:focus-visible .qd-mplus svg{ transform:none; }
+.qd .wy-v2 .qd-msgr a:hover .qd-m-t, .qd .wy-v2 .qd-msgr a:focus-visible .qd-m-t{ transform:translateX(7px) rotate(-45deg); }
+.qd .wy-v2 .qd-msgr a:hover .qd-m-b, .qd .wy-v2 .qd-msgr a:focus-visible .qd-m-b{ transform:translateX(7px) rotate(45deg); }
