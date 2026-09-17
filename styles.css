@@ -2116,3 +2116,10 @@ body > main{ background:var(--c-page); }
 /* номер целиком курсивом: цифры жирный курсив 28px, «+48» тонкий курсив, поднят (18.09.2026) */
 .qd .wy-v2 .qd-call{ font-style:italic; font-size:28px; font-weight:700; letter-spacing:-.01em; }
 .qd .wy-v2 .qd-call-cc{ font-size:.5em; vertical-align:.8em; margin-right:.25em; font-weight:300; }
+/* зона фото ниже на десктопе (18.09.2026); телефон – без изменений */
+@media (min-width:640px){
+  .qd .wy-v2 .qd-drop{ padding:1.5rem 1.2rem 1.4rem; }
+  .qd .wy-v2 .qd-drop-row{ gap:.75rem; }
+  .qd .wy-v2 .qd-plus{ width:44px; height:44px; }
+  .qd .wy-v2 .qd-plus svg{ width:20px; height:20px; }
+}
