@@ -2123,3 +2123,10 @@ body > main{ background:var(--c-page); }
   .qd .wy-v2 .qd-plus{ width:44px; height:44px; }
   .qd .wy-v2 .qd-plus svg{ width:20px; height:20px; }
 }
+/* заголовок правой колонки крупнее (18.09.2026): 34px – как h2 секций сайта на телефоне, от 1280px – 40px.
+   Зона фото по-прежнему шириной со строку «każdą stronę dokumentu w całości» (≈14.8em) */
+.qd .wy-v2{ --fh:30px; }   /* телефон: крупнее не влезает, кнопка уходит с первого экрана */
+@media (min-width:640px){ .qd .wy-v2{ --fh:34px; } }
+@media (min-width:1280px){ .qd .wy-v2{ --fh:40px; } }
+.qd .wy-v2 .qd-formhead--light{ font-size:var(--fh); line-height:1.05; }
+@media (min-width:640px){ .qd .wy-v2 .qd-drop{ width:min(100%, calc(var(--fh) * 14.8)); } }
