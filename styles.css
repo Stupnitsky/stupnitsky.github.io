@@ -1961,4 +1961,5 @@ body > main{ background:var(--c-page); }
   .qd .wy-v2 .qd-left .qd-eta{ margin-top:0; }
 }
 /* подпись к телефону «na niego odpiszemy» – мельче и серым (17.09.2026) */
+.qd .wy-v2 .qd-acc--static .qd-acc-head > span{ text-align:center; }
 .qd .wy-v2 .qd-acc--static .qd-acc-note{ display:block; font-size:14px; font-weight:400; color:rgba(31,33,32,.55); }
