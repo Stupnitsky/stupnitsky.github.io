@@ -2290,8 +2290,8 @@ body > main{ background:var(--c-page); }
  -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur); }
 /* на тёмной колонке текст светлеет – как в шапке над тёмными блоками */
 .qd .wy-v2 .qd-left, .qd .wy-v2 .qd-left *{ color:var(--c-paper); }
-/* плашка «15 min» остаётся светлой с чернильным текстом */
-.qd .wy-v2 .qd-left .qd-eta span{ color:var(--c-ink); }
+/* обе плашки строки «15 min» со своими подложками – жёлтой и белой – держат чернильный текст */
+.qd .wy-v2 .qd-left .qd-eta b, .qd .wy-v2 .qd-left .qd-eta span{ color:var(--c-ink); }
 /* правая колонка почти непрозрачная – 8%, с тем же размытием */
 .qd .qd-scroll > div > .grid > div:nth-child(2){ background:rgba(255,255,255,.92);
  -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur); }
