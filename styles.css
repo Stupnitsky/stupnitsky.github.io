@@ -2298,11 +2298,13 @@ body > main{ background:var(--c-page); }
 /* Дропзона – те же параметры, что у тёмной колонки: фон --hdr-bg-dark с размытием,
    белый текст, жёлтой подложки нет. Пунктирная рамка светлеет, чтобы читалась
    на тёмном; при наведении и перетаскивании становится ярче (21.09.2026). */
-.qd .wy-v2 .qd-drop,
-.qd .wy-v2 .qd-drop:hover,
-.qd .wy-v2 .qd-drop.is-over{ background:var(--hdr-bg-dark);
+.qd .wy-v2 .qd-drop{ background:rgba(31,33,32,.88);
  -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
  border-color:rgba(255,255,255,.55); }
-.qd .wy-v2 .qd-drop:hover, .qd .wy-v2 .qd-drop.is-over{ border-color:rgba(255,255,255,.8); }
+/* при наведении и перетаскивании зона светлеет, а кружок наоборот темнеет */
+.qd .wy-v2 .qd-drop:hover, .qd .wy-v2 .qd-drop.is-over{ background:rgba(46,49,48,.58);
+ border-color:rgba(255,255,255,.8); }
+.qd .wy-v2 .qd-drop:hover .qd-plus,
+.qd .wy-v2 .qd-drop.is-over .qd-plus{ background:rgba(31,33,32,.92); color:var(--c-paper); }
 .qd .wy-v2 .qd-drop, .qd .wy-v2 .qd-drop *{ color:var(--c-paper); }
 .qd .wy-v2 .qd-drop.is-filled .file-name{ color:var(--c-paper); }
