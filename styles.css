@@ -111,9 +111,10 @@ header .navlink--plate .nl-plate::before{ content:''; position:absolute; z-index
  /* простое появление; длительность в базовом правиле работает на уход – 0.36с,
     появление задано в правиле :hover – 0.6с (20.09.2026) */
  opacity:0; transition:opacity .36s ease; }
-/* над тёмным блоком тень та же, тёмная, только на 50% плотнее – иначе теряется на фоне */
+/* над тёмным блоком тень чисто чёрная и заметно плотнее – чернильная там терялась
+   (та же логика, что у --hdr-shadow-dark у самой шапки) */
 header .navlink--plate.on-dark .nl-plate::before{
- box-shadow:inset 0 2px 4px rgba(31,33,32,.45), inset 0 8px 14px -8px rgba(31,33,32,.69); }
+ box-shadow:inset 0 2px 5px rgba(0,0,0,.62), inset 0 10px 16px -8px rgba(0,0,0,.85); }
 header .navlink--plate:hover .nl-plate::before,
 header .navlink--plate:focus-visible .nl-plate::before{ opacity:1; transition:opacity .6s ease; }
 /* пока открыта панель «Wycena», плашка остаётся видимой независимо от курсора –
