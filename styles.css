@@ -2286,3 +2286,6 @@ body > main{ background:var(--c-page); }
    Левая колонка серая: лёгкая вуаль поверх стекла даёт ту же разницу с правой,
    что раньше давали bg-sand и bg-paper. */
 .qd .qd-scroll > div > .grid > div:first-child{ background:rgba(31,33,32,.12); }
+/* «Ekspresowa wycena» – первая строка заголовка панели: на 40% светлее чернильного,
+   вторая строка («Dokumentu») остаётся прежней (21.09.2026) */
+.qd .wy-v2 .qd-head .slide-group .slide-in:first-child{ color:rgba(31,33,32,.6); }
