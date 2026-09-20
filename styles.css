@@ -101,9 +101,14 @@ header .navlink .nl-b{ font-weight:700; visibility:hidden; opacity:0; transform:
 header .navlink--plate{ font-weight:700; }
 header .navlink--plate .nl-plate{ position:relative; z-index:1; display:inline-block; white-space:nowrap; }
 header .navlink--plate .nl-plate::before{ content:''; position:absolute; z-index:-1;
- inset:-11px -14px; border-radius:12px; background:var(--c-terra);  /* высота плашки +18% (20.09.2026) */
+ inset:-11px -14px; background:var(--c-terra);  /* высота плашки +18% (20.09.2026) */
+ /* плашка повторяет общую плашку шапки: тот же радиус и та же тень (--hdr-r, --hdr-shadow),
+    поэтому на разных ширинах скругление меняется вместе с ней (20.09.2026) */
+ border-radius:var(--hdr-r); box-shadow:var(--hdr-shadow);
  transform:scale(.16,.46); opacity:0;
  transition:transform .32s cubic-bezier(.2,.7,.25,1), opacity .18s ease; }
+/* над тёмным блоком тень тоже как у шапки */
+header .navlink--plate.on-dark .nl-plate::before{ box-shadow:var(--hdr-shadow-dark); }
 header .navlink--plate:hover .nl-plate::before,
 header .navlink--plate:focus-visible .nl-plate::before{ transform:scale(1); opacity:1; }
 /* на жёлтой плашке текст всегда чернильный – то же правило, что у .wa-btn и .btn.
