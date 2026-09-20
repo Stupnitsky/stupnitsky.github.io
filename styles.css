@@ -2282,9 +2282,7 @@ body > main{ background:var(--c-page); }
  box-shadow:0 1px 2px -1px rgba(31,33,32,.20), 0 8px 12px -8px rgba(31,33,32,.32); }
 .qd .qd-scroll > div, .qd .qd-scroll > div > .grid > div{ background:transparent; }
 .qd .qd-scroll .qd-head{ background:transparent; }
-/* затемнение под панелью вернулось, но шапка остаётся поверх него: пока панель открыта,
-   её слой поднимается выше .qd (z-index 110), и плашка меню не темнеет (21.09.2026).
+/* затемнение под панелью накрывает и шапку – слой шапки не поднимаем (21.09.2026).
    Левая колонка серая: лёгкая вуаль поверх стекла даёт ту же разницу с правой,
    что раньше давали bg-sand и bg-paper. */
-html.qd-open header#top{ z-index:120; }
 .qd .qd-scroll > div > .grid > div:first-child{ background:rgba(31,33,32,.12); }
