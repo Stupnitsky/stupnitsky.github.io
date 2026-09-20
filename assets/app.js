@@ -297,7 +297,7 @@
     function check(){
       btn.classList.toggle('is-live', window.scrollY > window.innerHeight * 0.6);
       // стрелка упирается в футер и не заходит на него
-      var base = window.matchMedia('(max-width:640px)').matches ? 100 : 64;
+      var base = window.matchMedia('(max-width:640px)').matches ? 28 : 64;   /* было 100 – зазор под кнопку WhatsApp, её убрали 20.09.2026 */
       var bottom = base;
       if (foot) {
         var top = foot.getBoundingClientRect().bottom;
@@ -1817,7 +1817,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260920-39';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260920-40';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */

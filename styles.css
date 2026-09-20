@@ -877,7 +877,9 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
 .to-top:hover .chip-chev, .to-top:focus-visible .chip-chev{
  animation-play-state:paused; transform:rotate(-90deg) translateX(7px) scale(1.14); }
 .to-top:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px; border-radius:4px; }
-@media (max-width:640px){ .to-top{ right:20px; bottom:100px; } }
+/* отступ снизу был 100px, чтобы стрелка не наезжала на плавающую кнопку WhatsApp;
+   кнопку убрали 20.09.2026, стрелка опущена к краю */
+@media (max-width:640px){ .to-top{ right:20px; bottom:28px; } }
 @media (prefers-reduced-motion:reduce){ .to-top .chip-chev{ animation:none } }
 @keyframes langArrowNudge{
   0%   { transform:translateX(0) scale(1); opacity:1 }
