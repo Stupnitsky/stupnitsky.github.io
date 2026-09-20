@@ -2,27 +2,27 @@
 /* Apostilo — стили сайта. Вынесены из index.html 05.09.2026. Tailwind подключается CDN-скриптом в index.html, здесь только свой CSS. */
 
 :root{
-  /* Палитра вынесена в переменные – меняется в одном месте.
-     Нейтральный серый каркас + один тёплый акцент в двух тонах.
-     page #F1F1EF – фон · sand #E5E5E1 – крупные блоки · white – карточки ·
-     ink #1F2120 – текст и тёмные плашки · graphite #2E3130 – футер ·
-     terra #EFB01F – жёлтый акцент действия (кнопки и плашки, текст на нём тёмный) ·
-     ochre – алиас terra, отдельного оттенка охры нет. */
-  --c-page:#F1F1EF;  --c-graphite:#2E3130;
-  --c-paper:#FFFFFF; --c-sand:#E5E5E1; --c-ink:#1F2120;
-  --c-blue:#E5E5E1;  --c-bluedp:#2E3130;
-  --c-terra:#EFB01F; --c-ochre:#EFB01F; --c-moss:#2E3130;
-  --c-red:#9AA0A0;
+ /* Палитра вынесена в переменные – меняется в одном месте.
+ Нейтральный серый каркас + один тёплый акцент в двух тонах.
+ page #F1F1EF – фон · sand #E5E5E1 – крупные блоки · white – карточки ·
+ ink #1F2120 – текст и тёмные плашки · graphite #2E3130 – футер ·
+ terra #EFB01F – жёлтый акцент действия (кнопки и плашки, текст на нём тёмный) ·
+ ochre – алиас terra, отдельного оттенка охры нет. */
+ --c-page:#F1F1EF; --c-graphite:#2E3130;
+ --c-paper:#FFFFFF; --c-sand:#E5E5E1; --c-ink:#1F2120;
+ --c-blue:#E5E5E1; --c-bluedp:#2E3130;
+ --c-terra:#EFB01F; --c-ochre:#EFB01F; --c-moss:#2E3130;
+ --c-red:#9AA0A0;
 
-  /* Шапка – единый набор параметров стекла для всех страниц и всех частей плашки:
-     фон, размытие, тень, скругление. Менять только здесь. */
-  --hdr-bg:rgba(255,255,255,.88);
-  --hdr-bg-dark:rgba(46,49,48,.9);
-  --hdr-blur:blur(8px);
-  --hdr-shadow:0 1px 2px -1px rgba(31,33,32,.10), 0 8px 12px -8px rgba(31,33,32,.16);
-  --hdr-shadow-dark:0 1px 2px -1px rgba(0,0,0,.25), 0 8px 12px -8px rgba(0,0,0,.35);
-  --hdr-r:16px;
-  --hdr-gap:6px;
+ /* Шапка – единый набор параметров стекла для всех страниц и всех частей плашки:
+ фон, размытие, тень, скругление. Менять только здесь. */
+ --hdr-bg:rgba(255,255,255,.88);
+ --hdr-bg-dark:rgba(46,49,48,.9);
+ --hdr-blur:blur(8px);
+ --hdr-shadow:0 1px 2px -1px rgba(31,33,32,.10), 0 8px 12px -8px rgba(31,33,32,.16);
+ --hdr-shadow-dark:0 1px 2px -1px rgba(0,0,0,.25), 0 8px 12px -8px rgba(0,0,0,.35);
+ --hdr-r:16px;
+ --hdr-gap:6px;
 }
 @media (min-width:768px){ :root{ --hdr-r:20px; } }
 html{ scroll-behavior:smooth; }
@@ -33,29 +33,29 @@ footer#stopka{ margin-bottom:0; }
 #step-modal[hidden], #step-data[hidden]{ display:none !important; }
 section[id]{ scroll-margin-top:88px; }
 .price-num{ display:inline-block; font-variant-numeric:tabular-nums;
-            font-feature-settings:"tnum" 1; text-align:right; }
+ font-feature-settings:"tnum" 1; text-align:right; }
 .price-hit{ cursor:default; }
 .slab-price .price-hit{ font-family:inherit; text-transform:none; letter-spacing:normal;
-                        font-size:inherit; color:inherit; }
+ font-size:inherit; color:inherit; }
 .faq-price .price-hit{ color:inherit; }
 
 /* Логотип: «Apo» – 700, «stilo» – 600, точка – 900 акцентная */
 .logo{ font-family:'Fira Sans',sans-serif; letter-spacing:-0.04em; line-height:1; display:inline-flex; }
 .logo b:nth-child(1),
 .logo b:nth-child(2),
-.logo b:nth-child(3){font-weight:700}
+.logo b:nth-child(3){font-weight:700; }
 .logo b:nth-child(4),
 .logo b:nth-child(5),
 .logo b:nth-child(6),
 .logo b:nth-child(7),
-.logo b:nth-child(8){font-weight:600}
+.logo b:nth-child(8){font-weight:600; }
 /* точка – по центру высоты текста, а не на базовой линии */
 /* Жёлтый знак-акцент. Символ ✦ есть не во всех шрифтах – рисуется системным,
    поэтому кегль и высота вынесены в переменные: подгонять здесь, в одном месте. */
 .logo{ --logo-mark-size:.62em; --logo-mark-y:.02em; }
 .logo b:nth-child(9){ font-weight:900; color:var(--c-terra); display:inline-block;
-                      font-size:var(--logo-mark-size); margin-left:.10em;
-                      transform:translateY(var(--logo-mark-y)); }
+ font-size:var(--logo-mark-size); margin-left:.10em;
+ transform:translateY(var(--logo-mark-y)); }
 /* точка логотипа пульсирует при наведении */
 .logo:hover b:nth-child(9){ animation:logoDotPulse 2.4s ease-in-out infinite; }
 @keyframes logoDotPulse{
@@ -70,8 +70,8 @@ section[id]{ scroll-margin-top:88px; }
 
 /* Логотип в шапке: при загрузке на 36% крупнее, плавно ужимается по мере прокрутки */
 .logo-brand{ transform-origin:left center;
-             transform:translateX(18px) scale(var(--logo-scale,1.36));
-             will-change:transform; transition:color .25s ease; }
+ transform:translateX(18px) scale(var(--logo-scale,1.36));
+ will-change:transform; transition:color .25s ease; }
 /* над тёмным блоком логотип светлеет, точка сохраняет акцент */
 .logo-brand.on-dark{ color:var(--c-paper); }
 .logo-brand.on-dark b:nth-child(9){ color:var(--c-terra); }
@@ -83,8 +83,6 @@ section[id]{ scroll-margin-top:88px; }
 /* анимация только на входе: при отведении курсора всё возвращается мгновенно */
 .nl-swap > span{ grid-area:1 / 1; white-space:nowrap; transition:none; }
 .nl-b{ font-style:normal; font-weight:inherit; letter-spacing:inherit; opacity:0; transform:translateY(105%); }
-@media (hover:hover){
-}
 /* Пункты меню – по правилам футера: обычное начертание, при наведении полужирное,
    выталкивание копии снизу отключено. Кегль не меняется. */
 header .navlink{ font-weight:400; transition:color .25s ease; }
@@ -99,9 +97,33 @@ header .navlink:hover .nl-a, header .navlink:focus-visible .nl-a{ visibility:hid
 header .navlink:hover .nl-b, header .navlink:focus-visible .nl-b{ visibility:visible; opacity:1; }
 header .navlink .nl-swap{ overflow:visible; }
 header .navlink .nl-b{ font-weight:700; visibility:hidden; opacity:0; transform:none; }
+/* «Zamów wycenę»: при наведении из маленького прямоугольника разворачивается жёлтая плашка */
+header .navlink--plate{ font-weight:700; }
+header .navlink--plate .nl-plate{ position:relative; z-index:1; display:inline-block; white-space:nowrap; }
+header .navlink--plate .nl-plate::before{ content:''; position:absolute; z-index:-1;
+ inset:-11px -14px; border-radius:12px; background:var(--c-terra);  /* высота плашки +18% (20.09.2026) */
+ transform:scale(.16,.46); opacity:0;
+ transition:transform .32s cubic-bezier(.2,.7,.25,1), opacity .18s ease; }
+header .navlink--plate:hover .nl-plate::before,
+header .navlink--plate:focus-visible .nl-plate::before{ transform:scale(1); opacity:1; }
+/* на жёлтой плашке текст всегда чернильный – то же правило, что у .wa-btn и .btn.
+   Над тёмным блоком пункт меню белый, и на плашке он почти не читался (20.09.2026) */
+header .navlink--plate:hover, header .navlink--plate:focus-visible,
+header .navlink--plate.on-dark:hover, header .navlink--plate.on-dark:focus-visible{
+ color:var(--c-ink); }
+@media (prefers-reduced-motion:reduce){
+ header .navlink--plate .nl-plate::before{ transition:opacity .18s ease; transform:scale(1); } }
+
+/* «Zamów wycenę» на 76px шире прежнего «Zamów», и в 1024–1099px ряд меню перестал помещаться
+   (20.09.2026): в этой полосе показываем бургер, как на планшете, — гарнитура и поля не жмутся. */
+@media (min-width:1024px) and (max-width:1099px){
+ #nav-main{ display:none !important; }
+ #burger{ display:flex !important; }
+}
+
 /* номер телефона и переключатель языков – то же правило начертания */
 header .wa-btn, header .lang-switch{ font-weight:400;
-                  transition:color .25s ease, background-color .25s ease, font-weight .25s ease; }
+ transition:color .25s ease, background-color .25s ease, font-weight .25s ease; }
 /* номер телефона – обычное начертание, в том числе при наведении */
 header .wa-btn, header .wa-btn:hover, header .wa-btn:focus-visible{ font-weight:400; }
 /* переключатель языка при раскрытом списке остаётся обычного начертания */
@@ -118,22 +140,22 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
    тень вынесена в ::after. Перетяжек на стыках нет (13.09.2026). */
 .hdr-row{ position:relative; isolation:isolate; }
 .hdr-row::before, .hdr-row::after{ content:''; position:absolute; inset:0;
-  border-radius:var(--hdr-r); pointer-events:none; }
+ border-radius:var(--hdr-r); pointer-events:none; }
 .hdr-row::after{ z-index:1; box-shadow:var(--hdr-shadow); transition:box-shadow .25s ease; }
 .hdr-row.on-dark::after{ box-shadow:var(--hdr-shadow-dark); }
 .hdr-row::before{ z-index:2; background:var(--hdr-bg);
-  -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
-  transition:background-color .25s ease; }
+ -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
+ transition:background-color .25s ease; }
 .hdr-row.on-dark::before{ background:var(--hdr-bg-dark); }
 /* содержимое частей – поверх стекла */
-.hdr-glass{ position:relative; z-index:3; }
+.hdr-glass { z-index:3; }
 /* Логотип увеличен скриптом до 1.36 на верху страницы (transform не меняет габарит),
    поэтому правое поле плашки растёт на --logo-extra – его считает app.js вместе с --logo-scale. */
 /* Поля слева и справа от логотипа равны (до стыка плашек): логотип сдвинут transform'ом на 18px
    вправо, поэтому слева видимое поле = padding-left + 18px; справа столько же и ещё 12px по просьбе
    владельца (07.09.2026), чтобы стык плашек стоял чуть правее. */
 .hdr-seg--logo{ --hdr-pad:1.25rem; padding-left:var(--hdr-pad);
-                padding-right:calc(var(--hdr-pad) + 18px + 12px + var(--logo-extra,0px)); }
+ padding-right:calc(var(--hdr-pad) + 18px + 12px + var(--logo-extra,0px)); }
 /* Ширина логотипа зафиксирована скриптом (--logo-w): при наведении буквы меняются на знаки
    других алфавитов и слово становится шире или уже – плашка при этом не дышит. */
 .hdr-seg--logo .logo-brand{ width:var(--logo-w,auto); }
@@ -145,7 +167,7 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 
 /* Переключатель языка в шапке */
 .lang-switch{ border:0; background:none; padding:6px 0; color:var(--c-ink); cursor:pointer;
-              line-height:1; transition:opacity .2s ease; }
+ line-height:1; transition:opacity .2s ease; }
 .lang-switch{ min-width:104px; text-align:center; }   /* ширина фиксирована – смена языка не двигает меню */
 /* шеврон сообщает, что у кнопки есть продолжение (аудит меню 11.09.2026); при раскрытии переворачивается */
 .lang-switch{ display:inline-flex; align-items:center; justify-content:center; gap:7px; }
@@ -155,7 +177,7 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
 .lang-switch.on-dark{ color:var(--c-paper); }
 .lang-switch:focus-visible{ outline:2px solid var(--c-ink); outline-offset:3px; }
 .lang-switch .ls-now{ display:inline-block; font-style:normal; font-weight:inherit;
-                      transition:opacity .18s ease, transform .18s ease; }
+ transition:opacity .18s ease, transform .18s ease; }
 .lang-switch.is-changing .ls-now{ opacity:0; transform:translateY(-5px); }
 
 /* Выпадающий список языков (переделан 12.09.2026 по аудиту меню).
@@ -200,38 +222,37 @@ header .lang-switch .nl-b{ font-weight:700; visibility:hidden; opacity:0; transf
    рамкой, и на стыке была бы горизонтальная полоса – ровно та же причина, по которой
    стекло в ряду рисует один слой. Высоту (--lang-h) задаёт app.js по высоте списка. */
 .hdr-seg--lang::after{ content:''; position:absolute; left:0; right:0;
-  top:calc(100% + var(--hdr-gap)); height:var(--lang-h, 0px);
-  background:var(--hdr-bg); border-radius:var(--hdr-r); z-index:-1;
-  transition:height .28s cubic-bezier(.2,.7,.25,1); }
+ top:calc(100% + var(--hdr-gap)); height:var(--lang-h, 0px);
+ background:var(--hdr-bg); border-radius:var(--hdr-r); z-index:-1;
+ transition:height .28s cubic-bezier(.2,.7,.25,1); }
 .hdr-seg--lang.on-dark::after{ background:var(--hdr-bg-dark); }
 /* Тень и размытие – только у раскрытого: у закрытого высота 0, но тень рисовалась бы полосой. */
 .hdr-seg--lang:has(#lang-switch[aria-expanded="true"])::after{
-  -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
-  box-shadow:var(--hdr-shadow); }
+ -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
+ box-shadow:var(--hdr-shadow); }
 .hdr-seg--lang.on-dark:has(#lang-switch[aria-expanded="true"])::after{ box-shadow:var(--hdr-shadow-dark); }
 /* список ложится под низ плашки. До lg плашка широкая (в ней ещё бургер), поэтому список
    центрируется под кнопкой языка: её середину относительно плашки (--lang-x) считает app.js.
    На десктопе плашка узкая (144px, ширина задана кнопкой) – список прижат к ней справа. */
 .lang-pop{ position:absolute; top:100%; left:var(--lang-x, 50%); right:auto; transform:translate(-50%, calc(var(--hdr-gap) - 6px));
-           min-width:0; padding:8px 0; margin:0; z-index:60;
-           display:flex; flex-direction:column; gap:0;
-           color:inherit; background:transparent; border-radius:0;
-           opacity:0; visibility:hidden; pointer-events:none;
-           transition:opacity .2s ease, transform .2s ease, visibility 0s linear .2s; }
+ min-width:0; padding:8px 0; margin:0; z-index:60;
+ display:flex; flex-direction:column; gap:0; background:transparent; border-radius:0;
+ opacity:0; visibility:hidden; pointer-events:none;
+ transition:opacity .2s ease, transform .2s ease, visibility 0s linear .2s; }
 /* на десктопе плашка языка узкая (144px): список с полями строк 21px (+27 %, 12.09.2026) центрируем в ней */
 @media (min-width:1024px){ .lang-pop{ left:auto; right:10px; transform:translateY(calc(var(--hdr-gap) - 6px)); } }
 /* невидимый «мостик» от кнопки до списка: курсор проходит по нему и список не закрывается */
 .lang-pop::before{ content:""; position:absolute; left:0; right:0; bottom:100%; height:34px; }
 .lang-switch[aria-expanded="true"] + .lang-pop{
-           opacity:1; visibility:visible; pointer-events:auto;
-           transform:translate(-50%, var(--hdr-gap)); transition-delay:0s; }
+ opacity:1; visibility:visible; pointer-events:auto;
+ transform:translate(-50%, var(--hdr-gap)); transition-delay:0s; }
 @media (min-width:1024px){ .lang-switch[aria-expanded="true"] + .lang-pop{ transform:translateY(var(--hdr-gap)); } }
 /* Пункт – строка на всю ширину списка, текст по центру, 37px высотой (тач-цель; 12.09.2026 отступы чуть меньше).
    При наведении подсвечивается строка целиком, начертание не меняется – жирным стоит только текущий. */
 .lang-opt{ display:flex; align-items:center; justify-content:center; width:100%; box-sizing:border-box;
-           border:0; background:none; cursor:pointer; text-align:center; text-decoration:none;
-           padding:9px 21px; border-radius:8px; font-size:16px; font-weight:400; line-height:1.2;
-           white-space:nowrap; color:inherit; transition:background-color .15s ease; }
+ border:0; background:none; cursor:pointer; text-align:center; text-decoration:none;
+ padding:9px 21px; border-radius:8px; font-size:16px; font-weight:400; line-height:1.2;
+ white-space:nowrap; color:inherit; transition:background-color .15s ease; }
 .lang-opt:hover{ background:rgba(31,33,32,.07); }
 .lang-opt:focus-visible{ outline:2px solid currentColor; outline-offset:-2px; }
 /* текущий язык в списке не показываем – он стоит на кнопке над списком (решение 12.09.2026) */
@@ -251,10 +272,10 @@ header .lang-switch[aria-expanded="true"]{ font-weight:700; }
 html.menu-open, html.menu-open body{ overflow:hidden; }
 /* Мобильное меню – ещё одна плашка того же семейства: те же параметры стекла,
    скруглено со всех сторон и отделено от ряда тем же зазором. */
-#mobile-nav{ max-height:calc(100vh - 100px); max-height:calc(100dvh - 100px); overflow-y:auto;
-  margin-top:var(--hdr-gap); background:var(--hdr-bg);
-  -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
-  border-top:0; border-radius:var(--hdr-r); box-shadow:var(--hdr-shadow); }
+#mobile-nav { max-height:calc(100dvh - 100px); overflow-y:auto;
+ margin-top:var(--hdr-gap); background:var(--hdr-bg);
+ -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
+ border-top:0; border-radius:var(--hdr-r); box-shadow:var(--hdr-shadow); }
 header:has(.hdr-row.on-dark) #mobile-nav{ background:var(--hdr-bg-dark); box-shadow:var(--hdr-shadow-dark); }
 header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:rgba(255,255,255,.14); }
 #burger span{ transition:transform .2s ease, background-color .25s ease; }
@@ -264,18 +285,18 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 
 /* Кнопка WhatsApp: по умолчанию только логотип, подпись выезжает при наведении */
 .wa-btn{ padding:5px; background:transparent; color:var(--c-ink);
-         border:1px solid var(--c-terra); border-radius:12px;
-         transition:background-color .3s ease, color .3s ease, padding .38s cubic-bezier(.2,.7,.25,1); }
+ border:1px solid var(--c-terra); border-radius:12px;
+ transition:background-color .3s ease, color .3s ease, padding .38s cubic-bezier(.2,.7,.25,1); }
 .wa-btn:hover, .wa-btn:focus-visible{ background:var(--c-terra); color:var(--c-ink); padding:5px 0 5px 18px; }
 .wa-ico{ display:block; width:31.5px; height:31.5px; flex:0 0 auto; }
 .wa-label{ display:grid; grid-template-columns:0fr; opacity:0;
-           transition:grid-template-columns .42s cubic-bezier(.2,.7,.25,1), opacity .3s ease; }
+ transition:grid-template-columns .42s cubic-bezier(.2,.7,.25,1), opacity .3s ease; }
 .wa-label > span{ overflow:hidden; white-space:nowrap; padding:0 15px 0 15px; }
 .wa-btn:hover .wa-label, .wa-btn:focus-visible .wa-label{ grid-template-columns:1fr; opacity:1; }
 @media (prefers-reduced-motion:reduce){ .wa-label{ transition:opacity .2s ease } }
 
 /* «Dla kogo tłumaczymy»: карточка = заголовок → список в один столбец.
-   display:flex обязателен: у <button> содержимое по умолчанию центрируется по вертикали,
+ display:flex обязателен: у <button> содержимое по умолчанию центрируется по вертикали,
    из-за этого в растянутой ячейке заголовок уезжал на середину. */
 .soft-cell{ position:relative; }
 .tl-cell{ display:flex; flex-direction:column; align-items:stretch; container-type:inline-size; }
@@ -284,14 +305,14 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 /* место под стрелку зарезервировано всегда: иначе на hover она раздвигает
    заголовок, тот переносится на вторую строку и вся карточка прыгает */
 .tl-title .chip-mark{ grid-template-columns:1fr; opacity:0; transform:translateX(-5px);
-                      transition:opacity .28s ease, transform .38s cubic-bezier(.2,.7,.25,1); }
+ transition:opacity .28s ease, transform .38s cubic-bezier(.2,.7,.25,1); }
 .tl-cell:hover .tl-title .chip-mark,
 .tl-cell:focus-visible .tl-title .chip-mark{ opacity:1; transform:none; }
 @media (prefers-reduced-motion:reduce){ .tl-title .chip-mark{ transition:opacity .2s ease } }
 /* линеек нет: заголовок и список разделяет только отступ */
 .tl-list{ display:flex; flex-direction:column; gap:7px; margin-top:17px;
-          font-size:15.5px; font-weight:500; line-height:1.3; letter-spacing:-.005em;
-          color:rgba(31,33,32,.62); }
+ font-size:15.5px; font-weight:500; line-height:1.3; letter-spacing:-.005em;
+ color:rgba(31,33,32,.62); }
 @media (max-width:639px){
   .tl-list{ font-size:15px; gap:6px; margin-top:15px; }
 }
@@ -311,13 +332,13 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 .plate-head{ position:relative; }
 /* все три слова – одинаковые боксы, поэтому плашка везде садится точно */
 .plate-head .pw{ display:inline-block; position:relative; z-index:1; line-height:1;
-                 padding:.26em .46em .34em; margin-left:-.46em; transition:color .3s ease; }
+ padding:.26em .46em .34em; margin-left:-.46em; transition:color .3s ease; }
 .plate-head .pw.is-on{ color:var(--c-paper); }
 .plate-bg{ position:absolute; left:0; top:0; width:0; height:0; z-index:0; border-radius:9px;
-           background:var(--c-ink); opacity:0; pointer-events:none;
-           transition:left .42s cubic-bezier(.22,.7,.24,1), top .42s cubic-bezier(.22,.7,.24,1),
-                      width .42s cubic-bezier(.22,.7,.24,1), height .42s cubic-bezier(.22,.7,.24,1),
-                      opacity .3s ease; }
+ background:var(--c-ink); opacity:0; pointer-events:none;
+ transition:left .42s cubic-bezier(.22,.7,.24,1), top .42s cubic-bezier(.22,.7,.24,1),
+ width .42s cubic-bezier(.22,.7,.24,1), height .42s cubic-bezier(.22,.7,.24,1),
+ opacity .3s ease; }
 .plate-head.is-ready .plate-bg{ opacity:1; }
 @media (prefers-reduced-motion:reduce){ .plate-bg{ transition:opacity .3s ease } }
 
@@ -327,7 +348,7 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 .tl-def{ display:block; }
 .tl-def-in{ display:grid; padding-top:22px; }
 .tl-def-panel{ grid-area:1 / 1; opacity:0; visibility:hidden;
-               transition:opacity .32s ease, visibility 0s linear .32s; }
+ transition:opacity .32s ease, visibility 0s linear .32s; }
 .tl-def-panel.is-open{ opacity:1; visibility:visible; transition:opacity .4s ease .06s; }
 .tl-def-name{ font-size:19px; font-weight:700; letter-spacing:-.01em; }
 .tl-def-text{ margin-top:8px; font-size:16.5px; line-height:1.6; color:rgba(31,33,32,.72); max-width:46ch; }
@@ -339,7 +360,7 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 .swap > span{ grid-area:1 / 1; white-space:nowrap; opacity:0; }
 .swap > span.is-on{ opacity:1; }
 .swap > span.go-out{ animation:sw-out .58s cubic-bezier(.2,.72,.24,1) both; }
-.swap > span.go-in { animation:sw-in  .58s cubic-bezier(.2,.72,.24,1) both; }
+.swap > span.go-in { animation:sw-in .58s cubic-bezier(.2,.72,.24,1) both; }
 @keyframes sw-out{ from{ opacity:1; transform:translateY(0) } to{ opacity:0; transform:translateY(-92%) } }
 @keyframes sw-in { from{ opacity:0; transform:translateY(92%) } to{ opacity:1; transform:translateY(0) } }
 @media (prefers-reduced-motion:reduce){
@@ -350,12 +371,12 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 /* block, а не inline-block: иначе строка получает строчный бокс родителя (96px × .92)
    и под «i zdalnie» появляется пустая полоса ~40px */
 .hero-sub{ display:block; width:max-content; max-width:100%;
-           background:var(--c-terra); color:var(--c-ink);
-           font-size:.44em; line-height:.9; letter-spacing:-.01em;
-           margin-top:.12em; margin-left:.22em; padding-bottom:.04em; }
+ background:var(--c-terra); color:var(--c-ink);
+ font-size:.44em; line-height:.9; letter-spacing:-.01em;
+ margin-top:.12em; margin-left:.22em; padding-bottom:.04em; }
 /* появляется через 3 с с выездом справа */
 .hero-sub-in{ opacity:0; transform:translateX(1.4em);
-              transition:opacity 1.2s ease, transform 1.6s cubic-bezier(.14,.8,.24,1); }
+ transition:opacity 1.2s ease, transform 1.6s cubic-bezier(.14,.8,.24,1); }
 .hero-sub-in.is-in{ opacity:1; transform:none; }
 @media (prefers-reduced-motion:reduce){ .hero-sub-in{ opacity:1; transform:none; transition:none } }
 
@@ -364,13 +385,13 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 /* Выезд строки справа с выравниванием по левому краю */
 .no-x{ overflow-x:clip; }
 .slide-in{ display:inline-block; opacity:0; transform:translateX(1.1em);
-           transition:opacity 1.25s ease, transform 1.7s cubic-bezier(.12,.72,.2,1); }
+ transition:opacity 1.25s ease, transform 1.7s cubic-bezier(.12,.72,.2,1); }
 .slide-in.is-in{ opacity:1; transform:none; }
 /* слова появляются по очереди, спокойно */
-.slide-words .slide-in:nth-child(2){ transition-delay:.42s }
-.slide-words .slide-in:nth-child(3){ transition-delay:.84s }
-.slide-in.sd-2{ transition-delay:.72s }
-.slide-in.sd-3{ transition-delay:.84s }
+.slide-words .slide-in:nth-child(2){ transition-delay:.42s; }
+.slide-words .slide-in:nth-child(3){ transition-delay:.84s; }
+.slide-in.sd-2{ transition-delay:.72s; }
+.slide-in.sd-3{ transition-delay:.84s; }
 @media (prefers-reduced-motion:reduce){ .slide-in{ opacity:1; transform:none; transition:none } }
 
 /* Футер: спокойный нейтральный графит вместо глубокого чёрного */
@@ -382,13 +403,13 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 
 /* Колонки, перенесённые из футера в блок 24/7 */
 .fl-cols{ display:grid; grid-template-columns:1fr; gap:2.75rem 2rem;
-          margin-top:4rem; padding-top:2.5rem;
-          border-top:1px solid rgba(255,255,255,.16); }
+ margin-top:4rem; padding-top:2.5rem;
+ border-top:1px solid rgba(255,255,255,.16); }
 .footer-tone .fl-cols{ margin-top:0; padding-top:0; border-top:none;
-                       /* меню опущено вниз; может заходить на декоративный логотип */
-                       position:relative; z-index:2;
-                       /* меню поднято вверх; на габариты футера не влияет */
-                       transform:translateY(21%); }
+ /* меню опущено вниз; может заходить на декоративный логотип */
+ position:relative; z-index:2;
+ /* меню поднято вверх; на габариты футера не влияет */
+ transform:translateY(21%); }
 @media (min-width:640px){ .fl-cols{ grid-template-columns:repeat(3,1fr); gap:2rem; } }
 /* левый край колонок футера – в одной оси с «/ Usługa» в секциях */
 .footer-tone .fl-cols{ padding-left:1.75rem; }
@@ -396,15 +417,15 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 @media (min-width:1024px){ .footer-tone .fl-cols{ padding-left:3.5rem; } }
 /* единый кикер разделов: «/ Название», всегда вверху блока */
 .kicker{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif;
-         text-transform:uppercase; letter-spacing:.22em; font-size:12px;
-         font-weight:600; line-height:1; margin:0 0 1.5rem; color:var(--c-ink); }
+ text-transform:uppercase; letter-spacing:.22em; font-size:12px;
+ font-weight:600; line-height:1; margin:0 0 1.5rem; color:var(--c-ink); }
 .kicker--light{ color:var(--c-ochre); }
 .fl-h{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
-       letter-spacing:.2em; font-size:12px; color:rgba(255,255,255,.45);
-       /* тонкая линия-волосок под заголовком колонки – на 55% короче колонки */
-       position:relative; padding-bottom:.55rem; margin-bottom:.9rem; }
+ letter-spacing:.2em; font-size:12px; color:rgba(255,255,255,.45);
+ /* тонкая линия-волосок под заголовком колонки – на 55% короче колонки */
+ position:relative; padding-bottom:.55rem; margin-bottom:.9rem; }
 .fl-h::after{ content:""; position:absolute; left:0; bottom:0;
-              width:45%; height:1px; background:rgba(255,255,255,.14); }
+ width:45%; height:1px; background:rgba(255,255,255,.14); }
 .fl-list{ display:flex; flex-direction:column; align-items:flex-start; gap:.18rem; }
 .fl-note{ margin-top:1.6rem; font-size:16px; line-height:1.6; color:rgba(255,255,255,.7); }
 .fl-note strong{ color:var(--c-paper); font-weight:600; }
@@ -412,9 +433,9 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 /* Пункт: обычное начертание – тонкое, при наведении – прежнее полужирное.
    Эффект выталкивания копии снизу временно отключён. */
 .fl-link{ display:inline-flex; align-items:center; gap:10px;
-          font-size:17px; font-weight:400; line-height:1.35;
-          color:rgba(255,255,255,.78);
-          transition:color .25s ease; }
+ font-size:17px; font-weight:400; line-height:1.35;
+ color:rgba(255,255,255,.78);
+ transition:color .25s ease; }
 .fl-link:hover, .fl-link:focus-visible{ font-weight:600; }
 .fl-link svg{ width:16px; height:16px; flex:0 0 auto; }
 /* ширина ячейки держится по «жирной» копии – при наведении текст не прыгает */
@@ -429,12 +450,12 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 .k-where{ margin-top:2.6rem; display:grid; gap:1.5rem; }
 @media (min-width:640px){ .k-where{ grid-template-columns:1fr 1fr; gap:2rem; } }
 .k-where-item{ display:flex; flex-direction:column; gap:.35rem;
-               padding-top:.9rem; border-top:2px solid rgba(255,255,255,.2); }
+ padding-top:.9rem; border-top:2px solid rgba(255,255,255,.2); }
 .k-where-h{ font-weight:700; font-size:19px; letter-spacing:-.01em; }
 .k-where-t{ font-size:15.5px; line-height:1.5; color:rgba(255,255,255,.6); }
 .k-where-link{ display:inline-flex; align-items:center; gap:10px; margin-top:1.5rem;
-               font-weight:600; font-size:17px; color:var(--c-ochre);
-               transition:color .25s ease; }
+ font-weight:600; font-size:17px; color:var(--c-ochre);
+ transition:color .25s ease; }
 .k-where-link:hover, .k-where-link:focus-visible{ color:var(--c-paper); }
 .k-where-link svg{ width:16px; height:16px; flex:0 0 auto; }
 .fl-where .fl-w-item{ display:flex; flex-direction:column; gap:.12rem; }
@@ -447,61 +468,61 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
   .gdz-cell + .gdz-cell{ border-top:0; border-left:1px solid rgba(255,255,255,.15); }
 }
 .gdz-full{ margin-top:.75rem; font-size:15.5px; line-height:1.5;
-           color:rgba(255,255,255,.6); max-width:38ch; }
+ color:rgba(255,255,255,.6); max-width:38ch; }
 /* обе колонки: блок адреса стартует на одной высоте */
 @media (min-width:1024px){ .gdz-full{ min-height:3em; } }
 .gdz-meta{ margin-top:1.7rem; display:grid; gap:.95rem; }
 .gdz-meta > div{ display:grid; grid-template-columns:minmax(0,9.5ch) 1fr;
-                 gap:1.1rem; align-items:baseline; }
+ gap:1.1rem; align-items:baseline; }
 @media (max-width:479px){
   .gdz-meta > div{ grid-template-columns:1fr; gap:.2rem; }
 }
 .gdz-meta dt{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
-              letter-spacing:.14em; font-size:11px; font-weight:700; color:rgba(255,255,255,.45); }
+ letter-spacing:.14em; font-size:11px; font-weight:700; color:rgba(255,255,255,.45); }
 .gdz-meta dd{ margin:0; font-size:16px; line-height:1.45; }
 .gdz-fee{ font-weight:700; color:var(--c-ochre); font-variant-numeric:tabular-nums; }
 .gdz-docs-h{ position:relative; margin-top:2rem; padding-top:1.1rem;
-             font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
-             letter-spacing:.14em; font-size:12px; font-weight:700; color:rgba(255,255,255,.55); }
+ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
+ letter-spacing:.14em; font-size:12px; font-weight:700; color:rgba(255,255,255,.55); }
 .gdz-docs-h::before{ content:""; position:absolute; left:0; top:0;
-                     width:34px; height:2px; background:rgba(255,255,255,.28); }
+ width:34px; height:2px; background:rgba(255,255,255,.28); }
 .gdz-docs{ margin-top:.95rem; display:grid; gap:.8rem; }
 .gdz-docs li{ font-size:15.5px; line-height:1.5; color:rgba(255,255,255,.6); }
 .gdz-docs li b{ color:var(--c-paper); font-weight:700; }
 .gdz-note{ margin-top:2px; padding:1.35rem 1rem 1.5rem;
-           border-top:1px solid rgba(255,255,255,.15); }
+ border-top:1px solid rgba(255,255,255,.15); }
 @media (min-width:640px){ .gdz-note{ padding:1.5rem 1.5rem 1.6rem; } }
 .gdz-note p{ font-size:16px; line-height:1.6; color:rgba(255,255,255,.65); max-width:78ch; }
 .gdz-note p b{ color:var(--c-paper); font-weight:700; }
 
 /* Футер: только крупный логотип и строка копирайта */
 /* overflow не задаём: верх букв не срезается, а низ по-прежнему
-   обрезает сам футер (.footer-tone{overflow:hidden}) */
+   обрезает сам футер (.footer-tone{overflow:hidden; }) */
 .footer-mark{ display:block; width:100%; color:var(--c-paper);
-              position:relative; z-index:0;
-              /* декоративный логотип наезжает на колонки контактов (margin-top -5.6rem)
-                 и перехватывал клики по последней ссылке – e-mail. Кликов не ловим. */
-              pointer-events:none;
-              /* --fm-gap – расстояние от колонок навигации до логотипа */
-              /* -108px вместо -90px: футер ниже исходного, просвет над нижней строкой ~160px */
-              --fm-gap:calc(-5.6rem - 108px); margin-top:var(--fm-gap);
-              /* логотип опущен так, что уходит за нижний край окна на 0.22em;
-                 --fm-drop считается в скрипте (fit) */
-              margin-bottom:0; top:var(--fm-drop, 0px);
-              /* отступы от краёв окна: 36px, на мобильных – 12px */
-              padding-left:12px; padding-right:12px; }
+ position:relative; z-index:0;
+ /* декоративный логотип наезжает на колонки контактов (margin-top -5.6rem)
+ и перехватывал клики по последней ссылке – e-mail. Кликов не ловим. */
+ pointer-events:none;
+ /* --fm-gap – расстояние от колонок навигации до логотипа */
+ /* -108px вместо -90px: футер ниже исходного, просвет над нижней строкой ~160px */
+ --fm-gap:calc(-5.6rem - 108px); margin-top:var(--fm-gap);
+ /* логотип опущен так, что уходит за нижний край окна на 0.22em;
+ --fm-drop считается в скрипте (fit) */
+ margin-bottom:0; top:var(--fm-drop, 0px);
+ /* отступы от краёв окна: 36px, на мобильных – 12px */
+ padding-left:12px; padding-right:12px; }
 @media (min-width:640px){ .footer-mark{ padding-left:36px; padding-right:36px; } }
 .footer-mark .logo{ opacity:.025; letter-spacing:-0.055em; line-height:.92;
-                    /* отступы срезаны – в футере меньше пустоты */
-                    padding:.04em 0 .04em;
-                    font-size:var(--fm-size, 24.6vw); white-space:nowrap; }
+ /* отступы срезаны – в футере меньше пустоты */
+ padding:.04em 0 .04em;
+ font-size:var(--fm-size, 24.6vw); white-space:nowrap; }
 .footer-mark .logo b:nth-child(9){ color:var(--c-terra); }
 /* нижняя строка футера: плашка убрана, логотип не перекрывается */
 .footer-bar{ position:relative; z-index:1; background:transparent;
-             padding-top:0; padding-bottom:6px; }
+ padding-top:0; padding-bottom:6px; }
 /* нижняя строка футера выровнена по левому краю колонок навигации */
 .footer-bar-inner{ max-width:1320px; margin-left:auto; margin-right:auto;
-                   padding-left:calc(1.25rem + 1.75rem); padding-right:1.25rem; }
+ padding-left:calc(1.25rem + 1.75rem); padding-right:1.25rem; }
 @media (min-width:640px){ .footer-bar-inner{ padding-left:calc(2rem + 3rem); padding-right:2rem; } }
 @media (min-width:1024px){ .footer-bar-inner{ padding-left:calc(2rem + 3.5rem); } }
 
@@ -518,10 +539,10 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 .s247-bottom .s247-foot{ margin-top:0; }
 @media (min-width:1024px){
   .s247-col{
-    position: sticky;
-    top: var(--s247-top);
-    align-self: start;
-    margin-bottom: var(--s247-bottom);
+ position: sticky;
+ top: var(--s247-top);
+ align-self: start;
+ margin-bottom: var(--s247-bottom);
   }
 }
 @media (prefers-reduced-motion:reduce){ .s247-col{ position:static } }
@@ -535,36 +556,40 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 .ws-legal summary::-webkit-details-marker{ display:none; }
 /* плавное раскрытие – как у «godziny pracy» */
 .legal-wrap{ display:grid; grid-template-rows:0fr; opacity:0;
-             --ws-open:1.05s; --ws-close:.8s;
-             transition:grid-template-rows var(--ws-close) cubic-bezier(.2,.7,.25,1),
-                        opacity calc(var(--ws-close) * .7) ease,
-                        margin-bottom var(--ws-close) cubic-bezier(.2,.7,.25,1);
-             margin-top:0; margin-bottom:0; }
+ --ws-open:1.05s; --ws-close:.8s;
+ transition:grid-template-rows var(--ws-close) cubic-bezier(.2,.7,.25,1),
+ opacity calc(var(--ws-close) * .7) ease,
+ margin-bottom var(--ws-close) cubic-bezier(.2,.7,.25,1);
+ margin-top:0; margin-bottom:0; }
 .legal-wrap > *{ overflow:hidden; min-height:0; margin-top:0; }
 .ws-legal-item.is-open .legal-wrap{ grid-template-rows:1fr; opacity:1; margin-bottom:1.5rem;
-             transition:grid-template-rows var(--ws-open) cubic-bezier(.16,.84,.3,1),
-                        opacity calc(var(--ws-open) * .8) ease,
-                        margin-bottom var(--ws-open) cubic-bezier(.16,.84,.3,1); }
+ transition:grid-template-rows var(--ws-open) cubic-bezier(.16,.84,.3,1),
+ opacity calc(var(--ws-open) * .8) ease,
+ margin-bottom var(--ws-open) cubic-bezier(.16,.84,.3,1); }
 @media (prefers-reduced-motion:reduce){ .legal-wrap{ transition:none } }
 .human-note{ display:flex; gap:14px; align-items:flex-start; padding-top:20px;
-             font-size:16px; line-height:1.55; color:rgba(255,255,255,.7); }
+ font-size:16px; line-height:1.55; color:rgba(255,255,255,.7); }
 .human-note b{ color:var(--c-paper); font-weight:700; }
 .human-mark{ flex:0 0 auto; width:34px; height:34px; border-radius:999px;
-             border:1px solid rgba(255,255,255,.3); display:flex; align-items:center;
-             justify-content:center; color:var(--c-paper); }
+ border:1px solid rgba(255,255,255,.3); display:flex; align-items:center;
+ justify-content:center; color:var(--c-paper); }
 .human-mark svg{ width:19px; height:19px; }
 
 /* Блок 24/7 – без плашки: крупные часы, крупный график, календарь свят */
 /* блок начинается от двоеточия часов: половина ширины + подгонка --ws-meta-nudge */
 .ws-meta{ --ws-meta-nudge:-.18em;
-          margin-left:50%; width:max-content; max-width:100%;
-          transform:translateX(var(--ws-meta-nudge)); }
+ margin-left:50%; width:max-content;
+ /* блок начинается от середины колонки, поэтому его предел – оставшаяся половина,
+    а не вся ширина: при max-width:100% строка часового пояса вылезала за колонку
+    и давала горизонтальную прокрутку страницы на узких экранах (20.09.2026) */
+ max-width:50%;
+ transform:translateX(var(--ws-meta-nudge)); }
 /* статус скрыт вместе с графиком и проявляется при наведении */
 .ws-top{ opacity:0; transform:translateY(-4px);
-         transition:opacity .3s ease, transform .3s ease;
-         margin-top:14px; display:flex; align-items:center; justify-content:flex-start; gap:11px;
-         font-family:'Fira Sans Condensed',sans-serif; text-transform:uppercase;
-         letter-spacing:.2em; font-size:12px; font-weight:700; color:rgba(255,255,255,.62); }
+ transition:opacity .3s ease, transform .3s ease;
+ margin-top:14px; display:flex; align-items:center; justify-content:flex-start; gap:11px;
+ font-family:'Fira Sans Condensed',sans-serif; text-transform:uppercase;
+ letter-spacing:.2em; font-size:12px; font-weight:700; color:rgba(255,255,255,.62); }
 .ws-dot{ width:10px; height:10px; border-radius:50%; flex:0 0 auto; background:var(--c-ochre); }
 .ws.is-open .ws-dot{ background:var(--c-ochre); animation:ws-pulse 2.4s ease-out infinite; }
 .ws.is-closed .ws-dot{ background:rgba(255,255,255,.38); animation:none; }
@@ -576,56 +601,59 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 /* часы: +40% к кеглю, по центру колонки (в одной оси с календарём),
    --ws-clock-track – разрядка между цифрами */
 .ws-clock{ margin-top:12px; display:flex; align-items:baseline; justify-content:flex-end;
-           gap:0; text-align:right;
-           --ws-clock-track:-.045em;
-           font-size:var(--ws-clock-size); font-weight:900; line-height:.88;
-           letter-spacing:var(--ws-clock-track); font-variant-numeric:tabular-nums;
-           color:var(--c-paper); }
+ gap:0; text-align:right;
+ --ws-clock-track:-.045em;
+ font-size:var(--ws-clock-size); font-weight:900; line-height:.88;
+ letter-spacing:var(--ws-clock-track); font-variant-numeric:tabular-nums;
+ color:var(--c-paper); }
 /* секунды слегка наезжают на последнюю цифру минут – --ws-sec-lap */
 .ws-clock .ws-sec{ font-size:.34em; font-weight:900; letter-spacing:.04em; color:var(--c-ochre);
-                   --ws-sec-lap:-.14em; margin-left:var(--ws-sec-lap); position:relative; z-index:1; }
+ --ws-sec-lap:-.14em; margin-left:var(--ws-sec-lap); position:relative; z-index:1; }
 /* дата и часы в общей колонке по ширине часов – дата равняется по их правому краю */
 .ws-timeblock{ --ws-clock-size:clamp(81px,10.1vw,123px);
-               --ws-date-pad:.54;   /* доля ширины часов, которую занимают секунды */
-               width:max-content; max-width:100%; margin-left:auto; margin-right:0; }
+ --ws-date-pad:.54; /* доля ширины часов, которую занимают секунды */
+ width:max-content; max-width:100%; margin-left:auto; margin-right:0; }
 /* дата набрана так же, как заголовок календаря (.cal-title) */
 .ws-date{ margin-bottom:10px; text-align:right;
-          padding-right:calc(var(--ws-clock-size) * var(--ws-date-pad));
-          font-size:21px; font-weight:800; letter-spacing:-.02em;
-          color:var(--c-paper); }
+ padding-right:calc(var(--ws-clock-size) * var(--ws-date-pad));
+ font-size:21px; font-weight:800; letter-spacing:-.02em;
+ color:var(--c-paper); }
 
 /* строка часового пояса под часами */
 .ws-tz{ margin-top:10px; display:flex; flex-wrap:wrap; justify-content:flex-start;
-        align-items:center; column-gap:10px; row-gap:4px;
-        font-family:'Fira Sans Condensed',sans-serif; text-transform:uppercase;
-        letter-spacing:.18em; font-size:12px; font-weight:700;
-        color:rgba(255,255,255,.55); }
+ align-items:center; column-gap:10px; row-gap:4px;
+ font-family:'Fira Sans Condensed',sans-serif; text-transform:uppercase;
+ letter-spacing:.18em; font-size:12px; font-weight:700;
+ color:rgba(255,255,255,.55); }
 .ws-tz > span + span{ margin-left:10px; }
 .ws-tz-off{ color:var(--c-ochre); }
 .ws-tz-dst{ position:relative; padding-left:12px; }
 .ws-tz-dst::before{ content:''; position:absolute; left:0; top:50%; width:4px; height:4px;
-                    margin-top:-2px; border-radius:50%; background:rgba(255,255,255,.35); }
+ margin-top:-2px; border-radius:50%; background:rgba(255,255,255,.35); }
 
 /* часы работы: скрыты, раскрываются при наведении на часы */
 /* область наведения шире самих часов примерно на 40% –
    --ws-hit-y / --ws-hit-x задают, насколько она выступает за края */
 .ws-clockbox{ outline:none; --ws-hit-y:1.6rem; --ws-hit-x:2rem;
-              padding:var(--ws-hit-y) var(--ws-hit-x);
-              margin:calc(var(--ws-hit-y) * -1) calc(var(--ws-hit-x) * -1);
-              border-radius:20px; }
+ padding:var(--ws-hit-y) var(--ws-hit-x);
+ margin:calc(var(--ws-hit-y) * -1) calc(var(--ws-hit-x) * -1);
+ border-radius:20px; }
+/* на узких экранах поле страницы 20px, и боковой вынос области наведения (32px) вылезал
+   за край окна – прокрутка вправо на 12px. Там, где мыши нет, вынос по горизонтали не нужен. */
+@media (max-width:639px){ .ws-clockbox{ --ws-hit-x:0rem; } }
 /* --ws-open – скорость раскрытия, --ws-close – скорость сворачивания */
 .ws-hours-wrap{ display:grid; grid-template-rows:0fr; opacity:0;
-                --ws-open:1.05s; --ws-close:.8s;
-                transition:grid-template-rows var(--ws-close) cubic-bezier(.2,.7,.25,1),
-                           opacity calc(var(--ws-close) * .7) ease,
-                           margin-top var(--ws-close) cubic-bezier(.2,.7,.25,1);
-                margin-top:0; }
+ --ws-open:1.05s; --ws-close:.8s;
+ transition:grid-template-rows var(--ws-close) cubic-bezier(.2,.7,.25,1),
+ opacity calc(var(--ws-close) * .7) ease,
+ margin-top var(--ws-close) cubic-bezier(.2,.7,.25,1);
+ margin-top:0; }
 .ws-hours-wrap > *{ overflow:hidden; min-height:0; }
 .ws-clockbox.is-open .ws-top{ opacity:1; transform:none; }
 .ws-clockbox.is-open .ws-hours-wrap{ grid-template-rows:1fr; opacity:1; margin-top:8px;
-                transition:grid-template-rows var(--ws-open) cubic-bezier(.16,.84,.3,1),
-                           opacity calc(var(--ws-open) * .8) ease,
-                           margin-bottom var(--ws-open) cubic-bezier(.16,.84,.3,1); }
+ transition:grid-template-rows var(--ws-open) cubic-bezier(.16,.84,.3,1),
+ opacity calc(var(--ws-open) * .8) ease,
+ margin-bottom var(--ws-open) cubic-bezier(.16,.84,.3,1); }
 @media (prefers-reduced-motion:reduce){
   .ws-hours-wrap{ transition:none }
 }
@@ -635,26 +663,28 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 }
 
 .ws-msg{ margin-top:16px; font-size:15.5px; line-height:1.5; color:rgba(255,255,255,.62);
-         white-space:nowrap; }
+ /* строка не влезала в колонку при nowrap и тянула горизонтальную прокрутку всей страницы
+    на экранах до ~1200px; теперь переносится, на широких остаётся одной строкой (20.09.2026) */
+ text-wrap:balance; }
 .ws-hours{ margin-top:18px; display:flex; flex-direction:column; list-style:none; padding:0; }
 .ws-hours li{ display:flex; align-items:baseline; justify-content:space-between; gap:16px;
-              padding:10px 0;
-              font-size:19px; font-weight:600; color:rgba(255,255,255,.52); }
+ padding:10px 0;
+ font-size:19px; font-weight:600; color:rgba(255,255,255,.52); }
 .ws-hours li > span:last-child{ font-size:27px; font-weight:800; letter-spacing:-.025em;
-                                color:var(--c-paper); }
+ color:var(--c-paper); }
 /* названия дней – белым, пояснения справа – серым */
 .ws-hours li > span:first-child{ color:var(--c-paper); }
 .ws-hours .ws-soft{ color:rgba(255,255,255,.34) !important; }
 .ws-hours .ws-off{ color:rgba(255,255,255,.34) !important; }
 .ws-hours li.is-now > span{ color:var(--c-ochre) !important; }
 .ws-cta{ margin-top:26px; display:inline-flex; align-items:center; gap:0;
-         background:var(--c-ink); color:var(--c-ochre); border:2px solid var(--c-ochre);
-         border-radius:12px; padding:16px 22px; font-size:16px; font-weight:700;
-         transition:background-color .25s ease, color .25s ease; }
+ background:var(--c-ink); color:var(--c-ochre); border:2px solid var(--c-ochre);
+ border-radius:12px; padding:16px 22px; font-size:16px; font-weight:700;
+ transition:background-color .25s ease, color .25s ease; }
 .ws-cta:hover, .ws-cta:focus-visible{ background:var(--c-ochre); color:var(--c-ink); }
 /* стрелка выезжает только при наведении — общий приём для всех CTA-кнопок (.btn-mark в HTML) */
 .ws-cta-mark, .btn-mark{ display:inline-grid; grid-template-columns:0fr; opacity:0;
-              transition:grid-template-columns .38s cubic-bezier(.2,.7,.25,1), opacity .28s ease; }
+ transition:grid-template-columns .38s cubic-bezier(.2,.7,.25,1), opacity .28s ease; }
 .ws-cta-mark > span, .btn-mark > span{ overflow:hidden; display:flex; align-items:center; padding-left:9px; }
 .ws-cta:hover .ws-cta-mark, .ws-cta:focus-visible .ws-cta-mark,
 :is(a,button):hover > .btn-mark, :is(a,button):focus-visible > .btn-mark{ grid-template-columns:1fr; opacity:1; }
@@ -666,8 +696,8 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
    (на светлых секциях он и так чернильный, меняется только на тёмных).
    Стрелка: у кнопок с .btn-mark выезжает сама разметка, у остальных – ::after. */
 .btn{ background-color:transparent; color:inherit;
-      border:1px solid var(--c-terra); border-radius:12px;
-      transition:background-color .3s ease, border-color .3s ease; }
+ border:1px solid var(--c-terra); border-radius:12px;
+ transition:background-color .3s ease, border-color .3s ease; }
 .btn:hover, .btn:focus-visible{ background-color:var(--c-terra); color:var(--c-ink); }
 
 /* Вариант .btn--pop: инверсия обычной кнопки.
@@ -675,15 +705,15 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
    вниз по диагонали (приём с mammothmurals.com: 3D-разворот слоя + translateY),
    а следом проявляется обводка. Стрелка видна всегда, не только на наведении. */
 .btn--pop{ position:relative; overflow:clip; isolation:isolate; perspective:600px;
-           background-color:transparent; color:var(--c-ink); border-color:transparent;
-           transition:border-color .3s ease .18s, color .3s ease; }
+ background-color:transparent; color:var(--c-ink); border-color:transparent;
+ transition:border-color .3s ease .18s, color .3s ease; }
 .btn--pop::before{ content:''; position:absolute; inset:-1px; z-index:-1; border-radius:inherit;
-           background:var(--c-terra); transform-style:preserve-3d; transform-origin:0 100%;
-           transform:none; transition:transform .5s cubic-bezier(.2,.7,.25,1); }
+ background:var(--c-terra); transform-style:preserve-3d; transform-origin:0 100%;
+ transform:none; transition:transform .5s cubic-bezier(.2,.7,.25,1); }
 .btn--pop:hover, .btn--pop:focus-visible{ background-color:transparent; color:inherit;
-           border-color:var(--c-terra); }
+ border-color:var(--c-terra); }
 .btn--pop:hover::before, .btn--pop:focus-visible::before{
-           transform:rotateX(28deg) rotateY(28deg) rotate(10deg) translateY(105%); }
+ transform:rotateX(28deg) rotateY(28deg) rotate(10deg) translateY(105%); }
 /* стрелка у этой кнопки раскрыта постоянно */
 .btn--pop > .btn-mark{ grid-template-columns:1fr; opacity:1; }
 @media (prefers-reduced-motion:reduce){
@@ -691,12 +721,12 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
   .btn--pop:hover::before{ opacity:0; } }
 
 .btn:not(:has(.btn-mark))::after{
-  content:''; display:inline-block; flex:0 0 auto; width:0; opacity:0;
-  height:1.05em; background:currentColor; vertical-align:-.12em;
-  -webkit-mask:var(--chev) no-repeat center / contain;
-          mask:var(--chev) no-repeat center / contain;
-  --chev:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 4l8 8-8 8' fill='none' stroke='%23000' stroke-width='3.4'/%3E%3C/svg%3E");
-  transition:width .38s cubic-bezier(.2,.7,.25,1), margin-left .38s cubic-bezier(.2,.7,.25,1), opacity .28s ease; }
+ content:''; display:inline-block; flex:0 0 auto; width:0; opacity:0;
+ height:1.05em; background:currentColor; vertical-align:-.12em;
+ -webkit-mask:var(--chev) no-repeat center / contain;
+ mask:var(--chev) no-repeat center / contain;
+ --chev:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 4l8 8-8 8' fill='none' stroke='%23000' stroke-width='3.4'/%3E%3C/svg%3E");
+ transition:width .38s cubic-bezier(.2,.7,.25,1), margin-left .38s cubic-bezier(.2,.7,.25,1), opacity .28s ease; }
 .btn:not(:has(.btn-mark)):hover::after,
 .btn:not(:has(.btn-mark)):focus-visible::after{ width:1.05em; margin-left:9px; opacity:1; }
 @media (prefers-reduced-motion:reduce){
@@ -707,53 +737,53 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 .cal{ position:relative; margin-top:30px; padding-top:24px; }
 .cal-head{ display:flex; align-items:center; gap:12px; margin-bottom:14px; }
 .cal-title{ font-size:20px; font-weight:800; letter-spacing:-.02em; color:var(--c-paper);
-            text-transform:capitalize; }
+ text-transform:capitalize; }
 .cal-nav{ margin-left:auto; display:flex; gap:4px; }
 .cal-btn{ width:34px; height:34px; border:0; background:none; padding:0; cursor:pointer;
-          color:rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center;
-          transition:color .2s ease; }
+ color:rgba(255,255,255,.55); display:flex; align-items:center; justify-content:center;
+ transition:color .2s ease; }
 .cal-btn:hover{ color:var(--c-ochre); }
 .cal-btn:focus-visible{ outline:2px solid var(--c-ochre); outline-offset:2px; }
 .cal-btn svg{ width:15px; height:15px; }
 .cal-btn.is-prev svg{ transform:rotate(180deg); }
 .cal-grid{ display:grid; grid-template-columns:repeat(7,1fr); }
 .cal-wd{ font-family:'Fira Sans Condensed',sans-serif; text-transform:uppercase;
-         letter-spacing:.12em; font-size:11px; font-weight:700; text-align:center;
-         padding-bottom:8px; color:rgba(255,255,255,.36); }
+ letter-spacing:.12em; font-size:11px; font-weight:700; text-align:center;
+ padding-bottom:8px; color:rgba(255,255,255,.36); }
 .cal-cell{ height:42px; display:flex; align-items:center; justify-content:center;
-           font-size:16px; font-weight:600; color:rgba(255,255,255,.8); }
+ font-size:16px; font-weight:600; color:rgba(255,255,255,.8); }
 .cal-cell.is-weekend{ color:rgba(255,255,255,.34); }
 .cal-cell.is-today{ color:var(--c-ochre); font-weight:800; }
-.cal-hol{ appearance:none; border:0; background:none; font:inherit; color:var(--c-paper);
-          cursor:default; width:36px; height:36px; border-radius:999px; padding:0;
-          border:2px solid var(--c-red); display:flex; align-items:center; justify-content:center;
-          transition:background-color .2s ease, color .2s ease; }
+.cal-hol{ appearance:none; background:none; font:inherit; color:var(--c-paper);
+ cursor:default; width:36px; height:36px; border-radius:999px; padding:0;
+ border:2px solid var(--c-red); display:flex; align-items:center; justify-content:center;
+ transition:background-color .2s ease, color .2s ease; }
 .cal-hol:hover, .cal-hol:focus-visible{ background:var(--c-red); color:var(--c-ink); outline:none; }
 .cal-cell.is-today .cal-hol{ color:var(--c-ochre); }
 .cal-tip{ position:absolute; z-index:6; transform:translate(-50%,-100%);
-          width:max-content; max-width:min(360px, 100%); text-align:center; pointer-events:none;
-          background:var(--c-paper); color:var(--c-ink); border-radius:14px; padding:12px 18px;
-          font-size:16px; font-weight:700; line-height:1.3; letter-spacing:-.01em;
-          box-shadow:0 16px 40px rgba(31,33,32,.45);
-          opacity:0; transition:opacity .18s ease; }
+ width:max-content; max-width:min(360px, 100%); text-align:center; pointer-events:none;
+ background:var(--c-paper); color:var(--c-ink); border-radius:14px; padding:12px 18px;
+ font-size:16px; font-weight:700; line-height:1.3; letter-spacing:-.01em;
+ box-shadow:0 16px 40px rgba(31,33,32,.45);
+ opacity:0; transition:opacity .18s ease; }
 .cal-tip.is-on{ opacity:1; }
 .cal-note{ margin-top:14px; display:flex; align-items:center; gap:9px;
-           font-size:16px; line-height:1.45; color:rgba(255,255,255,.55); }
+ font-size:16px; line-height:1.45; color:rgba(255,255,255,.55); }
 .cal-note i{ flex:0 0 auto; width:13px; height:13px; border-radius:999px;
-             border:2px solid var(--c-red); }
+ border:2px solid var(--c-red); }
 @media (prefers-reduced-motion:reduce){ .ws .ws-dot{ animation:none !important } }
 
 /* Языки: текстом, самоназвание наезжает сверху */
 .lang-chip{ position:relative; z-index:1; cursor:default; background:transparent;
-            display:inline-flex; align-items:center; min-height:38px;
-            transition:color .3s ease, background-color .3s ease; }
+ display:inline-flex; align-items:center; min-height:38px;
+ transition:color .3s ease, background-color .3s ease; }
 /* акцентное подчёркивание едет за курсором по списку языков */
 .lang-bg{ position:absolute; left:0; top:0; width:0; height:0; z-index:0;
-          background:transparent; border-bottom:3px solid var(--c-terra);
-          opacity:0; pointer-events:none;
-          transition:left .42s cubic-bezier(.22,.7,.24,1), top .42s cubic-bezier(.22,.7,.24,1),
-                     width .42s cubic-bezier(.22,.7,.24,1), height .42s cubic-bezier(.22,.7,.24,1),
-                     opacity .3s ease; }
+ background:transparent; border-bottom:3px solid var(--c-terra);
+ opacity:0; pointer-events:none;
+ transition:left .42s cubic-bezier(.22,.7,.24,1), top .42s cubic-bezier(.22,.7,.24,1),
+ width .42s cubic-bezier(.22,.7,.24,1), height .42s cubic-bezier(.22,.7,.24,1),
+ opacity .3s ease; }
 .is-ready > .lang-bg{ opacity:1; }
 /* смена колонки: полоска не летит через всю ширину, а гаснет и зажигается на месте */
 .lang-bg.is-jump{ transition:opacity .16s ease; opacity:0; }
@@ -761,16 +791,25 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 @media (prefers-reduced-motion:reduce){ .lang-bg{ transition:opacity .3s ease } }
 
 .chip-mark{ display:inline-grid; vertical-align:middle; grid-template-columns:0fr; opacity:0;
-            transition:grid-template-columns .38s cubic-bezier(.2,.7,.25,1), opacity .28s ease; }
+ transition:grid-template-columns .38s cubic-bezier(.2,.7,.25,1), opacity .28s ease; }
 .chip-mark > span{ overflow:hidden; padding-left:8px; color:inherit; font-weight:600; }
 .chip-mark--arrow > span{ display:flex; align-items:center; padding-left:9px; }
 .chip-chev{ display:block; width:1.05em; height:1.05em; }
 .btn-chev{ display:block; width:1.15em; height:1.15em; flex:0 0 auto; }
+/* На телефоне у сетки из 12 колонок с общим gap-8 межколоночные отступы (11 x 32px)
+   съедали всю ширину: колонки сжимались в 0, а блоки col-span-12 вылезали за карточку
+   и тянули страницу вправо. По вертикали отступ сохраняется (20.09.2026). */
+@media (max-width:639px){ .grid.grid-cols-12{ column-gap:0; } }
+
 /* сетка языков подгоняется по ширине текста, а не по всей полосе секции */
-.lang-grid{ display:inline-grid; grid-template-columns:repeat(2, max-content);
-            justify-items:start; margin:0; padding:0; list-style:none; }
+.lang-grid{ display:inline-grid;
+ /* max-content не даёт колонкам сжиматься: на телефоне пара длинных названий вылезала
+    за край и тянула страницу вправо на 7px. minmax(0,max-content) сохраняет подгонку
+    по тексту и разрешает перенос, когда места нет (20.09.2026) */
+ grid-template-columns:repeat(2, minmax(0, max-content)); max-width:100%;
+ justify-items:start; margin:0; padding:0; list-style:none; }
 .lang-chip--accent{ display:flex; align-items:center; justify-content:center; text-align:center;
-                    color:var(--c-ink); }
+ color:var(--c-ink); }
 .lang-chip--accent .chip-mark > span{ color:var(--c-terra); }
 .lang-chip--accent:hover{ color:var(--c-terra); }
 .lang-chip--accent:hover .chip-mark > span{ color:var(--c-ink); }
@@ -787,7 +826,7 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 /* Название языка на нём самом: наезжает сверху и выталкивает польское */
 .lang-swap{ display:inline-grid; overflow:hidden; }
 .lang-swap > span{ grid-area:1 / 1; justify-self:start; white-space:nowrap;
-                   transition:opacity .3s ease, transform .48s cubic-bezier(.2,.72,.24,1); }
+ transition:opacity .3s ease, transform .48s cubic-bezier(.2,.72,.24,1); }
 .ls-b{ opacity:0; transform:translateY(-105%); font-style:italic; }
 @media (hover:hover){
   .lang-chip:hover .ls-a,
@@ -804,13 +843,12 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 /* инверсия: курсивом все языки, кроме того, что стоит напротив стрелки */
 .lang-t-item{ font-style:italic; }
 .lang-t-item.is-active{ font-style:normal; }
-.lang-t-item{ transition:color .25s ease, font-style .2s ease; }
 .lang-t-arrow{ position:absolute; left:0; top:50%; width:42px; height:42px;
-               transform:translateY(-50%); display:flex; align-items:center;
-               color:var(--c-terra); opacity:0; transition:opacity .5s ease; }
+ transform:translateY(-50%); display:flex; align-items:center;
+ color:var(--c-terra); opacity:0; transition:opacity .5s ease; }
 .lang-t-arrow .chip-chev{ width:100%; height:100%; transform-origin:35% 50%; }
 a.lang-t-arrow{ cursor:pointer; -webkit-tap-highlight-color:transparent;
-                transition:color .25s ease; }
+ transition:color .25s ease; }
 a.lang-t-arrow:hover, a.lang-t-arrow:focus-visible{ color:var(--c-terra); }
 a.lang-t-arrow:hover .chip-chev{ animation-play-state:paused; transform:translateX(7px) scale(1.14); opacity:1; }
 a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px; border-radius:4px; }
@@ -820,47 +858,48 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
 
 /* ===== стрелка «наверх»: справа, отступ 81px, пульсация как у языковой ===== */
 .to-top{ position:fixed; z-index:60;
-         /* привязка к правому краю контентной сетки (max-w-site 1320px) */
-         /* сдвинута на 15% ближе к правому краю */
-         right:max(17px, calc(((100vw - 1320px) / 2 - 24px) * .85)); bottom:64px;
-         width:42px; height:42px; display:flex; align-items:center; justify-content:center;
-         color:var(--c-terra); -webkit-tap-highlight-color:transparent;
-         opacity:0; visibility:hidden; transform:translateY(10px);
-         transition:opacity .45s ease, transform .45s ease, visibility .45s; }
+ /* привязка к правому краю контентной сетки (max-w-site 1320px) */
+ /* сдвинута на 15% ближе к правому краю */
+ right:max(17px, calc(((100vw - 1320px) / 2 - 24px) * .85)); bottom:64px;
+ width:42px; height:42px; display:flex; align-items:center; justify-content:center;
+ color:var(--c-terra); -webkit-tap-highlight-color:transparent;
+ opacity:0; visibility:hidden; transform:translateY(10px);
+ transition:opacity .45s ease, transform .45s ease, visibility .45s; }
 .to-top.is-live{ opacity:1; visibility:visible; transform:none; }
 .to-top .chip-chev{ width:100%; height:100%; transform-origin:50% 65%;
-                    transform:rotate(-90deg); }
+ transform:rotate(-90deg); }
 .to-top.is-live .chip-chev{ animation:toTopNudge 2.4s ease-in-out infinite; }
 @keyframes toTopNudge{
-  0%   { transform:rotate(-90deg) translateX(0) scale(1);      opacity:1 }
+  0%   { transform:rotate(-90deg) translateX(0) scale(1); opacity:1 }
   50%  { transform:rotate(-90deg) translateX(5px) scale(1.24); opacity:1 }
-  100% { transform:rotate(-90deg) translateX(0) scale(1);      opacity:1 }
+  100% { transform:rotate(-90deg) translateX(0) scale(1); opacity:1 }
 }
 .to-top:hover .chip-chev, .to-top:focus-visible .chip-chev{
-  animation-play-state:paused; transform:rotate(-90deg) translateX(7px) scale(1.14); }
+ animation-play-state:paused; transform:rotate(-90deg) translateX(7px) scale(1.14); }
 .to-top:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px; border-radius:4px; }
 @media (max-width:640px){ .to-top{ right:20px; bottom:100px; } }
 @media (prefers-reduced-motion:reduce){ .to-top .chip-chev{ animation:none } }
 @keyframes langArrowNudge{
-  0%   { transform:translateX(0) scale(1);      opacity:1 }
+  0%   { transform:translateX(0) scale(1); opacity:1 }
   50%  { transform:translateX(5px) scale(1.24); opacity:1 }
-  100% { transform:translateX(0) scale(1);      opacity:1 }
+  100% { transform:translateX(0) scale(1); opacity:1 }
 }
 @media (prefers-reduced-motion:reduce){
   .lang-ticker.is-live .chip-chev{ animation:none }
 }
 .lang-t-view{ position:relative; overflow:hidden; height:5.1em;
-  -webkit-mask-image:linear-gradient(to bottom, rgba(31,33,32,0) 0%, rgba(31,33,32,.18) 18%, rgba(31,33,32,.62) 34%, #000 50%, rgba(31,33,32,.62) 66%, rgba(31,33,32,.18) 82%, rgba(31,33,32,0) 100%);
-          mask-image:linear-gradient(to bottom, rgba(31,33,32,0) 0%, rgba(31,33,32,.18) 18%, rgba(31,33,32,.62) 34%, #000 50%, rgba(31,33,32,.62) 66%, rgba(31,33,32,.18) 82%, rgba(31,33,32,0) 100%); }
+ -webkit-mask-image:linear-gradient(to bottom, rgba(31,33,32,0) 0%, rgba(31,33,32,.18) 18%, rgba(31,33,32,.62) 34%, #000 50%, rgba(31,33,32,.62) 66%, rgba(31,33,32,.18) 82%, rgba(31,33,32,0) 100%);
+ mask-image:linear-gradient(to bottom, rgba(31,33,32,0) 0%, rgba(31,33,32,.18) 18%, rgba(31,33,32,.62) 34%, #000 50%, rgba(31,33,32,.62) 66%, rgba(31,33,32,.18) 82%, rgba(31,33,32,0) 100%); }
 .lang-t-list{ display:flex; flex-direction:column; margin:0; padding:0; list-style:none;
-              will-change:transform; transition:transform .8s cubic-bezier(.22,.72,.2,1); }
+ will-change:transform; transition:transform .8s cubic-bezier(.22,.72,.2,1); }
 .lang-t-list.no-anim{ transition:none; }
 .lang-t-item{ color:rgba(31,33,32,.5); line-height:1.22; white-space:nowrap;
-              display:flex; align-items:center; box-sizing:border-box;
-              transition:color .6s ease, opacity .6s ease; }
+ display:flex; align-items:center; box-sizing:border-box;
+ transition:color .6s ease, opacity .6s ease; }
 .lang-t-item.is-active{ color:var(--c-ink); }
 @media (prefers-reduced-motion:reduce){
-  .lang-t-list{ transition:none } .lang-t-item{ transition:none }
+  .lang-t-list{ transition:none }
+.lang-t-item{ transition:none }
 }
 
 /* Карточки шагов + окно с описанием процесса */
@@ -882,7 +921,8 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
 .steps .rise.is-in:nth-child(4){ animation-delay:1.26s; }
 .rise.rise-done{ animation:none !important; opacity:1; }
 @keyframes rise-in{ from{ opacity:0; transform:translateY(34px) } to{ opacity:1; transform:none } }
-@media (prefers-reduced-motion:reduce){ .rise{ opacity:1 } .rise.is-in{ animation:none } }
+@media (prefers-reduced-motion:reduce){ .rise{ opacity:1 }
+.rise.is-in{ animation:none } }
 
 /* при наведении карточка чуть увеличивается – текст не переверстывается */
 .step-card{ transition:transform .4s cubic-bezier(.2,.7,.25,1); will-change:transform; }
@@ -892,43 +932,43 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
 }
 /* стрелка – острая «птичка», без скруглений */
 .step-go{ flex:0 0 auto; border:0; background:none; padding:0; color:inherit; cursor:pointer;
-          display:flex; align-items:center; justify-content:center;
-          transition:transform .25s cubic-bezier(.2,.7,.25,1), opacity .2s ease; }
+ display:flex; align-items:center; justify-content:center;
+ transition:transform .25s cubic-bezier(.2,.7,.25,1), opacity .2s ease; }
 .step-arrow{ display:block; width:34px; height:34px; }
 .step-go:hover{ transform:translateX(4px); opacity:.7; }
 .step-go:focus-visible{ outline:2px solid currentColor; outline-offset:4px; }
 
 .step-modal{ position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center;
-             padding:16px; }
+ padding:16px; }
 .step-modal[hidden]{ display:none; }
 .step-modal-backdrop{ position:absolute; inset:0; background:rgba(31,33,32,.55);
-                      backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
-                      opacity:0; transition:opacity .3s ease; }
+ backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+ opacity:0; transition:opacity .3s ease; }
 .step-modal.is-open .step-modal-backdrop{ opacity:1; }
 .step-modal-card{ position:relative; z-index:1; width:min(940px,100%); max-height:88vh; overflow:auto;
-                  background:#FFFFFF; color:var(--c-ink); border-radius:26px; padding:42px 44px 46px;
-                  box-shadow:0 40px 90px rgba(31,33,32,.3);
-                  opacity:0; transform:translateY(16px) scale(.985);
-                  transition:opacity .3s ease, transform .38s cubic-bezier(.2,.7,.25,1); }
+ background:#FFFFFF; color:var(--c-ink); border-radius:26px; padding:42px 44px 46px;
+ box-shadow:0 40px 90px rgba(31,33,32,.3);
+ opacity:0; transform:translateY(16px) scale(.985);
+ transition:opacity .3s ease, transform .38s cubic-bezier(.2,.7,.25,1); }
 .step-modal.is-open .step-modal-card{ opacity:1; transform:none; }
 .step-modal-close{ position:absolute; top:18px; right:20px; width:42px; height:42px; border:0; background:none;
-                   color:var(--c-ink); cursor:pointer; display:flex; align-items:center; justify-content:center;
-                   transition:opacity .2s ease; }
+ color:var(--c-ink); cursor:pointer; display:flex; align-items:center; justify-content:center;
+ transition:opacity .2s ease; }
 .step-modal-close:hover{ opacity:.6; }
 .step-modal-kicker{ font-family:'Fira Sans Condensed',sans-serif; text-transform:uppercase;
-                    letter-spacing:.2em; font-size:12px; color:var(--c-ink); }
+ letter-spacing:.2em; font-size:12px; color:var(--c-ink); }
 .step-modal-title{ margin-top:10px; font-size:34px; font-weight:800; letter-spacing:-.02em; line-height:1.05;
-                   padding-right:48px; }
+ padding-right:48px; }
 .step-lead{ margin-top:16px; font-size:17px; font-weight:500; line-height:1.6; color:rgba(31,33,32,.75);
-            max-width:70ch; }
+ max-width:70ch; }
 
 .scheme{ margin-top:28px; display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
 .scheme-item{ margin:0; }
 .scheme-art{ position:relative; border-radius:16px; overflow:hidden; background:var(--c-sand); }
 .scheme-svg{ display:block; width:100%; height:auto; }
 .scheme-badge{ position:absolute; right:10px; bottom:10px; width:28px; height:28px; border-radius:999px;
-               display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700;
-               color:#fff; }
+ display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700;
+ color:#fff; }
 .scheme-badge.is-ok{ background:var(--c-terra); color:var(--c-ink); }
 .scheme-badge.is-bad{ background:var(--c-ink); color:#fff; }
 .scheme-item figcaption{ margin-top:10px; font-size:15px; line-height:1.5; color:rgba(31,33,32,.7); }
@@ -936,12 +976,12 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
 
 .flow{ margin-top:26px; display:flex; flex-direction:column; gap:14px; list-style:none; margin-left:0; padding-left:0; }
 .flow li{ display:grid; grid-template-columns:38px 1fr; gap:4px 16px; align-items:start;
-          padding-bottom:14px; border-bottom:1px solid rgba(31,33,32,.12);
-          font-size:15.5px; line-height:1.55; color:rgba(31,33,32,.72); }
+ padding-bottom:14px; border-bottom:1px solid rgba(31,33,32,.12);
+ font-size:15.5px; line-height:1.55; color:rgba(31,33,32,.72); }
 .flow li:last-child{ border-bottom:0; padding-bottom:0; }
 .flow-dot{ grid-row:span 2; width:38px; height:38px; border-radius:999px; background:var(--c-ink);
-           color:var(--c-paper); display:flex; align-items:center; justify-content:center;
-           font-weight:700; font-size:16px; }
+ color:var(--c-paper); display:flex; align-items:center; justify-content:center;
+ font-weight:700; font-size:16px; }
 .flow li b{ font-size:17px; font-weight:700; color:var(--c-ink); }
 
 .opts{ margin-top:26px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
@@ -952,17 +992,17 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
 
 .faq-price{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
 .faq-price li{ display:flex; align-items:baseline; justify-content:space-between; gap:16px;
-               padding-bottom:9px; border-bottom:1px solid rgba(31,33,32,.12); max-width:52ch; }
+ padding-bottom:9px; border-bottom:1px solid rgba(31,33,32,.12); max-width:52ch; }
 .faq-price li:last-child{ border-bottom:0; }
 .faq-price span{ color:rgba(31,33,32,.65); }
 .faq-price b{ font-weight:700; color:var(--c-ink); white-space:nowrap; }
 
 .rules{ margin-top:24px; padding:18px 0 0; border-top:1px solid rgba(31,33,32,.12);
-        display:flex; flex-direction:column; gap:9px; list-style:none; }
+ display:flex; flex-direction:column; gap:9px; list-style:none; }
 .rules li{ position:relative; padding-left:22px; font-size:15.5px; font-weight:500; line-height:1.5;
-           color:rgba(31,33,32,.75); }
+ color:rgba(31,33,32,.75); }
 .rules li::before{ content:""; position:absolute; left:4px; top:.62em; width:6px; height:6px;
-                   border-radius:50%; background:currentColor; }
+ border-radius:50%; background:currentColor; }
 
 @media (max-width:720px){
   .step-modal-card{ padding:30px 22px 34px; border-radius:20px; max-height:92vh; }
@@ -978,14 +1018,14 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
 .tl-cell{ appearance:none; border:0; font:inherit; color:inherit; cursor:pointer; width:100%; }
 .tl-cell:focus-visible{ outline:2px solid var(--c-ink); outline-offset:-4px; }
 .tl-pop{
-  position:absolute; z-index:30; box-sizing:border-box; display:flex; flex-direction:column;
-  background:#FFFFFF; color:var(--c-ink);
-  border:1px solid rgba(31,33,32,.12); border-radius:22px;
-  box-shadow:0 30px 70px rgba(31,33,32,.22), 0 3px 10px rgba(31,33,32,.08);
-  padding:38px 40px 34px;
-  opacity:0; transform:scale(.975); transform-origin:center;
-  transition:opacity .26s ease, transform .3s cubic-bezier(.2,.7,.25,1);
-  pointer-events:none;
+ position:absolute; z-index:30; box-sizing:border-box; display:flex; flex-direction:column;
+ background:#FFFFFF; color:var(--c-ink);
+ border:1px solid rgba(31,33,32,.12); border-radius:22px;
+ box-shadow:0 30px 70px rgba(31,33,32,.22), 0 3px 10px rgba(31,33,32,.08);
+ padding:38px 40px 34px;
+ opacity:0; transform:scale(.975); transform-origin:center;
+ transition:opacity .26s ease, transform .3s cubic-bezier(.2,.7,.25,1);
+ pointer-events:none;
 }
 .tl-pop[hidden]{ display:none; }
 .tl-pop.is-open{ opacity:1; transform:none; pointer-events:auto; }
@@ -994,13 +1034,13 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
 .tl-pop ul{ margin-top:20px; display:flex; flex-direction:column; gap:11px; }
 .tl-pop li{ position:relative; padding-left:22px; font-size:16.5px; font-weight:500; line-height:1.45; color:rgba(31,33,32,.82); }
 .tl-pop li::before{ content:""; position:absolute; left:4px; top:.62em; width:6px; height:6px; border-radius:50%;
-                    background:currentColor; }
+ background:currentColor; }
 .tl-meta{ margin-top:auto; padding-top:18px; border-top:1px solid rgba(31,33,32,.12);
-          font-size:14.5px; font-weight:500; line-height:1.5; color:rgba(31,33,32,.66); }
+ font-size:14.5px; font-weight:500; line-height:1.5; color:rgba(31,33,32,.66); }
 .tl-pop-body{ display:flex; flex-direction:column; flex:1 1 auto; }
 .tl-close{ position:absolute; top:14px; right:16px; width:42px; height:42px; border:0;
-           background:none; color:var(--c-ink); cursor:pointer;
-           display:flex; align-items:center; justify-content:center; transition:opacity .2s ease; }
+ background:none; color:var(--c-ink); cursor:pointer;
+ display:flex; align-items:center; justify-content:center; transition:opacity .2s ease; }
 .tl-close .chev{ color:inherit; }
 .tl-close:hover{ opacity:.6; }
 @media (max-width:640px){
@@ -1015,63 +1055,63 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
 .soft-row{ position:relative; z-index:1; }
 /* разделители остаются в границах текста, плашка при этом идёт до краёв блока */
 .soft-row:not(:last-child)::after{ content:""; position:absolute; left:20px; right:20px; bottom:0;
-                                   height:1px; background:rgba(255,255,255,.15); }
+ height:1px; background:rgba(255,255,255,.15); }
 @media (min-width:640px){ .soft-row:not(:last-child)::after{ left:36px; right:36px } }
 @media (min-width:1024px){ .soft-row:not(:last-child)::after{ left:20px; right:44px } }
 .row-bg{ position:absolute; left:0; top:0; width:0; height:0; z-index:0; border-radius:14px;
-         background:rgba(255,255,255,.23); opacity:0; pointer-events:none;
-         transition:left .42s cubic-bezier(.22,.7,.24,1), top .42s cubic-bezier(.22,.7,.24,1),
-                    width .42s cubic-bezier(.22,.7,.24,1), height .42s cubic-bezier(.22,.7,.24,1),
-                    opacity .3s ease; }
+ background:rgba(255,255,255,.23); opacity:0; pointer-events:none;
+ transition:left .42s cubic-bezier(.22,.7,.24,1), top .42s cubic-bezier(.22,.7,.24,1),
+ width .42s cubic-bezier(.22,.7,.24,1), height .42s cubic-bezier(.22,.7,.24,1),
+ opacity .3s ease; }
 .is-ready > .row-bg{ opacity:1; }
 @media (prefers-reduced-motion:reduce){ .row-bg{ transition:opacity .3s ease } }
 
 /* Плита с институтами: подсветка на всю высоту, едет за курсором */
 .slab-cell{ position:relative; z-index:1; width:100%; appearance:none; border:0; background:none;
-            font:inherit; color:inherit; cursor:pointer; }
+ font:inherit; color:inherit; cursor:pointer; }
 .slab-cell:focus-visible{ outline:2px solid var(--c-ochre); outline-offset:-6px; }
 .slab-kicker{ transition:color .3s ease; }
 .slab-cell.is-active .slab-kicker{ color:var(--c-ochre); }
 .slab-bg{ position:absolute; left:0; top:0; width:0; height:0; z-index:0; border-radius:12px;
-          background:rgba(255,255,255,.23); opacity:0; pointer-events:none;
-          transition:left .42s cubic-bezier(.22,.7,.24,1), top .42s cubic-bezier(.22,.7,.24,1),
-                     width .42s cubic-bezier(.22,.7,.24,1), height .42s cubic-bezier(.22,.7,.24,1),
-                     opacity .3s ease; }
+ background:rgba(255,255,255,.23); opacity:0; pointer-events:none;
+ transition:left .42s cubic-bezier(.22,.7,.24,1), top .42s cubic-bezier(.22,.7,.24,1),
+ width .42s cubic-bezier(.22,.7,.24,1), height .42s cubic-bezier(.22,.7,.24,1),
+ opacity .3s ease; }
 .slab-grid.is-ready .slab-bg{ opacity:1; }
 @media (prefers-reduced-motion:reduce){ .slab-bg{ transition:opacity .3s ease } }
 
 /* Описание под плитой: место зарезервировано всегда, тексты сменяются */
 .slab-collapse{ display:grid; grid-template-rows:1fr;
-                transition:grid-template-rows .45s cubic-bezier(.22,.7,.24,1); }
+ transition:grid-template-rows .45s cubic-bezier(.22,.7,.24,1); }
 .slab-collapse.is-closed{ grid-template-rows:0fr; }
 .slab-collapse-clip{ overflow:hidden; }
 .slab-panels{ position:relative; display:grid; margin-top:6px; padding-top:22px;
-              border-top:1px solid rgba(255,255,255,.15); }
+ border-top:1px solid rgba(255,255,255,.15); }
 .slab-close{ position:absolute; top:18px; right:16px; z-index:2; width:42px; height:42px; border:0;
-             background:none; color:var(--c-paper); cursor:pointer;
-             display:flex; align-items:center; justify-content:center; transition:opacity .2s ease; }
+ background:none; color:var(--c-paper); cursor:pointer;
+ display:flex; align-items:center; justify-content:center; transition:opacity .2s ease; }
 .slab-close:hover{ opacity:.6; }
 .slab-panel{ grid-area:1 / 1; opacity:0; visibility:hidden;
-             transition:opacity .32s ease, visibility 0s linear .32s; }
+ transition:opacity .32s ease, visibility 0s linear .32s; }
 .slab-panel.is-open{ opacity:1; visibility:visible; transition:opacity .38s ease; }
 .slab-panel-in{ padding-bottom:26px; }
 /* короткое отчёркивание вместо линии во всю ширину */
 .slab-price{ position:relative; margin-top:18px; padding-top:16px;
-             display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
+ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
 .slab-price::before{ content:""; position:absolute; left:0; top:0;
-                     width:34px; height:2px; background:rgba(255,255,255,.28); }
+ width:34px; height:2px; background:rgba(255,255,255,.28); }
 /* подпись слева – только прямой span-ярлык, не обёртка цены и не .price-num */
 .slab-price > span:not(.price-hit){ font-family:'Fira Sans Condensed',sans-serif; text-transform:uppercase;
-                  letter-spacing:.14em; font-size:12px; font-weight:700; color:rgba(255,255,255,.55); }
+ letter-spacing:.14em; font-size:12px; font-weight:700; color:rgba(255,255,255,.55); }
 /* цифра внутри цены – тем же кеглем и цветом, что и весь <b> */
 .slab-price .price-hit .price-num{ font:inherit; color:inherit;
-                  letter-spacing:inherit; text-transform:none; }
+ letter-spacing:inherit; text-transform:none; }
 .slab-price b{ font-size:22px; font-weight:700; color:var(--c-ochre); letter-spacing:-.01em; }
 @media (prefers-reduced-motion:reduce){ .slab-panel{ transition:none } }
 
 /* Плашка-заголовок в hero – Sacramento */
 .plate{ display:inline-block; background:var(--c-ink); color:var(--c-paper);
-        padding:.18em .55em .28em; line-height:1; }
+ padding:.18em .55em .28em; line-height:1; }
 
 /* Плиты – без наклона, строго по сетке */
 .slab, .slab-r{ transform:none; }
@@ -1090,33 +1130,33 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
 
 /* Формы */
 .field{ width:100%; background:transparent; border:0; border-bottom:1px solid rgba(255,255,255,.35);
-        padding:.85rem 0; color:var(--c-paper); font-size:1.05rem; outline:none; transition:border-color .2s; }
-.field::placeholder{ color:rgba(255,255,255,.45) }
-.field:focus{ border-color:var(--c-ochre) }
-select.field option{ background:#1F2120; color:#FFFFFF }
+ padding:.85rem 0; color:var(--c-paper); font-size:1.05rem; outline:none; transition:border-color .2s; }
+.field::placeholder{ color:rgba(255,255,255,.45); }
+.field:focus{ border-color:var(--c-ochre); }
+select.field option{ background:#1F2120; color:#FFFFFF; }
 .file-input-hidden{ position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+ overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
 .field-file{ padding-top:.55rem; padding-bottom:.55rem; }
 .file-btn{ flex:0 0 auto; background:transparent; color:inherit; border-radius:12px;
-  border:1px solid var(--c-terra);
-  padding:.5rem 1.1rem; font-weight:600; cursor:pointer; font-family:inherit;
-  transition:background-color .25s ease, color .25s ease; }
+ border:1px solid var(--c-terra);
+ padding:.5rem 1.1rem; font-weight:600; cursor:pointer; font-family:inherit;
+ transition:background-color .25s ease, color .25s ease; }
 .file-btn:hover{ background:var(--c-terra); color:var(--c-ink); }
 .file-input-hidden:focus-visible + .field-file .file-btn{ outline:2px solid var(--c-ochre); outline-offset:2px; }
 .file-name{ min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-  font-size:14px; opacity:.6; }
+ font-size:14px; opacity:.6; }
 
-details > summary{ cursor:pointer; list-style:none }
-details > summary::-webkit-details-marker{ display:none }
+details > summary{ cursor:pointer; list-style:none; }
+details > summary::-webkit-details-marker{ display:none; }
 
 /* Единый «плюс» на всём сайте: тот же вес, что у заголовков */
 .chev{ display:inline-block; font-size:30px; font-weight:600; line-height:1;
-       color:var(--c-ink); transition:transform .25s ease; }
+ color:var(--c-ink); transition:transform .25s ease; }
 .chev--light{ color:var(--c-paper); }
 .chev--x{ transform:rotate(45deg); }
-details[open] .chev{ transform:rotate(45deg) }
-.ws-legal-item .chev{ transform:rotate(0deg) }
-.ws-legal-item.is-open .chev{ transform:rotate(45deg) }
+details[open] .chev{ transform:rotate(45deg); }
+.ws-legal-item .chev{ transform:rotate(0deg); }
+.ws-legal-item.is-open .chev{ transform:rotate(45deg); }
 
 /* Плашки не сплошные, а слегка прозрачные с размытием фона и мягкой тенью
    (приём с yummygum.com): контент под шапкой чуть просвечивает, плашка
@@ -1148,20 +1188,15 @@ details[open] .chev{ transform:rotate(45deg) }
    «gotówka.» ещё помещается в четвёртую строку. */
 .lead-lines{ max-width:36em; }
 
-/* Плавающая круглая кнопка WhatsApp – тот же принцип, что у остальных. */
-.fab{ background:transparent; color:var(--c-ink); border:1px solid var(--c-terra);
-      transition:background-color .3s ease, color .3s ease; }
-.fab:hover, .fab:focus-visible{ background:var(--c-terra); color:var(--c-ink); }
-
 /* CTA под текстовым блоком – по центру колонки. */
 .btn-center{ display:flex; width:fit-content; margin-left:auto; margin-right:auto; }
 /* Цена во вводном абзаце: маркер основного цвета, как у кикера. Появляются
    по очереди, в темпе чтения (~200 слов в минуту), с учётом времени на заголовок:
    задержка каждого задана инлайном через --d. */
 .mark{ background-image:linear-gradient(var(--c-terra),var(--c-terra));
-       background-repeat:no-repeat; background-position:0 88%; background-size:0 .42em;
-       white-space:nowrap;
-       animation:mark-in .15s cubic-bezier(.2,.7,.25,1) var(--d,0s) forwards; }
+ background-repeat:no-repeat; background-position:0 88%; background-size:0 .42em;
+ white-space:nowrap;
+ animation:mark-in .15s cubic-bezier(.2,.7,.25,1) var(--d,0s) forwards; }
 @keyframes mark-in{ to{ background-size:100% .42em; } }
 @media (prefers-reduced-motion:reduce){
   .mark{ animation:none; background-size:100% .42em; } }
@@ -1170,11 +1205,11 @@ details[open] .chev{ transform:rotate(45deg) }
 .kt-channels{ display:grid; gap:1.25rem; list-style:none; margin:0; padding:0; }
 @media (min-width:640px){ .kt-channels{ grid-template-columns:1fr 1fr; gap:1.5rem 2rem; } }
 .kt-ch{ display:flex; flex-direction:column; gap:.3rem; padding-top:.9rem;
-        border-top:2px solid rgba(255,255,255,.2); }
+ border-top:2px solid rgba(255,255,255,.2); }
 .kt-ch-h{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
-          letter-spacing:.16em; font-size:12px; font-weight:600; color:rgba(255,255,255,.55); }
+ letter-spacing:.16em; font-size:12px; font-weight:600; color:rgba(255,255,255,.55); }
 .kt-ch-v{ font-weight:700; font-size:24px; letter-spacing:-.02em; line-height:1.15;
-          color:var(--c-ochre); text-decoration:none; transition:color .25s ease; word-break:break-word; }
+ color:var(--c-ochre); text-decoration:none; transition:color .25s ease; word-break:break-word; }
 .kt-ch-v:hover, .kt-ch-v:focus-visible{ color:var(--c-paper); }
 .kt-ch-t{ font-size:15.5px; line-height:1.5; color:rgba(255,255,255,.6); max-width:36ch; }
 
@@ -1183,8 +1218,8 @@ details[open] .chev{ transform:rotate(45deg) }
 .kt-steps-list li{ position:relative; padding-left:3.2rem; font-size:17px; line-height:1.55; color:rgba(31,33,32,.75); }
 .kt-steps-list li b{ color:var(--c-ink); font-weight:700; }
 .kt-steps-list li::before{ counter-increment:kt; content:counter(kt, decimal-leading-zero);
-  position:absolute; left:0; top:.1em; font-family:'Fira Sans Condensed','Fira Sans',sans-serif;
-  font-weight:700; font-size:20px; letter-spacing:-.02em; color:var(--c-terra); }
+ position:absolute; left:0; top:.1em; font-family:'Fira Sans Condensed','Fira Sans',sans-serif;
+ font-weight:700; font-size:20px; letter-spacing:-.02em; color:var(--c-terra); }
 /* Ссылка-стрелка k-where-link на светлом фоне (анонс «Gdzie» на главной) */
 .k-where-link--dark{ color:var(--c-ink); }
 .k-where-link--dark:hover, .k-where-link--dark:focus-visible{ color:var(--c-terra); }
@@ -1232,20 +1267,20 @@ details[open] .chev{ transform:rotate(45deg) }
 .cn-group-t{ margin-top:.4rem; font-size:15px; line-height:1.5; color:rgba(31,33,32,.6); }
 .cn-list{ margin:1rem 0 0; padding:0; list-style:none; border-top:2px solid rgba(31,33,32,.15); }
 .cn-list li{ display:flex; align-items:flex-start; justify-content:space-between; gap:1.5rem;
-             padding:1rem 0; border-bottom:1px solid rgba(31,33,32,.12); }
+ padding:1rem 0; border-bottom:1px solid rgba(31,33,32,.12); }
 .cn-name{ display:flex; flex-direction:column; gap:.2rem; font-size:17px; font-weight:600; letter-spacing:-.01em; line-height:1.3; }
 .cn-name small{ font-size:14px; font-weight:400; line-height:1.45; color:rgba(31,33,32,.6); max-width:44ch; }
 .cn-price{ display:flex; flex-direction:column; align-items:flex-end; text-align:right; flex:0 0 auto; }
 .cn-price b, .cn-price .price-hit b{ font-size:19px; font-weight:700; white-space:nowrap; letter-spacing:-.01em; }
 .cn-price small{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase; letter-spacing:.12em;
-                 font-size:11px; color:rgba(31,33,32,.5); margin-top:.15rem; white-space:nowrap; }
+ font-size:11px; color:rgba(31,33,32,.5); margin-top:.15rem; white-space:nowrap; }
 /* Маркер под ценой: вырастает снизу вверх при наведении на строку.
    У строк без числа (wycena) это единственный эффект, у остальных – вместе с накруткой. */
 .cn-list li > .cn-price > b,
 .cn-list li > .cn-price > .price-hit > b{ --c-mark:#F2E23A;
-  background-image:linear-gradient(var(--c-mark),var(--c-mark));
-  background-repeat:no-repeat; background-position:0 90%; background-size:100% 0;
-  transition:background-size .5s cubic-bezier(.4,.65,.35,1); }
+ background-image:linear-gradient(var(--c-mark),var(--c-mark));
+ background-repeat:no-repeat; background-position:0 90%; background-size:100% 0;
+ transition:background-size .5s cubic-bezier(.4,.65,.35,1); }
 .cn-list li:hover > .cn-price > b,
 .cn-list li:hover > .cn-price > .price-hit > b{ background-size:100% .46em; }
 
@@ -1258,12 +1293,12 @@ details[open] .chev{ transform:rotate(45deg) }
 /* Кнопки-якоря в потоке (оба списка: под заголовком и после сноски): серые плашки,
    при наведении белые. Подсветки текущего раздела здесь нет – она только в доке. */
 .cn-v2 .cn-nav{ display:flex; flex-wrap:wrap; gap:.5rem; justify-content:flex-start;
-  margin-top:2rem; }
+ margin-top:2rem; }
 .cn-nav a, .cn-dock a{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
-  letter-spacing:.12em; font-size:13px; font-weight:700; line-height:1; padding:.75em 1em .8em;
-  border-radius:6px; color:var(--c-ink); text-decoration:none;
-  position:relative; overflow:clip; isolation:isolate;
-  transition:background-color .25s ease, color .25s ease; }
+ letter-spacing:.12em; font-size:13px; font-weight:700; line-height:1; padding:.75em 1em .8em;
+ border-radius:6px; color:var(--c-ink); text-decoration:none;
+ position:relative; overflow:clip; isolation:isolate;
+ transition:background-color .25s ease, color .25s ease; }
 .cn-v2 .cn-nav a{ background:#D0D0CB; }
 .cn-v2 .cn-nav a:hover, .cn-v2 .cn-nav a:focus-visible{ background:var(--c-paper); }
 /* повтор списка после сноски – отдельным блоком под сеткой групп */
@@ -1272,10 +1307,10 @@ details[open] .chev{ transform:rotate(45deg) }
 /* Отдельное плавающее меню внизу окна – клон якорей, который app.js создаёт и показывает
    при прокрутке; у подвала останавливается над ним. Со списком в потоке не связано. */
 .cn-dock{ position:fixed; left:0; right:0; bottom:24px; z-index:60;
-  display:flex; flex-wrap:wrap; gap:.5rem; justify-content:flex-start;
-  width:100%; max-width:1320px; margin:0 auto; padding:0 1.25rem;
-  pointer-events:none; opacity:0; transform:translateY(12px);
-  transition:opacity .3s ease, transform .3s ease; }
+ display:flex; flex-wrap:wrap; gap:.5rem; justify-content:flex-start;
+ width:100%; max-width:1320px; margin:0 auto; padding:0 1.25rem;
+ pointer-events:none; opacity:0; transform:translateY(12px);
+ transition:opacity .3s ease, transform .3s ease; }
 @media (min-width:640px){ .cn-dock{ padding:0 2rem; } }
 .cn-dock.is-on{ opacity:1; transform:none; }
 .cn-dock a{ background:var(--c-paper); }
@@ -1289,9 +1324,9 @@ details[open] .chev{ transform:rotate(45deg) }
 /* Статусная строка: две плашки рядом со скруглением 6px – серый ярлык и жёлтая с текстом,
    по ширине содержимого, без растяжки на всю строку */
 .cn-v2 .cn-status{ display:flex; flex-wrap:wrap; align-items:center; gap:3px; margin-top:2rem;
-  font-size:14px; font-weight:600; line-height:1.3; }
+ font-size:14px; font-weight:600; line-height:1.3; }
 .cn-v2 .cn-status b{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase; letter-spacing:.14em;
-  font-size:13px; font-weight:700; background:#D0D0CB; color:var(--c-ink); padding:.7em 1em .75em; border-radius:6px; }
+ font-size:13px; font-weight:700; background:#D0D0CB; color:var(--c-ink); padding:.7em 1em .75em; border-radius:6px; }
 /* месяц с заглавной, хотя в UPDATED он строчный (правится скриптом cennik-date.py) */
 .cn-v2 .cn-status .cennik-updated{ text-transform:capitalize; }
 .cn-v2 .cn-status > span{ flex:1 1 auto; background:var(--c-terra); color:var(--c-ink); padding:.55em .9em .6em; border-radius:6px; }
@@ -1327,10 +1362,10 @@ details[open] .chev{ transform:rotate(45deg) }
 /* Линия под заголовком группы: серая 1px, как остальные хэйрлайны, поверх неё жёлтая от --q до --p (обе 0..1, из app.js) */
 .cn-v2 .cn-list, .cn-v2 .cn-plain{ position:relative; border-top-width:1px; }
 .cn-v2 .cn-list::before, .cn-v2 .cn-plain::before{ content:""; position:absolute; top:-1px; height:1px;
-  left:calc(var(--q,0) * 100%); width:calc((var(--p,0) - var(--q,0)) * 100%); background:var(--c-terra); }
+ left:calc(var(--q,0) * 100%); width:calc((var(--p,0) - var(--q,0)) * 100%); background:var(--c-terra); }
 .cn-v2 .cn-list{ margin-top:1.5rem; }
 .cn-v2 .cn-list li{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:0 1.25rem; align-items:start;
-  grid-template-areas:"name price" "desc desc" "sum sum" "meta meta"; padding:1.25rem 0; }
+ grid-template-areas:"name price" "desc desc" "sum sum" "meta meta"; padding:1.25rem 0; }
 @media (min-width:640px){
   .cn-v2 .cn-list li{ gap:0 2rem; grid-template-areas:"name price" "desc price" "sum price" "meta price"; }
 }
@@ -1354,11 +1389,11 @@ details[open] .chev{ transform:rotate(45deg) }
 .cn-v2 .cn-price small{ font-size:12px; font-weight:500; letter-spacing:.1em; color:rgba(31,33,32,.6); margin-top:.25rem; }
 /* Значение без числа (wycena, w cenie) – плашка вместо жирного текста */
 .cn-v2 .cn-price > b{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
-  font-size:12.5px; font-weight:700; letter-spacing:.1em; line-height:1.2; padding:.45em .75em .5em;
-  border:0; border-radius:6px; background-color:var(--c-sand); color:var(--c-ink); margin-top:.35em;
-  background-image:linear-gradient(var(--c-mark),var(--c-mark)); background-repeat:no-repeat;
-  background-position:0 100%; background-size:100% 0;
-  transition:background-size .5s cubic-bezier(.4,.65,.35,1); }
+ font-size:12.5px; font-weight:700; letter-spacing:.1em; line-height:1.2; padding:.45em .75em .5em;
+ border:0; border-radius:6px; background-color:var(--c-sand); color:var(--c-ink); margin-top:.35em;
+ background-image:linear-gradient(var(--c-mark),var(--c-mark)); background-repeat:no-repeat;
+ background-position:0 100%; background-size:100% 0;
+ transition:background-size .5s cubic-bezier(.4,.65,.35,1); }
 /* цвет заливки – фирменный terra; селектор длиннее базового правила с лимонным #F2E23A,
    иначе оно перебивает по специфичности */
 .cn-v2 .cn-list li > .cn-price > b{ --c-mark:var(--c-terra); }
@@ -1369,15 +1404,15 @@ details[open] .chev{ transform:rotate(45deg) }
 
 /* Формула суммы в «Ile zapłacę za…» */
 .cn-v2 .cn-sum{ grid-area:sum; display:block; margin-top:.5rem;
-  font-size:16px; font-weight:500; line-height:1.5; font-style:italic; color:rgba(31,33,32,.8); max-width:52ch; }
+ font-size:16px; font-weight:500; line-height:1.5; font-style:italic; color:rgba(31,33,32,.8); max-width:52ch; }
 .cn-v2 .cn-sum > i{ font-style:normal; font-weight:700; color:var(--c-ink); margin:0 .35em; }
 
 /* Плашки: срок – залитая, условия – контурные */
 .cn-v2 .cn-meta{ grid-area:meta; display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.75rem; }
 .cn-v2 .cn-term, .cn-v2 .cn-tags{ display:contents; }
 .cn-v2 .cn-pill{ display:inline-block; font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
-  letter-spacing:.1em; font-size:12.5px; font-weight:700; line-height:1.2; padding:.45em .75em .5em;
-  border-radius:6px; background:var(--c-sand); color:var(--c-ink); white-space:nowrap; transition:background-color .25s ease; }
+ letter-spacing:.1em; font-size:12.5px; font-weight:700; line-height:1.2; padding:.45em .75em .5em;
+ border-radius:6px; background:var(--c-sand); color:var(--c-ink); white-space:nowrap; transition:background-color .25s ease; }
 /* срок – серый темнее условий; при наведении на строку подсвечивается белым, у всех строк */
 .cn-v2 .cn-term .cn-pill{ background:#D0D0CB; color:var(--c-ink); }
 .cn-v2 .cn-list li:hover .cn-term .cn-pill{ background:var(--c-paper); }
@@ -1393,7 +1428,7 @@ details[open] .chev{ transform:rotate(45deg) }
    при наведении на строку глиф сменяется залитым кружком terra */
 .cn-v2 .cn-plain li{ text-wrap:pretty; }
 .cn-v2 .cn-plain li::before, .cn-v2 .cn-plain li::after{ content:""; position:absolute; left:0; top:1.15rem;
-  width:14px; height:14px; transition:opacity .25s ease; }
+ width:14px; height:14px; transition:opacity .25s ease; }
 .cn-v2 .cn-plain li::before{ background:var(--c-terra); border-radius:50%; left:3px; top:calc(1.15rem + 3px); width:8px; height:8px; opacity:0; }
 .cn-v2 .cn-plain li::after{ background-repeat:no-repeat; background-size:contain; background-position:center; }
 .cn-v2 .cn-plain--in li::after{ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M4 12.5l5.5 5.5L20 7' fill='none' stroke='%23EFB01F' stroke-width='3.8' stroke-linecap='butt' stroke-linejoin='miter'/></svg>"); }
@@ -1414,7 +1449,7 @@ details[open] .chev{ transform:rotate(45deg) }
 .wy-v2 .field:focus{ border-bottom-color:var(--c-terra); border-bottom-width:2px; padding-bottom:calc(.85rem - 1px); }
 .wy-v2 select.field option{ background:var(--c-paper); color:var(--c-ink); }
 .wy-v2 select.field{ cursor:pointer; }
-.wy-v2 label{ color:rgba(31,33,32,.55) !important; }
+.wy-v2 label:not(.qd-urgent):not(.qd-acc-head){ color:rgba(31,33,32,.55) !important; }
 .wy-v2 label[for="consent"]{ color:rgba(31,33,32,.7) !important; font-weight:500; }
 .wy-v2 label[for="consent"] a:hover{ color:var(--c-ink); }
 .wy-v2 #quote-form p{ color:rgba(31,33,32,.5); font-weight:500; }
@@ -1422,7 +1457,7 @@ details[open] .chev{ transform:rotate(45deg) }
 .wy-v2 #form-status{ color:var(--c-ink); font-weight:600; }
 .wy-v2 #consent{ accent-color:var(--c-terra); }
 .wy-v2 .file-btn{ border-radius:6px; font-weight:700; font-family:'Fira Sans Condensed','Fira Sans',sans-serif;
-  text-transform:uppercase; letter-spacing:.1em; font-size:12.5px; padding:.6rem 1rem; background:var(--c-sand); border-color:transparent; }
+ text-transform:uppercase; letter-spacing:.1em; font-size:12.5px; padding:.6rem 1rem; background:var(--c-sand); border-color:transparent; }
 .wy-v2 .file-btn:hover{ background:var(--c-terra); }
 .wy-v2 .file-name{ opacity:.55; font-weight:500; }
 /* кнопки: главная залита terra (btn--pop, как на главной), вторая – контурная */
@@ -1433,11 +1468,11 @@ details[open] .chev{ transform:rotate(45deg) }
 .wy-v2 .cn-send{ list-style:none; padding:0; font-size:16px; font-weight:500; color:rgba(31,33,32,.75); }
 .wy-v2 .cn-send li{ position:relative; padding-left:1.4rem; margin:.35rem 0; }
 .wy-v2 .cn-send li::before{ content:""; position:absolute; left:0; top:.55em; width:9px; height:9px;
-  background:var(--c-terra); border-radius:50%; transition:border-radius .25s ease; }
+ background:var(--c-terra); border-radius:50%; transition:border-radius .25s ease; }
 .wy-v2 .cn-send li:hover::before{ border-radius:0; }
 /* мини-прайс слева: маркер под ценой – terra, подписи тяжелее */
 .wy-v2 .hairline .price-hit b{ --c-mark:var(--c-terra); background-image:linear-gradient(var(--c-mark),var(--c-mark));
-  background-repeat:no-repeat; background-position:0 90%; background-size:100% 0; transition:background-size .5s cubic-bezier(.4,.65,.35,1); }
+ background-repeat:no-repeat; background-position:0 90%; background-size:100% 0; transition:background-size .5s cubic-bezier(.4,.65,.35,1); }
 .wy-v2 .hairline .flex:hover .price-hit b{ background-size:100% .46em; }
 .wy-v2 .hairline > .flex > span:first-child{ font-weight:700; }
 .wy-v2 .hairline .text-\[13px\], .wy-v2 .text-ink\/45{ font-weight:500; }
@@ -1460,7 +1495,6 @@ details[open] .chev{ transform:rotate(45deg) }
 .ua-term-v{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; font-weight:700; font-size:22px; letter-spacing:-.01em; color:var(--c-terra); white-space:nowrap; }
 .ua-term-t{ font-size:15px; line-height:1.5; color:rgba(31,33,32,.65); }
 
-
 /* ===== Панель «Ekspresowa wycena»: выезжает снизу по кнопке «Wyceń dokument» =====
    Ширина – по контентной сетке (max-w-site 1320px), верхние углы скруглены.
    Над панелью по центру – пульсирующая стрелка сайта, повёрнутая вниз, жёлтая на белом кружке;
@@ -1468,11 +1502,11 @@ details[open] .chev{ transform:rotate(45deg) }
 #quote-drawer[hidden]{ display:none !important; }
 .qd{ position:fixed; inset:0; z-index:110; display:flex; align-items:flex-end; justify-content:center; }
 .qd-backdrop{ position:absolute; inset:0; background:rgba(31,33,32,.55);
-  opacity:0; transition:opacity .35s ease; }
+ opacity:0; transition:opacity .35s ease; }
 .qd.is-open .qd-backdrop{ opacity:1; }
 .qd-wrap{ position:relative; z-index:1; width:100%; max-width:1320px;
-  display:flex; flex-direction:column; align-items:flex-end;
-  transform:translateY(100%); transition:transform .5s cubic-bezier(.2,.7,.25,1); }
+ display:flex; flex-direction:column; align-items:flex-end;
+ transform:translateY(100%); transition:transform .5s cubic-bezier(.2,.7,.25,1); }
 .qd.is-open .qd-wrap{ transform:none; }
 /* Обёртка выше панели на высоту кнопки-стрелки (66px) и на всю её ширину – на десктопе это
    ровно полоса шапки. Сама она клики не ловит: они проходят на подложку и закрывают панель;
@@ -1480,7 +1514,7 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd-wrap{ pointer-events:none; }
 .qd-wrap > *{ pointer-events:auto; }
 .qd-shell{ width:100%; max-height:88vh; background:var(--c-paper);
-  border-radius:26px 26px 0 0; overflow:hidden; }
+ border-radius:26px 26px 0 0; overflow:hidden; }
 /* карточка занимает панель целиком: серая колонка от левого края и на всю высоту */
 .qd-scroll{ max-height:88vh; overflow:auto; -webkit-overflow-scrolling:touch; }
 /* у карточки внутри панели снимаем overflow-hidden: он делает её собственным контейнером
@@ -1496,7 +1530,7 @@ details[open] .chev{ transform:rotate(45deg) }
 /* top = верхний padding колонки (p-7 / sm:p-12 / lg:p-14), чтобы при закреплении
    блок остался ровно на своём месте, без микросдвига */
 .qd-scroll .qd-head{ position:sticky; top:1.75rem; z-index:2; background:var(--c-sand);
-  padding:0 0 .75rem; }
+ padding:0 0 .75rem; }
 @media (min-width:640px){ .qd-scroll .qd-head{ top:3rem; } }
 @media (min-width:1024px){
   /* на десктопе закрепляется вся левая колонка: прокрутка правой её не двигает */
@@ -1505,10 +1539,10 @@ details[open] .chev{ transform:rotate(45deg) }
 }
 /* срок ответа под заголовком */
 .qd-eta{ display:flex; align-items:center; gap:.6rem; margin-top:1rem;
-  font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
-  letter-spacing:.12em; font-size:12px; font-weight:600; color:rgba(31,33,32,.6); }
+ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
+ letter-spacing:.12em; font-size:12px; font-weight:600; color:rgba(31,33,32,.6); }
 .qd-eta b{ font-size:13px; font-weight:700; letter-spacing:.1em; color:var(--c-ink);
-  background:var(--c-terra); border-radius:6px; padding:.45em .75em .5em; }
+ background:var(--c-terra); border-radius:6px; padding:.45em .75em .5em; }
 
 /* ===== Панель wyceny: крупнее и яснее (вариант 11.09.2026). Только панель (.qd),
    встроенная форма wy-v2 на ua/ru/en не затронута. ===== */
@@ -1524,83 +1558,54 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd .wy-v2 .qd-lead{ font-size:24px; line-height:1.3; letter-spacing:-.01em; color:var(--c-ink); max-width:none; }
 .qd .wy-v2 .qd-lead b{ font-weight:600; color:var(--c-ink); }
 /* вторая строка под обещанием – тише, светлый курсив как во второй половине заголовков */
-.qd .wy-v2 .qd-human{ margin-top:1rem; max-width:30ch; font-size:18px; line-height:1.4; font-weight:400; font-style:italic; color:rgba(31,33,32,.7); }
+.qd .wy-v2 .qd-human { font-weight:400; }
 .qd .wy-v2 .qd-sub{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
-  letter-spacing:.14em; font-size:13px; font-weight:700; color:rgba(31,33,32,.6); }
+ letter-spacing:.14em; font-size:13px; font-weight:700; color:rgba(31,33,32,.6); }
 .qd .wy-v2 .cn-send{ font-size:17px; color:rgba(31,33,32,.85); }
 .qd .wy-v2 .cn-send li{ margin:.45rem 0; }
-.qd .wy-v2 .qd-contacts{ font-size:16px; }
-.qd .wy-v2 .qd-note{ font-size:14px; line-height:1.5; color:rgba(31,33,32,.6); font-weight:500; }
 /* заголовок формы */
 /* на десктопе заголовок формы на уровне «Ekspresowa», а не кикера */
 @media (min-width:1024px){ .qd .wy-v2 .qd-formhead:first-child{ margin-top:2.25rem; } }
 .qd .wy-v2 .qd-formhead{ margin-bottom:1.4rem; font-size:26px; font-weight:800; letter-spacing:-.02em; line-height:1.1; color:var(--c-ink); }
 /* заголовок над формой – легче и серее, чтобы не спорил с «Ekspresowa» слева */
-.qd .wy-v2 .qd-formhead--light{ font-size:32px; letter-spacing:-.02em; color:var(--c-ink); text-align:center; line-height:1.05; }
+.qd .wy-v2 .qd-formhead--light{ color:var(--c-ink); text-align:center; }
 /* смена начертаний как в заголовках сайта: плотное + светлый курсив */
 .qd .wy-v2 .qd-fh-a{ font-weight:800; }
 .qd .wy-v2 .qd-fh-b{ font-weight:300; font-style:italic; }
 .qd .wy-v2 .qd-formsub{ font-size:16px; line-height:1.5; color:rgba(31,33,32,.65); font-weight:500; margin:.6rem 0 1.6rem; max-width:46ch; }
-/* подписи полей – тот же лёгкий серый, что и заголовок над формой (14.09.2026) */
-.qd .wy-v2 .qd-label{ display:block; font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
-  letter-spacing:.14em; font-size:13px; font-weight:700; line-height:1.3; margin:0 0 .6rem; color:rgba(31,33,32,.7) !important; }
-.qd .wy-v2 .qd-label small{ font-size:14px; font-weight:500; color:rgba(31,33,32,.5); }
+/* подписи полей – тот же лёгкий серый{ display:block; font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
+ letter-spacing:.14em; font-size:13px; font-weight:700; line-height:1.3; margin:0 0 .6rem; color:rgba(31,33,32,.7) !important; }
 /* поля в рамке вместо линии снизу */
 .qd .wy-v2 .field{ font-size:17px; line-height:1.3; border:1px solid rgba(31,33,32,.3); border-radius:8px;
-  padding:.8rem 1rem; background:var(--c-paper); }
+ padding:.8rem 1rem; background:var(--c-paper); }
 .qd .wy-v2 .field:focus{ border-color:var(--c-terra); border-width:2px; padding:calc(.8rem - 1px) calc(1rem - 1px); box-shadow:none; }
-.qd .wy-v2 .field::placeholder{ color:rgba(31,33,32,.45); }
 .qd .wy-v2 select.field{ padding-right:2.4rem; }
 .qd .wy-v2 .quote-form > * + *{ margin-top:1.6rem; }
 /* блок телефона отстоит от дропзоны дальше остальных (+24%) */
-.qd .wy-v2 .quote-form > * + *:has(#phone), .qd .wy-v2 .quote-form > * + *:has([id^="phone"]){ margin-top:2rem; }
-.qd .wy-v2 .qd-legal a, .qd .wy-v2 .qd-legal .qd-linkbtn{ color:var(--c-ink); font-weight:500; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
-.qd .wy-v2 .qd-row{ display:grid; gap:1.3rem; }
-@media (min-width:640px){ .qd .wy-v2 .qd-row{ grid-template-columns:1fr 1fr; } }
+.qd .wy-v2 .qd-legal a, .qd .wy-v2 .qd-legal .qd-linkbtn{ text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
 /* документ – первое и главное поле: вся рамка кликабельна (label for=file), кнопка terra,
    после выбора файла рамка становится сплошной, имя файла – в строке */
-.qd .wy-v2 .qd-drop{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:.9rem; cursor:pointer;
-  width:70%; margin:0 auto; border:2px dashed rgba(31,33,32,.38); border-radius:10px; padding:2rem 1.2rem 1.8rem;
-  background:rgba(31,33,32,.03); transition:border-color .2s ease, background-color .2s ease; }
-@media (max-width:639px){ .qd .wy-v2 .qd-drop{ width:100%; } }
-.qd .wy-v2 .qd-drop:hover, .qd .wy-v2 .qd-drop.is-over{ border-color:rgba(31,33,32,.7); background:rgba(31,33,32,.05); }
+.qd .wy-v2 .qd-drop{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:.9rem; cursor:pointer; margin:0 auto; border:2px dashed rgba(31,33,32,.38); border-radius:10px; transition:border-color .2s ease, background-color .2s ease; }
+.qd .wy-v2 .qd-drop:hover, .qd .wy-v2 .qd-drop.is-over{ background:rgba(31,33,32,.05); }
 
 .qd .wy-v2 .file-input-hidden:focus-visible + .qd-drop{ outline:2px solid var(--c-terra); outline-offset:3px; }
 /* вариант D (14.09.2026): чёрный кружок «+» и надпись; вся рамка – один клик (label for=file) */
-.qd .wy-v2 .qd-drop-row{ display:flex; align-items:center; justify-content:center; gap:.75rem; }
+.qd .wy-v2 .qd-drop-row{ display:flex; align-items:center; justify-content:center; }
 /* подпись центрирована по надписи, а не по всей строке с кружком, и прижата к ней */
-.qd .wy-v2 .qd-drop-copy{ display:flex; flex-direction:column; align-items:center; gap:.2rem; }
-.qd .wy-v2 .qd-drop-copy small{ font-size:14px; line-height:1.3; color:rgba(31,33,32,.6); font-weight:400; }
-.qd .wy-v2 .qd-plus{ flex:none; width:44px; height:44px; border-radius:50%; background:var(--c-sand); color:rgba(31,33,32,.7);
-  display:grid; place-items:center; transition:transform .18s ease, background-color .18s ease; }
-.qd .wy-v2 .qd-drop-btn{ flex:0 0 auto; background:none; color:rgba(31,33,32,.7); font-weight:700; font-size:18px;
-  line-height:1.2; padding:0; border-radius:0; white-space:nowrap; }
-.qd .wy-v2 .qd-drop:hover .qd-drop-btn, .qd .wy-v2 .qd-drop.is-over .qd-drop-btn{ text-decoration:underline; text-decoration-thickness:1.5px; text-underline-offset:4px; }
-.qd .wy-v2 .qd-drop:hover .qd-plus, .qd .wy-v2 .qd-drop.is-over .qd-plus{ transform:scale(1.06); background:#D0D0CB; }
-
-.qd .wy-v2 .qd-drop-txt{ min-width:0; display:flex; flex-direction:column; gap:.2rem; align-items:center; }
-/* без подписи в рамке: пустой txt не должен добавлять зазор на телефоне */
-.qd .wy-v2 .qd-drop-txt:empty, .qd .wy-v2 .qd-drop-txt:not(:has(:not(.qd-drop-drag))){ display:contents; }
-.qd .wy-v2 .qd-drop-txt .file-name{ font-size:16px; font-weight:600; opacity:1; color:var(--c-ink); white-space:normal; line-height:1.35; }
+.qd .wy-v2 .qd-plus{ flex:none; border-radius:50%; }
+.qd .wy-v2 .qd-drop:hover .qd-plus, .qd .wy-v2 .qd-drop.is-over .qd-plus{ background:#D0D0CB; }
 .qd .wy-v2 .qd-drop.is-filled .file-name{ color:var(--c-ink); }
-.qd .wy-v2 .qd-drop-txt small{ font-size:14px; line-height:1.4; color:rgba(31,33,32,.65); font-weight:400; white-space:normal; }
 /* «przeciągnij» – только там, где есть мышь; на телефоне тянуть нечего */
-.qd .wy-v2 .qd-drop-drag{ display:none; }
 @media (hover:hover) and (pointer:fine){ .qd .wy-v2 .qd-drop-drag{ display:block; } }
-.qd .wy-v2 .qd-hint{ font-size:14px; color:rgba(31,33,32,.6) !important; margin-top:.6rem; }
 /* ссылка-действие отдельной строкой под подписью, по центру */
-.qd .wy-v2 .qd-hint--act{ margin-top:.35rem; }
 /* «wolę odpowiedź mailem» – кнопка в виде ссылки, показывает поле e-mail под телефоном */
-.qd .wy-v2 .qd-linkbtn{ background:none; border:0; padding:0; margin:0; font:inherit; font-size:14px; font-weight:500; color:var(--c-ink); cursor:pointer;
-  text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
-.qd .wy-v2 .qd-linkbtn:hover, .qd .wy-v2 .qd-linkbtn:focus-visible{ color:var(--c-ink); }
+.qd .wy-v2 .qd-linkbtn{ background:none; border:0; padding:0; margin:0; font:inherit; font-size:14px; cursor:pointer;
+ text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
 /* «Wolę odpowiedź mailem» – стрелка вниз как у переключателя языка (.ls-chev): поле раскроется ниже */
 .qd .wy-v2 .qd-linkbtn--chev{ display:inline-flex; align-items:center; gap:7px; text-decoration:none; }
 .qd .wy-v2 .qd-linkbtn--chev span{ text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
 .qd .wy-v2 .qd-chev{ flex:none; transition:transform .18s ease; }
 .qd .wy-v2 .qd-linkbtn--chev[aria-expanded="true"] .qd-chev{ transform:rotate(180deg); }
-.qd .wy-v2 .qd-tag-more.qd-linkbtn--chev{ justify-content:center; }
-.qd .wy-v2 .qd-email{ margin-top:1.1rem; }
 /* поля контактов уже дропзоны – короткий ввод не должен растягиваться на всю колонку */
 /* ширина по содержимому: номер телефона короткий, e-mail длиннее; на узком экране не шире колонки */
 .qd .wy-v2 .quote-form input.field{ width:100%; margin:0 auto; }
@@ -1608,33 +1613,19 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd .wy-v2 .quote-form input[type="email"].field{ max-width:20rem; }
 /* чипы «czego dotyczy sprawa»: чекбоксы в виде таблеток, без набора текста (14.09.2026) */
 /* правая колонка панели – всё по центру (14.09.2026) */
-.qd .wy-v2 .quote-form{ text-align:center; }
-.qd .wy-v2 .quote-form .qd-label, .qd .wy-v2 .quote-form .qd-hint, .qd .wy-v2 .quote-form .qd-legal,
+.qd .wy-v2 .quote-form{ text-align:center; } .qd .wy-v2 .quote-form .qd-legal,
 .qd .wy-v2 .quote-form .qd-status{ text-align:center; }
 .qd .wy-v2 .quote-form #phone, .qd .wy-v2 .quote-form [id^="phone"], .qd .wy-v2 .quote-form [id^="email"]{ text-align:center; }
 .qd .wy-v2 .quote-form textarea.field{ text-align:left; }
 .qd .wy-v2 .qd-submit{ display:inline-flex; margin:0 auto; }
-.qd .wy-v2 .qd-tags{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:.5rem; }
 .qd .wy-v2 .qd-msg{ flex:1 0 100%; }
-.qd .wy-v2 .qd-tag{ position:relative; cursor:pointer; margin:0; }
-.qd .wy-v2 .qd-tag input{ position:absolute; opacity:0; width:1px; height:1px; margin:0; }
-.qd .wy-v2 .qd-tag span{ display:inline-block; font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
-  letter-spacing:.12em; font-size:13px; font-weight:700; line-height:1; color:var(--c-ink);
-  padding:.75em 1em .8em; border-radius:6px; background:var(--c-paper); border:1px solid rgba(31,33,32,.18);
-  white-space:nowrap; transition:background-color .25s ease, border-color .25s ease; }
-.qd .wy-v2 .qd-tag:hover span{ background:var(--c-sand); border-color:rgba(31,33,32,.3); }
-.qd .wy-v2 .qd-tag input:checked + span{ background:var(--c-ink); border-color:var(--c-ink); color:var(--c-paper); }
-.qd .wy-v2 .qd-tag input:checked:hover + span, .qd .wy-v2 .qd-tag:hover input:checked + span{ background:var(--c-ink); border-color:var(--c-ink); }
-.qd .wy-v2 .qd-tag input:focus-visible + span{ outline:2px solid var(--c-terra); outline-offset:2px; }
-.qd .wy-v2 .qd-tag-more{ flex:1 0 100%; font-size:14px; color:var(--c-ink); margin:.35rem 0 0; }
-.qd .wy-v2 .qd-msg{ margin-top:.9rem; }
 .qd .wy-v2 textarea.field{ resize:vertical; min-height:5.5rem; }
 /* одна кнопка на всю ширину, под ней строка согласия */
-.qd .wy-v2 .qd-submit{ width:auto; min-width:16rem; }
+.qd .wy-v2 .qd-submit{ width:auto; }
 @media (max-width:479px){ .qd .wy-v2 .qd-submit{ width:100%; } }
-.qd .wy-v2 .qd-legal{ font-size:14px; line-height:1.55; color:rgba(31,33,32,.6) !important; margin-top:1rem; }
+.qd .wy-v2 .qd-legal{ line-height:1.55; }
 /* Polityka Prywatności раскрывается внутри панели: текст тянем с главной, там он на тёмном фоне */
-.qd .wy-v2 .qd-policy{ margin-top:1.1rem; text-align:left; }
+.qd .wy-v2 .qd-policy{ text-align:left; }
 .qd .wy-v2 .qd-policy > div{ max-width:none !important; }
 .qd .wy-v2 .qd-policy p{ font-size:14px !important; line-height:1.55 !important; color:rgba(31,33,32,.7) !important; margin:0 0 .7rem; }
 .qd .wy-v2 .qd-policy p:last-child{ margin-bottom:0; }
@@ -1642,8 +1633,6 @@ details[open] .chev{ transform:rotate(45deg) }
 .qd .wy-v2 .qd-policy a{ color:inherit; text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
 
 .qd .wy-v2 .qd-legal a:hover{ color:var(--c-ink); }
-.qd .wy-v2 .qd-consent{ font-size:15px; line-height:1.5; color:rgba(31,33,32,.8) !important; font-weight:500; }
-.qd .wy-v2 .qd-consent a:hover{ color:var(--c-ink); }
 .qd .wy-v2 #consent, .qd .wy-v2 #consent-qd{ width:22px; height:22px; accent-color:var(--c-terra); }
 .qd .wy-v2 .qd-status{ font-size:16px; color:var(--c-ink); font-weight:600; }
 .qd .wy-v2 .btn{ font-size:17px; padding:1rem 2rem; border-radius:8px; }
@@ -1651,7 +1640,7 @@ details[open] .chev{ transform:rotate(45deg) }
 
 /* Кнопка-стрелка над плашкой, у правого края – без кружка, белая */
 .qd-close{ margin:0 8px 10px 0; width:56px; height:56px; display:grid; place-items:center;
-  border:0; background:none; color:var(--c-paper); cursor:pointer; }
+ border:0; background:none; color:var(--c-paper); cursor:pointer; }
 @media (min-width:640px){ .qd-close{ margin-right:20px; } }
 .qd-close:hover .qd-ic, .qd-close:focus-visible .qd-ic{ animation:none; }
 .qd-ic{ grid-area:1/1; width:26px; height:26px; transition:opacity .25s ease, transform .25s ease; }
@@ -1669,7 +1658,6 @@ details[open] .chev{ transform:rotate(45deg) }
   .qd-wrap, .qd-backdrop, .qd-ic{ transition:none; }
   .qd-ic--chev{ animation:none; }
 }
-
 
 /* ===== Подвал-«шторка»: закреплён внизу, контент проезжает над ним =====
    Подвал стоит на месте под страницей, а main с непрозрачным фоном едет поверх него;
@@ -1720,12 +1708,12 @@ body > main{ background:var(--c-page); }
 .qd-files{ list-style:none; margin:.6rem 0 0; padding:0; display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; }
 .qd-files:empty{ display:none; }
 .qd-files li{ position:relative; width:72px; height:102px; border-radius:10px; overflow:hidden;
-  border:1px solid rgba(31,33,32,.15); background:var(--c-sand); }
+ border:1px solid rgba(31,33,32,.15); background:var(--c-sand); }
 .qd-files img{ width:100%; height:100%; object-fit:cover; display:block; }
 .qd-files li.is-doc::before{ content:attr(data-kind); position:absolute; inset:auto 0 10px; display:grid; place-items:center;
-  font-size:12px; font-weight:700; letter-spacing:.06em; color:var(--c-ink); }
+ font-size:12px; font-weight:700; letter-spacing:.06em; color:var(--c-ink); }
 .qd-files .qd-file-x{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:34px; height:34px; border:0; border-radius:50%;
-  display:grid; place-items:center; background:rgba(31,33,32,.75); color:#fff; cursor:pointer; padding:0; }
+ display:grid; place-items:center; background:rgba(31,33,32,.75); color:#fff; cursor:pointer; padding:0; }
 .qd-files .qd-file-x:hover{ background:var(--c-ink); }
 .qd-files-cap{ font-size:13px; color:rgba(31,33,32,.55); text-align:center; margin:.4rem 0 0; }
 .qd-files-cap:empty{ display:none; }
@@ -1734,13 +1722,7 @@ body > main{ background:var(--c-page); }
 .quote-form.is-sent > :not(.qd-done){ display:none; }
 .quote-form.is-sent .qd-done{ display:block; }
 
-/* ---- Panel: minimum pól na start, reszta pod „Dodaj szczegóły” (12.09.2026) ---- */
-.qd .wy-v2 .qd-more > summary{ display:inline-flex; align-items:center; gap:.5rem; font-size:16px; font-weight:700; color:var(--c-ink); cursor:pointer; }
-.qd .wy-v2 .qd-more > summary small{ font-weight:500; color:rgba(31,33,32,.55); }
-.qd .wy-v2 .qd-more > summary::before{ content:''; width:8px; height:8px; border-right:2px solid var(--c-terra); border-bottom:2px solid var(--c-terra);
-  transform:rotate(-45deg); transition:transform .25s ease; flex:0 0 auto; }
-.qd .wy-v2 .qd-more[open] > summary::before{ transform:rotate(45deg); }
-.qd .wy-v2 .qd-more-body{ margin-top:1.1rem; display:flex; flex-direction:column; gap:1.3rem; }
+/* ---- Panel: minimum pól na start{ display:inline-flex; align-items:center; gap:.5rem; font-size:16px; font-weight:700; color:var(--c-ink); cursor:pointer; }
 /* druga ścieżka – WhatsApp – widoczna, nie szara */
 .qd .wy-v2 .btn:not(.btn--pop){ border-color:var(--c-terra); }
 
@@ -1751,85 +1733,52 @@ body > main{ background:var(--c-page); }
    Роль 3 · Ввод        17px 400, ink (кнопка 17px 700)
    Роль 4 · Подсказка   14px 400, ink .55 – подписи, ссылки-раскрывашки, согласие
    Чипы                 12px 600 Condensed CAPS, ink .85 – единственный капс в форме */
-.qd .wy-v2 .qd-formhead--light{ font-size:30px; line-height:1.1; margin-bottom:1.75rem; }
-.qd .wy-v2 .qd-label{ font-family:'Fira Sans',sans-serif; text-transform:none; letter-spacing:0;
-  font-size:16px; font-weight:600; line-height:1.3; margin:0 0 .5rem; color:rgba(31,33,32,.7) !important; }
-.qd .wy-v2 .qd-drop-btn{ font-size:16px; font-weight:600; color:rgba(31,33,32,.7); }
+.qd .wy-v2 .qd-formhead--light{ margin-bottom:1.75rem; }
 .qd .wy-v2 .field::placeholder{ color:rgba(31,33,32,.4); }
-.qd .wy-v2 .qd-drop-copy small{ font-size:14px; color:rgba(31,33,32,.55); }
-.qd .wy-v2 .qd-hint{ font-size:14px; color:rgba(31,33,32,.55) !important; margin-top:.5rem; }
-.qd .wy-v2 .qd-hint--act{ margin-top:.25rem; }
-.qd .wy-v2 .qd-linkbtn, .qd .wy-v2 .qd-tag-more{ font-weight:400; color:rgba(31,33,32,.55); }
+.qd .wy-v2 .qd-linkbtn{ font-weight:400; color:rgba(31,33,32,.55); }
 .qd .wy-v2 .qd-linkbtn:hover, .qd .wy-v2 .qd-linkbtn:focus-visible{ color:var(--c-ink); }
-.qd .wy-v2 .qd-legal{ color:rgba(31,33,32,.55) !important; }
 .qd .wy-v2 .qd-legal a, .qd .wy-v2 .qd-legal .qd-linkbtn{ color:rgba(31,33,32,.55); font-weight:400; }
-.qd .wy-v2 .qd-tag span{ font-size:12px; font-weight:600; letter-spacing:.12em; color:rgba(31,33,32,.85); }
 
 /* Порядок (14.09.2026): заголовок над формой → телефон → дропзона (.qd-photo) → чипы → кнопка */
 .qd .wy-v2 .quote-form > .qd-photo{ margin-top:2rem; }
-.qd .wy-v2 .quote-form > * + *:has(#phone), .qd .wy-v2 .quote-form > * + *:has([id^="phone"]){ margin-top:0; }
 
 /* Сообщение формы над кнопкой (14.09.2026): ошибка – тёмная плашка по центру, служебные – тихий текст */
 .qd .wy-v2 .qd-status:not(.hidden){ display:block; text-align:center; font-size:14px; font-weight:400;
-  color:rgba(31,33,32,.55) !important; margin:0 auto 1rem; }
-.qd .wy-v2 .qd-status.is-err:not(.hidden){ display:table; max-width:34ch; padding:.8rem 1.1rem; border-radius:8px;
-  background:var(--c-ink); color:var(--c-paper) !important; font-size:15px; font-weight:500; line-height:1.4; }
+ color:rgba(31,33,32,.55) !important; margin:0 auto 1rem; }
+.qd .wy-v2 .qd-status.is-err:not(.hidden){ display:table;
+ background:var(--c-ink); color:var(--c-paper) !important; font-weight:500; }
 
 /* Раскрывашки «Podaj adres e-mail» и «Kilka słów o sprawie» – роль «вопрос», как «Podaj numer do kontaktu»:
-   16px 600 ink .7, без подчёркивания, стрелка как у переключателя языка (14.09.2026) */
-.qd .wy-v2 .qd-askrow{ margin-top:1.25rem; text-align:center; }
-.qd .wy-v2 .qd-ask{ display:inline-flex; align-items:center; justify-content:center; gap:7px; background:none; border:0; padding:0; margin:0;
-  cursor:pointer; font-family:'Fira Sans',sans-serif; font-size:16px; font-weight:600; line-height:1.3;
-  color:rgba(31,33,32,.7); text-decoration:none; }
-.qd .wy-v2 .qd-ask:hover, .qd .wy-v2 .qd-ask:focus-visible{ color:var(--c-ink); }
-.qd .wy-v2 .qd-ask .qd-chev{ flex:none; transition:transform .18s ease; }
-.qd .wy-v2 .qd-ask[aria-expanded="true"] .qd-chev{ transform:rotate(180deg); }
-.qd .wy-v2 .qd-tag-more.qd-ask{ margin-top:.75rem; }
+   16px 600 ink .7, без подчёркивания{ margin-top:1.25rem; text-align:center; }
 .qd .wy-v2 .qd-email{ margin-top:.5rem; }
 .qd .wy-v2 .qd-msg{ margin-top:.5rem; }
 
 /* Рамка дропзоны той же толщины и тона, что у полей телефона и e-mail (1px, ink .3), только пунктиром (14.09.2026).
    Наведение, перетаскивание и «файл выбран» перекрашивают её правилами выше – у них специфичность больше. */
-.qd .wy-v2 .qd-drop{ border-width:1px; border-color:rgba(31,33,32,.3); }
-/* без подписи под телефоном раскрывашка e-mail стоит ближе к полю */
-.qd .wy-v2 .qd-askrow{ margin-top:.85rem; }
+.qd .wy-v2 .qd-drop{ border-width:1px; }
 
 /* Номер оператора в левой колонке (14.09.2026): можно позвонить и спросить до отправки фото.
    Крупно, как второй главный текст колонки после обещания; ссылка tel: – на телефоне звонок в одно касание */
-.qd .wy-v2 .qd-call{ display:inline-block; margin-top:.6rem; font-size:30px; font-weight:800; line-height:1.1;
-  letter-spacing:-.01em; color:var(--c-ink); text-decoration:none; white-space:nowrap; }
-.qd .wy-v2 .qd-call:hover, .qd .wy-v2 .qd-call:focus-visible{ text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:5px; }
+.qd .wy-v2 .qd-call { line-height:1.1; color:var(--c-ink); text-decoration:none; white-space:nowrap; }
+.qd .wy-v2 .qd-call:hover, .qd .wy-v2 .qd-call:focus-visible { text-decoration-thickness:2px; text-underline-offset:5px; }
 
 /* Чипы формы – только размер как у плашек прайса .cn-pill («1–3 dni robocze») (14.09.2026).
-   Цвет, толщина, рамка, наведение и выбор – прежние. Отступы меньше на 1px рамки: внешний размер = эталону */
-.qd .wy-v2 .qd-tag span{ font-size:12.5px; letter-spacing:.1em; line-height:1.2; border-radius:6px;
-  padding:calc(.45em - 1px) calc(.75em - 1px) calc(.5em - 1px); }
+   Цвет, толщина, рамка{ font-size:12.5px; letter-spacing:.1em; line-height:1.2; border-radius:6px;
+ padding:calc(.45em - 1px) calc(.75em - 1px) calc(.5em - 1px); }
 
-/* «Podaj numer do kontaktu» со стрелкой вниз – только для симметрии с раскрывашками, поле всегда видно (14.09.2026) */
-.qd .wy-v2 .qd-label--chev{ display:flex; align-items:center; justify-content:center; gap:7px; }
-.qd .wy-v2 .qd-label--chev .qd-chev{ flex:none; }
+/* «Podaj numer do kontaktu» со стрелкой вниз – только для симметрии с раскрывашками{ display:flex; align-items:center; justify-content:center; gap:7px; }
 
 /* ===== Проба 14.09.2026: вопросы формы – аккордеон как FAQ, поля – тонкая линия вместо рамки =====
    Ряд: вопрос слева (роль 2), «+» справа, линия снизу; открытый «+» поворачивается в «×» как в FAQ.
    «Podaj numer do kontaktu» открыт всегда (--static). Откат – git revert этого коммита. */
-.qd .wy-v2 .qd-acc{ border-bottom:1px solid rgba(31,33,32,.15); text-align:left; }
-.qd .wy-v2 .quote-form > .qd-acc + .qd-acc{ margin-top:0; }
-.qd .wy-v2 .qd-acc-head{ display:flex; width:100%; align-items:center; justify-content:space-between; gap:1.5rem;
-  padding:1rem 0; margin:0; background:none; border:0; cursor:pointer; text-align:left;
-  font-family:'Fira Sans',sans-serif; font-size:16px; font-weight:600; line-height:1.3; color:rgba(31,33,32,.7) !important; }
-.qd .wy-v2 .qd-acc--static .qd-acc-head{ cursor:default; }
+.qd .wy-v2 .qd-acc-head{ align-items:center; margin:0; background:none; border:0; cursor:pointer; text-align:left;
+ font-family:'Fira Sans',sans-serif; font-size:16px; font-weight:600; line-height:1.2; color:rgba(31,33,32,.7) !important; }
 .qd .wy-v2 button.qd-acc-head:hover, .qd .wy-v2 button.qd-acc-head:focus-visible{ color:var(--c-ink) !important; }
-.qd .wy-v2 .qd-acc-chev{ font-size:24px; font-weight:600; line-height:1; color:rgba(31,33,32,.7); transition:transform .25s ease; }
-.qd .wy-v2 .qd-acc-head[aria-expanded="true"] .qd-acc-chev, .qd .wy-v2 .qd-acc--static .qd-acc-chev{ transform:rotate(45deg); }
-.qd .wy-v2 .qd-acc-body{ padding:0 0 1.1rem; }
 .qd .wy-v2 .qd-email, .qd .wy-v2 .qd-msg{ margin-top:0; }
 /* поле-линия */
 .qd .wy-v2 .quote-form .field.qd-line{ width:100%; max-width:none; margin:0; border:0; border-bottom:1px solid rgba(31,33,32,.3);
-  border-radius:0; padding:.35rem 0 .55rem; background:transparent; text-align:left; box-shadow:none; }
+ border-radius:0; padding:.35rem 0 .55rem; background:transparent; text-align:left; box-shadow:none; }
 .qd .wy-v2 .quote-form .field.qd-line:focus{ border:0; border-bottom:1px solid var(--c-ink); padding:.35rem 0 .55rem; outline:none; box-shadow:none; }
-.qd .wy-v2 .quote-form #phone.qd-line, .qd .wy-v2 .quote-form [id^="phone"].qd-line, .qd .wy-v2 .quote-form [id^="email"].qd-line{ text-align:left; }
-.qd .wy-v2 .quote-form textarea.field.qd-line{ min-height:3.2rem; resize:vertical; }
-.qd .wy-v2 .quote-form > .qd-tags + .qd-acc{ margin-top:1.25rem; }
 /* ограничения ширины tel/email (15/20rem) выше по файлу сильнее – для полей-линий снимаем явно */
 .qd .wy-v2 .quote-form input[type="tel"].field.qd-line, .qd .wy-v2 .quote-form input[type="email"].field.qd-line{ max-width:none; }
 
@@ -1839,11 +1788,10 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-acc-head{ display:inline-flex; width:auto; justify-content:center; gap:7px; padding:0; }
 .qd .wy-v2 .qd-acc-head .qd-chev{ flex:none; transition:transform .18s ease; }
 .qd .wy-v2 .qd-acc-head[aria-expanded="true"] .qd-chev{ transform:rotate(180deg); }
-.qd .wy-v2 .qd-acc-body{ padding:0; margin-top:.5rem; }
-.qd .wy-v2 .quote-form > .qd-acc + .qd-acc{ margin-top:.85rem; }
+.qd .wy-v2 .qd-acc-body{ padding:0; }
 /* поля-линии по центру прежней ширины: телефон 15rem, e-mail 20rem, сообщение во всю ширину */
-.qd .wy-v2 .quote-form input[type="tel"].field.qd-line{ max-width:15rem; margin:0 auto; }
-.qd .wy-v2 .quote-form input[type="email"].field.qd-line{ max-width:20rem; margin:0 auto; }
+.qd .wy-v2 .quote-form input[type="tel"].field.qd-line{ margin:0 auto; }
+.qd .wy-v2 .quote-form input[type="email"].field.qd-line{ margin:0 auto; }
 .qd .wy-v2 .quote-form #phone.qd-line, .qd .wy-v2 .quote-form [id^="phone"].qd-line, .qd .wy-v2 .quote-form [id^="email"].qd-line{ text-align:center; }
 .qd .wy-v2 .quote-form textarea.field.qd-line{ text-align:left; }
 /* «Podaj numer do kontaktu» – те же свойства, что у раскрывашек, но всегда открыт и не сворачивается:
@@ -1861,27 +1809,17 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .quote-form .field.qd-line:focus{ border-bottom-color:rgba(31,33,32,.3); }
 
 /* Дропзона при наведении: надпись без подчёркивания, «+» поворачивается (14.09.2026) */
-.qd .wy-v2 .qd-drop:hover .qd-drop-btn, .qd .wy-v2 .qd-drop.is-over .qd-drop-btn{ text-decoration:none; }
 .qd .wy-v2 .qd-plus{ transition:transform .3s ease, background-color .18s ease; }
-.qd .wy-v2 .qd-drop:hover .qd-plus, .qd .wy-v2 .qd-drop.is-over .qd-plus{ transform:rotate(90deg); }
 /* Линия телефона по длине номера с кодом «+48 600 000 000» (~7.4em) + немного воздуха (14.09.2026) */
-.qd .wy-v2 .quote-form input[type="tel"].field.qd-line{ max-width:8em; }
-
 /* «+» в дропзоне при наведении превращается в стрелку вниз (14.09.2026).
    Стойка остаётся; половины перекладины опускаются к низу стойки (12,19) и расходятся под 45° – наконечник.
    Поворот всего кружка на 90° отменён. */
 .qd .wy-v2 .qd-drop:hover .qd-plus, .qd .wy-v2 .qd-drop.is-over .qd-plus{ transform:none; }
 .qd .wy-v2 .qd-plus svg path{ transform-box:view-box; transform-origin:12px 12px; transition:transform .3s ease; }
-.qd .wy-v2 .qd-drop:hover .qd-p-l, .qd .wy-v2 .qd-drop.is-over .qd-p-l{ transform:translateY(7px) rotate(45deg); }
-.qd .wy-v2 .qd-drop:hover .qd-p-r, .qd .wy-v2 .qd-drop.is-over .qd-p-r{ transform:translateY(7px) rotate(-45deg); }
 @media (prefers-reduced-motion:reduce){ .qd .wy-v2 .qd-plus svg path{ transition:none; } }
 
-/* Выбранный чип – терракота (17.09.2026, вместо серого #D0D0CB). Остальные свойства чипа без изменений */
-.qd .wy-v2 .qd-tag input:checked + span,
-.qd .wy-v2 .qd-tag:hover input:checked + span{ background:var(--c-terra); border-color:var(--c-terra); color:var(--c-ink); }
-/* Отступы (14.09.2026): чипы ближе к дропзоне, кнопка отправки ниже */
-.qd .wy-v2 .quote-form > .qd-tags{ margin-top:1rem; }
-.qd .wy-v2 .quote-form > div:has(> [type="submit"]){ margin-top:2.25rem; }
+/* Выбранный чип – терракота (17.09.2026{ background:var(--c-terra); border-color:var(--c-terra); color:var(--c-ink); }
+/* Отступы (14.09.2026): чипы ближе к дропзоне{ margin-top:1rem; }
 /* Номер оператора в левой колонке – по правому краю колонки (14.09.2026) */
 .qd .wy-v2 .qd-call{ display:block; width:fit-content; margin-left:auto; }
 /* строка про оператора с ручными переносами – без ограничения ширины, чтобы строки не ломались сами (14.09.2026) */
@@ -1896,7 +1834,7 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-status-wrap .qd-status:not(.hidden){ margin:0; }
 .qd .wy-v2 .qd-status.is-err:not(.hidden){ padding:1.25rem 2.75rem; border-radius:10px; font-size:15px; line-height:1.5; }
 .qd .wy-v2 .qd-status-close{ display:none; position:absolute; top:8px; right:8px; width:28px; height:28px; place-items:center;
-  border:0; border-radius:50%; background:none; color:var(--c-paper); opacity:.75; cursor:pointer; padding:0; }
+ border:0; border-radius:50%; background:none; color:var(--c-paper); opacity:.75; cursor:pointer; padding:0; }
 .qd .wy-v2 .qd-status-close:hover, .qd .wy-v2 .qd-status-close:focus-visible{ opacity:1; }
 .qd .wy-v2 .qd-status-wrap:has(.qd-status.is-err:not(.hidden)) .qd-status-close{ display:grid; }
 /* На узком экране самая длинная строка («Dodaj zdjęcie lub skan dokumentu») не влезала с отступами 44px
@@ -1915,32 +1853,25 @@ body > main{ background:var(--c-page); }
 
 /* Мобильная версия: левая колонка панели заявки («Ekspresowa wycena dokumentu», плашка 15 min, текст, телефон) – по центру (17.09.2026) */
 @media (max-width:639px){
-  .qd .wy-v2 .qd-left{ text-align:center; }
-  .qd .wy-v2 .qd-eta{ justify-content:center; }
   .qd .wy-v2 .qd-call{ margin-left:auto; margin-right:auto; }
 }
 
 /* ===== Панель wyceny: фото первым, телефон вторым, опции тише (17.09.2026, docs/promt-form-visual.md) ===== */
 .qd .wy-v2 .quote-form{ display:flex; flex-direction:column; }
-.qd .wy-v2 .quote-form > .qd-photo{ order:-2; margin:0 0 1.6rem; }
+.qd .wy-v2 .quote-form > .qd-photo{ order:-2; }
 .qd .wy-v2 .qd-acc--static{ order:-1; }
-.qd .wy-v2 .quote-form > .qd-tags{ margin-top:0; }
 /* зона фото – главный элемент экрана */
 .qd .wy-v2 .qd-drop{ border-color:rgba(31,33,32,.55); background:rgba(239,176,31,.07); }
 .qd .wy-v2 .qd-plus{ background:var(--c-terra); color:var(--c-ink); }
-.qd .wy-v2 .qd-drop-btn{ color:var(--c-ink); font-size:17px; }
-.qd .wy-v2 .qd-drop-drag, .qd .wy-v2 .qd-drop-touch{ color:rgba(31,33,32,.6); }
 .qd .wy-v2 .qd-drop-touch{ display:none; }
-@media (hover:none){ .qd .wy-v2 .qd-drop-drag{ display:none; } .qd .wy-v2 .qd-drop-touch{ display:block; } }
+@media (hover:none){ .qd .wy-v2 .qd-drop-drag{ display:none; }
+.qd .wy-v2 .qd-drop-touch{ display:block; } }
 /* телефон: полный контраст, без стрелки (строка не сворачивается); необязательные строки тише */
 .qd .wy-v2 .qd-acc--static .qd-acc-head span{ color:var(--c-ink); }
 .qd .wy-v2 .qd-acc--static .qd-chev{ display:none; }
 .qd .wy-v2 .qd-acc:not(.qd-acc--static) .qd-acc-head, .qd .wy-v2 .qd-acc:not(.qd-acc--static) .qd-chev{ color:var(--c-ink); }
 .qd .wy-v2 .qd-acc:not(.qd-acc--static) .qd-acc-head span{ color:var(--c-ink); font-size:15px; }
-/* подпись над чипами */
-.qd .wy-v2 .qd-tags-cap{ margin:1.4rem 0 .4rem; text-align:center; font-size:13px; color:rgba(31,33,32,.5); }
 /* ошибка поля */
-.qd .wy-v2 .field.is-invalid{ border-bottom-color:#C8102E; }
 /* экран «Dziękujemy»: полный контраст (правило `.wy-v2 #quote-form p` с id иначе сильнее), галочка */
 .wy-v2 #quote-form .qd-done .qd-formhead, .wy-v2 #quote-form-qd .qd-done .qd-formhead{ color:var(--c-ink); font-weight:800; }
 .wy-v2 #quote-form .qd-done .qd-formsub, .wy-v2 #quote-form-qd .qd-done .qd-formsub{ color:rgba(31,33,32,.75); }
@@ -1962,25 +1893,9 @@ body > main{ background:var(--c-page); }
 /* прогресс отправки внутри кнопки */
 /* ::before у .btn--pop – жёлтая заливка, поэтому прогресс в ::after: z-index -1 ставит его над заливкой, но под текстом */
 .qd .wy-v2 .qd-submit::after{ content:''; position:absolute; top:0; bottom:0; left:0; z-index:-1; width:var(--p,0%);
-  background:rgba(31,33,32,.14); transition:width .2s linear; pointer-events:none; }
-/* под кнопкой: бесплатно → шаги → legal → WhatsApp */
-.qd .wy-v2 .qd-free{ margin:.8rem 0 0; display:flex; align-items:center; justify-content:center; gap:.4rem;
-  font-size:13px; font-weight:500; color:rgba(31,33,32,.55); }
-.qd .wy-v2 .qd-free svg{ flex:none; color:var(--c-ink); opacity:.5; }
-/* обещание под кнопкой нужно только там, где левая колонка с ним скрыта (≤1023px) */
-@media (min-width:1024px){ .qd .wy-v2 .qd-free{ display:none; } }
-/* шаги «что дальше» – 5 колонок: кружок с номером, тонкая линия между ними, подпись под кружком (17.09.2026) */
-.qd .wy-v2 .qd-next{ list-style:none; margin:1.1rem auto 0; padding:0; max-width:28rem; display:grid; grid-template-columns:repeat(5,1fr); gap:0 .25rem; }
-.qd .wy-v2 .qd-next li{ position:relative; display:flex; flex-direction:column; align-items:center; gap:.35rem;
-  text-align:center; font-size:12.5px; line-height:1.25; font-weight:500; color:rgba(31,33,32,.65); }
-.qd .wy-v2 .qd-next li + li::before{ content:''; position:absolute; top:10px; right:calc(50% + 15px); width:calc(100% - 30px + .25rem);
-  height:1px; background:rgba(31,33,32,.2); }
-.qd .wy-v2 .qd-next i{ font-style:normal; display:grid; place-items:center; width:21px; height:21px; border-radius:50%;
-  background:var(--c-terra); color:var(--c-ink); font-size:11px; font-weight:700; }
-.qd .wy-v2 .qd-legal{ font-size:13px; color:rgba(31,33,32,.5) !important; margin-top:.9rem; }
+ background:rgba(31,33,32,.14); transition:width .2s linear; pointer-events:none; }
+/* шаги «что дальше» – 5 колонок: кружок с номером, тонкая линия между ними{ list-style:none; margin:1.1rem auto 0; padding:0; max-width:28rem; display:grid; grid-template-columns:repeat(5,1fr); gap:0 .25rem; }
 /* строка мессенджеров – в левой колонке под номером, по правому краю как номер; ≤639px по центру */
-.qd .wy-v2 .qd-alt{ margin:.5rem 0 0; text-align:right; font-size:15px; color:rgba(31,33,32,.7); }
-@media (max-width:639px){ .qd .wy-v2 .qd-alt{ text-align:center; } }
 .qd .wy-v2 .qd-alt a{ color:var(--c-ink); text-decoration:underline; text-underline-offset:3px; }
 
 /* ===== Кнопка «Wyślij do wyceny»: поведение (17.09.2026) ===== */
@@ -2000,111 +1915,72 @@ body > main{ background:var(--c-page); }
 /* кнопка отправки в панели: заливка при наведении не уходит вниз (17.09.2026) */
 .qd .wy-v2 .qd-submit:hover::before, .qd .wy-v2 .qd-submit:focus-visible::before{ transform:none; opacity:1; }
 /* «Polityka Prywatności»: стрелка вниз, жирнее и темнее (17.09.2026) */
-.qd .wy-v2 .qd-legal .qd-policy-btn{ display:inline-flex; align-items:center; gap:6px; color:var(--c-ink); font-weight:600; }
+.qd .wy-v2 .qd-legal .qd-policy-btn{ align-items:center; gap:6px; }
 /* «Zdjęcia usuwamy…» – теперь на экране «Dziękujemy», под текстом */
 .wy-v2 #quote-form .qd-done .qd-safe{ margin:.75rem 0 1rem; color:rgba(31,33,32,.55); }
 /* ===== Панель: единая шкала вертикальных отступов правой колонки (17.09.2026) =====
    28px – между группами (заголовок / фото / телефон / опции / чипы / кнопка),
    16px – между соседними строками одной группы, 8px – подпись и её поле / текст и ссылка */
 .qd .wy-v2 .quote-form > .qd-photo{ margin:0 0 26px; }
-.qd .wy-v2 .quote-form > .qd-acc + .qd-acc{ margin-top:12px; }
 .qd .wy-v2 .qd-acc-body{ margin-top:8px; }
-.qd .wy-v2 .qd-tags-cap{ margin:26px 0 8px; }
-.qd .wy-v2 .quote-form > div:has(> [type="submit"]){ margin-top:28px; }
 .qd .wy-v2 .qd-need, .qd .wy-v2 .qd-slow{ margin-top:8px; }
 .qd .wy-v2 .qd-fail{ margin-top:14px; }
-.qd .wy-v2 .qd-free{ margin-top:10px; }
-.qd .wy-v2 .qd-next{ margin-top:14px; }
-.qd .wy-v2 .qd-legal{ margin-top:14px; }
 .qd .wy-v2 .qd-legal .qd-policy-btn{ display:flex; width:fit-content; margin:8px auto 0; }
 .qd .wy-v2 .qd-legal .qd-policy-btn + br, .qd .wy-v2 .qd-legal br:last-of-type{ display:none; }
 .qd .wy-v2 .qd-policy{ margin-top:16px; }
-/* чипы меньше и тише – они больше для нас, чем для клиента (18.09.2026); выбранный остаётся терракотой */
-.qd .wy-v2 .qd-tags{ gap:6px; }
-.qd .wy-v2 .qd-tag span{ font-size:11px; letter-spacing:.08em; padding:4px 8px 5px; border-color:rgba(31,33,32,.15); color:rgba(31,33,32,.65); }
-.qd .wy-v2 .qd-tag input:checked + span, .qd .wy-v2 .qd-tag:hover input:checked + span{ color:var(--c-ink); }
+/* чипы меньше и тише – они больше для нас{ gap:6px; }
 /* зона фото крупнее, кружок «+» под текстом (18.09.2026) */
-.qd .wy-v2 .qd-drop{ width:80%; padding:2.6rem 1.2rem 2.4rem; }
-@media (max-width:639px){ .qd .wy-v2 .qd-drop{ width:100%; padding:2.2rem 1rem 2rem; } }
-.qd .wy-v2 .qd-drop-row{ flex-direction:column-reverse; gap:1rem; }
-.qd .wy-v2 .qd-plus{ width:52px; height:52px; }
-.qd .wy-v2 .qd-plus svg{ width:24px; height:24px; }
+@media (max-width:639px){ .qd .wy-v2 .qd-drop{ width:100%; } }
+.qd .wy-v2 .qd-drop-row{ flex-direction:column-reverse; }
 /* телефон: зона фото ниже, чтобы кнопка отправки была на первом экране (18.09.2026) */
 @media (max-width:639px){
   .qd .wy-v2 .qd-drop{ padding:1.3rem 1rem 1.2rem; }
-  .qd .wy-v2 .qd-drop-row{ gap:.7rem; }
   .qd .wy-v2 .qd-plus{ width:44px; height:44px; }
   .qd .wy-v2 .qd-plus svg{ width:20px; height:20px; }
 }
 /* Левая колонка: номер, строка про мессенджеры и WhatsApp | Telegram – по центру, крупно (18.09.2026).
    Кружок с «+», при наведении «+» складывается в стрелку, как в зоне фото, и поворачивается вправо.
    Кружок серый, не терракота: главный путь – форма, мессенджеры – запасной */
-.qd .wy-v2 .qd-left .qd-call{ margin-left:auto; margin-right:auto; }
-.qd .wy-v2 .qd-alt{ margin:1.1rem 0 0; text-align:center; font-size:17px; color:rgba(31,33,32,.7); }
-.qd .wy-v2 .qd-msgr{ margin:.75rem 0 0; display:grid; grid-template-columns:1fr 1fr; gap:.75rem; }
+.qd .wy-v2 .qd-alt{ margin:1.1rem 0 0; }
 .qd .wy-v2 .qd-msgr a{ display:flex; align-items:center; gap:.6rem; font-size:19px; font-weight:700; color:var(--c-ink); text-decoration:none; }
 .qd .wy-v2 .qd-msgr a:first-child{ justify-self:start; }
 .qd .wy-v2 .qd-msgr a:last-child{ justify-self:end; flex-direction:row-reverse; }
-.qd .wy-v2 .qd-mplus{ flex:none; display:grid; place-items:center; width:40px; height:40px; border-radius:50%;
-  background:var(--c-paper); color:var(--c-ink); transition:background-color .18s ease; }
+.qd .wy-v2 .qd-mplus{ flex:none; display:grid; place-items:center; border-radius:50%; color:var(--c-ink); transition:background-color .18s ease; }
 .qd .wy-v2 .qd-mplus svg{ transition:transform .3s ease; }
 .qd .wy-v2 .qd-mplus svg path{ transform-box:view-box; transform-origin:12px 12px; transition:transform .3s ease; }
-.qd .wy-v2 .qd-msgr a:hover .qd-mplus, .qd .wy-v2 .qd-msgr a:focus-visible .qd-mplus{ background:#D0D0CB; }
-.qd .wy-v2 .qd-msgr a:hover .qd-mplus svg, .qd .wy-v2 .qd-msgr a:focus-visible .qd-mplus svg{ transform:rotate(-90deg); }
-.qd .wy-v2 .qd-msgr a:hover .qd-p-l, .qd .wy-v2 .qd-msgr a:focus-visible .qd-p-l{ transform:translateY(7px) rotate(45deg); }
-.qd .wy-v2 .qd-msgr a:hover .qd-p-r, .qd .wy-v2 .qd-msgr a:focus-visible .qd-p-r{ transform:translateY(7px) rotate(-45deg); }
 @media (prefers-reduced-motion:reduce){ .qd .wy-v2 .qd-mplus svg, .qd .wy-v2 .qd-mplus svg path{ transition:none; } }
 /* WhatsApp над Telegram: две одинаковые карточки по центру (18.09.2026) */
-.qd .wy-v2 .qd-msgr{ grid-template-columns:1fr; gap:.6rem; width:100%; max-width:19rem; margin:.9rem auto 0; }
+.qd .wy-v2 .qd-msgr{ grid-template-columns:1fr; }
 .qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{
-  justify-self:stretch; flex-direction:row; gap:.85rem; padding:.55rem 1.1rem .55rem .55rem;
-  border:1px solid rgba(31,33,32,.14); border-radius:999px; background:rgba(255,255,255,.45);
-  transition:background-color .18s ease, border-color .18s ease; }
-.qd .wy-v2 .qd-msgr a:hover, .qd .wy-v2 .qd-msgr a:focus-visible{ background:var(--c-paper); border-color:rgba(31,33,32,.3); }
+ justify-self:stretch;
+ transition:background-color .18s ease, border-color .18s ease; }
+.qd .wy-v2 .qd-msgr a:hover, .qd .wy-v2 .qd-msgr a:focus-visible { border-color:rgba(31,33,32,.3); }
 .qd .wy-v2 .qd-mplus{ background:var(--c-sand); }
 .qd .wy-v2 .qd-msgr a:hover .qd-mplus, .qd .wy-v2 .qd-msgr a:focus-visible .qd-mplus{ background:var(--c-terra); }
 /* кружок мессенджеров: «+» сразу складывается в стрелку вправо, без поворота всего значка (18.09.2026) */
 .qd .wy-v2 .qd-msgr a:hover .qd-mplus svg, .qd .wy-v2 .qd-msgr a:focus-visible .qd-mplus svg{ transform:none; }
-.qd .wy-v2 .qd-msgr a:hover .qd-m-t, .qd .wy-v2 .qd-msgr a:focus-visible .qd-m-t{ transform:translateX(7px) rotate(-45deg); }
-.qd .wy-v2 .qd-msgr a:hover .qd-m-b, .qd .wy-v2 .qd-msgr a:focus-visible .qd-m-b{ transform:translateX(7px) rotate(45deg); }
 /* карточки мессенджеров меньше: слева углы как у кнопок (8px), справа пилюля с кружком (18.09.2026) */
-.qd .wy-v2 .qd-msgr{ max-width:14.5rem; gap:.5rem; }
-.qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{
-  flex-direction:row-reverse; justify-content:space-between; gap:.6rem; padding:.3rem .3rem .3rem 1rem;
-  border-radius:8px 22px 22px 8px; font-size:16px; }
 .qd .wy-v2 .qd-mplus{ width:32px; height:32px; }
-.qd .wy-v2 .qd-mplus svg{ width:15px; height:15px; }
 /* карточки мессенджеров по ширине текста (обе равны самой широкой), без пустоты внутри (18.09.2026) */
-.qd .wy-v2 .qd-msgr{ width:max-content; max-width:none; }
-.qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{ gap:1rem; padding-left:.9rem; }
-/* кружок мессенджеров: сразу стрелка вправо, без «+» (18.09.2026) */
-.qd .wy-v2 .qd-mplus .qd-m-t{ transform:translateX(7px) rotate(-45deg); }
-.qd .wy-v2 .qd-mplus .qd-m-b{ transform:translateX(7px) rotate(45deg); }
+.qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child { padding-left:.9rem; }
+/* кружок мессенджеров: сразу стрелка вправо{ transform:translateX(7px) rotate(-45deg); }
 /* Левая колонка, 18.09.2026: номер, строка про чат и кнопки мессенджеров по левому краю, как вся колонка.
    WhatsApp и Telegram в одну строку: сплошные белые кнопки, углы 8px как у кнопок сайта, стрелка без кружка.
    ≤639px левая колонка центрирована целиком – там и они по центру */
 .qd .wy-v2 .qd-left .qd-call{ margin-left:0; margin-right:0; }
-.qd .wy-v2 .qd-alt{ text-align:left; margin-top:1.25rem; font-size:16px; }
-.qd .wy-v2 .qd-msgr{ width:auto; max-width:none; margin:.6rem 0 0; display:flex; flex-wrap:wrap; gap:.5rem; }
+.qd .wy-v2 .qd-alt{ text-align:left; }
+.qd .wy-v2 .qd-msgr{ width:auto; max-width:none; margin:.6rem 0 0; display:flex; flex-wrap:wrap; }
 .qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{
-  flex-direction:row-reverse; justify-content:flex-end; gap:.55rem; padding:.7rem 1rem .7rem 1.1rem; border:0; border-radius:8px;
-  background:var(--c-paper); font-size:16px; font-weight:700; line-height:1.1; }
+ flex-direction:row-reverse; justify-content:flex-end; border:0;
+ background:var(--c-paper); font-weight:700; line-height:1.1; }
 .qd .wy-v2 .qd-msgr a:hover, .qd .wy-v2 .qd-msgr a:focus-visible{ background:var(--c-terra); }
 .qd .wy-v2 .qd-mplus, .qd .wy-v2 .qd-msgr a:hover .qd-mplus, .qd .wy-v2 .qd-msgr a:focus-visible .qd-mplus{
-  width:auto; height:auto; background:none; border-radius:0; }
-.qd .wy-v2 .qd-mplus svg{ width:16px; height:16px; }
-@media (max-width:639px){
-  .qd .wy-v2 .qd-left .qd-call{ margin-left:auto; margin-right:auto; }
-  .qd .wy-v2 .qd-alt{ text-align:center; }
-  .qd .wy-v2 .qd-msgr{ justify-content:center; }
-}
-.qd .wy-v2 .qd-mplus svg{ width:14px; height:14px; }
+ width:auto; height:auto; background:none; border-radius:0; }
 /* зона фото шириной со строку заголовка «każdą stronę dokumentu w całości» (≈14.8em от 30px) (18.09.2026) */
-@media (min-width:640px){ .qd .wy-v2 .qd-drop{ width:min(100%, 444px); } }
 /* строка про чат – тем же шрифтом, что «Dokumenty, od których…» (18.09.2026) */
 .qd .wy-v2 .qd-alt{ font-size:18px; line-height:1.4; font-weight:400; font-style:italic; color:rgba(31,33,32,.7); }
 /* код страны в номере: тонкий курсив, поднят над строкой (18.09.2026) */
-.qd .wy-v2 .qd-call-cc{ font-weight:300; font-style:italic; font-size:.55em; vertical-align:.7em; margin-right:.2em; }
+.qd .wy-v2 .qd-call-cc { font-style:italic; }
 /* ≤1023px (заголовок «Ekspresowa wycena» скрыт) левая колонка центрирована, как на телефоне (18.09.2026) */
 @media (max-width:1023px){
   .qd .wy-v2 .qd-left{ text-align:center; }
@@ -2116,61 +1992,48 @@ body > main{ background:var(--c-page); }
 /* кнопки мессенджеров под размер плашек «15 min»: высота 37px, углы 6px, отступ между ними 3px (18.09.2026) */
 .qd .wy-v2 .qd-msgr{ gap:3px; }
 .qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{
-  min-height:37px; box-sizing:border-box; padding:0 .75em; border-radius:6px; font-size:15px; gap:.45rem; }
+ min-height:37px; box-sizing:border-box; padding:0 .75em; border-radius:6px; font-size:15px; gap:.45rem; }
 .qd .wy-v2 .qd-mplus svg{ width:11px; height:11px; }
 /* номер целиком курсивом: цифры жирный курсив 28px, «+48» тонкий курсив, поднят (18.09.2026) */
-.qd .wy-v2 .qd-call{ font-style:italic; font-size:28px; font-weight:700; letter-spacing:-.01em; }
-.qd .wy-v2 .qd-call-cc{ font-size:.5em; vertical-align:.8em; margin-right:.25em; font-weight:300; }
+.qd .wy-v2 .qd-call{ font-style:italic; letter-spacing:-.01em; }
 /* зона фото ниже на десктопе (18.09.2026); телефон – без изменений */
 @media (min-width:640px){
-  .qd .wy-v2 .qd-drop{ padding:1.5rem 1.2rem 1.4rem; }
-  .qd .wy-v2 .qd-drop-row{ gap:.75rem; }
   .qd .wy-v2 .qd-plus{ width:44px; height:44px; }
   .qd .wy-v2 .qd-plus svg{ width:20px; height:20px; }
 }
 /* заголовок правой колонки крупнее (18.09.2026): 34px – как h2 секций сайта на телефоне, от 1280px – 40px.
    Зона фото по-прежнему шириной со строку «każdą stronę dokumentu w całości» (≈14.8em) */
-.qd .wy-v2{ --fh:30px; }   /* телефон: крупнее не влезает, кнопка уходит с первого экрана */
-@media (min-width:640px){ .qd .wy-v2{ --fh:34px; } }
-@media (min-width:1280px){ .qd .wy-v2{ --fh:40px; } }
-.qd .wy-v2 .qd-formhead--light{ font-size:var(--fh); line-height:1.05; }
-@media (min-width:640px){ .qd .wy-v2 .qd-drop{ width:min(100%, calc(var(--fh) * 14.8)); } }
+.qd .wy-v2 {}   /* телефон: крупнее не влезает, кнопка уходит с первого экрана */
+.qd .wy-v2 .qd-formhead--light{ font-size:var(--fh); }
 /* ≥1024px: WhatsApp и Telegram вместе шириной с плашки «15 min | Wyślij zdjęcia…» (18.09.2026).
    Без JS: содержимое колонки обёрнуто сеткой шириной max-content. Все тексты в ней с ручными переносами
    и уже плашек, поэтому ширина сетки = ширина плашек, а кнопки делят её пополам.
    Новый текст в левую колонку – только с <br>, иначе он растянет сетку в одну строку */
 @media (min-width:1024px){
   .qd .wy-v2 .qd-left{ display:grid; grid-template-columns:max-content; }
-  .qd .wy-v2 .qd-msgr{ display:grid; grid-template-columns:1fr 1fr; width:auto; }
-  .qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{ justify-content:center; }
 }
 /* зона фото чуть шире строки шагов 1–5 (шаги max 28rem): 30rem (18.09.2026) */
-@media (min-width:640px){ .qd .wy-v2 .qd-drop{ width:min(100%, 30rem); } }
 /* номер телефона: без подчёркивания при наведении (18.09.2026) */
 .qd .wy-v2 .qd-call:hover, .qd .wy-v2 .qd-call:focus-visible{ text-decoration:none; }
 /* «+48» крупнее: 72% номера, тонкий курсив, чуть приподнят (19.09.2026) */
-.qd .wy-v2 .qd-call-cc{ font-size:.72em; vertical-align:.28em; margin-right:.18em; }
 /* кнопки мессенджеров сразу под номером, текст про чат – под ними (19.09.2026) */
 .qd .wy-v2 .qd-msgr{ margin-top:1.1rem; }
 .qd .wy-v2 .qd-alt{ margin-top:.7rem; }
 /* заголовок формы плотный, как «Ekspresowa wycena»: tracking-tightest (-0.045em) и leading .94 (19.09.2026) */
 .qd .wy-v2 .qd-formhead--light{ letter-spacing:-0.045em; line-height:.94; }
-
-/* ===== Полоска «5 шагов» на главной (17.09.2026) – вариант .qd-next вне панели wyceny ===== */
-.hp-next{ list-style:none; margin:0 auto; padding:0; max-width:34rem; display:grid; grid-template-columns:repeat(5,1fr); gap:0 .25rem; }
 .hp-next li{ position:relative; display:flex; flex-direction:column; align-items:center; gap:.4rem;
-  text-align:center; font-size:14px; line-height:1.25; font-weight:600; color:rgba(31,33,32,.7); }
+ text-align:center; font-size:14px; line-height:1.25; font-weight:600; color:rgba(31,33,32,.7); }
 .hp-next li + li::before{ content:''; position:absolute; top:12px; right:calc(50% + 17px); width:calc(100% - 34px + .25rem);
-  height:1px; background:rgba(31,33,32,.2); }
+ height:1px; background:rgba(31,33,32,.2); }
 .hp-next i{ font-style:normal; display:grid; place-items:center; width:25px; height:25px; border-radius:50%;
-  background:var(--c-terra); color:var(--c-ink); font-size:12px; font-weight:700; }
+ background:var(--c-terra); color:var(--c-ink); font-size:12px; font-weight:700; }
 @media (max-width:479px){ .hp-next li{ font-size:12.5px; } }
 /* полоска шагов: вариант на тёмном фоне, по левому краю */
 .hp-next--left{ margin:1.4rem 0 0; }
 .hp-next--light li{ color:rgba(248,247,244,.7); }
 .hp-next--light li + li::before{ background:rgba(248,247,244,.25); }
 /* поле телефона: линия длиннее и цифры примера крупнее (17.09.2026) */
-.qd .wy-v2 .quote-form input[type="tel"].field.qd-line{ max-width:16rem; font-size:21px; letter-spacing:.01em; }
+.qd .wy-v2 .quote-form input[type="tel"].field.qd-line{ font-size:21px; letter-spacing:.01em; }
 /* ≥1024px ширину левой колонки задают плашки «15 min | Wyślij zdjęcia…» и кнопки мессенджеров.
    Заголовок в одну строку шире их и раздувал сетку max-content – он больше не участвует в расчёте
    ширины (width:0 + min-width:100%) и кегль подобран так, чтобы строка влезала (19.09.2026) */
@@ -2186,9 +2049,7 @@ body > main{ background:var(--c-page); }
   .qd .wy-v2 #qd-title{ width:100cqw; }
   /* номер – по тем же правилам, что заголовок: во всю ширину колонки, но вне расчёта её ширины */
   /* кнопки мессенджеров встают на одну линию с «Wyślij do wyceny» в правой колонке (19.09.2026) */
-  .qd .wy-v2 .qd-msgr{ margin-top:120px; }
-  .qd .wy-v2 .qd-callwrap{ width:0; min-width:100%; }
-  .qd .wy-v2 .qd-callwrap .qd-call{ display:block; width:100cqw; }
+  .qd .wy-v2 .qd-callwrap .qd-call{ display:block; }
   .qd .wy-v2 .qd-eta{ flex-wrap:nowrap; }
   .qd .wy-v2 .qd-msgr{ display:grid; grid-template-columns:1fr 1fr; width:100%; }
   .qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{ justify-content:center; }
@@ -2204,64 +2065,175 @@ body > main{ background:var(--c-page); }
 /* планшетный кегль 36/31 оставлен и на десктопе (19.09.2026) */
 .qd .wy-v2 .qd-formhead--light .qd-fh-b{ font-size:var(--fh-b); }
 /* срочность – единственная отметка перед кнопкой, вместо ряда чипов (19.09.2026) */
-.qd .wy-v2 .qd-urgent{ display:flex; justify-content:center; margin:26px 0 0; }
+.qd .wy-v2 .qd-urgent{ margin:26px 0 0; }
 /* кнопка чуть уже, воздух над и под ней +15% (19.09.2026) */
 .qd .wy-v2 .qd-submit{ min-width:14rem; }
-.qd .wy-v2 .qd-urgent{ margin-top:14px; }
-.qd .wy-v2 .quote-form > div:has(> [type="submit"]){ margin-top:40px; }
-.qd .wy-v2 .qd-legal{ margin-top:16px; }
 /* Telefon, E-mail и Kilka słów – одним кеглем, 16px (19.09.2026) */
 .qd .wy-v2 .qd-acc-head, .qd .wy-v2 .qd-acc:not(.qd-acc--static) .qd-acc-head span{ font-size:16px; }
 /* номер: спокойный кегль, «+48» той же плотности, что цифры, и без большого отрыва от «Zadzwoń!» (19.09.2026) */
-.qd .wy-v2 .qd-call{ font-size:24px; font-weight:700; margin-top:.35rem; }
+.qd .wy-v2 .qd-call{ font-size:24px; font-weight:700; }
 .qd .wy-v2 .qd-call-cc{ font-size:.62em; font-weight:600; vertical-align:.1em; margin-right:.2em; }
 /* номер начинается под словом «Zadzwoń!» последней строки (≈8.15em её кегля) (19.09.2026) */
 /* номер выключен вправо – по правому краю кнопки Telegram (19.09.2026) */
 @media (min-width:1024px){
-  .qd .wy-v2 .qd-callwrap .qd-call{ width:fit-content; margin-left:auto; margin-right:0; }
   .qd .wy-v2 .qd-callwrap{ width:0; min-width:100%; }
 }
 /* текст согласия – теми же параметрами, что подпись «na niego odpiszemy» (19.09.2026) */
-.qd .wy-v2 .qd-legal{ font-size:14px; color:rgba(31,33,32,.55) !important; }
+.qd .wy-v2 .qd-legal{ color:rgba(31,33,32,.55) !important; }
 /* больше воздуха вокруг главной кнопки (19.09.2026) */
-.qd .wy-v2 .quote-form > div:has(> [type="submit"]){ margin-top:52px; }
 .qd .wy-v2 .qd-legal{ margin-top:26px; }
 /* кнопка чуть выше по высоте и ближе к полям (19.09.2026) */
 .qd .wy-v2 .qd-submit{ padding-top:20px; padding-bottom:20px; }
 .qd .wy-v2 .quote-form > div:has(> [type="submit"]){ margin-top:38px; }
 /* Telefon и E-mail крупнее остальных подписей (19.09.2026) */
 .qd .wy-v2 .qd-acc--static .qd-acc-head,
-.qd .wy-v2 .qd-acc--static .qd-acc-head > span,
-.qd .wy-v2 .qd-acc:not(.qd-acc--static) .qd-acc-head[data-show-email],
-.qd .wy-v2 .qd-acc:not(.qd-acc--static) .qd-acc-head[data-show-email] span{ font-size:18px; }
-.qd .wy-v2 .qd-acc--static .qd-acc-head .qd-acc-note{ font-size:14px; }
+.qd .wy-v2 .qd-acc--static .qd-acc-head > span{ font-size:19px; }
 /* зона загрузки на 15% меньше: ширина 25.5rem, отступы по высоте пропорционально (19.09.2026) */
 @media (min-width:640px){ .qd .wy-v2 .qd-drop{ width:min(100%, 25.5rem); padding:1.3rem 1.2rem 1.2rem; } }
 /* «Dodaj zdjęcia lub skan» крупнее – это главное действие в зоне (19.09.2026) */
-.qd .wy-v2 .qd-drop-btn{ font-size:20px; }
 /* «Zadzwoń!» насыщеннее остального абзаца, но тем же курсивом (18.09.2026) */
 .qd .wy-v2 .qd-human .qd-human-cta{ font-style:inherit; font-weight:inherit; color:var(--c-ink); }
 /* поле телефона должно читаться как поле, а не как текст: линия ближе к цифрам, пример темнее (18.09.2026) */
 .qd .wy-v2 .quote-form input[type="tel"].field.qd-line{ padding-bottom:.3rem; }
 .qd .wy-v2 .quote-form input[type="tel"].field.qd-line::placeholder{ color:rgba(31,33,32,.55); }
 /* «Sprawa pilna» – круглая точка, после нажатия жёлтая (18.09.2026) */
-.qd .wy-v2 .qd-urgent{ display:flex; align-items:center; justify-content:center; gap:.5rem; margin-top:10px;
-  font-size:15px; color:rgba(31,33,32,.6); cursor:pointer; }
+.qd .wy-v2 .qd-urgent{ display:flex; align-items:center; justify-content:center; gap:.5rem; cursor:pointer; }
 .qd .wy-v2 .qd-urgent input{ position:absolute; opacity:0; width:1px; height:1px; margin:0; }
 /* переключатель: дорожка с кружком, включённый – охра (18.09.2026) */
 .qd .wy-v2 .qd-urgent i{ position:relative; flex:none; width:34px; height:20px; border-radius:10px;
-  background:rgba(31,33,32,.18); transition:background .18s ease; }
+ background:rgba(31,33,32,.18); transition:background .18s ease; }
 .qd .wy-v2 .qd-urgent i::after{ content:''; position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%;
-  background:#fff; box-shadow:0 1px 2px rgba(31,33,32,.25); transition:transform .18s ease; }
+ background:#fff; box-shadow:0 1px 2px rgba(31,33,32,.25); transition:transform .18s ease; }
 .qd .wy-v2 .qd-urgent:hover i{ background:rgba(31,33,32,.3); }
 .qd .wy-v2 .qd-urgent input:checked + i{ background:var(--c-terra); }
 .qd .wy-v2 .qd-urgent input:checked + i::after{ transform:translateX(14px); }
-.qd .wy-v2 .qd-urgent:has(input:checked) span{ color:var(--c-ink); }
 .qd .wy-v2 .qd-urgent input:focus-visible + i{ outline:2px solid var(--c-terra); outline-offset:3px; }
 /* подпись под телефоном и согласие – 15px, «Polityka Prywatności» на 2 пункта крупнее (18.09.2026) */
-.qd .wy-v2 .qd-acc--static .qd-acc-head .qd-acc-note{ font-size:15px; }
+.qd .wy-v2 .qd-acc--static .qd-acc-head .qd-acc-note{ font-size:16px; }
 .qd .wy-v2 .qd-legal{ font-size:15px; }
-.qd .wy-v2 .qd-legal .qd-policy-btn{ font-size:17px; }
-.qd .wy-v2 .qd-legal .qd-policy-btn{ text-decoration:none; }
 /* миниатюры – максимум 6 в ряд (18.09.2026) */
 .qd .wy-v2 .qd-files{ max-width:calc(72px * 6 + .5rem * 5); margin-left:auto; margin-right:auto; }
+
+/* ===== Панель wyceny: правки docs/wycena-form-fixes.md (20.09.2026) ===== */
+/* п.1 Левая колонка: один курсивный блок – обещание; абзац про оператора обычным начертанием,
+   вопрос «Masz pytanie…» склеен с номером в один блок по левому краю, провал перед мессенджерами убран */
+.qd .wy-v2 .qd-human{ font-style:normal; font-size:16px; line-height:1.5; color:#4a4a45; margin-top:1.1rem; }
+.qd .wy-v2 .qd-callq{ margin:0; font-size:16px; line-height:1.4; color:#4a4a45; }
+.qd .wy-v2 .qd-callwrap{ margin-top:1.75rem; text-align:left; }
+.qd .wy-v2 .qd-call{ margin-top:.2rem; }
+@media (min-width:1024px){
+  .qd .wy-v2 .qd-callwrap .qd-call{ width:fit-content; margin-left:0; margin-right:auto; }
+  .qd .wy-v2 .qd-msgr{ margin-top:40px; }
+}
+@media (max-width:1023px){ .qd .wy-v2 .qd-callwrap{ text-align:center; } }
+/* п.2 Чипы: белая плашка «Wyślij zdjęcia…» на песочном фоне не пропадала – обводка;
+   отступы меньше на 1px рамки, внешний размер плашки прежний. Тёмный текст на охре уже был */
+/* «Sprawa pilna»: 17px, 500, тон как у абзаца слева (#4a4a45 ≈ 71% чёрного), межстрочный 1.2.
+   Без !important: общее правило `.wy-v2 label` выше исключает подписи панели (:not(.qd-urgent):not(.qd-acc-head)) */
+.qd .wy-v2 .qd-urgent, .qd .wy-v2 .qd-urgent span,
+.qd .wy-v2 .qd-urgent:has(input:checked) span{ font-size:17px; line-height:1.2; font-weight:500; color:#4a4a45; }
+/* E-mail по образцу телефона: та же ширина линии и тот же кегль ввода;
+   примеры в обоих полях темнее – #6b6b66, иначе читались как подсказка «на грани видимости» (20.09.2026) */
+.qd .wy-v2 .quote-form input[type="email"].field.qd-line{ max-width:20rem; font-size:21px; letter-spacing:.01em; }
+.qd .wy-v2 .quote-form input[type="tel"].field.qd-line{ max-width:16rem; }
+.qd .wy-v2 .quote-form input[type="tel"].field.qd-line::placeholder,
+.qd .wy-v2 .quote-form input[type="email"].field.qd-line::placeholder{ color:#6b6b66; }
+/* воздух между группами полей: подпись «Telefon» не должна касаться линии e-mail сверху –
+   12px хватало, пока телефон стоял первым и линии над ним не было (20.09.2026) */
+.qd .wy-v2 .quote-form > .qd-acc + .qd-acc{ margin-top:26px; }
+/* «Kilka słów o sprawie» – 20px от линии телефона, «Sprawa pilna» – 12px от строки над ней (20.09.2026).
+   Медиа-запросов на эти отступы в файле нет, значения одни на всех ширинах */
+.qd .wy-v2 .quote-form > .qd-acc:not(.qd-acc--static){ margin-top:20px; }
+.qd .wy-v2 .qd-urgent{ margin-top:12px; }
+/* удаление миниатюры: при наведении кружок охряный, крестик тёмный – белый на охре не читается (20.09.2026) */
+.qd .wy-v2 .qd-files .qd-file-x:hover, .qd .wy-v2 .qd-files .qd-file-x:focus-visible{
+ background:var(--c-terra); color:var(--c-ink); }
+/* значок зоны загрузки: «+» при наведении превращается в тот же шеврон вниз, что на кнопках сайта –
+   стойка уходит{ transition:opacity .3s ease; }
+/* значок зоны: два состояния наложены друг на друга, как у кнопки закрытия панели (.qd-close) –
+   в покое «+», при наведении стрелка вниз: хвост плюс наконечник-шеврон тем же штрихом, что значки сайта */
+.qd .wy-v2 .qd-plus{ display:grid; place-items:center; }
+.qd .wy-v2 .qd-pic{ grid-area:1/1; transition:opacity .25s ease; }
+.qd .wy-v2 .qd-pic--arrow{ opacity:0; }
+.qd .wy-v2 .qd-drop:hover .qd-pic--plus, .qd .wy-v2 .qd-drop.is-over .qd-pic--plus{ opacity:0; }
+.qd .wy-v2 .qd-drop:hover .qd-pic--arrow, .qd .wy-v2 .qd-drop.is-over .qd-pic--arrow{ opacity:1; }
+@media (prefers-reduced-motion:reduce){ .qd .wy-v2 .qd-pic{ transition:none; } }
+/* вторая строка в зоне – как вторая строка заголовка над формой (.qd-fh-b): light italic со строчной (20.09.2026) */
+/* Пара строк в зоне загрузки собрана по образцу заголовка «Sfotografuj telefonem / każdą stronę…»:
+   жирная 800 с плотным трекингом -0.045em и межстрочным .94, вторая – 0.879 от неё (33/29 в заголовке),
+   light italic, цвет чернильный – как в заголовке. Кегль 22 / 19px (20.09.2026) */
+/* зона загрузки: наведение и фокус – серой обводкой, без охры (20.09.2026) */
+.qd .wy-v2 .qd-drop:hover, .qd .wy-v2 .qd-drop.is-over{ border-color:rgba(31,33,32,.7); }
+.qd .wy-v2 .file-input-hidden:focus-visible + .qd-drop{ outline-color:rgba(31,33,32,.45); }
+
+/* отступы полей задаём с повышенной специфичностью: в файле много правил на `.qd-acc + .qd-acc`,
+   и при равном весе побеждало то, что стоит ниже. Здесь порядок больше не важен (20.09.2026) */
+.qd .wy-v2 .quote-form > .qd-acc.qd-acc--static + .qd-acc.qd-acc--static{ margin-top:26px; }
+.qd .wy-v2 .quote-form > .qd-acc.qd-acc:not(.qd-acc--static){ margin-top:20px; }
+/* правила `> * + *:has(#phone)` удалены: селектор с id весил больше любых классовых и обнулял
+   отступ у блока с телефоном – он остался от макета, где телефон стоял первым полем (20.09.2026) */
+
+/* «Dodaj zdjęcia lub skan» / «przeciągnij pliki tutaj» – та же пара, что «E-mail» / «na niego odpiszemy»:
+   18px 600 ink и 15px 400 ink .55, межстрочный 1.3 (20.09.2026) */
+/* вторая строка зоны – теми же параметрами, что подпись «na niego odpiszemy»: 15px, 400, серый */
+.qd .wy-v2 .qd-drop-drag, .qd .wy-v2 .qd-drop-touch{ font-size:16px; font-weight:400; font-style:normal;
+ letter-spacing:0; line-height:1.2; color:rgba(31,33,32,.55); }
+.qd .wy-v2 .qd-drop-copy{ display:flex; flex-direction:column; align-items:center; gap:0; }
+.qd .wy-v2 .qd-drop-btn{ flex:0 0 auto; padding:0; background:none; border-radius:0; white-space:nowrap;
+ font-size:19px; font-weight:600; letter-spacing:0; line-height:1.2; color:var(--c-ink); text-decoration:none; }
+
+/* воздух над и под текстом в зоне загрузки +18%: 1.3/1.2rem → 1.534/1.416rem (20.09.2026) */
+@media (min-width:640px){ .qd .wy-v2 .qd-drop{ padding-top:1.534rem; padding-bottom:1.416rem; } }
+@media (max-width:639px){ .qd .wy-v2 .qd-drop{ padding-top:1.534rem; padding-bottom:1.416rem; } }
+
+/* кружок ниже текста на 15%: зазор .75rem → .8625rem (телефон .7 → .805rem).
+   Отступ до нижнего края зоны из-за этого меньше верхнего – так и задумано (20.09.2026) */
+@media (min-width:640px){ .qd .wy-v2 .qd-drop-row{ gap:.8625rem; } }
+@media (max-width:639px){ .qd .wy-v2 .qd-drop-row{ gap:.805rem; } }
+
+/* Ширину задаёт контейнер .qd-photo, зона тянется на все 100% его ширины.
+   Пустая – 408px, с миниатюрами – 472px, ровно ширина сетки (6 × 72px + 5 зазоров по 8px),
+   поэтому зона и превью стоят одним блоком. Условие по факту наличия <li>, без класса из JS (20.09.2026) */
+@media (min-width:640px){
+ .qd .wy-v2 .quote-form > .qd-photo{ width:100%; max-width:408px; margin-left:auto; margin-right:auto; }
+ .qd .wy-v2 .quote-form > .qd-photo:has(.qd-files li){ max-width:472px; }
+ .qd .wy-v2 .qd-drop, .qd .wy-v2 .qd-drop.is-filled{ width:100%; max-width:none; }
+}
+
+/* Ошибки формы: красное только после неудачной отправки – линия поля и строка под ним.
+   Подсказка под кнопкой («Podaj e-mail i numer, aby wysłać») остаётся серой: это не ошибка,
+   а предупреждение до нажатия. Подписи полей не красим – по ним ищут поле (20.09.2026) */
+.qd .wy-v2 .field.is-invalid{ border-bottom-color:#C8102E; border-bottom-width:2px; }
+.qd .wy-v2 .field.is-invalid::placeholder{ color:rgba(200,16,46,.55); }
+
+/* Вторичные подписи панели – один набор: 16px, 400, ink .55, межстрочный 1.2 (20.09.2026).
+   Сюда входят «przeciągnij pliki tutaj», «na niego odpiszemy», «21 zdjęć» и «Zdjęcia usuwamy…».
+   Подсказка под кнопкой («Podaj e-mail i numer…») мельче намеренно – это служебное предупреждение */
+.qd .wy-v2 .qd-files-cap, .qd .wy-v2 .qd-safe{ font-size:16px; font-weight:400; line-height:1.2; color:rgba(31,33,32,.55); }
+.wy-v2 #quote-form .qd-done .qd-safe{ font-size:16px; font-weight:400; line-height:1.2; }
+
+
+/* «Polityka Prywatności» – теми же параметрами, что «Sprawa pilna»: 17px, 500, ink .55, межстрочный 1.2 */
+.qd .wy-v2 .qd-legal .qd-policy-btn{ font-size:17px; font-weight:500; line-height:1.2;
+ color:#4a4a45; text-decoration:none; }
+
+
+/* Левая колонка «Wycena» – больше воздуха (20.09.2026).
+   Заголовок и его типографика не тронуты: увеличены только отступы всего,
+   что идёт после него, чтобы блоки дышали и читались группами */
+.qd .wy-v2 .qd-eta{ margin-top:4.82rem; }
+.qd .wy-v2 .qd-lead{ margin-top:2.6rem; }
+.qd .wy-v2 .qd-human{ margin-top:1.6rem; }
+.qd .wy-v2 .qd-callwrap{ margin-top:2.6rem; }
+.qd .wy-v2 .qd-call{ margin-top:.45rem; }
+.qd .wy-v2 .qd-msgr{ margin-top:4.5rem; }
+.qd .wy-v2 .qd-alt{ margin-top:1.1rem; }
+@media (min-width:1024px){
+  /* низ плашки «15 min» совпадает с низом дропзоны в правой колонке */
+  .qd .wy-v2 .qd-eta{ margin-top:6rem; }
+  .qd .wy-v2 .qd-msgr{ margin-top:9.5rem; }
+}
+/* В мобильной шапке, где заголовок скрыт, плашка остаётся прижатой к верху */
+@media (max-width:1023px){
+  .qd .wy-v2 .qd-left .qd-eta{ margin-top:0; }
+}

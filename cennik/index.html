@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260919c">
+<link rel="stylesheet" href="/styles.css?v=20260920-38">
 
 <script type="application/ld+json">
 {
@@ -102,7 +102,7 @@
         <a href="/tlumaczenia-przysiegle/" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Tłumaczenia</span><span class="nl-b" aria-hidden="true">Tłumaczenia</span></span></a>
         <a href="/cennik/" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Cennik</span><span class="nl-b" aria-hidden="true">Cennik</span></span></a>
         <a href="/kontakt/#gdzie" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Gdzie</span><span class="nl-b" aria-hidden="true">Gdzie</span></span></a>
-        <a href="/cennik/#wycena" data-quote class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Zamów</span><span class="nl-b" aria-hidden="true">Wycena</span></span></a>
+        <a href="/cennik/#wycena" data-quote class="navlink navlink--plate text-[21px] font-bold"><span class="nl-plate">Zamów wycenę</span></a>
       </nav>
 
     </div>
@@ -141,7 +141,7 @@
       <a href="/tlumaczenia-przysiegle/"  class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Tłumaczenia</a>
       <a href="/cennik/"               class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Cennik</a>
       <a href="/kontakt/#gdzie"        class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Gdzie załatwić</a>
-      <a href="/cennik/#wycena" data-quote class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Zamów – wycena</a>
+      <a href="/cennik/#wycena" data-quote class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Zamów wycenę</a>
       <a href="/#faq"          class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Częste pytania</a>
       <a href="/kontakt/"      class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Kontakt</a>
       <a href="https://wa.me/48507588155" target="_blank" rel="noopener"
@@ -441,12 +441,16 @@
     </div>
    </div>
   </div>
-<a href="#top" class="to-top" aria-label="Na górę strony"><svg aria-hidden="true" viewBox="0 0 24 24" class="chip-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></a>
 
 </footer>
+
+<!-- Стрелка «наверх»: вынесена из <footer> – он fixed и с overflow:hidden, внутри него
+     кнопка не показывалась на десктопе (20.09.2026) -->
+<a href="#top" class="to-top" aria-label="Na górę strony"><svg aria-hidden="true" viewBox="0 0 24 24" class="chip-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></a>
+
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260919b" defer></script>
+<script src="/assets/app.js?v=20260920-38" defer></script>
 
 </body>
 </html>

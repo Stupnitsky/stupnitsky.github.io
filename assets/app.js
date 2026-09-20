@@ -1396,10 +1396,25 @@
     function fieldErr(key, text) {
       var el = form.querySelector('[data-err="' + key + '"]'); if (!el) return;
       el.textContent = text || ''; el.hidden = !text;
+      /* скринридер должен прочитать ошибку вместе с полем, поэтому связываем их явно */
+      var fld = form.querySelector('[name="' + key + '"]'); if (!fld) return;
+      if (!el.id) el.id = 'err-' + key + (form.id ? '-' + form.id : '');
+      if (text) { fld.setAttribute('aria-describedby', el.id); fld.setAttribute('aria-invalid', 'true'); }
+      else { fld.removeAttribute('aria-describedby'); fld.removeAttribute('aria-invalid'); }
     }
+    var emailEl = form.querySelector('[name="email"]');
+    /* адрес считаем заполненным, когда он похож на адрес: иначе подсказка гасла бы на «anna@» */
+    function emailOk(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((v || '').trim()); }
+    function needPhone() { return phoneEl && phoneEl.required && !phoneEl.value.trim(); }
+    function needEmail() { return emailEl && emailEl.required && !emailOk(emailEl.value); }
     function updateNeed() {
-      var el = form.querySelector('.qd-need'); if (!el || !phoneEl) return;
-      el.hidden = !(picked.length && !phoneEl.value.trim()) || phoneEl.classList.contains('is-invalid');
+      var el = form.querySelector('.qd-need'); if (!el) return;
+      var miss = [];
+      if (needEmail()) miss.push('e-mail');
+      if (needPhone()) miss.push('numer');
+      var bad = (phoneEl && phoneEl.classList.contains('is-invalid')) || (emailEl && emailEl.classList.contains('is-invalid'));
+      el.textContent = miss.length ? 'Podaj ' + miss.join(' i ') + ', aby wysłać' : '';
+      el.hidden = !(picked.length && miss.length) || bad;
     }
     /* польский номер читается тройками: 433 288 313, с кодом +48 433 288 313 (19.09.2026) */
     function fmtPhone(raw) {
@@ -1419,6 +1434,9 @@
         if (atEnd) phoneEl.setSelectionRange(next.length, next.length);
       }
       if (phoneEl.value.trim()) fieldErr('phone', ''); updateNeed();
+    });
+    if (emailEl) emailEl.addEventListener('input', function () {
+      if (emailOk(emailEl.value)) fieldErr('email', ''); updateNeed();
     });
     /* миниатюры 72px с крестиком, подпись «2 zdjęcia» */
     function render() {
@@ -1454,7 +1472,7 @@
       if (!arr.length || !inp) return;
       if (drop) drop.classList.add('is-busy');
       say('Przygotowujemy zdjęcia…', true);
-      Promise.all(arr.map(shrinkImage)).then(function (out) {
+      Promise.all(arr.map(shrinkImage)).catch(function () { return []; }).then(function (out) {
         var tooBig = null;
         out.forEach(function (f) {
           if (f.size > MAX_FILE) { tooBig = f; return; }
@@ -1505,7 +1523,6 @@
       });
     }
     toggler(form.querySelector('[data-show-msg]'), form.querySelector('.qd-msg'));
-    toggler(form.querySelector('[data-show-email]'), form.querySelector('.qd-email'));
 
     /* drag & drop на зону; файл, брошенный мимо, не должен открыться вместо страницы */
     if (drop) {
@@ -1530,29 +1547,47 @@
       var need = function (f) { return f && f.required; };
       var missing = (need(name) && !name.value.trim()) || (need(phone) && !phone.value.trim()) ||
                     (need(service) && !service.value) || (need(inp) && !picked.length);
+      var email = form.querySelector('[name="email"]');
       var noPhone = need(phone) && !phone.value.trim(), noFile = need(inp) && !picked.length;
+      var noEmail = need(email) && !emailOk(email.value);
+      if (noEmail) missing = true;
       var noOther = (need(name) && !name.value.trim()) || (need(service) && !service.value);
+      /* после неудачной отправки поле остаётся помеченным, пока в нём не появится годное значение:
+         иначе метка гасла на первом же символе, когда вводить ещё нечего было проверять */
       var mark = function (f) {
-        if (!f || f.classList.contains('is-invalid')) return; f.classList.add('is-invalid');
-        f.addEventListener('input', function un() { f.classList.remove('is-invalid'); f.removeEventListener('input', un); updateNeed(); });
+        if (!f || f.classList.contains('is-invalid')) return;
+        f.classList.add('is-invalid');
+        var ok = f === email ? function () { return emailOk(f.value); } : function () { return !!f.value.trim(); };
+        f.addEventListener('input', function watch() {
+          if (!ok()) return;
+          f.classList.remove('is-invalid');
+          fieldErr(f.name, '');
+          f.removeEventListener('input', watch);
+          updateNeed();
+        });
       };
       var panel = !!btn.querySelector('.qd-submit-txt');
       /* панель: ошибки под полями, прокрутка к первому пустому, кнопка качнётся */
-      if (panel && !noOther && (noFile || noPhone)) {
+      if (panel && !noOther && (noFile || noPhone || noEmail)) {
         hush();
         fieldErr('file', noFile ? 'Dodaj zdjęcie – bez niego nie policzymy ceny.' : '');
-        fieldErr('phone', noPhone ? 'Podaj numer – na niego wyślemy wycenę.' : '');
+        fieldErr('email', noEmail ? (email.value.trim() ? 'Sprawdź adres e-mail.' : 'Podaj e-mail – na niego wyślemy wycenę.') : '');
+        fieldErr('phone', noPhone ? 'Podaj numer – zadzwonimy, jeśli coś będzie niejasne.' : '');
         if (noPhone) mark(phone);
+        if (noEmail) mark(email);
         updateNeed();
-        var target = noFile ? form.querySelector('.qd-photo') : form.querySelector('.qd-acc--static');
+        /* прокрутка к первому незаполненному – в порядке полей: фото → e-mail → telefon */
+        var target = noFile ? form.querySelector('.qd-photo')
+                   : (noEmail ? form.querySelector('.qd-email') : form.querySelector('[name="phone"]'));
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
         btn.classList.remove('is-shake'); void btn.offsetWidth; btn.classList.add('is-shake');
         return;
       }
       if (!noOther) {
-        if (noPhone && noFile) { say(form.dataset.msgRequired, false); mark(phone); return; }
+        if (noFile && (noPhone || noEmail)) { say(form.dataset.msgRequired, false); mark(noEmail ? email : phone); return; }
         if (noFile)  { say('Dodaj zdjęcie dokumentu – bez niego nie policzymy ceny.', false); return; }
-        if (noPhone) { say('Podaj numer telefonu – na niego wyślemy wycenę.', false); mark(phone); phone.focus(); return; }
+        if (noEmail) { say(email.value.trim() ? 'Sprawdź adres e-mail.' : 'Podaj adres e-mail – na niego wyślemy wycenę.', false); mark(email); email.focus(); return; }
+        if (noPhone) { say('Podaj numer telefonu – zadzwonimy, jeśli coś będzie niejasne.', false); mark(phone); phone.focus(); return; }
       }
       if (missing) { say(form.dataset.msgRequired || 'Uzupełnij imię, telefon i wybierz usługę.', false); return; }
       if (drop && drop.classList.contains('is-busy')) { say('Chwila – jeszcze przygotowujemy zdjęcia.', false); return; }
@@ -1584,6 +1619,7 @@
       function showDone() {
           form.classList.add('is-sent');                      /* CSS прячет поля, показывает .qd-done */
           var head = form.parentElement.querySelector('.qd-formhead--light'); if (head) head.hidden = true;
+          var em = form.querySelector('.qd-done-email'); if (em && email) em.textContent = email.value.trim();
           var ph = form.querySelector('.qd-done-phone'); if (ph && phone) ph.textContent = phone.value.trim();
           var done = form.querySelector('.qd-done'); if (done) { done.hidden = false; done.focus && done.focus(); }
           hush();
@@ -1781,7 +1817,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260919b';   /* версию менять вместе с правкой фрагмента */
+    var FRAG = '/assets/wycena.html?v=20260920-38';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
