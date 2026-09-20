@@ -2276,7 +2276,8 @@ body > main{ background:var(--c-page); }
    иначе стекло было бы не видно. Скругления не трогаем (21.09.2026). */
 .qd .qd-shell{ background:rgba(255,255,255,.88);   /* прозрачность всей поверхности 12% */
  -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
- box-shadow:var(--hdr-shadow); }   /* тень наружу, как у плашки шапки */
+ /* та же тень наружу, что у плашки шапки, но вдвое плотнее (21.09.2026) */
+ box-shadow:0 1px 2px -1px rgba(31,33,32,.20), 0 8px 12px -8px rgba(31,33,32,.32); }
 .qd .qd-scroll > div, .qd .qd-scroll > div > .grid > div{ background:transparent; }
 .qd .qd-scroll .qd-head{ background:transparent; }
 /* затемнения под панелью нет – слой остаётся только как область закрытия по клику;
