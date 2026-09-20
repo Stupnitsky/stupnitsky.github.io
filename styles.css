@@ -2295,3 +2295,14 @@ body > main{ background:var(--c-page); }
 /* правая колонка почти непрозрачная – 8%, с тем же размытием */
 .qd .qd-scroll > div > .grid > div:nth-child(2){ background:rgba(255,255,255,.92);
  -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur); }
+/* Дропзона – те же параметры, что у тёмной колонки: фон --hdr-bg-dark с размытием,
+   белый текст, жёлтой подложки нет. Пунктирная рамка светлеет, чтобы читалась
+   на тёмном; при наведении и перетаскивании становится ярче (21.09.2026). */
+.qd .wy-v2 .qd-drop,
+.qd .wy-v2 .qd-drop:hover,
+.qd .wy-v2 .qd-drop.is-over{ background:var(--hdr-bg-dark);
+ -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
+ border-color:rgba(255,255,255,.55); }
+.qd .wy-v2 .qd-drop:hover, .qd .wy-v2 .qd-drop.is-over{ border-color:rgba(255,255,255,.8); }
+.qd .wy-v2 .qd-drop, .qd .wy-v2 .qd-drop *{ color:var(--c-paper); }
+.qd .wy-v2 .qd-drop.is-filled .file-name{ color:var(--c-paper); }
