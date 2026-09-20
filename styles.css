@@ -2283,6 +2283,13 @@ body > main{ background:var(--c-page); }
 .qd .qd-scroll > div, .qd .qd-scroll > div > .grid > div{ background:transparent; }
 .qd .qd-scroll .qd-head{ background:transparent; }
 /* затемнение под панелью накрывает и шапку – слой шапки не поднимаем (21.09.2026).
-   Левая колонка серая: лёгкая вуаль поверх стекла даёт ту же разницу с правой,
-   что раньше давали bg-sand и bg-paper. */
-.qd .qd-scroll > div > .grid > div:first-child{ background:rgba(31,33,32,.12); }
+   Левая колонка – параметры тёмной плашки шапки (--hdr-bg-dark + размытие),
+   правая – белая с прозрачностью 8%. */
+.qd .qd-scroll > div > .grid > div:first-child{ background:var(--hdr-bg-dark);
+ -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur); }
+/* на тёмной колонке текст светлеет – как в шапке над тёмными блоками */
+.qd .wy-v2 .qd-left, .qd .wy-v2 .qd-left *{ color:var(--c-paper); }
+/* плашка «15 min» остаётся светлой с чернильным текстом */
+.qd .wy-v2 .qd-left .qd-eta span{ color:var(--c-ink); }
+/* правая колонка почти непрозрачная – 8% */
+.qd .qd-scroll > div > .grid > div:nth-child(2){ background:rgba(255,255,255,.92); }
