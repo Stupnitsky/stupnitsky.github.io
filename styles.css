@@ -2271,12 +2271,12 @@ body > main{ background:var(--c-page); }
 }
 
 /* Вся всплывающая панель «Wycena» – стекло того же семейства, что плашка шапки:
-   фон --hdr-bg, размытие --hdr-blur и внутренняя тень по всем границам.
+   фон, размытие и та же тень наружу (--hdr-shadow).
    Непрозрачные подложки внутри (карточка bg-sand и правая колонка bg-paper) снимаем,
    иначе стекло было бы не видно. Скругления не трогаем (21.09.2026). */
 .qd .qd-shell{ background:rgba(255,255,255,.88);   /* прозрачность всей поверхности 12% */
  -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
- box-shadow:inset 0 2px 4px rgba(31,33,32,.15), inset 0 0 26px -6px rgba(31,33,32,.23); }
+ box-shadow:var(--hdr-shadow); }   /* тень наружу, как у плашки шапки */
 .qd .qd-scroll > div, .qd .qd-scroll > div > .grid > div{ background:transparent; }
 .qd .qd-scroll .qd-head{ background:transparent; }
 /* затемнения под панелью нет – слой остаётся только как область закрытия по клику;
