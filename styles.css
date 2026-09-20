@@ -114,9 +114,10 @@ header .navlink--plate.on-dark:hover, header .navlink--plate.on-dark:focus-visib
 @media (prefers-reduced-motion:reduce){
  header .navlink--plate .nl-plate::before{ transition:opacity .18s ease; transform:scale(1); } }
 
-/* «Zamów wycenę» на 76px шире прежнего «Zamów», и в 1024–1099px ряд меню перестал помещаться
-   (20.09.2026): в этой полосе показываем бургер, как на планшете, — гарнитура и поля не жмутся. */
-@media (min-width:1024px) and (max-width:1099px){
+/* «Zamów wycenę» на 76px шире прежнего «Zamów», а «Kontakt» на 23px шире «Gdzie»:
+   ряд меню перестал помещаться ниже ~1130px (20.09.2026). В этой полосе показываем бургер,
+   как на планшете, — гарнитура и поля не жмутся. */
+@media (min-width:1024px) and (max-width:1129px){
  #nav-main{ display:none !important; }
  #burger{ display:flex !important; }
 }
