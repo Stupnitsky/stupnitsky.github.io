@@ -2308,3 +2308,20 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-drop.is-over .qd-plus{ background:rgba(31,33,32,.92); color:var(--c-paper); }
 .qd .wy-v2 .qd-drop, .qd .wy-v2 .qd-drop *{ color:var(--c-paper); }
 .qd .wy-v2 .qd-drop.is-filled .file-name{ color:var(--c-paper); }
+
+/* Полоса размытия вверху правой колонки: содержимое уходит под неё при прокрутке,
+   белый градиент гасит текст. Полоса прилипает к верху области прокрутки, в поток
+   не встраивается (отрицательные поля), клики пропускает (21.09.2026). */
+.qd .wy-v2 .qd-scroll > div > .grid > div:nth-child(2){ position:relative; --qd-pad:1.75rem; }
+@media (min-width:640px){ .qd .wy-v2 .qd-scroll > div > .grid > div:nth-child(2){ --qd-pad:3rem; } }
+@media (min-width:1024px){ .qd .wy-v2 .qd-scroll > div > .grid > div:nth-child(2){ --qd-pad:3.5rem; } }
+.qd .wy-v2 .qd-scroll > div > .grid > div:nth-child(2)::before{
+ content:''; position:sticky; top:0; z-index:5; display:block; height:4rem;
+ /* верх поднимаем на поле колонки, снизу компенсируем высоту минус то же поле,
+    иначе содержимое уезжает вверх на величину поля */
+ margin:calc(var(--qd-pad) * -1) calc(var(--qd-pad) * -1) calc(var(--qd-pad) - 4rem);
+ -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+ background:linear-gradient(to bottom, rgba(255,255,255,.95), rgba(255,255,255,0));
+ -webkit-mask-image:linear-gradient(to bottom, #000 55%, transparent);
+ mask-image:linear-gradient(to bottom, #000 55%, transparent);
+ pointer-events:none; }
