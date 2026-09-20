@@ -2279,3 +2279,8 @@ body > main{ background:var(--c-page); }
  box-shadow:inset 0 2px 4px rgba(31,33,32,.15), inset 0 0 26px -6px rgba(31,33,32,.23); }
 .qd .qd-scroll > div, .qd .qd-scroll > div > .grid > div{ background:transparent; }
 .qd .qd-scroll .qd-head{ background:transparent; }
+/* затемнения под панелью нет – слой остаётся только как область закрытия по клику;
+   левая колонка снова серая: лёгкая вуаль поверх стекла даёт ту же разницу с правой,
+   что раньше давали bg-sand и bg-paper (21.09.2026) */
+.qd .qd-backdrop{ background:transparent; }
+.qd .qd-scroll > div > .grid > div:first-child{ background:rgba(31,33,32,.07); }
