@@ -102,7 +102,7 @@ header .navlink .nl-b{ font-weight:700; visibility:hidden; opacity:0; transform:
 header .navlink--plate{ font-weight:700; }
 header .navlink--plate .nl-plate{ position:relative; z-index:1; display:inline-block; white-space:nowrap; }
 header .navlink--plate .nl-plate::before{ content:''; position:absolute; z-index:-1;
- inset:-11px -14px; background:rgba(239,176,31,.4);  /* высота +18%, прозрачность 60% (20.09.2026) */
+ inset:-11px -14px; background:rgba(239,176,31,.64);  /* высота +18%, прозрачность 36% (20.09.2026) */
  /* скругление фиксированное 12px; тень внутренняя – плашка выглядит вдавленной (20.09.2026) */
  border-radius:12px;
  box-shadow:inset 0 2px 4px rgba(31,33,32,.22), inset 0 8px 14px -8px rgba(31,33,32,.35);
