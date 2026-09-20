@@ -1817,7 +1817,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260920-40';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260920-41';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -1983,4 +1983,39 @@
     window.addEventListener('scroll', onScroll, { passive:true });
     window.addEventListener('resize', onScroll);
     apply();
+  })();
+
+  /* Диагностика горизонтальной прокрутки (20.09.2026, временно).
+     Включается только адресом с #xdebug – на обычной странице не делает ничего.
+     Показывает ширину окна, ширину прокрутки и элементы, выходящие за правый край:
+     нужна, чтобы поймать дефект, который виден только в Safari на iPhone. */
+  (function () {
+    if (location.hash !== '#xdebug') return;
+    function path(el) {
+      var s = el.tagName.toLowerCase();
+      if (el.id) s += '#' + el.id;
+      var c = el.getAttribute('class');
+      if (c) s += '.' + c.trim().split(/\s+/).slice(0, 3).join('.');
+      return s;
+    }
+    function run() {
+      var w = document.documentElement.clientWidth, rows = [];
+      document.querySelectorAll('body *').forEach(function (e) {
+        var b = e.getBoundingClientRect();
+        if (b.right > w + 0.5) rows.push([Math.round(b.right), Math.round(b.width), path(e)]);
+      });
+      rows.sort(function (a, b) { return b[0] - a[0]; });
+      var box = document.getElementById('xdebug-box') || document.createElement('div');
+      box.id = 'xdebug-box';
+      box.setAttribute('style', 'position:fixed;left:0;top:0;width:100%;max-height:55%;overflow:auto;' +
+        'z-index:9999;background:#000;color:#0f0;font:11px/1.35 monospace;padding:8px;white-space:pre-wrap');
+      box.textContent = 'clientWidth ' + w + ' | scrollWidth ' + document.documentElement.scrollWidth +
+        ' | innerWidth ' + window.innerWidth + ' | scrollX ' + Math.round(window.scrollX) +
+        '\nвыходят за край: ' + rows.length + '\n' +
+        rows.slice(0, 14).map(function (r) { return 'right ' + r[0] + '  w ' + r[1] + '  ' + r[2]; }).join('\n');
+      if (!box.parentNode) document.body.appendChild(box);
+    }
+    window.addEventListener('load', function () { setTimeout(run, 400); });
+    window.addEventListener('resize', run);
+    document.addEventListener('click', run);
   })();
