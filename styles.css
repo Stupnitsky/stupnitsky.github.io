@@ -102,19 +102,21 @@ header .navlink .nl-b{ font-weight:700; visibility:hidden; opacity:0; transform:
 header .navlink--plate{ font-weight:700; }
 header .navlink--plate .nl-plate{ position:relative; z-index:1; display:inline-block; white-space:nowrap; }
 header .navlink--plate .nl-plate::before{ content:''; position:absolute; z-index:-1;
- inset:-11px -14px; background:rgba(239,176,31,.64);  /* высота +18%, прозрачность 36% (20.09.2026) */
+ inset:-11px -14px;  /* высота плашки +18% (20.09.2026) */
+ /* тот же серый, что подсвечивает строку в списке языков (.lang-opt:hover) */
+ background:rgba(31,33,32,.07);
  /* скругление фиксированное 12px; тень внутренняя – плашка выглядит вдавленной (20.09.2026) */
  border-radius:12px;
  box-shadow:inset 0 2px 4px rgba(31,33,32,.22), inset 0 8px 14px -8px rgba(31,33,32,.35);
  transform:scale(.16,.46); opacity:0;
  transition:transform .32s cubic-bezier(.2,.7,.25,1), opacity .18s ease; }
+/* над тёмным блоком – светлый вариант той же подсветки */
+header .navlink--plate.on-dark .nl-plate::before{ background:rgba(255,255,255,.14); }
 header .navlink--plate:hover .nl-plate::before,
 header .navlink--plate:focus-visible .nl-plate::before{ transform:scale(1); opacity:1; }
-/* на жёлтой плашке текст всегда чернильный – то же правило, что у .wa-btn и .btn.
-   Над тёмным блоком пункт меню белый, и на плашке он почти не читался (20.09.2026) */
-header .navlink--plate:hover, header .navlink--plate:focus-visible,
-header .navlink--plate.on-dark:hover, header .navlink--plate.on-dark:focus-visible{
- color:var(--c-ink); }
+/* плашка полупрозрачная и повторяет тон фона, поэтому цвет текста не меняем:
+   над светлой шапкой он чернильный, над тёмной – белый, как у остальных пунктов
+   (раньше плашка была жёлтой и требовала чернильного текста в обоих случаях) */
 @media (prefers-reduced-motion:reduce){
  header .navlink--plate .nl-plate::before{ transition:opacity .18s ease; transform:scale(1); } }
 
