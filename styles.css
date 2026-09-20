@@ -2275,9 +2275,3 @@ body > main{ background:var(--c-page); }
    остаётся подсветка фоном, фокус по-прежнему обводится (20.09.2026). */
 .qd .wy-v2 .qd-drop{ border:0;
  box-shadow:inset 0 2px 4px rgba(31,33,32,.22), inset 0 8px 14px -8px rgba(31,33,32,.35); }
-
-/* Поля-линии: та же вдавленность, что у дропзоны, но только по нижней грани –
-   мягкая тень ложится над самой линией (20.09.2026). На фокусе сохраняется. */
-.qd .wy-v2 .quote-form .field.qd-line,
-.qd .wy-v2 .quote-form .field.qd-line:focus{
- box-shadow:inset 0 -2px 4px rgba(31,33,32,.22), inset 0 -8px 14px -8px rgba(31,33,32,.35); }
