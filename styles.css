@@ -116,10 +116,9 @@ header .navlink--plate.on-dark .nl-plate::before{
  box-shadow:inset 0 2px 4px rgba(31,33,32,.33), inset 0 8px 14px -8px rgba(31,33,32,.53); }
 header .navlink--plate:hover .nl-plate::before,
 header .navlink--plate:focus-visible .nl-plate::before{ opacity:1; transition:opacity .6s ease; }
-/* пока открыта панель «Wycena», плашка пункта скрыта: курсор остаётся на пункте,
-   и она висела бы под панелью, как нажатая кнопка (20.09.2026) */
-html.qd-open header .navlink--plate:hover .nl-plate::before,
-html.qd-open header .navlink--plate:focus-visible .nl-plate::before{ opacity:0; }
+/* пока открыта панель «Wycena», плашка остаётся видимой независимо от курсора –
+   пункт выглядит нажатым всё время, что форма на экране (20.09.2026) */
+html.qd-open header .navlink--plate .nl-plate::before{ opacity:1; }
 /* плашка полупрозрачная и повторяет тон фона, поэтому цвет текста не меняем:
    над светлой шапкой он чернильный, над тёмной – белый, как у остальных пунктов
    (раньше плашка была жёлтой и требовала чернильного текста в обоих случаях) */
