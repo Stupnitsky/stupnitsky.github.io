@@ -1124,7 +1124,12 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
 
 /* Бегущая строка */
 @keyframes ticker{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
-.ticker-track{ display:flex; width:max-content; animation:ticker 58s linear infinite; }
+/* Safari на iPhone не всегда обрезает анимированный (translateX) слой одним overflow:hidden –
+   лента шириной ~7400px протекала наружу и растягивала страницу вбок. Своя область отрисовки
+   у полосы (contain + свой слой) гарантирует обрезку на всех движках (20.09.2026) */
+.ticker-bar{ position:relative; isolation:isolate; contain:paint; transform:translateZ(0); }
+.ticker-track{ display:flex; width:max-content; animation:ticker 58s linear infinite;
+ will-change:transform; }
 .ticker-dot{ font-size:10px; line-height:1; position:relative; top:-2px; color:inherit; }
 @media (prefers-reduced-motion:reduce){ .ticker-track{ animation:none } html{scroll-behavior:auto} }
 
