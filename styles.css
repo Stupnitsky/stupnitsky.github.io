@@ -808,6 +808,14 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
     по тексту и разрешает перенос, когда места нет (20.09.2026) */
  grid-template-columns:repeat(2, minmax(0, max-content)); max-width:100%;
  justify-items:start; margin:0; padding:0; list-style:none; }
+/* Две жёсткие колонки не помещались на узких экранах: названия языков не переносятся,
+   колонки сжимались до 100px, а чипы вылезали за край и растягивали страницу
+   (на 320px – на 35px, замер с телефона 20.09.2026). На телефоне – обычный перенос
+   строк: сколько чипов влезло в ряд, столько и стоит, ничего не выходит за край. */
+@media (max-width:639px){
+ .lang-grid{ display:flex; flex-wrap:wrap; }
+ .lang-chip{ min-width:0; max-width:100%; }
+}
 .lang-chip--accent{ display:flex; align-items:center; justify-content:center; text-align:center;
  color:var(--c-ink); }
 .lang-chip--accent .chip-mark > span{ color:var(--c-terra); }
