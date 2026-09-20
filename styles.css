@@ -384,6 +384,10 @@ header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:r
 .hero-langs{ width:100%; }
 /* Выезд строки справа с выравниванием по левому краю */
 .no-x{ overflow-x:clip; }
+/* До появления строка сдвинута вправо на 1.1em: в заголовках это вылезало за окно
+   и давало горизонтальную прокрутку (на 698px – 28px). Секция «Jak działamy» уже
+   обрезана классом .no-x, остальные заголовки обрезаем здесь (20.09.2026) */
+h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 .slide-in{ display:inline-block; opacity:0; transform:translateX(1.1em);
  transition:opacity 1.25s ease, transform 1.7s cubic-bezier(.12,.72,.2,1); }
 .slide-in.is-in{ opacity:1; transform:none; }
