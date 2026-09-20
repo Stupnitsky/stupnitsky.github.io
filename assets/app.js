@@ -1817,7 +1817,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260921-10';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260921-11';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -1862,7 +1862,8 @@
       load().then(function(){
         last = document.activeElement;
         qd.hidden = false;
-        document.body.style.overflow = 'hidden';
+        /* страницу не блокируем: колесо над панелью крутит её содержимое,
+           а мимо панели – сам сайт (21.09.2026) */
         /* пока панель на экране, пункт меню держим нажатым: класс qd-open
            оставляет его плашку видимой независимо от курсора (20.09.2026) */
         document.documentElement.classList.add('qd-open');
@@ -1876,7 +1877,7 @@
     function close(){
       if (!qd) return;
       qd.classList.remove('is-open');
-      document.body.style.overflow = '';
+      document.body.style.overflow = '';   /* страховка: панель раньше блокировала прокрутку */
       document.documentElement.classList.remove('qd-open');
       setTimeout(function(){ if(!qd.classList.contains('is-open')) qd.hidden = true; }, 500);
       if (last && last.focus) last.focus();

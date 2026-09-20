@@ -1548,7 +1548,9 @@ details[open] .chev{ transform:rotate(45deg); }
 .qd-shell{ width:100%; max-height:88vh; background:var(--c-paper);
  border-radius:26px 26px 0 0; overflow:hidden; }
 /* карточка занимает панель целиком: серая колонка от левого края и на всю высоту */
-.qd-scroll{ max-height:88vh; overflow:auto; -webkit-overflow-scrolling:touch; }
+.qd-scroll{ max-height:88vh; overflow:auto; -webkit-overflow-scrolling:touch;
+ /* прокрутка панели не перескакивает на страницу, когда дошла до края (21.09.2026) */
+ overscroll-behavior:contain; }
 /* у карточки внутри панели снимаем overflow-hidden: он делает её собственным контейнером
    прокрутки и ломает sticky у шапки левой колонки */
 .qd-scroll > div{ border-radius:0; min-height:100%; overflow:visible; }
