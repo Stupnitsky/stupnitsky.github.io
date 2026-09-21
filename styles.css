@@ -788,6 +788,53 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
  font-size:16px; line-height:1.45; color:rgba(255,255,255,.55); }
 .cal-note i{ flex:0 0 auto; width:13px; height:13px; border-radius:999px;
  border:2px solid var(--c-red); }
+/* Запись на встречу (#cal[data-book]): рабочий день – кнопка того же размера, что кружок
+   праздника; вид сетки не меняется, пока на день не навели или его не выбрали */
+.cal-day{ appearance:none; -webkit-appearance:none; background:none; font:inherit; color:inherit;
+ cursor:pointer; width:36px; height:36px; border-radius:999px; padding:0; margin:0;
+ border:2px solid transparent; display:flex; align-items:center; justify-content:center;
+ -webkit-tap-highlight-color:transparent;
+ transition:background-color .2s ease, border-color .2s ease, color .2s ease; }
+.cal-day:focus-visible{ border-color:var(--c-ochre); outline:none; }
+@media (hover:hover){ .cal-day:hover{ border-color:var(--c-ochre); } }
+.cal-day.is-on, .cal-cell.is-today .cal-day.is-on{ background:var(--c-ochre);
+ border-color:var(--c-ochre); color:var(--c-ink); font-weight:800; }
+.cal-book{ margin-top:12px; }
+.cal-book-hint{ font-size:16px; line-height:1.45; color:rgba(255,255,255,.55); }
+.cal-book.is-open .cal-book-hint{ display:none; }
+/* сетка времени раскрывается тем же приёмом, что часы работы (.ws-hours-wrap) */
+.cal-slots-wrap{ display:grid; grid-template-rows:0fr; opacity:0; visibility:hidden;
+ transition:grid-template-rows .6s cubic-bezier(.16,.84,.3,1), opacity .4s ease, visibility 0s .6s; }
+.cal-slots-wrap > *{ overflow:hidden; min-height:0; }
+.cal-book.is-open .cal-slots-wrap{ grid-template-rows:1fr; opacity:1; visibility:visible;
+ transition:grid-template-rows .6s cubic-bezier(.16,.84,.3,1), opacity .4s ease, visibility 0s; }
+.cal-slots-head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+ padding-top:6px; margin-bottom:12px; }
+.cal-slots-date{ font-size:20px; font-weight:800; letter-spacing:-.02em; color:var(--c-paper); }
+.cal-slots-date::first-letter{ text-transform:uppercase; }
+.cal-slots-tz{ font-family:'Fira Sans Condensed',sans-serif; text-transform:uppercase;
+ letter-spacing:.18em; font-size:12px; font-weight:700; color:rgba(255,255,255,.55);
+ text-align:right; }
+.cal-slots{ display:grid; grid-template-columns:repeat(4,1fr); gap:6px; padding:2px; }
+@media (max-width:359px){ .cal-slots{ grid-template-columns:repeat(3,1fr); } }
+.cal-slot{ appearance:none; -webkit-appearance:none; font:inherit; margin:0; padding:0;
+ height:42px; border-radius:10px; cursor:pointer; background:none;
+ border:1px solid rgba(255,255,255,.18); color:rgba(255,255,255,.8);
+ font-size:16px; font-weight:600; -webkit-tap-highlight-color:transparent;
+ transition:background-color .2s ease, border-color .2s ease, color .2s ease; }
+.cal-slot:focus-visible{ border-color:var(--c-ochre); outline:none; }
+@media (hover:hover){ .cal-slot:hover{ border-color:var(--c-ochre); color:var(--c-paper); } }
+.cal-slot.is-on{ background:var(--c-ochre); border-color:var(--c-ochre); color:var(--c-ink);
+ font-weight:800; }
+.cal-go{ margin:14px 2px 0; display:flex; align-items:center; justify-content:center;
+ text-align:center; background:var(--c-ochre); color:var(--c-ink); border-radius:12px;
+ padding:16px 18px; font-size:16px; font-weight:700; line-height:1.3;
+ transition:background-color .25s ease; }
+.cal-go[hidden]{ display:none; }
+.cal-go:hover, .cal-go:focus-visible{ background:var(--c-paper); }
+.cal-book-note{ margin-top:12px; padding-bottom:4px; font-size:16px; line-height:1.45;
+ color:rgba(255,255,255,.55); }
+@media (prefers-reduced-motion:reduce){ .cal-slots-wrap{ transition:none; } }
 @media (prefers-reduced-motion:reduce){ .ws .ws-dot{ animation:none !important } }
 
 /* Языки: текстом, самоназвание наезжает сверху */
@@ -1682,6 +1729,14 @@ details[open] .chev{ transform:rotate(45deg); }
 .qd-ic--x{ opacity:0; transform:scale(.8); }
 .qd-close:hover .qd-ic--chev, .qd-close:focus-visible .qd-ic--chev{ opacity:0; transform:rotate(90deg) scale(.8); }
 .qd-close:hover .qd-ic--x, .qd-close:focus-visible .qd-ic--x{ opacity:1; transform:none; }
+/* курсор ушёл с панели на затемнение – клик там закрывает панель, и кнопка честно показывает это:
+   стрелка меняется на крестик так же, как при наведении на саму кнопку. Панель-обёртка .qd-wrap
+   клики пропускает, поэтому всё вокруг плашки – это .qd-backdrop. Только для мыши (21.09.2026) */
+@media (hover:hover) and (pointer:fine){
+ .qd-backdrop:hover ~ .qd-wrap .qd-ic{ animation:none; }
+ .qd-backdrop:hover ~ .qd-wrap .qd-ic--chev{ opacity:0; transform:rotate(90deg) scale(.8); }
+ .qd-backdrop:hover ~ .qd-wrap .qd-ic--x{ opacity:1; transform:none; }
+}
 /* пульсирует только стрелка внутри кружка, сам кружок стоит на месте */
 @keyframes qd-pulse{
   0%, 100%{ transform:rotate(90deg) translateX(0); }
@@ -2267,6 +2322,99 @@ body > main{ background:var(--c-page); }
   .qd .wy-v2 .qd-eta{ margin-top:6rem; }
   .qd .wy-v2 .qd-msgr{ margin-top:9.5rem; }
 }
+/* WhatsApp / Telegram – кнопки, а не плашки (21.09.2026, ночь).
+   Были белыми брусками, растянутыми на полколонки: текст терялся в пустоте, стрелка была белой
+   на белом. Теперь это кнопка сайта (.btn) на тёмном: прозрачная, охряная обводка 1px, углы 12px,
+   белый текст; при наведении заливается охрой, текст и стрелка – чернила.
+   Ширина – по содержимому. Поля от кегля: .8em сверху-снизу, 1.5em по бокам (≈1:2) –
+   кнопка получается высотой ~2.6 строки текста и не выглядит ни бруском, ни ярлыком. */
+.qd .wy-v2 .qd-msgr, .qd .wy-v2 .qd-left .qd-msgr{ display:flex; flex-wrap:wrap; gap:10px; width:auto; }
+.qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{
+ flex:0 0 auto; min-height:0; padding:.8em 1.35em .8em 1.5em; gap:9px;
+ font-size:17px; font-weight:600; line-height:1; letter-spacing:.005em;
+ color:var(--c-paper); background:transparent; border-radius:12px;
+ /* обводка белая .65, а не охряная: мессенджеры – второй путь, охра в колонке остаётся за «15 min»,
+    а на всей панели – за главной кнопкой «Wyślij do wyceny». Охра приходит только при наведении */
+ border:1px solid rgba(255,255,255,.65);
+ transition:background-color .3s ease, border-color .3s ease, color .3s ease; }
+/* стрелка – того же размера, что у кнопок сайта (.btn-chev: 1.15em), отступ от слова те же 9px */
+.qd .wy-v2 .qd-msgr .qd-mplus svg{ width:1.15em; height:1.15em; display:block; margin:-.1em 0; transition:transform .3s ease; }
+.qd .wy-v2 .qd-msgr a:hover, .qd .wy-v2 .qd-msgr a:focus-visible{ background:var(--c-terra); border-color:var(--c-terra); }
+.qd .wy-v2 .qd-left .qd-msgr a:hover, .qd .wy-v2 .qd-left .qd-msgr a:hover *,
+.qd .wy-v2 .qd-left .qd-msgr a:focus-visible, .qd .wy-v2 .qd-left .qd-msgr a:focus-visible *{ color:var(--c-ink); }
+.qd .wy-v2 .qd-msgr a:hover .qd-mplus svg, .qd .wy-v2 .qd-msgr a:focus-visible .qd-mplus svg{ transform:translateX(3px); }
+/* Мышь: в покое стрелки нет, слово стоит по центру кнопки. При наведении стрелка выезжает справа,
+   слово сдвигается влево – общий приём кнопок сайта (.btn-mark). Ширина кнопки при этом не меняется
+   и соседняя не прыгает: место под стрелку (1.15em + 9px) в покое отдано боковым полям поровну,
+   при наведении поля сжимаются ровно на столько, на сколько раскрывается стрелка.
+   Телефон: наведения нет, стрелка видна всегда (21.09.2026, ночь) */
+@media (hover:hover) and (pointer:fine){
+ .qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr a:first-child, .qd .wy-v2 .qd-msgr a:last-child{
+  gap:0; justify-content:center; padding:.8em calc(1.5em + (1.15em + 9px) / 2);
+  transition:background-color .3s ease, border-color .3s ease, color .3s ease, padding .38s cubic-bezier(.2,.7,.25,1); }
+ .qd .wy-v2 .qd-msgr .qd-mplus{ display:block; overflow:hidden; width:0; margin-left:0; opacity:0;
+  transition:width .38s cubic-bezier(.2,.7,.25,1), margin-left .38s cubic-bezier(.2,.7,.25,1), opacity .28s ease; }
+ .qd .wy-v2 .qd-msgr a:hover, .qd .wy-v2 .qd-msgr a:focus-visible{ padding-left:1.5em; padding-right:1.5em; }
+ .qd .wy-v2 .qd-msgr a:hover .qd-mplus, .qd .wy-v2 .qd-msgr a:focus-visible .qd-mplus{ width:1.15em; margin-left:9px; opacity:1; }
+ .qd .wy-v2 .qd-msgr a:hover .qd-mplus svg, .qd .wy-v2 .qd-msgr a:focus-visible .qd-mplus svg{ transform:none; }
+}
+@media (prefers-reduced-motion:reduce){ .qd .wy-v2 .qd-msgr a, .qd .wy-v2 .qd-msgr .qd-mplus, .qd .wy-v2 .qd-msgr .qd-mplus svg{ transition:none; } }
+/* Тексты левой колонки – в типографике формы (21.09.2026, ночь). Были двумя абзацами обычного
+   начертания 24 и 16px с принудительными переносами – чужие и заголовку, и форме.
+   – «Odpowiadamy z ceną i terminem / – bez zobowiązań.» собран той же парой, что заголовки панели
+     («Ekspresowa wycena / Dokumentu», «Sfotografuj telefonem / każdą stronę…»): первая строка 800
+     с трекингом -0.045em и межстрочным .94, вторая – light italic, 0.879 кегля первой.
+     Обещание жирно, оговорка – лёгким курсивом: смысл разложен начертаниями одного шрифта.
+   – абзац про оператора – второй голос, как «na niego odpiszemy» в форме: 17px, один ровный
+     серый (белый .66), без выделений. Переносы – по смыслу, а не по ширине: три строки-синтагмы
+     «Dokumenty, od których wiele zależy, / sprawdza nasz specjalista. / Wszystkie traktujemy poufnie.»
+     Самая длинная – 35 знаков (≈290px) – входит и в колонку десктопа (438px), и в телефон 375px
+     (319px), поэтому рисунок абзаца одинаков на всех ширинах. На самых узких экранах (≤360px)
+     кегль 16px; если строка всё же не влезет, она сама делится поровну (text-wrap:balance),
+     а неразрывные пробелы не дают повиснуть «od» и «nasz». */
+/* 21.09.2026, ночь: пара «жирное 800 / light italic» здесь оказалась перебором – третий заголовок
+   на одну панель. Строка набрана однородно: 22px, 500, белый, обычный трекинг. Она старше серого
+   абзаца под ней (крупнее, плотнее, белая), но не спорит с заголовком панели.
+   Перенос по смыслу остаётся: обещание / оговорка – две строки на любой ширине */
+.qd .wy-v2 .qd-left .qd-lead{ font-size:22px; font-weight:500; font-style:normal; line-height:1.28;
+ letter-spacing:-.005em; margin-top:2.6rem; }
+.qd .wy-v2 .qd-left .qd-lead .qd-lead-a,
+.qd .wy-v2 .qd-left .qd-lead .qd-lead-b{ display:block; margin:0; font:inherit; letter-spacing:inherit;
+ color:var(--c-paper); text-wrap:balance; }
+.qd .wy-v2 .qd-left .qd-human{ margin-top:1.5rem; max-width:none; font-size:17px; font-weight:400; line-height:1.45;
+ letter-spacing:0; color:rgba(255,255,255,.66); }
+.qd .wy-v2 .qd-left .qd-human span{ display:block; color:inherit; text-wrap:balance; }
+@media (max-width:360px){ .qd .wy-v2 .qd-left .qd-human{ font-size:16px; } }
+@media (max-width:1023px){ .qd .wy-v2 .qd-left .qd-human{ margin-left:auto; margin-right:auto; } }
+/* телефон: при 22px строка «Odpowiadamy z ceną i terminem» (≈322px) на 3px шире колонки 375-го экрана
+   и ломалась на три строки. 20px – влезает в одну, рисунок «обещание / оговорка» сохраняется */
+@media (max-width:420px){ .qd .wy-v2 .qd-left .qd-lead{ font-size:20px; } }
+@media (max-width:340px){ .qd .wy-v2 .qd-left .qd-lead{ font-size:18px; } }
+
+/* Телефон – максимально читаемый (21.09.2026, ночь). Вопрос «Masz pytanie…» над ним убран:
+   номер говорит сам за себя. Что сделано для чтения:
+   – прямой шрифт вместо курсива: наклонные цифры на размытом фоне читаются хуже;
+   – кегль 34px (был 24), жирный 700, цифры одной ширины (tabular-nums) – группы 507 588 155
+     стоят ровными тройками; между группами обычный пробел, слегка разрежен трекинг;
+   – «+48» на той же строке и того же кегля, но тонкий и приглушённый: номер читается целиком,
+     а глаз сразу берёт значимые девять цифр. Раньше код был мелким и поднятым – шумел;
+   – номер стоит вплотную над кнопками мессенджеров: это один блок «связаться» внизу колонки,
+     весь воздух уходит наверх, между текстом и контактами. */
+.qd .wy-v2 .qd-left .qd-call{ font-style:normal; font-size:34px; font-weight:700; line-height:1.1;
+ letter-spacing:.01em; word-spacing:.06em; font-variant-numeric:tabular-nums lining-nums; margin-top:0; }
+.qd .wy-v2 .qd-left .qd-call .qd-call-cc{ font-style:normal; font-size:1em; font-weight:300; vertical-align:baseline;
+ margin-right:.28em; color:rgba(255,255,255,.7); }
+.qd .wy-v2 .qd-left .qd-call:hover, .qd .wy-v2 .qd-left .qd-call:focus-visible,
+.qd .wy-v2 .qd-left .qd-call:hover *, .qd .wy-v2 .qd-left .qd-call:focus-visible *{ color:var(--c-terra); }
+.qd .wy-v2 .qd-left .qd-call, .qd .wy-v2 .qd-left .qd-call *{ transition:color .3s ease; }
+.qd .wy-v2 .qd-callwrap{ margin-top:3.2rem; }
+.qd .wy-v2 .qd-msgr, .qd .wy-v2 .qd-left .qd-msgr{ margin-top:1.15rem; }
+@media (min-width:1024px){
+  /* кнопки мессенджеров остаются на линии «Wyślij do wyceny»: воздух перенесён из-под номера наверх */
+  .qd .wy-v2 .qd-callwrap{ margin-top:12.1rem; }
+  .qd .wy-v2 .qd-msgr, .qd .wy-v2 .qd-left .qd-msgr{ margin-top:1.15rem; }
+}
+@media (max-width:420px){ .qd .wy-v2 .qd-left .qd-call{ font-size:30px; } }
 /* В мобильной шапке, где заголовок скрыт, плашка остаётся прижатой к верху */
 @media (max-width:1023px){
   .qd .wy-v2 .qd-left .qd-eta{ margin-top:0; }
@@ -2286,28 +2434,179 @@ body > main{ background:var(--c-page); }
 /* затемнение под панелью накрывает и шапку – слой шапки не поднимаем (21.09.2026).
    Левая колонка – параметры тёмной плашки шапки (--hdr-bg-dark + размытие),
    правая – белая с прозрачностью 8%. */
-.qd .qd-scroll > div > .grid > div:first-child{ background:var(--hdr-bg-dark);
- -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur); }
+.qd .qd-scroll > div > .grid > div:first-child{ background:var(--hdr-bg-dark); }
+/* Размытие одно на всю панель и висит на неподвижной .qd-shell (21.09.2026, ночь).
+   Раньше его несли обе колонки, а они едут внутри прокрутки: браузер на каждом кадре заново
+   размывал две большие области – панель дёргалась. Оболочка стоит на месте, размытие под ней
+   считается один раз. Колонки дают только цвет: слева --hdr-bg-dark, справа белый .92 */
+.qd .qd-shell{ -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur); }
 /* на тёмной колонке текст светлеет – как в шапке над тёмными блоками */
 .qd .wy-v2 .qd-left, .qd .wy-v2 .qd-left *{ color:var(--c-paper); }
 /* обе плашки строки «15 min» со своими подложками – жёлтой и белой – держат чернильный текст */
 .qd .wy-v2 .qd-left .qd-eta b, .qd .wy-v2 .qd-left .qd-eta span{ color:var(--c-ink); }
 /* правая колонка почти непрозрачная – 8%, с тем же размытием */
 .qd .qd-scroll > div > .grid > div:nth-child(2){ background:rgba(255,255,255,.92);
- -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur); }
-/* Дропзона – те же параметры, что у тёмной колонки: фон --hdr-bg-dark с размытием,
-   белый текст, жёлтой подложки нет. Пунктирная рамка светлеет, чтобы читалась
-   на тёмном; при наведении и перетаскивании становится ярче (21.09.2026). */
-.qd .wy-v2 .qd-drop{ background:rgba(31,33,32,.88);
- -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
- border-color:rgba(255,255,255,.55); }
-/* при наведении и перетаскивании зона светлеет, а кружок наоборот темнеет */
-.qd .wy-v2 .qd-drop:hover, .qd .wy-v2 .qd-drop.is-over{ background:rgba(46,49,48,.58);
- border-color:rgba(255,255,255,.8); }
+ isolation:isolate; }  /* свой слой: «тень»-заливка дропзоны (z-index:-1) остаётся внутри колонки */
+/* Дропзона – сплошная серо-графитовая плашка, заметно светлее левой колонки (21.09.2026).
+   Стекло здесь не работает: под зоной белая колонка, полупрозрачный тёмный даёт грязно-серый,
+   поэтому заливка сплошная, без размытия. Пунктир вынесен наружу (::after с отрицательным
+   inset): тонкая чернильная прострочка по белому вокруг плашки. Наружной тени нет – с внешней
+   прострочкой она спорит; внутренняя есть всегда, при наведении набирает полную силу. Иерархия текста: первая строка белая, вторая – белая .72.
+   Кружок охряный с чернильным значком во всех состояниях – единственный цветной акцент формы. */
+.qd .wy-v2 .qd-drop{ position:relative; background:#DCDCD8; border-color:transparent;
+ -webkit-backdrop-filter:none; backdrop-filter:none;
+ /* в покое – 35% от внутренней тени наведения (альфы .38/.42 × .35), геометрия та же */
+ box-shadow:inset 0 0 0 1px rgba(255,255,255,.7), inset 0 2px 5px rgba(31,33,32,.06), inset 0 10px 22px -8px rgba(31,33,32,.07);
+ transition:box-shadow .25s ease; }
+.qd .wy-v2 .qd-drop::after{ content:''; position:absolute; inset:-9px; border-radius:17px;
+ /* цвет как у линий полей E-mail / Telefon (чернила .3), штрих 2px – прицел не спорит с формой */
+ border:2px solid rgba(31,33,32,.3); pointer-events:none; transition:border-color .6s ease; }
+/* наведение и перетаскивание: цвет плашки не меняется, появляется внутренняя тень –
+   зона «продавливается», как лоток; прострочка проявляется */
+.qd .wy-v2 .qd-drop:hover, .qd .wy-v2 .qd-drop.is-over{ background:#DCDCD8; border-color:transparent;
+ box-shadow:inset 0 0 0 1px rgba(255,255,255,.7), inset 0 2px 5px rgba(31,33,32,.17), inset 0 10px 22px -8px rgba(31,33,32,.2); }
+/* при наведении и мерцании цвет уголков не меняется – остаётся светлым, как в покое (чернила .3) */
+.qd .wy-v2 .qd-drop.is-over::after{ border-color:var(--c-terra); border-style:solid; border-width:2px; }
+.qd .wy-v2 .qd-plus,
 .qd .wy-v2 .qd-drop:hover .qd-plus,
-.qd .wy-v2 .qd-drop.is-over .qd-plus{ background:rgba(31,33,32,.92); color:var(--c-paper); }
-.qd .wy-v2 .qd-drop, .qd .wy-v2 .qd-drop *{ color:var(--c-paper); }
-.qd .wy-v2 .qd-drop.is-filled .file-name{ color:var(--c-paper); }
+.qd .wy-v2 .qd-drop.is-over .qd-plus{ background:var(--c-terra); color:var(--c-ink); }
+.qd .wy-v2 .qd-drop .qd-plus *{ color:inherit; }
+.qd .wy-v2 .qd-drop .qd-drop-btn{ color:var(--c-ink); }
+.qd .wy-v2 .qd-drop .qd-drop-drag, .qd .wy-v2 .qd-drop .qd-drop-touch{ color:rgba(31,33,32,.6); }
+.qd .wy-v2 .qd-drop.is-filled .file-name{ color:var(--c-ink); }
+/* фокус с клавиатуры – обводкой за уголками, а не поверх них */
+.qd .wy-v2 .file-input-hidden:focus-visible + .qd-drop{ outline-offset:13px; }
+@media (prefers-reduced-motion:reduce){ .qd .wy-v2 .qd-drop, .qd .wy-v2 .qd-drop::after{ transition:none; } }
+
+/* Вместо прострочки – уголки видоискателя снаружи плашки (21.09.2026, вечер): рамка ::after
+   стоит в 9px от края, маска оставляет от неё только четыре угла по 26px. Рифмуется с заголовком
+   «Sfotografuj telefonem» – так размечают кадр камера и сканер. Сама зона не уменьшается.
+   Наведение – уголки чернильные, перетаскивание файла – охряные (цвет задан выше, по border-color) */
+.qd .wy-v2 .qd-drop::after,
+.qd .wy-v2 .quote-form > .qd-photo:has(.qd-files li)::after{
+ --qd-c:linear-gradient(#000 0 0);
+ -webkit-mask:var(--qd-c) top left/26px 26px no-repeat, var(--qd-c) top right/26px 26px no-repeat,
+  var(--qd-c) bottom left/26px 26px no-repeat, var(--qd-c) bottom right/26px 26px no-repeat;
+ mask:var(--qd-c) top left/26px 26px no-repeat, var(--qd-c) top right/26px 26px no-repeat,
+  var(--qd-c) bottom left/26px 26px no-repeat, var(--qd-c) bottom right/26px 26px no-repeat; }
+
+/* Мерцание уголков (21.09.2026, вечер): видоискатель «наводится» – уголки гаснут и чуть
+   расходятся (9 → 12px от плашки), потом возвращаются.
+   Мышь: мерцают при наведении и пока над зоной держат файл.
+   Телефон: наведения нет, поэтому уголки медленно дышат сами, пока зона пуста, – это приглашение
+   нажать, как пульсирующая стрелка у кнопки закрытия. После первого снимка замирают: задача
+   понята, дальше мерцание только отвлекало бы от миниатюр. На время касания – быстрый ритм. */
+/* анимируем только opacity и transform: inset пересчитывал раскладку на каждом кадре,
+   а рядом стекло с размытием – оно перерисовывалось вместе с уголками */
+@keyframes qd-corners{
+  0%, 100%{ opacity:1; transform:none; }
+  50%     { opacity:.45; transform:scale(1.012, 1.026); }
+}
+@keyframes qd-corners-tall{
+  0%, 100%{ opacity:1; transform:none; }
+  50%     { opacity:.45; transform:scale(1.01, 1.008); }
+}
+/* Мышь: мерцание включает не :hover, а класс is-live из app.js. Когда курсор уходит, класс снимается
+   не сразу, а в конце текущего цикла – в этой точке уголки уже стоят в исходном положении, поэтому
+   они спокойно доигрывают движение и замирают, без рывка. Ритм медленный: 2.4s (21.09.2026, ночь) */
+.qd .wy-v2 .qd-drop.is-live::after{ animation:qd-corners 2.4s ease-in-out infinite; }
+.qd .wy-v2 .quote-form > .qd-photo:has(.qd-files li):has(.qd-drop.is-live)::after{ animation:qd-corners-tall 2.4s ease-in-out infinite; }
+.qd .wy-v2 .qd-drop.is-over::after{ animation:qd-corners 1.4s ease-in-out infinite; }
+.qd .wy-v2 .quote-form > .qd-photo:has(.qd-files li):has(.qd-drop.is-over)::after{ animation:qd-corners-tall 1.4s ease-in-out infinite; }
+@media (hover:none){
+ .qd .wy-v2 .qd-drop:not(.is-filled)::after{ animation:qd-corners 3.5s ease-in-out infinite; }
+ .qd .wy-v2 .qd-drop:active::after,
+ .qd .wy-v2 .quote-form > .qd-photo:has(.qd-files li):has(.qd-drop:active)::after{ animation:qd-corners-tall .8s ease-in-out infinite; }
+}
+@media (prefers-reduced-motion:reduce){
+ .qd .wy-v2 .qd-drop::after, .qd .wy-v2 .quote-form > .qd-photo::after{ animation:none !important; }
+}
+
+/* С фотографиями зона вырастает: плашкой становится весь блок .qd-photo – и приглашение
+   «Dodaj kolejne zdjęcie», и сетка миниатюр, и счётчик лежат на одном графитовом поле
+   с одной прострочкой. Сама .qd-drop внутри делается прозрачной. Бросать файлы можно
+   в любое место блока, в том числе на миниатюры (обработчики в app.js висят на .qd-photo).
+   Ширина: сетка 472px + поля по 16px = 504px (21.09.2026) */
+.qd .wy-v2 .quote-form > .qd-photo:has(.qd-files li){ position:relative; background:#DCDCD8; border-radius:10px;
+ padding:0 12px 14px;
+ box-shadow:inset 0 0 0 1px rgba(255,255,255,.7), inset 0 2px 5px rgba(31,33,32,.06), inset 0 10px 22px -8px rgba(31,33,32,.07);
+ transition:box-shadow .25s ease; }
+/* С файлами зона шире пустой ровно на 18% – по 9% на сторону: 408 → 481px (21.09.2026, ночь).
+   Расширение плавное. Поля от превью до края зоны – 28px по бокам и 26px снизу (были 16/18:
+   миниатюры липли к кромке стекла). Внутри 425px: шесть миниатюр в ряд по 64×90px
+   (те же пропорции, что 72×102) с зазорами 8px – 424px, сетка встаёт от поля до поля */
+@media (min-width:640px){
+ .qd .wy-v2 .quote-form > .qd-photo{ transition:max-width .4s cubic-bezier(.2,.7,.25,1), box-shadow .25s ease; }
+ .qd .wy-v2 .quote-form > .qd-photo:has(.qd-files li){ max-width:481px; padding:0 28px 26px; }
+ .qd .wy-v2 .qd-photo .qd-files li{ width:64px; height:90px; }
+ .qd .wy-v2 .qd-photo:has(.qd-files li) .qd-files{ margin-top:.35rem; }
+ .qd .wy-v2 .qd-photo:has(.qd-files li) .qd-files-cap{ margin-top:1rem; }
+}
+@media (prefers-reduced-motion:reduce){ .qd .wy-v2 .quote-form > .qd-photo{ transition:none; } }
+.qd .wy-v2 .quote-form > .qd-photo:has(.qd-files li)::after{ content:''; position:absolute; inset:-9px; border-radius:17px;
+ /* цвет как у линий полей E-mail / Telefon (чернила .3), штрих 2px – прицел не спорит с формой */
+ border:2px solid rgba(31,33,32,.3); pointer-events:none; transition:border-color .6s ease; }
+.qd .wy-v2 .qd-photo:has(.qd-files li) .qd-drop,
+.qd .wy-v2 .qd-photo:has(.qd-files li) .qd-drop:hover,
+.qd .wy-v2 .qd-photo:has(.qd-files li) .qd-drop.is-over{ background:transparent; box-shadow:none; margin-bottom:0; }
+.qd .wy-v2 .qd-photo:has(.qd-files li) .qd-drop::after{ display:none; }
+/* наведение на приглашение и перетаскивание над блоком – те же состояния, что у пустой зоны */
+.qd .wy-v2 .quote-form > .qd-photo:has(.qd-files li):has(.qd-drop:hover),
+.qd .wy-v2 .quote-form > .qd-photo:has(.qd-files li):has(.qd-drop.is-over){
+ box-shadow:inset 0 0 0 1px rgba(255,255,255,.7), inset 0 2px 5px rgba(31,33,32,.17), inset 0 10px 22px -8px rgba(31,33,32,.2); }
+.qd .wy-v2 .quote-form > .qd-photo:has(.qd-files li):has(.qd-drop.is-over)::after{ border-color:var(--c-terra); border-style:solid; border-width:2px; }
+.qd .wy-v2 .qd-photo:has(.qd-files li) .qd-files{ margin-top:0; }
+/* цвет задаём с id формы: правило `.wy-v2 #quote-form p` сильнее любых классовых селекторов */
+.qd .wy-v2 .qd-photo:has(.qd-files li) .qd-files-cap{ margin-top:.75rem; }
+.wy-v2 #quote-form .qd-photo:has(.qd-files li) .qd-files-cap,
+.wy-v2 #quote-form-qd .qd-photo:has(.qd-files li) .qd-files-cap{ color:rgba(31,33,32,.6); }
+.wy-v2 #quote-form .qd-photo:has(.qd-files li) .qd-field-err,
+.wy-v2 #quote-form-qd .qd-photo:has(.qd-files li) .qd-field-err{ color:#C8102E; }
+@media (prefers-reduced-motion:reduce){ .qd .wy-v2 .quote-form > .qd-photo, .qd .wy-v2 .quote-form > .qd-photo::after{ transition:none; } }
+
+/* 21.09.2026, ночь: стекло зоны – белое матовое, а не тёмное. Тёмного окна в белом листе было
+   слишком мало, чтобы эффект читался, а миниатюры на светлом выглядят чище. Приём тот же:
+   в прямоугольнике зоны белого листа (.92) нет, вместо него – белый .75 поверх размытого сайта;
+   получается молочное стекло на тон темнее листа. Кромка – светлая внутренняя линия 1px,
+   текст чернильный, внутренняя тень мягкая чернильная (в покое 35% от наведения). */
+/* Дропзона – стекло, как левая колонка: сквозь неё виден размытый сайт под панелью (21.09.2026).
+   Зона лежит на белой колонке, поэтому просто сделать её прозрачной мало – под ней белое.
+   Приём: белую заливку с колонки снимаем, а рисует её сама зона – сплошной «тенью» с огромным
+   spread вокруг себя (::before, z-index:-1 – под всем содержимым колонки, над её пустым фоном).
+   Белое получается везде, кроме прямоугольника зоны: там остаётся только размытие колонки
+   и затемнение --hdr-bg-dark – ровно состав левой колонки. clip-path держит «тень» в границах
+   правой колонки и, в отличие от overflow:hidden, не ломает липкую полосу сверху.
+   После отправки формы (is-sent) зоны нет – колонке возвращается обычная белая заливка.
+   Без поддержки :has() всё остаётся как было: сплошная серо-графитовая плашка. */
+@supports selector(:has(a)){
+ .qd .qd-scroll > div > .grid > div:nth-child(2):has(.quote-form:not(.is-sent) .qd-photo){
+  background:transparent; overflow:clip; }
+ /* overflow:clip – простая прямоугольная обрезка: не делает колонку контейнером прокрутки
+    (липкая полоса жива) и не требует маски, как clip-path, из-за которой прокрутка дёргалась */
+ @supports not (overflow:clip){
+  .qd .qd-scroll > div > .grid > div:nth-child(2):has(.quote-form:not(.is-sent) .qd-photo){ clip-path:inset(0); }
+ }
+ .qd .wy-v2 .qd-drop,
+ .qd .wy-v2 .qd-drop:hover, .qd .wy-v2 .qd-drop.is-over,
+ .qd .wy-v2 .quote-form > .qd-photo:has(.qd-files li){ background:rgba(255,255,255,.75); }
+ .qd .wy-v2 .qd-photo:has(.qd-files li) .qd-drop,
+ .qd .wy-v2 .qd-photo:has(.qd-files li) .qd-drop:hover,
+ .qd .wy-v2 .qd-photo:has(.qd-files li) .qd-drop.is-over{ background:transparent; }
+ .qd .wy-v2 .qd-drop::before,
+ .qd .wy-v2 .quote-form > .qd-photo:has(.qd-files li)::before{ content:''; position:absolute; z-index:-1;
+  border-radius:10px; box-shadow:0 0 0 3000px rgba(255,255,255,.92); pointer-events:none; }
+ .qd .wy-v2 .qd-drop::before{ inset:-1px; }   /* у зоны прозрачная рамка 1px – дыра по внешнему краю */
+ .qd .wy-v2 .quote-form > .qd-photo:has(.qd-files li)::before{ inset:0; }
+ .qd .wy-v2 .qd-photo:has(.qd-files li) .qd-drop::before{ display:none; }
+ /* пока снимки готовятся (is-busy), гасим содержимое зоны, а не её саму: opacity на зоне создал бы
+    свой слой, «тень»-заливка всплыла бы из-под содержимого колонки и накрыла форму белым */
+ .qd .wy-v2 .qd-drop.is-busy{ opacity:1; }
+ .qd .wy-v2 .qd-drop.is-busy > .qd-drop-row{ opacity:.5; }
+}
+
+/* миниатюры на матовом стекле: вместо обводки – тень, карточки «лежат» на плашке */
+.qd .wy-v2 .qd-files li{ border:0;
+ box-shadow:0 1px 2px rgba(31,33,32,.22), 0 8px 14px -6px rgba(31,33,32,.4); }
 
 /* Полоса размытия вверху правой колонки: содержимое уходит под неё при прокрутке,
    белый градиент гасит текст. Полоса прилипает к верху области прокрутки, в поток
@@ -2316,12 +2615,63 @@ body > main{ background:var(--c-page); }
 @media (min-width:640px){ .qd .wy-v2 .qd-scroll > div > .grid > div:nth-child(2){ --qd-pad:3rem; } }
 @media (min-width:1024px){ .qd .wy-v2 .qd-scroll > div > .grid > div:nth-child(2){ --qd-pad:3.5rem; } }
 .qd .wy-v2 .qd-scroll > div > .grid > div:nth-child(2)::before{
- content:''; position:sticky; top:0; z-index:5; display:block; height:4rem;
+ content:''; position:sticky; top:0; z-index:5; display:block;
+ /* высота полосы = верхнему полю колонки: в покое она кончается там, где начинается заголовок,
+    и не гасит его (на телефоне поле 1.75rem, полоса в 4rem съедала «Sfotografuj telefonem») */
+ height:calc(var(--qd-pad) + var(--qd-fade-grow));
  /* верх поднимаем на поле колонки, снизу компенсируем высоту минус то же поле,
     иначе содержимое уезжает вверх на величину поля */
- margin:calc(var(--qd-pad) * -1) calc(var(--qd-pad) * -1) calc(var(--qd-pad) - 4rem);
- -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
- background:linear-gradient(to bottom, rgba(255,255,255,.95), rgba(255,255,255,0));
- -webkit-mask-image:linear-gradient(to bottom, #000 55%, transparent);
- mask-image:linear-gradient(to bottom, #000 55%, transparent);
+ margin:calc(var(--qd-pad) * -1) calc(var(--qd-pad) * -1) calc(var(--qd-fade-grow) * -1);
+ /* размытие с полосы снято (21.09.2026, вечер): под ней теперь проезжает тёмное стекло дропзоны,
+    и blur размазывал его в грязное пятно шире самой плашки; к тому же липкий элемент с backdrop-filter
+    внутри прокрутки дёргается в Safari. Остался чистый белый градиент – содержимое уходит в «туман» */
+ background:linear-gradient(to bottom, #fff 0%, rgba(255,255,255,.82) 30%, rgba(255,255,255,.4) 65%, rgba(255,255,255,0) 100%);
  pointer-events:none; }
+/* «туман» растёт вместе с полосой размытия: в покое он высотой с поле колонки и не задевает заголовок,
+   при прокрутке удлиняется на --qd-tb (её ставит app.js на .qd; на телефоне не больше 28px).
+   На телефоне поле всего 28px – без прироста градиент обрывался резкой белой полосой
+   поверх стекла дропзоны. Отрицательное нижнее поле компенсирует прирост, вёрстка не сдвигается */
+.qd .wy-v2 .qd-scroll > div > .grid > div:nth-child(2){ --qd-fade-grow:min(var(--qd-tb, 0px), 28px); }
+@media (min-width:640px){ .qd .wy-v2 .qd-scroll > div > .grid > div:nth-child(2){ --qd-fade-grow:var(--qd-tb, 0px); } }
+
+/* Нарастающее размытие у верхней кромки правой колонки (21.09.2026, ночь) – приём «progressive blur»,
+   как у нижнего меню на sakib.design: несколько слоёв backdrop-filter с растущим радиусом, каждый
+   проявляется маской всё выше – содержимое, уезжая вверх, размывается плавно, без границы.
+   Что выяснилось при проверке и почему сделано именно так:
+   – слои лежат в неподвижной .qd-wrap поверх панели, а не в прокручиваемой колонке: липкий элемент
+     с размытием внутри прокрутки дёргался. И не внутри .qd-shell: у неё своё размытие фона, вложенный
+     backdrop-filter видел бы только содержимое панели без сайта под ней – полоса выходила белее листа;
+   – у обёртки слоёв нет overflow:hidden и скругления: такая обрезка делает её «корнем фона»,
+     и размытие детей перестаёт видеть панель. Вместо обрезки полоса отступает на 26px от скруглённых
+     углов панели – там только поля колонки, размывать нечего;
+   – маски накопительные (прозрачно → чёрное до самого верха), слоёв три: 3, 8 и 16px. Полосовые маски
+     из пяти слоёв давали резкий срез текста у нижней границы.
+   Сверху слои отстоят на высоту кнопки закрытия (56 + 10px). Высота в покое равна верхнему полю колонки –
+   под полосой пусто, заголовок резкий; при прокрутке app.js добавляет до 56px (--qd-tb).
+   Белый «туман» по-прежнему даёт липкий градиент самой колонки. */
+/* на телефоне прирост полосы вдвое меньше (до 28px): экран низкий, длинное размытие съедало бы кнопку */
+.qd-wrap > .qd-topblur{ position:absolute; top:66px; right:26px; left:26px; height:calc(1.75rem + min(var(--qd-tb, 0px), 28px));
+ z-index:6; pointer-events:none; }
+@media (min-width:640px){ .qd-wrap > .qd-topblur{ height:calc(3rem + var(--qd-tb, 0px)); } }
+@media (min-width:1024px){ .qd-wrap > .qd-topblur{ height:calc(3.5rem + var(--qd-tb, 0px)); left:var(--qd-leftw); } }   /* от края левой колонки */
+.qd-topblur i{ position:absolute; inset:0; }
+.qd-topblur i:nth-child(1){ -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px);
+ -webkit-mask-image:linear-gradient(to top, transparent 0%, #000 45%);
+ mask-image:linear-gradient(to top, transparent 0%, #000 45%); }
+.qd-topblur i:nth-child(2){ -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+ -webkit-mask-image:linear-gradient(to top, transparent 30%, #000 75%);
+ mask-image:linear-gradient(to top, transparent 30%, #000 75%); }
+.qd-topblur i:nth-child(3){ -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px);
+ -webkit-mask-image:linear-gradient(to top, transparent 60%, #000 100%);
+ mask-image:linear-gradient(to top, transparent 60%, #000 100%); }
+
+/* Левая колонка – по содержимому, а не 5/12 панели (21.09.2026, ночь): правое поле равно левому (56px),
+   освободившаяся ширина уходит форме. 468px = 56 + 356 + 56: самая широкая строка колонки –
+   заголовок «Ekspresowa wycena» (352px при 42px, замер; 4px запаса – при ширине впритык строка переносилась). На узком десктопе, где 5/12 меньше, остаётся 5/12.
+   Та же переменная двигает левый край полосы размытия над формой. */
+.qd{ --qd-leftw:41.6667%; }
+@media (min-width:1024px){
+ .qd{ --qd-leftw:min(468px, 41.6667%); }
+ .qd .qd-scroll > div > .grid{ grid-template-columns:var(--qd-leftw) minmax(0, 1fr); }
+ .qd .qd-scroll > div > .grid > div{ grid-column:auto; }
+}

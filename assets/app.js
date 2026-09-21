@@ -9,6 +9,7 @@
           msgFri: 'Napisz teraz – w sobotę pracujemy po uzgodnieniu, najpóźniej odpiszemy w poniedziałek od 7:00.',
           msgSat: 'Napisz, a potwierdzimy termin. Standardowo wracamy w poniedziałek od 7:00.',
           msgSun: 'Zgłoszenie przyjmiemy teraz, odpowiemy w poniedziałek od 7:00.',
+          book: { hint: 'Kliknij dzień roboczy – wybierzesz godzinę spotkania na ul. Kruczej.', tz: 'czas warszawski', pick: 'Wybierz godzinę', cta: 'Umów spotkanie', note: 'Termin potwierdzimy w odpowiedzi.', msg: 'Dzień dobry! Chcę umówić spotkanie na ul. Kruczej: {date}, godz. {time}.' },
           hol: { ny: 'Nowy Rok', epi: 'Święto Trzech Króli', may1: 'Święto Pracy', may3: 'Święto Konstytucji 3 Maja',
                  aug15: 'Wniebowzięcie NMP · Święto Wojska Polskiego', nov1: 'Wszystkich Świętych', nov11: 'Narodowe Święto Niepodległości',
                  xmas1: 'Boże Narodzenie – pierwszy dzień', xmas2: 'Boże Narodzenie – drugi dzień', easter: 'Wielkanoc',
@@ -21,6 +22,7 @@
           msgFri: 'Напишіть зараз – у суботу працюємо за домовленістю, найпізніше відповімо в понеділок з 7:00.',
           msgSat: 'Напишіть, і ми підтвердимо термін. Зазвичай повертаємося в понеділок з 7:00.',
           msgSun: 'Заявку приймемо зараз, відповімо в понеділок з 7:00.',
+          book: { hint: 'Натисніть на робочий день – оберете час зустрічі на вул. Kruczej.', tz: 'час варшавський', pick: 'Оберіть час', cta: 'Записатися', note: 'Час підтвердимо у відповіді.', msg: 'Добрий день! Хочу домовитися про зустріч на вул. Kruczej: {date}, {time}.' },
           hol: { ny: 'Новий рік', epi: 'Богоявлення (Трьох Королів)', may1: 'День праці', may3: 'День Конституції 3 Травня',
                  aug15: 'Успіння Богородиці · День Війська Польського', nov1: 'День усіх святих', nov11: 'День Незалежності Польщі',
                  xmas1: 'Різдво – перший день', xmas2: 'Різдво – другий день', easter: 'Великдень',
@@ -33,6 +35,7 @@
           msgFri: 'Напишите сейчас – в субботу работаем по договорённости, самое позднее ответим в понедельник с 7:00.',
           msgSat: 'Напишите, и мы подтвердим срок. Обычно возвращаемся в понедельник с 7:00.',
           msgSun: 'Заявку примем сейчас, ответим в понедельник с 7:00.',
+          book: { hint: 'Нажмите на рабочий день – выберете время встречи на ул. Kruczej.', tz: 'время варшавское', pick: 'Выберите время', cta: 'Записаться', note: 'Время подтвердим в ответном сообщении.', msg: 'Здравствуйте! Хочу договориться о встрече на ул. Kruczej: {date}, {time}.' },
           hol: { ny: 'Новый год', epi: 'Богоявление (Трёх Королей)', may1: 'День труда', may3: 'День Конституции 3 Мая',
                  aug15: 'Успение Богородицы · День Войска Польского', nov1: 'День всех святых', nov11: 'День Независимости Польши',
                  xmas1: 'Рождество – первый день', xmas2: 'Рождество – второй день', easter: 'Пасха',
@@ -45,6 +48,7 @@
           msgFri: 'Write now – Saturdays by arrangement, we reply by Monday 7:00 at the latest.',
           msgSat: 'Write and we will confirm a time. Normally we are back on Monday from 7:00.',
           msgSun: 'We take your request now and reply on Monday from 7:00.',
+          book: { hint: 'Click a working day to pick a time for a meeting on Krucza St.', tz: 'Warsaw time', pick: 'Pick a time', cta: 'Book a meeting', note: 'We confirm the time in our reply.', msg: 'Hello! I would like to arrange a meeting on Krucza St.: {date}, {time}.' },
           hol: { ny: 'New Year', epi: 'Epiphany', may1: 'Labour Day', may3: 'Constitution Day (3 May)',
                  aug15: 'Assumption · Polish Armed Forces Day', nov1: 'All Saints', nov11: 'Independence Day',
                  xmas1: 'Christmas Day', xmas2: 'Second day of Christmas', easter: 'Easter Sunday',
@@ -996,7 +1000,9 @@
     })();
   })();
 
-  // Календарь польских выходных: красный кружок + подсказка при наведении
+  // Календарь польских выходных: красный кружок + подсказка при наведении.
+  // С атрибутом data-book (страница контактов) он же – запись на встречу: рабочий день →
+  // сетка времени → готовое сообщение в WhatsApp (идея с sakib.design, без стороннего виджета)
   (function () {
     var cal = document.getElementById('cal');
     if (!cal) return;
@@ -1060,6 +1066,109 @@
       }
     }
 
+    // --- запись на встречу ---
+    var BOOK = cal.hasAttribute('data-book') && L.book;
+    var WA = 'https://wa.me/48507588155';
+    var SLOT_STEP = 30;                 // шаг сетки, мин
+    var DAY_FROM = 9 * 60, DAY_TO = 18 * 60;      // пн–пт, последний слот 18:00
+    var SAT_FROM = 10 * 60, SAT_TO = 14 * 60;     // суббота – по договорённости
+    var LEAD = 120;                     // сегодня – не раньше чем через 2 часа
+    var HORIZON = 90;                   // на сколько дней вперёд открыта запись
+    var sel = null, selTime = null;
+
+    function warsawMins() {
+      try {
+        var o = {};
+        new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Warsaw', hour: '2-digit',
+          minute: '2-digit', hourCycle: 'h23' })
+          .formatToParts(new Date()).forEach(function (p) { o[p.type] = p.value; });
+        return (+o.hour) * 60 + (+o.minute);
+      } catch (err) {
+        var n = new Date();
+        return n.getHours() * 60 + n.getMinutes();
+      }
+    }
+
+    // wd: 0 – понедельник … 6 – воскресенье
+    function slotsFor(y, m, d, wd) {
+      if (wd === 6) return [];
+      var from = wd === 5 ? SAT_FROM : DAY_FROM, to = wd === 5 ? SAT_TO : DAY_TO;
+      if (y === now.y && m === now.m && d === now.d) {
+        from = Math.max(from, Math.ceil((warsawMins() + LEAD) / SLOT_STEP) * SLOT_STEP);
+      }
+      var out = [];
+      for (var t = from; t <= to; t += SLOT_STEP) out.push(t);
+      return out;
+    }
+
+    function canBook(y, m, d, wd, holiday) {
+      if (!BOOK || holiday) return false;
+      var diff = Math.round((Date.UTC(y, m - 1, d) - Date.UTC(now.y, now.m - 1, now.d)) / 864e5);
+      if (diff < 0 || diff > HORIZON) return false;
+      return slotsFor(y, m, d, wd).length > 0;
+    }
+
+    function fmtTime(t) { return Math.floor(t / 60) + ':' + ('0' + (t % 60)).slice(-2); }
+    function fmtDate(o) {
+      var dt = new Date(o.y, o.m - 1, o.d);
+      try {
+        return new Intl.DateTimeFormat(document.documentElement.lang || 'pl',
+          { weekday: 'short', day: 'numeric', month: 'long' }).format(dt);
+      } catch (err) {
+        return o.d + '.' + ('0' + o.m).slice(-2);
+      }
+    }
+
+    var bookEl, slotsEl, dateEl, goEl, goText;
+    if (BOOK) {
+      bookEl = document.createElement('div');
+      bookEl.className = 'cal-book';
+      bookEl.innerHTML =
+        '<p class="cal-book-hint">' + L.book.hint + '</p>' +
+        '<div class="cal-slots-wrap"><div>' +
+          '<p class="cal-slots-head"><span class="cal-slots-date"></span>' +
+          '<span class="cal-slots-tz">' + L.book.tz + '</span></p>' +
+          '<div class="cal-slots" role="group" aria-label="' + L.book.pick + '"></div>' +
+          '<a class="cal-go" target="_blank" rel="noopener" hidden><span class="cal-go-text"></span></a>' +
+          '<p class="cal-book-note">' + L.book.note + '</p>' +
+        '</div></div>';
+      var noteEl = cal.querySelector('.cal-note');
+      cal.insertBefore(bookEl, noteEl);
+      slotsEl = bookEl.querySelector('.cal-slots');
+      dateEl = bookEl.querySelector('.cal-slots-date');
+      goEl = bookEl.querySelector('.cal-go');
+      goText = bookEl.querySelector('.cal-go-text');
+
+      slotsEl.addEventListener('click', function (e) {
+        var b = e.target.closest ? e.target.closest('.cal-slot') : null;
+        if (!b) return;
+        selTime = +b.getAttribute('data-t');
+        paintSlots();
+      });
+    }
+
+    function paintSlots() {
+      if (!BOOK) return;
+      bookEl.classList.toggle('is-open', !!sel);
+      if (!sel) return;
+      var wd = (new Date(sel.y, sel.m - 1, sel.d).getDay() + 6) % 7;
+      var list = slotsFor(sel.y, sel.m, sel.d, wd);
+      if (list.indexOf(selTime) === -1) selTime = null;
+      var date = fmtDate(sel);
+      dateEl.textContent = date;
+      var html = '';
+      list.forEach(function (t) {
+        html += '<button type="button" class="cal-slot' + (t === selTime ? ' is-on' : '') +
+          '" data-t="' + t + '" aria-pressed="' + (t === selTime) + '">' + fmtTime(t) + '</button>';
+      });
+      slotsEl.innerHTML = html;
+      if (selTime === null) { goEl.hidden = true; return; }
+      goText.textContent = L.book.cta + ' – ' + date + ', ' + fmtTime(selTime);
+      goEl.href = WA + '?text=' + encodeURIComponent(
+        L.book.msg.replace('{date}', date).replace('{time}', fmtTime(selTime)));
+      goEl.hidden = false;
+    }
+
     var now = todayWarsaw();
     var view = { y: now.y, m: now.m };
 
@@ -1091,9 +1200,13 @@
         if (wd > 4) cls += ' is-weekend';
         if (y === now.y && m === now.m && d === now.d) cls += ' is-today';
         var name = hol[m + '-' + d];
+        var on = sel && sel.y === y && sel.m === m && sel.d === d;
         html += '<span class="' + cls + '">' + (name
           ? '<button type="button" class="cal-hol" data-name="' + name + '" aria-label="' + d + ' ' +
             MONTHS[m - 1].toLowerCase() + ' – ' + name + '">' + d + '</button>'
+          : canBook(y, m, d, wd, name)
+          ? '<button type="button" class="cal-day' + (on ? ' is-on' : '') + '" data-d="' + d +
+            '" aria-pressed="' + !!on + '">' + d + '</button>'
           : d) + '</span>';
       }
       grid.innerHTML = html;
@@ -1114,6 +1227,17 @@
     grid.addEventListener('click', function (e) {
       var t = e.target.closest ? e.target.closest('.cal-hol') : null;
       if (t) showTip(t);                              // тап на телефоне
+      var day = e.target.closest ? e.target.closest('.cal-day') : null;
+      if (!day) return;
+      var d = +day.getAttribute('data-d');
+      // повторный тап по выбранному дню снимает выбор
+      sel = (sel && sel.y === view.y && sel.m === view.m && sel.d === d) ? null
+        : { y: view.y, m: view.m, d: d };
+      selTime = null;
+      render();
+      paintSlots();
+      var back = grid.querySelector('.cal-day.is-on');  // render() пересоздал кнопки – вернуть фокус
+      if (back) back.focus();
     });
 
     function shift(step) {
@@ -1526,9 +1650,22 @@
 
     /* drag & drop на зону; файл, брошенный мимо, не должен открыться вместо страницы */
     if (drop) {
-      ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('is-over'); }); });
-      ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('is-over'); }); });
-      drop.addEventListener('drop', function (e) { addFiles(e.dataTransfer.files); });
+      /* ловит весь блок .qd-photo: с фотографиями плашка включает сетку миниатюр, бросать можно и на них.
+         Класс is-over по-прежнему на самой зоне – на него завязаны стили */
+      var dropArea = drop.closest('.qd-photo') || drop;
+      ['dragenter', 'dragover'].forEach(function (ev) { dropArea.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('is-over'); }); });
+      ['dragleave', 'drop'].forEach(function (ev) { dropArea.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('is-over'); }); });
+      dropArea.addEventListener('drop', function (e) { addFiles(e.dataTransfer.files); });
+      /* мерцание уголков: включается наведением, а выключается в конце цикла анимации –
+         там уголки уже в исходном положении, и остановка получается без рывка.
+         Таймер страхует случай, когда событие цикла не пришло (псевдоэлемент сменился) */
+      if (window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+        var liveOff = false, liveTimer = 0;
+        var liveStop = function () { liveOff = false; clearTimeout(liveTimer); drop.classList.remove('is-live'); };
+        drop.addEventListener('mouseenter', function () { liveOff = false; clearTimeout(liveTimer); drop.classList.add('is-live'); });
+        drop.addEventListener('mouseleave', function () { liveOff = true; clearTimeout(liveTimer); liveTimer = setTimeout(liveStop, 2600); });
+        dropArea.addEventListener('animationiteration', function (e) { if (liveOff && /^qd-corners/.test(e.animationName)) liveStop(); });
+      }
     }
     if (!document.body.dataset.dropGuard) {
       document.body.dataset.dropGuard = '1';
@@ -1817,7 +1954,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260921-22';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260921-65';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -1836,6 +1973,17 @@
       qd.querySelectorAll('.slide-in').forEach(function(el){ el.classList.add('is-in'); });
       qd.querySelectorAll('[data-close]').forEach(function(el){ el.addEventListener('click', close); });
       if (window.initQuoteForm) window.initQuoteForm(qd);
+      /* полоса нарастающего размытия у верхней кромки: в покое она высотой с поле колонки и ничего
+         не задевает, а по мере прокрутки вырастает ещё на 56px – размытие получается длинным и мягким,
+         но заголовок, пока панель не прокручена, остаётся резким */
+      var sc = qd.querySelector('.qd-scroll'), tb = qd.querySelector('.qd-topblur');
+      if (sc && tb) {
+        var tbRaf = 0;
+        sc.addEventListener('scroll', function(){
+          if (tbRaf) return;
+          tbRaf = requestAnimationFrame(function(){ tbRaf = 0; qd.style.setProperty('--qd-tb', Math.min(sc.scrollTop, 56) + 'px'); });
+        }, { passive:true });
+      }
     }
     function load(){
       if (qd) return Promise.resolve(qd);
