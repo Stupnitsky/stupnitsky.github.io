@@ -2296,7 +2296,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260921-112';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260921-117';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -2326,43 +2326,61 @@
           tbRaf = requestAnimationFrame(function(){ tbRaf = 0; qd.style.setProperty('--qd-tb', Math.min(sc.scrollTop, 56) + 'px'); });
         }, { passive:true });
       }
-      /* Шапка панели на телефоне (.qd-mhead, уже 1024px) стоит вне области прокрутки и потому «закреплена».
-         На низком экране (до 800px) в полный рост она забирала бы треть панели, поэтому при прокрутке формы
-         сжимается до одной строки заголовка и возвращается, когда панель снова в самом верху. Класс is-compact
-         на .qd-shell меняет содержимое сразу, а высоту блока ведём от старой к новой – форма не дёргается.
-         Пороги разные (24 / 4px), чтобы шапка не мигала на границе. */
-      var mh = qd.querySelector('.qd-mhead'), shell = qd.querySelector('.qd-shell');
-      if (sc && mh && shell) {
-        var low = window.matchMedia('(max-width:1023px) and (max-height:799px)');
-        var still = window.matchMedia('(prefers-reduced-motion:reduce)');
-        var compact = false, mhT = 0;
-        var setCompact = function (v) {
-          if (v === compact) return;
-          compact = v;
-          var h0 = mh.offsetHeight;
-          shell.classList.toggle('is-compact', v);
-          if (still.matches || !h0) return;
-          clearTimeout(mhT);
-          mh.style.height = 'auto';
-          var h1 = mh.offsetHeight;
-          if (h1 === h0) { mh.style.height = ''; return; }
-          mh.style.height = h0 + 'px';
-          void mh.offsetHeight;
-          mh.style.height = h1 + 'px';
-          mhT = setTimeout(function(){ mh.style.height = ''; }, 320);
+      /* Шапка панели на телефоне и планшете (.qd-mhead, уже 1024px) стоит вне области прокрутки и потому «закреплена».
+         На телефоне она сразу компактная – одна строка «Ekspresowa wycena Dokumentu» (решает CSS по ширине и высоте окна);
+         первая версия сжимала её скриптом при прокрутке, Грег по снимку с iPhone попросил: «давай сразу в телефонах
+         такая плашка будет» (21.09.2026) – скрипт для этого больше не нужен. */
+      var shell = qd.querySelector('.qd-shell');
+      /* Панель закрывается движением пальца вниз (21.09.2026, Грег: «в телефоне всплывающую форму убрать пальцем вниз?»).
+         Лист выезжает снизу – стянуть его обратно вниз привычно по системным листам iOS и Android.
+         Тянуть можно: за шапку панели – всегда; за саму форму – только когда она прокручена в самый верх
+         (иначе это обычная прокрутка формы). Жест должен быть вниз и почти вертикальным; поле «Kilka słów» (textarea)
+         не трогаем – у него своя прокрутка. Лист идёт за пальцем без перехода, подложка светлеет; отпустили дальше
+         28% высоты панели или резким движением – закрываем обычным close(), иначе лист возвращается на место.
+         События – touch*, поэтому мышь и десктоп не затронуты; форма при закрытии не сбрасывается. */
+      var wrap = qd.querySelector('.qd-wrap'), back = qd.querySelector('.qd-backdrop');
+      if (wrap && shell && sc) {
+        var gY = 0, gX = 0, gDy = 0, gT = 0, gH = 0, gDrag = false, gDecided = false, gHead = false, gSkip = false;
+        var gReset = function () {
+          wrap.style.transition = ''; wrap.style.transform = '';
+          if (back) { back.style.transition = ''; back.style.opacity = ''; }
         };
-        /* телефон лёжа (окно ниже 480px): панель всего ~320px высотой – шапка сжата сразу, не дожидаясь прокрутки */
-        var tiny = window.matchMedia('(max-width:1023px) and (max-height:479px)');
-        var syncHead = function () {
-          if (!low.matches) { setCompact(false); return; }
-          if (tiny.matches) { setCompact(true); return; }
-          if (!compact && sc.scrollTop > 24) setCompact(true);
-          else if (compact && sc.scrollTop < 4) setCompact(false);
+        qd.addEventListener('touchstart', function (e) {
+          gDrag = false; gDecided = false; gDy = 0;
+          gSkip = e.touches.length !== 1 || !qd.classList.contains('is-open');
+          if (gSkip) return;
+          var tg = e.target, t = e.touches[0];
+          gSkip = !!(tg.closest && tg.closest('textarea, .qd-close'));
+          gHead = !!(tg.closest && tg.closest('.qd-mhead'));
+          gY = t.clientY; gX = t.clientX; gT = Date.now(); gH = shell.offsetHeight || 1;
+        }, { passive:true });
+        qd.addEventListener('touchmove', function (e) {
+          if (gSkip || e.touches.length !== 1) return;
+          var t = e.touches[0], mx = t.clientX - gX, my = t.clientY - gY;
+          if (!gDecided) {
+            if (Math.abs(my) < 6 && Math.abs(mx) < 6) return;
+            gDecided = true;
+            gDrag = my > 0 && Math.abs(my) > Math.abs(mx) * 1.2 && (gHead || sc.scrollTop <= 0);
+            if (gDrag) { wrap.style.transition = 'none'; if (back) back.style.transition = 'none'; }
+          }
+          if (!gDrag) return;
+          if (e.cancelable) e.preventDefault();          /* иначе iOS тянет резинку прокрутки вместо листа */
+          gDy = Math.max(0, my);
+          wrap.style.transform = 'translateY(' + gDy + 'px)';
+          if (back) back.style.opacity = String(Math.max(0, 1 - gDy / (gH * 1.1)));
+        }, { passive:false });
+        var gEnd = function () {
+          if (!gDrag) return;
+          gDrag = false;
+          var speed = gDy / Math.max(1, Date.now() - gT);          /* px / мс */
+          var shut = gDy > gH * 0.28 || (gDy > 60 && speed > 0.55);
+          /* инлайн-стили снимаем в том же такте: переход продолжится с места, где лист отпустили, –
+             к translateY(100%) при закрытии или обратно к нулю */
+          gReset();
+          if (shut) close();
         };
-        sc.addEventListener('scroll', syncHead, { passive:true });
-        (low.addEventListener ? low.addEventListener('change', syncHead) : low.addListener(syncHead));
-        (tiny.addEventListener ? tiny.addEventListener('change', syncHead) : tiny.addListener(syncHead));
-        syncHead();
+        qd.addEventListener('touchend', gEnd);
+        qd.addEventListener('touchcancel', gEnd);
       }
     }
     function load(){

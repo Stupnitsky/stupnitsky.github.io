@@ -2429,58 +2429,70 @@ body > main{ background:var(--c-page); }
 }
 /* Шапка панели на телефоне и планшете (.qd-mhead, 21.09.2026) – по идее Грега: «в мобильной версии нет этого
    заголовка, а он органично смотрится, если сверху начать с него и стеклянной части как заголовок», затем:
-   «верхнюю шапку закрепил бы при скролле, а блюр вообще бы убрал».
-   Сверху панели – то же тёмное стекло, что у левой колонки (--hdr-bg-dark поверх размытия .qd-shell): кикер,
-   «Ekspresowa wycena / Dokumentu» и плашки «15 min | Wyślij zdjęcia – poznasz cenę». Под ней форма, ниже – остаток
-   левой колонки (обещание, телефон, мессенджеры); плашки «15 min» оттуда ушли в шапку, чтобы не повторяться.
+   «верхнюю шапку закрепил бы при скролле, а блюр вообще бы убрал», затем по снимку с iPhone: «давай сразу в телефонах
+   такая плашка будет, а 15 min – wycena это вниз отправить».
+   Сверху панели – то же тёмное стекло, что у левой колонки (--hdr-bg-dark поверх размытия .qd-shell).
+   • Телефон (уже 640px или окно ниже 800px): сразу одна строка «Ekspresowa wycena Dokumentu» ~52px; плашки
+     «15 min | Wyślij zdjęcia – poznasz cenę» стоят, как и раньше, в начале нижнего тёмного блока под формой.
+   • Планшет и высокое узкое окно (от 640px шириной и от 800px высотой): шапка полная – кикер, заголовок в две строки
+     и плашки «15 min»; в нижнем блоке они тогда скрыты, чтобы не повторяться.
    Закреплена шапка не через sticky: блок стоит ВНЕ области прокрутки (.qd-shell – колонка: шапка + .qd-scroll),
    форма уходит под его нижний край. Под липкой полупрозрачной шапкой просвечивал бы текст формы, а своё размытие
    на липком элементе внутри прокрутки дёргается в Safari – здесь стекло остаётся стеклом без второго размытия.
-   Размытие у верхней кромки (слои .qd-topblur и белый «туман» колонки формы) уже 1024px снято: кромка теперь –
-   нижний край шапки, содержимое просто уезжает под неё. От 1024px всё по-прежнему. */
+   Размытие у верхней кромки уже 1024px снято (правило в конце файла). От 1024px всё по-прежнему. */
 .qd .wy-v2 .qd-mhead{ display:none; }
 @media (max-width:1023px){
   .qd .qd-shell{ display:flex; flex-direction:column; }
   .qd .qd-shell > .qd-scroll{ flex:1 1 auto; min-height:0; max-height:none; }
   .qd .wy-v2 > .qd-mhead{ display:block; flex:0 0 auto; position:relative; z-index:2; overflow:hidden; text-align:center;
-    background:var(--hdr-bg-dark); color:var(--c-paper); padding:1.75rem 1.75rem 1.6rem;
-    transition:height .28s cubic-bezier(.2,.7,.25,1); }
+    background:var(--hdr-bg-dark); color:var(--c-paper); padding:2.5rem 3rem 2.25rem; }
   .qd .wy-v2 .qd-mhead .kicker{ color:var(--c-paper); margin-bottom:.7rem; }
-  .qd .wy-v2 .qd-mhead-title{ margin:0; font-size:clamp(30px, 9.6vw, 38px); line-height:.94; color:var(--c-paper); }
+  .qd .wy-v2 .qd-mhead-title{ margin:0; font-size:46px; line-height:.94; color:var(--c-paper); }
   .qd .wy-v2 .qd-mhead-title span{ color:inherit; }
   .qd .wy-v2 .qd-mhead .qd-eta{ margin-top:1.15rem; justify-content:center; }
-  /* в нижнем блоке шапка колонки больше не нужна: заголовок и плашки стоят сверху */
+  /* липкая шапка нижнего блока не нужна: над областью прокрутки уже стоит закреплённая шапка панели */
+  .qd .qd-scroll .qd-left .qd-head{ position:static; }
+}
+/* планшет и высокое окно: плашки «15 min» стоят в шапке – в нижнем блоке их шапку скрываем */
+@media (min-width:640px) and (max-width:1023px) and (min-height:800px){
   .qd .wy-v2 .qd-left .qd-head{ display:none; }
   .qd .wy-v2 .qd-left .qd-lead{ margin-top:0; }
-  /* размытие у верхней кромки снято – правило стоит в конце файла, после самих слоёв («Панель wyceny уже 1024px: без размытия…») */
 }
-@media (min-width:640px) and (max-width:1023px){
-  .qd .wy-v2 > .qd-mhead{ padding:2.5rem 3rem 2.25rem; }
-  .qd .wy-v2 .qd-mhead-title{ font-size:46px; }
+/* телефон: компактная шапка сразу, без кикера и плашек */
+@media (max-width:639px), (max-width:1023px) and (max-height:799px){
+  .qd .wy-v2 > .qd-mhead{ padding:1rem 1.25rem; }
+  .qd .wy-v2 .qd-mhead .kicker, .qd .wy-v2 .qd-mhead .qd-eta{ display:none; }
+  .qd .wy-v2 .qd-mhead-title{ font-size:clamp(18px, 5.6vw, 22px); line-height:1.05; white-space:nowrap; }
+  .qd .wy-v2 .qd-mhead-title br{ display:none; }
+  .qd .wy-v2 .qd-mhead-title span{ margin-left:.24em; }
 }
-/* уже 386px плашки «15 min | Wyślij zdjęcia…» обычным кеглем вставали в два ряда и добавляли шапке 40px –
-   кегль и разрядка чуть меньше, поля шапки 20px: строка одна до 360px (уже – два ряда). На 390px входят обычным кеглем */
-@media (max-width:385px){
-  .qd .wy-v2 > .qd-mhead{ padding-left:1.25rem; padding-right:1.25rem; }
-  .qd .wy-v2 .qd-mhead .qd-eta{ font-size:12.5px; letter-spacing:.08em; }
-  .qd .wy-v2 .qd-mhead .qd-eta b{ font-size:13.5px; letter-spacing:.06em; }
-  .qd .wy-v2 .qd-mhead .qd-eta span{ min-height:34px; padding:0 .65em; }
+/* Жёлтые часы у плашки «15 min» (Грег, 21.09.2026: «svg иконку жёлтых часов, которые набирают 15 мин, четвертинку»).
+   Кольцо и сектор-четверть от 12 до 3 часов. Сектор – окружность r=4 с обводкой 8px (обводка закрашивает круг r=8),
+   длину дуги задаёт stroke-dasharray: четверть = 6.283 из 25.133. Раз в 5.2 с сектор «набирается» от нуля,
+   стоит и гаснет – в духе пульсирующих стрелок сайта; при prefers-reduced-motion – просто четверть.
+   На телефоне и планшете иконка стоит в строке перед плашками. От 1024px – вынесена в левое поле колонки:
+   ширина строки плашек там равна ряду кнопок WhatsApp / Telegram (324px), и раздвигать её нельзя. */
+.qd-clock{ flex:0 0 auto; width:37px; height:37px; margin-right:6px; overflow:visible; }
+/* цвет – свойством stroke, а не через currentColor: в тёмной колонке правило `.qd-left *{color:paper}` красит
+   и сами окружности, currentColor выходил белым */
+.qd-clock circle{ stroke:var(--c-terra); }
+.qd-clock-pie{ animation:qdClockFill 5.2s cubic-bezier(.3,.7,.2,1) infinite; }
+@keyframes qdClockFill{
+  0%   { stroke-dasharray:0 25.133; opacity:1; }
+  30%  { stroke-dasharray:6.283 25.133; opacity:1; }
+  88%  { stroke-dasharray:6.283 25.133; opacity:1; }
+  100% { stroke-dasharray:6.283 25.133; opacity:0; }
 }
-/* низкий экран (телефон): закреплённая шапка в полный рост забирала бы треть панели (а с клавиатурой – почти всё).
-   Пока панель не прокручена, шапка полная; при прокрутке сжимается до одной строки «Ekspresowa wycena Dokumentu»
-   (класс is-compact ставит app.js, он же ведёт высоту блока от старой к новой). На высоком окне (планшет, узкое окно
-   на маке) шапка остаётся полной всегда. */
-@media (max-width:1023px) and (max-height:799px){
-  .qd .wy-v2 > .qd-mhead{ padding-top:1.35rem; padding-bottom:1.25rem; }
-  .qd .wy-v2 .qd-mhead .kicker{ margin-bottom:.5rem; }
-  .qd .wy-v2 .qd-mhead .qd-eta{ margin-top:.9rem; }
-  .qd .qd-shell.is-compact > .qd-mhead{ padding-top:1rem; padding-bottom:1rem; }
-  .qd .qd-shell.is-compact > .qd-mhead .kicker, .qd .qd-shell.is-compact > .qd-mhead .qd-eta{ display:none; }
-  .qd .qd-shell.is-compact .qd-mhead-title{ font-size:clamp(18px, 5.6vw, 22px); line-height:1.05; white-space:nowrap; }
-  .qd .qd-shell.is-compact .qd-mhead-title br{ display:none; }
-  .qd .qd-shell.is-compact .qd-mhead-title span{ margin-left:.24em; }
+@media (prefers-reduced-motion:reduce){ .qd-clock-pie{ animation:none; } }
+@media (max-width:385px){ .qd .wy-v2 .qd-mhead .qd-clock{ width:34px; height:34px; } }
+@media (min-width:1024px){
+  .qd .wy-v2 .qd-left .qd-eta{ position:relative; }
+  .qd .wy-v2 .qd-left .qd-clock{ position:absolute; right:100%; top:50%; margin:-17px 8px 0 0; width:34px; height:34px; }
 }
-@media (prefers-reduced-motion:reduce){ .qd .wy-v2 > .qd-mhead{ transition:none; } }
+
+/* за шапку панель стягивают пальцем вниз (жест – в app.js, bind() панели): браузер не должен перехватывать это
+   касание под прокрутку или выделение текста */
+.qd .wy-v2 > .qd-mhead{ touch-action:none; -webkit-user-select:none; user-select:none; }
 /* подпись к телефону «na niego odpiszemy» – мельче и серым (17.09.2026) */
 .qd .wy-v2 .qd-acc--static .qd-acc-head > span{ text-align:center; }
 .qd .wy-v2 .qd-acc--static .qd-acc-note{ display:block; font-size:14px; font-weight:400; color:rgba(31,33,32,.55); }
