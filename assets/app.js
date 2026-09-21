@@ -1229,6 +1229,7 @@
     var PARTS = [[9 * 60, 10 * 60], [13 * 60, 15 * 60], [19 * 60, 20 * 60]];
     var LEAD = 120;                     // сегодня – не раньше чем через 2 часа
     var PART_MIN = 30;                  // …и чтобы после этого от окна осталось хотя бы полчаса
+    var SAT_PART = 1;                   // суббота: открыто одно окно – обеденное
     var HORIZON = 90;                   // на сколько дней вперёд открыта запись
     var sel = null;
     var part = null;                    // индекс в PARTS / L.book.parts; окно заранее не выбрано
@@ -1251,10 +1252,13 @@
 
     // доступные окна дня – индексы в PARTS; wd: 0 – понедельник … 6 – воскресенье
     function slotsFor(y, m, d, wd) {
-      if (wd > 5) return [];                          // суббота открыта (Грег, 21.09.2026), воскресенье – нет
+      if (wd > 5) return [];                          // воскресенье – записи нет
       var edge = y === now.y && m === now.m && d === now.d ? warsawMins() + LEAD + PART_MIN : 0;
       var out = [];
-      PARTS.forEach(function (p, n) { if (p[1] >= edge) out.push(n); });
+      PARTS.forEach(function (p, n) {
+        if (wd === 5 && n !== SAT_PART) return;        // в субботу – только обеденное окно (Грег, 21.09.2026)
+        if (p[1] >= edge) out.push(n);
+      });
       return out;
     }
 
@@ -1262,7 +1266,7 @@
       if (!BOOK || holiday) return false;
       var diff = Math.round((Date.UTC(y, m - 1, d) - Date.UTC(now.y, now.m - 1, now.d)) / 864e5);
       if (diff < 0 || diff > HORIZON) return false;
-      return wd <= 5;                                 // сегодня нажимается, даже когда окна уже прошли: они будут зачёркнуты
+      return wd <= 5;                                 // сегодня нажимается, даже когда окна уже прошли: они будут серыми, без выбора
     }
 
     function fmtTime(t) { return Math.floor(t / 60) + ':' + ('0' + (t % 60)).slice(-2); }
@@ -2198,7 +2202,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260921-123';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260921-126';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
