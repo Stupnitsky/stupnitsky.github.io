@@ -382,13 +382,31 @@ html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibilit
   .mn-link:nth-child(4){ grid-area:2 / 2; }
   .mn-link:nth-child(6){ grid-area:3 / 2; }
   .mn-link:nth-last-child(2){ border-bottom:0; }
-  #mobile-nav .mn-cta{ grid-template-columns:minmax(0,1.35fr) 1fr 1fr; margin-top:16px; }
+  #mobile-nav .mn-cta{ margin-top:16px; }
+}
+/* Три кнопки в один ряд – только от 700px (21.09.2026). Раньше ряд включался с 560px: на 560–660px ячейке главной
+   кнопки доставалось ~160px при её собственных 195px («Заказать оценку» – 218px), текст и стрелка вылезали из полей:
+   слева 7px, справа 11px, а между текстом и стрелкой 15px – Грег: «не эстетичные расстояния в этой кнопке».
+   Колонки теперь не уже содержимого кнопок (max-content), остаток ширины делится 1.35 : 1 : 1.
+   На 560–699px – как на телефоне: главная во всю ширину, под ней мессенджеры пополам. */
+@media (min-width:700px) and (max-width:1149px){
+  #mobile-nav .mn-cta{ grid-template-columns:minmax(max-content,1.35fr) repeat(2, minmax(max-content,1fr)); }
   #mobile-nav .mn-cta .cta-btn--main{ grid-column:auto; }
 }
 @media (max-height:520px) and (min-width:560px) and (max-width:1149px){
   #mobile-nav{ --mn-fs:22px; --mn-pad:9px; }
   #mobile-nav .mn-cta{ margin-top:10px; }
   .mn-in{ padding-bottom:14px; }
+}
+/* телефон лёжа (560–699px, окно ниже 520px): на два ряда кнопок высоты нет – один ряд, поля кнопок уже,
+   у мессенджеров без стрелки; так три кнопки входят в 440px с запасом (и с «Заказать оценку») */
+@media (max-height:520px) and (min-width:560px) and (max-width:699px){
+  #mobile-nav .mn-cta{ grid-template-columns:minmax(max-content,1.35fr) repeat(2, minmax(max-content,1fr)); }
+  #mobile-nav .mn-cta .cta-btn--main{ grid-column:auto; }
+  #mobile-nav .mn-cta .cta-btn, #mobile-nav .mn-cta .cta-btn:not(.cta-btn--main),
+  #mobile-nav .mn-cta .cta-btn:not(.cta-btn--main):hover, #mobile-nav .mn-cta .cta-btn:not(.cta-btn--main):focus-visible{
+    padding-left:.9em; padding-right:.9em; }
+  #mobile-nav .mn-cta .cta-btn:not(.cta-btn--main) .cta-mark{ display:none; }
 }
 
 /* над тёмным блоком шапка темнеет – панель вместе с ней; кнопки по схеме .bg-ink */
