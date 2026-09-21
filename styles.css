@@ -706,13 +706,18 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 .gdz-sub{ margin-top:1.9rem; font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
  letter-spacing:.16em; font-size:12px; font-weight:700; color:rgba(31,33,32,.6); }
 .gdz-meta--shared{ margin-top:.9rem; }
-/* часы – не в строчку: день слева, время крупнее и жирным, цифры равной ширины */
+/* часы – не в строчку: день слева, время жирным, цифры равной ширины. Кегль – как у остального текста строк (17px):
+   сначала время стояло 21px и на телефоне сравнялось с заголовком карточки (22px) – Грег, 22.09.2026: «время работы
+   размером с заголовок». Акцент здесь даёт вес, а не размер; размером выделяются только заголовки. */
 .gdz-hours{ display:grid; gap:.1rem; }
 .gdz-hr{ display:grid; grid-template-columns:6.5ch 1fr; align-items:baseline; }
 .gdz-hr-d{ color:rgba(31,33,32,.6); }
-.gdz-hr b{ font-size:21px; font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
+.gdz-hr b{ font-weight:700; font-variant-numeric:tabular-nums; }
 .gdz-courts{ margin-top:2.8rem; display:grid; gap:2.8rem; }
-.gdz-court-h{ font-size:24px; font-weight:800; letter-spacing:-.03em; line-height:1.08; }
+/* название суда – ступенью ниже заголовка карточки на любой ширине: заголовок 22px до 768px и 28px от 768px,
+   название – 19px и 24px (фиксированные 24px на телефоне оказывались крупнее заголовка карточки) */
+.gdz-court-h{ font-size:19px; font-weight:800; letter-spacing:-.03em; line-height:1.12; }
+@media (min-width:768px){ .gdz-court-h{ font-size:24px; line-height:1.08; } }
 .gdz-court-side{ display:block; font-weight:300; font-style:italic; }
 .gdz-court .gdz-meta{ margin-top:1.1rem; }
 /* Главный тезис плашки – «Opłaty urzędowe są już wliczone w nasze ceny»: самый крупный текст внутри плашки,
@@ -1063,20 +1068,11 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 /* выбранное «сегодня» залито охрой – точка на нём чернильная */
 .cal-cell.is-today:has(.cal-day.is-on)::after{ background:var(--c-ink); }
 .cal-book{ margin-top:18px; }
-/* параметры встречи: время дня и место (выбор часового пояса снят 21.09.2026, меню – в docs/dropdown-menu.md) */
+/* параметры встречи: осталось только место. Выбор часового пояса снят 21.09.2026 (меню – в docs/dropdown-menu.md),
+   переключатель «Rano · Południe · Wieczór» (.cal-seg) – тоже: он дублировал окна под календарём */
 .cal-opts{ display:flex; flex-direction:column; gap:10px; margin-bottom:16px; }
 .cal-opt{ position:relative; display:flex; align-items:center; gap:12px; min-width:0; }
 .cal-opt-ic{ flex:0 0 auto; width:20px; height:20px; color:rgba(255,255,255,.55); }
-.cal-seg{ display:flex; min-width:0; max-width:100%; padding:3px; gap:2px; border-radius:12px;
- border:1px solid rgba(255,255,255,.18); overflow-x:auto; scrollbar-width:none; }
-.cal-seg::-webkit-scrollbar{ display:none; }
-.cal-seg-b{ appearance:none; -webkit-appearance:none; font:inherit; margin:0; border:0;
- background:none; cursor:pointer; flex:0 0 auto; height:34px; padding:0 12px; border-radius:9px;
- font-size:15px; font-weight:600; white-space:nowrap; color:rgba(255,255,255,.62);
- -webkit-tap-highlight-color:transparent; transition:background-color .2s ease, color .2s ease; }
-@media (hover:hover){ .cal-seg-b:hover{ color:var(--c-paper); } }
-.cal-seg-b:focus-visible{ outline:2px solid var(--c-ochre); outline-offset:-2px; }
-.cal-seg-b.is-on{ background:rgba(255,255,255,.14); color:var(--c-paper); font-weight:700; }
 /* место встречи – строка, а не переключатель: вариант «Telefon» убран, выбирать не из чего;
    кегль 16px / 600, как был у снятой строки часового пояса */
 .cal-place{ min-height:40px; }
@@ -1113,8 +1109,8 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 .cal-slot.is-on{ background:rgba(255,255,255,.1); border-color:var(--c-ochre);
  box-shadow:inset 0 0 0 1px var(--c-ochre); color:var(--c-paper); font-weight:800; }
 .cal-slot.is-on .cal-slot-time{ color:var(--c-ochre); }
-/* окно, на которое сегодня уже не успеть (и его сегмент в переключателе сверху) */
-.cal-slot:disabled, .cal-seg-b:disabled{ cursor:default; color:rgba(255,255,255,.3); }
+/* окно, на которое сегодня уже не успеть */
+.cal-slot:disabled{ cursor:default; color:rgba(255,255,255,.3); }
 .cal-slot:disabled{ border-color:rgba(255,255,255,.1); }   /* часы не зачёркиваем: «ужасно выглядит» (Грег, 21.09.2026) – окно просто серое и не нажимается */
 /* широкая зона (планшет, телефон в горизонтали, две колонки у 1280px): строка во всю ширину разносила
    название и часы по разным краям – там три окна встают в ряд, часы под названием.
@@ -1226,8 +1222,11 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
 /* стрелка «живая»: лёгкий ход вправо-влево + мягкая пульсация */
 .lang-ticker.is-live .chip-chev{ animation:langArrowNudge 2.4s ease-in-out infinite; }
 
-/* ===== стрелка «наверх»: справа, отступ 81px, пульсация как у языковой ===== */
-.to-top{ position:fixed; z-index:60;
+/* ===== стрелка «наверх»: справа, отступ 81px, пульсация как у языковой =====
+   Слой – ПОД шапкой (#top, z-50) и подложкой меню (z-49): в конце страницы стрелка поднимается вместе с концом
+   контента и в невысоком окне доезжает до плашки шапки – раньше (z-60) она ложилась поверх плашки, под бургером.
+   Грег, 22.09.2026: «стрелка должна быть под плашкой всегда и везде». Выше 49 не поднимать. */
+.to-top{ position:fixed; z-index:40;
  /* привязка к правому краю контентной сетки (max-w-site 1320px) */
  /* сдвинута на 15% ближе к правому краю */
  right:max(17px, calc(((100vw - 1320px) / 2 - 24px) * .85)); bottom:64px;
@@ -1596,6 +1595,15 @@ details[open] .chev{ transform:rotate(45deg); }
  color:var(--c-ochre); text-decoration:none; transition:color .25s ease; word-break:break-word; }
 .kt-ch-v:hover, .kt-ch-v:focus-visible{ color:var(--c-paper); }
 .kt-ch-t{ font-size:15.5px; line-height:1.5; color:rgba(255,255,255,.6); max-width:36ch; }
+
+/* Жёлтая плашка «Osobiście» (/kontakt/ #odbior) на телефоне: поля страницы 20px + поля плашки 28px сжимали текст
+   в столбец 224px на экране 320px, и плашка вытягивалась на 1,65 экрана (Грег, 21.09.2026: «очень растянут по высоте
+   из-за отступов»). Уже 640px плашка выходит на 10px за колонку страницы (до края экрана остаётся 10px), поля 20px,
+   радиус чуть меньше – столбец текста 260px; зазор между двумя группами текста 26px вместо 32px. */
+@media (max-width:639px){
+  .ob-plate{ margin-left:-10px; margin-right:-10px; padding:24px 20px 22px; border-radius:22px; }
+  .ob-grid{ row-gap:1.6rem; }
+}
 
 /* Пять шагов заказа – нумерованный список */
 .kt-steps-list{ margin:1.5rem 0 0; padding:0; list-style:none; counter-reset:kt; display:grid; gap:1rem; max-width:70ch; }
@@ -3342,7 +3350,6 @@ html.qd-open #burger > span{ opacity:0; }
   .cal-day::after{ content:''; position:absolute; inset:-5px -7px; }
   .cal-btn{ width:44px; height:44px; }
   .cal-nav{ gap:0; margin-right:-5px; }   /* значки стрелок остаются на прежнем месте: (44 − 34) / 2 */
-  .cal-seg-b{ height:40px; }
   .k-where-link, .lang-switch, .logo-brand{ position:relative; }
   .k-where-link::after, .lang-switch::after, .logo-brand::after{ content:''; position:absolute; inset:-10px 0; }
 }
@@ -3423,12 +3430,18 @@ html.qd-open #burger > span{ opacity:0; }
 @media (prefers-reduced-motion:reduce){ #top{ transition:none; } }
 
 /* Языки в панели меню: первая строка под рядом шапки, мелко, текущий – полужирный. Сверху и снизу – те же
-   линии, что между пунктами: единая плашка читается как один список. Четыре названия разведены на ширину строки –
-   края совпадают с линиями; в одну строку они входят от 340px (кегль 15px уже 400px), уже – коды PL · UA · RU · EN.
+   линии, что между пунктами: единая плашка читается как один список. Названия входят в одну строку от 340px
+   (кегль 15px уже 400px), уже – коды PL · UA · RU · EN (решено 21.09.2026: на узком экране коды читаются лучше).
+   Телефон (уже 560px), просьба Грега 21.09.2026: текущий язык – слева на оси логотипа, три остальных – группой
+   у правого края с малым шагом. «Где я» и «куда перейти» читаются раздельно, цели перехода стоят рядом.
+   Вперёд текущий ставит order: в разметке порядок прежний (PL · UA · RU · EN), его читает скринридер.
+   Шаг в группе – поля --mn-lang-pad по обе стороны слова: зона нажатия остаётся по центру слова, а крайние слова
+   встают точно на концы линий за счёт отрицательных полей.
    Высота строки ужимается на низком экране вместе с пунктами меню, чтобы кнопки остались на экране (iPhone SE). */
-.mn-langs{ display:flex; flex-wrap:nowrap; align-items:center; justify-content:space-between; gap:0 8px; margin:0; padding:2px 0;
+.mn-langs{ display:flex; flex-wrap:nowrap; align-items:center; justify-content:flex-start; gap:0; margin:0; padding:2px 0;
  border-top:1px solid rgba(31,33,32,.1); border-bottom:1px solid rgba(31,33,32,.1); }
-.mn-lang{ display:inline-flex; align-items:center; min-height:44px; font-size:16px; font-weight:400; line-height:1.1;
+.mn-lang{ display:inline-flex; align-items:center; justify-content:center; min-height:44px; font-size:16px; font-weight:400;
+ line-height:1.1; white-space:nowrap;
  color:rgba(31,33,32,.72); text-decoration:none; -webkit-tap-highlight-color:transparent; transition:opacity .15s ease; }
 .mn-lang.is-current{ font-weight:700; color:var(--c-ink); }
 .mn-lang:active{ opacity:.5; }
@@ -3436,14 +3449,25 @@ html.qd-open #burger > span{ opacity:0; }
 .mn-lang-code{ display:none; letter-spacing:.04em; }
 @supports (height:100dvh){ .mn-lang{ min-height:clamp(34px, 6.2dvh, 44px); } }
 @media (max-width:400px){ .mn-lang{ font-size:15px; } }
+@media (max-width:559px){
+  /* шаг между словами группы = два поля: 10px на 340px, 18px от 380px – пока названиям тесно, группа плотнее,
+     иначе разрыв между текущим языком и группой выходит не больше шага внутри неё */
+  .mn-langs{ --mn-lang-pad:clamp(5px, calc(5px + (100vw - 340px) * .1), 9px); }
+  .mn-lang{ padding:0 var(--mn-lang-pad); }
+  .mn-lang.is-current{ order:-1; margin-left:calc(-1 * var(--mn-lang-pad)); margin-right:auto; }
+  /* последний на экране: последний в разметке, а на странице последнего языка (EN) – предпоследний */
+  .mn-lang:last-child:not(.is-current),
+  .mn-lang:nth-last-child(2):has(+ .mn-lang.is-current){ margin-right:calc(-1 * var(--mn-lang-pad)); }
+}
 @media (max-width:339px){
   .mn-lang-full{ display:none; }
   .mn-lang-code{ display:inline; }
-  .mn-lang{ font-size:16px; min-width:44px; justify-content:center; }
-  .mn-lang:first-child{ justify-content:flex-start; } .mn-lang:last-child{ justify-content:flex-end; }
+  /* коды: шаг 22px ≈ ширина самого кода, зона нажатия 43–44px */
+  .mn-langs{ --mn-lang-pad:11px; }
+  .mn-lang{ font-size:16px; }
 }
-/* широкая плашка: названия не растягиваем на 700px – стоят слева с обычным шагом */
-@media (min-width:560px){ .mn-langs{ justify-content:flex-start; gap:0 30px; } }
+/* широкая плашка: названия не растягиваем на 700px – стоят слева с обычным шагом, порядок как в разметке */
+@media (min-width:560px){ .mn-langs{ gap:0 30px; } }
 /* iPhone SE (видимая высота ~548px): со строкой языков панель была на 17px выше окна – пункты чуть плотнее,
    нижнее поле меньше, и всё меню снова на экране без прокрутки */
 @media (max-height:600px) and (max-width:559px){

@@ -10,7 +10,7 @@
           msgSat: 'Napisz, a potwierdzimy termin. Standardowo wracamy w poniedziałek od 7:00.',
           msgSun: 'Zgłoszenie przyjmiemy teraz, odpowiemy w poniedziałek od 7:00.',
           holiday: 'Dzień ustawowo wolny', msgNext: 'Napisz teraz – odpowiemy w najbliższy dzień roboczy od 7:00.',
-          book: { hint: 'Kliknij dostępny dzień – wybierzesz porę spotkania.', tz: 'czas warszawski', pick: 'Wybierz porę spotkania', cta: 'Umów spotkanie', note: 'Dokładną godzinę potwierdzimy w odpowiedzi.', late: 'Na dziś jest już za późno – wybierz inny dzień.', partL: 'Pora dnia', placeL: 'Miejsce spotkania',
+          book: { hint: 'Kliknij dostępny dzień – wybierzesz porę spotkania.', tz: 'czas warszawski', pick: 'Wybierz porę spotkania', cta: 'Umów spotkanie', note: 'Dokładną godzinę potwierdzimy w odpowiedzi.', late: 'Na dziś jest już za późno – wybierz inny dzień.', placeL: 'Miejsce spotkania',
                   parts: ['Rano','Południe','Wieczór'], place: 'Krucza / Śródmieście',
                   msg: 'Dzień dobry! Chcę umówić spotkanie przy ul. Kruczej: {date}, {part}, godz. {time} czasu warszawskiego.' },
           hol: { ny: 'Nowy Rok', epi: 'Święto Trzech Króli', may1: 'Święto Pracy', may3: 'Święto Konstytucji 3 Maja',
@@ -26,7 +26,7 @@
           msgSat: 'Напишіть, і ми підтвердимо термін. Зазвичай повертаємося в понеділок з 7:00.',
           msgSun: 'Заявку приймемо зараз, відповімо в понеділок з 7:00.',
           holiday: 'Державний вихідний у Польщі', msgNext: 'Напишіть зараз – відповімо найближчого робочого дня з 7:00.',
-          book: { hint: 'Натисніть на доступний день – оберете час зустрічі.', tz: 'час варшавський', pick: 'Оберіть час', cta: 'Записатися', note: 'Точний час підтвердимо у відповіді.', late: 'На сьогодні вже запізно – оберіть інший день.', partL: 'Час доби', placeL: 'Місце зустрічі',
+          book: { hint: 'Натисніть на доступний день – оберете час зустрічі.', tz: 'час варшавський', pick: 'Оберіть час', cta: 'Записатися', note: 'Точний час підтвердимо у відповіді.', late: 'На сьогодні вже запізно – оберіть інший день.', placeL: 'Місце зустрічі',
                   parts: ['Ранок','Обід','Вечір'], place: 'Krucza / Śródmieście',
                   msg: 'Добрий день! Хочу записатися на зустріч на вул. Krucza: {date}, {part}, {time} за варшавським часом.' },
           hol: { ny: 'Новий рік', epi: 'Богоявлення (Трьох Королів)', may1: 'День праці', may3: 'День Конституції 3 Травня',
@@ -42,7 +42,7 @@
           msgSat: 'Напишите, и мы подтвердим срок. Обычно возвращаемся в понедельник с 7:00.',
           msgSun: 'Заявку примем сейчас, ответим в понедельник с 7:00.',
           holiday: 'Государственный выходной в Польше', msgNext: 'Напишите сейчас – ответим в ближайший рабочий день с 7:00.',
-          book: { hint: 'Нажмите на доступный день – выберете время встречи.', tz: 'время варшавское', pick: 'Выберите время', cta: 'Записаться', note: 'Точное время подтвердим в ответном сообщении.', late: 'На сегодня уже поздно – выберите другой день.', partL: 'Время дня', placeL: 'Место встречи',
+          book: { hint: 'Нажмите на доступный день – выберете время встречи.', tz: 'время варшавское', pick: 'Выберите время', cta: 'Записаться', note: 'Точное время подтвердим в ответном сообщении.', late: 'На сегодня уже поздно – выберите другой день.', placeL: 'Место встречи',
                   parts: ['Утро','Обед','Вечер'], place: 'Krucza / Śródmieście',
                   msg: 'Здравствуйте! Хочу записаться на встречу на ул. Krucza: {date}, {part}, {time} по варшавскому времени.' },
           hol: { ny: 'Новый год', epi: 'Богоявление (Трёх Королей)', may1: 'День труда', may3: 'День Конституции 3 Мая',
@@ -58,7 +58,7 @@
           msgSat: 'Write and we will confirm a time. Normally we are back on Monday from 7:00.',
           msgSun: 'We take your request now and reply on Monday from 7:00.',
           holiday: 'Public holiday in Poland', msgNext: 'Write now – we reply on the next working day from 7:00.',
-          book: { hint: 'Click an available day to pick a meeting time.', tz: 'Warsaw time', pick: 'Pick a time', cta: 'Book a meeting', note: 'We confirm the exact time in our reply.', late: 'It is too late for today – pick another day.', partL: 'Time of day', placeL: 'Meeting place',
+          book: { hint: 'Click an available day to pick a meeting time.', tz: 'Warsaw time', pick: 'Pick a time', cta: 'Book a meeting', note: 'We confirm the exact time in our reply.', late: 'It is too late for today – pick another day.', placeL: 'Meeting place',
                   parts: ['Morning','Afternoon','Evening'], place: 'Krucza / Śródmieście',
                   msg: 'Hello! I would like to book a meeting on Krucza Street: {date}, {part}, {time} Warsaw time.' },
           hol: { ny: 'New Year', epi: 'Epiphany', may1: 'Labour Day', may3: 'Constitution Day (3 May)',
@@ -1280,20 +1280,16 @@
       }
     }
 
-    var bookEl, slotsEl, dateEl, goEl, goText, partSeg, noteEl2;
+    var bookEl, slotsEl, dateEl, goEl, goText, noteEl2;
     if (BOOK) {
       bookEl = document.createElement('div');
       bookEl.className = 'cal-book';
       var IC = '<svg class="cal-opt-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">';
-      // параметры: время дня – переключатель; место – просто строка: встреча только личная, у ul. Kruczej
-      // (вариант «Telefon» Грег убрал 21.09.2026, выбирать стало не из чего)
+      // параметры: только место – строка: встреча личная, у ul. Kruczej (вариант «Telefon» Грег убрал 21.09.2026).
+      // Переключателя «Rano · Południe · Wieczór» здесь больше нет (Грег, 21.09.2026: «дублирование») –
+      // время дня выбирают один раз, в окнах под календарём, которые появляются после выбора даты
       bookEl.innerHTML =
         '<div class="cal-opts">' +
-          '<div class="cal-opt">' + IC + '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>' +
-            '<div class="cal-seg" role="group" aria-label="' + L.book.partL + '">' +
-              L.book.parts.map(function (t, n) {
-                return '<button type="button" class="cal-seg-b" data-n="' + n + '" aria-pressed="false">' + t + '</button>';
-              }).join('') + '</div></div>' +
           '<div class="cal-opt cal-place" role="group" aria-label="' + L.book.placeL + '">' +
             IC + '<path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>' +
             '<span class="cal-place-name">' + L.book.place + '</span></div>' +
@@ -1317,15 +1313,7 @@
       goText = bookEl.querySelector('.cal-go-text');
       noteEl2 = bookEl.querySelector('.cal-book-note');
 
-      // время дня; подсветку «утро · обед · вечер» ведёт paintSlots() – тот же выбор делают строки окон под календарём
-      partSeg = bookEl.querySelector('.cal-seg');
-      partSeg.addEventListener('click', function (e) {
-        var b = e.target.closest ? e.target.closest('.cal-seg-b') : null;
-        if (!b || b.disabled) return;
-        part = +b.getAttribute('data-n');
-        paintSlots();
-      });
-
+      // время дня выбирают строки окон под календарём
       slotsEl.addEventListener('click', function (e) {
         var b = e.target.closest ? e.target.closest('.cal-slot') : null;
         if (!b || b.disabled) return;
@@ -1341,15 +1329,10 @@
     function paintSlots() {
       if (!BOOK) return;
       bookEl.classList.toggle('is-open', !!sel);
-      // окна выбранного дня; пока день не выбран, доступны все
-      var list = sel ? slotsFor(sel.y, sel.m, sel.d, (new Date(sel.y, sel.m - 1, sel.d).getDay() + 6) % 7) : [0, 1, 2];
-      if (list.indexOf(part) === -1) part = null;     // сегодня это окно уже прошло
-      Array.prototype.forEach.call(partSeg.children, function (c, i) {
-        c.classList.toggle('is-on', i === part);
-        c.setAttribute('aria-pressed', i === part);
-        c.disabled = list.indexOf(i) === -1;
-      });
       if (!sel) return;
+      // окна выбранного дня
+      var list = slotsFor(sel.y, sel.m, sel.d, (new Date(sel.y, sel.m - 1, sel.d).getDay() + 6) % 7);
+      if (list.indexOf(part) === -1) part = null;     // в этот день такого окна нет (суббота) или оно уже прошло
       var date = fmtDate(sel);
       dateEl.textContent = date;
       noteEl2.textContent = list.length ? L.book.note : L.book.late;
@@ -2202,7 +2185,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260921-126';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260921-131';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
