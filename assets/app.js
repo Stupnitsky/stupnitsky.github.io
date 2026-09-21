@@ -9,10 +9,13 @@
           msgFri: 'Napisz teraz – w sobotę pracujemy po uzgodnieniu, najpóźniej odpiszemy w poniedziałek od 7:00.',
           msgSat: 'Napisz, a potwierdzimy termin. Standardowo wracamy w poniedziałek od 7:00.',
           msgSun: 'Zgłoszenie przyjmiemy teraz, odpowiemy w poniedziałek od 7:00.',
-          book: { hint: 'Kliknij dzień roboczy – wybierzesz godzinę spotkania na ul. Kruczej.', tz: 'czas warszawski', pick: 'Wybierz godzinę', cta: 'Umów spotkanie', note: 'Termin potwierdzimy w odpowiedzi.', msg: 'Dzień dobry! Chcę umówić spotkanie na ul. Kruczej: {date}, godz. {time}.' },
+          holiday: 'Dzień ustawowo wolny', msgNext: 'Napisz teraz – odpowiemy w najbliższy dzień roboczy od 7:00.',
+          book: { hint: 'Kliknij dzień roboczy – wybierzesz godzinę spotkania.', tz: 'czas warszawski', pick: 'Wybierz godzinę', cta: 'Umów spotkanie', note: 'Termin potwierdzimy w odpowiedzi.', durL: 'Czas trwania', fmtL: 'Forma spotkania', tzL: 'Strefa czasowa',
+                  durs: ['15 min','30 min','45 min','1 godz.'], fmts: ['Osobiście · ul. Krucza','Telefon'],
+                  msg: 'Dzień dobry! Chcę umówić spotkanie: {format}, {date}, godz. {time} czasu warszawskiego, {dur}.', msgLocal: ' U mnie to {ltime} ({tz}).' },
           hol: { ny: 'Nowy Rok', epi: 'Święto Trzech Króli', may1: 'Święto Pracy', may3: 'Święto Konstytucji 3 Maja',
                  aug15: 'Wniebowzięcie NMP · Święto Wojska Polskiego', nov1: 'Wszystkich Świętych', nov11: 'Narodowe Święto Niepodległości',
-                 xmas1: 'Boże Narodzenie – pierwszy dzień', xmas2: 'Boże Narodzenie – drugi dzień', easter: 'Wielkanoc',
+                 xmasEve: 'Wigilia Bożego Narodzenia', xmas1: 'Boże Narodzenie – pierwszy dzień', xmas2: 'Boże Narodzenie – drugi dzień', easter: 'Wielkanoc',
                  easterMon: 'Poniedziałek Wielkanocny', pent: 'Zielone Świątki', corpus: 'Boże Ciało' } },
     uk: { months: ['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'],
           wd: ['Пн','Вт','Ср','Чт','Пт','Сб','Нд'], summer: 'літній час', winter: 'зимовий час',
@@ -22,10 +25,13 @@
           msgFri: 'Напишіть зараз – у суботу працюємо за домовленістю, найпізніше відповімо в понеділок з 7:00.',
           msgSat: 'Напишіть, і ми підтвердимо термін. Зазвичай повертаємося в понеділок з 7:00.',
           msgSun: 'Заявку приймемо зараз, відповімо в понеділок з 7:00.',
-          book: { hint: 'Натисніть на робочий день – оберете час зустрічі на вул. Kruczej.', tz: 'час варшавський', pick: 'Оберіть час', cta: 'Записатися', note: 'Час підтвердимо у відповіді.', msg: 'Добрий день! Хочу домовитися про зустріч на вул. Kruczej: {date}, {time}.' },
+          holiday: 'Державний вихідний у Польщі', msgNext: 'Напишіть зараз – відповімо найближчого робочого дня з 7:00.',
+          book: { hint: 'Натисніть на робочий день – оберете час зустрічі.', tz: 'час варшавський', pick: 'Оберіть час', cta: 'Записатися', note: 'Час підтвердимо у відповіді.', durL: 'Тривалість', fmtL: 'Формат зустрічі', tzL: 'Часовий пояс',
+                  durs: ['15 хв','30 хв','45 хв','1 год'], fmts: ['Особисто · вул. Krucza','Дзвінок'],
+                  msg: 'Добрий день! Хочу записатися: {format}, {date}, {time} за варшавським часом, {dur}.', msgLocal: ' У мене це {ltime} ({tz}).' },
           hol: { ny: 'Новий рік', epi: 'Богоявлення (Трьох Королів)', may1: 'День праці', may3: 'День Конституції 3 Травня',
                  aug15: 'Успіння Богородиці · День Війська Польського', nov1: 'День усіх святих', nov11: 'День Незалежності Польщі',
-                 xmas1: 'Різдво – перший день', xmas2: 'Різдво – другий день', easter: 'Великдень',
+                 xmasEve: 'Святвечір (Wigilia)', xmas1: 'Різдво – перший день', xmas2: 'Різдво – другий день', easter: 'Великдень',
                  easterMon: 'Великодній понеділок', pent: 'Зелені свята', corpus: 'Свято Тіла Господнього' } },
     ru: { months: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
           wd: ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'], summer: 'летнее время', winter: 'зимнее время',
@@ -35,10 +41,13 @@
           msgFri: 'Напишите сейчас – в субботу работаем по договорённости, самое позднее ответим в понедельник с 7:00.',
           msgSat: 'Напишите, и мы подтвердим срок. Обычно возвращаемся в понедельник с 7:00.',
           msgSun: 'Заявку примем сейчас, ответим в понедельник с 7:00.',
-          book: { hint: 'Нажмите на рабочий день – выберете время встречи на ул. Kruczej.', tz: 'время варшавское', pick: 'Выберите время', cta: 'Записаться', note: 'Время подтвердим в ответном сообщении.', msg: 'Здравствуйте! Хочу договориться о встрече на ул. Kruczej: {date}, {time}.' },
+          holiday: 'Государственный выходной в Польше', msgNext: 'Напишите сейчас – ответим в ближайший рабочий день с 7:00.',
+          book: { hint: 'Нажмите на рабочий день – выберете время встречи.', tz: 'время варшавское', pick: 'Выберите время', cta: 'Записаться', note: 'Время подтвердим в ответном сообщении.', durL: 'Длительность', fmtL: 'Формат встречи', tzL: 'Часовой пояс',
+                  durs: ['15 мин','30 мин','45 мин','1 ч'], fmts: ['Лично · ул. Krucza','Звонок'],
+                  msg: 'Здравствуйте! Хочу записаться: {format}, {date}, {time} по варшавскому времени, {dur}.', msgLocal: ' У меня это {ltime} ({tz}).' },
           hol: { ny: 'Новый год', epi: 'Богоявление (Трёх Королей)', may1: 'День труда', may3: 'День Конституции 3 Мая',
                  aug15: 'Успение Богородицы · День Войска Польского', nov1: 'День всех святых', nov11: 'День Независимости Польши',
-                 xmas1: 'Рождество – первый день', xmas2: 'Рождество – второй день', easter: 'Пасха',
+                 xmasEve: 'Сочельник (Wigilia)', xmas1: 'Рождество – первый день', xmas2: 'Рождество – второй день', easter: 'Пасха',
                  easterMon: 'Пасхальный понедельник', pent: 'Троица', corpus: 'Праздник Тела Господня' } },
     en: { months: ['January','February','March','April','May','June','July','August','September','October','November','December'],
           wd: ['Mo','Tu','We','Th','Fr','Sa','Su'], summer: 'summer time', winter: 'winter time',
@@ -48,13 +57,58 @@
           msgFri: 'Write now – Saturdays by arrangement, we reply by Monday 7:00 at the latest.',
           msgSat: 'Write and we will confirm a time. Normally we are back on Monday from 7:00.',
           msgSun: 'We take your request now and reply on Monday from 7:00.',
-          book: { hint: 'Click a working day to pick a time for a meeting on Krucza St.', tz: 'Warsaw time', pick: 'Pick a time', cta: 'Book a meeting', note: 'We confirm the time in our reply.', msg: 'Hello! I would like to arrange a meeting on Krucza St.: {date}, {time}.' },
+          holiday: 'Public holiday in Poland', msgNext: 'Write now – we reply on the next working day from 7:00.',
+          book: { hint: 'Click a working day to pick a meeting time.', tz: 'Warsaw time', pick: 'Pick a time', cta: 'Book a meeting', note: 'We confirm the time in our reply.', durL: 'Duration', fmtL: 'Meeting format', tzL: 'Time zone',
+                  durs: ['15 min','30 min','45 min','1 h'], fmts: ['In person · Krucza St.','Phone call'],
+                  msg: 'Hello! I would like to book: {format}, {date}, {time} Warsaw time, {dur}.', msgLocal: ' That is {ltime} my time ({tz}).' },
           hol: { ny: 'New Year', epi: 'Epiphany', may1: 'Labour Day', may3: 'Constitution Day (3 May)',
                  aug15: 'Assumption · Polish Armed Forces Day', nov1: 'All Saints', nov11: 'Independence Day',
-                 xmas1: 'Christmas Day', xmas2: 'Second day of Christmas', easter: 'Easter Sunday',
+                 xmasEve: 'Christmas Eve', xmas1: 'Christmas Day', xmas2: 'Second day of Christmas', easter: 'Easter Sunday',
                  easterMon: 'Easter Monday', pent: 'Pentecost', corpus: 'Corpus Christi' } }
   };
   var L = I18N[(document.documentElement.lang || 'pl').slice(0, 2)] || I18N.pl;
+
+  // Польские dni ustawowo wolne od pracy – общие для статуса «работаем / не работаем» и календаря.
+  // Пасха по алгоритму Meeus/Jones/Butcher – подвижные праздники считаются, а не зашиты
+  function easter(y) {
+    var a = y % 19, b = Math.floor(y / 100), c = y % 100,
+        d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25),
+        g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30,
+        i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7,
+        m = Math.floor((a + 11 * h + 22 * l) / 451),
+        mo = Math.floor((h + l - 7 * m + 114) / 31),
+        da = ((h + l - 7 * m + 114) % 31) + 1;
+    return new Date(y, mo - 1, da);
+  }
+  var holCache = {};
+  function holidays(y) {
+    if (holCache[y]) return holCache[y];
+    var map = {};
+    function put(mo, da, name) { map[mo + '-' + da] = name; }
+    function putDate(d, name) { put(d.getMonth() + 1, d.getDate(), name); }
+    put(1, 1, L.hol.ny);
+    put(1, 6, L.hol.epi);
+    put(5, 1, L.hol.may1);
+    put(5, 3, L.hol.may3);
+    put(8, 15, L.hol.aug15);
+    put(11, 1, L.hol.nov1);
+    put(11, 11, L.hol.nov11);
+    if (y >= 2025) put(12, 24, L.hol.xmasEve);   // Wigilia – день ustawowo wolny с 2025 года (Dz.U. 2024 poz. 1965)
+    put(12, 25, L.hol.xmas1);
+    put(12, 26, L.hol.xmas2);
+    var e = easter(y);
+    putDate(e, L.hol.easter);
+    putDate(new Date(y, e.getMonth(), e.getDate() + 1), L.hol.easterMon);
+    putDate(new Date(y, e.getMonth(), e.getDate() + 49), L.hol.pent);
+    putDate(new Date(y, e.getMonth(), e.getDate() + 60), L.hol.corpus);
+    holCache[y] = map;
+    return map;
+  }
+  // рабочий день: пн–пт и не праздник
+  function isWorkday(dt) {
+    var wd = dt.getDay();
+    return wd >= 1 && wd <= 5 && !holidays(dt.getFullYear())[(dt.getMonth() + 1) + '-' + dt.getDate()];
+  }
   // Логотип: плавно уменьшается пропорционально прокрутке (1.36 → 1.00 на первых 160px)
   var header = document.getElementById('top');
   var LOGO_MAX = 1.36, LOGO_MIN = 1, LOGO_RANGE = 160;
@@ -854,17 +908,20 @@
       try {
         new Intl.DateTimeFormat('en-GB', {
           timeZone: 'Europe/Warsaw', hour12: false, weekday: 'short',
+          year: 'numeric', month: '2-digit', day: '2-digit',
           hour: '2-digit', minute: '2-digit', second: '2-digit'
         }).formatToParts(new Date()).forEach(function (p) { out[p.type] = p.value; });
       } catch (e) {
         var d = new Date();
         out = { weekday: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()],
+                year: String(d.getFullYear()), month: String(d.getMonth() + 1), day: String(d.getDate()),
                 hour: ('0' + d.getHours()).slice(-2), minute: ('0' + d.getMinutes()).slice(-2),
                 second: ('0' + d.getSeconds()).slice(-2) };
       }
       var wd = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 }[out.weekday];
       var h = parseInt(out.hour, 10) % 24;
       return { wd: wd, h: h, m: parseInt(out.minute, 10), s: parseInt(out.second, 10),
+               y: parseInt(out.year, 10), mo: parseInt(out.month, 10), d: parseInt(out.day, 10),
                clock: ('0' + h).slice(-2) + ':' + out.minute + ':' + out.second };
     }
 
@@ -912,9 +969,16 @@
     function tick() {
       var t = warsaw();
       var mins = t.h * 60 + t.m;
-      var weekday = t.wd >= 1 && t.wd <= 5;
+      // праздник в будний день – не рабочий день: урядЫ закрыты, и мы не отвечаем (см. FAQ на /kontakt/)
+      var holiday = !!holidays(t.y)[t.mo + '-' + t.d];
+      var weekday = t.wd >= 1 && t.wd <= 5 && !holiday;
       var open = weekday && mins >= OPEN && mins < CLOSE;
       var state, msg;
+
+      // через сколько дней ближайший рабочий день (1 – завтра) и на какой день недели он выпадает
+      var ahead = 0, next = new Date(t.y, t.mo - 1, t.d);
+      do { ahead++; next = new Date(t.y, t.mo - 1, t.d + ahead); } while (!isWorkday(next) && ahead < 14);
+      var nextIsMonday = next.getDay() === 1 && ahead <= 3;
 
       if (open) {
         state = L.open;
@@ -922,18 +986,21 @@
       } else if (weekday && mins < OPEN) {
         state = L.closed;
         msg = L.msgToday;
+      } else if (holiday && t.wd >= 1 && t.wd <= 5) {
+        state = L.holiday;
+        msg = ahead === 1 ? L.msgTomorrow : L.msgNext;
       } else if (t.wd >= 1 && t.wd <= 4) {
         state = L.closed;
-        msg = L.msgTomorrow;
+        msg = ahead === 1 ? L.msgTomorrow : L.msgNext;
       } else if (t.wd === 5) {
         state = L.closed;
-        msg = L.msgFri;
+        msg = nextIsMonday ? L.msgFri : L.msgNext;
       } else if (t.wd === 6) {
         state = L.sat;
-        msg = L.msgSat;
+        msg = nextIsMonday ? L.msgSat : L.msgNext;
       } else {
         state = L.sun;
-        msg = L.msgSun;
+        msg = nextIsMonday ? L.msgSun : L.msgNext;
       }
 
       ws.classList.toggle('is-open', open);
@@ -1016,41 +1083,7 @@
     var MONTHS = L.months;
     var WD = L.wd;
 
-    // Пасха по алгоритму Meeus/Jones/Butcher – подвижные праздники считаются, а не зашиты
-    function easter(y) {
-      var a = y % 19, b = Math.floor(y / 100), c = y % 100,
-          d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25),
-          g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30,
-          i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7,
-          m = Math.floor((a + 11 * h + 22 * l) / 451),
-          mo = Math.floor((h + l - 7 * m + 114) / 31),
-          da = ((h + l - 7 * m + 114) % 31) + 1;
-      return new Date(y, mo - 1, da);
-    }
-
-    var cache = {};
-    function holidays(y) {
-      if (cache[y]) return cache[y];
-      var map = {};
-      function put(mo, da, name) { map[mo + '-' + da] = name; }
-      function putDate(d, name) { put(d.getMonth() + 1, d.getDate(), name); }
-      put(1, 1, L.hol.ny);
-      put(1, 6, L.hol.epi);
-      put(5, 1, L.hol.may1);
-      put(5, 3, L.hol.may3);
-      put(8, 15, L.hol.aug15);
-      put(11, 1, L.hol.nov1);
-      put(11, 11, L.hol.nov11);
-      put(12, 25, L.hol.xmas1);
-      put(12, 26, L.hol.xmas2);
-      var e = easter(y);
-      putDate(e, L.hol.easter);
-      putDate(new Date(y, e.getMonth(), e.getDate() + 1), L.hol.easterMon);
-      putDate(new Date(y, e.getMonth(), e.getDate() + 49), L.hol.pent);
-      putDate(new Date(y, e.getMonth(), e.getDate() + 60), L.hol.corpus);
-      cache[y] = map;
-      return map;
-    }
+    // easter() и holidays() – общие с блоком часов, объявлены в начале файла
 
     // «сегодня» по варшавскому времени, а не по часам посетителя
     function todayWarsaw() {
@@ -1070,11 +1103,58 @@
     var BOOK = cal.hasAttribute('data-book') && L.book;
     var WA = 'https://wa.me/48507588155';
     var SLOT_STEP = 30;                 // шаг сетки, мин
-    var DAY_FROM = 9 * 60, DAY_TO = 18 * 60;      // пн–пт, последний слот 18:00
-    var SAT_FROM = 10 * 60, SAT_TO = 14 * 60;     // суббота – по договорённости
+    var DAY_FROM = 9 * 60, DAY_TO = 18 * 60;      // пн–пт, последний слот 18:00; сб и вс – выходные, записи нет
     var LEAD = 120;                     // сегодня – не раньше чем через 2 часа
     var HORIZON = 90;                   // на сколько дней вперёд открыта запись
     var sel = null, selTime = null;
+    var dur = 1, fmt = 0;               // индексы в L.book.durs / L.book.fmts
+    var HOME_TZ = 'Europe/Warsaw';
+    var TZ_LIST = ['Europe/Warsaw', 'Europe/Kyiv', 'Europe/London', 'Europe/Lisbon', 'Europe/Madrid',
+      'Europe/Paris', 'Europe/Amsterdam', 'Europe/Berlin', 'Europe/Rome', 'Europe/Prague',
+      'Europe/Vilnius', 'Europe/Istanbul', 'Asia/Tbilisi', 'Asia/Dubai', 'Asia/Almaty',
+      'America/New_York', 'America/Toronto', 'America/Chicago', 'America/Los_Angeles'];
+    var tz = HOME_TZ;
+
+    function tzParts(zone, instant) {
+      var o = {};
+      new Intl.DateTimeFormat('en-GB', { timeZone: zone, year: 'numeric', month: '2-digit',
+        day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
+        .formatToParts(new Date(instant)).forEach(function (p) { o[p.type] = +p.value; });
+      return o;
+    }
+    // смещение пояса от UTC в минутах на данный момент
+    function tzOffset(zone, instant) {
+      var o = tzParts(zone, instant);
+      return Math.round((Date.UTC(o.year, o.month - 1, o.day, o.hour, o.minute) - instant) / 6e4);
+    }
+    // момент времени, соответствующий варшавским y-m-d и t минутам от полуночи
+    function warsawInstant(y, m, d, t) {
+      var g = Date.UTC(y, m - 1, d, 0, t);
+      return g - tzOffset(HOME_TZ, g) * 6e4;
+    }
+    function gmtLabel(zone) {
+      var off = tzOffset(zone, Date.now()), a = Math.abs(off);
+      return 'GMT ' + (off < 0 ? '−' : '+') + Math.floor(a / 60) + ':' + ('0' + (a % 60)).slice(-2);
+    }
+    // время слота в выбранном поясе; если дата там другая – пометка +1 / −1
+    function slotLabel(o, t) {
+      if (tz === HOME_TZ) return fmtTime(t);
+      var p = tzParts(tz, warsawInstant(o.y, o.m, o.d, t));
+      var shift = Math.round((Date.UTC(p.year, p.month - 1, p.day) - Date.UTC(o.y, o.m - 1, o.d)) / 864e5);
+      return fmtTime(p.hour * 60 + p.minute) + (shift ? ' ' + (shift > 0 ? '+' : '−') + Math.abs(shift) : '');
+    }
+
+    if (BOOK) {
+      try {
+        var mine = new Intl.DateTimeFormat().resolvedOptions().timeZone;
+        if (mine === 'Europe/Kiev') mine = 'Europe/Kyiv';
+        tzOffset(mine, Date.now());                   // бросит исключение, если пояс не поддержан
+        if (TZ_LIST.indexOf(mine) === -1) TZ_LIST.unshift(mine);
+        tz = mine;
+      } catch (err) { tz = HOME_TZ; }
+      try { tzOffset('Europe/Kyiv', Date.now()); }    // старые движки знают только Europe/Kiev
+      catch (err) { TZ_LIST[TZ_LIST.indexOf('Europe/Kyiv')] = 'Europe/Kiev'; if (tz === 'Europe/Kyiv') tz = 'Europe/Kiev'; }
+    }
 
     function warsawMins() {
       try {
@@ -1091,8 +1171,8 @@
 
     // wd: 0 – понедельник … 6 – воскресенье
     function slotsFor(y, m, d, wd) {
-      if (wd === 6) return [];
-      var from = wd === 5 ? SAT_FROM : DAY_FROM, to = wd === 5 ? SAT_TO : DAY_TO;
+      if (wd > 4) return [];
+      var from = DAY_FROM, to = DAY_TO;
       if (y === now.y && m === now.m && d === now.d) {
         from = Math.max(from, Math.ceil((warsawMins() + LEAD) / SLOT_STEP) * SLOT_STEP);
       }
@@ -1123,21 +1203,107 @@
     if (BOOK) {
       bookEl = document.createElement('div');
       bookEl.className = 'cal-book';
+      var IC = '<svg class="cal-opt-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">';
+      function seg(kind, items, on, label) {
+        return '<div class="cal-seg" data-kind="' + kind + '" role="group" aria-label="' + label + '">' +
+          items.map(function (t, n) {
+            return '<button type="button" class="cal-seg-b' + (n === on ? ' is-on' : '') + '" data-n="' + n +
+              '" aria-pressed="' + (n === on) + '">' + t + '</button>';
+          }).join('') + '</div>';
+      }
       bookEl.innerHTML =
+        '<div class="cal-opts">' +
+          '<div class="cal-opt">' + IC + '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>' +
+            seg('dur', L.book.durs, dur, L.book.durL) + '</div>' +
+          '<div class="cal-opt">' + IC + '<path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>' +
+            seg('fmt', L.book.fmts, fmt, L.book.fmtL) + '</div>' +
+          '<div class="cal-opt cal-tz">' + IC + '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg>' +
+            '<button type="button" class="cal-tz-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="' + L.book.tzL + '">' +
+              '<span class="cal-tz-name"></span>' +
+              '<svg class="cal-tz-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4"/></svg>' +
+            '</button>' +
+            '<ul class="cal-tz-list" role="listbox" aria-label="' + L.book.tzL + '" hidden></ul>' +
+          '</div>' +
+        '</div>' +
         '<p class="cal-book-hint">' + L.book.hint + '</p>' +
         '<div class="cal-slots-wrap"><div>' +
           '<p class="cal-slots-head"><span class="cal-slots-date"></span>' +
           '<span class="cal-slots-tz">' + L.book.tz + '</span></p>' +
           '<div class="cal-slots" role="group" aria-label="' + L.book.pick + '"></div>' +
-          '<a class="cal-go" target="_blank" rel="noopener" hidden><span class="cal-go-text"></span></a>' +
+          '<a class="cal-go btn btn--pop" target="_blank" rel="noopener" hidden><span class="cal-go-text"></span>' +
+            '<span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></a>' +
           '<p class="cal-book-note">' + L.book.note + '</p>' +
         '</div></div>';
       var noteEl = cal.querySelector('.cal-note');
-      cal.insertBefore(bookEl, noteEl);
+      var bookSlot = cal.querySelector('.cal-book-slot');
+      if (bookSlot) bookSlot.appendChild(bookEl);
+      else noteEl.parentNode.insertBefore(bookEl, noteEl);
       slotsEl = bookEl.querySelector('.cal-slots');
       dateEl = bookEl.querySelector('.cal-slots-date');
       goEl = bookEl.querySelector('.cal-go');
       goText = bookEl.querySelector('.cal-go-text');
+
+      // длительность и формат встречи
+      bookEl.querySelector('.cal-opts').addEventListener('click', function (e) {
+        var b = e.target.closest ? e.target.closest('.cal-seg-b') : null;
+        if (!b) return;
+        var box = b.parentNode, n = +b.getAttribute('data-n');
+        if (box.getAttribute('data-kind') === 'dur') dur = n; else fmt = n;
+        Array.prototype.forEach.call(box.children, function (c, i) {
+          c.classList.toggle('is-on', i === n);
+          c.setAttribute('aria-pressed', i === n);
+        });
+        paintSlots();
+      });
+
+      // часовой пояс: выпадающий список, время в сетке пересчитывается
+      var tzBox = bookEl.querySelector('.cal-tz');
+      var tzBtn = tzBox.querySelector('.cal-tz-btn');
+      var tzName = tzBox.querySelector('.cal-tz-name');
+      var tzList = tzBox.querySelector('.cal-tz-list');
+      function tzText(zone) { return zone.replace(/_/g, ' '); }
+      function paintTzList() {
+        tzName.textContent = tzText(tz);
+        tzList.innerHTML = TZ_LIST.map(function (z) {
+          return '<li role="option" tabindex="0" data-z="' + z + '" aria-selected="' + (z === tz) + '"' +
+            (z === tz ? ' class="is-on"' : '') + '><span>' + tzText(z) + '</span><span>' + gmtLabel(z) + '</span></li>';
+        }).join('');
+      }
+      function tzToggle(open) {
+        tzList.hidden = !open;
+        tzBox.classList.toggle('is-open', open);
+        tzBtn.setAttribute('aria-expanded', open);
+        if (open) {
+          var cur = tzList.querySelector('.is-on');
+          if (cur) { tzList.scrollTop = cur.offsetTop - 8; cur.focus(); }
+        }
+      }
+      function tzPick(li) {
+        tz = li.getAttribute('data-z');
+        paintTzList();
+        tzToggle(false);
+        tzBtn.focus();
+        paintSlots();
+      }
+      tzBtn.addEventListener('click', function () { tzToggle(tzList.hidden); });
+      tzList.addEventListener('click', function (e) {
+        var li = e.target.closest ? e.target.closest('li') : null;
+        if (li) tzPick(li);
+      });
+      tzList.addEventListener('keydown', function (e) {
+        var li = e.target.closest ? e.target.closest('li') : null;
+        if (!li) return;
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tzPick(li); }
+        else if (e.key === 'ArrowDown' && li.nextElementSibling) { e.preventDefault(); li.nextElementSibling.focus(); }
+        else if (e.key === 'ArrowUp' && li.previousElementSibling) { e.preventDefault(); li.previousElementSibling.focus(); }
+      });
+      tzBox.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !tzList.hidden) { tzToggle(false); tzBtn.focus(); }
+      });
+      document.addEventListener('click', function (e) {
+        if (!tzList.hidden && !tzBox.contains(e.target)) tzToggle(false);
+      });
+      paintTzList();
 
       slotsEl.addEventListener('click', function (e) {
         var b = e.target.closest ? e.target.closest('.cal-slot') : null;
@@ -1145,6 +1311,10 @@
         selTime = +b.getAttribute('data-t');
         paintSlots();
       });
+
+      // параметры встречи переезжают в свою зону – после того как все обработчики уже навешаны
+      var optsSlot = cal.querySelector('.cal-opts-slot');
+      if (optsSlot) optsSlot.appendChild(bookEl.querySelector('.cal-opts'));
     }
 
     function paintSlots() {
@@ -1156,16 +1326,21 @@
       if (list.indexOf(selTime) === -1) selTime = null;
       var date = fmtDate(sel);
       dateEl.textContent = date;
+      bookEl.querySelector('.cal-slots-tz').textContent =
+        tz === HOME_TZ ? L.book.tz : tz.split('/').pop().replace(/_/g, ' ') + ' · ' + gmtLabel(tz);
       var html = '';
       list.forEach(function (t) {
         html += '<button type="button" class="cal-slot' + (t === selTime ? ' is-on' : '') +
-          '" data-t="' + t + '" aria-pressed="' + (t === selTime) + '">' + fmtTime(t) + '</button>';
+          '" data-t="' + t + '" aria-pressed="' + (t === selTime) + '">' + slotLabel(sel, t) + '</button>';
       });
       slotsEl.innerHTML = html;
       if (selTime === null) { goEl.hidden = true; return; }
-      goText.textContent = L.book.cta + ' – ' + date + ', ' + fmtTime(selTime);
-      goEl.href = WA + '?text=' + encodeURIComponent(
-        L.book.msg.replace('{date}', date).replace('{time}', fmtTime(selTime)));
+      var local = slotLabel(sel, selTime);
+      goText.textContent = L.book.cta + ' – ' + date + ', ' + local;
+      var text = L.book.msg.replace('{format}', L.book.fmts[fmt]).replace('{date}', date)
+        .replace('{time}', fmtTime(selTime)).replace('{dur}', L.book.durs[dur]);
+      if (tz !== HOME_TZ) text += L.book.msgLocal.replace('{ltime}', local).replace('{tz}', tz.replace(/_/g, ' '));
+      goEl.href = WA + '?text=' + encodeURIComponent(text);
       goEl.hidden = false;
     }
 
@@ -1177,36 +1352,46 @@
       if (!tip) return;
       tip.textContent = el.getAttribute('data-name');
       tip.style.left = '0px';
-      var half = tip.offsetWidth / 2;                  // держим подсказку внутри колонки
-      var x = el.offsetLeft + el.offsetWidth / 2;
+      var half = tip.offsetWidth / 2;                  // держим подсказку внутри блока календаря
+      var cr = cal.getBoundingClientRect(), er = el.getBoundingClientRect();
+      var x = er.left - cr.left + er.width / 2;
       tip.style.left = Math.max(half + 2, Math.min(cal.clientWidth - half - 2, x)) + 'px';
-      tip.style.top = (el.offsetTop - 8) + 'px';
+      tip.style.top = (er.top - cr.top - 8) + 'px';
       tip.classList.add('is-on');
     }
 
+    // В режиме записи пустых ячеек нет: хвост прошлого и начало следующего месяца видны
+    // и работают так же, как дни текущего (как в сетке Cal.com у sakib.design)
     function render() {
       var y = view.y, m = view.m;
       title.textContent = MONTHS[m - 1] + ' ' + y;
-      var hol = holidays(y);
       var first = new Date(y, m - 1, 1);
       var blanks = (first.getDay() + 6) % 7;          // неделя с понедельника
       var days = new Date(y, m, 0).getDate();
+      var tail = BOOK ? (7 - (blanks + days) % 7) % 7 : 0;
       var html = '';
       WD.forEach(function (w) { html += '<span class="cal-wd">' + w + '</span>'; });
-      for (var b = 0; b < blanks; b++) html += '<span class="cal-cell"></span>';
-      for (var d = 1; d <= days; d++) {
-        var wd = (new Date(y, m - 1, d).getDay() + 6) % 7;
+      for (var n = -blanks; n < days + tail; n++) {
+        var out = n < 0 || n >= days;
+        if (out && !BOOK) { html += '<span class="cal-cell"></span>'; continue; }
+        var dt = new Date(y, m - 1, n + 1);           // Date сам переносит день в соседний месяц
+        var cy = dt.getFullYear(), cm = dt.getMonth() + 1, d = dt.getDate();
+        var wd = (dt.getDay() + 6) % 7;
         var cls = 'cal-cell';
+        if (out) cls += ' is-out';
         if (wd > 4) cls += ' is-weekend';
-        if (y === now.y && m === now.m && d === now.d) cls += ' is-today';
-        var name = hol[m + '-' + d];
-        var on = sel && sel.y === y && sel.m === m && sel.d === d;
-        html += '<span class="' + cls + '">' + (name
+        if (cy === now.y && cm === now.m && d === now.d) cls += ' is-today';
+        if (BOOK && cy * 10000 + cm * 100 + d < now.y * 10000 + now.m * 100 + now.d) cls += ' is-past';
+        var name = holidays(cy)[cm + '-' + d];
+        var on = sel && sel.y === cy && sel.m === cm && sel.d === d;
+        // над первым числом соседнего месяца – его короткое название
+        var tag = out && d === 1 ? '<i class="cal-mo" aria-hidden="true">' + MONTHS[cm - 1].slice(0, 3) + '</i>' : '';
+        html += '<span class="' + cls + '">' + tag + (name
           ? '<button type="button" class="cal-hol" data-name="' + name + '" aria-label="' + d + ' ' +
-            MONTHS[m - 1].toLowerCase() + ' – ' + name + '">' + d + '</button>'
-          : canBook(y, m, d, wd, name)
-          ? '<button type="button" class="cal-day' + (on ? ' is-on' : '') + '" data-d="' + d +
-            '" aria-pressed="' + !!on + '">' + d + '</button>'
+            MONTHS[cm - 1].toLowerCase() + ' – ' + name + '">' + d + '</button>'
+          : canBook(cy, cm, d, wd, name)
+          ? '<button type="button" class="cal-day' + (on ? ' is-on' : '') + '" data-y="' + cy +
+            '" data-m="' + cm + '" data-d="' + d + '" aria-pressed="' + !!on + '">' + d + '</button>'
           : d) + '</span>';
       }
       grid.innerHTML = html;
@@ -1229,10 +1414,9 @@
       if (t) showTip(t);                              // тап на телефоне
       var day = e.target.closest ? e.target.closest('.cal-day') : null;
       if (!day) return;
-      var d = +day.getAttribute('data-d');
+      var pick = { y: +day.getAttribute('data-y'), m: +day.getAttribute('data-m'), d: +day.getAttribute('data-d') };
       // повторный тап по выбранному дню снимает выбор
-      sel = (sel && sel.y === view.y && sel.m === view.m && sel.d === d) ? null
-        : { y: view.y, m: view.m, d: d };
+      sel = (sel && sel.y === pick.y && sel.m === pick.m && sel.d === pick.d) ? null : pick;
       selTime = null;
       render();
       paintSlots();
@@ -1954,7 +2138,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260921-65';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260921-85';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -2053,12 +2237,26 @@
     var main = document.querySelector('body > main');
     if (!foot || !main) return;
     if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    var off = false;   /* подвал в обычном потоке – запас под main не нужен */
     function fit(){
-      /* на телефоне подвал в обычном потоке – запас не нужен */
-      var off = window.matchMedia('(max-width:639px)').matches;
+      /* в потоке: на телефоне (в CSS – @media max-width:639px) и когда подвал выше окна –
+         телефон в горизонтали, низкое окно: закреплённый, он не показал бы свои заголовки.
+         96px – место под шапку; высота подвала от режима не зависит, так что класс не «мигает» */
+      var tall = foot.offsetHeight > window.innerHeight - 96;
+      off = window.matchMedia('(max-width:639px)').matches || tall;
+      foot.classList.toggle('is-flow', tall);
       main.style.marginBottom = off ? '' : foot.offsetHeight + 'px';
+      reveal();
+    }
+    /* Подвал лежит под страницей (fixed, z-index:0). При «резиновой» прокрутке выше начала страницы
+       (трекпад macOS, iOS) контент уезжает вниз, и над шапкой проступал верх подвала с навигацией.
+       Поэтому подвал виден только тогда, когда до конца main остаётся меньше экрана (21.09.2026). */
+    function reveal(){
+      var far = main.getBoundingClientRect().bottom > window.innerHeight + 240;
+      foot.style.visibility = (!off && far) ? 'hidden' : '';
     }
     window.addEventListener('resize', fit);
+    window.addEventListener('scroll', reveal, { passive:true });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
     fit();
   })();

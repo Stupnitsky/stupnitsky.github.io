@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
 Disallow: /docs/
-Disallow: /assets/
+# /assets/app.js должен быть открыт: Googlebot рендерит страницу со скриптами, а без app.js
+# части заголовков (.slide-in – opacity:0 до срабатывания скрипта), часы и календарь остаются пустыми.
+# Закрыт только фрагмент панели wyceny – это кусок разметки, а не самостоятельная страница.
+Disallow: /assets/wycena.html
 
 Sitemap: https://apostilo.pl/sitemap.xml

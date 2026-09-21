@@ -474,7 +474,13 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
  font-weight:600; font-size:17px; color:var(--c-ochre);
  transition:color .25s ease; }
 .k-where-link:hover, .k-where-link:focus-visible{ color:var(--c-paper); }
-.k-where-link svg{ width:16px; height:16px; flex:0 0 auto; }
+.k-where-link svg{ width:16px; height:16px; flex:0 0 auto; transition:transform .25s cubic-bezier(.2,.7,.25,1); }
+.k-where-link:hover svg, .k-where-link:focus-visible svg{ transform:translateX(4px); }
+@media (prefers-reduced-motion:reduce){ .k-where-link svg{ transition:none; } }
+/* В CTA-ряду hero подстраниц ссылка стоит сразу за кнопкой: общий margin-top:1.5rem опускал её текст
+   на 12px ниже текста кнопки. Только от 640px, где ряд горизонтальный; на телефоне кнопка и ссылка
+   идут друг под другом, и этот отступ там нужен – расстояние остаётся прежним */
+@media (min-width:640px){ .btn + .k-where-link{ margin-top:0; } }
 .fl-where .fl-w-item{ display:flex; flex-direction:column; gap:.12rem; }
 .fl-where .fl-w-item .fl-soft{ font-size:15px; line-height:1.5; }
 .fl-where .fl-w-link{ margin-top:.1rem; }
@@ -494,6 +500,17 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 @media (max-width:479px){
   .gdz-meta > div{ grid-template-columns:1fr; gap:.2rem; }
 }
+/* Две карточки урядов делят общие строки (subgrid): подпись, заголовок, описание, четыре строки
+   таблицы, «Jakie dokumenty…», список. Раньше высоты совпадали только потому, что тексты были
+   подогнаны по две строки; теперь строки выровнены при любой длине текста (21.09.2026).
+   9 = число детей .gdz-cell с учётом четырёх строк dl; добавляешь строку в dl – правь оба span.
+   Только от 1024px: ниже карточки идут друг под другом, выравнивать нечего. */
+@media (min-width:1024px){
+  @supports (grid-template-rows:subgrid){
+    .gdz-cell{ display:grid; grid-template-rows:subgrid; grid-row:span 9; }
+    .gdz-meta{ grid-template-rows:subgrid; grid-row:span 4; }
+  }
+}
 .gdz-meta dt{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
  letter-spacing:.14em; font-size:11px; font-weight:700; color:rgba(255,255,255,.45); }
 .gdz-meta dd{ margin:0; font-size:16px; line-height:1.45; }
@@ -511,6 +528,56 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 @media (min-width:640px){ .gdz-note{ padding:1.5rem 1.5rem 1.6rem; } }
 .gdz-note p{ font-size:16px; line-height:1.6; color:rgba(255,255,255,.65); max-width:78ch; }
 .gdz-note p b{ color:var(--c-paper); font-weight:700; }
+
+/* Светлый вариант плиты (.gdz--light) – /kontakt/: MSZ и Sąd на светло-серой плашке bg-sand с радиусом 26px,
+   как «Cena i termin» на /tlumaczenia-przysiegle/ (21.09.2026: на чёрной плите мелкий серый текст не читался).
+   Класса .slab у светлой плиты нет намеренно – наблюдатель шапки считает .slab тёмной зоной и красит меню в белый.
+   Основной текст 17px, как в остальных светлых плашках; строки таблицы разделены тонкой линией, как в .faq-price;
+   сумма сбора чёрная – охра на сером не читается. Тёмная плита на /apostille/ и /tlumaczenia-przysiegle/ не меняется. */
+.gdz--light .gdz-cell + .gdz-cell{ margin-top:2.25rem; padding-top:2.25rem; border-top:1px solid rgba(31,33,32,.15); }
+@media (min-width:1024px){
+  .gdz--light .gdz-cell{ padding-right:3rem; }
+  .gdz--light .gdz-cell + .gdz-cell{ margin-top:0; padding:0 0 0 3rem; border-top:0; border-left:1px solid rgba(31,33,32,.15); }
+}
+.gdz--light .slab-kicker{ font-size:12px; color:rgba(31,33,32,.6); }
+.gdz--light .gdz-full{ font-size:17px; line-height:1.55; color:rgba(31,33,32,.75); max-width:40ch; }
+.gdz--light .gdz-meta{ gap:.85rem; }
+.gdz--light .gdz-meta > div{ padding-top:.85rem; border-top:1px solid rgba(31,33,32,.12); }
+.gdz--light .gdz-meta dt{ font-size:12px; color:rgba(31,33,32,.6); }
+.gdz--light .gdz-meta dd{ font-size:17px; line-height:1.5; }
+.gdz--light .gdz-fee{ color:inherit; }
+.gdz--light .gdz-docs-h{ color:rgba(31,33,32,.6); }
+.gdz--light .gdz-docs-h::before{ background:rgba(31,33,32,.3); }
+.gdz--light .gdz-docs li{ font-size:17px; color:rgba(31,33,32,.75); }
+.gdz--light .gdz-docs li b{ color:var(--c-ink); }
+.gdz--light .gdz-note{ margin-top:2.5rem; padding:1.6rem 0 0; border-top-color:rgba(31,33,32,.15); }
+.gdz--light .gdz-note p{ font-size:17px; color:rgba(31,33,32,.75); }
+.gdz--light .gdz-note p b{ color:var(--c-ink); }
+/* Две колонки, справа оба суда одной карточкой (.gdz--duo, /kontakt/ PL): структуры колонок разные,
+   поэтому общие строки (subgrid выше) здесь отключены. Внутри судебной карточки два блока .gdz-court –
+   у каждого жирная линия сверху, подпись «Lewy / Prawy brzeg Wisły» и название суда: тот же приём,
+   что у каналов связи в тёмном блоке, чтобы было видно, что судов два. */
+@media (min-width:1024px){
+  .gdz--duo .gdz-cell{ display:block; grid-row:auto; }
+  .gdz--duo .gdz-meta{ grid-template-rows:none; grid-row:auto; }
+  /* правая карточка (суды) выше левой: она занимает обе строки сетки, а под MSZ встаёт .gdz-aside –
+     примечание о порядке и мелкий текст с источниками; его низ совпадает с низом правой колонки */
+  .gdz--duo .gdz-grid{ grid-template-rows:auto 1fr; }
+  .gdz--duo .gdz-cell + .gdz-cell{ grid-column:2; grid-row:1 / span 2; }
+  .gdz--duo .gdz-aside{ grid-column:1; grid-row:2; align-self:end; padding-right:3rem; }
+}
+/* на телефоне .gdz-aside идёт после обеих карточек */
+.gdz--duo .gdz-aside{ margin-top:2.5rem; }
+.gdz--duo .gdz-aside .gdz-note{ margin-top:0; }
+.gdz-small{ margin-top:1.4rem; font-size:15px; line-height:1.6; color:rgba(31,33,32,.7); max-width:70ch; }
+.gdz-courts{ margin-top:1.9rem; display:grid; gap:2.1rem; }
+.gdz-court{ padding-top:1rem; border-top:2px solid rgba(31,33,32,.3); }
+.gdz-court-tag{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
+ letter-spacing:.16em; font-size:12px; font-weight:700; color:rgba(31,33,32,.6); }
+.gdz-court-h{ margin-top:.4rem; font-size:21px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+.gdz-court .gdz-meta{ margin-top:1.1rem; }
+.gdz-meta--shared{ margin-top:2.1rem; padding-top:0; border-top:2px solid rgba(31,33,32,.3); }
+.gdz--light .gdz-meta--shared > div{ border-top:0; padding-top:1rem; }
 
 /* Футер: только крупный логотип и строка копирайта */
 /* overflow не задаём: верх букв не срезается, а низ по-прежнему
@@ -713,9 +780,13 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
    (на светлых секциях он и так чернильный, меняется только на тёмных).
    Стрелка: у кнопок с .btn-mark выезжает сама разметка, у остальных – ::after. */
 .btn{ background-color:transparent; color:inherit;
- border:1px solid var(--c-terra); border-radius:12px;
+ border:2px solid var(--c-terra); border-radius:12px;
  transition:background-color .3s ease, border-color .3s ease; }
 .btn:hover, .btn:focus-visible{ background-color:var(--c-terra); color:var(--c-ink); }
+/* Кнопка на жёлтой плашке (.bg-terra): обводка охрой сливалась с фоном, и кнопка выглядела как просто текст
+   (/kontakt/, /apostille-ukraina/, главная). Здесь обводка чернильная, наведение – заливка чернилами, текст белый. */
+.bg-terra .btn{ border-color:var(--c-ink); }
+.bg-terra .btn:hover, .bg-terra .btn:focus-visible{ background-color:var(--c-ink); color:var(--c-paper); }
 
 /* Вариант .btn--pop: инверсия обычной кнопки.
    В покое – сплошная заливка охрой без обводки; при наведении заливка уплывает
@@ -733,6 +804,10 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
  transform:rotateX(28deg) rotateY(28deg) rotate(10deg) translateY(105%); }
 /* стрелка у этой кнопки раскрыта постоянно */
 .btn--pop > .btn-mark{ grid-template-columns:1fr; opacity:1; }
+/* на жёлтой плашке (.bg-terra) заливка чернильная, текст белый; наведение – обводка и текст чернилами */
+.bg-terra .btn--pop{ color:var(--c-paper); border-color:transparent; }
+.bg-terra .btn--pop::before{ background:var(--c-ink); }
+.bg-terra .btn--pop:hover, .bg-terra .btn--pop:focus-visible{ background-color:transparent; color:var(--c-ink); border-color:var(--c-ink); }
 @media (prefers-reduced-motion:reduce){
   .btn--pop::before{ transition:opacity .2s ease; transform:none; }
   .btn--pop:hover::before{ opacity:0; } }
@@ -797,9 +872,79 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
  transition:background-color .2s ease, border-color .2s ease, color .2s ease; }
 .cal-day:focus-visible{ border-color:var(--c-ochre); outline:none; }
 @media (hover:hover){ .cal-day:hover{ border-color:var(--c-ochre); } }
-.cal-day.is-on, .cal-cell.is-today .cal-day.is-on{ background:var(--c-ochre);
+/* доступные дни видны сразу: светлая подложка, как серые плитки у sakib.design */
+[data-book] .cal-day{ background:rgba(255,255,255,.1); color:var(--c-paper); }
+[data-book] .cal-cell.is-today .cal-day{ color:var(--c-ochre); }
+/* прошедшие будни гаснут, чтобы не спорить с доступными, но остаются светлее выходных –
+   сб и вс сохраняют свой серый (.34) во всей сетке */
+[data-book] .cal-cell.is-past{ color:rgba(255,255,255,.58); }
+[data-book] .cal-cell.is-past.is-weekend{ color:rgba(255,255,255,.34); }
+[data-book] .cal-cell.is-past .cal-hol{ color:inherit; }
+/* наведение на прошедший день: вместо кружка – серый крестик на месте числа
+   (прошедшие праздники не трогаем – у них своя подсказка) */
+[data-book] .cal-cell.is-past{ position:relative; cursor:default; transition:color .2s ease; }
+[data-book] .cal-cell.is-past:not(:has(.cal-hol))::before,
+[data-book] .cal-cell.is-past:not(:has(.cal-hol))::after{ content:''; position:absolute;
+ left:50%; top:50%; width:16px; height:2px; margin:-1px 0 0 -8px; border-radius:1px;
+ background:rgba(255,255,255,.45); opacity:0; transform:rotate(0deg) scale(.4);
+ transition:opacity .2s ease, transform .3s cubic-bezier(.2,.7,.25,1); }
+@media (hover:hover){
+  [data-book] .cal-cell.is-past:not(:has(.cal-hol)):hover{ color:transparent; }
+  [data-book] .cal-cell.is-past:not(:has(.cal-hol)):hover::before{ opacity:1; transform:rotate(45deg); }
+  [data-book] .cal-cell.is-past:not(:has(.cal-hol)):hover::after{ opacity:1; transform:rotate(-45deg); }
+}
+@media (prefers-reduced-motion:reduce){
+  [data-book] .cal-cell.is-past, [data-book] .cal-cell.is-past::before,
+  [data-book] .cal-cell.is-past::after{ transition:none; } }
+@media (hover:hover){ [data-book] .cal-cell .cal-day:hover{ background:rgba(255,255,255,.18); } }
+[data-book] .cal-day.is-on, [data-book] .cal-cell .cal-day.is-on{ background:var(--c-ochre);
  border-color:var(--c-ochre); color:var(--c-ink); font-weight:800; }
-.cal-book{ margin-top:12px; }
+/* дни соседних месяцев: недоступные – самые тусклые, доступные – с обычной подложкой */
+[data-book] .cal-cell{ position:relative; }
+[data-book] .cal-cell.is-out{ color:rgba(255,255,255,.22); }
+[data-book] .cal-cell.is-out.is-past:not(.is-weekend){ color:rgba(255,255,255,.3); }
+.cal-mo{ position:absolute; left:0; right:0; top:-7px; text-align:center; font-style:normal;
+ font-family:'Fira Sans Condensed',sans-serif; text-transform:uppercase; letter-spacing:.12em;
+ font-size:9px; font-weight:700; line-height:1; color:var(--c-ochre); pointer-events:none; }
+.cal-book{ margin-top:18px; }
+/* параметры встречи: длительность, формат, часовой пояс (левая панель Cal.com) */
+.cal-opts{ display:flex; flex-direction:column; gap:10px; margin-bottom:16px; }
+.cal-opt{ position:relative; display:flex; align-items:center; gap:12px; min-width:0; }
+.cal-opt-ic{ flex:0 0 auto; width:20px; height:20px; color:rgba(255,255,255,.55); }
+.cal-seg{ display:flex; min-width:0; max-width:100%; padding:3px; gap:2px; border-radius:12px;
+ border:1px solid rgba(255,255,255,.18); overflow-x:auto; scrollbar-width:none; }
+.cal-seg::-webkit-scrollbar{ display:none; }
+.cal-seg-b{ appearance:none; -webkit-appearance:none; font:inherit; margin:0; border:0;
+ background:none; cursor:pointer; flex:0 0 auto; height:34px; padding:0 12px; border-radius:9px;
+ font-size:15px; font-weight:600; white-space:nowrap; color:rgba(255,255,255,.62);
+ -webkit-tap-highlight-color:transparent; transition:background-color .2s ease, color .2s ease; }
+@media (hover:hover){ .cal-seg-b:hover{ color:var(--c-paper); } }
+.cal-seg-b:focus-visible{ outline:2px solid var(--c-ochre); outline-offset:-2px; }
+.cal-seg-b.is-on{ background:rgba(255,255,255,.14); color:var(--c-paper); font-weight:700; }
+.cal-tz-btn{ appearance:none; -webkit-appearance:none; font:inherit; margin:0; border:0; padding:0;
+ background:none; cursor:pointer; display:flex; align-items:center; gap:8px; min-width:0;
+ height:40px; font-size:16px; font-weight:600; color:var(--c-paper);
+ -webkit-tap-highlight-color:transparent; transition:color .2s ease; }
+@media (hover:hover){ .cal-tz-btn:hover{ color:var(--c-ochre); } }
+.cal-tz-btn:focus-visible{ outline:2px solid var(--c-ochre); outline-offset:4px; border-radius:6px; }
+.cal-tz-name{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.cal-tz-chev{ flex:0 0 auto; width:12px; height:12px; transform:rotate(90deg);
+ transition:transform .3s cubic-bezier(.2,.7,.25,1); }
+.cal-tz.is-open .cal-tz-chev{ transform:rotate(-90deg); }
+.cal-tz-list{ position:absolute; z-index:8; left:32px; right:0; top:100%; margin:4px 0 0; padding:8px;
+ list-style:none; max-height:264px; overflow-y:auto; overscroll-behavior:contain;
+ -webkit-overflow-scrolling:touch; background:var(--c-paper); color:var(--c-ink);
+ border-radius:14px; box-shadow:0 16px 40px rgba(31,33,32,.45); }
+.cal-tz-list[hidden]{ display:none; }
+.cal-tz-list li{ display:flex; align-items:center; justify-content:space-between; gap:12px;
+ padding:11px 12px; border-radius:9px; cursor:pointer; font-size:16px; font-weight:600;
+ line-height:1.2; outline:none; }
+.cal-tz-list li > span:last-child{ flex:0 0 auto; font-weight:500; color:rgba(31,33,32,.55);
+ font-variant-numeric:tabular-nums; }
+.cal-tz-list li:focus-visible{ background:var(--c-sand); }
+@media (hover:hover){ .cal-tz-list li:hover{ background:var(--c-sand); } }
+.cal-tz-list li.is-on{ background:var(--c-ochre); }
+.cal-tz-list li.is-on > span:last-child{ color:var(--c-ink); }
 .cal-book-hint{ font-size:16px; line-height:1.45; color:rgba(255,255,255,.55); }
 .cal-book.is-open .cal-book-hint{ display:none; }
 /* сетка времени раскрывается тем же приёмом, что часы работы (.ws-hours-wrap) */
@@ -826,12 +971,10 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 @media (hover:hover){ .cal-slot:hover{ border-color:var(--c-ochre); color:var(--c-paper); } }
 .cal-slot.is-on{ background:var(--c-ochre); border-color:var(--c-ochre); color:var(--c-ink);
  font-weight:800; }
+/* кнопка записи – основная кнопка сайта (.btn.btn--pop ставит app.js): здесь только раскладка */
 .cal-go{ margin:14px 2px 0; display:flex; align-items:center; justify-content:center;
- text-align:center; background:var(--c-ochre); color:var(--c-ink); border-radius:12px;
- padding:16px 18px; font-size:16px; font-weight:700; line-height:1.3;
- transition:background-color .25s ease; }
+ text-align:center; padding:18px 24px; font-weight:600; line-height:1.3; }
 .cal-go[hidden]{ display:none; }
-.cal-go:hover, .cal-go:focus-visible{ background:var(--c-paper); }
 .cal-book-note{ margin-top:12px; padding-bottom:4px; font-size:16px; line-height:1.45;
  color:rgba(255,255,255,.55); }
 @media (prefers-reduced-motion:reduce){ .cal-slots-wrap{ transition:none; } }
@@ -1301,7 +1444,123 @@ details[open] .chev{ transform:rotate(45deg); }
  font-weight:700; font-size:20px; letter-spacing:-.02em; color:var(--c-terra); }
 /* Ссылка-стрелка k-where-link на светлом фоне (анонс «Gdzie» на главной) */
 .k-where-link--dark{ color:var(--c-ink); }
-.k-where-link--dark:hover, .k-where-link--dark:focus-visible{ color:var(--c-terra); }
+.k-where-link--dark:hover, .k-where-link--dark:focus-visible{ color:var(--c-ink); }
+/* стрелка того же чернильного цвета, что и текст (Грег, 21.09.2026: «стрелочка тоже чёрная») – охрой её не красить */
+/* Hero /kontakt/: ссылка-стрелка стоит над кнопками и привязана к абзацу, кнопки – после воздуха */
+.hero-more{ margin-top:.7rem; line-height:1.3; }
+.hero-more .k-where-link{ margin-top:0; }
+.hero-cta{ margin-top:2.75rem; }
+@media (min-width:768px){ .hero-cta{ margin-top:3.25rem; } }
+
+/* Тёмный блок «Kontakt i odbiór dokumentów» на /kontakt/ (.kt, 21.09.2026): три группы с заголовками –
+   как связаться · когда отвечаем · запись на встречу. Раньше левая колонка кончалась рано, правая была
+   сдвинута вниз на 22vh и тянулась вдвое дальше. Главная (.s247-*) и языковые копии этими правилами не задеты.
+   Подписи – 17px и светлее прежних 15,5px / .6: на чёрном мелкий серый текст не читается. */
+.kt-row{ margin-top:3rem; padding-top:2.6rem; border-top:1px solid rgba(255,255,255,.2); }
+@media (min-width:1024px){ .kt-row{ margin-top:4.5rem; padding-top:3.5rem; } }
+.kt-row--split{ display:grid; gap:3.5rem; }
+@media (min-width:1024px){ .kt-row--split{ grid-template-columns:7fr 5fr; gap:4rem; } }
+.kt-h{ margin-bottom:1.6rem; }
+.kt-text{ font-size:17px; line-height:1.6; color:rgba(255,255,255,.75); max-width:46ch; }
+.kt .kt-ch-t{ font-size:17px; line-height:1.5; color:rgba(255,255,255,.75); max-width:34ch; }
+.kt-actions{ margin-top:2.4rem; display:flex; flex-direction:column; align-items:flex-start; gap:1rem; }
+@media (min-width:640px){ .kt-actions{ flex-direction:row; align-items:stretch; gap:1.5rem; } }
+.kt-actions .k-where-link{ margin-top:0; }
+/* статус и сообщение видны всегда – на этой странице их не нужно «открывать» наведением */
+.kt .ws-top{ opacity:1; transform:none; margin-top:0; font-size:13px; color:rgba(255,255,255,.8); }
+.kt .ws-msg{ margin-top:.7rem; font-size:17px; color:rgba(255,255,255,.75); text-wrap:pretty; }
+.kt .ws-hours{ margin-top:1.6rem; border-top:1px solid rgba(255,255,255,.2); }
+.kt .ws-hours li{ padding:13px 0; border-bottom:1px solid rgba(255,255,255,.2); }
+/* шапка блока: заголовок слева, часы справа, низ часов – на одной линии с последней строкой заголовка */
+.kt-top{ display:grid; gap:2.5rem; }
+@media (min-width:1024px){ .kt-top{ grid-template-columns:minmax(0,1fr) auto; gap:3rem; align-items:end; } }
+.kt .ws-clockbox{ padding:0; margin:0; }
+/* «po uzgodnieniu» и «nieczynne» были .34 – на чёрном не читались */
+.kt .ws-hours .ws-soft, .kt .ws-hours .ws-off{ color:rgba(255,255,255,.55) !important; }
+/* запись на встречу: параметры · календарь · время.
+   До 1024px зоны идут друг под другом; 1024–1279px – две колонки (параметры | календарь и время под ним):
+   в три колонки на такой ширине кнопки времени не помещались; от 1280px – три зоны в ряд. */
+.kt-cal{ margin-top:0; padding-top:0; display:grid; grid-template-columns:minmax(0,1fr); gap:2.6rem; }
+.kt-cal .cal-opts{ margin:1.8rem 0 0; }
+.kt-cal .cal-book{ margin-top:0; }
+@media (min-width:1024px){
+  .kt-cal{ grid-template-columns:1fr 1fr; gap:0 3.5rem; align-items:start; }
+  .kt-cal-intro{ grid-column:1; grid-row:1 / span 2; }
+  .kt-cal-main, .kt-cal-side{ grid-column:2; padding-left:3.5rem; border-left:1px solid rgba(255,255,255,.2); }
+  .kt-cal-side{ padding-top:2.6rem; }   /* зазор между календарём и временем – внутри колонки, чтобы вертикаль не рвалась */
+}
+@media (min-width:1280px){
+  .kt-cal{ grid-template-columns:4fr 4.6fr 3.4fr; gap:0 3.5rem; }
+  .kt-cal-intro{ grid-row:auto; }
+  .kt-cal-main{ grid-column:2; min-height:100%; }
+  .kt-cal-side{ grid-column:3; min-height:100%; padding-top:0; }
+  .kt-cal .cal-book-hint{ padding-top:3.1rem; }
+  .kt-cal .cal-slots-head{ padding-top:0; min-height:34px; margin-bottom:14px; }
+}
+.kt .cal-note, .kt .cal-book-hint, .kt .cal-book-note{ font-size:17px; color:rgba(255,255,255,.7); }
+/* дата выбранного дня и подпись часового пояса – друг под другом: в узкой зоне в одну строку они рвались */
+.kt-cal .cal-slots-head{ flex-direction:column; align-items:flex-start; gap:6px; }
+.kt-cal .cal-slots-tz{ text-align:left; }
+/* стрелка основной кнопки не должна сжиматься, когда подпись переносится на две строки */
+.cal-go .btn-mark{ flex:0 0 auto; }
+.cal-go .btn-mark > span{ overflow:visible; }
+
+/* ===== Группа кнопок действия (.cta-btns): WhatsApp · Telegram · «Zamów wycenę» (21.09.2026) =====
+   Форма – как у кнопок WhatsApp / Telegram в панели wyceny (.qd-msgr a): скругление 12px, Fira Sans 17px / 600
+   без капса, поля .8em, зазор между кнопками 10px, стрелка 1.15em. Первый вариант был плашками в духе /cennik/
+   (6px, узкий капс, зазор 3px) – Грег: «сделай кнопками, а то похоже на плашки. Цветовую гамму не меняй, сейчас круто».
+   Цвета (не менять): светлый фон – мессенджеры серые #D0D0CB, при наведении белые; главная жёлтая, при наведении чернильная.
+   Тёмный (.bg-ink) – мессенджеры белые → жёлтые, главная жёлтая → белая. Жёлтый (.bg-terra) – мессенджеры белые, главная чернильная.
+   Стрелка: у главной видна всегда; у мессенджеров выезжает при наведении, ширина кнопки при этом не меняется
+   (место под стрелку в покое отдано боковым полям – тот же приём, что в панели); на телефоне стрелки видны всегда. */
+.cta-btns{ display:flex; flex-wrap:wrap; gap:10px; }
+.cta-btn{ display:inline-flex; align-items:center; justify-content:center; gap:0;
+ font-size:17px; font-weight:600; line-height:1; letter-spacing:.005em; white-space:nowrap;
+ padding:.8em 1.35em .8em 1.5em; border-radius:12px; cursor:pointer; text-decoration:none;
+ background:#D0D0CB; color:var(--c-ink);
+ transition:background-color .3s ease, color .3s ease, padding .38s cubic-bezier(.2,.7,.25,1); }
+.cta-btn:hover, .cta-btn:focus-visible{ background:var(--c-paper); }
+.cta-btn:focus-visible{ outline:2px solid var(--c-ink); outline-offset:2px; }
+.cta-mark{ display:block; flex:0 0 auto; overflow:hidden; width:1.15em; margin-left:9px;
+ transition:width .38s cubic-bezier(.2,.7,.25,1), margin-left .38s cubic-bezier(.2,.7,.25,1), opacity .28s ease; }
+.cta-mark svg{ width:1.15em; height:1.15em; display:block; margin:-.1em 0; transition:transform .3s ease; }
+.cta-btn--main{ background:var(--c-terra); }
+.cta-btn--main:hover, .cta-btn--main:focus-visible{ background:var(--c-ink); color:var(--c-paper); }
+.cta-btn--main:hover .cta-mark svg, .cta-btn--main:focus-visible .cta-mark svg{ transform:translateX(3px); }
+@media (hover:hover) and (pointer:fine){
+  .cta-btn:not(.cta-btn--main){ padding:.8em calc(1.5em + (1.15em + 9px) / 2); }
+  .cta-btn:not(.cta-btn--main) .cta-mark{ width:0; margin-left:0; opacity:0; }
+  .cta-btn:not(.cta-btn--main):hover, .cta-btn:not(.cta-btn--main):focus-visible{ padding-left:1.5em; padding-right:1.5em; }
+  .cta-btn:not(.cta-btn--main):hover .cta-mark, .cta-btn:not(.cta-btn--main):focus-visible .cta-mark{ width:1.15em; margin-left:9px; opacity:1; }
+}
+/* на тёмном фоне */
+.bg-ink .cta-btn{ background:var(--c-paper); }
+.bg-ink .cta-btn:hover, .bg-ink .cta-btn:focus-visible{ background:var(--c-terra); }
+.bg-ink .cta-btn:focus-visible{ outline-color:var(--c-paper); }
+.bg-ink .cta-btn--main{ background:var(--c-terra); }
+.bg-ink .cta-btn--main:hover, .bg-ink .cta-btn--main:focus-visible{ background:var(--c-paper); color:var(--c-ink); }
+/* на жёлтой карточке */
+.bg-terra .cta-btn{ background:var(--c-paper); }
+.bg-terra .cta-btn:hover, .bg-terra .cta-btn:focus-visible{ background:var(--c-ink); color:var(--c-paper); }
+.bg-terra .cta-btn--main{ background:var(--c-ink); color:var(--c-paper); }
+.bg-terra .cta-btn--main:hover, .bg-terra .cta-btn--main:focus-visible{ background:var(--c-paper); color:var(--c-ink); }
+/* телефон: мессенджеры пополам, главная кнопка во всю ширину */
+@media (max-width:479px){
+  .cta-btns{ display:grid; grid-template-columns:1fr 1fr; width:100%; }
+  .cta-btn--main{ grid-column:1 / -1; }
+  .cta-btns > .cta-btn:only-child{ grid-column:1 / -1; }
+  /* кнопка занимает всю ячейку, боковые поля нужны только как минимум: иначе «WhatsApp ›» не влезает в половину экрана 320px */
+  .cta-btn, .cta-btn:not(.cta-btn--main), .cta-btn:not(.cta-btn--main):hover, .cta-btn:not(.cta-btn--main):focus-visible{ padding:.95em .7em; }
+}
+@media (max-width:359px){ .cta-btn:not(.cta-btn--main) .cta-mark{ display:none; } }
+@media (prefers-reduced-motion:reduce){ .cta-btn, .cta-mark, .cta-mark svg{ transition:none; } }
+/* ряд в hero: кнопки и ссылка-стрелка на одной линии, по левому краю текста (как чипы на /cennik/) */
+.cta-line{ display:flex; flex-wrap:wrap; align-items:center; gap:1.1rem 1.75rem; }
+.cta-line .k-where-link{ margin-top:0; }
+/* призыв под плашкой с урядами */
+.gdz-cta{ margin-top:2.5rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.4rem 2.5rem; }
+.gdz-cta-t{ font-size:21px; line-height:1.35; font-weight:700; letter-spacing:-.01em; max-width:34ch; }
+@media (min-width:768px){ .gdz-cta-t{ font-size:24px; } }
 
 /* ===== Страница /apostille/ ===== */
 /* Две текстовые колонки */
@@ -1754,17 +2013,55 @@ details[open] .chev{ transform:rotate(45deg); }
 #stopka{ position:fixed; left:0; right:0; bottom:0; z-index:0; }
 body > header, body > main{ position:relative; z-index:1; }
 body > main{ background:var(--c-page); }
-@media (prefers-reduced-motion:reduce){ #stopka{ position:static; } body > main{ margin-bottom:0 !important; } }
+/* в потоке подвал relative, а не static: уже 1280px декоративный логотип привязан к его низу */
+@media (prefers-reduced-motion:reduce){ #stopka{ position:relative; } body > main{ margin-bottom:0 !important; } }
+/* подвал выше окна (телефон в горизонтали, низкое окно): закреплённый, он не показал бы свой верх –
+   класс ставит app.js, запас под main при этом снимается */
+#stopka.is-flow{ position:relative; }
+
+/* ===== Футер уже 1280px: нижняя строка в потоке, без наложений (21.09.2026) =====
+   Раньше место нижней строки задавал декоративный логотип: он стоял в потоке распоркой
+   (margin-top −197px + своя высота ≈ 25vw), а колонки съезжали вниз через translateY(%).
+   На широком экране логотип высокий, и зазор есть; уже 1280px логотип сжимается вместе с окном,
+   а колонки – нет, и строка с «Polityka Prywatności» и копирайтом наезжала на навигацию
+   (на телефоне – на «Gdzie działamy»). Здесь логотип вынут из потока и прижат к низу подвала,
+   колонки стоят без сдвига, нижняя строка идёт за ними с настоящим отступом: высота подвала
+   складывается из содержимого и от ширины окна не зависит. От 1280px раскладка прежняя. */
+@media (max-width:1279px){
+  /* 1rem подвала + 3.25rem = те же ~67px до заголовков колонок, что давал translateY(21%) */
+  .footer-tone .fl-cols{ transform:none; padding-top:3.25rem; }
+  .footer-mark{ position:absolute; left:0; right:0; top:auto; margin-top:0;
+    /* низ слова уходит за край подвала на 0.22em – то же, что --fm-drop из скрипта */
+    bottom:calc(var(--fm-size, 24.6vw) * -.22); }
+  .footer-mark .logo{ vertical-align:bottom; }
+  .footer-bar{ margin-top:3rem; }
+}
+/* 880–1023px: три равные колонки, нижняя строка по той же сетке –
+   юридические ссылки под «Nawigacja», копирайт от левого края «Kontakt» */
+@media (min-width:640px) and (max-width:1023px){
+  .footer-tone .fl-cols{ grid-template-columns:repeat(3, minmax(0,1fr)); }
+  /* первая дорожка не уже самой длинной ссылки: в ru она шире трети на узком окне */
+  .footer-bar-inner > .flex{ display:grid; align-items:start; gap:2rem;
+    grid-template-columns:minmax(max-content,1fr) repeat(2, minmax(0,1fr)); }
+  .footer-bar-inner > .flex > :last-child{ grid-column:2 / -1; }
+  .footer-bar [style*="translateX(-20%)"]{ transform:none !important; }
+}
+/* 640–879px: три колонки по 212px не помещаются (на 640–767px третья уезжала за край окна) –
+   слева навигация, справа «Kontakt» и под ним «Gdzie działamy» */
+@media (min-width:640px) and (max-width:879px){
+  .footer-tone .fl-cols{ grid-template-columns:repeat(2, minmax(0,1fr)); grid-template-rows:auto 1fr;
+    gap:1.75rem 2rem; }
+  .footer-tone .fl-cols > :first-child{ grid-row:1 / span 2; }
+  .footer-bar-inner > .flex{ grid-template-columns:minmax(max-content,1fr) minmax(0,1fr); }
+}
 
 /* ===== Футер на телефоне =====
    Колонки идут одна под другой, поэтому подвал вырастал до 86% экрана: как «шторка» он
    на телефоне не работает – возвращаем его в поток и поджимаем внутренние отступы. */
 @media (max-width:639px){
-  #stopka{ position:static; }
+  #stopka{ position:relative; }
   body > main{ margin-bottom:0 !important; }
-  .footer-tone .fl-cols{ transform:translateY(6%); gap:1.75rem 1.25rem; padding-left:1.25rem; }
-  /* декоративный логотип ближе к нижней строке */
-  .footer-mark{ --fm-gap:calc(-5.6rem - 40px); }
+  .footer-tone .fl-cols{ padding-top:2.5rem; gap:1.75rem 1.25rem; padding-left:1.25rem; }
   .footer-mark .logo{ font-size:var(--fm-size, 30vw); }
   /* пальцевые цели: ссылки колонок не ниже 36px, между ними зазор убран */
   .footer-tone .fl-link{ min-height:36px; }
@@ -1772,8 +2069,13 @@ body > main{ background:var(--c-page); }
   /* строки колонок плотнее: шрифт крупный, поэтому режем только межстрочные зазоры */
   .footer-tone .fl-h{ padding-bottom:.4rem; margin-bottom:.6rem; }
   .footer-tone .fl-note{ margin-top:1.1rem; }
-  .footer-bar{ padding-bottom:14px; }
-  .footer-bar .flex{ gap:1.5rem; }
+  /* нижняя строка: от последней колонки дальше, чем колонки друг от друга (1.75rem) */
+  .footer-bar{ margin-top:2.5rem; padding-bottom:14px; }
+  /* левый край – в одной оси с колонками (было на 8px правее) */
+  .footer-bar-inner{ padding-left:calc(1.25rem + 1.25rem); }
+  .footer-bar-inner > .flex{ gap:1.5rem; }
+  /* юридические ссылки – тем же шагом, что списки колонок */
+  .footer-bar-inner > .flex > p{ gap:0; }
   /* правый блок с копирайтом на телефоне не сдвигаем влево */
   .footer-bar [style*="translateX(-20%)"]{ transform:none !important; }
 }
