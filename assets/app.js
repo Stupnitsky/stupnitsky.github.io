@@ -815,13 +815,27 @@
     var box = document.querySelector('.footer-mark');
     if (!box) return;
     var word = box.querySelector('.logo');
+    /* на телефоне (колонки подвала в один столбец, уже 640px) слово стоит вертикально вдоль правого края –
+       см. «Футер на телефоне» в styles.css: там оно занимает высоту подвала, а не ширину окна */
+    var upright = window.matchMedia('(max-width:639px)');
     function fit() {
       box.style.setProperty('--fm-size', '100px');
+      var size;
+      if (upright.matches) {
+        var foot = document.getElementById('stopka');
+        var len = word.offsetWidth;                 /* слово повёрнуто: rect дал бы его толщину, а не длину */
+        if (!len || !foot) return;
+        /* по 12px от верхнего и нижнего края; не крупнее 0.8 ширины окна – иначе на узком экране
+           буквы заняли бы больше половины подвала */
+        size = Math.min((100 * (foot.clientHeight - 24) / len) * 0.955 - 0.04, foot.clientWidth * 0.8);
+        box.style.setProperty('--fm-size', size.toFixed(2) + 'px');
+        return;
+      }
       var w = word.getBoundingClientRect().width;
       if (!w) return;
       var cs = getComputedStyle(box);
       var avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-      var size = (100 * avail / w) * 0.955 - 0.04;
+      size = (100 * avail / w) * 0.955 - 0.04;
       box.style.setProperty('--fm-size', size.toFixed(2) + 'px');
       drop(size);
     }
@@ -2282,7 +2296,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260921-101';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260921-104';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */

@@ -371,7 +371,16 @@ html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibilit
 /* широкая плашка (планшет, узкое окно, телефон лёжа): список в две колонки, кнопки в один ряд –
    лист во всю ширину шапки с одной колонкой слева выглядел бы пустым, а лёжа не помещался бы по высоте */
 @media (min-width:560px) and (max-width:1149px){
-  .mn-list{ display:grid; grid-template-columns:1fr 1fr; column-gap:3rem; }
+  /* колонки по смыслу (Грег, 21.09.2026): слева услуги и вопросы – Apostille, Tłumaczenia, Częste pytania,
+     справа цена, место и связь – Cennik, Gdzie załatwić, Kontakt. Порядок в разметке прежний (на телефоне список
+     идёт одним столбцом в нём же), места в сетке заданы явно */
+  .mn-list{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:repeat(3, auto); column-gap:3rem; }
+  .mn-link:nth-child(1){ grid-area:1 / 1; }
+  .mn-link:nth-child(2){ grid-area:2 / 1; }
+  .mn-link:nth-child(5){ grid-area:3 / 1; }
+  .mn-link:nth-child(3){ grid-area:1 / 2; }
+  .mn-link:nth-child(4){ grid-area:2 / 2; }
+  .mn-link:nth-child(6){ grid-area:3 / 2; }
   .mn-link:nth-last-child(2){ border-bottom:0; }
   #mobile-nav .mn-cta{ grid-template-columns:minmax(0,1.35fr) 1fr 1fr; margin-top:16px; }
   #mobile-nav .mn-cta .cta-btn--main{ grid-column:auto; }
@@ -2179,7 +2188,17 @@ body > main{ background:var(--c-page); }
   #stopka{ position:relative; }
   body > main{ margin-bottom:0 !important; }
   .footer-tone .fl-cols{ padding-top:2.5rem; gap:1.75rem 1.25rem; padding-left:1.25rem; }
-  .footer-mark .logo{ font-size:var(--fm-size, 30vw); }
+  /* Декоративный логотип на телефоне – вертикальный (Грег, 21.09.2026: «становится в вертикальную версию, снизу начало,
+     и опирается так же, как по низу, – по правой стороне; только когда всё в один столбец»). Колонки здесь идут одна под
+     другой, правая половина подвала пустая – слово встаёт вдоль правого края и читается снизу вверх. Геометрия та же,
+     что у горизонтального: базовая линия стоит на кромке, низ строки уходит за неё на 0.22em (обрезает сам подвал),
+     от начала слова до нижнего края 12px. Блок слова вынесен за правый край и повёрнут на −90° вокруг своего левого
+     нижнего угла – после поворота он идёт вверх от правого нижнего угла подвала. Кегль считает app.js (fit):
+     слово на всю высоту подвала, но не крупнее 0.8 ширины окна. */
+  .footer-mark{ left:0; right:0; top:0; bottom:0; padding:0; }
+  .footer-mark .logo{ position:absolute; left:100%; bottom:0; font-size:var(--fm-size, 78vw);
+    transform-origin:0 100%;
+    transform:translate(calc(var(--fm-size, 78vw) * .22), -12px) rotate(-90deg); }
   /* пальцевые цели: ссылки колонок не ниже 36px, между ними зазор убран */
   .footer-tone .fl-link{ min-height:36px; }
   .footer-tone .fl-list{ gap:0; }
@@ -3239,6 +3258,11 @@ html.qd-open #burger > span{ opacity:0; }
   header #nav-main .navlink--plate:focus-visible .nl-plate{ outline:2px solid currentColor; outline-offset:2px; }
   /* пока открыта панель wyceny, кнопка «нажата» */
   html.qd-open header #nav-main .navlink--plate .nl-plate{ background:var(--c-ink); color:var(--c-paper); }
+  /* меню открыто – кнопка в ряду шапки не нужна: та же «Zamów wycenę» стоит внизу панели (Грег, 21.09.2026).
+     Гасим без display:none – место остаётся, крестик не сдвигается; из обхода клавиатурой кнопка тоже уходит */
+  header #nav-main .navlink--plate{ transition:opacity .18s ease, visibility 0s linear 0s; }
+  html.menu-open header #nav-main .navlink--plate{ opacity:0; visibility:hidden; pointer-events:none;
+    transition:opacity .15s ease, visibility 0s linear .15s; }
 }
 @media (hover:hover) and (max-width:1149px){
   header #nav-main .navlink--plate:hover .nl-plate{ background:var(--c-ink); color:var(--c-paper); }
