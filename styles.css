@@ -681,30 +681,62 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 .gdz--light .gdz-note p{ font-size:17px; color:rgba(31,33,32,.75); }
 .gdz--light .gdz-note p b{ color:var(--c-ink); }
 /* Две колонки, справа оба суда одной карточкой (.gdz--duo, /kontakt/ PL): структуры колонок разные,
-   поэтому общие строки (subgrid выше) здесь отключены. Внутри судебной карточки два блока .gdz-court –
-   у каждого жирная линия сверху, подпись «Lewy / Prawy brzeg Wisły» и название суда: тот же приём,
-   что у каналов связи в тёмном блоке, чтобы было видно, что судов два. */
+   поэтому общие строки (subgrid выше) здесь отключены. Внутри судебной карточки: сверху общее для обоих
+   судов (часы двумя строками, сбор с одним описанием), ниже два блока .gdz-court одинакового строения.
+   Жирных разделительных линий нет (Грег, 21.09.2026: «толстые разделительные линии убрать») – блоки
+   разводят воздух и двухстрочный заголовок: название суда жирным, «lewy / prawy brzeg Wisły» – лёгким курсивом. */
+/* между карточками в разметке стоит тезис .gdz-key, поэтому вторая карточка – через «~», а не «+» */
+.gdz--duo .gdz-cell ~ .gdz-cell{ margin-top:2.75rem; padding-top:2.75rem; border-top:1px solid rgba(31,33,32,.15); }
+.gdz--duo .gdz-key{ margin-top:2.75rem; padding-top:2.75rem; border-top:1px solid rgba(31,33,32,.15); }
 @media (min-width:1024px){
   .gdz--duo .gdz-cell{ display:block; grid-row:auto; }
   .gdz--duo .gdz-meta{ grid-template-rows:none; grid-row:auto; }
-  /* правая карточка (суды) выше левой: она занимает обе строки сетки, а под MSZ встаёт .gdz-aside –
-     примечание о порядке и мелкий текст с источниками; его низ совпадает с низом правой колонки */
-  .gdz--duo .gdz-grid{ grid-template-rows:auto 1fr; }
-  .gdz--duo .gdz-cell + .gdz-cell{ grid-column:2; grid-row:1 / span 2; }
-  .gdz--duo .gdz-aside{ grid-column:1; grid-row:2; align-self:end; padding-right:3rem; }
+  /* правая карточка (суды) выше левой: она занимает все три строки сетки, а под MSZ встают тезис .gdz-key
+     и .gdz-aside – примечание о порядке и источники; низ .gdz-aside совпадает с низом правой колонки */
+  .gdz--duo .gdz-grid{ grid-template-rows:auto auto 1fr; }
+  .gdz--duo .gdz-cell ~ .gdz-cell{ grid-column:2; grid-row:1 / span 3; margin-top:0; padding:0 0 0 3rem;
+    border-top:0; border-left:1px solid rgba(31,33,32,.15); }
+  .gdz--duo .gdz-key{ grid-column:1; grid-row:2; margin-top:3.25rem; padding:0 3rem 0 0; border-top:0; }
+  .gdz--duo .gdz-aside{ grid-column:1; grid-row:3; align-self:end; padding-right:3rem; }
 }
 /* на телефоне .gdz-aside идёт после обеих карточек */
-.gdz--duo .gdz-aside{ margin-top:2.5rem; }
+.gdz--duo .gdz-aside{ margin-top:2.75rem; }
 .gdz--duo .gdz-aside .gdz-note{ margin-top:0; }
-.gdz-small{ margin-top:1.4rem; font-size:15px; line-height:1.6; color:rgba(31,33,32,.7); max-width:70ch; }
-.gdz-courts{ margin-top:1.9rem; display:grid; gap:2.1rem; }
-.gdz-court{ padding-top:1rem; border-top:2px solid rgba(31,33,32,.3); }
-.gdz-court-tag{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
+/* общее для обоих судов – под описанием карточки: подпись «W obu sądach tak samo», часы и сбор */
+.gdz-sub{ margin-top:1.9rem; font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
  letter-spacing:.16em; font-size:12px; font-weight:700; color:rgba(31,33,32,.6); }
-.gdz-court-h{ margin-top:.4rem; font-size:21px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+.gdz-meta--shared{ margin-top:.9rem; }
+/* часы – не в строчку: день слева, время крупнее и жирным, цифры равной ширины */
+.gdz-hours{ display:grid; gap:.1rem; }
+.gdz-hr{ display:grid; grid-template-columns:6.5ch 1fr; align-items:baseline; }
+.gdz-hr-d{ color:rgba(31,33,32,.6); }
+.gdz-hr b{ font-size:21px; font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
+.gdz-courts{ margin-top:2.8rem; display:grid; gap:2.8rem; }
+.gdz-court-h{ font-size:24px; font-weight:800; letter-spacing:-.03em; line-height:1.08; }
+.gdz-court-side{ display:block; font-weight:300; font-style:italic; }
 .gdz-court .gdz-meta{ margin-top:1.1rem; }
-.gdz-meta--shared{ margin-top:2.1rem; padding-top:0; border-top:2px solid rgba(31,33,32,.3); }
-.gdz--light .gdz-meta--shared > div{ border-top:0; padding-top:1rem; }
+/* Главный тезис плашки – «Opłaty urzędowe są już wliczone w nasze ceny»: самый крупный текст внутри плашки,
+   пара «чёрное / лёгкий курсив», как в заголовках разделов, начертания меняются при прокрутке (.h2-swap).
+   Части стоят отдельными строками (block + <br> в разметке) – смена веса не меняет число строк и высоту.
+   Раньше тезис стоял 15px серым в сноске, ссылка на прайс терялась (Грег, 21.09.2026). */
+.gdz-key-t{ font-size:28px; line-height:1; font-weight:900; letter-spacing:-.045em; }
+.gdz-key-t .h2-a, .gdz-key-t .h2-b{ display:block; }
+@media (min-width:640px){ .gdz-key-t{ font-size:38px; } }
+@media (min-width:1024px){ .gdz-key-t{ font-size:32px; } }
+@media (min-width:1280px){ .gdz-key-t{ font-size:38px; } }
+.gdz-key-s{ margin-top:1rem; font-size:17px; line-height:1.55; color:rgba(31,33,32,.75); max-width:40ch; }
+/* ссылка-стрелка тезиса – строчная: при переносе текста на узком экране стрелка идёт за последним словом,
+   а не уезжает к правому краю, как у inline-flex */
+.gdz-key-more{ margin-top:.9rem; font-size:17px; line-height:1.4; }
+.gdz-key-more .k-where-link{ display:inline; margin-top:0; }
+.gdz-key-more .k-where-link svg{ display:inline-block; vertical-align:-.1em; margin-left:.5em; }
+/* источники: тот же кегль 17px, ссылки чернильные полужирные с подчёркиванием – как ссылки в абзацах страницы */
+.gdz-src{ margin-top:1.6rem; font-size:17px; line-height:1.55; color:rgba(31,33,32,.75); max-width:46ch; }
+.gdz-src-h{ margin-top:1.2rem; font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
+ letter-spacing:.16em; font-size:12px; font-weight:700; line-height:1.3; color:rgba(31,33,32,.6); }
+.gdz-src-list{ margin-top:.45rem; display:grid; gap:.3rem; }
+.gdz-src-list a{ color:var(--c-ink); font-weight:600; text-decoration:underline; text-decoration-thickness:1.5px;
+ text-underline-offset:3px; }
 
 /* Футер: только крупный логотип и строка копирайта */
 /* overflow не задаём: верх букв не срезается, а низ по-прежнему
@@ -966,6 +998,11 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 .cal-btn svg{ width:15px; height:15px; }
 .cal-btn.is-prev svg{ transform:rotate(180deg); }
 .cal-grid{ display:grid; grid-template-columns:repeat(7,1fr); }
+/* календарь не растягивается: на планшете и в узком окне (560–1023px) колонка одна, и сетка расходилась
+   до 137px на день. Потолок 495px – ширина календаря на главной от 1440px, её Грег назвал образцом
+   (21.09.2026: «нельзя растягивать даты календаря… как был, стабильно такой»). Блок окон встречи под
+   календарём держит ту же ширину, чтобы колонка не ломалась */
+.cal-head, .cal-grid, .cal-book{ max-width:495px; }
 .cal-wd{ font-family:'Fira Sans Condensed',sans-serif; text-transform:uppercase;
  letter-spacing:.12em; font-size:11px; font-weight:700; text-align:center;
  padding-bottom:8px; color:rgba(255,255,255,.36); }
@@ -1001,40 +1038,31 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 @media (hover:hover){ .cal-day:hover{ border-color:var(--c-ochre); } }
 /* доступные дни видны сразу: светлая подложка, как серые плитки у sakib.design */
 [data-book] .cal-day{ background:rgba(255,255,255,.1); color:var(--c-paper); }
-[data-book] .cal-cell.is-today .cal-day{ color:var(--c-ochre); }
 /* прошедшие будни гаснут, чтобы не спорить с доступными, но остаются светлее выходных –
    сб и вс сохраняют свой серый (.34) во всей сетке */
 [data-book] .cal-cell.is-past{ color:rgba(255,255,255,.58); }
 [data-book] .cal-cell.is-past.is-weekend{ color:rgba(255,255,255,.34); }
 [data-book] .cal-cell.is-past .cal-hol{ color:inherit; }
-/* наведение на прошедший день: вместо кружка – серый крестик на месте числа
-   (прошедшие праздники не трогаем – у них своя подсказка) */
-[data-book] .cal-cell.is-past{ position:relative; cursor:default; transition:color .2s ease; }
-[data-book] .cal-cell.is-past:not(:has(.cal-hol))::before,
-[data-book] .cal-cell.is-past:not(:has(.cal-hol))::after{ content:''; position:absolute;
- left:50%; top:50%; width:16px; height:2px; margin:-1px 0 0 -8px; border-radius:1px;
- background:rgba(255,255,255,.45); opacity:0; transform:rotate(0deg) scale(.4);
- transition:opacity .2s ease, transform .3s cubic-bezier(.2,.7,.25,1); }
-@media (hover:hover){
-  [data-book] .cal-cell.is-past:not(:has(.cal-hol)):hover{ color:transparent; }
-  [data-book] .cal-cell.is-past:not(:has(.cal-hol)):hover::before{ opacity:1; transform:rotate(45deg); }
-  [data-book] .cal-cell.is-past:not(:has(.cal-hol)):hover::after{ opacity:1; transform:rotate(-45deg); }
-}
-@media (prefers-reduced-motion:reduce){
-  [data-book] .cal-cell.is-past, [data-book] .cal-cell.is-past::before,
-  [data-book] .cal-cell.is-past::after{ transition:none; } }
+/* прошедший день на наведение не отвечает (крестик на месте числа Грег убрал 21.09.2026) */
+[data-book] .cal-cell.is-past{ cursor:default; }
 @media (hover:hover){ [data-book] .cal-cell .cal-day:hover{ background:rgba(255,255,255,.18); } }
-[data-book] .cal-day.is-on, [data-book] .cal-cell .cal-day.is-on{ background:var(--c-ochre);
- border-color:var(--c-ochre); color:var(--c-ink); font-weight:800; }
 /* дни соседних месяцев: недоступные – самые тусклые, доступные – с обычной подложкой */
-[data-book] .cal-cell{ position:relative; }
 [data-book] .cal-cell.is-out{ color:rgba(255,255,255,.22); }
 [data-book] .cal-cell.is-out.is-past:not(.is-weekend){ color:rgba(255,255,255,.3); }
-.cal-mo{ position:absolute; left:0; right:0; top:-7px; text-align:center; font-style:normal;
- font-family:'Fira Sans Condensed',sans-serif; text-transform:uppercase; letter-spacing:.12em;
- font-size:9px; font-weight:700; line-height:1; color:var(--c-ochre); pointer-events:none; }
+/* сегодня (Грег, 21.09.2026): серый кружок, как у остальных доступных дней, цифра охристая, под ней охристая
+   точка. Точка стоит на ячейке, а не на кнопке: так она есть и в воскресенье, и в праздник, и в календаре
+   главной, где кнопок нет. Стоит после .is-out: сегодня бывает и среди дней соседнего месяца */
+.cal-cell.is-today{ position:relative; }
+.cal-cell.is-today::after{ content:''; position:absolute; left:50%; bottom:6px; width:5px; height:5px;
+ margin-left:-2.5px; border-radius:999px; background:var(--c-ochre); pointer-events:none; }
+[data-book] .cal-cell.is-today, [data-book] .cal-cell.is-today .cal-day{ color:var(--c-ochre); }
+[data-book] .cal-day.is-on, [data-book] .cal-cell .cal-day.is-on,
+[data-book] .cal-cell.is-today .cal-day.is-on{ background:var(--c-ochre);
+ border-color:var(--c-ochre); color:var(--c-ink); font-weight:800; }
+/* выбранное «сегодня» залито охрой – точка на нём чернильная */
+.cal-cell.is-today:has(.cal-day.is-on)::after{ background:var(--c-ink); }
 .cal-book{ margin-top:18px; }
-/* параметры встречи: длительность, формат, часовой пояс (левая панель Cal.com) */
+/* параметры встречи: время дня и место (выбор часового пояса снят 21.09.2026, меню – в docs/dropdown-menu.md) */
 .cal-opts{ display:flex; flex-direction:column; gap:10px; margin-bottom:16px; }
 .cal-opt{ position:relative; display:flex; align-items:center; gap:12px; min-width:0; }
 .cal-opt-ic{ flex:0 0 auto; width:20px; height:20px; color:rgba(255,255,255,.55); }
@@ -1048,30 +1076,10 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 @media (hover:hover){ .cal-seg-b:hover{ color:var(--c-paper); } }
 .cal-seg-b:focus-visible{ outline:2px solid var(--c-ochre); outline-offset:-2px; }
 .cal-seg-b.is-on{ background:rgba(255,255,255,.14); color:var(--c-paper); font-weight:700; }
-.cal-tz-btn{ appearance:none; -webkit-appearance:none; font:inherit; margin:0; border:0; padding:0;
- background:none; cursor:pointer; display:flex; align-items:center; gap:8px; min-width:0;
- height:40px; font-size:16px; font-weight:600; color:var(--c-paper);
- -webkit-tap-highlight-color:transparent; transition:color .2s ease; }
-@media (hover:hover){ .cal-tz-btn:hover{ color:var(--c-ochre); } }
-.cal-tz-btn:focus-visible{ outline:2px solid var(--c-ochre); outline-offset:4px; border-radius:6px; }
-.cal-tz-name{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.cal-tz-chev{ flex:0 0 auto; width:12px; height:12px; transform:rotate(90deg);
- transition:transform .3s cubic-bezier(.2,.7,.25,1); }
-.cal-tz.is-open .cal-tz-chev{ transform:rotate(-90deg); }
-.cal-tz-list{ position:absolute; z-index:8; left:32px; right:0; top:100%; margin:4px 0 0; padding:8px;
- list-style:none; max-height:264px; overflow-y:auto; overscroll-behavior:contain;
- -webkit-overflow-scrolling:touch; background:var(--c-paper); color:var(--c-ink);
- border-radius:14px; box-shadow:0 16px 40px rgba(31,33,32,.45); }
-.cal-tz-list[hidden]{ display:none; }
-.cal-tz-list li{ display:flex; align-items:center; justify-content:space-between; gap:12px;
- padding:11px 12px; border-radius:9px; cursor:pointer; font-size:16px; font-weight:600;
- line-height:1.2; outline:none; }
-.cal-tz-list li > span:last-child{ flex:0 0 auto; font-weight:500; color:rgba(31,33,32,.55);
- font-variant-numeric:tabular-nums; }
-.cal-tz-list li:focus-visible{ background:var(--c-sand); }
-@media (hover:hover){ .cal-tz-list li:hover{ background:var(--c-sand); } }
-.cal-tz-list li.is-on{ background:var(--c-ochre); }
-.cal-tz-list li.is-on > span:last-child{ color:var(--c-ink); }
+/* место встречи – строка, а не переключатель: вариант «Telefon» убран, выбирать не из чего;
+   кегль 16px / 600, как был у снятой строки часового пояса */
+.cal-place{ min-height:40px; }
+.cal-place-name{ min-width:0; font-size:16px; font-weight:600; line-height:1.25; color:var(--c-paper); }
 .cal-book-hint{ font-size:16px; line-height:1.45; color:rgba(255,255,255,.55); }
 .cal-book.is-open .cal-book-hint{ display:none; }
 /* сетка времени раскрывается тем же приёмом, что часы работы (.ws-hours-wrap) */
@@ -1087,21 +1095,41 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 .cal-slots-tz{ font-family:'Fira Sans Condensed',sans-serif; text-transform:uppercase;
  letter-spacing:.18em; font-size:12px; font-weight:700; color:rgba(255,255,255,.55);
  text-align:right; }
-.cal-slots{ display:grid; grid-template-columns:repeat(4,1fr); gap:6px; padding:2px; }
-@media (max-width:359px){ .cal-slots{ grid-template-columns:repeat(3,1fr); } }
-.cal-slot{ appearance:none; -webkit-appearance:none; font:inherit; margin:0; padding:0;
- height:42px; border-radius:10px; cursor:pointer; background:none;
+/* окна встречи «Rano · 9:00–10:00»: три строки, слева время дня, справа часы
+   (до 21.09.2026 здесь была сетка точного времени с шагом 30 мин – Грег заменил её тремя окнами) */
+.cal-slots{ display:grid; grid-template-columns:minmax(0,1fr); gap:6px; padding:2px; }
+.cal-slot{ appearance:none; -webkit-appearance:none; font:inherit; margin:0; padding:0 16px;
+ display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%;
+ height:52px; border-radius:12px; cursor:pointer; background:none; text-align:left;
  border:1px solid rgba(255,255,255,.18); color:rgba(255,255,255,.8);
- font-size:16px; font-weight:600; -webkit-tap-highlight-color:transparent;
+ font-size:17px; font-weight:600; -webkit-tap-highlight-color:transparent;
  transition:background-color .2s ease, border-color .2s ease, color .2s ease; }
+.cal-slot-time{ flex:0 0 auto; white-space:nowrap; font-variant-numeric:tabular-nums; }
 .cal-slot:focus-visible{ border-color:var(--c-ochre); outline:none; }
 @media (hover:hover){ .cal-slot:hover{ border-color:var(--c-ochre); color:var(--c-paper); } }
-.cal-slot.is-on{ background:var(--c-ochre); border-color:var(--c-ochre); color:var(--c-ink);
- font-weight:800; }
+/* выбранное окно – охристая рамка, а не заливка: сплошная жёлтая строка прямо над жёлтой кнопкой
+   записи читалась как вторая кнопка */
+.cal-slot.is-on{ background:rgba(255,255,255,.1); border-color:var(--c-ochre);
+ box-shadow:inset 0 0 0 1px var(--c-ochre); color:var(--c-paper); font-weight:800; }
+.cal-slot.is-on .cal-slot-time{ color:var(--c-ochre); }
+/* окно, на которое сегодня уже не успеть (и его сегмент в переключателе сверху) */
+.cal-slot:disabled, .cal-seg-b:disabled{ cursor:default; color:rgba(255,255,255,.3); }
+.cal-slot:disabled{ border-color:rgba(255,255,255,.1); }
+.cal-slot:disabled .cal-slot-time{ text-decoration:line-through; }
+/* широкая зона (планшет, телефон в горизонтали, две колонки у 1280px): строка во всю ширину разносила
+   название и часы по разным краям – там три окна встают в ряд, часы под названием.
+   Меряется сама зона, а не окно: на языковых страницах календарь стоит в другой сетке */
+.cal-slots-wrap > *{ container-type:inline-size; }
+@container (min-width:480px){
+  .cal-slots{ grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+  .cal-slot{ flex-direction:column; align-items:flex-start; justify-content:center; gap:2px; height:74px; }
+  .cal-slot-name{ font-size:15px; }
+}
 /* кнопка записи – основная кнопка сайта (.btn.btn--pop ставит app.js): здесь только раскладка */
 .cal-go{ margin:14px 2px 0; display:flex; align-items:center; justify-content:center;
  text-align:center; padding:18px 24px; font-weight:600; line-height:1.3; }
 .cal-go[hidden]{ display:none; }
+.cal-go-time{ white-space:nowrap; }
 .cal-book-note{ margin-top:12px; padding-bottom:4px; font-size:16px; line-height:1.45;
  color:rgba(255,255,255,.55); }
 @media (prefers-reduced-motion:reduce){ .cal-slots-wrap{ transition:none; } }
@@ -3308,7 +3336,7 @@ html.qd-open #burger > span{ opacity:0; }
 
 /* --- Зоны нажатия на тач-экранах: вид не меняется, растёт только область, которая ловит палец ---
    день календаря 36 → 50×46 (ячейка 50×42, соседей не перекрывает по горизонтали), стрелки месяца
-   34 → 44px, сегменты «15 min / Telefon» 34 → 40px, ссылка-стрелка и язык в шапке +10px сверху и снизу. */
+   34 → 44px, сегменты «Rano · Południe · Wieczór» 34 → 40px, ссылка-стрелка и язык в шапке +10px сверху и снизу. */
 @media (pointer:coarse){
   .cal-day{ position:relative; }
   .cal-day::after{ content:''; position:absolute; inset:-5px -7px; }

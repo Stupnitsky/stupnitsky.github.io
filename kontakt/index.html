@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260921-117">
+<link rel="stylesheet" href="/styles.css?v=20260921-123">
 
 <script type="application/ld+json">
 {
@@ -385,8 +385,8 @@
       </div>
     </div>
 
-    <!-- 3. Запись на встречу: параметры · календарь · время. app.js переносит .cal-opts в .cal-opts-slot,
-         а блок времени (.cal-book) – в .cal-book-slot -->
+    <!-- 3. Запись на встречу: параметры (время дня · место) · календарь · окна «Rano / Południe / Wieczór».
+         app.js переносит .cal-opts в .cal-opts-slot, а блок окон (.cal-book) – в .cal-book-slot -->
     <div class="kt-row">
       <div class="cal kt-cal" id="cal" data-book>
         <div class="kt-cal-intro">
@@ -504,7 +504,7 @@
 
           <dl class="gdz-meta">
             <div><dt>Adres</dt><dd>ul.&nbsp;Krucza 38/42<br>00-512 Warszawa<br>korespondencja: al.&nbsp;J.&nbsp;Ch.&nbsp;Szucha&nbsp;23</dd></div>
-            <div><dt>Przyjęcia</dt><dd>pon.–pt., wyłącznie na&nbsp;godzinę zarezerwowaną w&nbsp;systemie e-Konsulat, z&nbsp;wydrukowanym potwierdzeniem; wolne terminy bywają za&nbsp;kilka dni</dd></div>
+            <div><dt>Przyjęcia</dt><dd>pon.–pt., wyłącznie na&nbsp;godzinę zarezerwowaną w&nbsp;systemie <span class="whitespace-nowrap">e-Konsulat</span>, z&nbsp;wydrukowanym potwierdzeniem; wolne terminy bywają za&nbsp;kilka dni</dd></div>
             <div><dt>Opłata skarbowa</dt><dd><b class="gdz-fee">60&nbsp;zł</b> za&nbsp;dokument &middot; płatna przed wizytą: kasa Urzędu m.st.&nbsp;Warszawy, poczta lub przelew – w&nbsp;MSZ nie&nbsp;ma kasy</dd></div>
             <div><dt>Termin</dt><dd>w&nbsp;dniu wizyty, do&nbsp;10 dokumentów na&nbsp;osobę; pocztą do&nbsp;30&nbsp;dni</dd></div>
           </dl>
@@ -518,40 +518,58 @@
           </ul>
         </div>
 
-        <!-- Оба суда – одной карточкой в правой колонке: общий заголовок и описание, внутри два блока
-             «Lewy brzeg Wisły» / «Prawy brzeg Wisły», общие часы и общий список документов.
-             Данные: bip.warszawa.so.gov.pl (акт. 25.02.2026) и warszawapraga.so.gov.pl (акт. 09.07.2025 / 09.02.2026),
-             проверено 21.09.2026. Суд на Праге срок не публикует – «2 dni» по аналогии не дописывать. -->
+        <!-- Главный для нас тезис – сборы уже в цене. Стоит сразу за карточкой MSZ: на десктопе – в левой колонке
+             под ней, на телефоне – между двумя карточками. Крупный заголовок с приёмом h2-swap (начертания частей
+             меняются при прокрутке); строки разведены через block и <br>, чтобы смена веса не меняла число строк. -->
+        <div class="gdz-key">
+          <h3 class="gdz-key-t h2-swap"><span class="h2-a">Opłaty urzędowe</span> <span class="h2-b font-light italic">są już wliczone<br>w&nbsp;nasze ceny</span></h3>
+          <p class="gdz-key-s">Cena z&nbsp;wyceny jest ostateczna: zawiera 60&nbsp;zł opłaty skarbowej w&nbsp;MSZ i&nbsp;26&nbsp;zł w&nbsp;sądzie. Niczego nie&nbsp;dopłacasz osobno.</p>
+          <p class="gdz-key-more"><a href="/cennik/" class="k-where-link k-where-link--dark">Cennik Apostille i&nbsp;tłumaczeń<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></a></p>
+        </div>
+
+        <!-- Оба суда – одной карточкой в правой колонке. Сверху общее для обоих: часы (двумя строками) и сбор
+             с одним описанием; ниже два блока одинакового строения – название + «lewy / prawy brzeg Wisły»,
+             строки Adres / Okręg / Złożenie i odbiór / Termin; в конце общий список документов.
+             Сверено 21.09.2026 по первоисточникам: bip.warszawa.so.gov.pl/artykul/222/69 (акт. 25.02.2026),
+             warszawapraga.so.gov.pl – artykul/113/51 (акт. 09.07.2025), artykuly/111 (часы, акт. 09.02.2026),
+             artykuly/126 (сбор: единый счёт Urzędu m.st. Warszawy, в суде не платится); касса любой дзельницы –
+             warszawa19115.pl (акт. 25.08.2026). Суд на Праге срок не публикует – «2 dni» по аналогии не дописывать.
+             Заголовок «Sąd Okręgowy Warszawa-Wola» – решение Грега от 21.09.2026 (в пару к «Warszawa-Praga»); официальное
+             название суда – Sąd Okręgowy w Warszawie, оно осталось в подписи источника (BIP). Обратно не «исправлять». -->
         <div class="gdz-cell">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-ink/60 mb-2">Sądy</span>
           <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Sądy&nbsp;Okręgowe</h3>
           <p class="gdz-full">W&nbsp;Warszawie są dwa. Podpis notariusza i&nbsp;dokument sądowy poświadcza ten, w&nbsp;którego okręgu działa kancelaria albo sąd.</p>
 
+          <p class="gdz-sub">W&nbsp;obu sądach tak samo</p>
+          <dl class="gdz-meta gdz-meta--shared">
+            <div><dt>Godziny</dt><dd class="gdz-hours">
+              <span class="gdz-hr"><span class="gdz-hr-d">pn.</span> <b>8:30–18:00</b></span>
+              <span class="gdz-hr"><span class="gdz-hr-d">wt.–pt.</span> <b>8:30–15:30</b></span>
+            </dd></div>
+            <div><dt>Opłata skarbowa</dt><dd><b class="gdz-fee">26&nbsp;zł</b> za&nbsp;podpis – zwykle jeden na&nbsp;dokumencie &middot; płatna przed złożeniem: przelew na&nbsp;rachunek Urzędu m.st.&nbsp;Warszawy lub kasa dowolnego urzędu dzielnicy – w&nbsp;sądzie jej nie&nbsp;zapłacisz</dd></div>
+          </dl>
+
           <div class="gdz-courts">
             <div class="gdz-court">
-              <p class="gdz-court-tag">Lewy brzeg Wisły</p>
-              <h4 class="gdz-court-h">Sąd Okręgowy w&nbsp;Warszawie</h4>
+              <h4 class="gdz-court-h">Sąd Okręgowy <span class="whitespace-nowrap">Warszawa-Wola</span> <span class="gdz-court-side">lewy brzeg Wisły</span></h4>
               <dl class="gdz-meta">
-                <div><dt>Adres</dt><dd>al.&nbsp;„Solidarności” 127<br>pok.&nbsp;20, parter, korytarz&nbsp;G</dd></div>
+                <div><dt>Adres</dt><dd>al.&nbsp;„Solidarności” 127<br>00-898 Warszawa</dd></div>
                 <div><dt>Okręg</dt><dd>Śródmieście, Mokotów, Ursynów, Wilanów, Ochota, Ursus, Włochy, Wola, Bemowo, Żoliborz, Bielany; Piaseczno, Pruszków, Grodzisk Mazowiecki i&nbsp;Łomianki z&nbsp;okolicami</dd></div>
-                <div><dt>Opłata skarbowa</dt><dd><b class="gdz-fee">26&nbsp;zł</b> za&nbsp;podpis &middot; w&nbsp;kasie Urzędu Dzielnicy Wola lub przelewem</dd></div>
-                <div><dt>Termin</dt><dd>min. 2&nbsp;dni robocze &middot; w&nbsp;biletomacie bilet „LEGALIZACJA”</dd></div>
+                <div><dt>Złożenie i&nbsp;odbiór</dt><dd>pok.&nbsp;20, parter, korytarz&nbsp;G &middot; w&nbsp;biletomacie bilet „LEGALIZACJA”</dd></div>
+                <div><dt>Termin</dt><dd>min. 2&nbsp;dni robocze</dd></div>
               </dl>
             </div>
             <div class="gdz-court">
-              <p class="gdz-court-tag">Prawy brzeg Wisły</p>
-              <h4 class="gdz-court-h">Sąd Okręgowy Warszawa-Praga</h4>
+              <h4 class="gdz-court-h">Sąd Okręgowy <span class="whitespace-nowrap">Warszawa-Praga</span> <span class="gdz-court-side">prawy brzeg Wisły</span></h4>
               <dl class="gdz-meta">
-                <div><dt>Adres</dt><dd>ul.&nbsp;Poligonowa&nbsp;3, 04-051 Warszawa<br>biuro podawcze, parter</dd></div>
-                <div><dt>Okręg</dt><dd>Praga-Północ, Praga-Południe, Białołęka, Targówek, Rembertów, Wawer, Wesoła; Legionowo, Nowy Dwór Mazowiecki, Otwock, Wołomin, Marki i&nbsp;Ząbki z&nbsp;okolicami</dd></div>
-                <div><dt>Opłata skarbowa</dt><dd><b class="gdz-fee">26&nbsp;zł</b> za&nbsp;dokument &middot; przelewem na&nbsp;rachunek Urzędu m.st.&nbsp;Warszawy</dd></div>
-                <div><dt>Termin</dt><dd>sąd nie&nbsp;podaje terminu – o&nbsp;gotowym dokumencie powiadamia; odbiór w&nbsp;Biurze Obsługi Interesantów</dd></div>
+                <div><dt>Adres</dt><dd>ul.&nbsp;Poligonowa&nbsp;3<br>04-051 Warszawa</dd></div>
+                <div><dt>Okręg</dt><dd><span class="whitespace-nowrap">Praga-Północ</span>, <span class="whitespace-nowrap">Praga-Południe</span>, Białołęka, Targówek, Rembertów, Wawer, Wesoła; Legionowo, Nowy Dwór Mazowiecki, Otwock, Wołomin, Marki i&nbsp;Ząbki z&nbsp;okolicami</dd></div>
+                <div><dt>Złożenie i&nbsp;odbiór</dt><dd>biuro podawcze, parter &middot; odbiór w&nbsp;Biurze Obsługi Interesantów</dd></div>
+                <div><dt>Termin</dt><dd>sąd go nie&nbsp;podaje – o&nbsp;gotowym dokumencie powiadamia</dd></div>
               </dl>
             </div>
           </div>
-          <dl class="gdz-meta gdz-meta--shared">
-            <div><dt>Godziny</dt><dd>pn. 8:30–18:00, wt.–pt. 8:30–15:30 – w&nbsp;obu sądach</dd></div>
-          </dl>
 
           <p class="gdz-docs-h">Jakie dokumenty tu trafiają</p>
           <ul class="gdz-docs">
@@ -560,7 +578,7 @@
           </ul>
         </div>
 
-        <!-- примечание и мелкий текст: на десктопе – под MSZ в левой колонке (низ совпадает с низом правой),
+        <!-- примечание о порядке и источники: на десктопе – внизу левой колонки (низ совпадает с низом правой),
              на телефоне – после обеих карточек -->
         <div class="gdz-aside">
           <div class="gdz-note">
@@ -569,13 +587,15 @@
         – i&nbsp;jest to stracony tydzień. Właściwy jest ten sąd okręgowy, w&nbsp;którego okręgu działa kancelaria notariusza:
         lewobrzeżna Warszawa – al.&nbsp;„Solidarności”, prawobrzeżna – ul.&nbsp;Poligonowa.</p>
           </div>
-          <p class="gdz-small">
-            Opłaty urzędowe są już wliczone w&nbsp;nasze ceny (<a href="/cennik/" class="underline">cennik Apostille i&nbsp;tłumaczeń</a>) – klient nie&nbsp;dopłaca ich osobno w&nbsp;kasie.
-            Urzędy zmieniają godziny przyjęć, dlatego termin sprawdzamy przed każdą wizytą. Stan na&nbsp;wrzesień&nbsp;2026, źródła:
-            <a href="https://www.gov.pl/web/dyplomacja/apostille" target="_blank" rel="noopener" class="underline">MSZ – gov.pl</a>,
-            <a href="https://bip.warszawa.so.gov.pl/artykul/222/69/uwierzytelnienie-dokumentow-przeznaczonych-do-uzytku-za-granica" target="_blank" rel="noopener" class="underline">BIP Sądu Okręgowego w&nbsp;Warszawie</a>,
-            <a href="https://warszawapraga.so.gov.pl/artykul/113/51/uwierzytelnianie-dokumentow" target="_blank" rel="noopener" class="underline">Sąd Okręgowy Warszawa-Praga</a>.
-          </p>
+          <div class="gdz-src">
+            <p>Urzędy zmieniają godziny przyjęć, dlatego termin sprawdzamy przed każdą wizytą. Stan na&nbsp;wrzesień&nbsp;2026.</p>
+            <p class="gdz-src-h">Źródła</p>
+            <ul class="gdz-src-list">
+              <li><a href="https://www.gov.pl/web/dyplomacja/apostille" target="_blank" rel="noopener">MSZ – gov.pl</a></li>
+              <li><a href="https://bip.warszawa.so.gov.pl/artykul/222/69/uwierzytelnienie-dokumentow-przeznaczonych-do-uzytku-za-granica" target="_blank" rel="noopener">BIP Sądu Okręgowego w&nbsp;Warszawie</a></li>
+              <li><a href="https://warszawapraga.so.gov.pl/artykul/113/51/uwierzytelnianie-dokumentow" target="_blank" rel="noopener">Sąd Okręgowy <span class="whitespace-nowrap">Warszawa-Praga</span></a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -794,7 +814,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260921-117" defer></script>
+<script src="/assets/app.js?v=20260921-123" defer></script>
 
 </body>
 </html>

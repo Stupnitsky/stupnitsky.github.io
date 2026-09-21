@@ -10,9 +10,9 @@
           msgSat: 'Napisz, a potwierdzimy termin. Standardowo wracamy w poniedziałek od 7:00.',
           msgSun: 'Zgłoszenie przyjmiemy teraz, odpowiemy w poniedziałek od 7:00.',
           holiday: 'Dzień ustawowo wolny', msgNext: 'Napisz teraz – odpowiemy w najbliższy dzień roboczy od 7:00.',
-          book: { hint: 'Kliknij dzień roboczy – wybierzesz godzinę spotkania.', tz: 'czas warszawski', pick: 'Wybierz godzinę', cta: 'Umów spotkanie', note: 'Termin potwierdzimy w odpowiedzi.', durL: 'Czas trwania', fmtL: 'Forma spotkania', tzL: 'Strefa czasowa',
-                  durs: ['15 min','30 min','45 min','1 godz.'], fmts: ['Osobiście · ul. Krucza','Telefon'],
-                  msg: 'Dzień dobry! Chcę umówić spotkanie: {format}, {date}, godz. {time} czasu warszawskiego, {dur}.', msgLocal: ' U mnie to {ltime} ({tz}).' },
+          book: { hint: 'Kliknij dostępny dzień – wybierzesz porę spotkania.', tz: 'czas warszawski', pick: 'Wybierz porę spotkania', cta: 'Umów spotkanie', note: 'Dokładną godzinę potwierdzimy w odpowiedzi.', late: 'Na dziś jest już za późno – wybierz inny dzień.', partL: 'Pora dnia', placeL: 'Miejsce spotkania',
+                  parts: ['Rano','Południe','Wieczór'], place: 'Krucza / Śródmieście',
+                  msg: 'Dzień dobry! Chcę umówić spotkanie przy ul. Kruczej: {date}, {part}, godz. {time} czasu warszawskiego.' },
           hol: { ny: 'Nowy Rok', epi: 'Święto Trzech Króli', may1: 'Święto Pracy', may3: 'Święto Konstytucji 3 Maja',
                  aug15: 'Wniebowzięcie NMP · Święto Wojska Polskiego', nov1: 'Wszystkich Świętych', nov11: 'Narodowe Święto Niepodległości',
                  xmasEve: 'Wigilia Bożego Narodzenia', xmas1: 'Boże Narodzenie – pierwszy dzień', xmas2: 'Boże Narodzenie – drugi dzień', easter: 'Wielkanoc',
@@ -26,9 +26,9 @@
           msgSat: 'Напишіть, і ми підтвердимо термін. Зазвичай повертаємося в понеділок з 7:00.',
           msgSun: 'Заявку приймемо зараз, відповімо в понеділок з 7:00.',
           holiday: 'Державний вихідний у Польщі', msgNext: 'Напишіть зараз – відповімо найближчого робочого дня з 7:00.',
-          book: { hint: 'Натисніть на робочий день – оберете час зустрічі.', tz: 'час варшавський', pick: 'Оберіть час', cta: 'Записатися', note: 'Час підтвердимо у відповіді.', durL: 'Тривалість', fmtL: 'Формат зустрічі', tzL: 'Часовий пояс',
-                  durs: ['15 хв','30 хв','45 хв','1 год'], fmts: ['Особисто · вул. Krucza','Дзвінок'],
-                  msg: 'Добрий день! Хочу записатися: {format}, {date}, {time} за варшавським часом, {dur}.', msgLocal: ' У мене це {ltime} ({tz}).' },
+          book: { hint: 'Натисніть на доступний день – оберете час зустрічі.', tz: 'час варшавський', pick: 'Оберіть час', cta: 'Записатися', note: 'Точний час підтвердимо у відповіді.', late: 'На сьогодні вже запізно – оберіть інший день.', partL: 'Час доби', placeL: 'Місце зустрічі',
+                  parts: ['Ранок','Обід','Вечір'], place: 'Krucza / Śródmieście',
+                  msg: 'Добрий день! Хочу записатися на зустріч на вул. Krucza: {date}, {part}, {time} за варшавським часом.' },
           hol: { ny: 'Новий рік', epi: 'Богоявлення (Трьох Королів)', may1: 'День праці', may3: 'День Конституції 3 Травня',
                  aug15: 'Успіння Богородиці · День Війська Польського', nov1: 'День усіх святих', nov11: 'День Незалежності Польщі',
                  xmasEve: 'Святвечір (Wigilia)', xmas1: 'Різдво – перший день', xmas2: 'Різдво – другий день', easter: 'Великдень',
@@ -42,9 +42,9 @@
           msgSat: 'Напишите, и мы подтвердим срок. Обычно возвращаемся в понедельник с 7:00.',
           msgSun: 'Заявку примем сейчас, ответим в понедельник с 7:00.',
           holiday: 'Государственный выходной в Польше', msgNext: 'Напишите сейчас – ответим в ближайший рабочий день с 7:00.',
-          book: { hint: 'Нажмите на рабочий день – выберете время встречи.', tz: 'время варшавское', pick: 'Выберите время', cta: 'Записаться', note: 'Время подтвердим в ответном сообщении.', durL: 'Длительность', fmtL: 'Формат встречи', tzL: 'Часовой пояс',
-                  durs: ['15 мин','30 мин','45 мин','1 ч'], fmts: ['Лично · ул. Krucza','Звонок'],
-                  msg: 'Здравствуйте! Хочу записаться: {format}, {date}, {time} по варшавскому времени, {dur}.', msgLocal: ' У меня это {ltime} ({tz}).' },
+          book: { hint: 'Нажмите на доступный день – выберете время встречи.', tz: 'время варшавское', pick: 'Выберите время', cta: 'Записаться', note: 'Точное время подтвердим в ответном сообщении.', late: 'На сегодня уже поздно – выберите другой день.', partL: 'Время дня', placeL: 'Место встречи',
+                  parts: ['Утро','Обед','Вечер'], place: 'Krucza / Śródmieście',
+                  msg: 'Здравствуйте! Хочу записаться на встречу на ул. Krucza: {date}, {part}, {time} по варшавскому времени.' },
           hol: { ny: 'Новый год', epi: 'Богоявление (Трёх Королей)', may1: 'День труда', may3: 'День Конституции 3 Мая',
                  aug15: 'Успение Богородицы · День Войска Польского', nov1: 'День всех святых', nov11: 'День Независимости Польши',
                  xmasEve: 'Сочельник (Wigilia)', xmas1: 'Рождество – первый день', xmas2: 'Рождество – второй день', easter: 'Пасха',
@@ -58,9 +58,9 @@
           msgSat: 'Write and we will confirm a time. Normally we are back on Monday from 7:00.',
           msgSun: 'We take your request now and reply on Monday from 7:00.',
           holiday: 'Public holiday in Poland', msgNext: 'Write now – we reply on the next working day from 7:00.',
-          book: { hint: 'Click a working day to pick a meeting time.', tz: 'Warsaw time', pick: 'Pick a time', cta: 'Book a meeting', note: 'We confirm the time in our reply.', durL: 'Duration', fmtL: 'Meeting format', tzL: 'Time zone',
-                  durs: ['15 min','30 min','45 min','1 h'], fmts: ['In person · Krucza St.','Phone call'],
-                  msg: 'Hello! I would like to book: {format}, {date}, {time} Warsaw time, {dur}.', msgLocal: ' That is {ltime} my time ({tz}).' },
+          book: { hint: 'Click an available day to pick a meeting time.', tz: 'Warsaw time', pick: 'Pick a time', cta: 'Book a meeting', note: 'We confirm the exact time in our reply.', late: 'It is too late for today – pick another day.', partL: 'Time of day', placeL: 'Meeting place',
+                  parts: ['Morning','Afternoon','Evening'], place: 'Krucza / Śródmieście',
+                  msg: 'Hello! I would like to book a meeting on Krucza Street: {date}, {part}, {time} Warsaw time.' },
           hol: { ny: 'New Year', epi: 'Epiphany', may1: 'Labour Day', may3: 'Constitution Day (3 May)',
                  aug15: 'Assumption · Polish Armed Forces Day', nov1: 'All Saints', nov11: 'Independence Day',
                  xmasEve: 'Christmas Eve', xmas1: 'Christmas Day', xmas2: 'Second day of Christmas', easter: 'Easter Sunday',
@@ -1191,7 +1191,7 @@
 
   // Календарь польских выходных: красный кружок + подсказка при наведении.
   // С атрибутом data-book (страница контактов) он же – запись на встречу: рабочий день →
-  // сетка времени → готовое сообщение в WhatsApp (идея с sakib.design, без стороннего виджета)
+  // окно «утро · обед · вечер» → готовое сообщение в WhatsApp (идея с sakib.design, без стороннего виджета)
   (function () {
     var cal = document.getElementById('cal');
     if (!cal) return;
@@ -1224,60 +1224,18 @@
     // --- запись на встречу ---
     var BOOK = cal.hasAttribute('data-book') && L.book;
     var WA = 'https://wa.me/48507588155';
-    var SLOT_STEP = 30;                 // шаг сетки, мин
-    var DAY_FROM = 9 * 60, DAY_TO = 18 * 60;      // пн–пт, последний слот 18:00; сб и вс – выходные, записи нет
+    // окна встреч по Варшаве, пн–сб: утро · обед · вечер (подписи – L.book.parts); вс и праздники – записи нет.
+    // Точного времени посетитель не выбирает (так решил Грег 21.09.2026) – час внутри окна подтверждается в ответе
+    var PARTS = [[9 * 60, 10 * 60], [13 * 60, 15 * 60], [19 * 60, 20 * 60]];
     var LEAD = 120;                     // сегодня – не раньше чем через 2 часа
+    var PART_MIN = 30;                  // …и чтобы после этого от окна осталось хотя бы полчаса
     var HORIZON = 90;                   // на сколько дней вперёд открыта запись
-    var sel = null, selTime = null;
-    var dur = 1, fmt = 0;               // индексы в L.book.durs / L.book.fmts
-    var HOME_TZ = 'Europe/Warsaw';
-    var TZ_LIST = ['Europe/Warsaw', 'Europe/Kyiv', 'Europe/London', 'Europe/Lisbon', 'Europe/Madrid',
-      'Europe/Paris', 'Europe/Amsterdam', 'Europe/Berlin', 'Europe/Rome', 'Europe/Prague',
-      'Europe/Vilnius', 'Europe/Istanbul', 'Asia/Tbilisi', 'Asia/Dubai', 'Asia/Almaty',
-      'America/New_York', 'America/Toronto', 'America/Chicago', 'America/Los_Angeles'];
-    var tz = HOME_TZ;
+    var sel = null;
+    var part = null;                    // индекс в PARTS / L.book.parts; окно заранее не выбрано
 
-    function tzParts(zone, instant) {
-      var o = {};
-      new Intl.DateTimeFormat('en-GB', { timeZone: zone, year: 'numeric', month: '2-digit',
-        day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
-        .formatToParts(new Date(instant)).forEach(function (p) { o[p.type] = +p.value; });
-      return o;
-    }
-    // смещение пояса от UTC в минутах на данный момент
-    function tzOffset(zone, instant) {
-      var o = tzParts(zone, instant);
-      return Math.round((Date.UTC(o.year, o.month - 1, o.day, o.hour, o.minute) - instant) / 6e4);
-    }
-    // момент времени, соответствующий варшавским y-m-d и t минутам от полуночи
-    function warsawInstant(y, m, d, t) {
-      var g = Date.UTC(y, m - 1, d, 0, t);
-      return g - tzOffset(HOME_TZ, g) * 6e4;
-    }
-    function gmtLabel(zone) {
-      var off = tzOffset(zone, Date.now()), a = Math.abs(off);
-      return 'GMT ' + (off < 0 ? '−' : '+') + Math.floor(a / 60) + ':' + ('0' + (a % 60)).slice(-2);
-    }
-    // время слота в выбранном поясе; если дата там другая – пометка +1 / −1
-    function slotLabel(o, t) {
-      if (tz === HOME_TZ) return fmtTime(t);
-      var p = tzParts(tz, warsawInstant(o.y, o.m, o.d, t));
-      var shift = Math.round((Date.UTC(p.year, p.month - 1, p.day) - Date.UTC(o.y, o.m - 1, o.d)) / 864e5);
-      return fmtTime(p.hour * 60 + p.minute) + (shift ? ' ' + (shift > 0 ? '+' : '−') + Math.abs(shift) : '');
-    }
-
-    if (BOOK) {
-      try {
-        var mine = new Intl.DateTimeFormat().resolvedOptions().timeZone;
-        if (mine === 'Europe/Kiev') mine = 'Europe/Kyiv';
-        tzOffset(mine, Date.now());                   // бросит исключение, если пояс не поддержан
-        if (TZ_LIST.indexOf(mine) === -1) TZ_LIST.unshift(mine);
-        tz = mine;
-      } catch (err) { tz = HOME_TZ; }
-      try { tzOffset('Europe/Kyiv', Date.now()); }    // старые движки знают только Europe/Kiev
-      catch (err) { TZ_LIST[TZ_LIST.indexOf('Europe/Kyiv')] = 'Europe/Kiev'; if (tz === 'Europe/Kyiv') tz = 'Europe/Kiev'; }
-    }
-
+    // часы окна – всегда по Варшаве: встреча личная, у ul. Kruczej (выбор часового пояса снят 21.09.2026,
+    // само выпадающее меню сохранено в docs/dropdown-menu.md)
+    function partRange(n) { return fmtTime(PARTS[n][0]) + '–' + fmtTime(PARTS[n][1]); }
     function warsawMins() {
       try {
         var o = {};
@@ -1291,15 +1249,12 @@
       }
     }
 
-    // wd: 0 – понедельник … 6 – воскресенье
+    // доступные окна дня – индексы в PARTS; wd: 0 – понедельник … 6 – воскресенье
     function slotsFor(y, m, d, wd) {
-      if (wd > 4) return [];
-      var from = DAY_FROM, to = DAY_TO;
-      if (y === now.y && m === now.m && d === now.d) {
-        from = Math.max(from, Math.ceil((warsawMins() + LEAD) / SLOT_STEP) * SLOT_STEP);
-      }
+      if (wd > 5) return [];                          // суббота открыта (Грег, 21.09.2026), воскресенье – нет
+      var edge = y === now.y && m === now.m && d === now.d ? warsawMins() + LEAD + PART_MIN : 0;
       var out = [];
-      for (var t = from; t <= to; t += SLOT_STEP) out.push(t);
+      PARTS.forEach(function (p, n) { if (p[1] >= edge) out.push(n); });
       return out;
     }
 
@@ -1307,7 +1262,7 @@
       if (!BOOK || holiday) return false;
       var diff = Math.round((Date.UTC(y, m - 1, d) - Date.UTC(now.y, now.m - 1, now.d)) / 864e5);
       if (diff < 0 || diff > HORIZON) return false;
-      return slotsFor(y, m, d, wd).length > 0;
+      return wd <= 5;                                 // сегодня нажимается, даже когда окна уже прошли: они будут зачёркнуты
     }
 
     function fmtTime(t) { return Math.floor(t / 60) + ':' + ('0' + (t % 60)).slice(-2); }
@@ -1315,37 +1270,29 @@
       var dt = new Date(o.y, o.m - 1, o.d);
       try {
         return new Intl.DateTimeFormat(document.documentElement.lang || 'pl',
-          { weekday: 'short', day: 'numeric', month: 'long' }).format(dt);
+          { weekday: 'long', day: 'numeric', month: 'long' }).format(dt);   // день недели полностью: «wtorek, 29 września»
       } catch (err) {
         return o.d + '.' + ('0' + o.m).slice(-2);
       }
     }
 
-    var bookEl, slotsEl, dateEl, goEl, goText;
+    var bookEl, slotsEl, dateEl, goEl, goText, partSeg, noteEl2;
     if (BOOK) {
       bookEl = document.createElement('div');
       bookEl.className = 'cal-book';
       var IC = '<svg class="cal-opt-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">';
-      function seg(kind, items, on, label) {
-        return '<div class="cal-seg" data-kind="' + kind + '" role="group" aria-label="' + label + '">' +
-          items.map(function (t, n) {
-            return '<button type="button" class="cal-seg-b' + (n === on ? ' is-on' : '') + '" data-n="' + n +
-              '" aria-pressed="' + (n === on) + '">' + t + '</button>';
-          }).join('') + '</div>';
-      }
+      // параметры: время дня – переключатель; место – просто строка: встреча только личная, у ul. Kruczej
+      // (вариант «Telefon» Грег убрал 21.09.2026, выбирать стало не из чего)
       bookEl.innerHTML =
         '<div class="cal-opts">' +
           '<div class="cal-opt">' + IC + '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>' +
-            seg('dur', L.book.durs, dur, L.book.durL) + '</div>' +
-          '<div class="cal-opt">' + IC + '<path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>' +
-            seg('fmt', L.book.fmts, fmt, L.book.fmtL) + '</div>' +
-          '<div class="cal-opt cal-tz">' + IC + '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg>' +
-            '<button type="button" class="cal-tz-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="' + L.book.tzL + '">' +
-              '<span class="cal-tz-name"></span>' +
-              '<svg class="cal-tz-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4"/></svg>' +
-            '</button>' +
-            '<ul class="cal-tz-list" role="listbox" aria-label="' + L.book.tzL + '" hidden></ul>' +
-          '</div>' +
+            '<div class="cal-seg" role="group" aria-label="' + L.book.partL + '">' +
+              L.book.parts.map(function (t, n) {
+                return '<button type="button" class="cal-seg-b" data-n="' + n + '" aria-pressed="false">' + t + '</button>';
+              }).join('') + '</div></div>' +
+          '<div class="cal-opt cal-place" role="group" aria-label="' + L.book.placeL + '">' +
+            IC + '<path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>' +
+            '<span class="cal-place-name">' + L.book.place + '</span></div>' +
         '</div>' +
         '<p class="cal-book-hint">' + L.book.hint + '</p>' +
         '<div class="cal-slots-wrap"><div>' +
@@ -1364,73 +1311,21 @@
       dateEl = bookEl.querySelector('.cal-slots-date');
       goEl = bookEl.querySelector('.cal-go');
       goText = bookEl.querySelector('.cal-go-text');
+      noteEl2 = bookEl.querySelector('.cal-book-note');
 
-      // длительность и формат встречи
-      bookEl.querySelector('.cal-opts').addEventListener('click', function (e) {
+      // время дня; подсветку «утро · обед · вечер» ведёт paintSlots() – тот же выбор делают строки окон под календарём
+      partSeg = bookEl.querySelector('.cal-seg');
+      partSeg.addEventListener('click', function (e) {
         var b = e.target.closest ? e.target.closest('.cal-seg-b') : null;
-        if (!b) return;
-        var box = b.parentNode, n = +b.getAttribute('data-n');
-        if (box.getAttribute('data-kind') === 'dur') dur = n; else fmt = n;
-        Array.prototype.forEach.call(box.children, function (c, i) {
-          c.classList.toggle('is-on', i === n);
-          c.setAttribute('aria-pressed', i === n);
-        });
+        if (!b || b.disabled) return;
+        part = +b.getAttribute('data-n');
         paintSlots();
       });
-
-      // часовой пояс: выпадающий список, время в сетке пересчитывается
-      var tzBox = bookEl.querySelector('.cal-tz');
-      var tzBtn = tzBox.querySelector('.cal-tz-btn');
-      var tzName = tzBox.querySelector('.cal-tz-name');
-      var tzList = tzBox.querySelector('.cal-tz-list');
-      function tzText(zone) { return zone.replace(/_/g, ' '); }
-      function paintTzList() {
-        tzName.textContent = tzText(tz);
-        tzList.innerHTML = TZ_LIST.map(function (z) {
-          return '<li role="option" tabindex="0" data-z="' + z + '" aria-selected="' + (z === tz) + '"' +
-            (z === tz ? ' class="is-on"' : '') + '><span>' + tzText(z) + '</span><span>' + gmtLabel(z) + '</span></li>';
-        }).join('');
-      }
-      function tzToggle(open) {
-        tzList.hidden = !open;
-        tzBox.classList.toggle('is-open', open);
-        tzBtn.setAttribute('aria-expanded', open);
-        if (open) {
-          var cur = tzList.querySelector('.is-on');
-          if (cur) { tzList.scrollTop = cur.offsetTop - 8; cur.focus(); }
-        }
-      }
-      function tzPick(li) {
-        tz = li.getAttribute('data-z');
-        paintTzList();
-        tzToggle(false);
-        tzBtn.focus();
-        paintSlots();
-      }
-      tzBtn.addEventListener('click', function () { tzToggle(tzList.hidden); });
-      tzList.addEventListener('click', function (e) {
-        var li = e.target.closest ? e.target.closest('li') : null;
-        if (li) tzPick(li);
-      });
-      tzList.addEventListener('keydown', function (e) {
-        var li = e.target.closest ? e.target.closest('li') : null;
-        if (!li) return;
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tzPick(li); }
-        else if (e.key === 'ArrowDown' && li.nextElementSibling) { e.preventDefault(); li.nextElementSibling.focus(); }
-        else if (e.key === 'ArrowUp' && li.previousElementSibling) { e.preventDefault(); li.previousElementSibling.focus(); }
-      });
-      tzBox.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && !tzList.hidden) { tzToggle(false); tzBtn.focus(); }
-      });
-      document.addEventListener('click', function (e) {
-        if (!tzList.hidden && !tzBox.contains(e.target)) tzToggle(false);
-      });
-      paintTzList();
 
       slotsEl.addEventListener('click', function (e) {
         var b = e.target.closest ? e.target.closest('.cal-slot') : null;
-        if (!b) return;
-        selTime = +b.getAttribute('data-t');
+        if (!b || b.disabled) return;
+        part = +b.getAttribute('data-n');
         paintSlots();
       });
 
@@ -1442,26 +1337,36 @@
     function paintSlots() {
       if (!BOOK) return;
       bookEl.classList.toggle('is-open', !!sel);
+      // окна выбранного дня; пока день не выбран, доступны все
+      var list = sel ? slotsFor(sel.y, sel.m, sel.d, (new Date(sel.y, sel.m - 1, sel.d).getDay() + 6) % 7) : [0, 1, 2];
+      if (list.indexOf(part) === -1) part = null;     // сегодня это окно уже прошло
+      Array.prototype.forEach.call(partSeg.children, function (c, i) {
+        c.classList.toggle('is-on', i === part);
+        c.setAttribute('aria-pressed', i === part);
+        c.disabled = list.indexOf(i) === -1;
+      });
       if (!sel) return;
-      var wd = (new Date(sel.y, sel.m - 1, sel.d).getDay() + 6) % 7;
-      var list = slotsFor(sel.y, sel.m, sel.d, wd);
-      if (list.indexOf(selTime) === -1) selTime = null;
       var date = fmtDate(sel);
       dateEl.textContent = date;
-      bookEl.querySelector('.cal-slots-tz').textContent =
-        tz === HOME_TZ ? L.book.tz : tz.split('/').pop().replace(/_/g, ' ') + ' · ' + gmtLabel(tz);
+      noteEl2.textContent = list.length ? L.book.note : L.book.late;
       var html = '';
-      list.forEach(function (t) {
-        html += '<button type="button" class="cal-slot' + (t === selTime ? ' is-on' : '') +
-          '" data-t="' + t + '" aria-pressed="' + (t === selTime) + '">' + slotLabel(sel, t) + '</button>';
+      PARTS.forEach(function (p, n) {
+        html += '<button type="button" class="cal-slot' + (n === part ? ' is-on' : '') +
+          '" data-n="' + n + '" aria-pressed="' + (n === part) + '"' + (list.indexOf(n) === -1 ? ' disabled' : '') + '>' +
+          '<span class="cal-slot-name">' + L.book.parts[n] + '</span>' +
+          '<span class="cal-slot-time">' + partRange(n) + '</span></button>';
       });
+      var focused = slotsEl.contains(document.activeElement);
       slotsEl.innerHTML = html;
-      if (selTime === null) { goEl.hidden = true; return; }
-      var local = slotLabel(sel, selTime);
-      goText.textContent = L.book.cta + ' – ' + date + ', ' + local;
-      var text = L.book.msg.replace('{format}', L.book.fmts[fmt]).replace('{date}', date)
-        .replace('{time}', fmtTime(selTime)).replace('{dur}', L.book.durs[dur]);
-      if (tz !== HOME_TZ) text += L.book.msgLocal.replace('{ltime}', local).replace('{tz}', tz.replace(/_/g, ' '));
+      if (focused && part !== null) slotsEl.children[part].focus();   // кнопки пересозданы – вернуть фокус
+      if (part === null) { goEl.hidden = true; return; }
+      goText.textContent = L.book.cta + ' – ' + date + ', ';
+      var span = document.createElement('span');     // часы окна не рвутся по тире при переносе подписи
+      span.className = 'cal-go-time';
+      span.textContent = partRange(part);
+      goText.appendChild(span);
+      var text = L.book.msg.replace('{date}', date)
+        .replace('{part}', L.book.parts[part].toLowerCase()).replace('{time}', partRange(part));
       goEl.href = WA + '?text=' + encodeURIComponent(text);
       goEl.hidden = false;
     }
@@ -1506,9 +1411,7 @@
         if (BOOK && cy * 10000 + cm * 100 + d < now.y * 10000 + now.m * 100 + now.d) cls += ' is-past';
         var name = holidays(cy)[cm + '-' + d];
         var on = sel && sel.y === cy && sel.m === cm && sel.d === d;
-        // над первым числом соседнего месяца – его короткое название
-        var tag = out && d === 1 ? '<i class="cal-mo" aria-hidden="true">' + MONTHS[cm - 1].slice(0, 3) + '</i>' : '';
-        html += '<span class="' + cls + '">' + tag + (name
+        html += '<span class="' + cls + '">' + (name
           ? '<button type="button" class="cal-hol" data-name="' + name + '" aria-label="' + d + ' ' +
             MONTHS[cm - 1].toLowerCase() + ' – ' + name + '">' + d + '</button>'
           : canBook(cy, cm, d, wd, name)
@@ -1539,7 +1442,6 @@
       var pick = { y: +day.getAttribute('data-y'), m: +day.getAttribute('data-m'), d: +day.getAttribute('data-d') };
       // повторный тап по выбранному дню снимает выбор
       sel = (sel && sel.y === pick.y && sel.m === pick.m && sel.d === pick.d) ? null : pick;
-      selTime = null;
       render();
       paintSlots();
       var back = grid.querySelector('.cal-day.is-on');  // render() пересоздал кнопки – вернуть фокус
@@ -2296,7 +2198,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260921-117';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260921-123';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
