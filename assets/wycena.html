@@ -7,6 +7,18 @@
     </button>
     <div class="qd-topblur" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="qd-shell wy-v2" role="dialog" aria-modal="true" aria-labelledby="qd-title">
+      <!-- Шапка панели на телефоне и планшете (≤1023px), 21.09.2026. Там левая колонка стоит под формой, а её заголовок
+           был скрыт – панель начиналась сразу с «Sfotografuj telefonem». Грег: заголовок на тёмном стекле органично
+           смотрится сверху; затем – «верхнюю шапку закрепил бы при скролле». Поэтому блок стоит ВНЕ области прокрутки:
+           он не липкий, а просто не прокручивается – форма уходит под его нижний край, и стекло остаётся стеклом
+           (под липкой полупрозрачной шапкой просвечивал бы текст формы). На низком экране при прокрутке шапка
+           сжимается до одной строки (класс is-compact на .qd-shell ставит app.js). От 1024px блок скрыт –
+           там заголовок в левой колонке. aria-hidden: диалог уже назван через #qd-title. -->
+      <div class="qd-mhead" aria-hidden="true">
+        <p class="kicker">/ Wycena</p>
+        <p class="qd-mhead-title tracking-tightest font-black">Ekspresowa wycena<br><span class="font-light italic">Dokumentu</span></p>
+        <p class="qd-eta"><b>15 min</b><span>Wyślij zdjęcia – poznasz cenę</span></p>
+      </div>
     <div class="qd-scroll">
         <div class="bg-sand text-ink rounded-[26px] overflow-hidden">
           <div class="grid grid-cols-12">
@@ -121,6 +133,7 @@
                 </div>
               </form>
             </div>
+
           </div>
         </div>
     </div>

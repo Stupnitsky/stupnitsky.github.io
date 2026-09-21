@@ -2296,7 +2296,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260921-105';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260921-112';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -2325,6 +2325,44 @@
           if (tbRaf) return;
           tbRaf = requestAnimationFrame(function(){ tbRaf = 0; qd.style.setProperty('--qd-tb', Math.min(sc.scrollTop, 56) + 'px'); });
         }, { passive:true });
+      }
+      /* Шапка панели на телефоне (.qd-mhead, уже 1024px) стоит вне области прокрутки и потому «закреплена».
+         На низком экране (до 800px) в полный рост она забирала бы треть панели, поэтому при прокрутке формы
+         сжимается до одной строки заголовка и возвращается, когда панель снова в самом верху. Класс is-compact
+         на .qd-shell меняет содержимое сразу, а высоту блока ведём от старой к новой – форма не дёргается.
+         Пороги разные (24 / 4px), чтобы шапка не мигала на границе. */
+      var mh = qd.querySelector('.qd-mhead'), shell = qd.querySelector('.qd-shell');
+      if (sc && mh && shell) {
+        var low = window.matchMedia('(max-width:1023px) and (max-height:799px)');
+        var still = window.matchMedia('(prefers-reduced-motion:reduce)');
+        var compact = false, mhT = 0;
+        var setCompact = function (v) {
+          if (v === compact) return;
+          compact = v;
+          var h0 = mh.offsetHeight;
+          shell.classList.toggle('is-compact', v);
+          if (still.matches || !h0) return;
+          clearTimeout(mhT);
+          mh.style.height = 'auto';
+          var h1 = mh.offsetHeight;
+          if (h1 === h0) { mh.style.height = ''; return; }
+          mh.style.height = h0 + 'px';
+          void mh.offsetHeight;
+          mh.style.height = h1 + 'px';
+          mhT = setTimeout(function(){ mh.style.height = ''; }, 320);
+        };
+        /* телефон лёжа (окно ниже 480px): панель всего ~320px высотой – шапка сжата сразу, не дожидаясь прокрутки */
+        var tiny = window.matchMedia('(max-width:1023px) and (max-height:479px)');
+        var syncHead = function () {
+          if (!low.matches) { setCompact(false); return; }
+          if (tiny.matches) { setCompact(true); return; }
+          if (!compact && sc.scrollTop > 24) setCompact(true);
+          else if (compact && sc.scrollTop < 4) setCompact(false);
+        };
+        sc.addEventListener('scroll', syncHead, { passive:true });
+        (low.addEventListener ? low.addEventListener('change', syncHead) : low.addListener(syncHead));
+        (tiny.addEventListener ? tiny.addEventListener('change', syncHead) : tiny.addListener(syncHead));
+        syncHead();
       }
     }
     function load(){
