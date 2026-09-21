@@ -352,8 +352,18 @@
     if (!btn) return;
     var foot = document.querySelector('body > main');   // подвал закреплён, ориентир – конец контента
     var GAP = 63;                       // зазор между стрелкой и краем контента
+    /* На телефоне и тач-экранах стрелка висит над правым краем контента – там цены, «+» у вопросов,
+       часы работы, стрелки карточек – и закрывала их на каждом экране. Поэтому там она появляется,
+       только когда человек листает вверх (то есть хочет вернуться) или дошёл до конца страницы;
+       при движении вниз не мешает чтению (21.09.2026). С мышью и на широком окне – как раньше. */
+    var shy = window.matchMedia('(hover:none), (max-width:639px)');
+    var lastY = window.scrollY, goingUp = false;
     function check(){
-      btn.classList.toggle('is-live', window.scrollY > window.innerHeight * 0.6);
+      var y = window.scrollY;
+      if (Math.abs(y - lastY) > 8) { goingUp = y < lastY; lastY = y; }
+      var deep = y > window.innerHeight * 0.6;
+      var atEnd = foot && foot.getBoundingClientRect().bottom < window.innerHeight + 80;
+      btn.classList.toggle('is-live', deep && (!shy.matches || goingUp || atEnd));
       // стрелка упирается в футер и не заходит на него
       var base = window.matchMedia('(max-width:640px)').matches ? 28 : 64;   /* было 100 – зазор под кнопку WhatsApp, её убрали 20.09.2026 */
       var bottom = base;
@@ -372,6 +382,42 @@
       e.preventDefault();
       window.scrollTo({ top:0, behavior:'smooth' });
     });
+  })();
+
+  // Шапка в режиме бургера (уже 1150px): уезжает вверх при прокрутке вниз, возвращается при прокрутке вверх
+  // (21.09.2026). На телефоне она занимала 90px из ~660 видимых. Класс html.hdr-away, сам сдвиг – в styles.css.
+  // Всегда на месте: у верха страницы, при открытом меню или панели wyceny, при фокусе внутри шапки.
+  (function () {
+    var head = document.getElementById('top');
+    if (!head) return;
+    var root = document.documentElement;
+    var mq = window.matchMedia('(max-width:1149px)');
+    var lastY = Math.max(window.scrollY, 0), away = false, settle = 0;
+    /* первую секунду после загрузки не прячем: переход по ссылке с якорем (/cennik/#wycena) сам прокручивает
+       страницу вниз, и человек оказался бы на новой странице без шапки */
+    var armedAt = Date.now() + 1200;
+    function set(v) {
+      if (v === away) return;
+      away = v;
+      root.classList.toggle('hdr-away', v);
+      /* шапка переехала без прокрутки – пересчитать то, что зависит от её места (светлая / тёмная плашка) */
+      clearTimeout(settle);
+      settle = setTimeout(function () { window.dispatchEvent(new Event('scroll')); }, 360);
+    }
+    function onScroll() {
+      var y = Math.max(window.scrollY, 0);
+      if (!mq.matches || y < 120 || root.classList.contains('menu-open') || root.classList.contains('qd-open')) {
+        lastY = y; set(false); return;
+      }
+      if (Date.now() < armedAt) { lastY = y; return; }
+      var dy = y - lastY;
+      if (Math.abs(dy) < 8) return;        /* дрожание пальца и инерция у края не считаются сменой направления */
+      lastY = y;
+      set(dy > 0);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    head.addEventListener('focusin', function () { set(false); });
+    (mq.addEventListener ? mq.addEventListener('change', onScroll) : mq.addListener(onScroll));
   })();
 
 
@@ -471,6 +517,44 @@
         goTo(o);
       });
     });
+
+    /* Языки в мобильном меню (21.09.2026). В режиме бургера (уже 1150px) переключатель из ряда шапки убран
+       стилями – там остаётся только «Zamów wycenę», – поэтому те же языки стоят первой строкой в панели меню.
+       Строка собирается из списка .lang-pop: одна логика на все страницы и языковые версии, разметку
+       панели править не нужно. Переход – тот же goTo(): та же страница в другом языке с проверкой HEAD. */
+    (function () {
+      var mnav = document.getElementById('mobile-nav');
+      if (!mnav || mnav.querySelector('.mn-langs')) return;
+      var host = mnav.querySelector('.mn-in') || mnav.firstElementChild || mnav;
+      var row = document.createElement('div');
+      row.className = 'mn-langs';
+      row.setAttribute('role', 'group');
+      row.setAttribute('aria-label', btn.getAttribute('aria-label') || 'Language');
+      var HREFLANG = { pl: 'pl', ua: 'uk', ru: 'ru', en: 'en' };
+      opts.forEach(function (o) {
+        var code = o.getAttribute('data-lang');
+        if (!code) return;
+        var a = document.createElement('a');
+        a.className = 'mn-lang' + (isCurrent(o) ? ' is-current' : '');
+        a.href = samePageIn(code);
+        a.setAttribute('hreflang', HREFLANG[code] || code);
+        a.setAttribute('lang', HREFLANG[code] || code);
+        if (isCurrent(o)) a.setAttribute('aria-current', 'true');
+        /* полное название и код: на экранах уже 340px четыре названия в строку не входят – там показан код */
+        var full = document.createElement('span'); full.className = 'mn-lang-full'; full.textContent = nameOf(o);
+        var short = document.createElement('span'); short.className = 'mn-lang-code'; short.textContent = code.toUpperCase();
+        short.setAttribute('aria-hidden', 'true');
+        a.setAttribute('aria-label', nameOf(o));
+        a.appendChild(full); a.appendChild(short);
+        a.addEventListener('click', function (e) {
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+          e.preventDefault();
+          goTo(o);          /* текущий язык goTo пропускает; панель меню закрывает её собственный обработчик ссылок */
+        });
+        row.appendChild(a);
+      });
+      if (row.children.length) host.insertBefore(row, host.firstChild);
+    })();
 
     /* клик по кнопке только раскрывает и сворачивает список; язык меняют пункты.
        Если список уже открыт наведением, клик его закрепляет, а не закрывает. */
@@ -582,12 +666,31 @@
     var cells = Array.prototype.slice.call(grid.querySelectorAll('.slab-cell'));
     var panels = Array.prototype.slice.call(document.querySelectorAll('.slab-panel'));
     if (!cells.length || !panels.length) return;
+    /* Уже 1024px высоту блока описаний задаёт только открытый текст (styles.css, «Мобильный проход
+       21.09.2026»): остальные выведены из потока. Чтобы плита не дёргалась при смене колонки,
+       высота переезжает от старого значения к новому, после перехода инлайн-значение снимается. */
+    var box = document.querySelector('.slab-panels');
+    var narrow = window.matchMedia('(max-width:1023px)');
+    var still = window.matchMedia('(prefers-reduced-motion:reduce)');
+    var current = -1, hTimer = 0;
     function apply(i) {
+      var glide = box && current !== -1 && current !== i && narrow.matches && !still.matches;
+      var h0 = glide ? box.getBoundingClientRect().height : 0;
       cells.forEach(function (c, n) {
         c.classList.toggle('is-open', n === i);
         c.setAttribute('aria-expanded', String(n === i));
       });
       panels.forEach(function (pl, n) { pl.classList.toggle('is-open', n === i); });
+      current = i;
+      if (!glide) return;
+      clearTimeout(hTimer);
+      box.style.height = '';
+      var h1 = box.getBoundingClientRect().height;
+      if (Math.abs(h1 - h0) < 1) return;
+      box.style.height = h0 + 'px';
+      void box.offsetHeight;
+      box.style.height = h1 + 'px';
+      hTimer = setTimeout(function () { box.style.height = ''; }, 480);
     }
 
     var collapse = document.getElementById('slab-collapse');
@@ -825,9 +928,14 @@
       ticking = false;
       function overDark(el) {
         var r = el.getBoundingClientRect();
+        /* в режиме бургера шапка уезжает вверх при прокрутке вниз (html.hdr-away): фон под ней считаем
+           по её месту «дома», иначе, возвращаясь, она на треть секунды показывала бы не тот цвет */
+        var ty = 0;
+        try { ty = new DOMMatrixReadOnly(getComputedStyle(header).transform).m42 || 0; } catch (e) {}
+        var top = r.top - ty, bottom = r.bottom - ty;
         return darks.some(function (d0) {
           var d = d0.getBoundingClientRect();
-          return d.top < r.bottom && d.bottom > r.top && d.left < r.right && d.right > r.left;
+          return d.top < bottom && d.bottom > top && d.left < r.right && d.right > r.left;
         });
       }
       /* Плашка шапки одна на весь ряд, поэтому решение принимаем один раз по ряду:
@@ -1541,41 +1649,77 @@
     window.addEventListener('resize', function () { if (current !== -1) place(); }, { passive: true });
   })();
 
-  // Мобильное меню (12.09.2026, по аудиту): Escape и клик мимо закрывают панель,
-  // страница под ней не прокручивается (html.menu-open), бургер складывается в крестик,
-  // подпись кнопки меняется на «закрыть» (текст берётся из data-close-label – свой в каждом языке),
-  // фокус переходит в панель и возвращается на бургер при закрытии с клавиатуры.
+  // Мобильное меню (12.09.2026, по аудиту; переделано 21.09.2026): Escape и нажатие мимо закрывают панель,
+  // страница под ней не прокручивается, бургер складывается в крестик, подпись кнопки меняется
+  // на «закрыть» (текст берётся из data-close-label – свой в каждом языке), фокус переходит в панель
+  // и возвращается на бургер при закрытии с клавиатуры.
+  // Состояние одно: aria-expanded на бургере + html.menu-open. Показывает и прячет панель CSS
+  // (#mobile-nav в styles.css) – класс hidden из разметки больше ни на что не влияет: раньше панель
+  // открывалась снятием hidden, а на 1024–1149px её всё равно гасил .lg:hidden, и бургер там молчал.
   (function () {
     var burger = document.getElementById('burger');
     var nav = document.getElementById('mobile-nav');
     if (!burger || !nav) return;
+    var root = document.documentElement;
     var labelOpen = burger.getAttribute('aria-label') || 'Menu';
     var labelClose = burger.getAttribute('data-close-label') || labelOpen;
-    function isOpen() { return !nav.classList.contains('hidden'); }
-    function setOpen(open, focusBurger) {
-      nav.classList.toggle('hidden', !open);
+    /* невидимая подложка под шапкой: нажатие мимо панели закрывает меню и не достаётся ссылке,
+       которая оказалась под пальцем на странице */
+    var shade = document.createElement('div');
+    shade.className = 'mn-backdrop';
+    shade.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(shade);
+    function isOpen() { return burger.getAttribute('aria-expanded') === 'true'; }
+    /* iOS: overflow:hidden на body страницу держит не всегда – тянуть её под открытым меню не даём.
+       Внутри панели жест оставляем, только если ей самой есть что прокручивать (низкий экран): иначе
+       он ушёл бы на страницу. Слушатель не пассивный, поэтому живёт только пока меню открыто */
+    function holdPage(e) {
+      if (!nav.contains(e.target) || nav.scrollHeight <= nav.clientHeight + 1) e.preventDefault();
+    }
+    /* Единая плашка (21.09.2026): панель не отдельная – вниз растёт сам стеклянный слой ряда шапки
+       (.hdr-row::before / ::after в styles.css), а на сколько – говорит --mn-h: высота панели на этот момент.
+       Панель скрыта через visibility, в потоке остаётся, поэтому её высоту можно снять до открытия. */
+    var head = document.getElementById('top');
+    function fitPlate() { if (head) head.style.setProperty('--mn-h', nav.offsetHeight + 'px'); }
+    function setOpen(open, focusBurger, focusFirst) {
+      if (open === isOpen()) return;
+      if (open) fitPlate();
       burger.setAttribute('aria-expanded', String(open));
       burger.setAttribute('aria-label', open ? labelClose : labelOpen);
-      document.documentElement.classList.toggle('menu-open', open);
+      root.classList.toggle('menu-open', open);
       if (open) {
-        var first = nav.querySelector('a');
+        nav.scrollTop = 0;
+        document.addEventListener('touchmove', holdPage, { passive: false });
+        /* фокус в панель – только при открытии с клавиатуры: после касания рамка фокуса
+           на первом пункте выглядела как выделенный пункт меню */
+        var first = focusFirst && nav.querySelector('a');
         if (first) first.focus({ preventScroll: true });
-      } else if (focusBurger) burger.focus();
+      } else {
+        document.removeEventListener('touchmove', holdPage, { passive: false });
+        if (focusBurger) burger.focus();
+      }
     }
-    burger.addEventListener('click', function () { setOpen(!isOpen()); });
+    /* detail === 0 – click пришёл от Enter / пробела, а не от пальца или мыши */
+    burger.addEventListener('click', function (e) { setOpen(!isOpen(), false, e.detail === 0); });
     nav.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', function () { setOpen(false); });
     });
+    /* закрываем по click, а не по pointerdown: иначе подложка исчезала бы раньше click,
+       и тот приходил бы в элемент страницы под пальцем */
+    shade.addEventListener('click', function () { setOpen(false); });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && isOpen()) { e.preventDefault(); setOpen(false, true); }
     });
+    /* нажатие в ряду шапки мимо бургера (логотип, «Zamów wycenę») – меню закрывается, панель wyceny откроется сама */
     document.addEventListener('pointerdown', function (e) {
-      if (isOpen() && !nav.contains(e.target) && !burger.contains(e.target)) setOpen(false);
+      if (isOpen() && e.target !== shade && !nav.contains(e.target) && !burger.contains(e.target)) setOpen(false);
     });
-    /* окно стало широким – панель не нужна, и прокрутку возвращаем */
-    var wide = window.matchMedia('(min-width:1024px)');
+    /* окно стало широким (порог бургера в styles.css – 1150px) – панель не нужна, прокрутку возвращаем */
+    var wide = window.matchMedia('(min-width:1150px)');
     (wide.addEventListener ? wide.addEventListener('change', onWide) : wide.addListener(onWide));
     function onWide(e) { if (e.matches && isOpen()) setOpen(false); }
+    /* поворот телефона, смена ширины окна, адресная строка Safari – высота панели меняется, плашка за ней */
+    window.addEventListener('resize', function () { if (isOpen()) fitPlate(); }, { passive: true });
   })();
 
   // Плавное раскрытие юридических блоков
@@ -2138,7 +2282,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260921-85';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260921-101';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */

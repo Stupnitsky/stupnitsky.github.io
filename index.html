@@ -135,7 +135,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260921-85">
+<link rel="stylesheet" href="/styles.css?v=20260921-101">
 </head>
 
 <body class="font-sans antialiased">
@@ -191,17 +191,25 @@
     </div>
   </div>
 
-  <nav id="mobile-nav" class="hidden lg:hidden border-t border-ink/10 bg-paper" aria-label="Nawigacja mobilna">
-    <div class="mx-auto max-w-site px-5 py-4 flex flex-col">
-      <a href="/apostille/"    class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Apostille</a>
-      <a href="/tlumaczenia-przysiegle/"  class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Tłumaczenia</a>
-      <a href="/cennik/"               class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Cennik</a>
-      <a href="/kontakt/#gdzie"        class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Gdzie załatwić</a>
-      <a href="/cennik/#wycena" data-quote class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Zamów wycenę</a>
-      <a href="/#faq"          class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Częste pytania</a>
-      <a href="/kontakt/"      class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Kontakt</a>
-      <a href="https://wa.me/48507588155" target="_blank" rel="noopener"
-         class="mt-5 text-center rounded-[12px] py-[18px] font-semibold btn">Napisz na WhatsApp</a>
+  <!-- Мобильное меню (21.09.2026): единая плашка с рядом шапки – вниз растёт сам стеклянный слой ряда, панель
+       прозрачная и стоит встык под ним (стили – #mobile-nav и .mn-* в styles.css, состояние html.menu-open).
+       Первой строкой app.js ставит языки (.mn-langs). Список – только навигация; действия – группа .cta-btns:
+       сначала «Zamów wycenę» (главное действие – форма, не мессенджер), под ней WhatsApp · Telegram. -->
+  <nav id="mobile-nav" class="mn" aria-label="Nawigacja mobilna">
+    <div class="mn-in">
+      <div class="mn-list">
+        <a href="/apostille/" class="mn-link">Apostille</a>
+        <a href="/tlumaczenia-przysiegle/" class="mn-link">Tłumaczenia</a>
+        <a href="/cennik/" class="mn-link">Cennik</a>
+        <a href="/kontakt/#gdzie" class="mn-link">Gdzie załatwić</a>
+        <a href="/#faq" class="mn-link">Częste pytania</a>
+        <a href="/kontakt/" class="mn-link">Kontakt</a>
+      </div>
+      <div class="cta-btns mn-cta" role="group" aria-label="Zamów wycenę lub napisz na komunikatorze">
+        <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+        <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20potrzebuj%C4%99%20wyceny%20apostille%2Ft%C5%82umaczenia" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+        <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      </div>
     </div>
   </nav>
 </header>
@@ -277,7 +285,7 @@
           <span class="price-hit text-ink/60">Tłumaczenie <b class="font-bold text-ink"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b> / strona</span>
         </p>
 
-        <p class="mt-5 text-[14px] text-ink/55 leading-relaxed text-center">
+        <p class="mt-5 text-[14px] text-ink/70 leading-relaxed text-center">
           Zgłoszenia przyjmujemy <span class="font-semibold text-ink/80">24/7</span> – odpowiadamy w&nbsp;godzinach 7:00 – 21:00.<br>
           Obsługa w&nbsp;języku polskim, ukraińskim, rosyjskim i&nbsp;angielskim.
         </p>
@@ -296,7 +304,7 @@
         <button type="button" class="slab-cell px-4 sm:px-6 py-6 md:py-8 text-left"
                 data-slab="1" aria-expanded="false" aria-controls="slab-panel-1">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Sądy</span>
-          <span class="slab-name block text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Sąd&nbsp;Okręgowy</span>
+          <span class="slab-name block text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Sąd Okręgowy</span>
         </button>
         <button type="button" class="slab-cell px-4 sm:px-6 py-6 md:py-8 text-left"
                 data-slab="2" aria-expanded="false" aria-controls="slab-panel-2">
@@ -306,7 +314,7 @@
         <button type="button" class="slab-cell px-4 sm:px-6 py-6 md:py-8 text-left"
                 data-slab="3" aria-expanded="false" aria-controls="slab-panel-3">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Ukraina</span>
-          <span class="slab-name block text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Apostille&nbsp;Ukraina</span>
+          <span class="slab-name block text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Apostille Ukraina</span>
         </button>
       </div>
 
@@ -349,8 +357,8 @@
             <div class="slab-panel-in">
               <h3 class="text-[19px] md:text-[22px] font-bold tracking-tight mb-3">Apostille Ukraina</h3>
               <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Akty, dyplomy i&nbsp;świadectwa z&nbsp;Ukrainy – Apostille przez partnera na miejscu, duplikaty aktów sprzed 2016, tłumaczenie w&nbsp;Warszawie. Klient nie wyjeżdża z&nbsp;Polski. <a href="/apostille-ukraina/" class="underline">Więcej</a>.</p>
-              <p class="slab-price"><span>Apostille Ukraina</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</p>
-              <p class="slab-price"><span>Uzyskanie dokumentu z&nbsp;Ukrainy</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</p>
+              <p class="slab-price"><span>Apostille Ukraina</span><span class="sp-val"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span></p>
+              <p class="slab-price"><span>Uzyskanie dokumentu z&nbsp;Ukrainy</span><span class="sp-val"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span></p>
               <p class="text-[15px] leading-[1.6] text-paper/55 mt-3 max-w-[92ch]">Akt stanu cywilnego wydany przed 2016&nbsp;rokiem lub w&nbsp;czasach ZSRR nie przyjmuje Apostille – najpierw uzyskujemy nowy odpis, potem Apostille. To dwa etapy, razem 1&nbsp;100&nbsp;zł. Tłumaczenie przysięgłe nie jest wliczone; dostawa do&nbsp;Polski – tak.</p>
             </div>
           </div>
@@ -609,7 +617,7 @@
 
       <!-- Акцентная плашка -->
       <div class="bg-terra text-ink px-7 sm:px-12 lg:px-14 py-8 md:py-11">
-        <div class="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
+        <div class="ua-promo flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
           <div class="shrink-0 text-[52px] md:text-[64px] leading-none" aria-hidden="true">★</div>
           <div>
             <p class="tracking-tightest leading-[1.05] text-[26px] sm:text-[34px] md:text-[40px] font-black">
@@ -622,8 +630,8 @@
               nie da się uzyskać, zwracamy przedpłatę.
             </p>
             <p class="mt-3 font-cond uppercase tracking-[0.14em] text-[14px]">
-              Apostille Ukraina <span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument<br>
-              Uzyskanie dokumentu <span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument
+              Apostille Ukraina <span class="whitespace-nowrap"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span><br>
+              Uzyskanie dokumentu <span class="whitespace-nowrap"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span>
             </p>
             <p class="mt-3 text-[15px] text-ink/70 max-w-[60ch]">
               Dokument sprzed 2016&nbsp;roku lub z&nbsp;czasów ZSRR wymaga dwóch etapów –
@@ -691,7 +699,7 @@
         </div>
 
         <div class="col-span-12 lg:col-span-7">
-          <h3 class="font-cond uppercase tracking-[0.18em] text-[12px] text-ink/50 mb-5">Dla kogo tłumaczymy</h3>
+          <h3 class="font-cond uppercase tracking-[0.18em] text-[12px] text-ink/70 mb-5">Dla kogo tłumaczymy</h3>
           <div id="tl-wrap" class="relative">
             <div id="tl-grid" class="relative grid sm:grid-cols-2 gap-px bg-ink/15 rounded-[9px] overflow-hidden">
               <button type="button" class="soft-cell tl-cell bg-paper p-6 md:p-7 text-left" data-tl="0" aria-expanded="false" aria-controls="tl-pop">
@@ -758,7 +766,7 @@
             </div>
           </div>
 
-          <h3 id="jezyki" class="font-cond uppercase tracking-[0.18em] text-[12px] text-ink/50 mt-10 mb-4 scroll-mt-24">Języki</h3>
+          <h3 id="jezyki" class="font-cond uppercase tracking-[0.18em] text-[12px] text-ink/70 mt-10 mb-4 scroll-mt-24">Języki</h3>
           <div class="lang-list relative">
             <span class="lang-bg" aria-hidden="true"></span>
             <ul class="lang-grid gap-x-6 gap-y-0">            <li class="lang-chip text-[24px] md:text-[29px] font-semibold tracking-tight leading-[1.18]"><span class="lang-swap"><span class="ls-a">Polski</span><span class="ls-b" aria-hidden="true">Język polski</span></span></li>
@@ -924,9 +932,9 @@
           <ul class="faq-price">
             <li><span>Apostille MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></li>
             <li><span>Apostille – sąd okręgowy</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span></li>
-            <li><span>Tłumaczenie przysięgłe</span><b><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> / strona = 1125 znaków ze spacjami</b></li>
-            <li><span>Apostille Ukraina</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</li>
-            <li><span>Uzyskanie dokumentu z&nbsp;Ukrainy</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</li>
+            <li><span>Tłumaczenie przysięgłe</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ strona</span></span> <span class="fp-note">= 1125 znaków ze spacjami</span></span></li>
+            <li><span>Apostille Ukraina</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ dokument</span></span></span></li>
+            <li><span>Uzyskanie dokumentu z&nbsp;Ukrainy</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ dokument</span></span></span></li>
           </ul>
           <p class="mt-4">Ceny zawierają opłaty skarbowe. Przy tłumaczeniu od&nbsp;6&nbsp;stron udzielamy 10% rabatu. Ostateczną kwotę podajemy po zobaczeniu dokumentu – zwykle w&nbsp;15 minut.</p>
         </div>
@@ -1153,7 +1161,7 @@
     </div>
 </div>
 
-<script src="/assets/app.js?v=20260921-85" defer></script>
+<script src="/assets/app.js?v=20260921-101" defer></script>
 
 </body>
 </html>

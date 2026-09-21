@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260921-85">
+<link rel="stylesheet" href="/styles.css?v=20260921-101">
 
 <script type="application/ld+json">
 {
@@ -254,17 +254,25 @@
     </div>
   </div>
 
-  <nav id="mobile-nav" class="hidden lg:hidden border-t border-ink/10 bg-paper" aria-label="Nawigacja mobilna">
-    <div class="mx-auto max-w-site px-5 py-4 flex flex-col">
-      <a href="/apostille/"    class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Apostille</a>
-      <a href="/tlumaczenia-przysiegle/"  class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Tłumaczenia</a>
-      <a href="/cennik/"               class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Cennik</a>
-      <a href="/kontakt/#gdzie"        class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Gdzie załatwić</a>
-      <a href="/cennik/#wycena" data-quote class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Zamów wycenę</a>
-      <a href="/#faq"          class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Częste pytania</a>
-      <a href="/kontakt/"      class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Kontakt</a>
-      <a href="https://wa.me/48507588155" target="_blank" rel="noopener"
-         class="mt-5 text-center rounded-[12px] py-[18px] font-semibold btn">Napisz na WhatsApp</a>
+  <!-- Мобильное меню (21.09.2026): единая плашка с рядом шапки – вниз растёт сам стеклянный слой ряда, панель
+       прозрачная и стоит встык под ним (стили – #mobile-nav и .mn-* в styles.css, состояние html.menu-open).
+       Первой строкой app.js ставит языки (.mn-langs). Список – только навигация; действия – группа .cta-btns:
+       сначала «Zamów wycenę» (главное действие – форма, не мессенджер), под ней WhatsApp · Telegram. -->
+  <nav id="mobile-nav" class="mn" aria-label="Nawigacja mobilna">
+    <div class="mn-in">
+      <div class="mn-list">
+        <a href="/apostille/" class="mn-link">Apostille</a>
+        <a href="/tlumaczenia-przysiegle/" class="mn-link">Tłumaczenia</a>
+        <a href="/cennik/" class="mn-link">Cennik</a>
+        <a href="/kontakt/#gdzie" class="mn-link">Gdzie załatwić</a>
+        <a href="/#faq" class="mn-link">Częste pytania</a>
+        <a href="/kontakt/" class="mn-link">Kontakt</a>
+      </div>
+      <div class="cta-btns mn-cta" role="group" aria-label="Zamów wycenę lub napisz na komunikatorze">
+        <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+        <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20potrzebuj%C4%99%20wyceny%20apostille%2Ft%C5%82umaczenia" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+        <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      </div>
     </div>
   </nav>
 </header>
@@ -786,7 +794,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260921-85" defer></script>
+<script src="/assets/app.js?v=20260921-101" defer></script>
 
 </body>
 </html>

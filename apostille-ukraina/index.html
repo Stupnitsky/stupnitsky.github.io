@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260921-85">
+<link rel="stylesheet" href="/styles.css?v=20260921-101">
 
 <script type="application/ld+json">
 {
@@ -134,17 +134,25 @@
     </div>
   </div>
 
-  <nav id="mobile-nav" class="hidden lg:hidden border-t border-ink/10 bg-paper" aria-label="Nawigacja mobilna">
-    <div class="mx-auto max-w-site px-5 py-4 flex flex-col">
-      <a href="/apostille/"    class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Apostille</a>
-      <a href="/tlumaczenia-przysiegle/"  class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Tłumaczenia</a>
-      <a href="/cennik/"               class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Cennik</a>
-      <a href="/kontakt/#gdzie"        class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Gdzie załatwić</a>
-      <a href="/cennik/#wycena" data-quote class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Zamów wycenę</a>
-      <a href="/#faq"          class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Częste pytania</a>
-      <a href="/kontakt/"      class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Kontakt</a>
-      <a href="https://wa.me/48507588155" target="_blank" rel="noopener"
-         class="mt-5 text-center rounded-[12px] py-[18px] font-semibold btn">Napisz na WhatsApp</a>
+  <!-- Мобильное меню (21.09.2026): единая плашка с рядом шапки – вниз растёт сам стеклянный слой ряда, панель
+       прозрачная и стоит встык под ним (стили – #mobile-nav и .mn-* в styles.css, состояние html.menu-open).
+       Первой строкой app.js ставит языки (.mn-langs). Список – только навигация; действия – группа .cta-btns:
+       сначала «Zamów wycenę» (главное действие – форма, не мессенджер), под ней WhatsApp · Telegram. -->
+  <nav id="mobile-nav" class="mn" aria-label="Nawigacja mobilna">
+    <div class="mn-in">
+      <div class="mn-list">
+        <a href="/apostille/" class="mn-link">Apostille</a>
+        <a href="/tlumaczenia-przysiegle/" class="mn-link">Tłumaczenia</a>
+        <a href="/cennik/" class="mn-link">Cennik</a>
+        <a href="/kontakt/#gdzie" class="mn-link">Gdzie załatwić</a>
+        <a href="/#faq" class="mn-link">Częste pytania</a>
+        <a href="/kontakt/" class="mn-link">Kontakt</a>
+      </div>
+      <div class="cta-btns mn-cta" role="group" aria-label="Zamów wycenę lub napisz na komunikatorze">
+        <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+        <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20potrzebuj%C4%99%20wyceny%20apostille%2Ft%C5%82umaczenia" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+        <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      </div>
     </div>
   </nav>
 </header>
@@ -164,6 +172,12 @@
       w&nbsp;Kijowie, gotowy dokument z&nbsp;klauzulą wraca do Warszawy, a&nbsp;Tłumaczenie Przysięgłe
       robimy tutaj. Jeśli dokumentu nie ma na rękach, uzyskujemy duplikat.
     </p>
+    <!-- ссылка-стрелка привязана к абзацу (стоит сразу под ним), кнопки – ниже, после воздуха -->
+    <p class="hero-more">
+      <a href="#sprawdz" class="k-where-link k-where-link--dark">Sprawdź, w&nbsp;którym scenariuszu jesteś
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
+      </a>
+    </p>
     <div class="mt-8 bg-terra text-ink rounded-[26px] p-7 sm:p-10">
       <p class="tracking-tightest leading-[1.05] text-[24px] sm:text-[30px] md:text-[34px] font-black max-w-[30ch]">
         Bierzemy każdą sprawę. Jeśli dokumentu nie da się uzyskać, zwracamy przedpłatę –
@@ -175,13 +189,11 @@
         składając wniosek. Ryzykujesz wyłącznie kosztem przesyłki.
       </p>
     </div>
-    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20dokument%20z%20Ukrainy%20do%20apostille" class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn">
-        Wyślij zdjęcie dokumentu <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
-      </a>
-      <a href="#sprawdz" class="k-where-link k-where-link--dark">Sprawdź, w&nbsp;którym scenariuszu jesteś
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
-      </a>
+    <!-- главное действие – форма заявки (панель wyceny), перед ней мессенджеры; как в hero /kontakt/ (21.09.2026) -->
+    <div class="cta-btns hero-cta" role="group" aria-label="Zamów wycenę lub napisz na komunikatorze">
+      <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20dokument%20z%20Ukrainy%20do%20apostille" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -209,7 +221,7 @@
           <dl class="gdz-meta">
             <div><dt>Termin</dt><dd>2–3 tygodnie, dokumenty o&nbsp;wykształceniu ok. 2&nbsp;tygodnie</dd></div>
           </dl>
-          <p class="slab-price"><span>Apostille</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</p>
+          <p class="slab-price"><span>Apostille</span><span class="sp-val"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span></p>
         </div>
         <div class="ap3-cell px-4 sm:px-6 py-7 lg:py-9">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Scenariusz 2</span>
@@ -229,7 +241,7 @@
           <dl class="gdz-meta">
             <div><dt>Termin</dt><dd>od 3 tygodni duplikat, 5–6 tygodni z&nbsp;Apostille</dd></div>
           </dl>
-          <p class="slab-price"><span>Uzyskanie dokumentu</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</p>
+          <p class="slab-price"><span>Uzyskanie dokumentu</span><span class="sp-val"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span></p>
         </div>
       </div>
       <div class="gdz-note">
@@ -612,7 +624,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260921-85" defer></script>
+<script src="/assets/app.js?v=20260921-101" defer></script>
 
 </body>
 </html>

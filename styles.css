@@ -280,17 +280,117 @@ header .lang-switch[aria-expanded="true"]{ font-weight:700; }
 .lang-switch.on-dark + .lang-pop, .hdr-glass.on-dark .lang-pop{ color:var(--c-paper); }
 .hdr-glass.on-dark .lang-opt:hover{ background:rgba(255,255,255,.14); }
 
-/* Мобильное меню (12.09.2026, по аудиту): пока панель открыта, страница под ней не прокручивается,
-   а сама панель прокручивается внутри себя, если не влезает в окно. Бургер складывается в крестик. */
-html.menu-open, html.menu-open body{ overflow:hidden; }
-/* Мобильное меню – ещё одна плашка того же семейства: те же параметры стекла,
-   скруглено со всех сторон и отделено от ряда тем же зазором. */
-#mobile-nav { max-height:calc(100dvh - 100px); overflow-y:auto;
- margin-top:var(--hdr-gap); background:var(--hdr-bg);
- -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
- border-top:0; border-radius:var(--hdr-r); box-shadow:var(--hdr-shadow); }
-header:has(.hdr-row.on-dark) #mobile-nav{ background:var(--hdr-bg-dark); box-shadow:var(--hdr-shadow-dark); }
-header:has(.hdr-row.on-dark) #mobile-nav a{ color:var(--c-paper); border-color:rgba(255,255,255,.14); }
+/* ===== Мобильное меню (переделано 21.09.2026) =====
+   Что было не так:
+   1. Прокрутку запирали через overflow:hidden сразу на html и body. Тогда body сам становится контейнером
+      прокрутки, липкая шапка «прилипает» уже к нему и возвращается в начало документа: стоило открыть меню
+      не с самого верха страницы – шапка и меню пропадали с экрана, а страница при этом не крутилась.
+      Теперь overflow только на body (как у панели wyceny): он уходит на окно, body контейнером не становится.
+   2. Панель стояла в потоке внутри шапки и сдвигала страницу вниз на свою высоту. Теперь она лежит поверх
+      страницы (absolute под рядом шапки), как список языков.
+   3. На 1024–1149px бургер виден, а панель гасил .lg:hidden – кнопка не делала ничего (iPad в горизонтали).
+      Видимость панели теперь задаётся здесь, по тому же порогу, что и бургер, и состоянию html.menu-open.
+   4. Внизу стояла контурная «Napisz na WhatsApp». Вместо неё – общая группа .cta-btns:
+      WhatsApp · Telegram · «Zamów wycenę», пункт «Zamów wycenę» из списка ушёл в главную кнопку.
+   Состояние одно – html.menu-open (ставит app.js); открытие и закрытие – как у списка языков. */
+html.menu-open body{ overflow:hidden; }
+/* у окна с обычной полосой прокрутки страница не прыгает вбок, когда полоса пропадает */
+html.menu-open{ scrollbar-gutter:stable; }
+/* подложка: приглушает страницу (тот же чернильный тон, что под панелью wyceny, но слабее – .4 против .55),
+   ловит нажатие мимо панели (закрывает меню и не отдаёт его ссылке под пальцем) и не даёт тянуть страницу.
+   Без неё жёлтая кнопка hero под панелью читалась как ещё одна кнопка меню.
+   Элемент создаёт app.js; слой – между страницей и шапкой (z-50) */
+.mn-backdrop{ position:fixed; inset:0; z-index:49; background:rgba(31,33,32,.4); touch-action:none;
+ -webkit-tap-highlight-color:transparent; opacity:0; visibility:hidden;
+ transition:opacity .2s ease, visibility 0s linear .2s; }
+html.menu-open .mn-backdrop{ opacity:1; visibility:visible; transition-delay:0s; }
+@media (prefers-reduced-motion:reduce){ .mn-backdrop{ transition:none; } }
+/* ряд шапки на время меню – того же плотного стекла, что панель: над приглушённой страницей
+   обычное стекло .64 серело бы рядом с почти белой панелью */
+html.menu-open .hdr-row::before{ background:rgba(255,255,255,.94); }
+html.menu-open .hdr-row.on-dark::before{ background:rgba(38,41,40,.94); }
+/* плавающие элементы выше шапки (z-60) на время меню убираем, иначе лягут поверх панели */
+html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibility:hidden; pointer-events:none; }
+
+#mobile-nav{ display:none; }
+/* Единая плашка (21.09.2026, вечер). Грег: «я бы сделал плашку с выпаданием вниз всей плашки, и она не отдельна».
+   Раньше панель меню была отдельной плашкой под рядом шапки (зазор --hdr-gap, свои фон, размытие и тень).
+   Теперь вниз растёт сам стеклянный слой ряда: .hdr-row::before (фон + размытие) и ::after (тень) опускают нижний
+   край на высоту панели (--mn-h ставит app.js на #top при открытии). Слой один – значит, нет ни шва между двумя
+   размытиями, ни второй тени; скругление одно на всю плашку. Сама панель прозрачная, стоит встык под рядом и
+   раскрывается обрезкой clip-path в том же темпе, что растёт плашка, – текст не вылезает за её нижний край. */
+@media (max-width:1149px){
+  .hdr-row::before{ transition:background-color .25s ease, bottom .34s cubic-bezier(.2,.7,.25,1); }
+  .hdr-row::after{ transition:box-shadow .25s ease, bottom .34s cubic-bezier(.2,.7,.25,1); }
+  html.menu-open .hdr-row::before, html.menu-open .hdr-row::after{ bottom:calc(-1 * var(--mn-h, 0px)); }
+
+  #mobile-nav{ --mn-top:90px; --mn-inset:34px; --mn-fs:26px; --mn-pad:13px;
+    display:block; position:absolute; z-index:1; left:.75rem; right:.75rem; top:100%;
+    margin-top:0; border-top:0; border-radius:0 0 var(--hdr-r) var(--hdr-r);
+    max-height:calc(100vh - var(--mn-top) - 12px); overflow-y:auto; overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+    background:none; box-shadow:none;
+    opacity:0; visibility:hidden; pointer-events:none;
+    -webkit-clip-path:inset(0 0 100% 0); clip-path:inset(0 0 100% 0);
+    /* закрытие: сначала обрезка уезжает вверх вместе с плашкой, потом панель гаснет */
+    transition:clip-path .3s cubic-bezier(.2,.7,.25,1), -webkit-clip-path .3s cubic-bezier(.2,.7,.25,1),
+               opacity 0s linear .3s, visibility 0s linear .3s; }
+  html.menu-open #mobile-nav{ opacity:1; visibility:visible; pointer-events:auto;
+    -webkit-clip-path:inset(0 0 0 0); clip-path:inset(0 0 0 0);
+    transition:clip-path .34s cubic-bezier(.2,.7,.25,1), -webkit-clip-path .34s cubic-bezier(.2,.7,.25,1),
+               opacity 0s, visibility 0s; }
+  /* низкий экран (iPhone SE, панели Safari раскрыты): кегль и поля строк ужимаются, чтобы кнопки
+     оставались на экране без прокрутки панели */
+  @supports (height:100dvh){
+    #mobile-nav{ max-height:calc(100dvh - var(--mn-top) - 12px);
+      --mn-fs:clamp(22px, 3.7dvh, 26px); --mn-pad:clamp(9px, 1.75dvh, 13px); }
+  }
+}
+/* левый край ссылок стоит по левому краю логотипа (поле плашки + сдвиг логотипа на 18px) */
+@media (max-width:400px){ #mobile-nav{ --mn-inset:30px; } }
+/* от 640px поля шапки 20px – панель ровно под рядом; от 768px ряд выше (90px) */
+@media (min-width:640px) and (max-width:1149px){ #mobile-nav{ left:1.25rem; right:1.25rem; } }
+@media (min-width:768px) and (max-width:1149px){ #mobile-nav{ --mn-top:108px; } }
+@media (min-width:1024px) and (max-width:1149px){ #mobile-nav{ --mn-inset:50px; } }
+@media (prefers-reduced-motion:reduce){
+  #mobile-nav, html.menu-open #mobile-nav, .hdr-row::before, .hdr-row::after{ transition:none; }
+}
+
+.mn-in{ padding:0 var(--mn-inset) 22px; }
+.mn-list{ display:flex; flex-direction:column; }
+.mn-link{ display:block; padding:var(--mn-pad) 0; font-size:var(--mn-fs); font-weight:700; line-height:1.15;
+ letter-spacing:-.035em; color:var(--c-ink); border-bottom:1px solid rgba(31,33,32,.1);
+ -webkit-tap-highlight-color:transparent; transition:opacity .15s ease; }
+.mn-link:last-child{ border-bottom:0; }
+.mn-link:active{ opacity:.5; }
+.mn-link:focus-visible{ outline:2px solid currentColor; outline-offset:-2px; border-radius:6px; }
+/* кнопки: главная «Zamów wycenę» во всю ширину, под ней мессенджеры пополам (порядок – просьба Грега 21.09.2026:
+   «кнопка Zamów wycenę и потом WhatsApp, Telegram»; в hero порядок прежний – мессенджеры, затем главная) */
+#mobile-nav .mn-cta{ margin-top:14px; display:grid; grid-template-columns:1fr 1fr; width:100%; }
+#mobile-nav .mn-cta .cta-btn--main{ grid-column:1 / -1; }
+/* широкая плашка (планшет, узкое окно, телефон лёжа): список в две колонки, кнопки в один ряд –
+   лист во всю ширину шапки с одной колонкой слева выглядел бы пустым, а лёжа не помещался бы по высоте */
+@media (min-width:560px) and (max-width:1149px){
+  .mn-list{ display:grid; grid-template-columns:1fr 1fr; column-gap:3rem; }
+  .mn-link:nth-last-child(2){ border-bottom:0; }
+  #mobile-nav .mn-cta{ grid-template-columns:minmax(0,1.35fr) 1fr 1fr; margin-top:16px; }
+  #mobile-nav .mn-cta .cta-btn--main{ grid-column:auto; }
+}
+@media (max-height:520px) and (min-width:560px) and (max-width:1149px){
+  #mobile-nav{ --mn-fs:22px; --mn-pad:9px; }
+  #mobile-nav .mn-cta{ margin-top:10px; }
+  .mn-in{ padding-bottom:14px; }
+}
+
+/* над тёмным блоком шапка темнеет – панель вместе с ней; кнопки по схеме .bg-ink */
+header:has(.hdr-row.on-dark) #mobile-nav a:not(.cta-btn){ color:var(--c-paper); border-color:rgba(255,255,255,.14); }
+header:has(.hdr-row.on-dark) #mobile-nav .cta-btn{ background:var(--c-paper); }
+header:has(.hdr-row.on-dark) #mobile-nav .cta-btn:hover,
+header:has(.hdr-row.on-dark) #mobile-nav .cta-btn:focus-visible{ background:var(--c-terra); }
+header:has(.hdr-row.on-dark) #mobile-nav .cta-btn:focus-visible{ outline-color:var(--c-paper); }
+header:has(.hdr-row.on-dark) #mobile-nav .cta-btn--main{ background:var(--c-terra); }
+header:has(.hdr-row.on-dark) #mobile-nav .cta-btn--main:hover,
+header:has(.hdr-row.on-dark) #mobile-nav .cta-btn--main:focus-visible{ background:var(--c-paper); color:var(--c-ink); }
 #burger span{ transition:transform .2s ease, background-color .25s ease; }
 #burger[aria-expanded="true"] span:first-child{ transform:translateY(3.5px) rotate(45deg); }
 #burger[aria-expanded="true"] span:last-child{ transform:translateY(-3.5px) rotate(-45deg); }
@@ -1095,6 +1195,12 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
 /* отступ снизу был 100px, чтобы стрелка не наезжала на плавающую кнопку WhatsApp;
    кнопку убрали 20.09.2026, стрелка опущена к краю */
 @media (max-width:640px){ .to-top{ right:20px; bottom:28px; } }
+/* на телефоне и тач-экранах стрелка меньше (Грег, 21.09.2026: «стрелку в мобильной версии бы сделал меньше»):
+   30px вместо 42px; область нажатия остаётся 46px за счёт псевдоэлемента */
+@media (max-width:640px), (hover:none){
+  .to-top{ width:30px; height:30px; }
+  .to-top::after{ content:''; position:absolute; inset:-8px; }
+}
 @media (prefers-reduced-motion:reduce){ .to-top .chip-chev{ animation:none } }
 @keyframes langArrowNudge{
   0%   { transform:translateX(0) scale(1); opacity:1 }
@@ -1162,7 +1268,7 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
  backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
  opacity:0; transition:opacity .3s ease; }
 .step-modal.is-open .step-modal-backdrop{ opacity:1; }
-.step-modal-card{ position:relative; z-index:1; width:min(940px,100%); max-height:88vh; overflow:auto;
+.step-modal-card{ position:relative; z-index:1; width:min(940px,100%); max-height:88vh; max-height:88dvh; overflow:auto;
  background:#FFFFFF; color:var(--c-ink); border-radius:26px; padding:42px 44px 46px;
  box-shadow:0 40px 90px rgba(31,33,32,.3);
  opacity:0; transform:translateY(16px) scale(.985);
@@ -1222,7 +1328,8 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
  border-radius:50%; background:currentColor; }
 
 @media (max-width:720px){
-  .step-modal-card{ padding:30px 22px 34px; border-radius:20px; max-height:92vh; }
+  /* dvh: в Safari на iPhone 92vh выше видимой части окна, пока адресная строка развёрнута – окно срезалось сверху и снизу */
+  .step-modal-card{ padding:30px 22px 34px; border-radius:20px; max-height:92vh; max-height:92dvh; }
   .step-modal-title{ font-size:26px; }
   .scheme{ grid-template-columns:1fr; }
   .opts{ grid-template-columns:1fr; }
@@ -1830,7 +1937,9 @@ details[open] .chev{ transform:rotate(45deg); }
 @media (min-width:768px){ .ua-term{ grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,2fr); align-items:baseline; } }
 .ua-term-h{ display:flex; flex-direction:column; gap:.15rem; font-size:17px; font-weight:600; letter-spacing:-.01em; line-height:1.3; }
 .ua-term-h small{ font-size:14px; font-weight:400; color:rgba(31,33,32,.6); }
-.ua-term-v{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; font-weight:700; font-size:22px; letter-spacing:-.01em; color:var(--c-terra); white-space:nowrap; }
+/* срок – чернильный, не охра (21.09.2026): охра на светлом фоне давала контраст 1.7 : 1, на телефоне
+   главная цифра страницы не читалась. Охра остаётся заливкой и маркером, текстом – только на тёмном */
+.ua-term-v{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; font-weight:700; font-size:22px; letter-spacing:-.01em; color:var(--c-ink); white-space:nowrap; }
 .ua-term-t{ font-size:15px; line-height:1.5; color:rgba(31,33,32,.65); }
 
 /* ===== Панель «Ekspresowa wycena»: выезжает снизу по кнопке «Wyceń dokument» =====
@@ -1861,6 +1970,14 @@ details[open] .chev{ transform:rotate(45deg); }
    прокрутки и ломает sticky у шапки левой колонки */
 .qd-scroll > div{ border-radius:0; min-height:100%; overflow:visible; }
 .qd-scroll > div > .grid{ min-height:88vh; align-items:stretch; }
+/* Высота панели – от видимой части окна (21.09.2026). В Safari на iPhone 1vh считается от окна
+   со свёрнутой адресной строкой: пока строка развёрнута, 88vh ≈ вся видимая высота, панель упиралась
+   в верх экрана, а кнопка закрытия (56 + 10px над панелью) уезжала за его край. dvh следует за
+   реальной высотой; второе ограничение держит место под кнопку и на низком экране (телефон лёжа). */
+@supports (height:100dvh){
+  .qd-shell, .qd-scroll{ max-height:min(88dvh, calc(100dvh - 72px)); }
+  .qd-scroll > div > .grid{ min-height:min(88dvh, calc(100dvh - 72px)); }
+}
 /* Правая колонка начинается на уровне абзаца «Wypełnij formularz…» – ниже заголовка:
    3 строки h2 (56px × 0.94) + кикер ≈ 11.5rem поверх собственного padding колонки */
 /* С 11.09.2026 форма начинается с верха панели, под собственным заголовком «Zamów wycenę» –
@@ -2412,6 +2529,12 @@ body > main{ background:var(--c-page); }
 .qd .wy-v2 .qd-alt{ margin-top:.7rem; }
 /* заголовок формы плотный, как «Ekspresowa wycena»: tracking-tightest (-0.045em) и leading .94 (19.09.2026) */
 .qd .wy-v2 .qd-formhead--light{ letter-spacing:-0.045em; line-height:.94; }
+
+/* ===== Полоска «5 шагов» на главной (17.09.2026) – вариант .qd-next вне панели wyceny =====
+   Правило контейнера возвращено 21.09.2026: оно пропало при чистке CSS (коммит 5e772d2), и без сетки
+   шаги вставали столбиком, а линии-связки тянулись от кружков до левого края экрана – на всех ширинах. */
+.hp-next{ list-style:none; margin:0 auto; padding:0; max-width:34rem; display:grid;
+ grid-template-columns:repeat(5,minmax(0,1fr)); gap:0 .25rem; }
 .hp-next li{ position:relative; display:flex; flex-direction:column; align-items:center; gap:.4rem;
  text-align:center; font-size:14px; line-height:1.25; font-weight:600; color:rgba(31,33,32,.7); }
 .hp-next li + li::before{ content:''; position:absolute; top:12px; right:calc(50% + 17px); width:calc(100% - 34px + .25rem);
@@ -2419,6 +2542,8 @@ body > main{ background:var(--c-page); }
 .hp-next i{ font-style:normal; display:grid; place-items:center; width:25px; height:25px; border-radius:50%;
  background:var(--c-terra); color:var(--c-ink); font-size:12px; font-weight:700; }
 @media (max-width:479px){ .hp-next li{ font-size:12.5px; } }
+/* уже 360px колонка шага – 52px, «Realizacja» в неё не входила и упиралась в соседей */
+@media (max-width:359px){ .hp-next li{ font-size:11.5px; letter-spacing:-.01em; } }
 /* полоска шагов: вариант на тёмном фоне, по левому краю */
 .hp-next--left{ margin:1.4rem 0 0; }
 .hp-next--light li{ color:rgba(248,247,244,.7); }
@@ -2977,3 +3102,207 @@ body > main{ background:var(--c-page); }
  .qd .qd-scroll > div > .grid{ grid-template-columns:var(--qd-leftw) minmax(0, 1fr); }
  .qd .qd-scroll > div > .grid > div{ grid-column:auto; }
 }
+
+/* =====================================================================================================
+   Мобильный проход 21.09.2026. Замеры всех польских страниц на 320–1279px (выход за край, наложения,
+   зоны нажатия, контраст) и снимки 390×664 / 768×1024 с эмуляцией тач-экрана. Здесь – то, что не
+   привязано к одному месту файла; точечные правки того же прохода стоят по месту и помечены той же датой
+   (.hp-next, .ua-term-v, высота панели wyceny и окна шага в dvh).
+   ===================================================================================================== */
+
+/* --- Плита институтов на главной (#slab-grid) ---
+   Телефон: две равные колонки по 135px не вмещали «Apostille Ukraina» (155px при 22px) – название
+   упиралось в край плиты, на 360–375px не входил и «Sąd Okręgowy». Левая колонка – короткие названия
+   (MSZ, KRK / KRS), поэтому ей хватает 0.85 доли; кегль чуть сжимается только уже 410px.
+   Названия в разметке теперь с обычным пробелом: на 320px они переносятся, а не режутся. */
+@media (max-width:639px){
+  .slab-grid{ grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); }
+  .slab-grid .slab-name{ font-size:clamp(19px, 5.4vw, 22px); }
+  /* кнопка-ячейка центрирует содержимое по вертикали: при названии в две строки ярлыки соседей разъезжались */
+  .slab-grid .slab-cell{ display:flex; flex-direction:column; justify-content:flex-start; }
+}
+/* уже 340px узкой левой колонке не хватает места под ярлык «Zaświadczenia» – колонки снова равные,
+   длинные названия справа переносятся на вторую строку */
+@media (max-width:339px){
+  .slab-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+/* 768–1023px: Tailwind включал четыре колонки по ~170px при кегле 28px – «Sąd Okręgowy» наезжал
+   на «KRK / KRS», «Apostille Ukraina» срезался краем экрана. До 1024px остаются две колонки. */
+@media (min-width:768px) and (max-width:1023px){
+  .slab-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+/* 1024–1149px: четыре колонки по 184px, самому длинному названию нужно 198px */
+@media (min-width:1024px) and (max-width:1149px){
+  .slab-grid .slab-name{ font-size:25px; }
+}
+
+/* Описание под плитой. На десктопе место зарезервировано под самый высокий текст – при смене колонки
+   ничего не прыгает. Уже 1024px строки короткие, разница в высоте между «Sąd Okręgowy» и
+   «Apostille Ukraina» доходила до 370px пустого чёрного поля (больше половины экрана телефона).
+   Здесь высоту задаёт только открытый текст; остальные выведены из потока и гаснут поверх него, как раньше.
+   Плавную смену высоты ведёт app.js (блок «Плита институтов»). */
+@media (max-width:1023px){
+  .slab-panels{ transition:height .42s cubic-bezier(.22,.7,.24,1); }
+  .slab-panel:not(.is-open){ position:absolute; top:22px; left:1rem; right:1rem; }
+}
+@media (min-width:640px) and (max-width:1023px){
+  .slab-panel:not(.is-open){ left:1.5rem; right:1.5rem; }
+}
+@media (prefers-reduced-motion:reduce){ .slab-panels{ transition:none; } }
+
+/* --- Цена с единицей («550,- zł / dokument», «90,- zł / strona») ---
+   Единица стояла голым текстом после цены и становилась третьим элементом flex-строки: в .faq-price
+   цена зависала посередине между названием и «/ strona», в .slab-price «/ dokument» отрывался на новую
+   строку, а на главной жирный nowrap-блок «90,- zł / strona = 1125 znaków ze spacjami» (324px) уходил
+   за правый край экрана. Теперь цена и единица – одна обёртка: .fp-val в списках, .sp-val в плитах. */
+/* .fp-main (цена + единица) не рвётся: на узком экране переносится название слева, а не «/ dokument»;
+   пояснение .fp-note уходит под цену отдельной строкой */
+/* название забирает свободное место и переносится первым (не уже своего самого длинного слова):
+   значение остаётся в одну строку, пока помещается, – на десктопе строка выглядит как раньше */
+.faq-price li > span:first-child{ flex:1 1 0%; }
+.faq-price .fp-val{ flex:0 1 auto; text-align:right; color:inherit; }
+.faq-price .fp-main{ display:inline-block; white-space:nowrap; color:inherit; }
+.faq-price .fp-note{ display:inline-block; }
+.slab-price > span.sp-val{ font:inherit; letter-spacing:normal; text-transform:none; color:inherit;
+ white-space:nowrap; }
+/* ua / ru / en пока на старой разметке (жирный nowrap-блок прямо в строке): на телефоне даём ему
+   переноситься, иначе «= 1125 знаков с пробелами» срезается краем экрана. Сама цена внутри не рвётся. */
+@media (max-width:639px){
+  .faq-price li > b{ white-space:normal; text-align:right; min-width:0; }
+}
+
+/* --- Жёлтая плашка «Apostille na dokumenty z Ukrainy» на главной ---
+   768–1023px: ряд «звезда | текст | кнопка» оставлял тексту 240px, цена рвалась посреди «550,- / zł».
+   До 1024px блок идёт столбиком, как на телефоне. */
+@media (min-width:768px) and (max-width:1023px){
+  .ua-promo{ flex-direction:column; align-items:flex-start; gap:1.5rem; }
+  .ua-promo > a{ margin-left:0; }
+}
+
+/* --- /cennik/: заголовок «Ile kosztuje…» 57px --- уже 390px строка «i Tłumaczenie» (в жирном
+   начертании после смены – 328px) выходила за колонку, на 320px у страницы появлялась горизонтальная
+   прокрутка. От 390px кегль прежний. */
+@media (max-width:420px){
+  .cn-v2 .h2-swap{ font-size:clamp(44px, 14.6vw, 57px); }
+}
+@media (max-width:359px){
+  .cn-name, .cn-name small{ min-width:0; overflow-wrap:anywhere; }
+}
+
+/* --- Панель wyceny: кнопка закрытия встаёт поверх бургера, его две линии торчали из-под стрелки.
+   Пока панель открыта, бургер не нужен – гасим линии (сама кнопка остаётся в разметке для фокуса). */
+html.qd-open #burger > span{ opacity:0; }
+
+/* --- Зоны нажатия на тач-экранах: вид не меняется, растёт только область, которая ловит палец ---
+   день календаря 36 → 50×46 (ячейка 50×42, соседей не перекрывает по горизонтали), стрелки месяца
+   34 → 44px, сегменты «15 min / Telefon» 34 → 40px, ссылка-стрелка и язык в шапке +10px сверху и снизу. */
+@media (pointer:coarse){
+  .cal-day{ position:relative; }
+  .cal-day::after{ content:''; position:absolute; inset:-5px -7px; }
+  .cal-btn{ width:44px; height:44px; }
+  .cal-nav{ gap:0; margin-right:-5px; }   /* значки стрелок остаются на прежнем месте: (44 − 34) / 2 */
+  .cal-seg-b{ height:40px; }
+  .k-where-link, .lang-switch, .logo-brand{ position:relative; }
+  .k-where-link::after, .lang-switch::after, .logo-brand::after{ content:''; position:absolute; inset:-10px 0; }
+}
+
+/* =====================================================================================================
+   Мобильная шапка (21.09.2026, по просьбе Грега): «в меню языки спрятать, в мобильной версии оставить
+   только Zamów wycenę» + шапка прячется при прокрутке вниз.
+   Режим тот же, что у бургера, – уже 1150px. В ряду остаются логотип, кнопка «Zamów wycenę» и бургер;
+   переключатель языка из ряда убран, языки стоят первой строкой в панели меню (её собирает app.js из того
+   же списка .lang-pop – разметку страниц трогать не пришлось, ua / ru / en работают так же).
+   ===================================================================================================== */
+@media (max-width:1149px){
+  /* язык – в меню */
+  .hdr-seg--lang .lang-wrap{ display:none; }
+  .hdr-seg--lang{ flex:0 0 auto; padding-left:6px; }
+  /* средняя часть ряда снова видна, но из всего меню в ней только «Zamów wycenę» – прижата к бургеру */
+  .hdr-seg--menu{ display:flex; flex:1 1 auto; min-width:0; justify-content:flex-end; padding-left:0; padding-right:0; }
+  #nav-main{ display:flex !important; margin:0; gap:0; min-width:0; }
+  #nav-main .navlink:not(.navlink--plate){ display:none; }
+  /* на десктопе это пункт меню с «вдавленной» плашкой по наведению; на телефоне наведения нет, а действие
+     главное – поэтому вид главной кнопки сайта (.cta-btn--main): жёлтая заливка, 12px, Fira Sans 600 без капса.
+     Компактнее обычной: 15px и высота 40px, без стрелки – в ряду 390px рядом с логотипом есть 144px */
+  /* ссылка тянется на всю высоту ряда (72px) – палец попадает и чуть выше или ниже самой плашки 40px */
+  header #nav-main .navlink--plate{ display:flex; align-items:center; align-self:stretch; min-width:0; font-size:15px; font-weight:600;
+    line-height:1; letter-spacing:.005em; color:var(--c-ink); -webkit-tap-highlight-color:transparent; }
+  header #nav-main .navlink--plate .nl-plate{ display:flex; align-items:center; justify-content:center; text-align:center;
+    height:40px; padding:0 13px; border-radius:12px; background:var(--c-terra); color:var(--c-ink);
+    transition:background-color .3s ease, color .3s ease; }
+  header #nav-main .navlink--plate .nl-plate::before{ display:none; }
+  /* над тёмной секцией шапка темнеет, кнопка остаётся жёлтой с чернильным текстом (схема .bg-ink) */
+  header #nav-main .navlink--plate.on-dark{ color:var(--c-ink); }
+  header #nav-main .navlink--plate:active .nl-plate{ background:var(--c-ink); color:var(--c-paper); }
+  header #nav-main .navlink--plate.on-dark:active .nl-plate{ background:var(--c-paper); color:var(--c-ink); }
+  header #nav-main .navlink--plate:focus-visible{ outline:none; }
+  header #nav-main .navlink--plate:focus-visible .nl-plate{ outline:2px solid currentColor; outline-offset:2px; }
+  /* пока открыта панель wyceny, кнопка «нажата» */
+  html.qd-open header #nav-main .navlink--plate .nl-plate{ background:var(--c-ink); color:var(--c-paper); }
+}
+@media (hover:hover) and (max-width:1149px){
+  header #nav-main .navlink--plate:hover .nl-plate{ background:var(--c-ink); color:var(--c-paper); }
+  header #nav-main .navlink--plate.on-dark:hover .nl-plate{ background:var(--c-paper); color:var(--c-ink); }
+}
+/* от 640px места в ряду достаточно – кнопка обычного размера группы .cta-btns */
+@media (min-width:640px) and (max-width:1149px){
+  header #nav-main .navlink--plate{ font-size:17px; }
+  header #nav-main .navlink--plate .nl-plate{ height:46px; padding:0 20px; }
+  .hdr-seg--lang{ padding-left:10px; }
+}
+/* узкие телефоны: подпись мельче, поля меньше; совсем длинная подпись (ru / ua) переносится в две строки */
+@media (max-width:379px){
+  header #nav-main .navlink--plate{ font-size:14px; }
+  header #nav-main .navlink--plate .nl-plate{ padding:0 10px; }
+}
+@media (max-width:339px){
+  header #nav-main .navlink--plate{ font-size:13px; }
+  header #nav-main .navlink--plate .nl-plate{ padding:0 8px; }
+  .hdr-seg--lang{ padding-left:2px; }
+}
+/* «Заказать оценку» / «Замовити оцінку» длиннее польской подписи: до 420px кегль 13px, уже 380px – в две строки */
+@media (max-width:420px){
+  html[lang="ru"] header #nav-main .navlink--plate, html[lang="uk"] header #nav-main .navlink--plate{ font-size:13px; }
+  html[lang="ru"] header #nav-main .navlink--plate .nl-plate, html[lang="uk"] header #nav-main .navlink--plate .nl-plate{
+    white-space:normal; line-height:1.08; padding:0 9px; }
+}
+
+/* Шапка уезжает вверх при прокрутке вниз и возвращается при прокрутке вверх (класс html.hdr-away ставит app.js).
+   На телефоне она занимала 90px из ~660 видимых. У самого верха страницы, при открытом меню и панели wyceny,
+   при фокусе внутри шапки – всегда на месте. */
+@media (max-width:1149px){
+  #top{ transition:transform .34s cubic-bezier(.2,.7,.25,1); }
+  html.hdr-away #top{ transform:translateY(calc(-100% - 20px)); pointer-events:none; }
+}
+@media (prefers-reduced-motion:reduce){ #top{ transition:none; } }
+
+/* Языки в панели меню: первая строка под рядом шапки, мелко, текущий – полужирный. Сверху и снизу – те же
+   линии, что между пунктами: единая плашка читается как один список. Четыре названия разведены на ширину строки –
+   края совпадают с линиями; в одну строку они входят от 340px (кегль 15px уже 400px), уже – коды PL · UA · RU · EN.
+   Высота строки ужимается на низком экране вместе с пунктами меню, чтобы кнопки остались на экране (iPhone SE). */
+.mn-langs{ display:flex; flex-wrap:nowrap; align-items:center; justify-content:space-between; gap:0 8px; margin:0; padding:2px 0;
+ border-top:1px solid rgba(31,33,32,.1); border-bottom:1px solid rgba(31,33,32,.1); }
+.mn-lang{ display:inline-flex; align-items:center; min-height:44px; font-size:16px; font-weight:400; line-height:1.1;
+ color:rgba(31,33,32,.72); text-decoration:none; -webkit-tap-highlight-color:transparent; transition:opacity .15s ease; }
+.mn-lang.is-current{ font-weight:700; color:var(--c-ink); }
+.mn-lang:active{ opacity:.5; }
+.mn-lang:focus-visible{ outline:2px solid currentColor; outline-offset:2px; border-radius:6px; }
+.mn-lang-code{ display:none; letter-spacing:.04em; }
+@supports (height:100dvh){ .mn-lang{ min-height:clamp(34px, 6.2dvh, 44px); } }
+@media (max-width:400px){ .mn-lang{ font-size:15px; } }
+@media (max-width:339px){
+  .mn-lang-full{ display:none; }
+  .mn-lang-code{ display:inline; }
+  .mn-lang{ font-size:16px; min-width:44px; justify-content:center; }
+  .mn-lang:first-child{ justify-content:flex-start; } .mn-lang:last-child{ justify-content:flex-end; }
+}
+/* широкая плашка: названия не растягиваем на 700px – стоят слева с обычным шагом */
+@media (min-width:560px){ .mn-langs{ justify-content:flex-start; gap:0 30px; } }
+/* iPhone SE (видимая высота ~548px): со строкой языков панель была на 17px выше окна – пункты чуть плотнее,
+   нижнее поле меньше, и всё меню снова на экране без прокрутки */
+@media (max-height:600px) and (max-width:559px){
+  #mobile-nav{ --mn-pad:8px; }
+  .mn-in{ padding-bottom:12px; }
+}
+header:has(.hdr-row.on-dark) #mobile-nav .mn-langs{ border-color:rgba(255,255,255,.14); }
+header:has(.hdr-row.on-dark) #mobile-nav a.mn-lang:not(.is-current){ color:rgba(255,255,255,.72); }

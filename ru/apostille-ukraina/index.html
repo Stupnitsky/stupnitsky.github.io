@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260921-85">
+<link rel="stylesheet" href="/styles.css?v=20260921-101">
 
 <script type="application/ld+json">
 {
@@ -103,7 +103,7 @@
         <a href="/ru/tlumaczenia-przysiegle/" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Переводы</span><span class="nl-b" aria-hidden="true">Переводы</span></span></a>
         <a href="/ru/cennik/" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Цены</span><span class="nl-b" aria-hidden="true">Цены</span></span></a>
         <a href="/ru/kontakt/" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Контакты</span><span class="nl-b" aria-hidden="true">Контакты</span></span></a>
-        <a href="/ru/#jak-dzialamy" class="navlink navlink--plate text-[21px] font-bold"><span class="nl-plate">Заказать оценку</span></a>
+        <a href="/ru/#wycena" class="navlink navlink--plate text-[21px] font-bold"><span class="nl-plate">Заказать оценку</span></a>
       </nav>
 
     </div>
@@ -125,7 +125,7 @@
         </div>
 
         <button id="burger" class="lg:hidden w-11 h-11 flex flex-col items-center justify-center gap-[5px]"
-                aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
+                aria-label="Menu" data-close-label="Закрыть меню" aria-expanded="false" aria-controls="mobile-nav">
           <span class="block w-6 h-[2px] bg-ink"></span>
           <span class="block w-6 h-[2px] bg-ink"></span>
         </button>
@@ -133,17 +133,25 @@
     </div>
   </div>
 
-  <nav id="mobile-nav" class="hidden lg:hidden border-t border-ink/10 bg-paper" aria-label="Мобильная навигация">
-    <div class="mx-auto max-w-site px-5 py-4 flex flex-col">
-      <a href="/ru/apostille/"    class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Апостиль</a>
-      <a href="/ru/tlumaczenia-przysiegle/"  class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Переводы</a>
-      <a href="/ru/cennik/"        class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Цены</a>
-      <a href="/ru/kontakt/#gdzie"        class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Где оформить</a>
-      <a href="/ru/#jak-dzialamy" class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Как заказать</a>
-      <a href="/ru/#faq"          class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Частые вопросы</a>
-      <a href="/ru/kontakt/"      class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Контакты</a>
-      <a href="https://wa.me/48507588155" target="_blank" rel="noopener"
-         class="mt-5 text-center rounded-[12px] py-[18px] font-semibold btn">Напишите в WhatsApp</a>
+  <!-- Мобильное меню (21.09.2026): единая плашка с рядом шапки – вниз растёт сам стеклянный слой ряда, панель
+       прозрачная и стоит встык под ним (стили – #mobile-nav и .mn-* в styles.css, состояние html.menu-open).
+       Первой строкой app.js ставит языки (.mn-langs). Список – только навигация; действия – группа .cta-btns:
+       сначала «Заказать оценку» (главное действие – форма, не мессенджер), под ней WhatsApp · Telegram. -->
+  <nav id="mobile-nav" class="mn" aria-label="Мобильная навигация">
+    <div class="mn-in">
+      <div class="mn-list">
+        <a href="/ru/apostille/" class="mn-link">Апостиль</a>
+        <a href="/ru/tlumaczenia-przysiegle/" class="mn-link">Переводы</a>
+        <a href="/ru/cennik/" class="mn-link">Цены</a>
+        <a href="/ru/kontakt/#gdzie" class="mn-link">Где оформить</a>
+        <a href="/ru/#faq" class="mn-link">Частые вопросы</a>
+        <a href="/ru/kontakt/" class="mn-link">Контакты</a>
+      </div>
+      <div class="cta-btns mn-cta" role="group" aria-label="Закажите оценку или напишите в мессенджер">
+        <a href="/ru/#wycena" class="cta-btn cta-btn--main">Заказать оценку<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+        <a href="https://wa.me/48507588155?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%BD%D1%83%D0%B6%D0%BD%D0%B0%20%D0%BE%D1%86%D0%B5%D0%BD%D0%BA%D0%B0%20%D0%B0%D0%BF%D0%BE%D1%81%D1%82%D0%B8%D0%BB%D1%8F%2F%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%D0%B0" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+        <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      </div>
     </div>
   </nav>
 </header>
@@ -393,7 +401,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260921-85" defer></script>
+<script src="/assets/app.js?v=20260921-101" defer></script>
 
 </body>
 </html>

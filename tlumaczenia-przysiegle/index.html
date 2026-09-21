@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260921-85">
+<link rel="stylesheet" href="/styles.css?v=20260921-101">
 
 <script type="application/ld+json">
 {
@@ -132,17 +132,25 @@
     </div>
   </div>
 
-  <nav id="mobile-nav" class="hidden lg:hidden border-t border-ink/10 bg-paper" aria-label="Nawigacja mobilna">
-    <div class="mx-auto max-w-site px-5 py-4 flex flex-col">
-      <a href="/apostille/"    class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Apostille</a>
-      <a href="/tlumaczenia-przysiegle/"  class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Tłumaczenia</a>
-      <a href="/cennik/"               class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Cennik</a>
-      <a href="/kontakt/#gdzie"        class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Gdzie załatwić</a>
-      <a href="/cennik/#wycena" data-quote class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Zamów wycenę</a>
-      <a href="/#faq"          class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Częste pytania</a>
-      <a href="/kontakt/"      class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Kontakt</a>
-      <a href="https://wa.me/48507588155" target="_blank" rel="noopener"
-         class="mt-5 text-center rounded-[12px] py-[18px] font-semibold btn">Napisz na WhatsApp</a>
+  <!-- Мобильное меню (21.09.2026): единая плашка с рядом шапки – вниз растёт сам стеклянный слой ряда, панель
+       прозрачная и стоит встык под ним (стили – #mobile-nav и .mn-* в styles.css, состояние html.menu-open).
+       Первой строкой app.js ставит языки (.mn-langs). Список – только навигация; действия – группа .cta-btns:
+       сначала «Zamów wycenę» (главное действие – форма, не мессенджер), под ней WhatsApp · Telegram. -->
+  <nav id="mobile-nav" class="mn" aria-label="Nawigacja mobilna">
+    <div class="mn-in">
+      <div class="mn-list">
+        <a href="/apostille/" class="mn-link">Apostille</a>
+        <a href="/tlumaczenia-przysiegle/" class="mn-link">Tłumaczenia</a>
+        <a href="/cennik/" class="mn-link">Cennik</a>
+        <a href="/kontakt/#gdzie" class="mn-link">Gdzie załatwić</a>
+        <a href="/#faq" class="mn-link">Częste pytania</a>
+        <a href="/kontakt/" class="mn-link">Kontakt</a>
+      </div>
+      <div class="cta-btns mn-cta" role="group" aria-label="Zamów wycenę lub napisz na komunikatorze">
+        <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+        <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20potrzebuj%C4%99%20wyceny%20apostille%2Ft%C5%82umaczenia" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+        <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      </div>
     </div>
   </nav>
 </header>
@@ -161,13 +169,17 @@
       od zdjęcia dokumentu na WhatsApp po odbiór gotowego tłumaczenia w&nbsp;centrum Warszawy albo Paczkomatem.
       Jeśli dokument potrzebuje też Apostille, załatwiamy obie rzeczy w&nbsp;jednym zleceniu.
     </p>
-    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20potrzebuj%C4%99%20wyceny%20t%C5%82umaczenia%20przysi%C4%99g%C5%82ego" class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn">
-        Wyceń tłumaczenie <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
-      </a>
+    <!-- ссылка-стрелка привязана к абзацу (стоит сразу под ним), кнопки – ниже, после воздуха -->
+    <p class="hero-more">
       <a href="#cena" class="k-where-link k-where-link--dark">90&nbsp;zł za stronę – jak liczymy
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
       </a>
+    </p>
+    <!-- главное действие – форма заявки (панель wyceny), перед ней мессенджеры; как в hero /kontakt/ (21.09.2026) -->
+    <div class="cta-btns hero-cta" role="group" aria-label="Zamów wycenę lub napisz na komunikatorze">
+      <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20potrzebuj%C4%99%20wyceny%20t%C5%82umaczenia%20przysi%C4%99g%C5%82ego" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -278,7 +290,7 @@
         </div>
         <div class="col-span-12 lg:col-span-5 flex flex-col justify-end gap-4">
           <ul class="faq-price">
-            <li><span>Tłumaczenie przysięgłe</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> / strona</li>
+            <li><span>Tłumaczenie przysięgłe</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ strona</span></span></span></li>
             <li><span>Od 6 stron w&nbsp;zleceniu</span><b class="font-bold">rabat 10%</b></li>
             <li><span>Apostille MSZ do tłumaczenia</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></li>
           </ul>
@@ -575,7 +587,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260921-85" defer></script>
+<script src="/assets/app.js?v=20260921-101" defer></script>
 
 </body>
 </html>

@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260921-85">
+<link rel="stylesheet" href="/styles.css?v=20260921-101">
 
 <script type="application/ld+json">
 {
@@ -103,7 +103,7 @@
         <a href="/en/tlumaczenia-przysiegle/" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Translations</span><span class="nl-b" aria-hidden="true">Translations</span></span></a>
         <a href="/en/cennik/" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Prices</span><span class="nl-b" aria-hidden="true">Prices</span></span></a>
         <a href="/en/kontakt/" class="navlink text-[21px] font-bold"><span class="nl-swap"><span class="nl-a">Contact</span><span class="nl-b" aria-hidden="true">Contact</span></span></a>
-        <a href="/en/#jak-dzialamy" class="navlink navlink--plate text-[21px] font-bold"><span class="nl-plate">Get a quote</span></a>
+        <a href="/en/#wycena" class="navlink navlink--plate text-[21px] font-bold"><span class="nl-plate">Get a quote</span></a>
       </nav>
 
     </div>
@@ -125,7 +125,7 @@
         </div>
 
         <button id="burger" class="lg:hidden w-11 h-11 flex flex-col items-center justify-center gap-[5px]"
-                aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
+                aria-label="Menu" data-close-label="Close menu" aria-expanded="false" aria-controls="mobile-nav">
           <span class="block w-6 h-[2px] bg-ink"></span>
           <span class="block w-6 h-[2px] bg-ink"></span>
         </button>
@@ -133,17 +133,25 @@
     </div>
   </div>
 
-  <nav id="mobile-nav" class="hidden lg:hidden border-t border-ink/10 bg-paper" aria-label="Mobile navigation">
-    <div class="mx-auto max-w-site px-5 py-4 flex flex-col">
-      <a href="/en/apostille/"    class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Apostille</a>
-      <a href="/en/tlumaczenia-przysiegle/"  class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Translations</a>
-      <a href="/en/cennik/"        class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Prices</a>
-      <a href="/en/kontakt/#gdzie"        class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Where to get it</a>
-      <a href="/en/#jak-dzialamy" class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">How to order</a>
-      <a href="/en/#faq"          class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">FAQ</a>
-      <a href="/en/kontakt/"      class="py-3 text-2xl font-semibold tracking-tightest border-b border-ink/10 text-right">Contact</a>
-      <a href="https://wa.me/48507588155" target="_blank" rel="noopener"
-         class="mt-5 text-center rounded-[12px] py-[18px] font-semibold btn">Message us on WhatsApp</a>
+  <!-- Мобильное меню (21.09.2026): единая плашка с рядом шапки – вниз растёт сам стеклянный слой ряда, панель
+       прозрачная и стоит встык под ним (стили – #mobile-nav и .mn-* в styles.css, состояние html.menu-open).
+       Первой строкой app.js ставит языки (.mn-langs). Список – только навигация; действия – группа .cta-btns:
+       сначала «Get a quote» (главное действие – форма, не мессенджер), под ней WhatsApp · Telegram. -->
+  <nav id="mobile-nav" class="mn" aria-label="Mobile navigation">
+    <div class="mn-in">
+      <div class="mn-list">
+        <a href="/en/apostille/" class="mn-link">Apostille</a>
+        <a href="/en/tlumaczenia-przysiegle/" class="mn-link">Translations</a>
+        <a href="/en/cennik/" class="mn-link">Prices</a>
+        <a href="/en/kontakt/#gdzie" class="mn-link">Where to get it</a>
+        <a href="/en/#faq" class="mn-link">FAQ</a>
+        <a href="/en/kontakt/" class="mn-link">Contact</a>
+      </div>
+      <div class="cta-btns mn-cta" role="group" aria-label="Get a quote or message us">
+        <a href="/en/#wycena" class="cta-btn cta-btn--main">Get a quote<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+        <a href="https://wa.me/48507588155?text=Hello%2C%20I%20need%20a%20quote%20for%20an%20apostille%2Ftranslation" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+        <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      </div>
     </div>
   </nav>
 </header>
@@ -368,7 +376,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260921-85" defer></script>
+<script src="/assets/app.js?v=20260921-101" defer></script>
 
 </body>
 </html>
