@@ -744,25 +744,22 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
    название – 19px и 24px (фиксированные 24px на телефоне оказывались крупнее заголовка карточки) */
 .gdz-court-h{ font-size:19px; font-weight:800; letter-spacing:-.03em; line-height:1.12; }
 @media (min-width:768px){ .gdz-court-h{ font-size:24px; line-height:1.08; } }
-/* Герб в углу плиты «Gdzie» – декор; контент рядом получает отступ справа, чтобы строки не заходили под него. */
+/* Знак в углу карточки урядов – пиктограммы Грега (22.09.2026: глобус с лавром для MSZ, здание суда для судов)
+   вместо логотипа MSZ и герба: чужие знаки на коммерческом сайте – риск, см. разговор 22.09.2026.
+   Чернильные, 40px на телефоне, 50px от 640px; контент рядом получает отступ справа. */
 .gdz--crest .gdz-cell{ position:relative; }
-/* Герб судов по величине орла: орёл в логотипе MSZ занимает ~2/3 высоты знака, поэтому щит с орлом
-   меньше самого логотипа – 33px/44px против 40/53 раньше (Грег, 22.09.2026: «орёл на красном больше орла MSZ»). */
-.gdz-crest{ position:absolute; top:0; right:0; width:33px; height:auto; pointer-events:none; }
-.gdz-crest--msz{ width:130px; right:-7px; }
+.gdz-crest{ position:absolute; top:0; right:0; width:40px; height:auto; pointer-events:none; opacity:.85; }
 /* Карточка судов до 1024px идёт второй: у неё свой отступ сверху и линия – знак опускаем под них. */
 .gdz--crest .gdz-cell ~ .gdz-cell .gdz-crest{ top:2.75rem; }
 @media (min-width:1024px){ .gdz--crest .gdz-cell ~ .gdz-cell .gdz-crest{ top:0; } }
-@media (min-width:640px){ .gdz-crest{ width:44px; } .gdz-crest--msz{ width:175px; right:-9px; } }
-/* От 1024px карточка MSZ упирается справа в линию колонки: знак отступает от неё на те же 3rem,
-   что у карточки судов слева (Грег, 22.09.2026: «лого MSZ не имеет отступа»). -9px гасит прозрачное поле png. */
-@media (min-width:1024px){ .gdz--crest .gdz-crest--msz{ right:calc(3rem - 9px); }
-  .gdz--crest .gdz-cell:has(.gdz-crest--msz) :is(.slab-kicker, h3){ padding-right:228px; } }
+@media (min-width:640px){ .gdz-crest{ width:50px; } }
 .gdz--crest .gdz-cell :is(.slab-kicker, h3, .gdz-full){ padding-right:62px; }
-.gdz--crest .gdz-cell:has(.gdz-crest--msz) :is(.slab-kicker, h3){ padding-right:136px; }
-.gdz--crest .gdz-cell:has(.gdz-crest--msz) .gdz-full{ padding-right:0; }
-@media (min-width:640px){ .gdz--crest .gdz-cell :is(.slab-kicker, h3, .gdz-full){ padding-right:76px; }
-  .gdz--crest .gdz-cell:has(.gdz-crest--msz) :is(.slab-kicker, h3){ padding-right:180px; } }
+@media (min-width:640px){ .gdz--crest .gdz-cell :is(.slab-kicker, h3, .gdz-full){ padding-right:76px; } }
+/* От 1024px карточка MSZ упирается справа в линию колонки: знак отступает от неё на те же 3rem,
+   что у карточки судов слева. */
+@media (min-width:1024px){ .gdz--crest .gdz-cell:first-child .gdz-crest{ right:3rem; }
+  .gdz--crest .gdz-cell:first-child :is(.slab-kicker, h3){ padding-right:calc(3rem + 76px); }
+  .gdz--crest .gdz-cell:first-child .gdz-full{ padding-right:0; } }
 .gdz-br{ display:none; }
 @media (min-width:380px){ .gdz-br{ display:inline; } }
 .gdz-court-side{ display:block; margin-top:.22em; font-weight:600; font-style:italic; font-size:14px; color:color-mix(in srgb, var(--c-ink) 60%, transparent); }
