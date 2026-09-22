@@ -757,11 +757,11 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
    класс .h2-swap снят по просьбе Грега (21.09.2026: «не меняй начертаний при прокрутке»).
    Части стоят отдельными строками (block + <br> в разметке) – смена веса не меняет число строк и высоту.
    Раньше тезис стоял 15px серым в сноске, ссылка на прайс терялась (Грег, 21.09.2026). */
-.gdz-key-t{ font-size:28px; line-height:1; font-weight:900; letter-spacing:-.045em; }
+/* Тезис – заголовок того же уровня, что «MSZ» и «Sądy Okręgowe» в карточках: 22px до 768px, 28px от 768px,
+   weight 700. Раньше 28–38px weight 900 – Грег, 22.09.2026: «почему такое конское, все заголовки одинаковые». */
+.gdz-key-t{ font-size:22px; line-height:1.05; font-weight:700; letter-spacing:-.045em; }
 .gdz-key-t .h2-a, .gdz-key-t .h2-b{ display:block; }
-@media (min-width:640px){ .gdz-key-t{ font-size:38px; } }
-@media (min-width:1024px){ .gdz-key-t{ font-size:32px; } }
-@media (min-width:1280px){ .gdz-key-t{ font-size:38px; } }
+@media (min-width:768px){ .gdz-key-t{ font-size:28px; } }
 .gdz-key-s{ margin-top:1rem; font-size:17px; line-height:1.55; color:rgba(31,33,32,.75); max-width:40ch; }
 /* ссылка-стрелка тезиса – строчная: при переносе текста на узком экране стрелка идёт за последним словом,
    а не уезжает к правому краю, как у inline-flex */
