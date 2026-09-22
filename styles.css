@@ -3543,3 +3543,13 @@ html.qd-open #burger > span{ opacity:0; }
 }
 header:has(.hdr-row.on-dark) #mobile-nav .mn-langs{ border-color:rgba(255,255,255,.14); }
 header:has(.hdr-row.on-dark) #mobile-nav a.mn-lang:not(.is-current){ color:rgba(255,255,255,.72); }
+
+/* /apostille-bez-przyjazdu/ – плашка «Twój sąd okręgowy» (22.09.2026): 12 городов, суд + адрес */
+.gdz--light .gdz-full b{ color:var(--c-ink); font-weight:700; }
+.so-text{ margin-top:1rem; font-size:17px; line-height:1.6; color:rgba(31,33,32,.75); max-width:62ch; }
+.so-list{ margin-top:1.6rem; display:grid; gap:.9rem 2rem; }
+@media (min-width:640px){ .so-list{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (min-width:1024px){ .so-list{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+.so-list li{ display:flex; flex-direction:column; gap:.1rem; padding-top:.8rem; border-top:1px solid rgba(31,33,32,.12); }
+.so-list li b{ font-size:17px; font-weight:700; color:var(--c-ink); letter-spacing:-.01em; }
+.so-list li span{ font-size:15.5px; line-height:1.45; color:rgba(31,33,32,.7); }
