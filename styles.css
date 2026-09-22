@@ -714,16 +714,24 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 /* День и часы – одним цветом и почти одним весом: серый день на сером фоне читался плохо, а 700 рядом с ним бил контрастом. */
 .gdz-hr-d{ color:inherit; }
 .gdz-hr b{ font-weight:600; font-variant-numeric:tabular-nums; }
-/* Строка сбора в карточках урядов (/kontakt/): сумма – смысловой узел, подана крупно парой
-   «чёрное 60 zł / лёгкий курсив za dokument»; ниже обычным текстом – как платить, и отдельной
-   строкой жирным то, что ловит людей у окна: кассы в уряде нет (Грег, 22.09.2026: «подать интереснее»). */
+/* Строка сбора в карточках урядов (/kontakt/): сумма – смысловой узел, подана как цена в /cennik/ v2
+   (Грег, 22.09.2026, прислал снимок «/ DOKUMENT · 200,- zł» с терракотовой полосой): кикер-единица сверху,
+   под ним «60,- zł» 24/28px weight 800 с полосой var(--c-terra) под нижней частью цифр – здесь полоса постоянная,
+   в ценнике она вырастает при наведении. Ниже обычным текстом – как платить, отдельной строкой жирным то,
+   что ловит людей у окна: кассы в уряде нет. */
 .gdz-fee-dd{ display:grid; gap:.3rem; }
-.gdz-fee-l{ display:block; font-size:30px; line-height:1; letter-spacing:-.035em; margin-bottom:.35rem; }
-.gdz-fee-l .gdz-fee{ font-weight:900; }
-.gdz-fee-l i{ font-weight:300; font-style:italic; letter-spacing:-.015em; }
+.gdz-fee-k{ display:block; font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
+ letter-spacing:.1em; font-size:12px; font-weight:500; color:rgba(31,33,32,.6); }
+.gdz-fee-l{ display:block; margin:.1rem 0 .4rem; line-height:1.1; }
+/* на телефоне dt стоит над dd – два кикера подряд («OPŁATA SKARBOWA» / «/ PODPIS») разводим зазором */
+@media (max-width:479px){ .gdz-fee-k{ margin-top:.45rem; } }
+.gdz-fee-l .gdz-fee{ display:inline; font-size:24px; font-weight:800; letter-spacing:-.02em; color:var(--c-ink);
+ white-space:nowrap; font-variant-numeric:tabular-nums;
+ background-image:linear-gradient(var(--c-terra),var(--c-terra)); background-repeat:no-repeat;
+ background-position:0 92%; background-size:100% .55em; }
+@media (min-width:640px){ .gdz-fee-l .gdz-fee{ font-size:28px; } }
 .gdz-fee-s{ display:block; font-size:16px; line-height:1.45; color:rgba(31,33,32,.75); }
 .gdz-fee-s b{ font-weight:700; color:#1F2120; }
-@media (min-width:640px){ .gdz-fee-l{ font-size:34px; } }
 .gdz-courts{ margin-top:2.8rem; display:grid; gap:2.8rem; }
 /* название суда – ступенью ниже заголовка карточки на любой ширине: заголовок 22px до 768px и 28px от 768px,
    название – 19px и 24px (фиксированные 24px на телефоне оказывались крупнее заголовка карточки) */
