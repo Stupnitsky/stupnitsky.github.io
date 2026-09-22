@@ -731,8 +731,11 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 @media (min-width:768px){ .gdz-fee-l .gdz-fee{ font-size:22px; } }
 .gdz-fee-k{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
  letter-spacing:.1em; font-size:12px; font-weight:500; color:rgba(31,33,32,.6); white-space:nowrap; }
-.gdz-fee-s{ display:block; font-size:16px; line-height:1.45; color:rgba(31,33,32,.75); }
-.gdz-fee-s b{ font-weight:700; color:#1F2120; }
+/* Пояснение под суммой и под «Rezerwacja» – тем же цветом, что остальные значения таблицы (100% ink):
+   при 75% внутри одной строки dl стояли два серых, и блок пестрил (Грег, 22.09.2026: «в каждом своя степень серого»).
+   Правило блока: подписи (dt, кикеры, «brzeg Wisły») – 60%, описательные абзацы вне таблицы – 75%, таблица – 100%. */
+.gdz-fee-s{ display:block; font-size:16px; line-height:1.45; color:inherit; }
+.gdz-fee-s b{ font-weight:700; }
 .gdz-courts{ margin-top:2.8rem; display:grid; gap:2.8rem; }
 /* название суда – ступенью ниже заголовка карточки на любой ширине: заголовок 22px до 768px и 28px от 768px,
    название – 19px и 24px (фиксированные 24px на телефоне оказывались крупнее заголовка карточки) */
