@@ -711,41 +711,14 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
    размером с заголовок». Акцент здесь даёт вес, а не размер; размером выделяются только заголовки. */
 .gdz-hours{ display:grid; gap:.1rem; }
 .gdz-hr{ display:grid; grid-template-columns:6.5ch 1fr; align-items:baseline; }
-/* День и часы – одним цветом и почти одним весом: серый день на сером фоне читался плохо, а 700 рядом с ним бил контрастом. */
-.gdz-hr-d{ color:inherit; }
-.gdz-hr b{ font-weight:600; font-variant-numeric:tabular-nums; }
-/* Строка сбора в карточках урядов (/kontakt/): сумма – смысловой узел, подана крупно парой
-   «чёрное 60 zł / лёгкий курсив za dokument»; ниже обычным текстом – как платить, и отдельной
-   строкой жирным то, что ловит людей у окна: кассы в уряде нет (Грег, 22.09.2026: «подать интереснее»). */
-.gdz-fee-dd{ display:grid; gap:.3rem; }
-.gdz-fee-l{ display:block; font-size:30px; line-height:1; letter-spacing:-.035em; margin-bottom:.35rem; }
-.gdz-fee-l .gdz-fee{ font-weight:900; }
-.gdz-fee-l i{ font-weight:300; font-style:italic; letter-spacing:-.015em; }
-.gdz-fee-s{ display:block; font-size:16px; line-height:1.45; color:rgba(31,33,32,.75); }
-.gdz-fee-s b{ font-weight:700; color:#1F2120; }
-@media (min-width:640px){ .gdz-fee-l{ font-size:34px; } }
+.gdz-hr-d{ color:rgba(31,33,32,.6); }
+.gdz-hr b{ font-weight:700; font-variant-numeric:tabular-nums; }
 .gdz-courts{ margin-top:2.8rem; display:grid; gap:2.8rem; }
 /* название суда – ступенью ниже заголовка карточки на любой ширине: заголовок 22px до 768px и 28px от 768px,
    название – 19px и 24px (фиксированные 24px на телефоне оказывались крупнее заголовка карточки) */
 .gdz-court-h{ font-size:19px; font-weight:800; letter-spacing:-.03em; line-height:1.12; }
 @media (min-width:768px){ .gdz-court-h{ font-size:24px; line-height:1.08; } }
-/* Герб в углу плиты «Gdzie» – декор; контент рядом получает отступ справа, чтобы строки не заходили под него. */
-.gdz--crest .gdz-cell{ position:relative; }
-.gdz-crest{ position:absolute; top:0; right:0; width:40px; height:auto; pointer-events:none; }
-.gdz-crest--msz{ width:130px; right:-7px; }
-/* Карточка судов до 1024px идёт второй: у неё свой отступ сверху и линия – знак опускаем под них. */
-.gdz--crest .gdz-cell ~ .gdz-cell .gdz-crest{ top:2.75rem; }
-@media (min-width:1024px){ .gdz--crest .gdz-cell ~ .gdz-cell .gdz-crest{ top:0; } }
-@media (min-width:640px){ .gdz-crest{ width:53px; } .gdz-crest--msz{ width:175px; right:-9px; } }
-.gdz--crest .gdz-cell :is(.slab-kicker, h3, .gdz-full){ padding-right:62px; }
-.gdz--crest .gdz-cell:has(.gdz-crest--msz) :is(.slab-kicker, h3){ padding-right:136px; }
-.gdz--crest .gdz-cell:has(.gdz-crest--msz) .gdz-full{ padding-right:0; }
-@media (min-width:640px){ .gdz--crest .gdz-cell :is(.slab-kicker, h3, .gdz-full){ padding-right:76px; }
-  .gdz--crest .gdz-cell:has(.gdz-crest--msz) :is(.slab-kicker, h3){ padding-right:180px; } }
-.gdz-br{ display:none; }
-@media (min-width:380px){ .gdz-br{ display:inline; } }
-.gdz-court-side{ display:block; margin-top:.22em; font-weight:600; font-style:italic; font-size:14px; color:color-mix(in srgb, var(--c-ink) 60%, transparent); }
-@media (min-width:768px){ .gdz-court-side{ font-size:17px; } }
+.gdz-court-side{ display:block; font-weight:300; font-style:italic; }
 .gdz-court .gdz-meta{ margin-top:1.1rem; }
 /* Главный тезис плашки – «Opłaty urzędowe są już wliczone w nasze ceny»: самый крупный текст внутри плашки,
    пара «чёрное / лёгкий курсив», как в заголовках разделов, но начертания при прокрутке НЕ меняются –
