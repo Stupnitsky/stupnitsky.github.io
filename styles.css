@@ -690,6 +690,13 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 /* Тезис на жёлтой вставке (terra) внутри песочной карточки – тот же приём, что блок «Osobiście» выше на странице
    (Грег, 22.09.2026, выбрал из трёх вариантов). Текст чернильный, серые 75% внутри жёлтого не читаются – все 100%. */
 .gdz--duo .gdz-key{ margin-top:2.75rem; padding:1.6rem 1.5rem 1.7rem; border-radius:18px; background:var(--c-terra); color:var(--c-ink); }
+/* Пиктограмма Грега (здание с рукопожатием) в правом верхнем углу вставки, как знаки в карточках урядов;
+   заголовок получает отступ справа, чтобы не заходить под неё. */
+.gdz--duo .gdz-key{ position:relative; }
+.gdz-key-ico{ position:absolute; top:1.5rem; right:1.5rem; width:40px; height:auto; pointer-events:none; opacity:.85; }
+.gdz--duo .gdz-key .gdz-key-t{ padding-right:56px; }
+@media (min-width:640px){ .gdz-key-ico{ width:50px; } .gdz--duo .gdz-key .gdz-key-t{ padding-right:70px; } }
+@media (min-width:1024px){ .gdz-key-ico{ top:1.9rem; right:2rem; } }
 .gdz--duo .gdz-key .gdz-key-s{ color:inherit; }
 @media (min-width:1024px){
   .gdz--duo .gdz-cell{ display:block; grid-row:auto; }
@@ -774,6 +781,9 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
    weight 700. Раньше 28–38px weight 900 – Грег, 22.09.2026: «почему такое конское, все заголовки одинаковые». */
 .gdz-key-t{ font-size:22px; line-height:1.05; font-weight:700; letter-spacing:-.045em; }
 .gdz-key-t .h2-a, .gdz-key-t .h2-b{ display:block; }
+/* Вторая, курсивная строка тезиса – ступенью меньше первой (Грег, 22.09.2026): светлый курсив того же кегля
+   выглядел шире жирной строки и спорил с ней. */
+.gdz-key-t .h2-b{ font-size:.86em; margin-top:.05em; }
 @media (min-width:768px){ .gdz-key-t{ font-size:28px; } }
 .gdz-key-s{ margin-top:1rem; font-size:17px; line-height:1.55; color:rgba(31,33,32,.75); max-width:40ch; }
 /* ссылка-стрелка тезиса – строчная: при переносе текста на узком экране стрелка идёт за последним словом,
