@@ -714,22 +714,17 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 /* День и часы – одним цветом и почти одним весом: серый день на сером фоне читался плохо, а 700 рядом с ним бил контрастом. */
 .gdz-hr-d{ color:inherit; }
 .gdz-hr b{ font-weight:600; font-variant-numeric:tabular-nums; }
-/* Строка сбора в карточках урядов (/kontakt/): сумма – смысловой узел, подана как цена в /cennik/ v2
-   (Грег, 22.09.2026, прислал снимок «/ DOKUMENT · 200,- zł» с терракотовой полосой): кикер-единица сверху,
-   под ним «60,- zł» 24/28px weight 800 с полосой var(--c-terra) под нижней частью цифр – здесь полоса постоянная,
-   в ценнике она вырастает при наведении. Ниже обычным текстом – как платить, отдельной строкой жирным то,
-   что ловит людей у окна: кассы в уряде нет. */
+/* Строка сбора в карточках урядов (/kontakt/): сумма – смысловой узел, подана как цена в /cennik/ v2:
+   «60,- zł» 24/28px weight 800, за ней на той же строке единица кикером «/ dokument»; ниже обычным текстом –
+   как платить, отдельной строкой жирным то, что ловит людей у окна: кассы в уряде нет.
+   Терракотовая полоса под цифрами была и снята (Грег, 22.09.2026: «убрать маркер»). */
 .gdz-fee-dd{ display:grid; gap:.3rem; }
-.gdz-fee-k{ display:block; font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
- letter-spacing:.1em; font-size:12px; font-weight:500; color:rgba(31,33,32,.6); }
-.gdz-fee-l{ display:block; margin:.1rem 0 .4rem; line-height:1.1; }
-/* на телефоне dt стоит над dd – два кикера подряд («OPŁATA SKARBOWA» / «/ PODPIS») разводим зазором */
-@media (max-width:479px){ .gdz-fee-k{ margin-top:.45rem; } }
-.gdz-fee-l .gdz-fee{ display:inline; font-size:24px; font-weight:800; letter-spacing:-.02em; color:var(--c-ink);
- white-space:nowrap; font-variant-numeric:tabular-nums;
- background-image:linear-gradient(var(--c-terra),var(--c-terra)); background-repeat:no-repeat;
- background-position:0 92%; background-size:100% .55em; }
+.gdz-fee-l{ display:flex; align-items:baseline; gap:.6em; margin:0 0 .3rem; line-height:1.1; }
+.gdz-fee-l .gdz-fee{ font-size:24px; font-weight:800; letter-spacing:-.02em; color:var(--c-ink);
+ white-space:nowrap; font-variant-numeric:tabular-nums; }
 @media (min-width:640px){ .gdz-fee-l .gdz-fee{ font-size:28px; } }
+.gdz-fee-k{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
+ letter-spacing:.1em; font-size:12px; font-weight:500; color:rgba(31,33,32,.6); white-space:nowrap; }
 .gdz-fee-s{ display:block; font-size:16px; line-height:1.45; color:rgba(31,33,32,.75); }
 .gdz-fee-s b{ font-weight:700; color:#1F2120; }
 .gdz-courts{ margin-top:2.8rem; display:grid; gap:2.8rem; }
