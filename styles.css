@@ -760,8 +760,9 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 .gdz--crest .gdz-cell ~ .gdz-cell .gdz-crest{ top:2.75rem; }
 @media (min-width:1024px){ .gdz--crest .gdz-cell ~ .gdz-cell .gdz-crest{ top:0; } }
 @media (min-width:640px){ .gdz-crest{ width:50px; } }
-.gdz--crest .gdz-cell :is(.slab-kicker, h3, .gdz-full){ padding-right:62px; }
-@media (min-width:640px){ .gdz--crest .gdz-cell :is(.slab-kicker, h3, .gdz-full){ padding-right:76px; } }
+/* герб заканчивается внутри h3 – описанию .gdz-full правый отступ не нужен (22.09.2026: на 320 текст жался в 190px) */
+.gdz--crest .gdz-cell :is(.slab-kicker, h3){ padding-right:62px; }
+@media (min-width:640px){ .gdz--crest .gdz-cell :is(.slab-kicker, h3){ padding-right:76px; } }
 /* От 1024px карточка MSZ упирается справа в линию колонки: знак отступает от неё на те же 3rem,
    что у карточки судов слева. */
 @media (min-width:1024px){ .gdz--crest .gdz-cell:first-child .gdz-crest{ right:3rem; }
