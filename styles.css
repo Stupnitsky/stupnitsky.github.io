@@ -780,10 +780,9 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 /* ссылка-стрелка тезиса – строчная: при переносе текста на узком экране стрелка идёт за последним словом,
    а не уезжает к правому краю, как у inline-flex */
 /* Абзац тезиса по образцу Apple: жирный вывод, дальше обычным пояснение в том же абзаце (Грег, 22.09.2026).
-   Под ним две ссылки-стрелки: прайс и «przyjazd a zlecenie» – вторая дублирует ссылку из подвала плиты. */
+   Под ним одна ссылка-стрелка «przyjazd a zlecenie»; прайс ушёл в подвал плиты на её прежнее место (Грег, 22.09.2026). */
 .gdz-key-s b{ font-weight:700; }
 .gdz-key-more{ margin-top:.9rem; font-size:17px; line-height:1.4; }
-.gdz-key-more--2{ margin-top:.45rem; }
 .gdz-key-more .k-where-link{ display:inline; margin-top:0; }
 .gdz-key-more .k-where-link svg{ display:inline-block; vertical-align:-.1em; margin-left:.5em; }
 /* источники: тот же кегль 17px, ссылки чернильные полужирные с подчёркиванием – как ссылки в абзацах страницы */
