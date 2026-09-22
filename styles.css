@@ -788,18 +788,21 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 .gdz-key-more .k-where-link{ display:inline; margin-top:0; }
 .gdz-key-more .k-where-link svg{ display:inline-block; vertical-align:-.1em; margin-left:.5em; }
 /* источники: тот же кегль 17px, ссылки чернильные полужирные с подчёркиванием – как ссылки в абзацах страницы */
-/* Источники – подвал плиты «Gdzie»: общая линия на всю ширину, от 1024px текст и ссылки по правому краю
-   (Грег, 22.09.2026: «отчеркнуть общей чертой и по правой внизу»). Раньше стояли в левой колонке под примечанием. */
-.gdz-src{ margin-top:2.5rem; padding-top:1.4rem; border-top:1px solid rgba(31,33,32,.15);
- font-size:15px; line-height:1.5; color:rgba(31,33,32,.75); }
+/* Источники – подвал плиты «Gdzie»: общая линия на всю ширину; от 1024px слева фраза про часы (до 60ch),
+   справа столбик «Źródła» со ссылками по строке. Первая версия – всё по правому краю в одну строку –
+   Грег, 22.09.2026: «плохо и не читаемо». Кегль 17px как у текста плиты. */
+.gdz-src{ margin-top:2.5rem; padding-top:1.5rem; border-top:1px solid rgba(31,33,32,.15);
+ display:grid; gap:1.2rem; font-size:17px; line-height:1.55; color:rgba(31,33,32,.75); }
+.gdz-src-p{ max-width:60ch; }
 .gdz-src-h{ font-family:'Fira Sans Condensed','Fira Sans',sans-serif; text-transform:uppercase;
- letter-spacing:.16em; font-size:12px; font-weight:700; color:rgba(31,33,32,.6); margin-right:.4em; }
-.gdz-src-list{ margin-top:.4rem; }
-.gdz-src-sep{ margin:0 .35em; color:rgba(31,33,32,.4); }
+ letter-spacing:.16em; font-size:12px; font-weight:700; line-height:1.3; color:rgba(31,33,32,.6); }
+.gdz-src-list{ margin-top:.45rem; display:grid; gap:.3rem; }
 .gdz-src-list a{ color:var(--c-ink); font-weight:600; text-decoration:underline; text-decoration-thickness:1.5px;
  text-underline-offset:3px; }
-.gdz-src-list a{ white-space:nowrap; }
-@media (min-width:1024px){ .gdz-src{ text-align:right; } }
+@media (min-width:1024px){
+  .gdz-src{ grid-template-columns:1fr auto; gap:3rem; align-items:start; }
+  .gdz-src-box{ text-align:right; }
+}
 
 /* Футер: только крупный логотип и строка копирайта */
 /* overflow не задаём: верх букв не срезается, а низ по-прежнему
