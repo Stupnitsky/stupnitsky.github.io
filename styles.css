@@ -742,6 +742,10 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
 .gdz--crest .gdz-cell ~ .gdz-cell .gdz-crest{ top:2.75rem; }
 @media (min-width:1024px){ .gdz--crest .gdz-cell ~ .gdz-cell .gdz-crest{ top:0; } }
 @media (min-width:640px){ .gdz-crest{ width:53px; } .gdz-crest--msz{ width:175px; right:-9px; } }
+/* От 1024px карточка MSZ упирается справа в линию колонки: знак отступает от неё на те же 3rem,
+   что у карточки судов слева (Грег, 22.09.2026: «лого MSZ не имеет отступа»). -9px гасит прозрачное поле png. */
+@media (min-width:1024px){ .gdz--crest .gdz-crest--msz{ right:calc(3rem - 9px); }
+  .gdz--crest .gdz-cell:has(.gdz-crest--msz) :is(.slab-kicker, h3){ padding-right:228px; } }
 .gdz--crest .gdz-cell :is(.slab-kicker, h3, .gdz-full){ padding-right:62px; }
 .gdz--crest .gdz-cell:has(.gdz-crest--msz) :is(.slab-kicker, h3){ padding-right:136px; }
 .gdz--crest .gdz-cell:has(.gdz-crest--msz) .gdz-full{ padding-right:0; }
