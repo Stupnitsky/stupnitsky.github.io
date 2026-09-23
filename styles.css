@@ -368,6 +368,20 @@ html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibilit
    «кнопка Zamów wycenę и потом WhatsApp, Telegram»; в hero порядок прежний – мессенджеры, затем главная) */
 #mobile-nav .mn-cta{ margin-top:14px; display:grid; grid-template-columns:1fr 1fr; width:100%; }
 #mobile-nav .mn-cta .cta-btn--main{ grid-column:1 / -1; }
+/* Способы связи по задачам (Грег, 23.09.2026): форма – прислать фото документов (камера), звонок – услышать
+   человека перед заказом (трубка, номер и часы в одной кнопке), мессенджеры – вопросы. Значок называет канал,
+   чтобы главную кнопку не принимали за звонок. На телефоне: форма, под ней телефон, ниже мессенджеры пополам */
+#mobile-nav .mn-ic{ width:1.2em; height:1.2em; flex:none; margin-right:9px; }
+#mobile-nav .mn-tel{ grid-column:1 / -1; justify-content:flex-start; }
+#mobile-nav .mn-tel b{ font-weight:700; letter-spacing:-.01em; white-space:nowrap; }
+#mobile-nav .mn-hrs{ margin-left:auto; padding-left:12px; font-size:14px; font-weight:600; color:rgba(31,33,32,.55); }
+/* «7:00–21:00» полностью (Грег, 23.09.2026: «7–21 непонятно, как 7/24»); уже 360px кнопке 236px – на 3px не входило,
+   поэтому кнопка телефона мельче: номер 15px, часы 12px, поля уже */
+@media (max-width:359px){
+  #mobile-nav .mn-cta .mn-tel{ font-size:15px; padding-left:.9em; padding-right:.9em; }
+  #mobile-nav .mn-tel .mn-ic{ margin-right:7px; }
+  #mobile-nav .mn-hrs{ padding-left:8px; font-size:12px; }
+}
 /* широкая плашка (планшет, узкое окно, телефон лёжа): список в две колонки, кнопки в один ряд –
    лист во всю ширину шапки с одной колонкой слева выглядел бы пустым, а лёжа не помещался бы по высоте */
 @media (min-width:560px) and (max-width:1149px){
@@ -384,27 +398,29 @@ html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibilit
   .mn-link:nth-last-child(2){ border-bottom:0; }
   #mobile-nav .mn-cta{ margin-top:16px; }
 }
-/* Три кнопки в один ряд – только от 700px (21.09.2026). Раньше ряд включался с 560px: на 560–660px ячейке главной
-   кнопки доставалось ~160px при её собственных 195px («Заказать оценку» – 218px), текст и стрелка вылезали из полей:
-   слева 7px, справа 11px, а между текстом и стрелкой 15px – Грег: «не эстетичные расстояния в этой кнопке».
-   Колонки теперь не уже содержимого кнопок (max-content), остаток ширины делится 1.35 : 1 : 1.
-   На 560–699px – как на телефоне: главная во всю ширину, под ней мессенджеры пополам. */
+/* Кнопки в два ряда по два – от 700px (23.09.2026, в меню добавился телефон): сверху телефон и главная справа
+   (Грег, 23.09.2026: «главная кнопка справа»), снизу мессенджеры. Колонки не уже содержимого кнопок (max-content):
+   21.09.2026 на 560–660px кнопка в узкой ячейке вылезала из полей – Грег: «не эстетичные расстояния в этой кнопке».
+   На 560–699px – как на телефоне: главная во всю ширину, под ней телефон, ниже мессенджеры пополам. */
 @media (min-width:700px) and (max-width:1149px){
-  /* главная кнопка справа, мессенджеры слева (Грег, 23.09.2026) */
-  #mobile-nav .mn-cta{ grid-template-columns:repeat(2, minmax(max-content,1fr)) minmax(max-content,1.35fr); }
-  #mobile-nav .mn-cta .cta-btn--main{ grid-column:auto; order:1; }
+  #mobile-nav .mn-cta{ grid-template-columns:repeat(2, minmax(max-content,1fr)); }
+  #mobile-nav .mn-cta .cta-btn--main{ grid-area:1 / 2; }
+  #mobile-nav .mn-cta .mn-tel{ grid-area:1 / 1; }
 }
 @media (max-height:520px) and (min-width:560px) and (max-width:1149px){
   #mobile-nav{ --mn-fs:22px; --mn-pad:9px; }
-  #mobile-nav .mn-cta{ margin-top:10px; }
+  #mobile-nav .mn-cta{ margin-top:10px; gap:8px; }
+  /* два ряда кнопок (с телефоном, 23.09.2026) на 667 × 375 уходили за край на 11px – кнопки ниже на 7px */
+  #mobile-nav .mn-cta .cta-btn{ padding-top:.6em; padding-bottom:.6em; }
   .mn-in{ padding-bottom:14px; }
 }
-/* телефон лёжа (560–699px, окно ниже 520px): на два ряда кнопок высоты нет – один ряд, поля кнопок уже,
-   у мессенджеров без стрелки; так три кнопки входят в 440px с запасом (и с «Заказать оценку») */
+/* телефон лёжа (560–699px, окно ниже 520px): раскладка планшета – два ряда по два, поля кнопок уже,
+   у мессенджеров без стрелки, часы у телефона скрыты (они есть в aria-label) – иначе ячейка шире половины ряда */
 @media (max-height:520px) and (min-width:560px) and (max-width:699px){
-  /* главная кнопка справа, как на планшете (Грег, 23.09.2026) */
-  #mobile-nav .mn-cta{ grid-template-columns:repeat(2, minmax(max-content,1fr)) minmax(max-content,1.35fr); }
-  #mobile-nav .mn-cta .cta-btn--main{ grid-column:auto; order:1; }
+  #mobile-nav .mn-cta{ grid-template-columns:repeat(2, minmax(max-content,1fr)); }
+  #mobile-nav .mn-cta .cta-btn--main{ grid-area:1 / 2; }
+  #mobile-nav .mn-cta .mn-tel{ grid-area:1 / 1; }
+  #mobile-nav .mn-hrs{ display:none; }
   #mobile-nav .mn-cta .cta-btn, #mobile-nav .mn-cta .cta-btn:not(.cta-btn--main),
   #mobile-nav .mn-cta .cta-btn:not(.cta-btn--main):hover, #mobile-nav .mn-cta .cta-btn:not(.cta-btn--main):focus-visible{
     padding-left:.9em; padding-right:.9em; }
@@ -3436,9 +3452,12 @@ html.qd-open #burger > span{ opacity:0; }
   /* язык – в меню */
   .hdr-seg--lang .lang-wrap{ display:none; }
   .hdr-seg--lang{ flex:0 0 auto; padding-left:6px; }
-  /* средняя часть ряда снова видна, но из всего меню в ней только «Zamów wycenę» – прижата к бургеру */
+  /* средняя часть ряда – пустой промежуток между логотипом и бургером. С 23.09.2026 кнопки «Zamów wycenę» в ряду
+     нет (Грег: «в меню только бургер – нажав, человек увидит сразу всё»; одна кнопка без соседей читалась как
+     звонок или обязательство). Всё действие – в открытом меню: форма, телефон, мессенджеры. Стили кнопки ниже
+     оставлены на случай возврата: достаточно снова показать #nav-main (display:flex) */
   .hdr-seg--menu{ display:flex; flex:1 1 auto; min-width:0; justify-content:flex-end; padding-left:0; padding-right:0; }
-  #nav-main{ display:flex !important; margin:0; gap:0; min-width:0; }
+  #nav-main{ display:none !important; margin:0; gap:0; min-width:0; }
   #nav-main .navlink:not(.navlink--plate){ display:none; }
   /* на десктопе это пункт меню с «вдавленной» плашкой по наведению; на телефоне наведения нет, а действие
      главное – поэтому вид главной кнопки сайта (.cta-btn--main): жёлтая заливка, 12px, Fira Sans 600 без капса.
@@ -3570,6 +3589,9 @@ html.qd-open #burger > span{ opacity:0; }
 @media (max-height:600px) and (max-width:559px){
   #mobile-nav{ --mn-pad:8px; }
   .mn-in{ padding-bottom:12px; }
+  /* с кнопкой телефона (23.09.2026) мессенджеры снова уходили за край на 17px – кнопки меню ниже на 7px */
+  #mobile-nav .mn-cta{ margin-top:10px; gap:8px; }
+  #mobile-nav .mn-cta .cta-btn{ padding-top:.6em; padding-bottom:.6em; }
 }
 header:has(.hdr-row.on-dark) #mobile-nav .mn-langs{ border-color:rgba(255,255,255,.14); }
 header:has(.hdr-row.on-dark) #mobile-nav a.mn-lang:not(.is-current){ color:rgba(255,255,255,.72); }
