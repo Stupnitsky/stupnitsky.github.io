@@ -331,14 +331,20 @@ html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibilit
     -webkit-overflow-scrolling:touch;
     background:none; box-shadow:none;
     opacity:0; visibility:hidden; pointer-events:none;
-    -webkit-clip-path:inset(0 0 100% 0); clip-path:inset(0 0 100% 0);
-    /* закрытие: сначала обрезка уезжает вверх вместе с плашкой, потом панель гаснет */
-    transition:clip-path .3s cubic-bezier(.2,.7,.25,1), -webkit-clip-path .3s cubic-bezier(.2,.7,.25,1),
-               opacity 0s linear .3s, visibility 0s linear .3s; }
-  html.menu-open #mobile-nav{ opacity:1; visibility:visible; pointer-events:auto;
-    -webkit-clip-path:inset(0 0 0 0); clip-path:inset(0 0 0 0);
-    transition:clip-path .34s cubic-bezier(.2,.7,.25,1), -webkit-clip-path .34s cubic-bezier(.2,.7,.25,1),
-               opacity 0s, visibility 0s; }
+    /* по бокам панель обрезана по текущей ширине стекла: из пилюли стекло расширяется за --hp (поля ряда
+       --ps × --hp), и без этой обрезки слова и кнопки появлялись за его краями раньше фона (Грег, 24.09.2026).
+       Обрезка идёт за --hp кадр в кадр, поэтому своей анимации у неё нет */
+    -webkit-clip-path:inset(0 calc(var(--ps, 0px) * var(--hp, 0)) 0 calc(var(--ps, 0px) * var(--hp, 0)));
+    clip-path:inset(0 calc(var(--ps, 0px) * var(--hp, 0)) 0 calc(var(--ps, 0px) * var(--hp, 0)));
+    /* закрытие: сначала содержимое уезжает вверх вместе с плашкой (.mn-in), потом панель гаснет */
+    transition:opacity 0s linear .3s, visibility 0s linear .3s; }
+  html.menu-open #mobile-nav{ opacity:1; visibility:visible; pointer-events:auto; transition:opacity 0s, visibility 0s; }
+  /* сверху вниз содержимое раскрывается обрезкой в том же темпе, что растёт плашка */
+  /* по бокам запас −40px: обрезка только сверху вниз, выступы (крайние слова строки языков) не срезаются */
+  #mobile-nav .mn-in{ -webkit-clip-path:inset(0 -40px 100% -40px); clip-path:inset(0 -40px 100% -40px);
+    transition:clip-path .3s cubic-bezier(.2,.7,.25,1), -webkit-clip-path .3s cubic-bezier(.2,.7,.25,1); }
+  html.menu-open #mobile-nav .mn-in{ -webkit-clip-path:inset(0 -40px 0 -40px); clip-path:inset(0 -40px 0 -40px);
+    transition:clip-path .34s cubic-bezier(.2,.7,.25,1), -webkit-clip-path .34s cubic-bezier(.2,.7,.25,1); }
   /* низкий экран (iPhone SE, панели Safari раскрыты): кегль и поля строк ужимаются, чтобы кнопки
      оставались на экране без прокрутки панели */
   @supports (height:100dvh){
@@ -353,7 +359,8 @@ html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibilit
 @media (min-width:768px) and (max-width:1149px){ #mobile-nav{ --mn-top:108px; } }
 @media (min-width:1024px) and (max-width:1149px){ #mobile-nav{ --mn-inset:50px; } }
 @media (prefers-reduced-motion:reduce){
-  #mobile-nav, html.menu-open #mobile-nav, .hdr-row::before, .hdr-row::after{ transition:none; }
+  #mobile-nav, html.menu-open #mobile-nav, #mobile-nav .mn-in, html.menu-open #mobile-nav .mn-in,
+  .hdr-row::before, .hdr-row::after{ transition:none; }
 }
 
 .mn-in{ padding:0 var(--mn-inset) 22px; }
