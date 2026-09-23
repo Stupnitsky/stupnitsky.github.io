@@ -444,6 +444,7 @@
        не меняет. Полный ряд – пока открыто меню или панель wyceny (они рисуются от полного ряда) и пока фокус
        с клавиатуры внутри шапки. Разворот и сворачивание – в темпе меню (.34s) */
     var away = false, settle = 0, hp = 0;
+    var ZOOM = 1.36, ZOOM_RANGE = 160, zMax = 1, zTick = false;
     function set(v) {
       if (v === away) return;
       away = v;
@@ -477,6 +478,10 @@
       head.style.transition = !anim || calm.matches ? 'none'
         : anim === 'menu' ? '--hp .34s cubic-bezier(.2,.7,.25,1)' : '--hp 1s cubic-bezier(.35,0,.15,1)';
       head.style.setProperty('--ps', ps + 'px');
+      /* наибольшее увеличение у верха страницы: 1.36, но по бокам остаётся не меньше 12px воздуха – иначе на
+         телефоне пилюля вставала бы от края до края, как прежняя полная шапка. На 320 «/ Cennik» (240px) – ×1.13 */
+      zMax = Math.max(1, Math.min(ZOOM, (w - 24) / Math.max(1, w - 2 * ps)));
+      zoom();
       /* за пальцем сворачивание замедляется к концу: вид = 1 − (1 − путь)² – у пилюли скорость сходит на нет */
       head.style.setProperty('--hp', 1 - (1 - hp) * (1 - hp));
       root.classList.toggle('hdr-pill', hp > 0);
@@ -504,6 +509,19 @@
     update(false);                                   /* сразу пилюлей, без анимации */
     /* ширина пилюли зависит от ширины окна и шрифта – пересчёт без анимации */
     function refit() { if (mq.matches) apply(false); }
+    /* У верха страницы пилюля крупнее – ×1.36, как логотип на десктопе, и за первые 160px прокрутки плавно
+       приходит к обычному размеру (Грег, 24.09.2026: «при загрузке пилюля больше на 36%, по мере скрола
+       уменьшается»). Масштаб – transform от верхнего края (styles.css, --pz × --hp): место шапки в потоке
+       не меняется, страница не дёргается; при открытии меню --hp → 0, и масштаб сходит к 1 вместе с разворотом */
+    function zoom() {
+      zTick = false;
+      var p = Math.min(Math.max(window.scrollY, 0) / ZOOM_RANGE, 1);
+      p = p * p * (3 - 2 * p);                       /* сглаживание на концах, как у логотипа на десктопе */
+      head.style.setProperty('--pz', ((zMax - 1) * (1 - p)).toFixed(4));
+    }
+    window.addEventListener('scroll', function () {
+      if (mq.matches && !zTick) { zTick = true; requestAnimationFrame(zoom); }
+    }, { passive: true });
     /* кириллица Fira Sans грузится отдельно и позже – когда на странице впервые нужны её буквы («/ Контакты») */
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(refit);
@@ -2282,7 +2300,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260924-6';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260924-7';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */

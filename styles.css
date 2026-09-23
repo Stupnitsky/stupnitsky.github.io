@@ -3537,6 +3537,9 @@ html.qd-open #burger > span{ opacity:0; }
   #top .hdr-row{ height:calc(var(--row-h) - (var(--row-h) - 50px) * var(--hp, 0));
     margin-left:calc(var(--ps, 0px) * var(--hp, 0)) !important; margin-right:calc(var(--ps, 0px) * var(--hp, 0)) !important; }
   #top .hdr-seg--menu{ overflow:hidden; opacity:calc(1 - 2 * var(--hp, 0)); }
+  /* у верха страницы пилюля крупнее (--pz ставит app.js по прокрутке: до .36 → 0 за 160px); растёт от верхнего
+     края вниз, в поле над заголовком; под меню (--hp → 0) масштаб сходит к 1 */
+  #top .hdr-row{ transform-origin:50% 0; transform:scale(calc(1 + var(--pz, 0) * var(--hp, 0))); }
   html.hdr-pill #top .hdr-seg--menu{ pointer-events:none; }
 }
 /* название страницы в пилюле: жирное, лёгкий серый; появляется вместе со сворачиванием – по буквам из знака «/»
