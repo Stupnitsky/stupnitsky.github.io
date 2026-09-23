@@ -383,47 +383,55 @@
     });
   })();
 
-  // Шапка в режиме бургера (уже 1150px): уезжает вверх при прокрутке вниз, возвращается при прокрутке вверх
-  // (21.09.2026). На телефоне она занимала 90px из ~660 видимых. Класс html.hdr-away, сам сдвиг – в styles.css.
-  // Всегда на месте: у верха страницы, при открытом меню или панели wyceny, при фокусе внутри шапки.
+  // Шапка в режиме бургера (уже 1150px): при прокрутке вниз за пальцем сворачивается в «пилюлю» по центру –
+  // логотип и бургер, высота 50px (Грег, 23.09.2026, вариант 3; раньше уезжала вверх целиком).
+  // Степень сворачивания --hp (0…1) и поле с боков --ps ставит этот скрипт, вид – в styles.css.
+  // Всегда развёрнута: у верха страницы, при открытом меню или панели wyceny, при фокусе внутри шапки.
   (function () {
     var head = document.getElementById('top');
-    if (!head) return;
+    var row = head && head.querySelector('.hdr-row');
+    if (!row) return;
+    var logoSeg = row.querySelector('.hdr-seg--logo'), langSeg = row.querySelector('.hdr-seg--lang');
     var root = document.documentElement;
     var mq = window.matchMedia('(max-width:1149px)');
-    var lastY = Math.max(window.scrollY, 0), away = false, settle = 0;
-    /* первую секунду после загрузки не прячем: переход по ссылке с якорем (/cennik/#wycena) сам прокручивает
-       страницу вниз, и человек оказался бы на новой странице без шапки */
+    var calm = window.matchMedia('(prefers-reduced-motion:reduce)');
+    var DIST = 90;                      /* сколько пикселей прокрутки занимает сворачивание */
+    var lastY = Math.max(window.scrollY, 0), away = false, settle = 0, hp = 0, snapT = 0;
+    /* первую секунду после загрузки не сворачиваем: переход по ссылке с якорем (/cennik/#wycena) сам
+       прокручивает страницу вниз */
     var armedAt = Date.now() + 1200;
     function set(v) {
       if (v === away) return;
       away = v;
       root.classList.toggle('hdr-away', v);
-      /* шапка переехала без прокрутки – пересчитать то, что зависит от её места (светлая / тёмная плашка) */
+      /* шапка поменялась без прокрутки – пересчитать светлую / тёмную плашку */
       clearTimeout(settle);
-      settle = setTimeout(function () { window.dispatchEvent(new Event('scroll')); }, 360);
+      settle = setTimeout(function () { window.dispatchEvent(new Event('scroll')); }, 760);
     }
-    /* Шапка идёт за пальцем (Грег, 23.09.2026): сдвигается ровно на столько, на сколько прокручена страница,
-       а когда прокрутка остановилась – за .7s доезжает туда, куда ближе (спрятаться или вернуться). */
-    var shift = 0, snapT = 0;
-    var calm = window.matchMedia('(prefers-reduced-motion:reduce)');
     function apply(anim) {
-      head.style.transition = anim && !calm.matches ? 'transform .7s cubic-bezier(.2,.7,.25,1)' : 'none';
-      head.style.transform = shift ? 'translateY(' + (-shift) + 'px)' : '';
+      var cs = getComputedStyle(head);
+      var w = head.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      var ps = Math.max(0, (w - logoSeg.offsetWidth - langSeg.offsetWidth) / 2);
+      head.style.transition = anim && !calm.matches ? '--hp .7s cubic-bezier(.2,.7,.25,1)' : 'none';
+      head.style.setProperty('--ps', ps + 'px');
+      head.style.setProperty('--hp', hp);
+      root.classList.toggle('hdr-pill', hp > 0);
     }
     function show() {
       clearTimeout(snapT);
-      if (shift) { shift = 0; apply(true); }
+      if (hp) { hp = 0; apply(true); }
       set(false);
     }
     function snap() {
-      var H = head.offsetHeight + 20;
-      shift = shift > H / 2 ? H : 0;
+      hp = hp > .5 ? 1 : 0;
       apply(true);
-      set(shift === H);
+      set(hp === 1);
     }
     function onScroll() {
-      if (!mq.matches) { lastY = window.scrollY; shift = 0; head.style.transition = head.style.transform = ''; set(false); return; }
+      if (!mq.matches) {
+        lastY = window.scrollY; hp = 0; root.classList.remove('hdr-pill');
+        head.style.transition = ''; head.style.removeProperty('--hp'); set(false); return;
+      }
       /* отскок у низа страницы на iOS не считается прокруткой вверх */
       var y = Math.min(Math.max(window.scrollY, 0), document.documentElement.scrollHeight - window.innerHeight);
       if (y < 120 || root.classList.contains('menu-open') || root.classList.contains('qd-open')) {
@@ -433,15 +441,18 @@
       var dy = y - lastY;
       lastY = y;
       if (!dy) return;
-      var H = head.offsetHeight + 20;
-      shift = Math.min(H, Math.max(0, shift + dy));
+      hp = Math.min(1, Math.max(0, hp + dy / DIST));
       apply(false);
-      if (shift === H) set(true); else if (shift === 0) set(false);
+      if (hp === 1) set(true); else if (hp === 0) set(false);
       clearTimeout(snapT);
       snapT = setTimeout(snap, 140);
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     head.addEventListener('focusin', show);
+    /* меню и панель wyceny рисуются от полного ряда – при открытии шапка сразу разворачивается */
+    new MutationObserver(function () {
+      if (root.classList.contains('menu-open') || root.classList.contains('qd-open')) show();
+    }).observe(root, { attributes: true, attributeFilter: ['class'] });
     (mq.addEventListener ? mq.addEventListener('change', onScroll) : mq.addListener(onScroll));
   })();
 
@@ -2210,7 +2221,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260923-16';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260923-18';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */

@@ -390,8 +390,9 @@ html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibilit
    Колонки теперь не уже содержимого кнопок (max-content), остаток ширины делится 1.35 : 1 : 1.
    На 560–699px – как на телефоне: главная во всю ширину, под ней мессенджеры пополам. */
 @media (min-width:700px) and (max-width:1149px){
-  #mobile-nav .mn-cta{ grid-template-columns:minmax(max-content,1.35fr) repeat(2, minmax(max-content,1fr)); }
-  #mobile-nav .mn-cta .cta-btn--main{ grid-column:auto; }
+  /* главная кнопка справа, мессенджеры слева (Грег, 23.09.2026) */
+  #mobile-nav .mn-cta{ grid-template-columns:repeat(2, minmax(max-content,1fr)) minmax(max-content,1.35fr); }
+  #mobile-nav .mn-cta .cta-btn--main{ grid-column:auto; order:1; }
 }
 @media (max-height:520px) and (min-width:560px) and (max-width:1149px){
   #mobile-nav{ --mn-fs:22px; --mn-pad:9px; }
@@ -3489,14 +3490,19 @@ html.qd-open #burger > span{ opacity:0; }
     white-space:normal; line-height:1.08; padding:0 9px; }
 }
 
-/* Шапка уезжает вверх при прокрутке вниз и возвращается при прокрутке вверх (класс html.hdr-away ставит app.js).
-   На телефоне она занимала 90px из ~660 видимых. У самого верха страницы, при открытом меню и панели wyceny,
-   при фокусе внутри шапки – всегда на месте. */
+/* Шапка в режиме бургера сворачивается в «пилюлю» по центру: логотип + бургер, высота 50px
+   (Грег, 23.09.2026, вариант 3 – «как строка Safari»). --hp 0…1 и --ps (поле с боков в пилюле) ставит app.js,
+   пока палец крутит – без анимации, после остановки доводка .7s. Стекло рисует .hdr-row::before,
+   поэтому сужается вместе с рядом. */
+@property --hp{ syntax:'<number>'; inherits:true; initial-value:0; }
 @media (max-width:1149px){
-  /* с 23.09.2026 шапка идёт за пальцем: сдвиг и доводку (.7s) ставит app.js прямо в style */
-  html.hdr-away #top{ transform:translateY(calc(-100% - 20px)); pointer-events:none; }
+  #top{ --row-h:72px; }
+  #top .hdr-row{ height:calc(var(--row-h) - (var(--row-h) - 50px) * var(--hp, 0));
+    margin-left:calc(var(--ps, 0px) * var(--hp, 0)) !important; margin-right:calc(var(--ps, 0px) * var(--hp, 0)) !important; }
+  #top .hdr-seg--menu{ overflow:hidden; opacity:calc(1 - 2 * var(--hp, 0)); }
+  html.hdr-pill #top .hdr-seg--menu{ pointer-events:none; }
 }
-@media (prefers-reduced-motion:reduce){ #top{ transition:none; } }
+@media (min-width:768px) and (max-width:1149px){ #top{ --row-h:90px; } }
 
 /* Языки в панели меню: первая строка под рядом шапки, мелко, текущий – полужирный. Сверху и снизу – те же
    линии, что между пунктами: единая плашка читается как один список. Названия входят в одну строку от 340px
