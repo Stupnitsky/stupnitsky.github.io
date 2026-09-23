@@ -409,12 +409,18 @@
     if (here) {
       here.classList.add('is-here');
       here.setAttribute('aria-current', 'page');
+    }
+    /* главная пункта в меню не имеет – подпись по языку страницы (Грег, 24.09.2026: «на главной /Główna») */
+    var HOME = { pl: 'Główna', uk: 'Головна', ru: 'Главная', en: 'Home' };
+    var pageName = here ? here.firstChild.textContent.trim()
+      : /^\/((ua|ru|en)\/)?(index\.html)?$/.test(location.pathname) ? HOME[document.documentElement.lang] : '';
+    if (pageName) {
       pageLabel = document.createElement('span');
       pageLabel.className = 'hdr-page';
       pageLabel.setAttribute('aria-hidden', 'true');
       /* «/ Cennik» по буквам: черта первой (порог .12), буквы следом от .25 до .85 – появляются из черты
          и в неё же уходят (Грег, 23.09.2026); пороги --s читает styles.css */
-      var word = here.firstChild.textContent.trim().split('');
+      var word = pageName.split('');
       ['/\u00a0'].concat(word).forEach(function (ch, i) {
         var sp = document.createElement('span');
         sp.textContent = ch;
@@ -2276,7 +2282,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260924-5';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260924-6';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
