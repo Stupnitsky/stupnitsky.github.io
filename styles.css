@@ -3494,7 +3494,7 @@ html.qd-open #burger > span{ opacity:0; }
    при фокусе внутри шапки – всегда на месте. */
 @media (max-width:1149px){
   /* Грег, 23.09.2026: возвращается за .9s, уезжает за 1.8s */
-  #top{ transition:transform .9s cubic-bezier(.19,.55,.91,.65); }
+  #top{ transition:transform .9s cubic-bezier(.2,.7,.25,1); }
   html.hdr-away #top{ transform:translateY(calc(-100% - 20px)); pointer-events:none;
     transition-duration:1.8s; }
 }
