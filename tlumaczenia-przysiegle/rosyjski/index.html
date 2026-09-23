@@ -31,7 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260923-36">
+<link rel="stylesheet" href="/styles.css?v=20260923-37">
 </head>
 
 <body class="font-sans antialiased">
@@ -89,7 +89,7 @@
   <!-- Мобильное меню (21.09.2026): единая плашка с рядом шапки – вниз растёт сам стеклянный слой ряда, панель
        прозрачная и стоит встык под ним (стили – #mobile-nav и .mn-* в styles.css, состояние html.menu-open).
        Первой строкой app.js ставит языки (.mn-langs). Список – только навигация; действия – группа .cta-btns:
-       форма (прислать фото документов), телефон и рядом часы (звонок перед заказом – доверие), WhatsApp · Telegram
+       форма (прислать фото документов), телефон с часами перед номером (звонок перед заказом – доверие), WhatsApp · Telegram
        (вопросы). С 23.09.2026 кнопки заявки в ряду шапки нет – всё действие в этом меню. -->
   <nav id="mobile-nav" class="mn" aria-label="Nawigacja mobilna">
     <div class="mn-in">
@@ -103,7 +103,7 @@
       </div>
       <div class="cta-btns mn-cta" role="group" aria-label="Wycena, telefon lub komunikator">
         <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Wycena ze zdjęć<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
-        <div class="mn-call"><a href="tel:+48507588155" class="cta-btn mn-tel" aria-label="Zadzwoń: +48 507 588 155, 7:00–21:00">+48 507 588 155</a><span class="mn-hrs" aria-hidden="true">7:00–21:00</span></div>
+        <a href="tel:+48507588155" class="cta-btn mn-tel" aria-label="Zadzwoń: +48 507 588 155, 7:00–21:00"><span class="mn-hrs" aria-hidden="true">7:00–21:00</span>+48 507 588 155</a>
         <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20potrzebuj%C4%99%20wyceny%20apostille%2Ft%C5%82umaczenia" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
         <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
       </div>
@@ -205,7 +205,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260923-36" defer></script>
+<script src="/assets/app.js?v=20260923-37" defer></script>
 
 </body>
 </html>

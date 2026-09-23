@@ -373,21 +373,19 @@ html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibilit
 .mn-link:focus-visible{ outline:2px solid currentColor; outline-offset:-2px; border-radius:6px; }
 /* кнопки: главная «Zamów wycenę» во всю ширину, под ней мессенджеры пополам (порядок – просьба Грега 21.09.2026:
    «кнопка Zamów wycenę и потом WhatsApp, Telegram»; в hero порядок прежний – мессенджеры, затем главная) */
-#mobile-nav .mn-cta{ margin-top:14px; display:grid; grid-template-columns:1fr 1fr; width:100%; }
+#mobile-nav .mn-cta{ --cg:10px; margin-top:14px; display:grid; grid-template-columns:1fr 1fr; gap:var(--cg); width:100%; }
 #mobile-nav .mn-cta .cta-btn--main{ grid-column:1 / -1; }
 /* Способы связи по задачам (Грег, 23.09.2026): форма – прислать фото документов, звонок – услышать человека
-   перед заказом, мессенджеры – вопросы. Главная кнопка – самая широкая; кнопка телефона шириной по номеру, часы
-   рядом обычным текстом (без значков – Грег: «страшные иконки»); WhatsApp и Telegram всегда поровну.
-   На телефоне: форма во всю ширину, под ней телефон с часами, ниже мессенджеры пополам */
-#mobile-nav .mn-call{ grid-column:1 / -1; display:flex; align-items:center; gap:12px; min-width:0; }
-#mobile-nav .mn-tel{ padding-left:1.2em; padding-right:1.2em; }
-#mobile-nav .mn-hrs{ font-size:14px; font-weight:600; letter-spacing:-.01em; white-space:nowrap; color:rgba(31,33,32,.55); }
-header:has(.hdr-row.on-dark) #mobile-nav .mn-hrs{ color:rgba(255,255,255,.6); }
+   перед заказом, мессенджеры – вопросы. Без значков (Грег: «страшные иконки»). Главная кнопка – самая широкая
+   и по цвету, и по размеру; кнопка телефона шириной по содержимому, часы в ней перед номером, приглушённо
+   (Грег, 24.09.2026: «часы перед номером и на серой плашке – сейчас висят в воздухе»); WhatsApp и Telegram
+   всегда поровну. На телефоне: форма во всю ширину, под ней телефон, ниже мессенджеры пополам */
+#mobile-nav .mn-tel{ grid-column:1 / -1; justify-self:start; gap:12px; padding-left:1.2em; padding-right:1.2em; }
+#mobile-nav .mn-hrs{ font-size:14px; font-weight:600; letter-spacing:-.01em; white-space:nowrap; color:rgba(31,33,32,.5); }
 /* «7:00–21:00» полностью (Грег, 23.09.2026: «7–21 непонятно, как 7/24»); уже 360px ряду 236px – поля кнопки
    и кегль часов меньше */
 @media (max-width:359px){
-  #mobile-nav .mn-tel{ padding-left:.9em; padding-right:.9em; }
-  #mobile-nav .mn-call{ gap:10px; }
+  #mobile-nav .mn-tel{ gap:9px; padding-left:.9em; padding-right:.9em; }
   #mobile-nav .mn-hrs{ font-size:12px; }
 }
 /* широкая плашка (планшет, узкое окно, телефон лёжа): список в две колонки, кнопки двумя рядами по две –
@@ -406,29 +404,28 @@ header:has(.hdr-row.on-dark) #mobile-nav .mn-hrs{ color:rgba(255,255,255,.6); }
   .mn-link:nth-last-child(2){ border-bottom:0; }
   #mobile-nav .mn-cta{ margin-top:16px; }
 }
-/* Кнопки в два ряда по два – от 700px (23.09.2026, в меню добавился телефон): сверху телефон с часами и главная
-   справа (Грег, 23.09.2026: «главная кнопка справа»), снизу мессенджеры. Колонки строго поровну (minmax(0,1fr)):
-   с max-content на 700px WhatsApp выходил шире Telegram, а телефон – шире главной (307 против 275px).
-   Содержимое входит в половину ряда с запасом: телефон с часами ~260px, главная ~200px.
-   На 560–699px – как на телефоне: главная во всю ширину, под ней телефон, ниже мессенджеры пополам. */
-@media (min-width:700px) and (max-width:1149px){
-  #mobile-nav .mn-cta{ grid-template-columns:repeat(2, minmax(0,1fr)); }
-  #mobile-nav .mn-cta .cta-btn--main{ grid-area:1 / 2; }
-  #mobile-nav .mn-cta .mn-call{ grid-area:1 / 1; }
+/* Кнопки в два ряда – от 700px и на телефоне лёжа: сверху телефон и главная справа (Грег, 23.09.2026: «главная
+   кнопка справа»), снизу мессенджеры. Главная заходит за середину ряда – занимает всё, что оставил телефон
+   (Грег, 24.09.2026: «чтобы кроме цвета имела больше веса»); мессенджеры строго поровну. Три колонки:
+   [телефон по содержимому][остаток][ровно половина ряда] – WhatsApp = 1-я + 2-я, Telegram = 3-я, главная = 2-я + 3-я.
+   На 560–699px в портрете – как на телефоне: главная во всю ширину, под ней телефон, ниже мессенджеры пополам. */
+@media (min-width:700px) and (max-width:1149px), (max-height:520px) and (min-width:560px) and (max-width:699px){
+  #mobile-nav .mn-cta{ grid-template-columns:max-content minmax(0,1fr) calc((100% - var(--cg)) / 2); }
+  #mobile-nav .mn-cta .mn-tel{ grid-area:1 / 1 / 2 / 2; }
+  #mobile-nav .mn-cta .cta-btn--main{ grid-area:1 / 2 / 2 / 4; }
+  #mobile-nav .mn-cta a[href*="wa.me"]{ grid-area:2 / 1 / 3 / 3; }
+  #mobile-nav .mn-cta a[href*="t.me"]{ grid-area:2 / 3 / 3 / 4; }
 }
 @media (max-height:520px) and (min-width:560px) and (max-width:1149px){
   #mobile-nav{ --mn-fs:22px; --mn-pad:9px; }
-  #mobile-nav .mn-cta{ margin-top:10px; gap:8px; }
+  #mobile-nav .mn-cta{ margin-top:10px; --cg:8px; }
   /* два ряда кнопок (с телефоном, 23.09.2026) на 667 × 375 уходили за край на 11px – кнопки ниже на 7px */
   #mobile-nav .mn-cta .cta-btn{ padding-top:.6em; padding-bottom:.6em; }
   .mn-in{ padding-bottom:14px; }
 }
-/* телефон лёжа (560–699px, окно ниже 520px): раскладка планшета – два ряда по два, поля кнопок уже,
-   у мессенджеров без стрелки */
+/* телефон лёжа (560–699px, окно ниже 520px): раскладка планшета (выше), поля кнопок уже, у мессенджеров
+   без стрелки */
 @media (max-height:520px) and (min-width:560px) and (max-width:699px){
-  #mobile-nav .mn-cta{ grid-template-columns:repeat(2, minmax(0,1fr)); }
-  #mobile-nav .mn-cta .cta-btn--main{ grid-area:1 / 2; }
-  #mobile-nav .mn-cta .mn-call{ grid-area:1 / 1; }
   #mobile-nav .mn-cta .cta-btn, #mobile-nav .mn-cta .cta-btn:not(.cta-btn--main),
   #mobile-nav .mn-cta .cta-btn:not(.cta-btn--main):hover, #mobile-nav .mn-cta .cta-btn:not(.cta-btn--main):focus-visible{
     padding-left:.9em; padding-right:.9em; }
@@ -3606,7 +3603,7 @@ html.qd-open #burger > span{ opacity:0; }
   #mobile-nav{ --mn-pad:8px; }
   .mn-in{ padding-bottom:12px; }
   /* с кнопкой телефона (23.09.2026) мессенджеры снова уходили за край на 17px – кнопки меню ниже на 7px */
-  #mobile-nav .mn-cta{ margin-top:10px; gap:8px; }
+  #mobile-nav .mn-cta{ margin-top:10px; --cg:8px; }
   #mobile-nav .mn-cta .cta-btn{ padding-top:.6em; padding-bottom:.6em; }
 }
 header:has(.hdr-row.on-dark) #mobile-nav .mn-langs{ border-color:rgba(255,255,255,.14); }
