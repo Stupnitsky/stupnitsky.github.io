@@ -3493,10 +3493,8 @@ html.qd-open #burger > span{ opacity:0; }
    На телефоне она занимала 90px из ~660 видимых. У самого верха страницы, при открытом меню и панели wyceny,
    при фокусе внутри шапки – всегда на месте. */
 @media (max-width:1149px){
-  /* Грег, 23.09.2026: возвращается за .9s, уезжает за 1.8s */
-  #top{ transition:transform .9s cubic-bezier(.2,.7,.25,1); }
-  html.hdr-away #top{ transform:translateY(calc(-100% - 20px)); pointer-events:none;
-    transition-duration:1.8s; }
+  /* с 23.09.2026 шапка идёт за пальцем: сдвиг и доводку (.7s) ставит app.js прямо в style */
+  html.hdr-away #top{ transform:translateY(calc(-100% - 20px)); pointer-events:none; }
 }
 @media (prefers-reduced-motion:reduce){ #top{ transition:none; } }
 

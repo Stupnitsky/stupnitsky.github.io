@@ -403,19 +403,45 @@
       clearTimeout(settle);
       settle = setTimeout(function () { window.dispatchEvent(new Event('scroll')); }, 360);
     }
+    /* Шапка идёт за пальцем (Грег, 23.09.2026): сдвигается ровно на столько, на сколько прокручена страница,
+       а когда прокрутка остановилась – за .7s доезжает туда, куда ближе (спрятаться или вернуться). */
+    var shift = 0, snapT = 0;
+    var calm = window.matchMedia('(prefers-reduced-motion:reduce)');
+    function apply(anim) {
+      head.style.transition = anim && !calm.matches ? 'transform .7s cubic-bezier(.2,.7,.25,1)' : 'none';
+      head.style.transform = shift ? 'translateY(' + (-shift) + 'px)' : '';
+    }
+    function show() {
+      clearTimeout(snapT);
+      if (shift) { shift = 0; apply(true); }
+      set(false);
+    }
+    function snap() {
+      var H = head.offsetHeight + 20;
+      shift = shift > H / 2 ? H : 0;
+      apply(true);
+      set(shift === H);
+    }
     function onScroll() {
-      var y = Math.max(window.scrollY, 0);
-      if (!mq.matches || y < 120 || root.classList.contains('menu-open') || root.classList.contains('qd-open')) {
-        lastY = y; set(false); return;
+      if (!mq.matches) { lastY = window.scrollY; shift = 0; head.style.transition = head.style.transform = ''; set(false); return; }
+      /* отскок у низа страницы на iOS не считается прокруткой вверх */
+      var y = Math.min(Math.max(window.scrollY, 0), document.documentElement.scrollHeight - window.innerHeight);
+      if (y < 120 || root.classList.contains('menu-open') || root.classList.contains('qd-open')) {
+        lastY = y; show(); return;
       }
       if (Date.now() < armedAt) { lastY = y; return; }
       var dy = y - lastY;
-      if (Math.abs(dy) < 8) return;        /* дрожание пальца и инерция у края не считаются сменой направления */
       lastY = y;
-      set(dy > 0);
+      if (!dy) return;
+      var H = head.offsetHeight + 20;
+      shift = Math.min(H, Math.max(0, shift + dy));
+      apply(false);
+      if (shift === H) set(true); else if (shift === 0) set(false);
+      clearTimeout(snapT);
+      snapT = setTimeout(snap, 140);
     }
     window.addEventListener('scroll', onScroll, { passive: true });
-    head.addEventListener('focusin', function () { set(false); });
+    head.addEventListener('focusin', show);
     (mq.addEventListener ? mq.addEventListener('change', onScroll) : mq.addListener(onScroll));
   })();
 
@@ -2184,7 +2210,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260923-14';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260923-16';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
