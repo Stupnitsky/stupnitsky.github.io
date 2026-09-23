@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260923-25">
+<link rel="stylesheet" href="/styles.css?v=20260923-29">
 
 <script type="application/ld+json">
 {
@@ -159,6 +159,7 @@
 
 <main>
 
+<!-- ================= HERO ================= -->
 <section class="relative overflow-hidden pt-8 pb-16 md:pt-14 md:pb-24">
   <div class="relative mx-auto max-w-site px-5 sm:px-8">
     <p class="font-cond uppercase tracking-[0.18em] text-[15px] font-semibold text-ink/75 mb-6">Апостиль</p>
@@ -168,22 +169,27 @@
       в&nbsp;MSZ, не стоїте в&nbsp;черзі і&nbsp;не берете відгул – досить фото документа у&nbsp;WhatsApp,
       а&nbsp;оригінал передаєте на зустрічі в&nbsp;центрі Варшави або надсилаєте пачкоматом.
     </p>
-    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="https://wa.me/48507588155" class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn">
-        Розрахувати документ <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
-      </a>
+    <!-- ссылка-стрелка привязана к абзацу (стоит сразу под ним), кнопки – ниже, после воздуха -->
+    <p class="hero-more">
       <a href="#ile-trwa" class="k-where-link k-where-link--dark">Скільки триває і&nbsp;скільки коштує
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
       </a>
+    </p>
+    <!-- главное действие – форма заявки (панель wyceny), перед ней мессенджеры; как в hero /kontakt/ (21.09.2026) -->
+    <div class="cta-btns hero-cta" role="group" aria-label="Замовте оцінку або напишіть у месенджер">
+      <a href="https://wa.me/48507588155?text=%D0%94%D0%BE%D0%B1%D1%80%D0%B8%D0%B9%20%D0%B4%D0%B5%D0%BD%D1%8C%2C%20%D0%BF%D0%BE%D1%82%D1%80%D1%96%D0%B1%D0%BD%D0%B0%20%D0%BE%D1%86%D1%96%D0%BD%D0%BA%D0%B0%20%D0%B0%D0%BF%D0%BE%D1%81%D1%82%D0%B8%D0%BB%D1%8F%2F%D0%BF%D0%B5%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%B4%D1%83" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="/ua/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Замовити оцінку<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
     </div>
   </div>
 </section>
 
+<!-- ================= CO TO JEST ================= -->
 <section id="co-to-jest" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ Штамп</p>
-    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
-      Що таке апостиль <span class="font-light italic">і&nbsp;коли він потрібен</span>
+    <h2 class="h2-swap tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
+      <span class="h2-a">Що таке апостиль</span> <span class="h2-b font-light italic">і&nbsp;коли він потрібен</span>
     </h2>
     <div class="ap-cols mt-8">
       <div>
@@ -218,11 +224,12 @@
   </div>
 </section>
 
+<!-- ================= TRZY DROGI ================= -->
 <section id="urzedy" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ Установи</p>
-    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
-      Хто ставить апостиль <span class="font-light italic">на ваш документ</span>
+    <h2 class="h2-swap tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
+      <span class="h2-a">Хто ставить апостиль</span> <span class="h2-b font-light italic">на ваш документ</span>
     </h2>
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
       Це визначає підпис на документі, а&nbsp;не його зміст. Більшість справ закінчується в&nbsp;MSZ,
@@ -234,8 +241,8 @@
       <div class="ap3">
         <div class="ap3-cell px-4 sm:px-6 py-7 lg:py-9">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Міністерство</span>
-          <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">MSZ</h3>
-          <p class="gdz-full">Відділ легалізації Міністерства закордонних справ, ul.&nbsp;Krucza 38/42</p>
+          <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Міністерство закордонних&nbsp;справ</h3>
+          <p class="gdz-full">Відділ легалізації MSZ, ul.&nbsp;Krucza 38/42</p>
           <p class="ap-desc">
             Апостиль у&nbsp;MSZ стосується актів цивільного стану з&nbsp;USC, довідок про несудимість
             з&nbsp;Національного кримінального реєстру, документів фірм, нотаріальних і&nbsp;судових документів
@@ -292,11 +299,12 @@
   </div>
 </section>
 
+<!-- ================= DOKUMENTY ================= -->
 <section id="dokumenty" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ Документи</p>
-    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
-      На які документи <span class="font-light italic">ставимо апостиль</span>
+    <h2 class="h2-swap tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
+      <span class="h2-a">На які документи</span> <span class="h2-b font-light italic">ставимо апостиль</span>
     </h2>
     <div class="ap-docs mt-8">
       <div class="ap-doc">
@@ -324,7 +332,7 @@
         <p>Апостиль можна поставити і&nbsp;на сам переклад – тоді він підтверджує підпис присяжного перекладача зі списку Міністра юстиції. Лише оригінал з&nbsp;підписом перекладача, ніколи копія. Замовляєте <a href="/ua/tlumaczenia-przysiegle/" class="underline font-semibold">переклад і&nbsp;апостиль</a> в&nbsp;одному замовленні.</p>
       </div>
     </div>
-    <p class="mt-8 text-[15px] leading-[1.6] text-ink/50 max-w-[70ch]">
+    <p class="mt-8 text-[15px] leading-[1.6] text-ink/70 max-w-[70ch]">
       Не ставимо апостиль на ксерокопії, ламіновані документи і&nbsp;документи без
       підпису уповноваженої особи. Якщо не впевнені, чи підходить ваш документ – надішліть фото,
       відповімо до замовлення.
@@ -332,6 +340,7 @@
   </div>
 </section>
 
+<!-- ================= ILE TRWA I KOSZTUJE ================= -->
 <section id="ile-trwa" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <div class="bg-sand text-ink rounded-[26px] p-7 sm:p-12">
@@ -357,22 +366,23 @@
             <li><span>Апостиль MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>&nbsp;zł</b></span></li>
             <li><span>Апостиль – окружний суд</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>&nbsp;zł</b></span></li>
             <li><span>Отримання документа KRK / KRS</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>&nbsp;zł</b></span></li>
-            <li><span>Присяжний переклад</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>&nbsp;zł</b></span> / сторінка</li>
+            <li><span>Присяжний переклад</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>&nbsp;zł</b></span> <span class="fp-unit">/ сторінка</span></span></span></li>
           </ul>
           <p class="text-[15px] leading-[1.6] text-ink/70 max-w-[40ch]">
             Ціни включають державні збори: 60&nbsp;zł у&nbsp;MSZ і&nbsp;26&nbsp;zł за підпис у&nbsp;суді.
             Остаточну суму називаємо після перегляду документа, зазвичай за&nbsp;15 хвилин.
             Повний <a href="/ua/cennik/#apostille" class="underline font-semibold">прайс на апостиль і&nbsp;переклади</a>.
           </p>
-          <a href="https://wa.me/48507588155" class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn btn-center">
+          <button type="button" data-quote class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn btn-center">
             Розрахувати документ <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
-          </a>
+          </button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ================= KOLEJNOŚĆ ================= -->
 <section id="kolejnosc" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ Черговість</p>
@@ -402,6 +412,7 @@
   </div>
 </section>
 
+<!-- ================= FAQ ================= -->
 <section id="faq" class="pb-28 md:pb-44">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ FAQ</p>
@@ -604,7 +615,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260923-25" defer></script>
+<script src="/assets/app.js?v=20260923-29" defer></script>
 
 </body>
 </html>

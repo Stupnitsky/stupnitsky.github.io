@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260923-25">
+<link rel="stylesheet" href="/styles.css?v=20260923-29">
 
 <script type="application/ld+json">
 {
@@ -171,6 +171,12 @@
       справу в&nbsp;Києві, готовий документ з&nbsp;апостилем повертається до Варшави, а&nbsp;присяжний переклад
       робимо тут. Якщо документа немає на руках – витребовуємо дублікат.
     </p>
+    <!-- ссылка-стрелка привязана к абзацу (стоит сразу под ним), кнопки – ниже, после воздуха -->
+    <p class="hero-more">
+      <a href="#sprawdz" class="k-where-link k-where-link--dark">Перевірте, який у&nbsp;вас сценарій
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
+      </a>
+    </p>
     <div class="mt-8 bg-terra text-ink rounded-[26px] p-7 sm:p-10">
       <p class="tracking-tightest leading-[1.05] text-[24px] sm:text-[30px] md:text-[34px] font-black max-w-[30ch]">
         Беремося за будь-яку справу. Якщо документ отримати неможливо, повертаємо передоплату –
@@ -182,13 +188,11 @@
         заяву. Ви ризикуєте виключно вартістю пересилання.
       </p>
     </div>
-    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="https://wa.me/48507588155?text=%D0%94%D0%BE%D0%B1%D1%80%D0%BE%D0%B3%D0%BE%20%D0%B4%D0%BD%D1%8F%2C%20%D0%BC%D0%B0%D1%8E%20%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%20%D0%B7%20%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B8%20%D0%BD%D0%B0%20%D0%B0%D0%BF%D0%BE%D1%81%D1%82%D0%B8%D0%BB%D1%8C" class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn">
-        Надіслати фото документа <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
-      </a>
-      <a href="#sprawdz" class="k-where-link k-where-link--dark">Перевірте, який у&nbsp;вас сценарій
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
-      </a>
+    <!-- главное действие – форма заявки (панель wyceny), перед ней мессенджеры; как в hero /kontakt/ (21.09.2026) -->
+    <div class="cta-btns hero-cta" role="group" aria-label="Замовте оцінку або напишіть у месенджер">
+      <a href="https://wa.me/48507588155?text=%D0%94%D0%BE%D0%B1%D1%80%D0%BE%D0%B3%D0%BE%20%D0%B4%D0%BD%D1%8F%2C%20%D0%BC%D0%B0%D1%8E%20%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%20%D0%B7%20%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B8%20%D0%BD%D0%B0%20%D0%B0%D0%BF%D0%BE%D1%81%D1%82%D0%B8%D0%BB%D1%8C" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="/ua/#wycena" class="cta-btn cta-btn--main">Замовити оцінку<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -216,7 +220,7 @@
           <dl class="gdz-meta">
             <div><dt>Термін</dt><dd>2–3 тижні, документи про освіту близько 2&nbsp;тижнів</dd></div>
           </dl>
-          <p class="slab-price"><span>Апостиль</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> / документ</p>
+          <p class="slab-price"><span>Апостиль</span><span class="sp-val"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / документ</span></p>
         </div>
         <div class="ap3-cell px-4 sm:px-6 py-7 lg:py-9">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Сценарій 2</span>
@@ -226,7 +230,7 @@
           <dl class="gdz-meta">
             <div><dt>Термін</dt><dd>5–6 тижнів разом</dd></div>
           </dl>
-          <p class="slab-price"><span>Дублікат + апостиль</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>&nbsp;zł</b></span></p>
+          <p class="slab-price"><span>Дублікат + апостиль</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span></p>
         </div>
         <div class="ap3-cell px-4 sm:px-6 py-7 lg:py-9">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Сценарій 3</span>
@@ -236,7 +240,7 @@
           <dl class="gdz-meta">
             <div><dt>Термін</dt><dd>від 3 тижнів дублікат, 5–6 тижнів з&nbsp;апостилем</dd></div>
           </dl>
-          <p class="slab-price"><span>Витребування документа</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> / документ</p>
+          <p class="slab-price"><span>Витребування документа</span><span class="sp-val"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / документ</span></p>
         </div>
       </div>
       <div class="gdz-note">
@@ -275,9 +279,9 @@
         </div>
         <div class="col-span-12 lg:col-span-5 flex flex-col justify-end gap-4">
           <ul class="faq-price">
-            <li><span>Диплом або атестат</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span></li>
-            <li><span>Додаток з&nbsp;оцінками</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span></li>
-            <li><span>Диплом + додаток</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>&nbsp;zł</b></span></li>
+            <li><span>Диплом або атестат</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span></li>
+            <li><span>Додаток з&nbsp;оцінками</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span></li>
+            <li><span>Диплом + додаток</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span></li>
           </ul>
           <p class="text-[15px] leading-[1.6] text-ink/70 max-w-[40ch]">
             Для документів про освіту потрібна ваша згода на обробку персональних даних – зразок надсилаємо разом
@@ -399,7 +403,7 @@
       <ol class="kt-steps-list">
         <li><b>Фото і&nbsp;опис.</b> Надсилаєте фото документа (якщо є), внутрішнього паспорта України, ідентифікаційний код і&nbsp;адресу реєстрації в&nbsp;Україні. Пишете, для чого документ потрібен у&nbsp;Польщі.</li>
         <li><b>Перевірка і&nbsp;розрахунок.</b> Перевіряємо рік видачі, стан печатки, ламінат – і&nbsp;кажемо, чи це апостиль одразу, чи спочатку дублікат. Називаємо кінцеву ціну і&nbsp;термін.</li>
-        <li><b>Передоплата.</b> Переказ або BLIK. У&nbsp;архівних справах з&nbsp;прифронтових територій – передоплата повертається в&nbsp;разі відмови, крім вартості пересилання.</li>
+        <li><b>Оплата наперед.</b> BLIK, переказ або готівка. У&nbsp;архівних справах з&nbsp;прифронтових територій – передоплата повертається в&nbsp;разі відмови, крім вартості пересилання.</li>
         <li><b>Оригінал.</b> Передаєте на зустрічі в&nbsp;центрі Варшави або надсилаєте пачкоматом. Якщо документа немає – цей крок пропускаєте. Довіреність не потрібна.</li>
         <li><b>Україна і&nbsp;повернення.</b> Документ їде Новою Поштою до Києва, отримує апостиль (або спочатку дублікат), повертається до Варшави. Повідомляємо про кожен етап.</li>
         <li><b>Переклад і&nbsp;видача.</b> Присяжний перекладач перекладає документ разом зі штампом. Комплект забираєте особисто або пачкоматом – готовий до подання в&nbsp;установу.</li>
@@ -532,9 +536,9 @@
     </div>
 
     <p class="mt-8 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-      Запитання про польський апостиль – на сторінці <a href="/ua/apostille/" class="underline font-semibold">апостиль</a>,
-      про переклади – <a href="/ua/tlumaczenia-przysiegle/" class="underline font-semibold">присяжні переклади</a>,
-      про видачу й оплату – <a href="/ua/kontakt/" class="underline font-semibold">контакти</a>.
+      Запитання про польський апостиль – на сторінці <a href="/ua/apostille/#faq" class="underline font-semibold">апостиль</a>,
+      про переклади – <a href="/ua/tlumaczenia-przysiegle/#faq" class="underline font-semibold">присяжні переклади</a>,
+      про видачу й оплату – <a href="/ua/kontakt/#faq" class="underline font-semibold">контакти</a>.
     </p>
   </div>
 </section>
@@ -619,7 +623,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260923-25" defer></script>
+<script src="/assets/app.js?v=20260923-29" defer></script>
 
 </body>
 </html>

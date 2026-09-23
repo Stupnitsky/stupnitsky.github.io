@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260923-25">
+<link rel="stylesheet" href="/styles.css?v=20260923-29">
 
 <script type="application/ld+json">
 {
@@ -159,22 +159,34 @@
 
 <main>
 
+<!-- ================= HERO ================= -->
 <section class="relative overflow-hidden pt-8 pb-16 md:pt-14 md:pb-24">
   <div class="relative mx-auto max-w-site px-5 sm:px-8">
     <p class="font-cond uppercase tracking-[0.18em] text-[15px] font-semibold text-ink/75 mb-6">Апостиль</p>
     <h1 class="tracking-tightest leading-[0.95] text-[36px] sm:text-[52px] md:text-[64px] font-black h1-page">Апостиль в&nbsp;Варшаве – MSZ и&nbsp;окружной суд, весь процесс удалённо</h1>
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">Забираем документ, подаём его в&nbsp;нужное учреждение и&nbsp;следим за сроком. Вы не записываетесь в&nbsp;MSZ, не стоите в&nbsp;очереди и&nbsp;не берёте отгул – достаточно фото документа в&nbsp;WhatsApp, а&nbsp;оригинал передаёте на встрече в&nbsp;центре Варшавы или отправляете пачкоматом.</p>
-    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="https://wa.me/48507588155" class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn">Рассчитать документ <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></a>
-      <a href="#ile-trwa" class="k-where-link k-where-link--dark">Сколько длится и&nbsp;сколько стоит<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></a>
+    <!-- ссылка-стрелка привязана к абзацу (стоит сразу под ним), кнопки – ниже, после воздуха -->
+    <p class="hero-more">
+      <a href="#ile-trwa" class="k-where-link k-where-link--dark">Сколько длится и&nbsp;сколько стоит
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
+      </a>
+    </p>
+    <!-- главное действие – форма заявки (панель wyceny), перед ней мессенджеры; как в hero /kontakt/ (21.09.2026) -->
+    <div class="cta-btns hero-cta" role="group" aria-label="Закажите оценку или напишите в мессенджер">
+      <a href="https://wa.me/48507588155?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%BD%D1%83%D0%B6%D0%BD%D0%B0%20%D0%BE%D1%86%D0%B5%D0%BD%D0%BA%D0%B0%20%D0%B0%D0%BF%D0%BE%D1%81%D1%82%D0%B8%D0%BB%D1%8F%2F%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%D0%B0" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="/ru/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Заказать оценку<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
     </div>
   </div>
 </section>
 
+<!-- ================= CO TO JEST ================= -->
 <section id="co-to-jest" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ Штамп</p>
-    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">Что такое апостиль <span class="font-light italic">и&nbsp;когда он нужен</span></h2>
+    <h2 class="h2-swap tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
+      <span class="h2-a">Что такое апостиль</span> <span class="h2-b font-light italic">и&nbsp;когда он нужен</span>
+    </h2>
     <div class="ap-cols mt-8">
       <div>
         <p class="text-[17px] leading-[1.6] text-ink/75">Апостиль – это штамп, которым учреждение страны, выдавшей документ, подтверждает подлинность подписи, печати и&nbsp;должности подписавшего. Его ввела Гаагская конвенция от 5&nbsp;октября 1961&nbsp;года; Польша применяет её с&nbsp;2005&nbsp;года. Документ с&nbsp;апостилем признают во всех странах конвенции – сегодня это более 120 государств, включая весь Европейский союз, Великобританию, США, Украину, Турцию и&nbsp;Израиль – без дополнительной легализации в&nbsp;консульстве.</p>
@@ -188,17 +200,20 @@
   </div>
 </section>
 
+<!-- ================= TRZY DROGI ================= -->
 <section id="urzedy" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ Учреждения</p>
-    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">Кто ставит апостиль <span class="font-light italic">на ваш документ</span></h2>
+    <h2 class="h2-swap tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
+      <span class="h2-a">Кто ставит апостиль</span> <span class="h2-b font-light italic">на ваш документ</span>
+    </h2>
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">Это определяет подпись на документе, а&nbsp;не его содержание. Большинство дел заканчивается в&nbsp;MSZ, но документ от нотариуса или из&nbsp;суда должен сначала пройти окружной суд, а&nbsp;справку из&nbsp;KRK или выписку из&nbsp;KRS нужно сначала вообще получить.</p>
     <div class="slab gdz mt-9 md:mt-12 bg-ink text-paper rounded-[9px] px-2 sm:px-4 py-2 sm:py-3">
       <div class="ap3">
         <div class="ap3-cell px-4 sm:px-6 py-7 lg:py-9">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Министерство</span>
-          <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">MSZ</h3>
-          <p class="gdz-full">Отдел легализации Министерства иностранных дел, ul.&nbsp;Krucza 38/42</p>
+          <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Министерство иностранных&nbsp;дел</h3>
+          <p class="gdz-full">Отдел легализации MSZ, ul.&nbsp;Krucza 38/42</p>
           <p class="ap-desc">Апостиль в&nbsp;MSZ касается актов гражданского состояния из&nbsp;USC, справок о&nbsp;несудимости из&nbsp;Национального уголовного реестра, документов фирм, нотариальных и&nbsp;судебных документов после заверения в&nbsp;суде и&nbsp;присяжных переводов. Министерство принимает исключительно по записи – подаём и&nbsp;забираем документы лично, так что клиент ничего не бронирует и&nbsp;всё дело решает удалённо.</p>
           <dl class="gdz-meta"><div><dt>Срок</dt><dd>1–3 рабочих дня, экспресс в тот же день</dd></div><div><dt>Сбор</dt><dd><b class="gdz-fee">60&nbsp;zł</b> за&nbsp;документ – в&nbsp;нашей цене</dd></div></dl>
           <p class="slab-price"><span>Апостиль MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>&nbsp;zł</b></span></p>
@@ -225,10 +240,13 @@
   </div>
 </section>
 
+<!-- ================= DOKUMENTY ================= -->
 <section id="dokumenty" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ Документы</p>
-    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">На какие документы <span class="font-light italic">ставим апостиль</span></h2>
+    <h2 class="h2-swap tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
+      <span class="h2-a">На какие документы</span> <span class="h2-b font-light italic">ставим апостиль</span>
+    </h2>
     <div class="ap-docs mt-8">
       <div class="ap-doc"><h3>Акты гражданского состояния</h3><p>Свидетельство о рождении, браке, смерти, справка о семейном положении или о праве на брак. Апостиль ставится на выписку, выданную USC – полную или сокращённую, также многоязычную. Выписка не может быть ксерокопией.</p></div>
       <div class="ap-doc"><h3>Справка о&nbsp;несудимости</h3><p>Из&nbsp;Национального уголовного реестра, для работы и&nbsp;проживания за границей. Получаем её от имени клиента, делаем присяжный перевод и&nbsp;ставим апостиль – в&nbsp;одном заказе.</p></div>
@@ -237,10 +255,11 @@
       <div class="ap-doc"><h3>Судебные документы</h3><p>Решения о разводе, определения о наследстве, выписки из решений. Заверяет их окружной суд, апостиль ставит MSZ. Для расчёта нужно фото каждой страницы с&nbsp;подписью и&nbsp;печатью.</p></div>
       <div class="ap-doc"><h3>Присяжные переводы</h3><p>Апостиль можно поставить и&nbsp;на сам перевод – тогда он подтверждает подпись присяжного переводчика из списка Министра юстиции. Только оригинал с&nbsp;подписью переводчика, никогда копия. Заказываете <a href="/ru/tlumaczenia-przysiegle/" class="underline font-semibold">перевод и&nbsp;апостиль</a> в&nbsp;одном заказе.</p></div>
     </div>
-    <p class="mt-8 text-[15px] leading-[1.6] text-ink/50 max-w-[70ch]">Не ставим апостиль на ксерокопии, ламинированные документы и&nbsp;документы без подписи уполномоченного лица. Если не уверены, подходит ли ваш документ – пришлите фото, ответим до заказа.</p>
+    <p class="mt-8 text-[15px] leading-[1.6] text-ink/70 max-w-[70ch]">Не ставим апостиль на ксерокопии, ламинированные документы и&nbsp;документы без подписи уполномоченного лица. Если не уверены, подходит ли ваш документ – пришлите фото, ответим до заказа.</p>
   </div>
 </section>
 
+<!-- ================= ILE TRWA I KOSZTUJE ================= -->
 <section id="ile-trwa" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <div class="bg-sand text-ink rounded-[26px] p-7 sm:p-12">
@@ -256,16 +275,17 @@
             <li><span>Апостиль MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>&nbsp;zł</b></span></li>
             <li><span>Апостиль – окружной суд</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>&nbsp;zł</b></span></li>
             <li><span>Получение документа KRK / KRS</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>&nbsp;zł</b></span></li>
-            <li><span>Присяжный перевод</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>&nbsp;zł</b></span> / страница</li>
+            <li><span>Присяжный перевод</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>&nbsp;zł</b></span> <span class="fp-unit">/ страница</span></span></span></li>
           </ul>
           <p class="text-[15px] leading-[1.6] text-ink/70 max-w-[40ch]">Цены включают государственные сборы: 60&nbsp;zł в&nbsp;MSZ и&nbsp;26&nbsp;zł за подпись в&nbsp;суде. Окончательную сумму называем после просмотра документа, обычно за&nbsp;15 минут. Полный <a href="/ru/cennik/#apostille" class="underline font-semibold">прайс на апостиль и&nbsp;переводы</a>.</p>
-          <a href="https://wa.me/48507588155" class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn btn-center">Рассчитать документ <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></a>
+          <button type="button" data-quote class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn btn-center">Рассчитать документ <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></button>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ================= KOLEJNOŚĆ ================= -->
 <section id="kolejnosc" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ Очерёдность</p>
@@ -277,6 +297,7 @@
   </div>
 </section>
 
+<!-- ================= FAQ ================= -->
 <section id="faq" class="pb-28 md:pb-44">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ FAQ</p>
@@ -376,7 +397,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260923-25" defer></script>
+<script src="/assets/app.js?v=20260923-29" defer></script>
 
 </body>
 </html>

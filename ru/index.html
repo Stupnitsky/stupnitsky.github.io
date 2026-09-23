@@ -4,41 +4,59 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- ============================================================
+     APOSTILO – one-page landing
+     Замените перед публикацией:
+       1) https://apostilo.pl        – реальный домен
+       2) 48507588155                – номер WhatsApp (без + и пробелов)
+       3) +48 507 588 155            – телефон для отображения
+       4) https://t.me/apostilo      – Telegram
+       5) FORM_ENDPOINT в <form>     – Formspree / Web3Forms / свой backend
+       6) /og-image.jpg              – картинка превью 1200x630
+     ============================================================ -->
+
 <title>Апостиль и присяжные переводы в Варшаве | Apostilo</title>
-<meta name="description" content="Апостиль MSZ и суда, документы из Украины без выезда, присяжные переводы UA/RU/EN. Расчёт по фото документа, встреча в центре Варшавы или InPost.">
+<meta name="description" content="Апостиль в Варшаве дистанционно: MSZ, окружной суд, KRK и KRS. Присяжные переводы PL, UA, RU, EN. Экспресс-расчёт, встреча в центре Варшавы или InPost.">
+<meta name="keywords" content="апостиль Варшава, апостиль на документы из Украины, присяжный перевод Варшава, присяжный переводчик русского, апостиль MSZ, карта побыта документы, легализация документов Польша">
 <link rel="canonical" href="https://apostilo.pl/ru/">
 <link rel="alternate" hreflang="pl" href="https://apostilo.pl/">
 <link rel="alternate" hreflang="uk" href="https://apostilo.pl/ua/">
 <link rel="alternate" hreflang="ru" href="https://apostilo.pl/ru/">
 <link rel="alternate" hreflang="en" href="https://apostilo.pl/en/">
 <link rel="alternate" hreflang="x-default" href="https://apostilo.pl/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <meta name="author" content="Apostilo">
 <meta name="geo.region" content="PL-MZ">
 <meta name="geo.placename" content="Warszawa">
 
+<!-- Open Graph – превью в WhatsApp, Telegram, Facebook, Instagram -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Apostilo">
 <meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="uk_UA">
+<meta property="og:locale:alternate" content="pl_PL">
+<meta property="og:locale:alternate" content="en_GB">
 <meta property="og:url" content="https://apostilo.pl/ru/">
-<meta property="og:title" content="Апостиль и присяжные переводы в Варшаве | Apostilo">
-<meta property="og:description" content="Апостиль MSZ и суда, документы из Украины без выезда, присяжные переводы UA/RU/EN. Расчёт по фото документа, встреча в центре Варшавы или InPost.">
+<meta property="og:title" content="Апостиль и присяжные переводы в Варшаве – всё дело решаете дистанционно | Apostilo">
+<meta property="og:description" content="Оформляем апостиль в MSZ и окружном суде, получаем документы из KRK и KRS и делаем присяжные переводы. Расчёт за 15 минут, встреча в центре Варшавы или пересылка InPost.">
 <meta property="og:image" content="https://apostilo.pl/og-image.jpg">
+<meta property="og:image:secure_url" content="https://apostilo.pl/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Apostilo – апостиль и присяжные переводы в Варшаве">
+
+<!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="keywords" content="апостиль Варшава, апостиль на документы из Украины, присяжный перевод Варшава, присяжный переводчик русский, карта побыта документы, легализация документов Польша">
+<meta name="twitter:title" content="Апостиль и присяжные переводы в Варшаве – всё дело решаете дистанционно">
+<meta name="twitter:description" content="Апостиль MSZ и окружной суд, документы из KRK и KRS. Присяжные переводы PL/UA/RU/EN. Экспресс-расчёт.">
+<meta name="twitter:image" content="https://apostilo.pl/og-image.jpg">
 
 <!-- Тема браузера на мобильных -->
 <meta name="theme-color" content="#F1F1EF" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1F2120" media="(prefers-color-scheme: dark)">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260923-25">
-
+<!-- Структурированные данные: доверие для Google Ads и rich snippets -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -69,7 +87,7 @@
   "availableLanguage": ["pl", "uk", "ru", "en", "it"],
   "knowsLanguage": ["pl", "uk", "ru", "en", "it"],
   "currenciesAccepted": "PLN",
-  "paymentAccepted": "Przelew bankowy, BLIK",
+  "paymentAccepted": "BLIK, przelew bankowy, gotówka",
   "openingHoursSpecification": [{
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
@@ -101,7 +119,7 @@
   "inLanguage": "ru",
   "mainEntity": [
     { "@type": "Question", "name": "Сколько стоит апостиль и перевод?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Апостиль MSZ: 260 zł; Апостиль – окружной суд: 120 zł; Присяжный перевод: 90 zł / страница = 1125 знаков с пробелами; Апостиль Украина: 550 zł / документ; Истребование документа из Украины: 550 zł / документ. Цены включают государственные и судебные сборы. От 6 страниц перевода – скидка 10%. Окончательную сумму называем после просмотра документа – обычно за 15 минут." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Апостиль MSZ: 260 zł; Апостиль – окружной суд: 120 zł; Присяжный перевод: 90 zł / страница = 1125 знаков с пробелами; Апостиль Украина: 550 zł / документ; Истребование документа из Украины: 550 zł / документ. Цены включают государственные сборы. От 6 страниц перевода даём скидку 10%. Окончательную сумму называем после просмотра документа – обычно за 15 минут." } },
     { "@type": "Question", "name": "Сделаете апостиль на документы из Украины?",
       "acceptedAnswer": { "@type": "Answer", "text": "Да, без выезда клиента из Польши: апостиль 550 zł за документ, дубликат свидетельства до 2016 года плюс апостиль 1 100 zł." } },
     { "@type": "Question", "name": "Сколько длится апостиль в Варшаве?",
@@ -113,6 +131,13 @@
   ]
 }
 </script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/tailwind.css">
+<link rel="stylesheet" href="/styles.css?v=20260923-29">
 </head>
 
 <body class="font-sans antialiased">
@@ -192,6 +217,8 @@
 
 <!-- ================= HERO ================= -->
 <section class="relative overflow-hidden pt-8 pb-16 md:pt-14 md:pb-24">
+  <!-- геометрия фона -->
+
   <div class="relative mx-auto max-w-site px-5 sm:px-8">
 
     <p class="font-cond uppercase tracking-[0.18em] text-[15px] font-semibold text-ink/75 mb-6">
@@ -200,6 +227,7 @@
 
     <div class="grid grid-cols-12 gap-y-10 md:gap-x-6 items-end">
 
+      <!-- Заголовок: асимметричная колонка -->
       <div class="col-span-12 lg:col-span-7">
         <h1 class="tracking-tightest leading-[0.92] text-[42px] sm:text-[64px] md:text-[86px] lg:text-[96px] font-black">
           Апостиль<br>
@@ -209,7 +237,7 @@
             <span class="swap-b" aria-hidden="true">Консульские</span>
           </span><br>
           <span class="font-light italic">в&nbsp;Варшаве</span>
-          <span class="hero-sub hero-sub-in">Весь&nbsp;процесс&nbsp;удалённо</span>
+          <span class="hero-sub hero-sub-in">Весь&nbsp;процесс&nbsp;дистанционно</span>
         </h1>
 
         <p class="mt-8 text-[19px] md:text-[21px] leading-[1.45] text-ink/80 max-w-[46ch]">
@@ -218,18 +246,20 @@
         </p>
       </div>
 
+      <!-- Подзаголовок + CTA -->
       <div class="col-span-12 lg:col-span-5">
 
+        <!-- языки: автоматически движущийся список с указателем -->
         <div class="hero-langs mb-[72px] hidden lg:flex justify-center max-w-[380px]">
           <div class="lang-ticker" id="lang-ticker">
             <a href="#jezyki" class="lang-t-arrow" aria-label="Перейти к списку языков перевода"><svg aria-hidden="true" viewBox="0 0 24 24" class="chip-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></a>
             <div class="lang-t-view">
               <ul class="lang-t-list">
-                <li class="lang-t-item text-[36px] xl:text-[48px] font-bold tracking-tightest">Русский</li>
                 <li class="lang-t-item text-[36px] xl:text-[48px] font-bold tracking-tightest">Polski</li>
                 <li class="lang-t-item text-[36px] xl:text-[48px] font-bold tracking-tightest">Українська</li>
                 <li class="lang-t-item text-[36px] xl:text-[48px] font-bold tracking-tightest">English</li>
                 <li class="lang-t-item text-[36px] xl:text-[48px] font-bold tracking-tightest">Deutsch</li>
+                <li class="lang-t-item text-[36px] xl:text-[48px] font-bold tracking-tightest">Русский</li>
                 <li class="lang-t-item text-[36px] xl:text-[48px] font-bold tracking-tightest">Français</li>
                 <li class="lang-t-item text-[36px] xl:text-[48px] font-bold tracking-tightest">Italiano</li>
                 <li class="lang-t-item text-[36px] xl:text-[48px] font-bold tracking-tightest">Беларуская</li>
@@ -241,10 +271,10 @@
         </div>
 
         <div class="mt-8 flex justify-center">
-          <a href="#wycena"
-             class="flex w-full max-w-[380px] whitespace-nowrap items-center justify-center rounded-[12px] px-7 py-[18px] text-[22px] md:text-[25px] font-bold tracking-tight btn">
+          <a href="/ru/cennik/#wycena" data-quote
+             class="flex w-full max-w-[380px] whitespace-nowrap items-center justify-center rounded-[12px] px-7 py-[18px] text-[22px] md:text-[25px] font-bold tracking-tight btn btn--pop">
             Рассчитать стоимость
-            <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
+<span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
           </a>
         </div>
 
@@ -253,34 +283,40 @@
           <span class="price-hit text-ink/60">Перевод <b class="font-bold text-ink"><span class="price-num" data-price="90">90</span>&nbsp;zł</b> / страница</span>
         </p>
 
-        <p class="mt-5 text-[14px] text-ink/55 leading-relaxed text-center">
+        <p class="mt-5 text-[14px] text-ink/70 leading-relaxed text-center">
           Заявки принимаем <span class="font-semibold text-ink/80">24/7</span> – отвечаем с&nbsp;7:00 до 21:00.<br>
-          Обслуживание на русском, украинском, польском и английском.
+          Обслуживание на русском, польском, украинском и&nbsp;английском.
         </p>
       </div>
     </div>
 
+    <!-- Плита с институтами -->
     <div class="slab mt-14 md:mt-20 bg-ink text-paper rounded-[9px] px-2 sm:px-4 py-2 sm:py-3">
       <div id="slab-grid" class="slab-grid relative grid grid-cols-2 md:grid-cols-4">
         <span class="slab-bg" aria-hidden="true"></span>
-        <button type="button" class="slab-cell px-4 sm:px-6 py-6 md:py-8 text-left" data-slab="0" aria-expanded="false" aria-controls="slab-panel-0">
+        <button type="button" class="slab-cell px-4 sm:px-6 py-6 md:py-8 text-left"
+                data-slab="0" aria-expanded="false" aria-controls="slab-panel-0">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Министерство</span>
           <span class="slab-name block text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">MSZ</span>
         </button>
-        <button type="button" class="slab-cell px-4 sm:px-6 py-6 md:py-8 text-left" data-slab="1" aria-expanded="false" aria-controls="slab-panel-1">
+        <button type="button" class="slab-cell px-4 sm:px-6 py-6 md:py-8 text-left"
+                data-slab="1" aria-expanded="false" aria-controls="slab-panel-1">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Суды</span>
           <span class="slab-name block text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Окружной&nbsp;суд</span>
         </button>
-        <button type="button" class="slab-cell px-4 sm:px-6 py-6 md:py-8 text-left" data-slab="2" aria-expanded="false" aria-controls="slab-panel-2">
+        <button type="button" class="slab-cell px-4 sm:px-6 py-6 md:py-8 text-left"
+                data-slab="2" aria-expanded="false" aria-controls="slab-panel-2">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Справки</span>
           <span class="slab-name block text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">KRK&nbsp;/&nbsp;KRS</span>
         </button>
-        <button type="button" class="slab-cell px-4 sm:px-6 py-6 md:py-8 text-left" data-slab="3" aria-expanded="false" aria-controls="slab-panel-3">
+        <button type="button" class="slab-cell px-4 sm:px-6 py-6 md:py-8 text-left"
+                data-slab="3" aria-expanded="false" aria-controls="slab-panel-3">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Украина</span>
           <span class="slab-name block text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Апостиль&nbsp;Украина</span>
         </button>
       </div>
 
+      <!-- описания: текст всегда в разметке для поисковых систем -->
       <div id="slab-collapse" class="slab-collapse">
        <div class="slab-collapse-clip">
         <div class="slab-panels px-4 sm:px-6">
@@ -291,7 +327,7 @@
           <div class="slab-panel-clip">
             <div class="slab-panel-in">
               <h3 class="text-[19px] md:text-[22px] font-bold tracking-tight mb-3">MSZ – Министерство иностранных дел Польши</h3>
-              <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Акты гражданского состояния, справки KRK, документы фирм и&nbsp;присяжные переводы. Подаём и&nbsp;забираем лично – клиент не записывается в&nbsp;MSZ. <a href="/ru/apostille/" class="underline">Подробнее об апостиле</a>.</p>
+              <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Акты гражданского состояния, справки из&nbsp;KRK, документы фирм и&nbsp;присяжные переводы. Подаём и&nbsp;забираем лично – клиент не записывается в&nbsp;MSZ. <a href="/ru/apostille/" class="underline">Подробнее об&nbsp;апостиле</a>.</p>
               <p class="slab-price"><span>Апостиль MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>&nbsp;zł</b></span></p>
             </div>
           </div>
@@ -300,7 +336,7 @@
           <div class="slab-panel-clip">
             <div class="slab-panel-in">
               <h3 class="text-[19px] md:text-[22px] font-bold tracking-tight mb-3">Окружной суд в&nbsp;Варшаве</h3>
-              <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Заверение подписи нотариуса и&nbsp;судебных документов – шаг перед апостилем в&nbsp;MSZ. Ведём весь путь: суд, затем министерство. <a href="/ru/apostille/#urzedy" class="underline">Подробнее</a>.</p>
+              <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Заверение подписи нотариуса и&nbsp;судебных документов – шаг перед апостилем в&nbsp;MSZ. Ведём весь путь: суд, потом министерство. <a href="/ru/apostille/#urzedy" class="underline">Подробнее</a>.</p>
               <p class="slab-price"><span>Окружной суд</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>&nbsp;zł</b></span></p>
             </div>
           </div>
@@ -309,7 +345,7 @@
           <div class="slab-panel-clip">
             <div class="slab-panel-in">
               <h3 class="text-[19px] md:text-[22px] font-bold tracking-tight mb-3">Справка KRK&nbsp;/&nbsp;выписка KRS</h3>
-              <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Справка о&nbsp;несудимости из KRK, выписки из KRS – получаем от имени клиента и&nbsp;ставим апостиль в&nbsp;MSZ. <a href="/ru/apostille/#urzedy" class="underline">Подробнее</a>.</p>
+              <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Справка о несудимости из&nbsp;KRK, выписки из&nbsp;KRS – получаем от имени клиента и&nbsp;ставим апостиль в&nbsp;MSZ. <a href="/ru/apostille/#urzedy" class="underline">Подробнее</a>.</p>
               <p class="slab-price"><span>Получение документа</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>&nbsp;zł</b></span></p>
             </div>
           </div>
@@ -318,10 +354,10 @@
           <div class="slab-panel-clip">
             <div class="slab-panel-in">
               <h3 class="text-[19px] md:text-[22px] font-bold tracking-tight mb-3">Апостиль Украина</h3>
-              <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Свидетельства, дипломы и&nbsp;аттестаты из Украины – апостиль через партнёра на месте, дубликаты свидетельств до 2016 года, перевод в&nbsp;Варшаве. Клиент не выезжает из Польши. <a href="/ru/apostille-ukraina/" class="underline">Подробнее</a>.</p>
-              <p class="slab-price"><span>Апостиль Украина</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> / документ</p>
-              <p class="slab-price"><span>Истребование документа из&nbsp;Украины</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> / документ</p>
-              <p class="text-[15px] leading-[1.6] text-paper/55 mt-3 max-w-[92ch]">Свидетельство, выданное до 2016&nbsp;года или в&nbsp;советское время, апостиль не принимает – сначала получаем новое, потом апостиль. Это два этапа, вместе 1&nbsp;100&nbsp;zł. Присяжный перевод не входит; доставка в&nbsp;Польшу – да.</p>
+              <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Свидетельства, дипломы и&nbsp;аттестаты из&nbsp;Украины – апостиль через партнёра на месте, дубликаты свидетельств до 2016 года, перевод в&nbsp;Варшаве. Клиент не выезжает из&nbsp;Польши. <a href="/ru/apostille-ukraina/" class="underline">Подробнее</a>.</p>
+              <p class="slab-price"><span>Апостиль Украина</span><span class="sp-val"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> / документ</span></p>
+              <p class="slab-price"><span>Истребование документа из&nbsp;Украины</span><span class="sp-val"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> / документ</span></p>
+              <p class="text-[15px] leading-[1.6] text-paper/55 mt-3 max-w-[92ch]">На свидетельство, выданное до 2016&nbsp;года или во времена СССР, апостиль не ставят – сначала получаем новое, потом апостиль. Это два этапа, вместе 1&nbsp;100&nbsp;zł. Присяжный перевод не входит в&nbsp;цену, доставка в&nbsp;Польшу – входит.</p>
             </div>
           </div>
         </div>
@@ -331,7 +367,6 @@
     </div>
   </div>
 </section>
-
 <!-- ================= TICKER ================= -->
 <div class="ticker-bar bg-terra overflow-hidden py-4" aria-hidden="true">
   <div class="ticker-track">
@@ -384,14 +419,14 @@
       <div class="col-span-12 lg:col-span-7 s247-col">
         <h2 id="zawsze" class="tracking-tightest leading-[0.9] text-[44px] sm:text-[68px] lg:text-[82px] font-black">
           <span class="text-ochre">24/7.</span><br>
-          Пришлите документ.<br>
+          Отправьте документ.<br>
           <span class="font-medium italic slide-words"><span class="slide-in">Посчитаем.</span> <span class="slide-in">Ответим.</span></span>
         </h2>
 
         <div class="k-where">
           <div class="k-where-item">
-            <span class="k-where-h">Варшава – Центр</span>
-            <span class="k-where-t">Документы принимаем и&nbsp;выдаём на встрече на ул.&nbsp;Kruczej – там, где MSZ принимает документы на&nbsp;легализацию.</span>
+            <span class="k-where-h">Варшава – Средместье</span>
+            <span class="k-where-t">Документы принимаем и&nbsp;выдаём на встрече у&nbsp;ул.&nbsp;Krucza – там, где MSZ принимает документы на&nbsp;легализацию.</span>
           </div>
           <div class="k-where-item">
             <span class="k-where-h">Вся Польша и&nbsp;заграница</span>
@@ -399,31 +434,41 @@
           </div>
         </div>
 
-        <a href="/ru/kontakt/" class="k-where-link">Выдача, пересылка и адреса учреждений
+        <a href="/ru/kontakt/" class="k-where-link">Выдача, пересылка и&nbsp;адреса учреждений
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
         </a>
+
       </div>
 
       <div class="col-span-12 lg:col-span-5 s247-aside">
         <div id="ws" class="ws">
-          <div class="ws-clockbox" tabindex="0" role="group" aria-label="Время в Варшаве – показать часы работы">
+          <div class="ws-clockbox" tabindex="0" role="group"
+               aria-label="Время в Варшаве – показать часы работы">
             <div class="ws-timeblock">
               <p class="ws-date">--</p>
-              <p class="ws-clock" title="Время в Варшаве"><span class="ws-hm">--:--</span><span class="ws-sec">--</span></p>
+              <p class="ws-clock" title="Время в Варшаве">
+                <span class="ws-hm">--:--</span><span class="ws-sec">--</span>
+              </p>
             </div>
             <div class="ws-meta">
               <p class="ws-tz"><span class="ws-tz-city">Варшава</span><span class="ws-tz-off">UTC+1</span><span class="ws-tz-dst">зимнее время</span></p>
-              <p class="ws-top"><span class="ws-dot" aria-hidden="true"></span><span class="ws-state">Проверяю часы…</span></p>
+              <p class="ws-top">
+                <span class="ws-dot" aria-hidden="true"></span>
+                <span class="ws-state">Проверяю часы…</span>
+              </p>
             </div>
             <div class="ws-hours-wrap">
               <ul class="ws-hours">
-                <li><span>Пн–Пт</span><span>7:00–21:00</span></li>
+                <li><span>Пн–Пт</span><span>7:00 – 21:00</span></li>
                 <li><span>Суббота</span><span class="ws-soft">по договорённости</span></li>
                 <li><span>Воскресенье</span><span class="ws-off">выходной</span></li>
               </ul>
             </div>
           </div>
           <p class="ws-msg">местное время</p>
+
+
+          <!-- календарь: красным обведены дни, когда министерства и урядЫ не работают -->
           <div class="cal" id="cal">
             <div class="cal-head">
               <span class="cal-title"> – </span>
@@ -434,22 +479,34 @@
             </div>
             <div class="cal-grid" role="grid"></div>
             <span class="cal-tip" role="status" aria-live="polite"></span>
-            <p class="cal-note"><i aria-hidden="true"></i><span>Государственные выходные – MSZ, суды и учреждения не работают.</span></p>
+            <p class="cal-note"><i aria-hidden="true"></i><span>Государственные выходные – MSZ, суды и&nbsp;учреждения не работают.</span></p>
           </div>
-          <a href="#wycena" class="ws-cta">Рассчитать сейчас<span class="ws-cta-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></a>
+          <a href="/ru/cennik/#wycena" data-quote class="ws-cta">Рассчитать сейчас<span class="ws-cta-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></a>
         </div>
       </div>
+
     </div>
 
+    <!-- нижняя строка блока: слева текст, справа юридические тексты -->
     <div class="s247-bottom grid grid-cols-12 gap-y-10 lg:gap-x-12 items-stretch">
+
       <div class="col-span-12 lg:col-span-7">
       <p class="s247-foot text-[17px] leading-[1.55] text-paper/70 max-w-[46ch]">
         Форма и&nbsp;WhatsApp работают без перерыва – ночное сообщение ждёт нас
         на самом верху ящика. Дело начинаем с&nbsp;7:00 утра.
       </p>
+      <!-- ścieżka zamówienia – pasek 5 kroków (17.09.2026) -->
+      <ol class="hp-next hp-next--light hp-next--left" aria-label="Как это работает">
+        <li><i>1</i>Фото</li>
+        <li><i>2</i>Расчёт</li>
+        <li><i>3</i>Оплата</li>
+        <li><i>4</i>Выполнение</li>
+        <li><i>5</i>Получение</li>
+      </ol>
       <p class="human-note mt-6 max-w-[52ch]">
         <span class="human-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/>
           </svg>
         </span>
@@ -459,26 +516,56 @@
         ответственность слишком велика.</span>
       </p>
       </div>
-      <div class="col-span-12 lg:col-span-5 flex flex-col justify-end">
-      <div class="ws-legal grid grid-cols-1 gap-6">
-        <p class="text-[14px] leading-[1.6] text-paper/55">Политика конфиденциальности и Правила оказания услуг действуют в&nbsp;польской версии – она юридически обязательна.</p>
-        <a href="/#polityka-prywatnosci" class="k-where-link">Polityka Prywatności (PL)
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
-        </a>
-        <a href="/#regulamin" class="k-where-link" style="margin-top:0">Regulamin świadczenia usług (PL)
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
-        </a>
-      </div>
-      </div>
+
     </div>
+
+    <!-- Юридические тексты: обязательны для модерации Google Ads. Во всю ширину блока, в стиле FAQ -->
+    <div class="ws-legal">
+
+      <details id="polityka-prywatnosci" class="ws-legal-item">
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h2 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Политика конфиденциальности</h2>
+          <span class="chev chev--light shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <div class="legal-wrap"><div class="space-y-3 text-[17px] leading-[1.6] text-paper/70 max-w-[70ch]">
+          <p><strong class="text-paper/90">Администратор данных.</strong> Администратором персональных данных является [IMIĘ I&nbsp;NAZWISKO], ведущая деятельность под названием Apostilo, [ADRES DO&nbsp;KORESPONDENCJI], Warszawa, NIP&nbsp;[NIP]. Контакт: apostilo@gmail.com. Юридически обязательной является польская версия этого текста.</p>
+          <p><strong class="text-paper/90">Объём и&nbsp;цель.</strong> Мы обрабатываем имя, номер телефона, адрес e-mail и&nbsp;данные из&nbsp;присланных сканов документов исключительно для подготовки расчёта, выполнения услуги апостиля или перевода и&nbsp;обратной связи.</p>
+          <p><strong class="text-paper/90">Правовое основание.</strong> Ст. 6 п. 1 лит. b GDPR (исполнение договора или действия до его заключения) и&nbsp;ст. 6 п. 1 лит. a GDPR (согласие) в&nbsp;части маркетинговых контактов.</p>
+          <p><strong class="text-paper/90">Получатели.</strong> Данные могут передаваться только тем, без кого услугу не выполнить: присяжным переводчикам, учреждениям (MSZ, суды, KRK, KRS, USC), почтовым и&nbsp;курьерским операторам и&nbsp;хостинг-провайдеру.</p>
+          <p><strong class="text-paper/90">Срок хранения.</strong> Сканы документов удаляем в&nbsp;течение 30 дней после завершения услуги. Контактные и&nbsp;расчётные данные храним в&nbsp;течение срока, требуемого налоговым законодательством.</p>
+          <p><strong class="text-paper/90">Права пользователя.</strong> Вы вправе получить доступ к&nbsp;данным, исправить, удалить их, ограничить обработку, перенести данные, а&nbsp;также подать возражение и&nbsp;жалобу Председателю UODO.</p>
+          <p><strong class="text-paper/90">Файлы cookies.</strong> Сайт использует cookies, необходимые для его работы, а&nbsp;после вашего согласия – аналитические и&nbsp;маркетинговые cookies (Google Analytics, Google Ads). Настройки cookies можно изменить в&nbsp;браузере.</p>
+        </div></div>
+      </details>
+
+      <details id="regulamin" class="ws-legal-item">
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h2 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Правила оказания услуг</h2>
+          <span class="chev chev--light shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <div class="legal-wrap"><div class="space-y-3 text-[17px] leading-[1.6] text-paper/70 max-w-[70ch]">
+          <p><strong class="text-paper/90">§1 Общие положения.</strong> Правила определяют условия оказания услуг посредничества в&nbsp;получении апостиля, легализации документов и&nbsp;присяжных переводов, которые оказывает [IMIĘ I&nbsp;NAZWISKO], ведущая деятельность под названием Apostilo, NIP&nbsp;[NIP] (далее: Apostilo). Юридически обязательной является польская версия Правил.</p>
+          <p><strong class="text-paper/90">§2 Заключение договора.</strong> Договор заключается в&nbsp;момент, когда Клиент принимает предложенный расчёт – письменно, по электронной почте или в&nbsp;мессенджере (WhatsApp, Telegram).</p>
+          <p><strong class="text-paper/90">§3 Выполнение и&nbsp;сроки.</strong> Сроки, названные в&nbsp;расчёте, ориентировочные и&nbsp;зависят от работы учреждений. О&nbsp;каждой задержке, не зависящей от Apostilo, Клиента уведомляют незамедлительно.</p>
+          <p><strong class="text-paper/90">§4 Цены и&nbsp;оплата.</strong> Цены на сайте – конечные за единицу услуги и&nbsp;включают государственные сборы. Обязательным является индивидуальный расчёт, в&nbsp;котором отдельно указана каждая позиция заказа – апостиль, перевод, пересылка. Цена меняется только тогда, когда документ оказывается другим, чем на присланном фото; Клиента уведомляют об&nbsp;этом до принятия заказа в&nbsp;работу. Оплата вперёд – BLIK, переводом или наличными, на основании расчёта. Заказ берётся в&nbsp;работу после получения подтверждения оплаты.</p>
+          <p><strong class="text-paper/90">§5 Ответственность.</strong> Apostilo отвечает за добросовестное ведение дела. Не несёт ответственности за решения учреждений, отказ в&nbsp;апостиле по формальным причинам документа или за задержки почтовых операторов. Если учреждение откажет в&nbsp;проставлении апостиля на польский документ, Apostilo возвращает Клиенту оплату за вычетом государственного сбора, взятого MSZ при подаче документа, – 60&nbsp;zł. По документам из&nbsp;Украины: если архив или учреждение откажет в&nbsp;выдаче дубликата, возвращается предоплата за вычетом стоимости пересылки.</p>
+          <p><strong class="text-paper/90">§6 Отказ от договора.</strong> Потребитель может отказаться от договора в&nbsp;течение 14 дней. Это право не действует, если услуга полностью выполнена с&nbsp;явного согласия Клиента до истечения этого срока.</p>
+          <p><strong class="text-paper/90">§7 Жалобы.</strong> Жалобы принимаем по адресу apostilo@gmail.com. Рассматриваем их в&nbsp;течение 14 рабочих дней с&nbsp;момента получения.</p>
+        </div></div>
+      </details>
+    </div>
+
   </div>
 </section>
 
 <!-- ================= BLOK 1 – APOSTILLE ================= -->
 <section id="apostille" class="py-16 md:py-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
+
     <div class="bg-sand text-ink rounded-[26px] overflow-hidden">
       <div class="grid grid-cols-12">
+
+        <!-- левая колонка -->
         <div class="col-span-12 lg:col-span-5 p-7 sm:p-12 lg:p-14">
           <p class="kicker">/ Услуга</p>
           <h2 class="tracking-tightest leading-[0.94] text-[38px] sm:text-[52px] lg:text-[58px] font-black">
@@ -487,12 +574,15 @@
           </h2>
           <p class="mt-7 text-[17px] leading-[1.55] text-ink/75 max-w-[42ch]">
             Забираем документ, подаём его в&nbsp;нужное учреждение и&nbsp;следим за сроком.
-            Клиент решает всё дело удалённо и&nbsp;не берёт отгул.
+            Клиент решает всё дело дистанционно и&nbsp;не берёт отгул.
           </p>
+
           <a href="/ru/apostille/" class="mt-9 inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold btn btn-center">
-            Всё об апостиле <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
+            Всё об&nbsp;апостиле <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
           </a>
         </div>
+
+        <!-- правая колонка: список институтов -->
         <div class="col-span-12 lg:col-span-7 p-2 sm:p-3 bg-bluedp text-paper">
           <div id="inst-wrap" class="relative">
             <span class="row-bg" aria-hidden="true"></span>
@@ -514,7 +604,7 @@
             <li class="soft-row relative flex items-baseline justify-between gap-6 px-5 sm:px-9 lg:pl-5 lg:pr-11 py-6 sm:py-9">
               <div>
                 <h3 class="text-[21px] md:text-[24px] font-bold tracking-tight">Получение документа</h3>
-                <p class="text-[15px] text-paper/60 mt-1">Справка из&nbsp;KRK, выписки и справки из&nbsp;KRS – оформляем от имени клиента</p>
+                <p class="text-[15px] text-paper/60 mt-1">Справка из&nbsp;KRK, выписки и&nbsp;справки из&nbsp;KRS – оформляем от имени клиента</p>
               </div>
               <span class="font-cond text-ochre whitespace-nowrap text-[15px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>&nbsp;zł</b></span></span>
             </li>
@@ -522,8 +612,10 @@
           </div>
         </div>
       </div>
+
+      <!-- Акцентная плашка -->
       <div class="bg-terra text-ink px-7 sm:px-12 lg:px-14 py-8 md:py-11">
-        <div class="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
+        <div class="ua-promo flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
           <div class="shrink-0 text-[52px] md:text-[64px] leading-none" aria-hidden="true">★</div>
           <div>
             <p class="tracking-tightest leading-[1.05] text-[26px] sm:text-[34px] md:text-[40px] font-black">
@@ -536,16 +628,17 @@
               получить невозможно, возвращаем предоплату.
             </p>
             <p class="mt-3 font-cond uppercase tracking-[0.14em] text-[14px]">
-              Апостиль Украина <span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> / документ<br>
-              Истребование документа <span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> / документ
+              Апостиль Украина <span class="whitespace-nowrap"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> / документ</span><br>
+              Истребование документа <span class="whitespace-nowrap"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> / документ</span>
             </p>
             <p class="mt-3 text-[15px] text-ink/70 max-w-[60ch]">
               Документ до 2016&nbsp;года или советского образца проходит два этапа –
               сначала новое свидетельство, потом апостиль: вместе 1&nbsp;100&nbsp;zł.
-              <a href="/ru/apostille-ukraina/" class="underline font-semibold">Сроки, сценарии и FAQ</a>.
+              <a href="/ru/apostille-ukraina/" class="underline font-semibold">Сроки, сценарии и&nbsp;FAQ</a>.
             </p>
           </div>
-          <a href="/ru/apostille-ukraina/" class="md:ml-auto shrink-0 inline-flex items-center justify-center rounded-[12px] px-7 py-[18px] font-semibold btn">
+          <a href="/ru/apostille-ukraina/"
+             class="md:ml-auto shrink-0 inline-flex items-center justify-center rounded-[12px] px-7 py-[18px] font-semibold btn">
             Документы из&nbsp;Украины <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
           </a>
         </div>
@@ -557,16 +650,22 @@
 <!-- ================= BLOK 2 – TŁUMACZENIA ================= -->
 <section id="tlumaczenia" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
-    <div class="bg-paper rounded-[26px] p-7 sm:p-12 lg:p-14 border border-ink/10">
-      <div class="grid grid-cols-12 gap-y-10 lg:gap-x-14 items-start">
+
+    <div class="bg-sand rounded-[26px] p-7 sm:p-12 lg:p-16">
+      <div class="grid grid-cols-12 gap-y-12 lg:gap-x-14">
+
         <div class="col-span-12 lg:col-span-5">
           <p class="kicker">/ Переводы</p>
           <h2 id="plate-head" class="plate-head tracking-tightest leading-[0.94] text-[38px] sm:text-[52px] lg:text-[58px] font-black">
             <span class="plate-bg" aria-hidden="true"></span>
             <span class="pw">Переводы</span><br>
-            <span class="pw pw-hot" role="button" tabindex="0" aria-expanded="false" aria-controls="tl-def" data-def="0">присяжные</span><br>
-            <span class="pw pw-hot font-light italic" role="button" tabindex="0" aria-expanded="false" aria-controls="tl-def" data-def="1">консульские</span>
+            <span class="pw pw-hot" role="button" tabindex="0" aria-expanded="false"
+                  aria-controls="tl-def" data-def="0">присяжные</span><br>
+            <span class="pw pw-hot font-light italic" role="button" tabindex="0" aria-expanded="false"
+                  aria-controls="tl-def" data-def="1">консульские</span>
           </h2>
+
+          <!-- пояснение: раскрывается по клику на слово в заголовке -->
           <div id="tl-def" class="tl-def">
             <div class="tl-def-clip">
               <div class="tl-def-in">
@@ -575,14 +674,14 @@
                   <p class="tl-def-text">Выполняет переводчик, внесённый в&nbsp;список Министерства юстиции Польши.
                   Имеет печать, номер в&nbsp;реестре и&nbsp;формулу соответствия оригиналу –
                   поэтому его принимают учреждения, суды, банки и&nbsp;вузы. Нужен везде,
-                  где документ имеет юридическую силу. Если учреждение требует перевод
+                  где документ должен иметь юридическую силу. Если учреждение требует перевода
                   с&nbsp;оригинала, оригинал показываете при передаче или получении документов.</p>
                 </div>
                 <div class="tl-def-panel" data-panel="1">
                   <p class="tl-def-name">Консульский перевод</p>
                   <p class="tl-def-text">Документ, подготовленный под требования конкретного консульства или
                   заверенный консулом – для визовых, паспортных дел, согласий на выезд ребёнка
-                  и&nbsp;доверенностей. Требования учреждений различаются, поэтому перед стартом просим сообщить, чего ожидает конкретное консульство.</p>
+                  и&nbsp;доверенностей. Требования консульств различаются, поэтому перед стартом просим сообщить, чего ожидает конкретное консульство.</p>
                 </div>
               </div>
             </div>
@@ -590,13 +689,15 @@
           <p class="mt-7 text-[17px] leading-[1.55] text-ink/70 max-w-[42ch]">
             Для расчёта достаточно фото документа – отвечаем обычно в&nbsp;течение 15&nbsp;минут.
           </p>
+
           <a href="/ru/tlumaczenia-przysiegle/" class="price-card mt-9 inline-flex flex-col bg-ink text-paper rounded-[12px] px-7 py-[18px]">
             <span class="font-cond uppercase tracking-[0.16em] text-[11px] text-paper/60">страница = 1125 знаков с пробелами</span>
             <span class="mt-2 flex items-center font-bold text-[30px] leading-none tracking-tight"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>&nbsp;zł</b></span><span class="chip-mark chip-mark--arrow" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="chip-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></span>
           </a>
         </div>
+
         <div class="col-span-12 lg:col-span-7">
-          <h3 class="font-cond uppercase tracking-[0.18em] text-[12px] text-ink/50 mb-5">Для кого переводим</h3>
+          <h3 class="font-cond uppercase tracking-[0.18em] text-[12px] text-ink/70 mb-5">Для кого переводим</h3>
           <div id="tl-wrap" class="relative">
             <div id="tl-grid" class="relative grid sm:grid-cols-2 gap-px bg-ink/15 rounded-[9px] overflow-hidden">
               <button type="button" class="soft-cell tl-cell bg-paper p-6 md:p-7 text-left" data-tl="0" aria-expanded="false" aria-controls="tl-pop">
@@ -609,59 +710,66 @@
               </button>
               <button type="button" class="soft-cell tl-cell bg-paper p-6 md:p-7 text-left" data-tl="2" aria-expanded="false" aria-controls="tl-pop">
                 <span class="tl-title text-[23px] font-bold tracking-tight">ZUS&nbsp;и&nbsp;налоговая<span class="chip-mark chip-mark--arrow" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="chip-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></span>
-                <span class="tl-list"><span>Справки о стаже</span><span>Трудовые документы</span><span>Начальный капитал</span><span>Пенсии</span></span>
+                <span class="tl-list"><span>Справки о&nbsp;стаже</span><span>Трудовые документы</span><span>Начальный капитал</span><span>Пенсии</span></span>
               </button>
               <button type="button" class="soft-cell tl-cell bg-paper p-6 md:p-7 text-left" data-tl="3" aria-expanded="false" aria-controls="tl-pop">
                 <span class="tl-title text-[23px] font-bold tracking-tight">Консульства<span class="chip-mark chip-mark--arrow" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="chip-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></span>
-                <span class="tl-list"><span>Документы на визу</span><span>Доверенности</span><span>Согласия на выезд ребёнка</span><span>Консульские переводы</span></span>
+                <span class="tl-list"><span>Документы на&nbsp;визу</span><span>Доверенности</span><span>Согласия на&nbsp;выезд ребёнка</span><span>Консульские переводы</span></span>
               </button>
               <button type="button" class="soft-cell tl-cell bg-paper p-6 md:p-7 text-left" data-tl="4" aria-expanded="false" aria-controls="tl-pop">
                 <span class="tl-title text-[23px] font-bold tracking-tight">Банки и&nbsp;лизинг<span class="chip-mark chip-mark--arrow" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="chip-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></span>
-                <span class="tl-list"><span>Трудовые договоры</span><span>Справки с&nbsp;места работы</span><span>Банковские выписки</span><span>Документы&nbsp;фирмы</span></span>
+                <span class="tl-list"><span>Трудовые договоры</span><span>Справки с&nbsp;места работы</span><span>Банковские выписки</span><span>Документы фирмы</span></span>
               </button>
               <button type="button" class="soft-cell tl-cell bg-paper p-6 md:p-7 text-left" data-tl="5" aria-expanded="false" aria-controls="tl-pop">
-                <span class="tl-title text-[23px] font-bold tracking-tight">Вузы и школы<span class="chip-mark chip-mark--arrow" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="chip-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></span>
+                <span class="tl-title text-[23px] font-bold tracking-tight">Вузы и&nbsp;школы<span class="chip-mark chip-mark--arrow" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="chip-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></span>
                 <span class="tl-list"><span>Дипломы</span><span>Аттестаты</span><span>Приложения</span><span>Нострификация</span></span>
               </button>
             </div>
-            <div id="tl-pop" class="tl-pop" role="dialog" aria-label="Детали услуги" hidden>
-              <button type="button" class="tl-close" aria-label="Закрыть"><span class="chev chev--x" aria-hidden="true">+</span></button>
+
+            <!-- всплывающее окно с подробным описанием -->
+            <div id="tl-pop" class="tl-pop" role="dialog" aria-label="Подробности услуги" hidden>
+              <button type="button" class="tl-close" aria-label="Закрыть">
+                <span class="chev chev--x" aria-hidden="true">+</span>
+              </button>
               <p class="tl-pop-title"></p>
               <div class="tl-pop-body"></div>
             </div>
+
+            <!-- контент окон -->
             <div id="tl-data" hidden>
               <div data-title="Воеводское управление">
                 <p class="tl-lead">Комплект переводов для дел о&nbsp;пребывании в&nbsp;Мазовецком воеводском управлении: свидетельства, трудовые договоры, справки, дипломы.</p>
-                <p class="tl-meta">Срок 2–4 рабочих дня, экспресс 24&nbsp;ч. <a href="/ru/tlumaczenia-przysiegle/#dla-kogo" class="underline">Подробнее о переводах</a>.</p>
+                <p class="tl-meta">Срок 2–4 рабочих дня, экспресс 24&nbsp;ч. <a href="/ru/tlumaczenia-przysiegle/#dla-kogo" class="underline">Подробнее о&nbsp;переводах</a>.</p>
               </div>
               <div data-title="USC">
-                <p class="tl-lead">Свидетельства о рождении, браке и&nbsp;смерти, справки о праве на брак, документы для транскрипции акта.</p>
-                <p class="tl-meta">Подскажем, что требует апостиля перед переводом. <a href="/ru/tlumaczenia-przysiegle/#dla-kogo" class="underline">Подробнее о переводах</a>.</p>
+                <p class="tl-lead">Свидетельства о&nbsp;рождении, браке и&nbsp;смерти, справки о&nbsp;правоспособности на брак, документы для транскрипции акта.</p>
+                <p class="tl-meta">Подскажем, что требует апостиля перед переводом. <a href="/ru/tlumaczenia-przysiegle/#dla-kogo" class="underline">Подробнее о&nbsp;переводах</a>.</p>
               </div>
               <div data-title="ZUS и налоговая">
-                <p class="tl-lead">Трудовые книжки, справки о стаже и&nbsp;заработке, пенсионные решения, налоговые документы.</p>
-                <p class="tl-meta">Сохраняем структуру таблиц и&nbsp;печатей оригинала. <a href="/ru/tlumaczenia-przysiegle/#dla-kogo" class="underline">Подробнее о переводах</a>.</p>
+                <p class="tl-lead">Трудовые документы, справки о&nbsp;стаже и&nbsp;заработке, пенсионные решения, налоговые документы.</p>
+                <p class="tl-meta">Сохраняем структуру таблиц и&nbsp;печатей оригинала. <a href="/ru/tlumaczenia-przysiegle/#dla-kogo" class="underline">Подробнее о&nbsp;переводах</a>.</p>
               </div>
               <div data-title="Консульства">
                 <p class="tl-lead">Визовые документы, доверенности, согласия на выезд ребёнка – под требования конкретного консульства.</p>
-                <p class="tl-meta">По желанию с&nbsp;апостилем MSZ. <a href="/ru/tlumaczenia-przysiegle/#dla-kogo" class="underline">Подробнее о переводах</a>.</p>
+                <p class="tl-meta">По желанию с&nbsp;апостилем MSZ. <a href="/ru/tlumaczenia-przysiegle/#dla-kogo" class="underline">Подробнее о&nbsp;переводах</a>.</p>
               </div>
               <div data-title="Банки и лизинг">
-                <p class="tl-lead">Справки о доходах, договоры, банковские выписки, регистрационные документы фирмы – принимают банки в&nbsp;Польше.</p>
-                <p class="tl-meta">Для больших комплектов цена за страницу ниже. <a href="/ru/tlumaczenia-przysiegle/#dla-kogo" class="underline">Подробнее о переводах</a>.</p>
+                <p class="tl-lead">Справки о&nbsp;доходах, договоры, банковские выписки, регистрационные документы фирмы – принимают банки в&nbsp;Польше.</p>
+                <p class="tl-meta">Для больших комплектов цена за страницу ниже. <a href="/ru/tlumaczenia-przysiegle/#dla-kogo" class="underline">Подробнее о&nbsp;переводах</a>.</p>
               </div>
               <div data-title="Вузы и школы">
                 <p class="tl-lead">Дипломы и&nbsp;приложения, аттестаты, выписки оценок, учебные программы – для поступления и&nbsp;нострификации.</p>
-                <p class="tl-meta">Вместе с&nbsp;апостилем, если вуз его требует. <a href="/ru/tlumaczenia-przysiegle/#dla-kogo" class="underline">Подробнее о переводах</a>.</p>
+                <p class="tl-meta">Вместе с&nbsp;апостилем, если вуз его требует. <a href="/ru/tlumaczenia-przysiegle/#dla-kogo" class="underline">Подробнее о&nbsp;переводах</a>.</p>
               </div>
             </div>
           </div>
-          <h3 id="jezyki" class="font-cond uppercase tracking-[0.18em] text-[12px] text-ink/50 mt-10 mb-4 scroll-mt-24">Языки</h3>
+
+          <h3 id="jezyki" class="font-cond uppercase tracking-[0.18em] text-[12px] text-ink/70 mt-10 mb-4 scroll-mt-24">Языки</h3>
           <div class="lang-list relative">
             <span class="lang-bg" aria-hidden="true"></span>
-            <ul class="lang-grid gap-x-6 gap-y-0">            <li class="lang-chip text-[24px] md:text-[29px] font-semibold tracking-tight leading-[1.18]"><span class="lang-swap"><span class="ls-a">Русский</span><span class="ls-b" aria-hidden="true">Русский язык</span></span></li>
-            <li class="lang-chip text-[24px] md:text-[29px] font-semibold tracking-tight leading-[1.18]"><span class="lang-swap"><span class="ls-a">Польский</span><span class="ls-b" aria-hidden="true">Język polski</span></span></li>
+            <ul class="lang-grid gap-x-6 gap-y-0">            <li class="lang-chip text-[24px] md:text-[29px] font-semibold tracking-tight leading-[1.18]"><span class="lang-swap"><span class="ls-a">Польский</span><span class="ls-b" aria-hidden="true">Język polski</span></span></li>
             <li class="lang-chip text-[24px] md:text-[29px] font-semibold tracking-tight leading-[1.18]"><span class="lang-swap"><span class="ls-a">Украинский</span><span class="ls-b" aria-hidden="true">Українська мова</span></span></li>
+            <li class="lang-chip text-[24px] md:text-[29px] font-semibold tracking-tight leading-[1.18]"><span class="lang-swap"><span class="ls-a">Русский</span><span class="ls-b" aria-hidden="true">Русский язык</span></span></li>
             <li class="lang-chip text-[24px] md:text-[29px] font-semibold tracking-tight leading-[1.18]"><span class="lang-swap"><span class="ls-a">Белорусский</span><span class="ls-b" aria-hidden="true">Беларуская мова</span></span></li>
             <li class="lang-chip text-[24px] md:text-[29px] font-semibold tracking-tight leading-[1.18]"><span class="lang-swap"><span class="ls-a">Английский</span><span class="ls-b" aria-hidden="true">English</span></span></li>
             <li class="lang-chip text-[24px] md:text-[29px] font-semibold tracking-tight leading-[1.18]"><span class="lang-swap"><span class="ls-a">Немецкий</span><span class="ls-b" aria-hidden="true">Deutsch</span></span></li>
@@ -681,6 +789,7 @@
 <!-- ================= BLOK 3 – JAK TO DZIAŁA ================= -->
 <section id="jak-dzialamy" class="pb-16 md:pb-28 no-x">
   <div class="mx-auto max-w-site px-5 sm:px-8">
+
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
       <div>
         <p class="kicker">/ Заказ</p>
@@ -688,47 +797,93 @@
           Как заказать?<br><span class="font-light italic slide-words"><span class="slide-in">Четыре</span> <span class="slide-in">простых</span> <span class="slide-in">шага</span></span>
         </h2>
       </div>
-      <p class="text-[17px] text-ink/65 max-w-[36ch] md:text-right">Без визитов в&nbsp;учреждения – всё дело решаете удалённо.</p>
+      <p class="text-[17px] text-ink/65 max-w-[36ch] md:text-right">
+        Без визитов в&nbsp;учреждения – всё дело решаете дистанционно.
+      </p>
     </div>
+
     <ol class="steps grid sm:grid-cols-2 xl:grid-cols-4 gap-5">
       <li class="step-card rise step-card--1 text-paper rounded-[26px] p-8 md:p-10 flex flex-col min-h-[380px] md:min-h-[460px] xl:min-h-[520px]">
         <span class="step-krok font-cond uppercase tracking-[0.2em] text-[12px] text-ochre">Шаг</span>
         <span class="step-num text-[80px] md:text-[104px] text-ochre">1</span>
-        <h3 class="mt-6 text-[23px] md:text-[26px] font-bold tracking-tight leading-tight">Присылаете фото документа</h3>
-        <p class="mt-3 text-[16px] text-paper/70">Фото с&nbsp;телефона достаточно для&nbsp;расчёта. WhatsApp, Telegram, <span class="whitespace-nowrap">e-mail</span> или форма – оригинал передаёте позже.</p>
+        <h3 class="mt-6 text-[23px] md:text-[26px] font-bold tracking-tight leading-tight">
+          Отправляете фото документа
+</h3>
+        <p class="mt-3 text-[16px] text-paper/70">
+          Фото с&nbsp;телефона достаточно для&nbsp;расчёта. WhatsApp, Telegram, <span class="whitespace-nowrap">e-mail</span> или форма – оригинал передаёте позже.
+        </p>
         <div class="mt-auto pt-8 flex items-end justify-between gap-4">
           <p class="font-cond uppercase tracking-[0.14em] text-[13px] font-bold text-paper/80">Расчёт за 15 минут</p>
-          <button type="button" class="step-go" data-step="0" aria-label="Подробнее: Присылаете фото документа"><svg viewBox="0 0 24 24" class="step-arrow" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></button>
+          <button type="button" class="step-go" data-step="0"
+                  aria-label="Подробнее: Отправляете фото документа">
+            <svg viewBox="0 0 24 24" class="step-arrow" aria-hidden="true">
+              <path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4"
+                    stroke-linecap="butt" stroke-linejoin="miter"/>
+            </svg>
+          </button>
         </div>
       </li>
+
       <li class="step-card rise step-card--2 text-ink rounded-[26px] p-8 md:p-10 flex flex-col min-h-[380px] md:min-h-[460px] xl:min-h-[520px]">
         <span class="step-krok font-cond uppercase tracking-[0.2em] text-[12px] step-num--2">Шаг</span>
         <span class="step-num text-[80px] md:text-[104px] step-num--2">2</span>
-        <h3 class="mt-6 text-[23px] md:text-[26px] font-bold tracking-tight leading-tight">Соглашаетесь с расчётом и&nbsp;платите</h3>
-        <p class="mt-3 text-[16px] text-ink/75">Вместе с&nbsp;расчётом высылаем инструкцию по оплате. Присылаете подтверждение перевода – и&nbsp;заказ уходит в&nbsp;работу.</p>
+        <h3 class="mt-6 text-[23px] md:text-[26px] font-bold tracking-tight leading-tight">
+          Принимаете расчёт и&nbsp;оплачиваете
+</h3>
+        <p class="mt-3 text-[16px] text-ink/75">
+          Вместе с&nbsp;расчётом присылаем инструкцию по&nbsp;оплате. Присылаете подтверждение перевода – и&nbsp;заказ берётся в&nbsp;работу.
+        </p>
         <div class="mt-auto pt-8 flex items-end justify-between gap-4">
           <p class="font-cond uppercase tracking-[0.14em] text-[13px] font-bold text-ink/80">Подтверждение – достаточно скриншота</p>
-          <button type="button" class="step-go" data-step="1" aria-label="Подробнее: Соглашаетесь с расчётом и платите"><svg viewBox="0 0 24 24" class="step-arrow" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></button>
+          <button type="button" class="step-go" data-step="1"
+                  aria-label="Подробнее: Принимаете расчёт и оплачиваете">
+            <svg viewBox="0 0 24 24" class="step-arrow" aria-hidden="true">
+              <path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4"
+                    stroke-linecap="butt" stroke-linejoin="miter"/>
+            </svg>
+          </button>
         </div>
       </li>
+
       <li class="step-card rise step-card--w text-ink rounded-[26px] p-8 md:p-10 flex flex-col min-h-[380px] md:min-h-[460px] xl:min-h-[520px]">
         <span class="step-krok font-cond uppercase tracking-[0.2em] text-[12px] text-ink/85">Шаг</span>
         <span class="step-num text-[80px] md:text-[104px] text-ink/85">3</span>
-        <h3 class="mt-6 text-[23px] md:text-[26px] font-bold tracking-tight leading-tight">Оформляем в&nbsp;учреждениях и&nbsp;у&nbsp;переводчика</h3>
-        <p class="mt-3 text-[16px] text-ink/75">Пошлины, очереди, сроки и&nbsp;контакт с&nbsp;присяжным переводчиком берём на себя. Сообщаем о&nbsp;каждом этапе.</p>
+        <h3 class="mt-6 text-[23px] md:text-[26px] font-bold tracking-tight leading-tight">
+          Оформляем всё в&nbsp;учреждениях и&nbsp;у&nbsp;переводчика
+</h3>
+        <p class="mt-3 text-[16px] text-ink/75">
+          Государственные сборы, очереди, сроки и&nbsp;связь с&nbsp;присяжным переводчиком берём на себя. Сообщаем о&nbsp;каждом этапе.
+        </p>
         <div class="mt-auto pt-8 flex items-end justify-between gap-4">
           <p class="font-cond uppercase tracking-[0.14em] text-[13px] font-bold text-ink/80">Обычно 1–3 рабочих дня</p>
-          <button type="button" class="step-go" data-step="2" aria-label="Подробнее: Оформляем в учреждениях и у переводчика"><svg viewBox="0 0 24 24" class="step-arrow" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></button>
+          <button type="button" class="step-go" data-step="2"
+                  aria-label="Подробнее: Оформляем всё в учреждениях и у переводчика">
+            <svg viewBox="0 0 24 24" class="step-arrow" aria-hidden="true">
+              <path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4"
+                    stroke-linecap="butt" stroke-linejoin="miter"/>
+            </svg>
+          </button>
         </div>
       </li>
+
       <li class="step-card rise step-card--3 text-ink rounded-[26px] p-8 md:p-10 flex flex-col min-h-[380px] md:min-h-[460px] xl:min-h-[520px]">
         <span class="step-krok font-cond uppercase tracking-[0.2em] text-[12px] text-ink/85">Шаг</span>
         <span class="step-num text-[80px] md:text-[104px] text-ink/85">4</span>
-        <h3 class="mt-6 text-[23px] md:text-[26px] font-bold tracking-tight leading-tight">Получаете готовый документ</h3>
-        <p class="mt-3 text-[16px] text-ink/75">Лично на ул.&nbsp;Kruczej, пачкоматом InPost по&nbsp;Польше, курьером DHL&nbsp;Express за&nbsp;границу, Новой&nbsp;Почтой в&nbsp;Украину.</p>
+        <h3 class="mt-6 text-[23px] md:text-[26px] font-bold tracking-tight leading-tight">
+          Получаете готовый документ
+</h3>
+        <p class="mt-3 text-[16px] text-ink/75">
+          Лично у&nbsp;ул.&nbsp;Krucza, пачкоматом InPost по&nbsp;Польше, курьером DHL&nbsp;Express за&nbsp;границу, Новой&nbsp;Почтой в&nbsp;Украину.
+        </p>
         <div class="mt-auto pt-8 flex items-end justify-between gap-4">
           <p class="font-cond uppercase tracking-[0.14em] text-[13px] font-bold text-ink/75">Скан готового документа – сразу</p>
-          <button type="button" class="step-go" data-step="3" aria-label="Подробнее: Получаете готовый документ"><svg viewBox="0 0 24 24" class="step-arrow" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></button>
+          <button type="button" class="step-go" data-step="3"
+                  aria-label="Подробнее: Получаете готовый документ">
+            <svg viewBox="0 0 24 24" class="step-arrow" aria-hidden="true">
+              <path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4"
+                    stroke-linecap="butt" stroke-linejoin="miter"/>
+            </svg>
+          </button>
         </div>
       </li>
     </ol>
@@ -736,95 +891,15 @@
 </section>
 
 <!-- ================= BLOK 4 – FORMULARZ / WYCENA ================= -->
-<section id="wycena" class="pb-16 md:pb-28">
-  <div class="mx-auto max-w-site px-5 sm:px-8">
-    <div class="bg-sand text-ink rounded-[26px] overflow-hidden">
-      <div class="grid grid-cols-12">
-        <div class="col-span-12 lg:col-span-5 p-7 sm:p-12 lg:p-14">
-          <p class="kicker">/ Расчёт</p>
-          <h2 class="slide-group tracking-tightest leading-[0.94] text-[38px] sm:text-[52px] lg:text-[56px] font-black">
-            <span class="slide-in">Экспресс-</span><br><span class="slide-in">расчёт</span><br>
-            <span class="font-light italic slide-in sd-2">документа</span>
-          </h2>
-          <p class="mt-7 text-[17px] leading-[1.55] text-ink/70 max-w-[40ch]">
-            Заполните форму, напишите в&nbsp;WhatsApp или позвоните – как вам удобнее.
-            Отвечаем с&nbsp;ценой и&nbsp;сроком – без обязательств.
-            <span class="block mt-3 text-ink/90">Расчёт делает человек, а&nbsp;не автомат.</span>
-          </p>
-          <div class="hairline mt-10 pt-7 space-y-4">
-            <div class="flex items-baseline gap-4"><span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Апостиль MSZ</span><span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>&nbsp;zł</b></span></span></div>
-            <div class="flex items-baseline gap-4"><span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Окружной суд</span><span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>&nbsp;zł</b></span></span></div>
-            <div class="flex items-baseline gap-4"><span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Перевод</span><span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>&nbsp;zł</b></span> / страница</span></div>
-            <div class="flex items-baseline gap-4"><span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Док. из UA</span><span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> / документ</span></div>
-            <div class="flex items-baseline gap-4"><span class="font-cond text-ink text-[13px] w-32 shrink-0 uppercase tracking-[0.14em]">Дубликат из UA</span><span class="text-[16px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> / документ</span></div>
-            <div class="pt-6">
-              <p class="font-cond uppercase tracking-[0.14em] text-[12px] text-ink/50 mb-3">Хотите спросить напрямую?</p>
-              <ul class="flex flex-wrap gap-x-6 gap-y-2 text-[15px] font-semibold">
-                <li><a class="underline underline-offset-4 decoration-ink/25 hover:decoration-ink transition-colors" href="https://wa.me/48507588155" target="_blank" rel="noopener">WhatsApp</a></li>
-                <li><a class="underline underline-offset-4 decoration-ink/25 hover:decoration-ink transition-colors" href="https://t.me/apostilo" target="_blank" rel="noopener">Telegram</a></li>
-                <li><a class="underline underline-offset-4 decoration-ink/25 hover:decoration-ink transition-colors" href="tel:+48507588155">+48&nbsp;507&nbsp;588&nbsp;155</a></li>
-                <li><a class="underline underline-offset-4 decoration-ink/25 hover:decoration-ink transition-colors" href="mailto:apostilo@gmail.com">apostilo@gmail.com</a></li>
-              </ul>
-            </div>
-            <p class="text-[13px] text-ink/45 pt-2">Цены окончательные, включают госпошлины. От&nbsp;6&nbsp;страниц перевода – скидка 10%.<br>Окончательный расчёт – после просмотра документа.<br>Полный <a href="/ru/cennik/" class="underline">прайс на апостиль и&nbsp;переводы</a>.</p>
-          </div>
-        </div>
-        <div class="col-span-12 lg:col-span-7 bg-bluedp text-paper p-7 sm:p-12 lg:p-14">
-          <form id="quote-form" action="https://formspree.io/f/FORM_ENDPOINT" method="POST" enctype="multipart/form-data" novalidate class="space-y-7">
-            <input type="hidden" name="lang" value="ru">
-            <div>
-              <label for="name" class="block font-cond uppercase tracking-[0.16em] text-[11px] text-paper/50 mb-1">Имя *</label>
-              <input class="field" type="text" id="name" name="name" placeholder="Как к вам обращаться?" required autocomplete="given-name">
-            </div>
-            <div>
-              <label for="phone" class="block font-cond uppercase tracking-[0.16em] text-[11px] text-paper/50 mb-1">Телефон / WhatsApp *</label>
-              <input class="field" type="tel" id="phone" name="phone" placeholder="+48 600 000 000" required autocomplete="tel" inputmode="tel" pattern="[+0-9\s()\-]{7,20}">
-            </div>
-            <div>
-              <label for="service" class="block font-cond uppercase tracking-[0.16em] text-[11px] text-paper/50 mb-1">Услуга *</label>
-              <select class="field" id="service" name="service" required>
-                <option value="" disabled selected>Выберите услугу…</option>
-                <option value="apostille-msz">Апостиль – MSZ</option>
-                <option value="apostille-sad">Апостиль – окружной суд</option>
-                <option value="apostille-ua-by">Апостиль – документы из Украины</option>
-                <option value="tlumaczenie">Присяжный перевод</option>
-                <option value="tlumaczenie-konsularne">Консульский перевод</option>
-                <option value="istrebowanie">Истребование дубликата документа</option>
-                <option value="inne">Другое – опишу в сообщении</option>
-              </select>
-            </div>
-            <div>
-              <label for="message" class="block font-cond uppercase tracking-[0.16em] text-[11px] text-paper/50 mb-1">Краткое описание (необязательно)</label>
-              <input class="field" type="text" id="message" name="message" placeholder="Напр. свидетельство о рождении UA, нужно на карту побыта">
-            </div>
-            <div>
-              <label for="file" class="block font-cond uppercase tracking-[0.16em] text-[11px] text-paper/50 mb-2">Скан или фото документа</label>
-              <input class="file-input-hidden" type="file" id="file" name="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.webp" multiple>
-              <div class="field field-file flex items-center gap-3"><label for="file" class="file-btn">Выбрать файлы</label><span id="file-name" class="file-name">Файлы не выбраны</span></div>
-              <p class="mt-2 text-[13px] text-paper/45">PDF, JPG, PNG или HEIC. Макс. 10&nbsp;MB. Можно добавить несколько файлов.</p>
-            </div>
-            <div class="flex items-start gap-3 pt-1">
-              <input type="checkbox" id="consent" name="consent" required class="mt-1 w-5 h-5 shrink-0 accent-[#EFB01F] cursor-pointer">
-              <label for="consent" class="text-[14px] leading-[1.5] text-paper/70 cursor-pointer">Даю согласие на обработку моих персональных данных для подготовки расчёта и&nbsp;обратной связи, согласно <a href="/#polityka-prywatnosci" class="underline underline-offset-2 hover:text-ochre">Политике конфиденциальности</a> (PL). *</label>
-            </div>
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
-            <div class="pt-2 flex flex-col sm:flex-row gap-3">
-              <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-[12px] px-8 py-[18px] text-[16px] font-bold btn">Отправить и получить расчёт</button>
-              <a href="https://wa.me/48507588155" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-[12px] px-8 py-[18px] text-[16px] font-semibold btn">Лучше WhatsApp</a>
-            </div>
-            <p id="form-status" role="status" aria-live="polite" class="text-[15px] text-ochre hidden"></p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ================= GDZIE ================= -->
+<!-- ================= FAQ ================= -->
+<!-- ================= GDZIE ZAŁATWIA SIĘ APOSTILLE ================= -->
 <section id="gdzie" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ Где</p>
-    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">Где в&nbsp;Варшаве <span class="font-light italic">ставят</span> апостиль</h2>
+    <h2 class="h2-swap tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
+      <span class="h2-a">Где в&nbsp;Варшаве</span> <span class="h2-b font-light italic">ставят апостиль</span>
+    </h2>
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
       Единого окна нет. Акты гражданского состояния, справки из&nbsp;KRK, выписки из&nbsp;KRS
       и&nbsp;присяжные переводы едут в&nbsp;MSZ на ул.&nbsp;Krucza&nbsp;38/42. Нотариальные
@@ -838,44 +913,75 @@
   </div>
 </section>
 
-<!-- ================= FAQ ================= -->
 <section id="faq" class="pb-28 md:pb-44">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ FAQ</p>
-    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black mb-9">Частые вопросы</h2>
+    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black mb-9">
+      Частые вопросы
+</h2>
+
     <div class="border-t border-ink/15">
-      <details class="group border-b border-ink/15">
-        <summary class="flex items-center justify-between gap-6 py-6"><h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Сколько стоит апостиль и&nbsp;перевод?</h3><span class="chev shrink-0" aria-hidden="true">+</span></summary>
+            <details class="group border-b border-ink/15">
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Сколько стоит апостиль и&nbsp;перевод?</h3>
+          <span class="chev shrink-0" aria-hidden="true">+</span>
+        </summary>
         <div class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
           <ul class="faq-price">
             <li><span>Апостиль MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>&nbsp;zł</b></span></li>
             <li><span>Апостиль – окружной суд</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>&nbsp;zł</b></span></li>
-            <li><span>Присяжный перевод</span><b><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>&nbsp;zł</b></span> / страница = 1125 знаков с пробелами</b></li>
-            <li><span>Апостиль Украина</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> / документ</li>
-            <li><span>Истребование документа из&nbsp;Украины</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> / документ</li>
+            <li><span>Присяжный перевод</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>&nbsp;zł</b></span> <span class="fp-unit">/ страница</span></span> <span class="fp-note">= 1125 знаков с пробелами</span></span></li>
+            <li><span>Апостиль Украина</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> <span class="fp-unit">/ документ</span></span></span></li>
+            <li><span>Истребование документа из&nbsp;Украины</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> <span class="fp-unit">/ документ</span></span></span></li>
           </ul>
-          <p class="mt-4">Цены включают государственные и судебные сборы. От&nbsp;6&nbsp;страниц перевода – скидка 10%. Окончательную сумму называем после просмотра документа – обычно за&nbsp;15 минут.</p>
+          <p class="mt-4">Цены включают государственные сборы. От&nbsp;6&nbsp;страниц перевода даём скидку 10%. Окончательную сумму называем после просмотра документа – обычно за&nbsp;15 минут.</p>
         </div>
       </details>
-      <details class="group border-b border-ink/15">
-        <summary class="flex items-center justify-between gap-6 py-6"><h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Сделаете апостиль на документы из Украины?</h3><span class="chev shrink-0" aria-hidden="true">+</span></summary>
-        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">Да, без выезда клиента из&nbsp;Польши: апостиль 550&nbsp;zł за документ, дубликат свидетельства до 2016&nbsp;года плюс апостиль 1&nbsp;100&nbsp;zł. <a href="/ru/apostille-ukraina/" class="underline font-semibold">Сценарии, сроки и FAQ</a>.</p>
+
+                  <details class="group border-b border-ink/15">
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Сделаете апостиль на документы из Украины?</h3>
+          <span class="chev shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+          Да, без выезда клиента из&nbsp;Польши: апостиль 550&nbsp;zł за документ, дубликат свидетельства до
+          2016&nbsp;года плюс апостиль 1&nbsp;100&nbsp;zł. <a href="/ru/apostille-ukraina/" class="underline font-semibold">Сценарии, сроки и FAQ</a>.
+        </p>
       </details>
-      <details class="group border-b border-ink/15">
-        <summary class="flex items-center justify-between gap-6 py-6"><h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Сколько длится апостиль в Варшаве?</h3><span class="chev shrink-0" aria-hidden="true">+</span></summary>
-        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">Обычно 1–3 рабочих дня в&nbsp;MSZ, экспресс в&nbsp;тот же день. Нотариальные и судебные документы сначала проходят окружной суд. <a href="/ru/apostille/#faq" class="underline font-semibold">Подробнее о сроках</a>.</p>
+
+                              <details class="group border-b border-ink/15">
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Сколько длится апостиль в Варшаве?</h3>
+          <span class="chev shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+          Обычно 1–3 рабочих дня в&nbsp;MSZ, экспресс в&nbsp;тот же день. Нотариальные и судебные документы сначала проходят окружной суд. <a href="/ru/apostille/#faq" class="underline font-semibold">Подробнее о сроках</a>.
+        </p>
       </details>
+
       <details class="group border-b border-ink/15">
-        <summary class="flex items-center justify-between gap-6 py-6"><h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Нужно ли приезжать лично?</h3><span class="chev shrink-0" aria-hidden="true">+</span></summary>
-        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">Нет. Для расчёта достаточно фото, оригинал передаёте на встрече в&nbsp;центре Варшавы или отправляете пачкоматом InPost. <a href="/ru/kontakt/#faq" class="underline font-semibold">Выдача и&nbsp;пересылка</a>.</p>
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Нужно ли приезжать лично?</h3>
+          <span class="chev shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+          Нет. Для расчёта достаточно фото, оригинал передаёте на встрече в&nbsp;центре Варшавы или отправляете пачкоматом InPost. <a href="/ru/kontakt/#faq" class="underline font-semibold">Выдача и&nbsp;пересылка</a>.
+        </p>
       </details>
-      <details class="group border-b border-ink/15">
-        <summary class="flex items-center justify-between gap-6 py-6"><h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Можно заказать несколько документов сразу?</h3><span class="chev shrink-0" aria-hidden="true">+</span></summary>
-        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">Да, и&nbsp;это самый частый случай. Для больших комплектов считаем пакетно – цена за документ и&nbsp;за страницу перевода тогда ниже, а&nbsp;все документы подаём в&nbsp;учреждение за один раз.</p>
+
+<details class="group border-b border-ink/15">
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Можно заказать несколько документов сразу?</h3>
+          <span class="chev shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+          Да, и&nbsp;это самый частый случай. Для больших комплектов считаем пакетно – цена за документ и&nbsp;за страницу перевода тогда ниже, а&nbsp;все документы подаём в&nbsp;учреждение за один раз.
+        </p>
       </details>
-    </div>
+
+          </div>
     <p class="mt-8 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-      Вопросы о штампе и&nbsp;учреждениях – на странице <a href="/ru/apostille/#faq" class="underline font-semibold">апостиль</a>, о переводах – <a href="/ru/tlumaczenia-przysiegle/#faq" class="underline font-semibold">присяжные переводы</a>. О выдаче, пересылке и оплате – на странице <a href="/ru/kontakt/#faq" class="underline font-semibold">контактов</a>.
+      Вопросы о штампе и&nbsp;учреждениях – на странице <a href="/ru/apostille/#faq" class="underline font-semibold">Апостиль</a>, о&nbsp;переводах – на странице <a href="/ru/tlumaczenia-przysiegle/#faq" class="underline font-semibold">Присяжные переводы</a>. О&nbsp;выдаче, пересылке и&nbsp;оплате – на странице <a href="/ru/kontakt/#faq" class="underline font-semibold">контактов</a>.
     </p>
   </div>
 </section>
@@ -1047,7 +1153,7 @@
     </div>
 </div>
 
-<script src="/assets/app.js?v=20260923-25" defer></script>
+<script src="/assets/app.js?v=20260923-29" defer></script>
 
 </body>
 </html>

@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260923-25">
+<link rel="stylesheet" href="/styles.css?v=20260923-29">
 
 <script type="application/ld+json">
 {
@@ -277,122 +277,349 @@
 
 <main>
 
+<!-- ================= HERO ================= -->
 <section class="relative overflow-hidden pt-8 pb-16 md:pt-14 md:pb-24">
   <div class="relative mx-auto max-w-site px-5 sm:px-8">
     <p class="font-cond uppercase tracking-[0.18em] text-[15px] font-semibold text-ink/75 mb-6">Contact</p>
     <h1 class="tracking-tightest leading-[0.95] text-[36px] sm:text-[52px] md:text-[64px] font-black h1-page">Contact – central Warsaw, meetings on Krucza&nbsp;St.</h1>
-    <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">Need an Apostille, document legalisation or a sworn translation in Warsaw? Send a photo – we usually quote within 15 minutes. Write wherever suits you: a person replies, not a bot. Requests are accepted around the clock; we reply 7:00–21:00 on working days.</p>
-    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="https://wa.me/48507588155?text=Hello%2C%20I%20need%20a%20quote%20for%20an%20apostille/translation" class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn">
-        Message us on WhatsApp <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
-      </a>
+    <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
+      Need an Apostille, document legalisation or a sworn translation in&nbsp;Warsaw?
+      Send a photo – we usually quote within 15 minutes. Write wherever suits you:
+      a person replies, not a bot. We take requests around the clock and reply from 7:00 to 21:00
+      on&nbsp;working days.
+    </p>
+    <!-- ссылка-стрелка привязана к абзацу (стоит сразу под ним), кнопки – ниже, после воздуха -->
+    <p class="hero-more">
       <a href="#odbior" class="k-where-link k-where-link--dark">How to hand over and&nbsp;collect a document
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
       </a>
+    </p>
+    <!-- главное действие – форма заявки (панель wyceny), перед ней мессенджеры; форма кнопок – как в панели wyceny -->
+    <div class="cta-btns hero-cta" role="group" aria-label="Get a quote or message us">
+      <a href="https://wa.me/48507588155?text=Hello%2C%20I%20need%20a%20quote%20for%20an%20apostille%2Ftranslation" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="/en/#wycena" class="cta-btn cta-btn--main">Get a quote<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
     </div>
   </div>
 </section>
 
+<!-- ================= KANAŁY, GODZINY ================= -->
 <section id="kontakt" class="bg-ink text-paper py-14 md:py-24" aria-labelledby="zawsze">
-  <div class="mx-auto max-w-site px-5 sm:px-8">
-    <p class="kicker kicker--light">/ Contact and document handover</p>
-    <h2 id="zawsze" class="tracking-tightest leading-[0.9] text-[44px] sm:text-[68px] lg:text-[82px] font-black mb-10"><span class="text-ochre">24/7.</span><br>Send the document.<br><span class="font-medium italic slide-words"><span class="slide-in">We quote.</span> <span class="slide-in">We reply.</span></span></h2>
-    <div class="s247-grid grid grid-cols-12 gap-y-10 lg:gap-x-12 items-start">
-      <div class="col-span-12 lg:col-span-7">
-        <ul class="kt-channels" aria-label="Contact channels">
-          <li class="kt-ch"><span class="kt-ch-h">WhatsApp</span><a class="kt-ch-v" href="https://wa.me/48507588155?text=Hello%2C%20I%20need%20a%20quote%20for%20an%20apostille/translation" aria-label="WhatsApp: +48 507 588 155">+48 507 588 155</a><span class="kt-ch-t">The fastest route: a photo of the document and one sentence on what you need.</span></li>
-          <li class="kt-ch"><span class="kt-ch-h">Phone</span><a class="kt-ch-v" href="tel:+48507588155" aria-label="Phone: +48 507 588 155">+48 507 588 155</a><span class="kt-ch-t">Mon–Fri 7:00–21:00. If we don't pick up, we're at an office – we'll call back.</span></li>
-          <li class="kt-ch"><span class="kt-ch-h">Telegram</span><a class="kt-ch-v" href="https://t.me/apostilo">t.me/apostilo</a><span class="kt-ch-t">Same person and same reply time as on WhatsApp.</span></li>
-          <li class="kt-ch"><span class="kt-ch-h">E-mail</span><a class="kt-ch-v" href="mailto:apostilo@gmail.com">apostilo@gmail.com</a><span class="kt-ch-t">PDF scans and larger sets of documents – easier than in a messenger.</span></li>
-        </ul>
-        <div class="k-where mt-8">
-          <div class="k-where-item"><span class="k-where-h">Warsaw – City Centre</span><span class="k-where-t">We collect and hand over documents at an arranged meeting on Krucza&nbsp;St. – the same street where the MFA accepts documents for&nbsp;legalisation. We have no reception office: place and time are agreed when you&nbsp;order.</span></div>
-          <div class="k-where-item"><span class="k-where-h">All of Poland and&nbsp;abroad</span><span class="k-where-t">Within Poland – InPost parcel locker, abroad – DHL&nbsp;Express, to&nbsp;Ukraine – Nova Poshta. Both ways, dispatched the same working day if the document is ready by&nbsp;15:00.</span></div>
+  <!-- Блок из трёх групп: как связаться · когда отвечаем · запись на встречу (стили – .kt в styles.css).
+       #ws охватывает весь блок: app.js ищет внутри него часы, статус, строки графика; #cal – по id. -->
+  <div id="ws" class="ws kt mx-auto max-w-site px-5 sm:px-8">
+    <div class="kt-top">
+      <div>
+        <p class="kicker kicker--light">/ Contact and document handover</p>
+        <h2 id="zawsze" class="tracking-tightest leading-[0.9] text-[44px] sm:text-[68px] lg:text-[82px] font-black">
+          <span class="text-ochre">24/7.</span><br>
+          Send the document.<br>
+          <span class="font-medium italic slide-words"><span class="slide-in">We quote.</span> <span class="slide-in">We reply.</span></span>
+        </h2>
+      </div>
+      <div class="ws-clockbox" role="group" aria-label="Time in Warsaw">
+        <div class="ws-timeblock">
+          <p class="ws-date">--</p>
+          <p class="ws-clock" title="Time in Warsaw">
+            <span class="ws-hm">--:--</span><span class="ws-sec">--</span>
+          </p>
+        </div>
+        <div class="ws-meta">
+          <p class="ws-tz"><span class="ws-tz-city">Warsaw</span><span class="ws-tz-off">UTC+1</span><span class="ws-tz-dst">winter time</span></p>
         </div>
       </div>
-      <div class="col-span-12 lg:col-span-5 s247-aside">
-        <div id="ws" class="ws">
-          <div class="ws-clockbox" tabindex="0" role="group" aria-label="Time in Warsaw – show opening hours">
-            <div class="ws-timeblock"><p class="ws-date">--</p><p class="ws-clock" title="Time in Warsaw"><span class="ws-hm">--:--</span><span class="ws-sec">--</span></p></div>
-            <div class="ws-meta"><p class="ws-tz"><span class="ws-tz-city">Warsaw</span><span class="ws-tz-off">UTC+1</span><span class="ws-tz-dst">winter time</span></p><p class="ws-top"><span class="ws-dot" aria-hidden="true"></span><span class="ws-state">Checking hours…</span></p></div>
-            <div class="ws-hours-wrap"><ul class="ws-hours"><li><span>Mon–Fri</span><span>7:00–21:00</span></li><li><span>Saturday</span><span class="ws-soft">by arrangement</span></li><li><span>Sunday</span><span class="ws-off">closed</span></li></ul></div>
+    </div>
+
+    <div class="kt-row kt-row--split">
+      <!-- 1. Каналы связи -->
+      <div class="kt-group">
+        <h3 class="kt-h text-[22px] md:text-[26px] font-bold tracking-tight">Write or call</h3>
+        <ul class="kt-channels" aria-label="Contact channels">
+          <li class="kt-ch">
+            <span class="kt-ch-h">WhatsApp</span>
+            <a class="kt-ch-v" href="https://wa.me/48507588155?text=Hello%2C%20I%20need%20a%20quote%20for%20an%20apostille%2Ftranslation" aria-label="WhatsApp: +48 507 588 155">+48 507 588 155</a>
+            <span class="kt-ch-t">The fastest route: a photo of the document and&nbsp;one sentence on what you need.</span>
+          </li>
+          <li class="kt-ch">
+            <span class="kt-ch-h">Phone</span>
+            <a class="kt-ch-v" href="tel:+48507588155" aria-label="Phone: +48 507 588 155">+48 507 588 155</a>
+            <span class="kt-ch-t">If we don't pick up, we're at an office – we'll call back.</span>
+          </li>
+          <li class="kt-ch">
+            <span class="kt-ch-h">Telegram</span>
+            <a class="kt-ch-v" href="https://t.me/apostilo">t.me/apostilo</a>
+            <span class="kt-ch-t">Same person and&nbsp;same reply time as on&nbsp;WhatsApp.</span>
+          </li>
+          <li class="kt-ch">
+            <span class="kt-ch-h">E-mail</span>
+            <a class="kt-ch-v" href="mailto:apostilo@gmail.com">apostilo@gmail.com</a>
+            <span class="kt-ch-t">PDF scans and&nbsp;larger sets of documents – easier than in&nbsp;a messenger.</span>
+          </li>
+        </ul>
+        <div class="kt-actions cta-line">
+          <div class="cta-btns" role="group" aria-label="Get a quote or message us">
+            <a href="/en/#wycena" class="cta-btn cta-btn--main">Get a quote<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
           </div>
-          <p class="ws-msg">local time</p>
-          <div class="cal" id="cal" data-book>
-            <div class="cal-head"><span class="cal-title"> – </span><span class="cal-nav"><button type="button" class="cal-btn is-prev" aria-label="Previous month"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></button><button type="button" class="cal-btn is-next" aria-label="Next month"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></button></span></div>
-            <div class="cal-grid" role="group" aria-label="Calendar: working days and Polish public holidays"></div>
-            <span class="cal-tip" role="status" aria-live="polite"></span>
-            <p class="cal-note"><i aria-hidden="true"></i><span>Public holidays – the MFA, courts and offices are closed.</span></p>
-          </div>
-          <a href="/en/#wycena" class="ws-cta">Get a quote now<span class="ws-cta-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></a>
+          <a href="#odbior" class="k-where-link">Outside Warsaw? Shipping both&nbsp;ways
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
+          </a>
         </div>
+      </div>
+
+      <!-- 2. Когда отвечаем: статус, график, часы по Варшаве -->
+      <div class="kt-group kt-group--hours">
+        <h3 class="kt-h text-[22px] md:text-[26px] font-bold tracking-tight">When we reply</h3>
+        <p class="ws-top">
+          <span class="ws-dot" aria-hidden="true"></span>
+          <span class="ws-state">Checking hours…</span>
+        </p>
+        <p class="ws-msg">local time</p>
+        <ul class="ws-hours">
+          <li><span>Mon–Fri</span><span>7:00 – 21:00</span></li>
+          <li><span>Saturday</span><span class="ws-soft">by arrangement</span></li>
+          <li><span>Sunday</span><span class="ws-off">closed</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 3. Запись на встречу: параметры (время дня · место) · календарь · окна «Rano / Południe / Wieczór».
+         app.js переносит .cal-opts в .cal-opts-slot, а блок окон (.cal-book) – в .cal-book-slot -->
+    <div class="kt-row">
+      <div class="cal kt-cal" id="cal" data-book>
+        <div class="kt-cal-intro">
+          <h3 class="kt-h text-[22px] md:text-[26px] font-bold tracking-tight">Book a meeting</h3>
+          <p class="kt-text">We collect and&nbsp;hand back documents at an arranged meeting on Krucza&nbsp;St. – the same street where the MFA accepts documents for&nbsp;legalisation. We have no reception office: place and&nbsp;time are agreed in&nbsp;advance.</p>
+          <div class="cal-opts-slot"></div>
+        </div>
+        <div class="kt-cal-main">
+          <div class="cal-head">
+            <span class="cal-title"> – </span>
+            <span class="cal-nav">
+              <button type="button" class="cal-btn is-prev" aria-label="Previous month"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></button>
+              <button type="button" class="cal-btn is-next" aria-label="Next month"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></button>
+            </span>
+          </div>
+          <div class="cal-grid" role="group" aria-label="Calendar: working days and Polish public holidays"></div>
+          <p class="cal-note"><i aria-hidden="true"></i><span>Public holidays – the MFA, courts and&nbsp;offices are closed.</span></p>
+        </div>
+        <div class="kt-cal-side cal-book-slot"></div>
+        <span class="cal-tip" role="status" aria-live="polite"></span>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ================= ODBIÓR I WYSYŁKA ================= -->
 <section id="odbior" class="py-16 md:py-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ Handover and shipping</p>
-    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">How to hand over <span class="font-light italic">and&nbsp;collect</span> a document</h2>
-    <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">A photo is enough for a quote. The original is needed only once the order is paid and in progress – an Apostille goes on the original or on an official copy, never on a photocopy. Four routes, all of them both ways.</p>
-    <div class="mt-10 bg-terra text-ink rounded-[26px] p-7 sm:p-12">
-      <div class="grid grid-cols-12 gap-8">
+    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
+      How to hand over and&nbsp;collect <span class="font-light italic">a Document</span>
+    </h2>
+    <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
+      A photo is enough for a quote – attach it
+      in&nbsp;the <a href="/en/#wycena" class="underline font-semibold">quote form</a>
+      and&nbsp;the quote comes by e-mail. WhatsApp and&nbsp;Telegram are for talking, not for sending documents. The original is needed only once the order
+      is paid and&nbsp;goes into work – an Apostille is placed on the original or on a copy issued
+      by&nbsp;the office, never on a photocopy. Four routes, all of them both ways.
+    </p>
+
+    <!-- .ob-plate: на телефоне плашка шире (10px от края экрана) и с меньшими полями – текст не сжат в узкий столбец -->
+    <div class="ob-plate mt-10 bg-terra text-ink rounded-[26px] p-7 sm:p-12">
+      <div class="ob-grid grid grid-cols-12 gap-8">
         <div class="col-span-12 lg:col-span-7">
-          <h3 class="text-[26px] sm:text-[34px] font-black tracking-tightest leading-[1.03]">In person – Warsaw,<br>City Centre, Krucza&nbsp;St.</h3>
-          <p class="mt-4 text-[17px] leading-[1.55] max-w-[48ch]">We meet on the same street where the MFA accepts documents for&nbsp;legalisation – the document goes straight to the office. It is the very centre: a few minutes' walk from Centrum metro station and about a quarter of an hour from Warszawa Centralna railway station. Place and time are agreed when you order, usually the same or the next working day.</p>
-          <p class="mt-4 text-[17px] leading-[1.55] max-w-[48ch]">We also come to&nbsp;Mokotów, Wola, Ochota, Żoliborz and&nbsp;Praga, and outside Warsaw we serve Piaseczno, Pruszków, Ząbki, Marki and&nbsp;Legionowo, among others.</p>
+          <h3 class="ob-h text-[26px] sm:text-[34px] font-black tracking-tightest leading-[1.03]">
+            In person <span class="font-light italic">– Warsaw,<br>City Centre, Krucza&nbsp;St.</span>
+          </h3>
+          <p class="mt-4 text-[17px] leading-[1.55] max-w-[48ch]">
+            We meet on the same street where the MFA accepts documents for&nbsp;legalisation –
+            the document goes straight to the office. It is the very centre: a few minutes' walk from Centrum
+            metro station and&nbsp;about a quarter of an hour from Warszawa Centralna station. Place and&nbsp;time
+            are agreed with&nbsp;the order, usually for the same or the next working day.
+          </p>
+          <p class="mt-4 text-[17px] leading-[1.55] max-w-[48ch]">
+            We also come to&nbsp;Mokotów, Wola, Ochota, Żoliborz and&nbsp;Praga, and&nbsp;outside Warsaw
+            we serve Piaseczno, Pruszków, Ząbki, Marki and&nbsp;Legionowo, among others.
+          </p>
         </div>
         <div class="col-span-12 lg:col-span-5 flex flex-col justify-end gap-4">
           <div class="max-w-[34ch]">
-            <p class="text-[19px] sm:text-[21px] leading-[1.5] font-bold">In another city<br>or abroad?</p>
-            <ul class="mt-3 grid gap-2 text-[17px] leading-[1.45]"><li><b class="font-bold">Poland</b> – InPost parcel locker</li><li><b class="font-bold">Abroad</b> – DHL&nbsp;Express</li><li><b class="font-bold">Ukraine</b> – Nova Poshta</li></ul>
-            <p class="mt-4 text-[17px] leading-[1.5]">We receive the <b class="font-bold">original</b> and return the <b class="font-bold">finished document</b> the same way, with a tracking number.</p>
+            <p class="text-[19px] sm:text-[21px] leading-[1.5] font-bold">
+              From another city<br>or from abroad?
+            </p>
+            <ul class="mt-3 grid gap-2 text-[17px] leading-[1.45]">
+              <li><b class="font-bold">Poland</b> – InPost</li>
+              <li><b class="font-bold">Abroad</b> – DHL&nbsp;Express</li>
+              <li><b class="font-bold">Ukraine</b> – Nova Poshta</li>
+            </ul>
+            <p class="mt-4 text-[17px] leading-[1.5]">
+              We receive the <b class="font-bold">original</b> and&nbsp;send the <b class="font-bold">finished document</b>
+              back the same way. You always get a&nbsp;tracking number.
+            </p>
           </div>
-          <a href="https://wa.me/48507588155" class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn btn-center">Message us on WhatsApp <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></a>
+    <div class="cta-btns" role="group" aria-label="Get a quote or message us">
+      <a href="https://wa.me/48507588155?text=Hello%2C%20I%20need%20a%20quote%20for%20an%20apostille%2Ftranslation" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="/en/#wycena" class="cta-btn cta-btn--main">Get a quote<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+    </div>
         </div>
       </div>
     </div>
+
     <div class="kt-steps mt-10">
       <h3 class="text-[22px] md:text-[26px] font-bold tracking-tight">What an order looks like – five steps</h3>
       <ol class="kt-steps-list">
-        <li><b>Photo or scan.</b> Send it on WhatsApp, Telegram or by e-mail. Tell us what the document is for and in which country.</li>
-        <li><b>Quote.</b> We usually reply within 15 minutes: final price including official fees, deadline and order of steps (<a href="/en/apostille/#kolejnosc" class="underline">Apostille first, then translation</a>).</li>
-        <li><b>Payment up front.</b> BLIK, bank transfer or cash at the meeting; details come in the same message.</li>
-        <li><b>Confirmation.</b> A screenshot from your bank is enough – from that moment the order is in progress.</li>
-        <li><b>Original and collection.</b> Hand over the original at a meeting or ship it. You get a scan of the finished document right away and collect the original in person or by courier.</li>
+        <li><b>Photo or scan.</b> Attach it in&nbsp;the <a href="/en/#wycena" class="underline">quote form</a>. Tell us what the document is for and&nbsp;in&nbsp;which country.</li>
+        <li><b>Quote.</b> The reply comes by e-mail, usually within 15 minutes: final price including official fees, deadline and&nbsp;order of steps (<a href="/en/apostille/#kolejnosc" class="underline">Apostille first, then translation</a>).</li>
+        <li><b>Payment up front.</b> BLIK, bank transfer or cash at the meeting; payment details are in&nbsp;the same e-mail.</li>
+        <li><b>Confirmation.</b> A screenshot from your bank is enough – from that moment the order is in&nbsp;progress.</li>
+        <li><b>Original and&nbsp;collection.</b> Hand over the original at a meeting or ship it. You get a scan of the finished document right away and collect the original in person or by courier.</li>
       </ol>
     </div>
   </div>
 </section>
 
+<!-- ================= GDZIE ================= -->
 <section id="gdzie" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ Where</p>
-    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">Where in&nbsp;Warsaw <span class="font-light italic">Apostille is</span> issued</h2>
-    <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">There is no single counter. Which office the document goes to depends on who signed it – and each office has different hours, a different fee and a different deadline. Below are the two Warsaw addresses we visit with our clients' documents. The whole procedure, step by step, is on the <a href="/en/apostille/" class="underline font-semibold">Apostille in&nbsp;Warsaw</a> page.</p>
-    <div class="gdz gdz--light mt-9 md:mt-12 bg-sand text-ink rounded-[26px] p-7 sm:p-12">
+    <h2 class="h2-swap tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
+      <span class="h2-a">Where in&nbsp;Warsaw</span> <span class="h2-b font-light italic">Apostille is issued</span>
+    </h2>
+    <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
+      There is no single counter. Which office the document goes to depends on
+      who signed it – and&nbsp;the MFA and&nbsp;the courts have different hours, different fees and&nbsp;different deadlines.
+      Below are the three Warsaw addresses we visit with&nbsp;our clients' documents.
+      The whole procedure step by step is described on the page
+      <a href="/en/apostille/" class="underline font-semibold">Apostille in&nbsp;Warsaw</a>.
+    </p>
+
+    <div class="gdz gdz--light gdz--duo gdz--crest mt-9 md:mt-12 bg-sand text-ink rounded-[26px] p-7 sm:p-12">
       <div class="gdz-grid grid grid-cols-1 lg:grid-cols-2">
+
         <div class="gdz-cell">
+          <img src="/assets/img/ico-msz.svg" alt="" aria-hidden="true" class="gdz-crest" width="300" height="300">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-ink/60 mb-2">Ministry</span>
-          <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">MFA</h3>
-          <p class="gdz-full">Legalisation Section of the Polish Ministry of Foreign Affairs (MSZ)</p>
-          <dl class="gdz-meta"><div><dt>Address</dt><dd>ul.&nbsp;Krucza 38/42<br>00-512 Warszawa<br>postal address: al.&nbsp;J.&nbsp;Ch.&nbsp;Szucha&nbsp;23</dd></div><div><dt>Admission</dt><dd>Mon–Fri, only at the time booked in the e-Konsulat system, with a printed confirmation; the next free slot can be several days away</dd></div><div><dt>Fee</dt><dd><b class="gdz-fee">PLN&nbsp;60</b> per&nbsp;document &middot; paid before the visit: Warsaw City Hall cash desk, a post office or a bank transfer – there is no cash desk at the MFA</dd></div><div><dt>Timing</dt><dd>during the visit, up to 10&nbsp;documents per person; by post up to 30&nbsp;days</dd></div></dl>
+          <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Ministry of Foreign&nbsp;Affairs</h3>
+          <p class="gdz-full">MFA Legalisation Section (Referat ds.&nbsp;Legalizacji MSZ)</p>
+
+          <dl class="gdz-meta">
+            <div><dt>Address</dt><dd>ul.&nbsp;Krucza 38/42<br>00-512 Warszawa<br>postal address: al.&nbsp;J.&nbsp;Ch.&nbsp;Szucha&nbsp;23</dd></div>
+            <div><dt>Admission</dt><dd class="gdz-hours">
+              <span class="gdz-hr"><span class="gdz-hr-d">Mon–Fri</span> <b>By booking (<span class="whitespace-nowrap">e-Konsulat</span>)</b></span>
+              <span class="gdz-fee-s gdz-hr-s">You book a time in&nbsp;the <span class="whitespace-nowrap">e-Konsulat</span> system and&nbsp;come with&nbsp;a printed confirmation; free slots are often a&nbsp;few days away. The MFA does not publish opening hours.</span>
+            </dd></div>
+            <div><dt>Stamp duty</dt><dd class="gdz-fee-dd">
+              <span class="gdz-fee-l"><b class="gdz-fee">60,-&nbsp;zł</b> <span class="gdz-fee-k">/ document</span></span>
+              <span class="gdz-fee-s">per&nbsp;document &middot; paid before the visit: at the Warsaw City Hall cash desk (Urząd m.st.&nbsp;Warszawy), at the post office or by transfer. There is no cash desk at the MFA.</span>
+            </dd></div>
+            <div><dt>Deadline</dt><dd>on&nbsp;the day of the visit, up to&nbsp;10 documents per&nbsp;person; by post up to&nbsp;30&nbsp;days</dd></div>
+          </dl>
+
           <p class="gdz-docs-h">Which documents go here</p>
-          <ul class="gdz-docs"><li><b>Civil status record</b> – birth, marriage, death; issued by the registry office (USC)</li><li><b>Criminal record certificate</b> – from the National Criminal Register (KRK)</li><li><b>Sworn translation</b> – original with the translator's signature only; no Apostille on a photocopy</li><li><b>Company documents</b> – company registry extract (KRS) stamped by the Central Information Office of the KRS; commercial documents are first certified by the Polish Chamber of Commerce (KIG)</li></ul>
+          <ul class="gdz-docs">
+            <li><b>Civil status record</b> – birth, marriage, death; issued by the registry office (USC)</li>
+            <li><b>Criminal record certificate</b> – from the National Criminal Register (KRK)</li>
+            <li><b>Sworn translation</b> – original with&nbsp;the translator's signature only; an Apostille is never placed on&nbsp;a photocopy</li>
+            <li><b>Company documents</b> – KRS extract with&nbsp;the stamp of the Centralna Informacja KRS; commercial documents are first certified by the Krajowa Izba Gospodarcza (Polish Chamber of Commerce)</li>
+          </ul>
         </div>
+
+        <!-- Главный для нас тезис – сборы уже в цене. Стоит сразу за карточкой MSZ: на десктопе – в левой колонке
+             под ней, на телефоне – между двумя карточками. Крупный заголовок с приёмом h2-swap (начертания частей
+             меняются при прокрутке); строки разведены через block и <br>, чтобы смена веса не меняла число строк. -->
+        <div class="gdz-key">
+          <img src="/assets/img/ico-urzad.svg" alt="" aria-hidden="true" class="gdz-key-ico" width="50" height="54">
+          <h3 class="gdz-key-t"><span class="h2-a">Official fees</span> <span class="h2-b font-light italic">are already included in&nbsp;our prices</span></h3>
+          <p class="gdz-key-s"><b>The quoted price is final.</b><br>Stamp duties, the MFA booking and&nbsp;visits to the offices are on&nbsp;us – you pay nothing extra. Doing it yourself means two trips to&nbsp;Warsaw, one to submit and&nbsp;one to collect, and&nbsp;without a booking, advance payment or a missing certification the first one is often wasted. With us you send the document once. You save your time and&nbsp;energy.</p>
+        </div>
+
+        <!-- Оба суда – одной карточкой в правой колонке. Сверху общее для обоих: часы (двумя строками) и сбор
+             с одним описанием; ниже два блока одинакового строения – название + «lewy / prawy brzeg Wisły»,
+             строки Adres / Okręg / Złożenie i odbiór / Termin; в конце общий список документов. -->
         <div class="gdz-cell">
+          <img src="/assets/img/ico-sad.svg" alt="" aria-hidden="true" class="gdz-crest" width="50" height="54">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-ink/60 mb-2">Courts</span>
-          <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">District&nbsp;Court</h3>
-          <p class="gdz-full">Certification of the signature of a notary from its district and of court documents</p>
-          <dl class="gdz-meta"><div><dt>Address</dt><dd>al.&nbsp;„Solidarności” 127<br>room&nbsp;20, ground floor, corridor&nbsp;G</dd></div><div><dt>Hours</dt><dd>Mon 8:30–18:00<br>Tue–Fri 8:30–15:30</dd></div><div><dt>Fee</dt><dd><b class="gdz-fee">PLN&nbsp;26</b> per&nbsp;signature &middot; at the Wola District Office cash desk or by bank transfer</dd></div><div><dt>Timing</dt><dd>min. 2&nbsp;working days &middot; take a “LEGALIZACJA” ticket at the queue machine</dd></div></dl>
+          <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">District&nbsp;Courts <span class="whitespace-nowrap">in&nbsp;Warsaw</span></h3>
+          <p class="gdz-full"><b>We file only in&nbsp;Warsaw.</b> A document is certified by the court in&nbsp;whose district the notary's office is located, or by the court that issued it – a notary from Poznań means the District Court in&nbsp;Poznań, not Warsaw. The capital has two courts:</p>
+
+          <p class="gdz-sub">The same in&nbsp;both courts</p>
+          <dl class="gdz-meta gdz-meta--shared">
+            <div><dt>Office hours</dt><dd class="gdz-hours">
+              <span class="gdz-hr"><span class="gdz-hr-d">Mon</span> <b>8:30–18:00</b></span>
+              <span class="gdz-hr"><span class="gdz-hr-d">Tue–Fri</span> <b>8:30–15:30</b></span>
+            </dd></div>
+            <div><dt>Stamp duty</dt><dd class="gdz-fee-dd">
+              <span class="gdz-fee-l"><b class="gdz-fee">26,-&nbsp;zł</b> <span class="gdz-fee-k">/ signature</span></span>
+              <span class="gdz-fee-s">per&nbsp;signature, usually one on&nbsp;a document &middot; paid before filing: by transfer to&nbsp;the account of Urząd m.st.&nbsp;Warszawy or at the cash desk of any district office. It cannot be paid at the court.</span>
+            </dd></div>
+          </dl>
+
+          <div class="gdz-courts">
+            <div class="gdz-court">
+              <h4 class="gdz-court-h">District Court <span class="whitespace-nowrap">Warszawa-Wola</span> <span class="gdz-court-side">left bank of the Vistula</span></h4>
+              <dl class="gdz-meta">
+                <div><dt>Address</dt><dd>al.&nbsp;„Solidarności” 127<br>00-898 Warszawa</dd></div>
+                <div><dt>District</dt><dd>Śródmieście, Mokotów, Ursynów, Wilanów, Ochota, Ursus, Włochy, Wola, Bemowo, Żoliborz, Bielany; Piaseczno, Pruszków, Grodzisk Mazowiecki and&nbsp;Łomianki with&nbsp;surroundings</dd></div>
+                <div><dt>Filing and&nbsp;collection</dt><dd>room&nbsp;20, ground floor, corridor&nbsp;G &middot; ticket „LEGALIZACJA” from the queue machine</dd></div>
+                <div><dt>Deadline</dt><dd>min. 2&nbsp;working days</dd></div>
+              </dl>
+            </div>
+            <div class="gdz-court">
+              <h4 class="gdz-court-h">District Court <span class="whitespace-nowrap">Warszawa-Praga</span> <span class="gdz-court-side">right bank of the Vistula</span></h4>
+              <dl class="gdz-meta">
+                <div><dt>Address</dt><dd>ul.&nbsp;Poligonowa&nbsp;3<br>04-051 Warszawa</dd></div>
+                <div><dt>District</dt><dd><span class="whitespace-nowrap">Praga-Północ</span>, <span class="whitespace-nowrap">Praga-Południe</span>, Białołęka, Targówek, Rembertów, Wawer, Wesoła; Legionowo, Nowy Dwór Mazowiecki, Otwock, Wołomin, Marki and&nbsp;Ząbki with&nbsp;surroundings</dd></div>
+                <div><dt>Filing and&nbsp;collection</dt><dd>filing office (biuro podawcze), ground floor &middot; collection at the Biuro Obsługi Interesantów</dd></div>
+                <div><dt>Deadline</dt><dd>not published by the court – it notifies you when the document is ready</dd></div>
+              </dl>
+            </div>
+          </div>
+
           <p class="gdz-docs-h">Which documents go here</p>
-          <ul class="gdz-docs"><li><b>Notarial document</b> – power of attorney, notarial deed, notarised copy (e.g. of a contract); from here the document still goes to the MFA for the Apostille (another PLN&nbsp;60)</li><li><b>Judgment, decision, court copy</b> – judges' signatures and court seals</li></ul>
+          <ul class="gdz-docs">
+            <li><b>Notarial document</b> – power of attorney, notarial deed, notarised copy (e.g.&nbsp;of a contract); from here the document still goes to&nbsp;the MFA for the Apostille (another 60&nbsp;zł)</li>
+            <li><b>Judgment, decision, court copy</b> – judges' signatures and&nbsp;court seals</li>
+          </ul>
+        </div>
+
+        <!-- примечание о порядке и источники: на десктопе – внизу левой колонки (низ совпадает с низом правой),
+             на телефоне – после обеих карточек -->
+        <div class="gdz-aside">
+          <div class="gdz-note">
+            <p><b>The order matters.</b> A notarial document is first certified by the district court
+        and&nbsp;only then goes to&nbsp;the MFA. Filed straight at the ministry, it comes back without the clause
+        – and&nbsp;that is a lost week. The right court is the district court in&nbsp;whose district the notary's office is located:
+        left-bank Warsaw – al.&nbsp;„Solidarności”, right-bank – ul.&nbsp;Poligonowa. If the notary is outside Warsaw, it is the district court in&nbsp;your city; the document still reaches the MFA through Warsaw.</p>
+          </div>
         </div>
       </div>
-      <div class="gdz-note"><p><b>The order matters.</b> A document from a notary is first certified by the District Court and only then goes to the MFA. Filed straight at the ministry, it comes back without the stamp – and that is a lost week.</p></div>
+
+      <div class="gdz-src">
+        <p class="gdz-src-p">Offices change their opening hours, so we check the current hours before every visit. As of&nbsp;September&nbsp;2026.</p>
+        <div class="gdz-src-box">
+          <p class="gdz-src-h">Sources</p>
+          <ul class="gdz-src-list">
+            <li><a href="https://www.gov.pl/web/dyplomacja/apostille" target="_blank" rel="noopener">MSZ – gov.pl</a></li>
+            <li><a href="https://bip.warszawa.so.gov.pl/artykul/222/69/uwierzytelnienie-dokumentow-przeznaczonych-do-uzytku-za-granica" target="_blank" rel="noopener">Sąd Okręgowy w&nbsp;Warszawie (BIP)</a></li>
+            <li><a href="https://warszawapraga.so.gov.pl/artykul/113/51/uwierzytelnianie-dokumentow" target="_blank" rel="noopener">Sąd Okręgowy <span class="whitespace-nowrap">Warszawa-Praga</span></a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <p class="mt-5 text-[15px] leading-[1.6] text-ink/70 max-w-[70ch]">Official fees are already included in our prices (<a href="/en/cennik/" class="underline">price list for Apostille and translations</a>) – you do not pay them separately at the counter. Offices change their hours, so we check before every visit. As of September&nbsp;2026; sources: <a href="https://www.gov.pl/web/dyplomacja/apostille" target="_blank" rel="noopener" class="underline">MFA – gov.pl</a>, <a href="https://bip.warszawa.so.gov.pl/artykul/222/69/uwierzytelnienie-dokumentow-przeznaczonych-do-uzytku-za-granica" target="_blank" rel="noopener" class="underline">Warsaw District Court (BIP)</a>.</p>
+
+    <div class="gdz-cta">
+      <!-- слоган не трогаем (Грег, 21.09.2026); под ним – ссылка на прайс -->
+      <div>
+        <p class="gdz-cta-t">Rather not book visits and&nbsp;run between offices? Send a photo of the document – we'll handle the&nbsp;rest.</p>
+        <p class="gdz-cta-more gdz-key-more"><a href="/en/cennik/" class="k-where-link k-where-link--dark">Apostille and&nbsp;translation <span class="whitespace-nowrap">prices<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a></p>
+      </div>
+    <div class="cta-btns" role="group" aria-label="Get a quote or message us">
+      <a href="https://wa.me/48507588155?text=Hello%2C%20I%20need%20a%20quote%20for%20an%20apostille%2Ftranslation" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="/en/#wycena" class="cta-btn cta-btn--main">Get a quote<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+    </div>
+    </div>
   </div>
 </section>
 
@@ -504,7 +731,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260923-25" defer></script>
+<script src="/assets/app.js?v=20260923-29" defer></script>
 
 </body>
 </html>

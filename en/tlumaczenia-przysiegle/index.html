@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260923-25">
+<link rel="stylesheet" href="/styles.css?v=20260923-29">
 
 <script type="application/ld+json">
 {
@@ -162,9 +162,17 @@
     <p class="font-cond uppercase tracking-[0.18em] text-[15px] font-semibold text-ink/75 mb-6">Sworn translations</p>
     <h1 class="tracking-tightest leading-[0.95] text-[36px] sm:text-[52px] md:text-[64px] font-black h1-page">Sworn translator in&nbsp;Warsaw – Ukrainian, Russian, English</h1>
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">Sworn translations for offices, courts, banks and universities – from and into Polish. They are done by translators on the Polish Minister of Justice's register, and we run the whole order: from a photo of the document on WhatsApp to collecting the finished translation in central Warsaw or by parcel locker. If the document also needs an Apostille, we do both in one order.</p>
-    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="https://wa.me/48507588155" class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn">Get a translation quote <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></a>
-      <a href="#cena" class="k-where-link k-where-link--dark">PLN&nbsp;90 per page – how we count<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></a>
+    <!-- ссылка-стрелка привязана к абзацу (стоит сразу под ним), кнопки – ниже, после воздуха -->
+    <p class="hero-more">
+      <a href="#cena" class="k-where-link k-where-link--dark">90&nbsp;zł per page – how we count
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
+      </a>
+    </p>
+    <!-- главное действие – форма заявки (панель wyceny), перед ней мессенджеры; как в hero /kontakt/ (21.09.2026) -->
+    <div class="cta-btns hero-cta" role="group" aria-label="Get a quote or message us">
+      <a href="https://wa.me/48507588155?text=Hello%2C%20I%20need%20a%20quote%20for%20a%20sworn%20translation" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="/en/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Get a quote<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -214,12 +222,12 @@
         </div>
         <div class="col-span-12 lg:col-span-5 flex flex-col justify-end gap-4">
           <ul class="faq-price">
-            <li><span>Sworn translation</span><span class="price-hit"><b class="font-bold">PLN <span class="price-num" data-price="90">90</span></b></span> / page</li>
+            <li><span>Sworn translation</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ page</span></span></span></li>
             <li><span>From 6 pages in&nbsp;one order</span><b class="font-bold">10% off</b></li>
-            <li><span>MFA Apostille on the translation</span><span class="price-hit"><b class="font-bold">PLN <span class="price-num" data-price="260">260</span></b></span></li>
+            <li><span>MFA Apostille on the translation</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></li>
           </ul>
           <p class="text-[15px] leading-[1.6] text-ink/70 max-w-[40ch]">Page = 1,125 characters with spaces. The per-page price depends on the language and the type of document – we usually name the final amount within&nbsp;15 minutes. Full <a href="/en/cennik/#tlumaczenia" class="underline font-semibold">price list for translations and Apostille</a>.</p>
-          <a href="https://wa.me/48507588155" class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn btn-center">Get a translation quote <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></a>
+          <a href="https://wa.me/48507588155?text=Hello%2C%20I%20need%20a%20quote%20for%20a%20sworn%20translation" class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn btn-center">Get a translation quote <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></a>
         </div>
       </div>
     </div>
@@ -236,19 +244,19 @@
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Українська</span>
           <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Ukrainian</h3>
           <p class="ap-desc">The most frequent language in our orders: civil records, diplomas with supplements, criminal record certificates, documents for a residence card and for the registry office. If the document needs an Apostille from Ukraine, we obtain it without you travelling and translate straight after the certificate.</p>
-          <p class="slab-price"><span>Ukrainian → Polish</span><span class="price-hit"><b class="font-bold">PLN <span class="price-num" data-price="90">90</span></b></span></p>
+          <p class="slab-price"><span>Ukrainian → Polish</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span></p>
         </div>
         <div class="ap3-cell px-4 sm:px-6 py-7 lg:py-9">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Русский</span>
           <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Russian</h3>
           <p class="ap-desc">Documents from Russia, Belarus, Kazakhstan and older documents from Ukraine issued in Russian: certificates, diplomas, employment records for the social insurance office, court documents. The translator keeps the spelling of names as in the passport – important for a residence card.</p>
-          <p class="slab-price"><span>Russian → Polish</span><span class="price-hit"><b class="font-bold">PLN <span class="price-num" data-price="90">90</span></b></span></p>
+          <p class="slab-price"><span>Russian → Polish</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span></p>
         </div>
         <div class="ap3-cell px-4 sm:px-6 py-7 lg:py-9">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">English</span>
           <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">English</h3>
           <p class="ap-desc">Both ways: Polish records, criminal record certificates and company documents for work and offices abroad, and foreign diplomas, contracts, statements and certificates for Polish institutions. Most often together with an MFA Apostille on the document or on the translation itself.</p>
-          <p class="slab-price"><span>English ↔ Polish</span><span class="price-hit"><b class="font-bold">PLN <span class="price-num" data-price="90">90</span></b></span></p>
+          <p class="slab-price"><span>English ↔ Polish</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span></p>
         </div>
       </div>
       <div class="gdz-note"><p><b>Other languages</b> – German, Spanish, Italian, Dutch and French, paired with Polish, through partner sworn translators. Timing and per-page price depend on the language; we give them when quoting. Another language – ask, we will check availability.</p></div>
@@ -366,7 +374,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260923-25" defer></script>
+<script src="/assets/app.js?v=20260923-29" defer></script>
 
 </body>
 </html>

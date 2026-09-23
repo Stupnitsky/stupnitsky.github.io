@@ -395,7 +395,7 @@
     var logoEl = logoSeg.querySelector('.logo-brand');
     /* Где я (Грег, 23.09.2026): текущий пункт меню – по самому длинному совпадению адреса (подстраницы
        переводов попадают в «Tłumaczenia»); ссылки с якорем (#faq, #gdzie) не считаются. Пункт получает
-       сдвиг и пульсирующую стрелку справа, а его название стоит лёгким серым рядом с логотипом в пилюле. */
+       сдвиг и пульсирующую точку перед названием (точку рисует styles.css), а его название стоит лёгким серым рядом с логотипом в пилюле. */
     var here = null, hereLen = 0, pageLabel = null;
     Array.prototype.forEach.call(document.querySelectorAll('#mobile-nav .mn-link'), function (a) {
       var u = new URL(a.href, location.href);
@@ -405,7 +405,6 @@
     if (here) {
       here.classList.add('is-here');
       here.setAttribute('aria-current', 'page');
-      here.insertAdjacentHTML('beforeend', '<svg class="mn-here" aria-hidden="true" viewBox="0 0 24 24"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>');
       pageLabel = document.createElement('span');
       pageLabel.className = 'hdr-page';
       pageLabel.setAttribute('aria-hidden', 'true');
@@ -437,9 +436,9 @@
       var shr = parseFloat(cs.getPropertyValue('--shr')) || 0;
       var lw = pageLabel ? pageLabel.scrollWidth : 0;
       if (pageLabel) head.style.setProperty('--lw', lw + 'px');
-      var pad = logoSeg.offsetWidth - logoEl.offsetWidth - (pageLabel ? pageLabel.offsetWidth + parseFloat(getComputedStyle(pageLabel).marginLeft) : 0);
+      var pad = logoSeg.offsetWidth - logoEl.offsetWidth - (pageLabel ? pageLabel.offsetWidth + parseFloat(getComputedStyle(pageLabel).marginLeft) + parseFloat(getComputedStyle(pageLabel).marginRight) : 0);
       var logoW = parseFloat(cs.getPropertyValue('--logo-w')) || logoEl.offsetWidth;
-      var ps = Math.max(0, (w - pad - logoW * (1 - shr) - lw - (pageLabel ? 26 : 0) - langSeg.offsetWidth) / 2);
+      var ps = Math.max(0, (w - pad - logoW * (1 - shr) - lw - (pageLabel ? 26 + 10 + (parseFloat(head.style.getPropertyValue('--logo-extra')) || 0) : 0) - langSeg.offsetWidth) / 2);
       /* доводка без рывка: начинает мягко и тормозит к концу (Грег, 23.09.2026: «в конце сжатия ещё медленнее») */
       head.style.transition = !anim || calm.matches ? 'none'
         : anim === 'menu' ? '--hp .34s cubic-bezier(.2,.7,.25,1)' : '--hp 1s cubic-bezier(.35,0,.15,1)';
@@ -2252,7 +2251,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260923-26';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260923-29';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
