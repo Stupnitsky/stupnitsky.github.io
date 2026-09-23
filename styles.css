@@ -3526,21 +3526,27 @@ html.qd-open #burger > span{ opacity:0; }
   #top .hdr-seg--menu{ overflow:hidden; opacity:calc(1 - 2 * var(--hp, 0)); }
   html.hdr-pill #top .hdr-seg--menu{ pointer-events:none; }
 }
-/* название страницы в пилюле: обычное начертание, лёгкий серый; раскрывается вместе со сворачиванием.
-   Отступ 26px = 18px сдвига логотипа transform-ом + 8px зазора */
+/* название страницы в пилюле: жирное, лёгкий серый; появляется вместе со сворачиванием – по буквам из знака «/»
+   (Грег, 23.09.2026): сначала косая черта, за ней буквы по одной, при разворачивании – обратно в черту.
+   Каждой букве app.js ставит --s (порог по --hp); видимость буквы --o = (hp − s) / .12 в пределах 0…1.
+   Ширина подписи раскрывается в том же темпе, что и буквы */
 .hdr-page{ display:none; }
 @media (max-width:1149px){
   #top .hdr-page{ display:block; flex:0 0 auto; overflow:hidden; white-space:nowrap;
-    width:calc(var(--lw, 0px) * var(--hp, 0)); opacity:var(--hp, 0);
-    /* логотип защищён: отступ учитывает и его увеличение у верха страницы (--logo-extra), и набирается
-       уже к четверти сворачивания – подпись не наезжает на логотип, пока тот растёт обратно (Грег, 23.09.2026);
-       справа 10px воздуха до бургера */
-    margin-left:calc((26px + var(--logo-extra, 0px)) * min(1, 4 * var(--hp, 0)));
+    width:calc(var(--lw, 0px) * clamp(0, (var(--hp, 0) - .1) / .87, 1));
+    /* логотип защищён: подпись стоит от видимого края логотипа (сдвиг transform-ом --lx) на 10px, отступ
+       набирается к шестой части сворачивания – раньше, чем появляется черта (.12); справа 10px воздуха до бургера */
+    margin-left:calc((var(--lx) + 10px) * min(1, 6 * var(--hp, 0)));
     margin-right:calc(10px * var(--hp, 0));
     font-size:16px; font-weight:700; line-height:1; letter-spacing:-.035em; color:rgba(31,33,32,.45); }
   #top .hdr-row.on-dark .hdr-page{ color:rgba(255,255,255,.5); }
-  /* «/ Cennik» – косая черта как в подписях разделов «/ FAQ» (Грег, 23.09.2026) */
-  #top .hdr-page::before{ content:'/\00a0'; }
+  #top .hdr-page > span{ display:inline-block; white-space:pre;
+    --o:clamp(0, (var(--hp, 0) - var(--s)) / .12, 1);
+    opacity:var(--o); transform:translateX(calc((1 - var(--o)) * -6px)); }
+  /* в пилюле поле слева от логотипа равно полю справа от бургера: сдвиг логотипа 18px (он для высокой шапки)
+     уходит к --pill-x, его считает app.js (поле справа от линий бургера минус padding плашки логотипа) */
+  #top{ --lx:calc(18px - (18px - var(--pill-x, 18px)) * var(--hp, 0)); }
+  #top .hdr-seg--logo .logo-brand{ transform:translateX(var(--lx)) scale(var(--logo-scale, 1)); }
   /* пилюля мимо логотипа и бургера ведёт к началу страницы (обработчик – в app.js) */
   html.hdr-pill #top .hdr-row{ cursor:pointer; -webkit-tap-highlight-color:transparent; }
 }

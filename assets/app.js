@@ -142,7 +142,12 @@
   function measureLogo() {
     if (!logoEl || logoEl.matches(':hover')) return;
     header.style.removeProperty('--logo-w');
-    logoW = logoEl.offsetWidth;
+    /* в пилюле кегль логотипа уменьшен (--hp) – замер приводим к полному кеглю --logo-fs. Иначе на iPhone
+       прокрутка (панели Safari сворачиваются – для страницы это resize) записывала уменьшенную ширину,
+       пилюля ужимала логотип ещё раз, и подпись «/ Cennik» наезжала на него (Грег, 23.09.2026) */
+    var fs = parseFloat(getComputedStyle(logoEl).fontSize);
+    var base = parseFloat(getComputedStyle(header).getPropertyValue('--logo-fs')) || fs;
+    logoW = Math.round(logoEl.offsetWidth * base / fs);
     header.style.setProperty('--logo-w', logoW + 'px');
     logoLast = null; applyLogoScale();
   }
@@ -408,7 +413,15 @@
       pageLabel = document.createElement('span');
       pageLabel.className = 'hdr-page';
       pageLabel.setAttribute('aria-hidden', 'true');
-      pageLabel.textContent = here.firstChild.textContent.trim();
+      /* «/ Cennik» по буквам: черта первой (порог .12), буквы следом от .25 до .85 – появляются из черты
+         и в неё же уходят (Грег, 23.09.2026); пороги --s читает styles.css */
+      var word = here.firstChild.textContent.trim().split('');
+      ['/\u00a0'].concat(word).forEach(function (ch, i) {
+        var sp = document.createElement('span');
+        sp.textContent = ch;
+        sp.style.setProperty('--s', i ? (.25 + .6 * (i - 1) / word.length).toFixed(3) : '.12');
+        pageLabel.appendChild(sp);
+      });
       logoEl.insertAdjacentElement('afterend', pageLabel);
     }
     var root = document.documentElement;
@@ -445,7 +458,13 @@
       if (pageLabel) head.style.setProperty('--lw', lw + 'px');
       var pad = logoSeg.offsetWidth - logoEl.offsetWidth - (pageLabel ? pageLabel.offsetWidth + parseFloat(getComputedStyle(pageLabel).marginLeft) + parseFloat(getComputedStyle(pageLabel).marginRight) : 0);
       var logoW = parseFloat(cs.getPropertyValue('--logo-w')) || logoEl.offsetWidth;
-      var ps = Math.max(0, (w - pad - logoW * (1 - shr) - lw - (pageLabel ? 26 + 10 + (parseFloat(head.style.getPropertyValue('--logo-extra')) || 0) : 0) - langSeg.offsetWidth) / 2);
+      /* поле слева от логотипа в пилюле = полю справа от линий бургера (Грег, 23.09.2026: «слишком большой
+         отступ между лого и левым краем»): сдвиг логотипа 18px уходит к --pill-x */
+      var burger = document.getElementById('burger'), bLine = burger && burger.querySelector('span');
+      var rightGap = bLine ? langSeg.offsetWidth - burger.offsetLeft - (burger.offsetWidth + bLine.offsetWidth) / 2 : 18;
+      var pillX = Math.max(0, rightGap - parseFloat(getComputedStyle(logoSeg).paddingLeft));
+      head.style.setProperty('--pill-x', pillX + 'px');
+      var ps = Math.max(0, (w - pad - logoW * (1 - shr) - lw - (pageLabel ? pillX + 10 + 10 : 0) - langSeg.offsetWidth) / 2);
       /* доводка без рывка: начинает мягко и тормозит к концу (Грег, 23.09.2026: «в конце сжатия ещё медленнее») */
       head.style.transition = !anim || calm.matches ? 'none'
         : anim === 'menu' ? '--hp .34s cubic-bezier(.2,.7,.25,1)' : '--hp 1s cubic-bezier(.35,0,.15,1)';
@@ -2258,7 +2277,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260923-33';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260923-34';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
