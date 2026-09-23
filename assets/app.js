@@ -392,10 +392,30 @@
     var row = head && head.querySelector('.hdr-row');
     if (!row) return;
     var logoSeg = row.querySelector('.hdr-seg--logo'), langSeg = row.querySelector('.hdr-seg--lang');
+    var logoEl = logoSeg.querySelector('.logo-brand');
+    /* Где я (Грег, 23.09.2026): текущий пункт меню – по самому длинному совпадению адреса (подстраницы
+       переводов попадают в «Tłumaczenia»); ссылки с якорем (#faq, #gdzie) не считаются. Пункт получает
+       сдвиг и пульсирующую стрелку справа, а его название стоит лёгким серым рядом с логотипом в пилюле. */
+    var here = null, hereLen = 0, pageLabel = null;
+    Array.prototype.forEach.call(document.querySelectorAll('#mobile-nav .mn-link'), function (a) {
+      var u = new URL(a.href, location.href);
+      if (u.hash || u.pathname.split('/').filter(Boolean).length === (/^\/(ua|ru|en)\//.test(u.pathname) ? 1 : 0)) return;
+      if (location.pathname.indexOf(u.pathname) === 0 && u.pathname.length > hereLen) { here = a; hereLen = u.pathname.length; }
+    });
+    if (here) {
+      here.classList.add('is-here');
+      here.setAttribute('aria-current', 'page');
+      here.insertAdjacentHTML('beforeend', '<svg class="mn-here" aria-hidden="true" viewBox="0 0 24 24"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>');
+      pageLabel = document.createElement('span');
+      pageLabel.className = 'hdr-page';
+      pageLabel.setAttribute('aria-hidden', 'true');
+      pageLabel.textContent = here.firstChild.textContent.trim();
+      logoEl.insertAdjacentElement('afterend', pageLabel);
+    }
     var root = document.documentElement;
     var mq = window.matchMedia('(max-width:1149px)');
     var calm = window.matchMedia('(prefers-reduced-motion:reduce)');
-    var DIST = 90;                      /* сколько пикселей прокрутки занимает сворачивание */
+    var DIST = 540;                     /* сколько пикселей прокрутки занимает сворачивание (было 90, Грег 23.09.2026: в 6 раз медленнее) */
     var lastY = Math.max(window.scrollY, 0), away = false, settle = 0, hp = 0, snapT = 0;
     /* первую секунду после загрузки не сворачиваем: переход по ссылке с якорем (/cennik/#wycena) сам
        прокручивает страницу вниз */
@@ -408,18 +428,29 @@
       clearTimeout(settle);
       settle = setTimeout(function () { window.dispatchEvent(new Event('scroll')); }, 760);
     }
+    /* anim: false – за пальцем, без анимации; true – доводка .7s; 'menu' – разворот под меню в темпе самого
+       меню (.34s, как растёт плашка в styles.css), чтобы из пилюли меню выезжало так же, как с полной шапки */
     function apply(anim) {
       var cs = getComputedStyle(head);
       var w = head.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-      var ps = Math.max(0, (w - logoSeg.offsetWidth - langSeg.offsetWidth) / 2);
-      head.style.transition = anim && !calm.matches ? '--hp .7s cubic-bezier(.2,.7,.25,1)' : 'none';
+      /* ширина пилюли – по свёрнутому виду: логотип уменьшен на --shr, подпись страницы раскрыта полностью */
+      var shr = parseFloat(cs.getPropertyValue('--shr')) || 0;
+      var lw = pageLabel ? pageLabel.scrollWidth : 0;
+      if (pageLabel) head.style.setProperty('--lw', lw + 'px');
+      var pad = logoSeg.offsetWidth - logoEl.offsetWidth - (pageLabel ? pageLabel.offsetWidth + parseFloat(getComputedStyle(pageLabel).marginLeft) : 0);
+      var logoW = parseFloat(cs.getPropertyValue('--logo-w')) || logoEl.offsetWidth;
+      var ps = Math.max(0, (w - pad - logoW * (1 - shr) - lw - (pageLabel ? 26 : 0) - langSeg.offsetWidth) / 2);
+      /* доводка без рывка: начинает мягко и тормозит к концу (Грег, 23.09.2026: «в конце сжатия ещё медленнее») */
+      head.style.transition = !anim || calm.matches ? 'none'
+        : anim === 'menu' ? '--hp .34s cubic-bezier(.2,.7,.25,1)' : '--hp 1s cubic-bezier(.35,0,.15,1)';
       head.style.setProperty('--ps', ps + 'px');
-      head.style.setProperty('--hp', hp);
+      /* за пальцем сворачивание замедляется к концу: вид = 1 − (1 − путь)² – у пилюли скорость сходит на нет */
+      head.style.setProperty('--hp', 1 - (1 - hp) * (1 - hp));
       root.classList.toggle('hdr-pill', hp > 0);
     }
-    function show() {
+    function show(how) {
       clearTimeout(snapT);
-      if (hp) { hp = 0; apply(true); }
+      if (hp) { hp = 0; apply(how === 'menu' ? 'menu' : true); }
       set(false);
     }
     function snap() {
@@ -435,7 +466,7 @@
       /* отскок у низа страницы на iOS не считается прокруткой вверх */
       var y = Math.min(Math.max(window.scrollY, 0), document.documentElement.scrollHeight - window.innerHeight);
       if (y < 120 || root.classList.contains('menu-open') || root.classList.contains('qd-open')) {
-        lastY = y; show(); return;
+        lastY = y; show(root.classList.contains('menu-open') || root.classList.contains('qd-open') ? 'menu' : 0); return;
       }
       if (Date.now() < armedAt) { lastY = y; return; }
       var dy = y - lastY;
@@ -448,10 +479,10 @@
       snapT = setTimeout(snap, 140);
     }
     window.addEventListener('scroll', onScroll, { passive: true });
-    head.addEventListener('focusin', show);
+    head.addEventListener('focusin', function () { show(); });
     /* меню и панель wyceny рисуются от полного ряда – при открытии шапка сразу разворачивается */
     new MutationObserver(function () {
-      if (root.classList.contains('menu-open') || root.classList.contains('qd-open')) show();
+      if (root.classList.contains('menu-open') || root.classList.contains('qd-open')) show('menu');
     }).observe(root, { attributes: true, attributeFilter: ['class'] });
     (mq.addEventListener ? mq.addEventListener('change', onScroll) : mq.addListener(onScroll));
   })();
@@ -2221,7 +2252,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260923-18';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260923-25';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */

@@ -307,8 +307,8 @@ html.menu-open .mn-backdrop{ opacity:1; visibility:visible; transition-delay:0s;
 @media (prefers-reduced-motion:reduce){ .mn-backdrop{ transition:none; } }
 /* ряд шапки на время меню – того же плотного стекла, что панель: над приглушённой страницей
    обычное стекло .64 серело бы рядом с почти белой панелью */
-html.menu-open .hdr-row::before{ background:rgba(255,255,255,.94); }
-html.menu-open .hdr-row.on-dark::before{ background:rgba(38,41,40,.94); }
+/* с 23.09.2026 открытое меню того же прозрачного стекла, что шапка и пилюля (Грег: «прозрачный фон под всей
+   площадью выпавшего меню и всегда прозрачный»); раньше плотное .94 */
 /* плавающие элементы выше шапки (z-60) на время меню убираем, иначе лягут поверх панели */
 html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibility:hidden; pointer-events:none; }
 
@@ -402,8 +402,9 @@ html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibilit
 /* телефон лёжа (560–699px, окно ниже 520px): на два ряда кнопок высоты нет – один ряд, поля кнопок уже,
    у мессенджеров без стрелки; так три кнопки входят в 440px с запасом (и с «Заказать оценку») */
 @media (max-height:520px) and (min-width:560px) and (max-width:699px){
-  #mobile-nav .mn-cta{ grid-template-columns:minmax(max-content,1.35fr) repeat(2, minmax(max-content,1fr)); }
-  #mobile-nav .mn-cta .cta-btn--main{ grid-column:auto; }
+  /* главная кнопка справа, как на планшете (Грег, 23.09.2026) */
+  #mobile-nav .mn-cta{ grid-template-columns:repeat(2, minmax(max-content,1fr)) minmax(max-content,1.35fr); }
+  #mobile-nav .mn-cta .cta-btn--main{ grid-column:auto; order:1; }
   #mobile-nav .mn-cta .cta-btn, #mobile-nav .mn-cta .cta-btn:not(.cta-btn--main),
   #mobile-nav .mn-cta .cta-btn:not(.cta-btn--main):hover, #mobile-nav .mn-cta .cta-btn:not(.cta-btn--main):focus-visible{
     padding-left:.9em; padding-right:.9em; }
@@ -3496,13 +3497,27 @@ html.qd-open #burger > span{ opacity:0; }
    поэтому сужается вместе с рядом. */
 @property --hp{ syntax:'<number>'; inherits:true; initial-value:0; }
 @media (max-width:1149px){
-  #top{ --row-h:72px; }
+  /* пилюля пропорциональна логотипу: логотип уменьшается в той же доле, что и высота ряда (72 → 50 = ×.694,
+     на планшете 90 → 50 = ×.556); --shr – сколько он теряет при полном сворачивании */
+  #top{ --row-h:72px; --shr:.306; --logo-fs:30px; }
+  #top .hdr-seg--logo .logo-brand{ font-size:calc(var(--logo-fs) * (1 - var(--shr) * var(--hp, 0)));
+    width:calc(var(--logo-w, auto) * (1 - var(--shr) * var(--hp, 0))); }
   #top .hdr-row{ height:calc(var(--row-h) - (var(--row-h) - 50px) * var(--hp, 0));
     margin-left:calc(var(--ps, 0px) * var(--hp, 0)) !important; margin-right:calc(var(--ps, 0px) * var(--hp, 0)) !important; }
   #top .hdr-seg--menu{ overflow:hidden; opacity:calc(1 - 2 * var(--hp, 0)); }
   html.hdr-pill #top .hdr-seg--menu{ pointer-events:none; }
 }
-@media (min-width:768px) and (max-width:1149px){ #top{ --row-h:90px; } }
+/* название страницы в пилюле: обычное начертание, лёгкий серый; раскрывается вместе со сворачиванием.
+   Отступ 26px = 18px сдвига логотипа transform-ом + 8px зазора */
+.hdr-page{ display:none; }
+@media (max-width:1149px){
+  #top .hdr-page{ display:block; flex:0 0 auto; overflow:hidden; white-space:nowrap;
+    width:calc(var(--lw, 0px) * var(--hp, 0)); margin-left:calc(26px * var(--hp, 0)); opacity:var(--hp, 0);
+    font-size:15px; font-weight:400; line-height:1; letter-spacing:0; color:rgba(31,33,32,.45); }
+  #top .hdr-row.on-dark .hdr-page{ color:rgba(255,255,255,.5); }
+}
+@media (min-width:768px) and (max-width:1149px){ #top{ --row-h:90px; --shr:.444; --logo-fs:40px; } }
+@media (max-width:359px){ #top{ --logo-fs:24px; } }
 
 /* Языки в панели меню: первая строка под рядом шапки, мелко, текущий – полужирный. Сверху и снизу – те же
    линии, что между пунктами: единая плашка читается как один список. Названия входят в одну строку от 340px
@@ -3561,3 +3576,15 @@ header:has(.hdr-row.on-dark) #mobile-nav a.mn-lang:not(.is-current){ color:rgba(
 .so-list li{ display:flex; flex-direction:column; gap:.1rem; padding-top:.8rem; border-top:1px solid rgba(31,33,32,.12); }
 .so-list li b{ font-size:17px; font-weight:700; color:var(--c-ink); letter-spacing:-.01em; }
 .so-list li span{ font-size:15.5px; line-height:1.45; color:rgba(31,33,32,.7); }
+
+/* Текущая страница в меню (Грег, 23.09.2026): название сдвинуто на 10px, справа от него жёлтая стрелка влево –
+   та же, что «наверх», и пульсирует в том же темпе (2.8s, ×1.14), указывая на пункт */
+.mn-link.is-here{ padding-left:10px; display:flex; align-items:center; gap:12px; }
+.mn-here{ flex:0 0 auto; width:.62em; height:.62em; color:var(--c-terra);
+  transform:rotate(180deg); animation:mnHereNudge 2.8s ease-in-out infinite; }
+@keyframes mnHereNudge{
+  0%   { transform:rotate(180deg) translateX(0) scale(1) }
+  50%  { transform:rotate(180deg) translateX(5px) scale(1.14) }
+  100% { transform:rotate(180deg) translateX(0) scale(1) }
+}
+@media (prefers-reduced-motion:reduce){ .mn-here{ animation:none } }
