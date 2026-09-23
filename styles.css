@@ -325,7 +325,9 @@ html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibilit
   html.menu-open .hdr-row::before, html.menu-open .hdr-row::after{ bottom:calc(-1 * var(--mn-h, 0px)); }
 
   #mobile-nav{ --mn-top:90px; --mn-inset:34px; --mn-fs:26px; --mn-pad:13px;
-    display:block; position:absolute; z-index:1; left:.75rem; right:.75rem; top:100%;
+    display:block; position:absolute; z-index:1; left:.75rem; right:.75rem;
+    /* под рядом: место шапки в потоке – по пилюле (59px), развёрнутый ряд выше на (--row-h − 50px) */
+    top:calc(100% + (var(--row-h, 50px) - 50px) * (1 - var(--hp, 0)));
     margin-top:0; border-top:0; border-radius:0 0 var(--hdr-r) var(--hdr-r);
     max-height:calc(100vh - var(--mn-top) - 12px); overflow-y:auto; overscroll-behavior:contain;
     -webkit-overflow-scrolling:touch;
@@ -3515,15 +3517,17 @@ html.qd-open #burger > span{ opacity:0; }
     white-space:normal; line-height:1.08; padding:0 9px; }
 }
 
-/* Шапка в режиме бургера сворачивается в «пилюлю» по центру: логотип + бургер, высота 50px
-   (Грег, 23.09.2026, вариант 3 – «как строка Safari»). --hp 0…1 и --ps (поле с боков в пилюле) ставит app.js,
-   пока палец крутит – без анимации, после остановки доводка .7s. Стекло рисует .hdr-row::before,
+/* Шапка в режиме бургера – «пилюля» по центру: логотип, название страницы и бургер, высота 50px
+   (Грег, 23.09.2026, вариант 3 – «как строка Safari»; с 24.09.2026 пилюля всегда, полный ряд – только под меню
+   и панель wyceny). --hp 0…1 и --ps (поле с боков в пилюле) ставит app.js, разворот – .34s. Стекло рисует .hdr-row::before,
    поэтому сужается вместе с рядом. */
 @property --hp{ syntax:'<number>'; inherits:true; initial-value:0; }
 @media (max-width:1149px){
   /* пилюля пропорциональна логотипу: логотип уменьшается в той же доле, что и высота ряда (72 → 50 = ×.694,
      на планшете 90 → 50 = ×.556); --shr – сколько он теряет при полном сворачивании */
-  #top{ --row-h:72px; --shr:.306; --logo-fs:30px; }
+  /* --hp:1 – пилюля с первого кадра, ещё до app.js (с 24.09.2026 пилюля – основной вид); место шапки в потоке –
+     по пилюле (9px + 50px): развёрнутый под меню ряд ложится поверх страницы и не сдвигает её на 22–40px */
+  #top{ --row-h:72px; --shr:.306; --logo-fs:30px; --hp:1; height:59px; }
   #top .hdr-seg--logo .logo-brand{ font-size:calc(var(--logo-fs) * (1 - var(--shr) * var(--hp, 0)));
     width:calc(var(--logo-w, auto) * (1 - var(--shr) * var(--hp, 0))); }
   #top .hdr-row{ height:calc(var(--row-h) - (var(--row-h) - 50px) * var(--hp, 0));

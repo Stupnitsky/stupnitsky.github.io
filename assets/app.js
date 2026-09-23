@@ -388,10 +388,9 @@
     });
   })();
 
-  // Шапка в режиме бургера (уже 1150px): при прокрутке вниз за пальцем сворачивается в «пилюлю» по центру –
-  // логотип и бургер, высота 50px (Грег, 23.09.2026, вариант 3; раньше уезжала вверх целиком).
+  // Шапка в режиме бургера (уже 1150px) – «пилюля» по центру: логотип, название страницы и бургер, высота 50px
+  // (Грег, 23.09.2026 – сворачивалась при прокрутке; с 24.09.2026 – пилюля всегда, разворот только под меню).
   // Степень сворачивания --hp (0…1) и поле с боков --ps ставит этот скрипт, вид – в styles.css.
-  // Всегда развёрнута: у верха страницы, при открытом меню или панели wyceny, при фокусе внутри шапки.
   (function () {
     var head = document.getElementById('top');
     var row = head && head.querySelector('.hdr-row');
@@ -434,11 +433,11 @@
       if (!root.classList.contains('hdr-pill') || logoEl.contains(e.target) || langSeg.contains(e.target)) return;
       window.scrollTo({ top:0, behavior: calm.matches ? 'auto' : 'smooth' });
     });
-    var DIST = 540;                     /* сколько пикселей прокрутки занимает сворачивание (было 90, Грег 23.09.2026: в 6 раз медленнее) */
-    var lastY = Math.max(window.scrollY, 0), away = false, settle = 0, hp = 0, snapT = 0;
-    /* первую секунду после загрузки не сворачиваем: переход по ссылке с якорем (/cennik/#wycena) сам
-       прокручивает страницу вниз */
-    var armedAt = Date.now() + 1200;
+    /* С 24.09.2026 пилюля – основной вид шапки на мобильных, сразу с названием страницы (Грег: «пилюлю основным
+       и сразу с написанием текущей страницы, а при клике на бургер разворачиваем»). Прокрутка вид шапки больше
+       не меняет. Полный ряд – пока открыто меню или панель wyceny (они рисуются от полного ряда) и пока фокус
+       с клавиатуры внутри шапки. Разворот и сворачивание – в темпе меню (.34s) */
+    var away = false, settle = 0, hp = 0;
     function set(v) {
       if (v === away) return;
       away = v;
@@ -456,7 +455,10 @@
       var shr = parseFloat(cs.getPropertyValue('--shr')) || 0;
       var lw = pageLabel ? pageLabel.scrollWidth : 0;
       if (pageLabel) head.style.setProperty('--lw', lw + 'px');
-      var pad = logoSeg.offsetWidth - logoEl.offsetWidth - (pageLabel ? pageLabel.offsetWidth + parseFloat(getComputedStyle(pageLabel).marginLeft) + parseFloat(getComputedStyle(pageLabel).marginRight) : 0);
+      /* дробные ширины: целые offsetWidth в свёрнутом и развёрнутом виде округляются по-разному, и пилюля после
+         закрытия меню выходила на 2px уже, чем при загрузке */
+      function bw(el) { return el.getBoundingClientRect().width; }
+      var pad = bw(logoSeg) - bw(logoEl) - (pageLabel ? bw(pageLabel) + parseFloat(getComputedStyle(pageLabel).marginLeft) + parseFloat(getComputedStyle(pageLabel).marginRight) : 0);
       var logoW = parseFloat(cs.getPropertyValue('--logo-w')) || logoEl.offsetWidth;
       /* поле слева от логотипа в пилюле = полю справа от линий бургера (Грег, 23.09.2026: «слишком большой
          отступ между лого и левым краем»): сдвиг логотипа 18px уходит к --pill-x */
@@ -473,43 +475,40 @@
       head.style.setProperty('--hp', 1 - (1 - hp) * (1 - hp));
       root.classList.toggle('hdr-pill', hp > 0);
     }
-    function show(how) {
-      clearTimeout(snapT);
-      if (hp) { hp = 0; apply(how === 'menu' ? 'menu' : true); }
-      set(false);
+    function wantsFull() {
+      if (root.classList.contains('menu-open') || root.classList.contains('qd-open')) return true;
+      var a = document.activeElement;
+      try { return !!a && head.contains(a) && a.matches(':focus-visible'); } catch (e) { return false; }
     }
-    function snap() {
-      hp = hp > .5 ? 1 : 0;
-      apply(true);
-      set(hp === 1);
-    }
-    function onScroll() {
+    /* anim – как в apply(); вызов без смены состояния ничего не трогает, иначе оборвал бы идущую анимацию */
+    function update(anim) {
       if (!mq.matches) {
-        lastY = window.scrollY; hp = 0; root.classList.remove('hdr-pill');
+        /* уже сброшено – ничего не трогаем: вызов приходит и от MutationObserver на классах <html>, а
+           classList.remove пишет атрибут даже без изменений – наблюдатель зациклился бы и повесил страницу */
+        if (hp === 0 && head.style.getPropertyValue('--hp') === '') return;
+        hp = 0; root.classList.toggle('hdr-pill', false);
         head.style.transition = ''; head.style.removeProperty('--hp'); set(false); return;
       }
-      /* отскок у низа страницы на iOS не считается прокруткой вверх */
-      var y = Math.min(Math.max(window.scrollY, 0), document.documentElement.scrollHeight - window.innerHeight);
-      if (y < 120 || root.classList.contains('menu-open') || root.classList.contains('qd-open')) {
-        lastY = y; show(root.classList.contains('menu-open') || root.classList.contains('qd-open') ? 'menu' : 0); return;
-      }
-      if (Date.now() < armedAt) { lastY = y; return; }
-      var dy = y - lastY;
-      lastY = y;
-      if (!dy) return;
-      hp = Math.min(1, Math.max(0, hp + dy / DIST));
-      apply(false);
-      if (hp === 1) set(true); else if (hp === 0) set(false);
-      clearTimeout(snapT);
-      snapT = setTimeout(snap, 140);
+      var next = wantsFull() ? 0 : 1;
+      if (next === hp && head.style.getPropertyValue('--hp') !== '') return;
+      hp = next;
+      apply(anim);
+      set(hp === 1);
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    head.addEventListener('focusin', function () { show(); });
-    /* меню и панель wyceny рисуются от полного ряда – при открытии шапка сразу разворачивается */
-    new MutationObserver(function () {
-      if (root.classList.contains('menu-open') || root.classList.contains('qd-open')) show('menu');
-    }).observe(root, { attributes: true, attributeFilter: ['class'] });
-    (mq.addEventListener ? mq.addEventListener('change', onScroll) : mq.addListener(onScroll));
+    update(false);                                   /* сразу пилюлей, без анимации */
+    /* ширина пилюли зависит от ширины окна и шрифта – пересчёт без анимации */
+    function refit() { if (mq.matches) apply(false); }
+    /* кириллица Fira Sans грузится отдельно и позже – когда на странице впервые нужны её буквы («/ Контакты») */
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(refit);
+      if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', refit);
+    }
+    window.addEventListener('resize', refit, { passive: true });
+    head.addEventListener('focusin', function () { update('menu'); });
+    head.addEventListener('focusout', function () { setTimeout(function () { update('menu'); }, 0); });
+    new MutationObserver(function () { update('menu'); })
+      .observe(root, { attributes: true, attributeFilter: ['class'] });
+    (mq.addEventListener ? mq.addEventListener('change', function () { update(false); }) : mq.addListener(function () { update(false); }));
   })();
 
 
@@ -2277,7 +2276,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260923-37';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260924-5';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
