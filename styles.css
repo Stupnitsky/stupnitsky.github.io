@@ -368,21 +368,22 @@ html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibilit
    «кнопка Zamów wycenę и потом WhatsApp, Telegram»; в hero порядок прежний – мессенджеры, затем главная) */
 #mobile-nav .mn-cta{ margin-top:14px; display:grid; grid-template-columns:1fr 1fr; width:100%; }
 #mobile-nav .mn-cta .cta-btn--main{ grid-column:1 / -1; }
-/* Способы связи по задачам (Грег, 23.09.2026): форма – прислать фото документов (камера), звонок – услышать
-   человека перед заказом (трубка, номер и часы в одной кнопке), мессенджеры – вопросы. Значок называет канал,
-   чтобы главную кнопку не принимали за звонок. На телефоне: форма, под ней телефон, ниже мессенджеры пополам */
-#mobile-nav .mn-ic{ width:1.2em; height:1.2em; flex:none; margin-right:9px; }
-#mobile-nav .mn-tel{ grid-column:1 / -1; justify-content:flex-start; }
-#mobile-nav .mn-tel b{ font-weight:700; letter-spacing:-.01em; white-space:nowrap; }
-#mobile-nav .mn-hrs{ margin-left:auto; padding-left:12px; font-size:14px; font-weight:600; color:rgba(31,33,32,.55); }
-/* «7:00–21:00» полностью (Грег, 23.09.2026: «7–21 непонятно, как 7/24»); уже 360px кнопке 236px – на 3px не входило,
-   поэтому кнопка телефона мельче: номер 15px, часы 12px, поля уже */
+/* Способы связи по задачам (Грег, 23.09.2026): форма – прислать фото документов, звонок – услышать человека
+   перед заказом, мессенджеры – вопросы. Главная кнопка – самая широкая; кнопка телефона шириной по номеру, часы
+   рядом обычным текстом (без значков – Грег: «страшные иконки»); WhatsApp и Telegram всегда поровну.
+   На телефоне: форма во всю ширину, под ней телефон с часами, ниже мессенджеры пополам */
+#mobile-nav .mn-call{ grid-column:1 / -1; display:flex; align-items:center; gap:12px; min-width:0; }
+#mobile-nav .mn-tel{ padding-left:1.2em; padding-right:1.2em; }
+#mobile-nav .mn-hrs{ font-size:14px; font-weight:600; letter-spacing:-.01em; white-space:nowrap; color:rgba(31,33,32,.55); }
+header:has(.hdr-row.on-dark) #mobile-nav .mn-hrs{ color:rgba(255,255,255,.6); }
+/* «7:00–21:00» полностью (Грег, 23.09.2026: «7–21 непонятно, как 7/24»); уже 360px ряду 236px – поля кнопки
+   и кегль часов меньше */
 @media (max-width:359px){
-  #mobile-nav .mn-cta .mn-tel{ font-size:15px; padding-left:.9em; padding-right:.9em; }
-  #mobile-nav .mn-tel .mn-ic{ margin-right:7px; }
-  #mobile-nav .mn-hrs{ padding-left:8px; font-size:12px; }
+  #mobile-nav .mn-tel{ padding-left:.9em; padding-right:.9em; }
+  #mobile-nav .mn-call{ gap:10px; }
+  #mobile-nav .mn-hrs{ font-size:12px; }
 }
-/* широкая плашка (планшет, узкое окно, телефон лёжа): список в две колонки, кнопки в один ряд –
+/* широкая плашка (планшет, узкое окно, телефон лёжа): список в две колонки, кнопки двумя рядами по две –
    лист во всю ширину шапки с одной колонкой слева выглядел бы пустым, а лёжа не помещался бы по высоте */
 @media (min-width:560px) and (max-width:1149px){
   /* колонки по смыслу (Грег, 21.09.2026): слева услуги и вопросы – Apostille, Tłumaczenia, Częste pytania,
@@ -398,14 +399,15 @@ html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibilit
   .mn-link:nth-last-child(2){ border-bottom:0; }
   #mobile-nav .mn-cta{ margin-top:16px; }
 }
-/* Кнопки в два ряда по два – от 700px (23.09.2026, в меню добавился телефон): сверху телефон и главная справа
-   (Грег, 23.09.2026: «главная кнопка справа»), снизу мессенджеры. Колонки не уже содержимого кнопок (max-content):
-   21.09.2026 на 560–660px кнопка в узкой ячейке вылезала из полей – Грег: «не эстетичные расстояния в этой кнопке».
+/* Кнопки в два ряда по два – от 700px (23.09.2026, в меню добавился телефон): сверху телефон с часами и главная
+   справа (Грег, 23.09.2026: «главная кнопка справа»), снизу мессенджеры. Колонки строго поровну (minmax(0,1fr)):
+   с max-content на 700px WhatsApp выходил шире Telegram, а телефон – шире главной (307 против 275px).
+   Содержимое входит в половину ряда с запасом: телефон с часами ~260px, главная ~200px.
    На 560–699px – как на телефоне: главная во всю ширину, под ней телефон, ниже мессенджеры пополам. */
 @media (min-width:700px) and (max-width:1149px){
-  #mobile-nav .mn-cta{ grid-template-columns:repeat(2, minmax(max-content,1fr)); }
+  #mobile-nav .mn-cta{ grid-template-columns:repeat(2, minmax(0,1fr)); }
   #mobile-nav .mn-cta .cta-btn--main{ grid-area:1 / 2; }
-  #mobile-nav .mn-cta .mn-tel{ grid-area:1 / 1; }
+  #mobile-nav .mn-cta .mn-call{ grid-area:1 / 1; }
 }
 @media (max-height:520px) and (min-width:560px) and (max-width:1149px){
   #mobile-nav{ --mn-fs:22px; --mn-pad:9px; }
@@ -415,12 +417,11 @@ html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibilit
   .mn-in{ padding-bottom:14px; }
 }
 /* телефон лёжа (560–699px, окно ниже 520px): раскладка планшета – два ряда по два, поля кнопок уже,
-   у мессенджеров без стрелки, часы у телефона скрыты (они есть в aria-label) – иначе ячейка шире половины ряда */
+   у мессенджеров без стрелки */
 @media (max-height:520px) and (min-width:560px) and (max-width:699px){
-  #mobile-nav .mn-cta{ grid-template-columns:repeat(2, minmax(max-content,1fr)); }
+  #mobile-nav .mn-cta{ grid-template-columns:repeat(2, minmax(0,1fr)); }
   #mobile-nav .mn-cta .cta-btn--main{ grid-area:1 / 2; }
-  #mobile-nav .mn-cta .mn-tel{ grid-area:1 / 1; }
-  #mobile-nav .mn-hrs{ display:none; }
+  #mobile-nav .mn-cta .mn-call{ grid-area:1 / 1; }
   #mobile-nav .mn-cta .cta-btn, #mobile-nav .mn-cta .cta-btn:not(.cta-btn--main),
   #mobile-nav .mn-cta .cta-btn:not(.cta-btn--main):hover, #mobile-nav .mn-cta .cta-btn:not(.cta-btn--main):focus-visible{
     padding-left:.9em; padding-right:.9em; }

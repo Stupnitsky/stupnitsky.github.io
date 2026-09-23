@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260923-34">
+<link rel="stylesheet" href="/styles.css?v=20260923-35">
 
 <script type="application/ld+json">
 {
@@ -136,7 +136,7 @@
   <!-- Мобильное меню (21.09.2026): единая плашка с рядом шапки – вниз растёт сам стеклянный слой ряда, панель
        прозрачная и стоит встык под ним (стили – #mobile-nav и .mn-* в styles.css, состояние html.menu-open).
        Первой строкой app.js ставит языки (.mn-langs). Список – только навигация; действия – группа .cta-btns:
-       форма (значок камеры – прислать фото документов), телефон с часами (звонок перед заказом – доверие), WhatsApp · Telegram
+       форма (прислать фото документов), телефон и рядом часы (звонок перед заказом – доверие), WhatsApp · Telegram
        (вопросы). С 23.09.2026 кнопки заявки в ряду шапки нет – всё действие в этом меню. -->
   <nav id="mobile-nav" class="mn" aria-label="Mobile navigation">
     <div class="mn-in">
@@ -149,8 +149,8 @@
         <a href="/en/kontakt/" class="mn-link">Contact</a>
       </div>
       <div class="cta-btns mn-cta" role="group" aria-label="Quote, phone or messenger">
-        <a href="/en/cennik/#wycena" data-quote class="cta-btn cta-btn--main"><svg class="mn-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.6-2.2h6.8L17 8h3v11H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13.2" r="3.3" fill="none" stroke="currentColor" stroke-width="2"/></svg>Quote from photos<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
-        <a href="tel:+48507588155" class="cta-btn mn-tel" aria-label="Call +48 507 588 155, 7:00–21:00"><svg class="mn-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5l3 .4 1.2 4-2 1.6a12 12 0 0 0 5.7 5.7l1.6-2 4 1.2.4 3c0 1-.8 2-2 2A16.5 16.5 0 0 1 4.6 5.5c0-1.2 1-2 2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><b>+48 507 588 155</b><span class="mn-hrs" aria-hidden="true">7:00–21:00</span></a>
+        <a href="/en/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Quote from photos<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+        <div class="mn-call"><a href="tel:+48507588155" class="cta-btn mn-tel" aria-label="Call +48 507 588 155, 7:00–21:00">+48 507 588 155</a><span class="mn-hrs" aria-hidden="true">7:00–21:00</span></div>
         <a href="https://wa.me/48507588155?text=Hello%2C%20I%20need%20a%20quote%20for%20an%20apostille%2Ftranslation" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
         <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
       </div>
@@ -409,7 +409,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260923-34" defer></script>
+<script src="/assets/app.js?v=20260923-35" defer></script>
 
 </body>
 </html>
