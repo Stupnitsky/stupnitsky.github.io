@@ -355,15 +355,14 @@
     /* На телефоне и тач-экранах стрелка висит над правым краем контента – там цены, «+» у вопросов,
        часы работы, стрелки карточек – и закрывала их на каждом экране. Поэтому там она появляется,
        только когда человек листает вверх (то есть хочет вернуться) или дошёл до конца страницы;
-       при движении вниз не мешает чтению (21.09.2026). С мышью и на широком окне – как раньше. */
-    var shy = window.matchMedia('(hover:none), (max-width:639px)');
+       при движении вниз не мешает чтению (21.09.2026). С 23.09.2026 так на всех ширинах (Грег: «сделай везде так»). */
     var lastY = window.scrollY, goingUp = false;
     function check(){
       var y = window.scrollY;
       if (Math.abs(y - lastY) > 8) { goingUp = y < lastY; lastY = y; }
       var deep = y > window.innerHeight * 0.6;
       var atEnd = foot && foot.getBoundingClientRect().bottom < window.innerHeight + 80;
-      btn.classList.toggle('is-live', deep && (!shy.matches || goingUp || atEnd));
+      btn.classList.toggle('is-live', deep && (goingUp || atEnd));
       // стрелка упирается в футер и не заходит на него
       var base = window.matchMedia('(max-width:640px)').matches ? 28 : 64;   /* было 100 – зазор под кнопку WhatsApp, её убрали 20.09.2026 */
       var bottom = base;
@@ -2185,7 +2184,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260922-26';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260923-11';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */

@@ -1298,17 +1298,19 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
  /* привязка к правому краю контентной сетки (max-w-site 1320px) */
  /* сдвинута на 15% ближе к правому краю */
  right:max(17px, calc(((100vw - 1320px) / 2 - 24px) * .85)); bottom:64px;
- width:42px; height:42px; display:flex; align-items:center; justify-content:center;
+ width:30px; height:30px; display:flex; align-items:center; justify-content:center;
  color:var(--c-terra); -webkit-tap-highlight-color:transparent;
- opacity:0; visibility:hidden; transform:translateY(10px);
+ opacity:0; visibility:hidden; transform:translateY(7px);
+ /* исчезает на 30% медленнее, чем появляется (Грег, 23.09.2026) */
+ transition:opacity .585s ease, transform .585s ease, visibility .585s; }
+.to-top.is-live{ opacity:1; visibility:visible; transform:none;
  transition:opacity .45s ease, transform .45s ease, visibility .45s; }
-.to-top.is-live{ opacity:1; visibility:visible; transform:none; }
 .to-top .chip-chev{ width:100%; height:100%; transform-origin:50% 65%;
  transform:rotate(-90deg); }
-.to-top.is-live .chip-chev{ animation:toTopNudge 2.4s ease-in-out infinite; }
+.to-top.is-live .chip-chev{ animation:toTopNudge 2.8s ease-in-out infinite; }
 @keyframes toTopNudge{
   0%   { transform:rotate(-90deg) translateX(0) scale(1); opacity:1 }
-  50%  { transform:rotate(-90deg) translateX(5px) scale(1.24); opacity:1 }
+  50%  { transform:rotate(-90deg) translateX(5px) scale(1.14); opacity:1 }
   100% { transform:rotate(-90deg) translateX(0) scale(1); opacity:1 }
 }
 .to-top:hover .chip-chev, .to-top:focus-visible .chip-chev{
@@ -1316,13 +1318,12 @@ a.lang-t-arrow:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px
 .to-top:focus-visible{ outline:2px solid var(--c-ink); outline-offset:4px; border-radius:4px; }
 /* отступ снизу был 100px, чтобы стрелка не наезжала на плавающую кнопку WhatsApp;
    кнопку убрали 20.09.2026, стрелка опущена к краю */
-@media (max-width:640px){ .to-top{ right:20px; bottom:28px; } }
+@media (max-width:640px){ .to-top{ right:12px; bottom:28px; } }
 /* на телефоне и тач-экранах стрелка меньше (Грег, 21.09.2026: «стрелку в мобильной версии бы сделал меньше»):
    30px вместо 42px; область нажатия остаётся 46px за счёт псевдоэлемента */
-@media (max-width:640px), (hover:none){
-  .to-top{ width:30px; height:30px; }
-  .to-top::after{ content:''; position:absolute; inset:-8px; }
-}
+/* Грег, 23.09.2026: «везде такую стрелочку вверх, как и на моб версии» – 30px на всех ширинах;
+   область нажатия 46px за счёт псевдоэлемента */
+.to-top::after{ content:''; position:absolute; inset:-8px; }
 @media (prefers-reduced-motion:reduce){ .to-top .chip-chev{ animation:none } }
 @keyframes langArrowNudge{
   0%   { transform:translateX(0) scale(1); opacity:1 }
@@ -3492,8 +3493,10 @@ html.qd-open #burger > span{ opacity:0; }
    На телефоне она занимала 90px из ~660 видимых. У самого верха страницы, при открытом меню и панели wyceny,
    при фокусе внутри шапки – всегда на месте. */
 @media (max-width:1149px){
-  #top{ transition:transform .34s cubic-bezier(.2,.7,.25,1); }
-  html.hdr-away #top{ transform:translateY(calc(-100% - 20px)); pointer-events:none; }
+  /* Грег, 23.09.2026: возвращается за .9s, уезжает за 1.8s */
+  #top{ transition:transform .9s cubic-bezier(.19,.55,.91,.65); }
+  html.hdr-away #top{ transform:translateY(calc(-100% - 20px)); pointer-events:none;
+    transition-duration:1.8s; }
 }
 @media (prefers-reduced-motion:reduce){ #top{ transition:none; } }
 
