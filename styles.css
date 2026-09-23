@@ -1895,7 +1895,7 @@ details[open] .chev{ transform:rotate(45deg); }
    название | цена, под названием описание, формула суммы и плашки. */
 /* Заголовок «Ile kosztuje…»: sm:text-[62px] в статичной сборке Tailwind нет,
    поэтому кегль задаём здесь. 57px = 44px + 30 % (11.09.2026). */
-.cn-v2 .h2-swap{ font-size:57px; }
+.cn-v2 .h2-swap, .cn-faq .h2-swap{ font-size:57px; }
 /* Кнопки-якоря в потоке (оба списка: под заголовком и после сноски): серые плашки,
    при наведении белые. Подсветки текущего раздела здесь нет – она только в доке. */
 .cn-v2 .cn-nav{ display:flex; flex-wrap:wrap; gap:.5rem; justify-content:flex-start;
@@ -1959,8 +1959,10 @@ details[open] .chev{ transform:rotate(45deg); }
 }
 
 /* Заголовки групп и лиды */
-.cn-v2 .cn-group-h{ font-size:32px; font-weight:900; letter-spacing:-.025em; }
+.cn-v2 .cn-group-h{ font-size:32px; font-weight:700; letter-spacing:-.025em; }
 @media (min-width:640px){ .cn-v2 .cn-group-h{ font-size:36px; } }
+/* «Ile zapłacę za…?» – заголовок раздела, кегль как у «Ile kosztuje…». */
+.cn-v2 .cn-group-h.h2-swap{ font-size:57px; font-weight:900; letter-spacing:-.04em; line-height:.95; }
 .cn-v2 .cn-group-t{ margin-top:.6rem; font-size:17px; font-weight:500; line-height:1.5; color:rgba(31,33,32,.65); max-width:60ch; }
 .cn-v2 .cn-note{ margin-top:1.25rem; font-size:16px; font-weight:500; line-height:1.55; color:rgba(31,33,32,.6); max-width:70ch; }
 
@@ -3430,7 +3432,7 @@ body > main{ background:var(--c-page); }
    начертании после смены – 328px) выходила за колонку, на 320px у страницы появлялась горизонтальная
    прокрутка. От 390px кегль прежний. */
 @media (max-width:420px){
-  .cn-v2 .h2-swap{ font-size:clamp(44px, 14.6vw, 57px); }
+  .cn-v2 .h2-swap, .cn-faq .h2-swap, .cn-v2 .cn-group-h.h2-swap{ font-size:clamp(44px, 14.6vw, 57px); }
 }
 @media (max-width:359px){
   .cn-name, .cn-name small{ min-width:0; overflow-wrap:anywhere; }
