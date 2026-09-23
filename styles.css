@@ -3541,6 +3541,8 @@ html.qd-open #burger > span{ opacity:0; }
   #top .hdr-row.on-dark .hdr-page{ color:rgba(255,255,255,.5); }
   /* «/ Cennik» – косая черта как в подписях разделов «/ FAQ» (Грег, 23.09.2026) */
   #top .hdr-page::before{ content:'/\00a0'; }
+  /* пилюля мимо логотипа и бургера ведёт к началу страницы (обработчик – в app.js) */
+  html.hdr-pill #top .hdr-row{ cursor:pointer; -webkit-tap-highlight-color:transparent; }
 }
 @media (min-width:768px) and (max-width:1149px){ #top{ --row-h:90px; --shr:.444; --logo-fs:40px; } }
 @media (max-width:359px){ #top{ --logo-fs:24px; } }

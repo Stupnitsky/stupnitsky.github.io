@@ -414,6 +414,13 @@
     var root = document.documentElement;
     var mq = window.matchMedia('(max-width:1149px)');
     var calm = window.matchMedia('(prefers-reduced-motion:reduce)');
+    /* нажатие по пилюле мимо логотипа и бургера (подпись «/ Cennik», поля) – к началу страницы: подпись называет
+       страницу и ведёт к её началу, как нажатие на строку состояния в iPhone; мёртвых мест в пилюле нет
+       (Грег, 23.09.2026: подпись оставить – «нравится по эстетике», – но дать ей дело). Логотип – на главную, как был */
+    row.addEventListener('click', function (e) {
+      if (!root.classList.contains('hdr-pill') || logoEl.contains(e.target) || langSeg.contains(e.target)) return;
+      window.scrollTo({ top:0, behavior: calm.matches ? 'auto' : 'smooth' });
+    });
     var DIST = 540;                     /* сколько пикселей прокрутки занимает сворачивание (было 90, Грег 23.09.2026: в 6 раз медленнее) */
     var lastY = Math.max(window.scrollY, 0), away = false, settle = 0, hp = 0, snapT = 0;
     /* первую секунду после загрузки не сворачиваем: переход по ссылке с якорем (/cennik/#wycena) сам
@@ -2251,7 +2258,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260923-32';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260923-33';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
