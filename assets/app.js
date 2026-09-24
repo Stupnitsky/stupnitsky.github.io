@@ -11,8 +11,8 @@
           msgSun: 'Zgłoszenie przyjmiemy teraz, odpowiemy w poniedziałek od 7:00.',
           msgOff: 'Odpowiadamy normalnie. Urzędy dziś nieczynne – dokumenty złożymy w najbliższy dzień roboczy.', holiday: 'Dzień ustawowo wolny', msgNext: 'Napisz teraz – odpowiemy w najbliższy dzień roboczy od 7:00.',
           book: { hint: 'Kliknij dostępny dzień – wybierzesz porę spotkania.', tz: 'czas warszawski', pick: 'Wybierz porę spotkania', cta: 'Umów spotkanie', note: 'Dokładną godzinę potwierdzimy w odpowiedzi.', late: 'Na dziś jest już za późno – wybierz inny dzień.', placeL: 'Miejsce spotkania',
-                  parts: ['Rano','Południe','Wieczór'], place: 'Krucza / Śródmieście',
-                  msg: 'Dzień dobry! Chcę umówić spotkanie przy ul. Kruczej: {date}, {part}, godz. {time} czasu warszawskiego.' },
+                  parts: ['Rano','Południe','Wieczór'], place: 'Śródmieście, centrum Warszawy',
+                  msg: 'Dzień dobry! Chcę umówić spotkanie w Śródmieściu: {date}, {part}, godz. {time} czasu warszawskiego.' },
           hol: { ny: 'Nowy Rok', epi: 'Święto Trzech Króli', may1: 'Święto Pracy', may3: 'Święto Konstytucji 3 Maja',
                  aug15: 'Wniebowzięcie NMP · Święto Wojska Polskiego', nov1: 'Wszystkich Świętych', nov11: 'Narodowe Święto Niepodległości',
                  xmasEve: 'Wigilia Bożego Narodzenia', xmas1: 'Boże Narodzenie – pierwszy dzień', xmas2: 'Boże Narodzenie – drugi dzień', easter: 'Wielkanoc',
@@ -2275,7 +2275,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260924-100';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260924-105';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
