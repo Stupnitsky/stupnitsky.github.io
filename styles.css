@@ -3684,10 +3684,6 @@ header:has(.hdr-row.on-dark) #mobile-nav a.mn-lang:not(.is-current){ color:rgba(
 
 /* Зацеп в жёлтой плашке: города плашками-ссылками (24.09.2026) */
 .so-chips-lbl{ margin-top:1.6rem; font-size:17px; font-weight:600; }
-.so-chips{ margin-top:.8rem; display:flex; flex-wrap:wrap; gap:8px; }
-.so-chips a{ display:block; padding:.45em .9em; border-radius:12px; background:rgba(255,255,255,.55);
-  font-size:17px; font-weight:600; color:var(--c-ink); text-decoration:none; transition:background .2s; }
-.so-chips a:hover{ background:#fff; }
 .so-list details{ scroll-margin-top:120px; }
 /* Разделители короткие и только между городами: над первым нет, как нет под последним */
 .so-list li + li{ position:relative; }
