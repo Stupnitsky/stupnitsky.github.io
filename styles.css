@@ -1734,6 +1734,10 @@ details[open] .chev{ transform:rotate(45deg); }
 .kt-actions{ margin-top:2.4rem; display:flex; flex-direction:column; align-items:flex-start; gap:1rem; }
 @media (min-width:640px){ .kt-actions{ flex-direction:row; align-items:stretch; gap:1.5rem; } }
 .kt-actions .k-where-link{ margin-top:0; }
+/* Группа 1 (24.09.2026): «Dokumenty – przez formularz» сверху, «Pytania – porozmawiajmy» под ней, разведены линией и воздухом */
+.kt-doc .kt-h{ margin-bottom:1rem; }
+.kt-doc .kt-actions{ margin-top:1.8rem; }
+.kt-talk{ margin-top:3rem; padding-top:2.4rem; border-top:1px solid rgba(255,255,255,.2); }
 /* статус и сообщение видны всегда – на этой странице их не нужно «открывать» наведением */
 .kt .ws-top{ opacity:1; transform:none; margin-top:0; font-size:13px; color:rgba(255,255,255,.8); }
 .kt .ws-msg{ margin-top:.7rem; font-size:17px; color:rgba(255,255,255,.75); text-wrap:pretty; }
@@ -3743,25 +3747,28 @@ header:has(.hdr-row.on-dark) #mobile-nav a.mn-lang:not(.is-current){ color:rgba(
    справа из-за края выглядывает белая «стало», на стыке фирменный круг. Тап по кругу/краю или свайп –
    белая наезжает, круг уходит влево и разворачивается. Обе стороны в одной ячейке сетки – высота по большей.
    Без JS (.is-js нет) – стороны просто друг под другом. */
-.cmp-tog{ display:none; }
+.cmp-tog, .cmp-seg{ display:none; }
 @media (max-width:1023.98px){
   .cmp{ background:none; padding:0; }
   .cmp-side{ border-radius:26px; padding:1.4rem 1.1rem; }
   .cmp-old{ background:var(--c-sand); }
   .cmp-new{ background:#fff; margin-top:1rem; box-shadow:0 1px 2px rgba(0,0,0,.05), 0 8px 24px rgba(0,0,0,.07); }
-  .cmp.is-js{ display:grid; overflow:hidden; border-radius:26px; touch-action:pan-y; }
-  .cmp.is-js .cmp-side{ grid-area:1 / 1; }
-  .cmp.is-js .cmp-old{ margin-right:18px; padding-right:2rem; }
-  .cmp.is-js .cmp-new{ margin-top:0; border-radius:22px; padding-left:2rem; box-shadow:0 1px 2px rgba(0,0,0,.05), -6px 0 24px rgba(0,0,0,.09);
-    transform:translateX(calc(100% - 14px)); transition:transform .45s cubic-bezier(.3,.7,.2,1); cursor:pointer; }
-  .cmp.is-js[data-s="new"] .cmp-new{ transform:translateX(26px); cursor:auto; }
-  .cmp.is-js .cmp-arrow{ display:grid; place-items:center; position:absolute; z-index:3; top:50%; left:calc(100% - 36px);
-    transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:var(--c-terra); color:var(--c-ink);
-    box-shadow:0 2px 10px rgba(0,0,0,.12); cursor:pointer; transition:left .45s cubic-bezier(.3,.7,.2,1); }
-  .cmp.is-js[data-s="new"] .cmp-arrow{ left:4px; }
-  .cmp-arrow svg{ width:15px; height:15px; margin-left:2px; transition:transform .35s cubic-bezier(.3,.7,.2,1); }
-  .cmp.is-js[data-s="new"] .cmp-arrow svg{ transform:rotate(180deg); margin-left:-2px; }
+  /* Телефон и планшет (Грег, 24.09.2026: «мобильный вариант этот самый классный»): одна песочная плашка,
+     сверху переключатель-сегмент «Jadę sam / Zlecam» (белая «таблетка» у выбранного), под ним одна сторона.
+     Обе стороны в одной ячейке сетки, скрытая – visibility:hidden: высота плашки по большей, при переключении не прыгает. */
+  .cmp.is-js{ display:grid; background:var(--c-sand); border-radius:26px; padding:.75rem 1rem 1.5rem; }
+  .cmp.is-js .cmp-seg{ grid-area:1 / 1; display:grid; }
+  .cmp.is-js .cmp-side{ grid-area:2 / 1; background:none; box-shadow:none; margin:0; border-radius:0; padding:1.1rem .25rem 0; }
+  .cmp.is-js[data-s="old"] .cmp-new, .cmp.is-js[data-s="new"] .cmp-old{ visibility:hidden; }
+  .cmp.is-js[data-s="old"] .cmp-old, .cmp.is-js[data-s="new"] .cmp-new{ animation:cmpFade .3s ease; }
+  .cmp.is-js .cmp-arrow{ display:none; }
+  .cmp.is-js .cmp-rows > div:first-child{ border-top-color:rgba(31,33,32,.12); }
+  .cmp-seg{ grid-template-columns:1fr 1fr; gap:4px; padding:5px; border-radius:20px; background:rgba(31,33,32,.07); }
+  .cmp-seg button{ font:600 17px/1 "Fira Sans",sans-serif; padding:.9rem .5rem; border:0; border-radius:15px; background:none;
+    color:rgba(31,33,32,.5); cursor:pointer; transition:background-color .2s, color .2s, box-shadow .2s; }
+  .cmp-seg button[aria-selected="true"]{ background:#fff; color:var(--c-ink); box-shadow:0 1px 2px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.07); }
 }
+@keyframes cmpFade{ from{ opacity:0; } to{ opacity:1; } }
 @media (prefers-reduced-motion:reduce){ .cmp-new, .cmp-arrow, .cmp-arrow svg{ transition:none !important; } }
 
 @media (min-width:1024px){
@@ -3771,10 +3778,46 @@ header:has(.hdr-row.on-dark) #mobile-nav a.mn-lang:not(.is-current){ color:rgba(
   .cmp-h{ font-size:28px; }
   .cmp-arrow{ display:grid; place-items:center; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
     width:48px; height:48px; border-radius:50%; background:var(--c-terra); color:var(--c-ink); z-index:2; }
-  .cmp-arrow svg{ width:16px; height:16px; margin-left:2px; }
+  .cmp-arrow svg{ width:16px; height:16px; }
 }
 
 /* Подзаголовки групп (PL /cennik/, 24.09.2026) – по правилам плашки судов: узкий 700, одним тоном,
    22/24px; не повторяют заголовки сайта (black + light italic). Класс .sub-h – только в PL-разметке. */
 .cn-v2 .cn-group-h.sub-h{ font-family:"Fira Sans Condensed",sans-serif; font-weight:700; font-size:22px; line-height:1.2; letter-spacing:0; color:var(--c-ink); }
 @media (min-width:640px){ .cn-v2 .cn-group-h.sub-h{ font-size:24px; } }
+
+/* Шеврон в круге сравнения пульсирует по принципу стрелки «наверх» (toTopNudge): 2.8s, сдвиг 5px + scale 1.14
+   в сторону, куда ведёт; на «new» развёрнут – rotate(180deg) до сдвига, поэтому пульс уходит влево. Пауза при наведении. */
+.cmp-arrow svg{ animation:cmpNudge 2.8s ease-in-out infinite; }
+@keyframes cmpNudge{
+  0%, 100% { transform:scale(1); }
+  50%      { transform:scale(1.2); }   /* пульс на месте, без сдвига */
+}
+/* отдельные keyframes для «влево»: var() внутри @keyframes Safari обновляет ненадёжно */
+@keyframes cmpNudgeL{
+  0%, 100% { transform:rotate(180deg) scale(1); }
+  50%      { transform:rotate(180deg) scale(1.2); }
+}
+.cmp-arrow:hover svg{ animation-play-state:paused; }
+@media (prefers-reduced-motion:reduce){ .cmp-arrow svg{ animation:none !important; } }
+
+/* /apostille-bez-przyjazdu/ #czas (24.09.2026): маршрут paczkomat → MSZ → paczkomat, светлая плашка */
+.route-legs{ margin:0; padding:0; list-style:none; display:grid; gap:1.4rem; }
+.route-legs li{ display:flex; flex-direction:column; gap:.3rem; }
+.route-k{ font-family:"Fira Sans Condensed",sans-serif; text-transform:uppercase; letter-spacing:.14em; font-size:12px; font-weight:600; color:rgba(31,33,32,.6); }
+.route-n{ font-weight:900; font-size:40px; line-height:1; letter-spacing:-.03em; color:var(--c-ink); }
+.route-t{ font-size:17px; line-height:1.5; color:rgba(31,33,32,.75); }
+.route-sum{ margin-top:1.6rem; padding-top:1.4rem; border-top:1px solid rgba(31,33,32,.15); font-size:17px; line-height:1.55; color:rgba(31,33,32,.75); max-width:62ch; }
+.route-sum b{ color:var(--c-ink); font-weight:700; }
+.route-far{ margin-top:2rem; font-size:26px; line-height:1.2; font-weight:300; font-style:italic; color:var(--c-ink); max-width:30ch; }
+.route-far span{ font-weight:900; font-style:normal; }
+@media (min-width:768px){
+  .route-legs{ grid-template-columns:repeat(3,1fr); gap:2rem; }
+  .route-legs li + li{ border-left:1px solid rgba(31,33,32,.15); padding-left:2rem; }
+  .route-far{ font-size:32px; }
+}
+/* #koszt: подзаголовок-вопрос над карточками сравнения; карточки идут с mt-9/md:mt-12 */
+.cmp-ask{ margin-top:2.4rem; font-size:24px; line-height:1.2; font-weight:900; letter-spacing:-.02em; color:var(--c-ink); max-width:34ch; }
+.cmp-ask span{ font-weight:300; font-style:italic; }
+.cmp-ask + .cmp{ margin-top:1.4rem; }
+@media (min-width:768px){ .cmp-ask{ font-size:30px; } .cmp-ask + .cmp{ margin-top:1.8rem; } }

@@ -2300,7 +2300,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260924-61';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260924-89';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -2567,17 +2567,24 @@
     window.addEventListener('hashchange', openSad); openSad();
   })();
 
-  /* Сравнение на /apostille-bez-przyjazdu/ (уже 1024px): круг на стыке, край белой карточки, свайп */
+  /* Сравнение на /apostille-bez-przyjazdu/: круг на стыке (от 1024px), сегмент «Jadę sam / Zlecam» и свайп (уже 1024px) */
   (function(){
     document.querySelectorAll('[data-cmp]').forEach(function(box){
       box.classList.add('is-js');
       var arrow = box.querySelector('.cmp-arrow'), side = box.querySelector('.cmp-new');
-      function set(s){ box.dataset.s = s; }
+      /* телефон/планшет: переключатель-сегмент «Jadę sam / Zlecam» над сторонами (виден только уже 1024px) */
+      var seg = document.createElement('div'); seg.className = 'cmp-seg'; seg.setAttribute('role', 'tablist');
+      seg.innerHTML = '<button type="button" role="tab" data-v="old">Jadę sam</button><button type="button" role="tab" data-v="new">Zlecam</button>';
+      box.insertBefore(seg, box.firstChild);
+      var btns = seg.querySelectorAll('button');
+      function set(s){ box.dataset.s = s;
+        for (var i = 0; i < btns.length; i++) btns[i].setAttribute('aria-selected', btns[i].dataset.v === s ? 'true' : 'false'); }
+      for (var i = 0; i < btns.length; i++) btns[i].addEventListener('click', function(){ set(this.dataset.v); });
+      set(box.dataset.s || 'old');
       arrow.setAttribute('role', 'button'); arrow.setAttribute('tabindex', '0');
       arrow.removeAttribute('aria-hidden'); arrow.setAttribute('aria-label', 'Porównaj z drugą stroną');
       arrow.addEventListener('click', function(){ set(box.dataset.s === 'old' ? 'new' : 'old'); });
       arrow.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); arrow.click(); } });
-      side.addEventListener('click', function(){ if (box.dataset.s === 'old') set('new'); });
       var x0 = null, y0 = 0;
       box.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive:true });
       box.addEventListener('touchend', function(e){
