@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260924-89">
+<link rel="stylesheet" href="/styles.css?v=20260924-90">
 
 <script type="application/ld+json">
 {
@@ -438,56 +438,50 @@
       w&nbsp;<a href="/cennik/#wycena" data-quote class="underline font-semibold">formularzu wyceny</a>,
       a&nbsp;wycenę dostajesz e-mailem. WhatsApp, Telegram i&nbsp;telefon są do rozmowy i&nbsp;pytań – dokumenty przyjmujemy tylko przez formularz, dzięki temu nic nie ginie w&nbsp;czatach. Oryginał jest potrzebny dopiero wtedy, gdy zlecenie
       jest opłacone i&nbsp;wchodzi do realizacji – Apostille stawia się na oryginale albo na odpisie
-      z&nbsp;urzędu, nigdy na kserokopii. Cztery drogi, wszystkie w&nbsp;obie strony.
+      z&nbsp;urzędu, nigdy na kserokopii. Pięć dróg, wszystkie w&nbsp;obie strony.
     </p>
 
-    <!-- .ob-plate: на телефоне плашка шире (10px от края экрана) и с меньшими полями – текст не сжат в узкий столбец -->
+    <!-- .ob-plate (24.09.2026): пять способов – аккордеоном, как список городов на /apostille-bez-przyjazdu/ (.so-list:
+         закрытая строка срезает низ слова). Текст остаётся в HTML – для Google вес тот же. details name="ob" – открыт один. -->
     <div class="ob-plate mt-10 bg-terra text-ink rounded-[26px] p-7 sm:p-12">
       <div class="ob-grid grid grid-cols-12 gap-8">
-        <div class="col-span-12 lg:col-span-7">
+        <div class="col-span-12 lg:col-span-5 flex flex-col gap-6">
           <h3 class="ob-h text-[26px] sm:text-[34px] font-black tracking-tightest leading-[1.03]">
-            Osobiście <span class="font-light italic">– Warszawa,<br>Śródmieście, ul.&nbsp;Krucza</span>
+            Pięć dróg <span class="font-light italic">– wybierz wygodną</span>
           </h3>
-          <p class="mt-4 text-[17px] leading-[1.55] max-w-[48ch]">
-            Spotykamy się przy tej samej ulicy, przy&nbsp;której MSZ przyjmuje dokumenty do&nbsp;legalizacji –
-            dokument od razu jedzie do urzędu. To ścisłe centrum: kilka minut pieszo od stacji metra
-            Centrum i&nbsp;około kwadransa od Dworca Centralnego. Miejsce i&nbsp;godzinę ustalamy
-            przy&nbsp;zleceniu, zwykle tego samego lub następnego dnia roboczego.
+          <p class="text-[17px] leading-[1.55] max-w-[40ch]">
+            Oryginał przekazujesz na spotkaniu albo wysyłasz, gotowy dokument odbierasz tak samo.
+            Przy każdej przesyłce dostajesz <b class="font-bold">numer do&nbsp;śledzenia</b>.
           </p>
-          <p class="mt-4 text-[17px] leading-[1.55] max-w-[48ch]">
-            Dojeżdżamy też na&nbsp;Mokotów, Wolę, Ochotę, Żoliborz i&nbsp;Pragę, a&nbsp;poza Warszawą
-            obsługujemy m.in. Piaseczno, Pruszków, Ząbki, Marki i&nbsp;Legionowo.
-          </p>
+        <div class="cta-btns" role="group" aria-label="Zamów wycenę lub napisz na komunikatorze">
+          <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20potrzebuj%C4%99%20wyceny%20apostille%2Ft%C5%82umaczenia" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+          <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+          <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
         </div>
-        <div class="col-span-12 lg:col-span-5 flex flex-col justify-end gap-4">
-          <div class="max-w-[34ch]">
-            <p class="text-[19px] sm:text-[21px] leading-[1.5] font-bold">
-              Jesteś z&nbsp;innego miasta<br>albo z&nbsp;zagranicy?
-            </p>
-            <ul class="mt-3 grid gap-2 text-[17px] leading-[1.45]">
-              <li><b class="font-bold">Polska</b> – InPost</li>
-              <li><b class="font-bold">Zagranica</b> – DHL&nbsp;Express</li>
-              <li><b class="font-bold">Ukraina</b> – Nowa Poczta</li>
-            </ul>
-            <p class="mt-4 text-[17px] leading-[1.5]">
-              Odbieramy <b class="font-bold">oryginał</b> i&nbsp;odsyłamy <b class="font-bold">gotowy dokument</b>
-              tą samą drogą. Zawsze dostajesz numer do&nbsp;śledzenia przesyłki.
-            </p>
-            <p class="mt-4 text-[17px] leading-[1.5]">
-              <b class="font-bold">Po Polsce</b> wysyłka w&nbsp;obie strony jest w&nbsp;cenie przy zamówieniu od&nbsp;350&nbsp;zł. </p>
-            <p class="mt-4 text-[17px] leading-[1.5]">
-              <b class="font-bold">Za granicę</b> gotowy dokument odsyłamy DHL&nbsp;Express – od&nbsp;drzwi do&nbsp;drzwi, za&nbsp;podpisem. Koszt zależy od regionu i&nbsp;znasz go przed płatnością. Na&nbsp;Ukrainę – Nową Pocztą, 150&nbsp;zł.
-            </p>
-            <p class="mt-4 text-[17px] leading-[1.5]">
-              Masz sprawdzonego kuriera albo tańszą opcję u&nbsp;siebie? Zamów ją na nasz adres – dokument będzie gotowy do odbioru.
-            </p>
-          </div>
-          <div class="cta-btns" role="group" aria-label="Zamów wycenę lub napisz na komunikatorze">
-            <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20potrzebuj%C4%99%20wyceny%20apostille%2Ft%C5%82umaczenia" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
-            <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
-            <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
-          </div>
         </div>
+        <ul class="so-list ob-acc col-span-12 lg:col-span-7">
+          <li><details name="ob" id="osobiscie" open><summary><h4>Osobiście</h4></summary><div class="so-card">
+            <p class="so-court">Warszawa, Śródmieście, ul.&nbsp;Krucza</p>
+            <p class="ob-t">Spotykamy się przy tej samej ulicy, przy&nbsp;której MSZ przyjmuje dokumenty do&nbsp;legalizacji – dokument od razu jedzie do urzędu. Kilka minut pieszo od metra Centrum, około kwadransa od Dworca Centralnego. Termin zwykle tego samego lub następnego dnia roboczego.</p>
+            <p class="ob-t">Dojeżdżamy też na&nbsp;Mokotów, Wolę, Ochotę, Żoliborz i&nbsp;Pragę, a&nbsp;poza Warszawą m.in. do Piaseczna, Pruszkowa, Ząbek, Marek i&nbsp;Legionowa.</p>
+          </div></details></li>
+          <li><details name="ob" id="inpost"><summary><h4>Polska</h4></summary><div class="so-card">
+            <p class="so-court">InPost – paczkomat lub kurier</p>
+            <p class="ob-t">Adres paczkomatu podajemy po wycenie. Przy zamówieniu od&nbsp;350&nbsp;zł wysyłka w&nbsp;obie strony jest w&nbsp;cenie, przy mniejszym – wg cennika InPost, kwotę widzisz w&nbsp;wycenie.</p>
+          </div></details></li>
+          <li><details name="ob" id="dhl"><summary><h4>Za granicę</h4></summary><div class="so-card">
+            <p class="so-court">DHL Express</p>
+            <p class="ob-t">Oryginał wysyłasz sam, na adres z&nbsp;wyceny. Gotowy dokument odsyłamy DHL&nbsp;Express – od&nbsp;drzwi do&nbsp;drzwi, za&nbsp;podpisem. Koszt zależy od regionu i&nbsp;znasz go przed płatnością.</p>
+          </div></details></li>
+          <li><details name="ob" id="nowa-poczta"><summary><h4>Ukraina</h4></summary><div class="so-card">
+            <p class="so-court">Nowa Poczta – 150&nbsp;zł</p>
+            <p class="ob-t">Gotowy dokument odsyłamy Nową Pocztą pod wskazany adres lub do oddziału – z&nbsp;numerem do śledzenia.</p>
+          </div></details></li>
+          <li><details name="ob" id="wlasny-kurier"><summary><h4>Własny kurier</h4></summary><div class="so-card">
+            <p class="so-court">Dowolny przewoźnik</p>
+            <p class="ob-t">Masz sprawdzonego kuriera albo tańszą opcję u&nbsp;siebie? Zamów ją na nasz adres – dokument będzie gotowy do odbioru.</p>
+          </div></details></li>
+        </ul>
       </div>
     </div>
 
@@ -859,7 +853,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260924-89" defer></script>
+<script src="/assets/app.js?v=20260924-90" defer></script>
 
 </body>
 </html>

@@ -3821,3 +3821,10 @@ header:has(.hdr-row.on-dark) #mobile-nav a.mn-lang:not(.is-current){ color:rgba(
 .cmp-ask span{ font-weight:300; font-style:italic; }
 .cmp-ask + .cmp{ margin-top:1.4rem; }
 @media (min-width:768px){ .cmp-ask{ font-size:30px; } .cmp-ask + .cmp{ margin-top:1.8rem; } }
+
+/* Жёлтая плашка /kontakt/ #odbior (24.09.2026): аккордеон способов на основе .so-list; заголовок строки – h4 без своего стиля */
+.ob-acc{ margin-top:0; }
+.ob-acc summary h4{ font:inherit; margin:0; display:inline; }
+.ob-acc li + li::before{ width:100%; border-top-color:rgba(31,33,32,.2); }
+.ob-acc .so-card{ max-width:52ch; }
+.ob-t{ margin-top:.5rem; font-size:17px; line-height:1.55; }
