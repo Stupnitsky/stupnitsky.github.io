@@ -89,7 +89,7 @@
   "paymentAccepted": "BLIK, przelew bankowy, gotówka",
   "openingHoursSpecification": [{
     "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
     "opens": "07:00", "closes": "21:00"
   }],
   "hasOfferCatalog": {
@@ -135,7 +135,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260924-90">
+<link rel="stylesheet" href="/styles.css?v=20260924-100">
 </head>
 
 <body class="font-sans antialiased">
@@ -288,7 +288,7 @@
         </p>
 
         <p class="mt-5 text-[14px] text-ink/70 leading-relaxed text-center">
-          Zgłoszenia przyjmujemy <span class="font-semibold text-ink/80">24/7</span> – odpowiadamy w&nbsp;godzinach 7:00 – 21:00.<br>
+          Zgłoszenia przyjmujemy <span class="font-semibold text-ink/80">24/7</span> – odpowiadamy codziennie 7:00 – 21:00.<br>
           Obsługa w&nbsp;języku polskim, ukraińskim, rosyjskim i&nbsp;angielskim.
         </p>
       </div>
@@ -464,8 +464,8 @@
             <div class="ws-hours-wrap">
               <ul class="ws-hours">
                 <li><span>Pon.–Pt.</span><span>7:00 – 21:00</span></li>
-                <li><span>Sobota</span><span class="ws-soft">po uzgodnieniu</span></li>
-                <li><span>Niedziela</span><span class="ws-off">nieczynne</span></li>
+                <li><span>Weekend i&nbsp;święta</span><span>7:00 – 21:00</span></li>
+                <li class="ws-note">W&nbsp;weekendy i&nbsp;święta urzędy nieczynne – odpowiadamy, dokumenty składamy w&nbsp;najbliższy dzień roboczy.</li>
               </ul>
             </div>
           </div>
@@ -1164,7 +1164,7 @@
     </div>
 </div>
 
-<script src="/assets/app.js?v=20260924-90" defer></script>
+<script src="/assets/app.js?v=20260924-100" defer></script>
 
 </body>
 </html>

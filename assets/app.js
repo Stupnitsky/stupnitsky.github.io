@@ -9,7 +9,7 @@
           msgFri: 'Napisz teraz – w sobotę pracujemy po uzgodnieniu, najpóźniej odpiszemy w poniedziałek od 7:00.',
           msgSat: 'Napisz, a potwierdzimy termin. Standardowo wracamy w poniedziałek od 7:00.',
           msgSun: 'Zgłoszenie przyjmiemy teraz, odpowiemy w poniedziałek od 7:00.',
-          holiday: 'Dzień ustawowo wolny', msgNext: 'Napisz teraz – odpowiemy w najbliższy dzień roboczy od 7:00.',
+          msgOff: 'Odpowiadamy normalnie. Urzędy dziś nieczynne – dokumenty złożymy w najbliższy dzień roboczy.', holiday: 'Dzień ustawowo wolny', msgNext: 'Napisz teraz – odpowiemy w najbliższy dzień roboczy od 7:00.',
           book: { hint: 'Kliknij dostępny dzień – wybierzesz porę spotkania.', tz: 'czas warszawski', pick: 'Wybierz porę spotkania', cta: 'Umów spotkanie', note: 'Dokładną godzinę potwierdzimy w odpowiedzi.', late: 'Na dziś jest już za późno – wybierz inny dzień.', placeL: 'Miejsce spotkania',
                   parts: ['Rano','Południe','Wieczór'], place: 'Krucza / Śródmieście',
                   msg: 'Dzień dobry! Chcę umówić spotkanie przy ul. Kruczej: {date}, {part}, godz. {time} czasu warszawskiego.' },
@@ -25,7 +25,7 @@
           msgFri: 'Напишіть зараз – у суботу працюємо за домовленістю, найпізніше відповімо в понеділок з 7:00.',
           msgSat: 'Напишіть, і ми підтвердимо термін. Зазвичай повертаємося в понеділок з 7:00.',
           msgSun: 'Заявку приймемо зараз, відповімо в понеділок з 7:00.',
-          holiday: 'Державний вихідний у Польщі', msgNext: 'Напишіть зараз – відповімо найближчого робочого дня з 7:00.',
+          msgOff: 'Відповідаємо як завжди. Установи сьогодні зачинені – документи подамо найближчого робочого дня.', holiday: 'Державний вихідний у Польщі', msgNext: 'Напишіть зараз – відповімо найближчого робочого дня з 7:00.',
           book: { hint: 'Натисніть на доступний день – оберете час зустрічі.', tz: 'час варшавський', pick: 'Оберіть час', cta: 'Записатися', note: 'Точний час підтвердимо у відповіді.', late: 'На сьогодні вже запізно – оберіть інший день.', placeL: 'Місце зустрічі',
                   parts: ['Ранок','Обід','Вечір'], place: 'Krucza / Śródmieście',
                   msg: 'Добрий день! Хочу записатися на зустріч на вул. Krucza: {date}, {part}, {time} за варшавським часом.' },
@@ -41,7 +41,7 @@
           msgFri: 'Напишите сейчас – в субботу работаем по договорённости, самое позднее ответим в понедельник с 7:00.',
           msgSat: 'Напишите, и мы подтвердим срок. Обычно возвращаемся в понедельник с 7:00.',
           msgSun: 'Заявку примем сейчас, ответим в понедельник с 7:00.',
-          holiday: 'Государственный выходной в Польше', msgNext: 'Напишите сейчас – ответим в ближайший рабочий день с 7:00.',
+          msgOff: 'Отвечаем как обычно. Учреждения сегодня закрыты – документы подадим в ближайший рабочий день.', holiday: 'Государственный выходной в Польше', msgNext: 'Напишите сейчас – ответим в ближайший рабочий день с 7:00.',
           book: { hint: 'Нажмите на доступный день – выберете время встречи.', tz: 'время варшавское', pick: 'Выберите время', cta: 'Записаться', note: 'Точное время подтвердим в ответном сообщении.', late: 'На сегодня уже поздно – выберите другой день.', placeL: 'Место встречи',
                   parts: ['Утро','Обед','Вечер'], place: 'Krucza / Śródmieście',
                   msg: 'Здравствуйте! Хочу записаться на встречу на ул. Krucza: {date}, {part}, {time} по варшавскому времени.' },
@@ -57,7 +57,7 @@
           msgFri: 'Write now – Saturdays by arrangement, we reply by Monday 7:00 at the latest.',
           msgSat: 'Write and we will confirm a time. Normally we are back on Monday from 7:00.',
           msgSun: 'We take your request now and reply on Monday from 7:00.',
-          holiday: 'Public holiday in Poland', msgNext: 'Write now – we reply on the next working day from 7:00.',
+          msgOff: 'We reply as usual. Offices are closed today – we file documents on the next working day.', holiday: 'Public holiday in Poland', msgNext: 'Write now – we reply on the next working day from 7:00.',
           book: { hint: 'Click an available day to pick a meeting time.', tz: 'Warsaw time', pick: 'Pick a time', cta: 'Book a meeting', note: 'We confirm the exact time in our reply.', late: 'It is too late for today – pick another day.', placeL: 'Meeting place',
                   parts: ['Morning','Afternoon','Evening'], place: 'Krucza / Śródmieście',
                   msg: 'Hello! I would like to book a meeting on Krucza Street: {date}, {part}, {time} Warsaw time.' },
@@ -103,11 +103,6 @@
     putDate(new Date(y, e.getMonth(), e.getDate() + 60), L.hol.corpus);
     holCache[y] = map;
     return map;
-  }
-  // рабочий день: пн–пт и не праздник
-  function isWorkday(dt) {
-    var wd = dt.getDay();
-    return wd >= 1 && wd <= 5 && !holidays(dt.getFullYear())[(dt.getMonth() + 1) + '-' + dt.getDate()];
   }
   // Логотип: плавно уменьшается пропорционально прокрутке (1.36 → 1.00 на первых 160px)
   var header = document.getElementById('top');
@@ -1206,38 +1201,18 @@
     function tick() {
       var t = warsaw();
       var mins = t.h * 60 + t.m;
-      // праздник в будний день – не рабочий день: урядЫ закрыты, и мы не отвечаем (см. FAQ на /kontakt/)
+      // отвечаем каждый день 7–21, в праздники тоже; в выходные и праздники не работают урядЫ –
+      // статус «работаем», но сообщение предупреждает, что документы уйдут в ближайший рабочий день
       var holiday = !!holidays(t.y)[t.mo + '-' + t.d];
       var weekday = t.wd >= 1 && t.wd <= 5 && !holiday;
-      var open = weekday && mins >= OPEN && mins < CLOSE;
+      var open = mins >= OPEN && mins < CLOSE;
       var state, msg;
-
-      // через сколько дней ближайший рабочий день (1 – завтра) и на какой день недели он выпадает
-      var ahead = 0, next = new Date(t.y, t.mo - 1, t.d);
-      do { ahead++; next = new Date(t.y, t.mo - 1, t.d + ahead); } while (!isWorkday(next) && ahead < 14);
-      var nextIsMonday = next.getDay() === 1 && ahead <= 3;
-
       if (open) {
         state = L.open;
-        msg = mins >= CLOSE - 60 ? L.msgOpenLate : L.msgOpen;
-      } else if (weekday && mins < OPEN) {
-        state = L.closed;
-        msg = L.msgToday;
-      } else if (holiday && t.wd >= 1 && t.wd <= 5) {
-        state = L.holiday;
-        msg = ahead === 1 ? L.msgTomorrow : L.msgNext;
-      } else if (t.wd >= 1 && t.wd <= 4) {
-        state = L.closed;
-        msg = ahead === 1 ? L.msgTomorrow : L.msgNext;
-      } else if (t.wd === 5) {
-        state = L.closed;
-        msg = nextIsMonday ? L.msgFri : L.msgNext;
-      } else if (t.wd === 6) {
-        state = L.sat;
-        msg = nextIsMonday ? L.msgSat : L.msgNext;
+        msg = !weekday ? L.msgOff : mins >= CLOSE - 60 ? L.msgOpenLate : L.msgOpen;
       } else {
-        state = L.sun;
-        msg = nextIsMonday ? L.msgSun : L.msgNext;
+        state = holiday ? L.holiday : L.closed;
+        msg = mins < OPEN ? L.msgToday : L.msgTomorrow;
       }
 
       ws.classList.toggle('is-open', open);
@@ -1250,7 +1225,7 @@
       if (hmEl) hmEl.textContent = parts[0] + ':' + parts[1];
       if (secEl) secEl.textContent = parts[2];
       rows.forEach(function (li, n) {
-        var now = (n === 0 && weekday) || (n === 1 && t.wd === 6) || (n === 2 && t.wd === 0);
+        var now = (n === 0 && weekday) || (n === 1 && !weekday);
         li.classList.toggle('is-now', now);
       });
     }
@@ -2300,7 +2275,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260924-90';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260924-100';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */

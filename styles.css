@@ -1749,6 +1749,7 @@ details[open] .chev{ transform:rotate(45deg); }
 .kt .ws-clockbox{ padding:0; margin:0; }
 /* «po uzgodnieniu» и «nieczynne» были .34 – на чёрном не читались */
 .kt .ws-hours .ws-soft, .kt .ws-hours .ws-off{ color:rgba(255,255,255,.55) !important; }
+.ws-hours li.ws-note{ display:block; font-size:17px; line-height:1.45; font-weight:400; color:rgba(255,255,255,.86); border-bottom:0; padding-bottom:0; }
 /* запись на встречу: параметры · календарь · время.
    До 1024px зоны идут друг под другом; 1024–1279px – две колонки (параметры | календарь и время под ним):
    в три колонки на такой ширине кнопки времени не помещались; от 1280px – три зоны в ряд. */
@@ -3636,10 +3637,10 @@ header:has(.hdr-row.on-dark) #mobile-nav a.mn-lang:not(.is-current){ color:rgba(
 /* Один столбец-стопка: в сетке раскрытый город растягивал строку у соседей (24.09.2026).
    На широком экране стопка встаёт справа от текста. */
 @media (min-width:1024px){
-  .so-plate{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); column-gap:4rem; grid-template-rows:auto auto 1fr; align-items:start; }
+  .so-plate{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); column-gap:4rem; grid-template-rows:auto auto auto 1fr; align-items:start; }
   .so-plate > :not(.so-list, .so-crest, .so-more){ grid-column:1; }
-  .so-plate > .so-list{ grid-column:2; grid-row:2 / span 2; margin-top:-8px; }
-  .so-plate > .so-more{ grid-column:2; grid-row:4; }
+  .so-plate > .so-list{ grid-column:2; grid-row:2 / span 3; margin-top:-8px; }
+  .so-plate > .so-more{ grid-column:1; grid-row:4; margin-top:2rem; }   /* под текстом слева (Грег, 24.09.2026), стопка городов справа */
 }
 /* Знак судов как на /kontakt/ (ico-sad.svg): угол плашки; от 1024px – угол левой колонки, стопка справа */
 .so-crest{ position:absolute; top:1.75rem; right:1.75rem; width:40px; height:auto; opacity:.85; pointer-events:none; }
@@ -3828,3 +3829,27 @@ header:has(.hdr-row.on-dark) #mobile-nav a.mn-lang:not(.is-current){ color:rgba(
 .ob-acc li + li::before{ width:100%; border-top-color:rgba(31,33,32,.2); }
 .ob-acc .so-card{ max-width:52ch; }
 .ob-t{ margin-top:.5rem; font-size:17px; line-height:1.55; }
+/* 24.09.2026, Грег: на плашке /kontakt/ без среза и скромнее – строка целиком, 28px, шеврон справа */
+.so-list.ob-acc summary{ height:auto; overflow:visible; padding:14px 0 12px; font-size:28px; line-height:1.1; font-weight:400;
+  display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.so-list.ob-acc summary:hover{ font-weight:500; }
+.so-list.ob-acc details[open] > summary{ padding-bottom:8px; font-weight:600; }
+.ob-acc summary::after{ content:''; flex:none; width:8px; height:8px; margin-right:4px; border:solid currentColor; border-width:0 2px 2px 0;
+  transform:translateY(-3px) rotate(45deg); transition:transform .2s ease; }
+.ob-acc details[open] > summary::after{ transform:translateY(2px) rotate(-135deg); }
+@media (max-width:639px){ .so-list.ob-acc summary{ font-size:24px; } }
+.ob-acc summary h4 b{ font-weight:700; }
+.so-list.ob-acc details[open] > summary{ font-weight:400; }
+
+/* Плита судов #twoj-sad (Грег, 24.09.2026): линия под городом по длине названия + 44px, а не общей ширины.
+   Линия – нижняя граница самой строки (details шириной по содержимому), у последней в списке линии нет.
+   Открытый город – линия под карточкой, по её ширине. /kontakt/ #odbior (.ob-acc) не задевает. */
+.so-plate .so-list li + li::before{ content:none; }
+.so-plate .so-list li > details{ width:fit-content; max-width:100%; padding-right:44px; box-shadow:inset 0 -1px 0 rgba(31,33,32,.12); }
+.so-plate .so-list > li:last-child > details{ box-shadow:none; }
+/* #twoj-sad: «drugi – my w Warszawie» с новой строки (Грег, 24.09.2026) */
+.so-plate .so-lead span{ display:block; }
+/* #twoj-sad: «Miasta pozostałe» целиком, без среза букв (Грег, 24.09.2026); города – по-прежнему со срезом */
+.so-plate .so-list .so-other > details > summary{ height:auto; overflow:visible; padding-bottom:6px; }
+.ob-acc summary h4 .font-light{ font-weight:400; }  /* Грег 24.09.2026: вторая часть строки не такая тонкая */
+.ob-lead p + p{ margin-top:.6rem; }
