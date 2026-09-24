@@ -2300,7 +2300,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260924-7';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260924-56';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -2556,4 +2556,13 @@
     window.addEventListener('scroll', onScroll, { passive:true });
     window.addEventListener('resize', onScroll);
     apply();
+  })();
+
+  /* /apostille-bez-przyjazdu/: #sad-<город> открывает нужный суд в песочной плашке (24.09.2026) */
+  (function(){
+    function openSad(){
+      var h = location.hash; if (h.indexOf('#sad-') !== 0) return;
+      var d = document.getElementById(h.slice(1)); if (d && d.tagName === 'DETAILS') d.open = true;
+    }
+    window.addEventListener('hashchange', openSad); openSad();
   })();

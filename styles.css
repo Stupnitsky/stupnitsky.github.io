@@ -3625,12 +3625,95 @@ header:has(.hdr-row.on-dark) #mobile-nav a.mn-lang:not(.is-current){ color:rgba(
 /* /apostille-bez-przyjazdu/ – плашка «Twój sąd okręgowy» (22.09.2026): 12 городов, суд + адрес */
 .gdz--light .gdz-full b{ color:var(--c-ink); font-weight:700; }
 .so-text{ margin-top:1rem; font-size:17px; line-height:1.6; color:rgba(31,33,32,.75); max-width:62ch; }
-.so-list{ margin-top:1.6rem; display:grid; gap:.9rem 2rem; }
-@media (min-width:640px){ .so-list{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
-@media (min-width:1024px){ .so-list{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
-.so-list li{ display:flex; flex-direction:column; gap:.1rem; padding-top:.8rem; border-top:1px solid rgba(31,33,32,.12); }
-.so-list li b{ font-size:17px; font-weight:700; color:var(--c-ink); letter-spacing:-.01em; }
-.so-list li span{ font-size:15.5px; line-height:1.45; color:rgba(31,33,32,.7); }
+/* Врезка как на /kontakt/ («Składamy tylko w Warszawie.»): начало абзаца жирным ink, чуть крупнее */
+.so-text b{ font-size:19px; font-weight:700; color:var(--c-ink); }
+.so-list{ margin-top:1.6rem; display:grid; gap:0 2rem; align-items:start; }
+/* Один столбец-стопка: в сетке раскрытый город растягивал строку у соседей (24.09.2026).
+   На широком экране стопка встаёт справа от текста. */
+@media (min-width:1024px){
+  .so-plate{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); column-gap:4rem; grid-template-rows:auto auto 1fr; align-items:start; }
+  .so-plate > :not(.so-list, .so-crest, .so-more){ grid-column:1; }
+  .so-plate > .so-list{ grid-column:2; grid-row:2 / span 2; margin-top:-8px; }
+  .so-plate > .so-more{ grid-column:2; grid-row:4; }
+}
+/* Знак судов как на /kontakt/ (ico-sad.svg): угол плашки; от 1024px – угол левой колонки, стопка справа */
+.so-crest{ position:absolute; top:1.75rem; right:1.75rem; width:40px; height:auto; opacity:.85; pointer-events:none; }
+@media (min-width:640px){ .so-crest{ width:50px; top:2.5rem; right:2.5rem; } }
+@media (min-width:1024px){ .so-crest{ right:calc(50% + 2rem); } }
+.so-plate > :is(.slab-kicker, .so-lead){ padding-right:62px; }
+@media (min-width:640px){ .so-plate > :is(.slab-kicker, .so-lead){ padding-right:76px; } }
+
+/* Подзаголовок плашки судов – не как заголовки сайта (не black + light italic): узкий обычный, спокойный;
+   одним тоном. Значимость ниже h2 и ниже врезки «Podpis notariusza». */
+.so-lead{ font-family:"Fira Sans Condensed",sans-serif; font-weight:700; font-size:22px; line-height:1.2; color:var(--c-ink); }
+@media (min-width:640px){ .so-lead{ font-size:24px; } }
+
+/* Варшава – наша территория: жирнее остальных уже в закрытом виде (открытая – 800, как все) */
+.so-list .so-waw summary{ font-weight:600; }  /* .so-list – иначе перебивает общий 300 ниже */
+.so-list .so-waw summary:hover, .so-list .so-waw details[open] > summary{ font-weight:800; }  /* Варшава: наведение и открытая – 800; остальные открытые – 600 */
+/* Варшава в стопке: жёлтая точка после названия (как «текущая страница» в меню) */
+.so-waw summary::after{ content:''; display:inline-block; width:10px; height:10px; margin-left:6px; border-radius:50%;
+  background:var(--c-terra); vertical-align:middle; position:relative; top:-2px; }  /* центр строчных букв */
+.so-addr2{ margin-top:.7rem; }
+
+/* «Nie ma Twojego miasta?» под стопкой – врезка как «Podpis notariusza», ссылка-стрелка на заявку */
+.so-more{ margin-top:1.4rem; font-size:17px; line-height:1.55; color:rgba(31,33,32,.75); max-width:46ch; }
+.so-more b{ color:var(--c-ink); font-weight:700; }
+.so-more .k-where-link{ display:flex; width:fit-content; margin-top:.6rem; }
+
+/* «Inne miasta» – последняя строка стопки (тот же срез, но курсив, чтобы читалась как «ещё», не как город);
+   внутри – компактный алфавитный список: город жирным, суд + адрес, ссылка-стрелка. */
+/* Вложенная стопка внутри «Miasta pozostałe» – тот же принцип (срез, 300 → 800 открытый), мельче: 28px, строка 27px.
+   Свой name="so-sub" – открытие вложенного города не закрывает родителя. */
+.so-sub{ margin:.2rem 0 1rem; }
+.so-list .so-sub summary{ font-size:26px; height:25px; padding-top:5.5px; }
+.so-list .so-sub details[open] > summary{ height:auto; }
+.so-list.so-sub li + li::before{ width:min(100%, 250px); }  /* пропорционально 26px к 40px */
+
+/* «miasta pozostałe» – на пару пунктов мельче городов (40px): читается как «ещё», не как город */
+.so-list .so-other > details > summary{ font-size:32px; padding-top:14.4px; }
+/* открытая – без жирного (слишком тянет на себя); шеврон вниз, при открытии – вверх */
+.so-list .so-other > details[open] > summary{ font-weight:500; }  /* как при наведении */
+.so-other > details > summary::after{ content:''; display:inline-block; width:7px; height:7px; margin-left:7px;
+  border-right:1.25px solid currentColor; border-bottom:1.25px solid currentColor; transform:rotate(45deg);
+  vertical-align:baseline; position:relative; top:-6px; transition:transform .25s ease; }  /* низ – у линии среза */
+.so-other > details[open] > summary::after{ transform:rotate(-135deg); }  /* только разворот, место то же */
+/* толщина шеврона следует начертанию: тонкий 300 – тонкая линия, 500 (наведение/открыт) – плотнее */
+.so-other > details > summary:hover::after, .so-other > details[open] > summary::after{ border-width:0 2px 2px 0; }  /* базовая линия там же, где у 40px – срез на том же уровне */
+
+/* Зацеп в жёлтой плашке: города плашками-ссылками (24.09.2026) */
+.so-chips-lbl{ margin-top:1.6rem; font-size:17px; font-weight:600; }
+.so-chips{ margin-top:.8rem; display:flex; flex-wrap:wrap; gap:8px; }
+.so-chips a{ display:block; padding:.45em .9em; border-radius:12px; background:rgba(255,255,255,.55);
+  font-size:17px; font-weight:600; color:var(--c-ink); text-decoration:none; transition:background .2s; }
+.so-chips a:hover{ background:#fff; }
+.so-list details{ scroll-margin-top:120px; }
+/* Разделители короткие и только между городами: над первым нет, как нет под последним */
+.so-list li + li{ position:relative; }
+.so-list li + li::before{ content:''; position:absolute; left:0; top:0; width:min(100%, 380px); border-top:1px solid rgba(31,33,32,.12); }
+/* Изюминка (24.09.2026): закрытая строка срезает низ названия, как корешки в стопке / вырубка справочника;
+   клик открывает целиком + суд и адрес. details name="so" – открыт только один. */
+.so-list summary{ list-style:none; cursor:pointer; height:37.7px; overflow:hidden; padding-top:8px;
+  font-family:"Fira Sans Condensed",sans-serif; font-weight:300; font-size:40px; line-height:1; letter-spacing:-.02em; color:var(--c-ink); }
+.so-list summary:hover{ font-weight:500; }
+.so-list summary::-webkit-details-marker{ display:none; }
+.so-list details[open] > summary{ height:auto; padding-bottom:6px; font-weight:600; }  /* > – иначе открытый родитель раскрывал и вложенные */
+/* Карточка суда (24.09.2026): без подписей-капса, роль строки видна по начертанию.
+   Суд – узкий полужирный; адрес – обычный, место в здании курсивом; часы – обычный приглушённый. */
+.so-card{ padding:.3rem 0 1.3rem; }
+.so-court{ font-family:"Fira Sans Condensed",sans-serif; font-weight:600; font-size:21px; line-height:1.2; }
+.so-addr{ margin-top:.2rem; font-size:17px; line-height:1.45; }
+.so-addr i{ font-weight:400; color:rgba(31,33,32,.75); }
+.so-hours{ margin-top:.5rem; font-size:17px; line-height:1.5; color:var(--c-ink); }
+/* Часы как на /kontakt/ (.gdz-hr): дни с точками в колонке, время отдельной строкой на группу */
+.so-hr{ display:grid; grid-template-columns:6.5ch 1fr; align-items:baseline; }
+.so-hr b{ font-weight:600; color:var(--c-ink); font-variant-numeric:tabular-nums; }
+.so-go{ margin-top:.8rem; font-size:15.5px; font-weight:600; }
+.so-go a{ color:inherit; }
+/* Жёлтая плашка: крупный узкий светлый + обычный – не повтор заголовков (жирный + курсив) */
+.so-hero{ font-family:"Fira Sans Condensed",sans-serif; font-weight:300; font-size:30px; line-height:1.1; letter-spacing:-.01em; max-width:24ch; }
+.so-hero span{ display:block; font-weight:700; font-size:56px; line-height:.95; text-transform:uppercase; letter-spacing:-.02em; }
+@media (min-width:640px){ .so-hero{ font-size:36px; } .so-hero span{ font-size:80px; } }
 
 /* Текущая страница в меню (Грег, 23.09.2026): название сдвинуто, перед ним пульсирующая жёлтая точка
    (сначала была стрелка справа – заменена на точку) */
