@@ -34,7 +34,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260924-56">
+<link rel="stylesheet" href="/styles.css?v=20260924-60">
 
 <script type="application/ld+json">
 {
@@ -241,8 +241,9 @@
   <div class="relative mx-auto max-w-site px-5 sm:px-8">
     <p class="font-cond uppercase tracking-[0.18em] text-[15px] font-semibold text-ink/75 mb-6">Apostille z&nbsp;każdego miasta</p>
     <h1 class="tracking-tightest leading-[0.95] text-[36px] sm:text-[52px] md:text-[64px] font-black h1-page">Apostille bez przyjazdu do&nbsp;Warszawy</h1>
-    <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
-      Apostille MSZ stawia się tylko w&nbsp;Warszawie, ale przyjeżdżać tu nie musisz. Wysyłasz zdjęcie dokumentu, potem oryginał Paczkomatem – my rezerwujemy termin, składamy i&nbsp;odbieramy dokument w&nbsp;MSZ, a&nbsp;gotowy wraca do Twojego miasta. 260&nbsp;zł za dokument, z&nbsp;opłatą skarbową w&nbsp;cenie.
+    <!-- Главный факт страницы первым, до цены (Грег, 24.09.2026): врезка как «Podpis notariusza» в плашке судов -->
+    <p class="hero-lead mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
+      <b>MSZ działa tylko w&nbsp;Warszawie</b> – w&nbsp;innych miastach nie ma oddziałów, więc Apostille stawia się tylko w&nbsp;stolicy. Możesz przyjechać sam – ale szybciej i&nbsp;spokojniej jest zlecić to nam: wysyłasz zdjęcie dokumentu, potem oryginał Paczkomatem – my rezerwujemy termin, składamy i&nbsp;odbieramy dokument w&nbsp;MSZ, a&nbsp;gotowy wraca do Twojego miasta. 260&nbsp;zł za dokument, z&nbsp;opłatą skarbową w&nbsp;cenie.
     </p>
     <!-- ссылка-стрелка привязана к абзацу (стоит сразу под ним), кнопки – ниже, после воздуха -->
     <p class="hero-more">
@@ -281,51 +282,41 @@
       Opłata skarbowa w&nbsp;MSZ to 60&nbsp;zł za dokument – tyle samo płacisz, jadąc samodzielnie, i&nbsp;tyle samo jest w&nbsp;naszej cenie. Różnicę robi wszystko dookoła: dojazd, dzień wolny, rezerwacja terminu i&nbsp;to, co się dzieje, gdy urząd dokumentu nie przyjmie.
     </p>
 
-    <div class="gdz gdz--light mt-9 md:mt-12 bg-sand text-ink rounded-[26px] p-7 sm:p-12">
-      <div class="gdz-grid grid grid-cols-1 lg:grid-cols-2">
+    <!-- Сравнение (24.09.2026, стенд docs/stack/compare.html): от 1024px – «как у Altium»: слева песок «было»,
+         справа приподнятая белая карточка «стало», на стыке жёлтый круг с фирменным шевроном; уже 1024px –
+         песок во всю ширину, белая выглядывает справа, круг на стыке; тап/свайп (app.js, [data-cmp]). Без JS – друг под другом. -->
+    <div class="cmp mt-9 md:mt-12" data-cmp data-s="old">
 
-        <div class="gdz-cell">
-          <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-ink/60 mb-2">Jedziesz sam</span>
-          <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Dzień w&nbsp;drodze</h3>
-          <p class="gdz-full">Rezerwacja terminu, dojazd, wizyta w&nbsp;MSZ i&nbsp;powrót – a&nbsp;czasem drugi przyjazd</p>
-          <dl class="gdz-meta">
-            <div><dt>Dojazd</dt><dd>bilet na pociąg w&nbsp;obie strony albo paliwo, autostrada i&nbsp;parking w&nbsp;centrum Warszawy – często ponad połowa naszej ceny</dd></div>
-            <div><dt>Czas</dt><dd>dzień wolny z&nbsp;pracy; z&nbsp;dalszych miast wyjazd przed świtem i&nbsp;powrót w&nbsp;nocy</dd></div>
-            <div><dt>Termin</dt><dd>wyłącznie na godzinę zarezerwowaną w&nbsp;systemie <span class="whitespace-nowrap">e-Konsulat</span>; wolne terminy bywają za kilka dni – nie zawsze wtedy, gdy możesz przyjechać</dd></div>
-            <div><dt>Opłata skarbowa</dt><dd><b class="gdz-fee">60&nbsp;zł</b> za dokument &middot; płatna przed wizytą – w&nbsp;MSZ nie ma kasy</dd></div>
-          </dl>
-          <p class="gdz-docs-h">Co może pójść nie tak</p>
-          <ul class="gdz-docs">
-            <li><b>Brak terminu.</b> Wolna godzina wypada za kilka dni albo w&nbsp;dniu, w&nbsp;którym nie możesz wziąć wolnego.</li>
-            <li><b>Dokument wraca bez klauzuli.</b> Akt notarialny bez poświadczenia w&nbsp;Sądzie Okręgowym, zatarta pieczęć, laminat.</li>
-            <li><b>Drugi przyjazd.</b> Po brakujące poświadczenie – znów bilet albo paliwo i&nbsp;kolejny dzień wolny.</li>
-          </ul>
-        </div>
-
-        <div class="gdz-cell">
-          <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-ink/60 mb-2">Zlecasz Apostilo</span>
-          <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Zdjęcie i&nbsp;Paczkomat</h3>
-          <p class="gdz-full">Wycena po zdjęciu, oryginał Paczkomatem w&nbsp;obie strony, w&nbsp;MSZ jesteśmy my</p>
-          <dl class="gdz-meta">
-            <div><dt>Cena</dt><dd><b class="gdz-fee">260&nbsp;zł</b> za dokument – to kwota końcowa, niczego nie dopłacasz osobno</dd></div>
-            <div><dt>Czas</dt><dd>kilka minut: zdjęcie na WhatsApp i&nbsp;koperta nadana w&nbsp;najbliższym paczkomacie</dd></div>
-            <div><dt>Termin</dt><dd>1–3&nbsp;dni robocze od chwili, gdy oryginał do nas dotrze; tryb ekspresowy – tego samego dnia</dd></div>
-            <div><dt>Opłata skarbowa</dt><dd><b class="gdz-fee">60&nbsp;zł</b> – już w&nbsp;cenie, płacimy ją za Ciebie</dd></div>
-          </dl>
-          <p class="gdz-docs-h">Co bierzemy na siebie</p>
-          <ul class="gdz-docs">
-            <li><b>Rezerwację i&nbsp;obie wizyty.</b> Termin w&nbsp;MSZ, złożenie i&nbsp;odbiór dokumentu – bez Twojego udziału.</li>
-            <li><b>Sprawdzenie dokumentu.</b> Zanim przyjmiemy zlecenie, mówimy, czy dokument idzie od razu do MSZ, czy najpierw do sądu okręgowego. W&nbsp;sądzie składamy tylko w&nbsp;Warszawie; dokument notarialny spoza Warszawy poświadcza sąd okręgowy w&nbsp;Twoim mieście, a&nbsp;potem oryginał wysyłasz do nas.</li>
-            <li><b>Ryzyko odmowy.</b> Jeśli urząd odmówi, zwracamy wpłatę pomniejszoną o&nbsp;60&nbsp;zł opłaty skarbowej.</li>
-          </ul>
-        </div>
-
+      <div class="cmp-side cmp-old">
+        <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-ink/60 mb-2">Jedziesz sam</span>
+        <h3 class="cmp-h">Dzień w&nbsp;drodze</h3>
+        <p class="cmp-lead">Rezerwacja terminu, dojazd, wizyta w&nbsp;MSZ i&nbsp;powrót – a&nbsp;czasem drugi przyjazd.</p>
+        <dl class="cmp-rows">
+          <div><dt>Koszt</dt><dd>bilet albo paliwo i&nbsp;parking, plus <b>60&nbsp;zł</b> opłaty – płatnej przed wizytą</dd></div>
+          <div><dt>Czas</dt><dd>dzień wolny z&nbsp;pracy</dd></div>
+          <div><dt>Termin</dt><dd>kiedy e-Konsulat da wolną godzinę – bywa za kilka dni</dd></div>
+          <div><dt>Ryzyko</dt><dd>brak klauzuli sądu = drugi przyjazd</dd></div>
+        </dl>
       </div>
-      <div class="gdz-note">
+
+      <span class="cmp-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span>
+
+      <div class="cmp-side cmp-new">
+        <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-ink/60 mb-2">Zlecasz Apostilo</span>
+        <h3 class="cmp-h">Zdjęcie i&nbsp;Paczkomat</h3>
+        <p class="cmp-lead">Wycena po zdjęciu, oryginał Paczkomatem w&nbsp;obie strony, w&nbsp;MSZ jesteśmy my.</p>
+        <dl class="cmp-rows">
+          <div><dt>Koszt</dt><dd><b>260&nbsp;zł</b> – kwota końcowa, opłata skarbowa w&nbsp;cenie</dd></div>
+          <div><dt>Czas</dt><dd>kilka minut: zdjęcie na WhatsApp i&nbsp;koperta w&nbsp;paczkomacie</dd></div>
+          <div><dt>Termin</dt><dd>1–3&nbsp;dni robocze, ekspres – tego samego dnia</dd></div>
+          <div><dt>Ryzyko</dt><dd>sprawdzamy dokument przed zleceniem; odmowa urzędu = zwrot wpłaty bez 60&nbsp;zł opłaty</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="cmp-note">
         <p><b>Ceny są końcowe.</b> Apostille MSZ – 260&nbsp;zł za dokument, tryb ekspresowy – 350&nbsp;zł, poświadczenie w&nbsp;Sądzie Okręgowym – 120&nbsp;zł (sądy warszawskie). Przy zamówieniu od 350&nbsp;zł Paczkomat w&nbsp;obie strony jest w&nbsp;cenie. Wszystkie pozycje –
         <a href="/cennik/" class="underline font-semibold">Cennik Apostille i&nbsp;Tłumaczeń Przysięgłych</a>.</p>
       </div>
-    </div>
   </div>
 </section>
 
@@ -635,7 +626,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260924-56" defer></script>
+<script src="/assets/app.js?v=20260924-60" defer></script>
 
 </body>
 </html>

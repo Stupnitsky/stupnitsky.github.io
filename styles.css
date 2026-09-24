@@ -3625,6 +3625,7 @@ header:has(.hdr-row.on-dark) #mobile-nav a.mn-lang:not(.is-current){ color:rgba(
 /* /apostille-bez-przyjazdu/ – плашка «Twój sąd okręgowy» (22.09.2026): 12 городов, суд + адрес */
 .gdz--light .gdz-full b{ color:var(--c-ink); font-weight:700; }
 .so-text{ margin-top:1rem; font-size:17px; line-height:1.6; color:rgba(31,33,32,.75); max-width:62ch; }
+.hero-lead b{ font-size:19px; font-weight:700; color:var(--c-ink); }
 /* Врезка как на /kontakt/ («Składamy tylko w Warszawie.»): начало абзаца жирным ink, чуть крупнее */
 .so-text b{ font-size:19px; font-weight:700; color:var(--c-ink); }
 .so-list{ margin-top:1.6rem; display:grid; gap:0 2rem; align-items:start; }
@@ -3725,3 +3726,59 @@ header:has(.hdr-row.on-dark) #mobile-nav a.mn-lang:not(.is-current){ color:rgba(
   50%      { transform:scale(1.4); opacity:.7 }
 }
 @media (prefers-reduced-motion:reduce){ .mn-link.is-here::before{ animation:none } }
+
+/* ===== Сравнение «Jedziesz sam / Zlecasz Apostilo» (/apostille-bez-przyjazdu/#koszt, 24.09.2026) =====
+   Уже 1024px – переключатель (одна сторона видна); от 1024px – две поверхности как у Altium:
+   песок «было» + белая приподнятая карточка «стало», на стыке жёлтый круг с фирменным шевроном. */
+.cmp{ background:var(--c-sand); border-radius:26px; padding:1.25rem 1rem; position:relative; }
+.cmp-h{ font-size:22px; font-weight:700; letter-spacing:-.03em; line-height:1; }
+.cmp-lead{ margin-top:.6rem; font-size:17px; line-height:1.5; color:rgba(31,33,32,.75); max-width:44ch; }
+.cmp-rows{ margin-top:1.2rem; }
+.cmp-rows > div{ display:grid; grid-template-columns:6.5rem 1fr; gap:.8rem; padding:.8rem 0; border-top:1px solid rgba(31,33,32,.12); }
+.cmp-rows dt{ font-family:"Fira Sans Condensed",sans-serif; text-transform:uppercase; letter-spacing:.14em; font-size:11px; font-weight:600; color:rgba(31,33,32,.55); padding-top:.4em; }
+.cmp-rows dd{ font-size:17px; line-height:1.4; color:var(--c-ink); }
+.cmp-rows b{ font-weight:700; }
+.cmp-arrow{ display:none; }
+.cmp-note{ margin-top:1rem; padding:0 .25rem; }
+.cmp-note p{ font-size:16px; line-height:1.6; color:rgba(31,33,32,.7); max-width:78ch; }
+.cmp-note p b{ color:var(--c-ink); font-weight:700; }
+
+/* Уже 1024px (вариант 3 со стенда docs/stack/compare-m.html, 24.09.2026): песочная «было» во всю ширину,
+   справа из-за края выглядывает белая «стало», на стыке фирменный круг. Тап по кругу/краю или свайп –
+   белая наезжает, круг уходит влево и разворачивается. Обе стороны в одной ячейке сетки – высота по большей.
+   Без JS (.is-js нет) – стороны просто друг под другом. */
+.cmp-tog{ display:none; }
+@media (max-width:1023.98px){
+  .cmp{ background:none; padding:0; }
+  .cmp-side{ border-radius:26px; padding:1.4rem 1.1rem; }
+  .cmp-old{ background:var(--c-sand); }
+  .cmp-new{ background:#fff; margin-top:1rem; box-shadow:0 1px 2px rgba(0,0,0,.05), 0 8px 24px rgba(0,0,0,.07); }
+  .cmp.is-js{ display:grid; overflow:hidden; border-radius:26px; touch-action:pan-y; }
+  .cmp.is-js .cmp-side{ grid-area:1 / 1; }
+  .cmp.is-js .cmp-old{ margin-right:18px; padding-right:2rem; }
+  .cmp.is-js .cmp-new{ margin-top:0; border-radius:22px; padding-left:2rem; box-shadow:0 1px 2px rgba(0,0,0,.05), -6px 0 24px rgba(0,0,0,.09);
+    transform:translateX(calc(100% - 14px)); transition:transform .45s cubic-bezier(.3,.7,.2,1); cursor:pointer; }
+  .cmp.is-js[data-s="new"] .cmp-new{ transform:translateX(26px); cursor:auto; }
+  .cmp.is-js .cmp-arrow{ display:grid; place-items:center; position:absolute; z-index:3; top:50%; left:calc(100% - 36px);
+    transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:var(--c-terra); color:var(--c-ink);
+    box-shadow:0 2px 10px rgba(0,0,0,.12); cursor:pointer; transition:left .45s cubic-bezier(.3,.7,.2,1); }
+  .cmp.is-js[data-s="new"] .cmp-arrow{ left:4px; }
+  .cmp-arrow svg{ width:15px; height:15px; margin-left:2px; transition:transform .35s cubic-bezier(.3,.7,.2,1); }
+  .cmp.is-js[data-s="new"] .cmp-arrow svg{ transform:rotate(180deg); margin-left:-2px; }
+}
+@media (prefers-reduced-motion:reduce){ .cmp-new, .cmp-arrow, .cmp-arrow svg{ transition:none !important; } }
+
+@media (min-width:1024px){
+  .cmp{ display:grid; grid-template-columns:1fr 1fr; padding:12px; }
+  .cmp-side{ padding:2.75rem 3rem; }
+  .cmp-new{ background:#fff; border-radius:20px; box-shadow:0 1px 2px rgba(0,0,0,.04), 0 10px 28px rgba(0,0,0,.06); }
+  .cmp-h{ font-size:28px; }
+  .cmp-arrow{ display:grid; place-items:center; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    width:48px; height:48px; border-radius:50%; background:var(--c-terra); color:var(--c-ink); z-index:2; }
+  .cmp-arrow svg{ width:16px; height:16px; margin-left:2px; }
+}
+
+/* Подзаголовки групп (PL /cennik/, 24.09.2026) – по правилам плашки судов: узкий 700, одним тоном,
+   22/24px; не повторяют заголовки сайта (black + light italic). Класс .sub-h – только в PL-разметке. */
+.cn-v2 .cn-group-h.sub-h{ font-family:"Fira Sans Condensed",sans-serif; font-weight:700; font-size:22px; line-height:1.2; letter-spacing:0; color:var(--c-ink); }
+@media (min-width:640px){ .cn-v2 .cn-group-h.sub-h{ font-size:24px; } }

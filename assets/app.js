@@ -2300,7 +2300,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260924-56';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260924-60';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -2565,4 +2565,26 @@
       var d = document.getElementById(h.slice(1)); if (d && d.tagName === 'DETAILS') d.open = true;
     }
     window.addEventListener('hashchange', openSad); openSad();
+  })();
+
+  /* Сравнение на /apostille-bez-przyjazdu/ (уже 1024px): круг на стыке, край белой карточки, свайп */
+  (function(){
+    document.querySelectorAll('[data-cmp]').forEach(function(box){
+      box.classList.add('is-js');
+      var arrow = box.querySelector('.cmp-arrow'), side = box.querySelector('.cmp-new');
+      function set(s){ box.dataset.s = s; }
+      arrow.setAttribute('role', 'button'); arrow.setAttribute('tabindex', '0');
+      arrow.removeAttribute('aria-hidden'); arrow.setAttribute('aria-label', 'Porównaj z drugą stroną');
+      arrow.addEventListener('click', function(){ set(box.dataset.s === 'old' ? 'new' : 'old'); });
+      arrow.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); arrow.click(); } });
+      side.addEventListener('click', function(){ if (box.dataset.s === 'old') set('new'); });
+      var x0 = null, y0 = 0;
+      box.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive:true });
+      box.addEventListener('touchend', function(e){
+        if (x0 === null) return;
+        var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;   /* вертикальная прокрутка – не трогаем */
+        set(dx < 0 ? 'new' : 'old');
+      }, { passive:true });
+    });
   })();
