@@ -3714,7 +3714,7 @@ header:has(.hdr-row.on-dark) #mobile-nav a.mn-lang:not(.is-current){ color:rgba(
 .so-go a{ color:inherit; }
 /* Жёлтая плашка: крупный узкий светлый + обычный – не повтор заголовков (жирный + курсив) */
 .so-hero{ font-family:"Fira Sans Condensed",sans-serif; font-weight:300; font-size:30px; line-height:1.1; letter-spacing:-.01em; max-width:24ch; }
-.so-hero span{ display:block; font-weight:700; font-size:56px; line-height:.95; text-transform:uppercase; letter-spacing:-.02em; }
+.so-hero span{ display:block; font-weight:700; font-size:56px; line-height:.95; letter-spacing:-.02em; }  /* 25.09.2026, Грег: без капса – «Każde miasto» как написано */
 @media (min-width:640px){ .so-hero{ font-size:36px; } .so-hero span{ font-size:80px; } }
 
 /* Текущая страница в меню (Грег, 23.09.2026): название сдвинуто, перед ним пульсирующая жёлтая точка
@@ -3976,3 +3976,20 @@ html[lang="pl"] :is(.tl-def-text, .tl-lead, .tl-meta, .step-lead, .scheme-item f
 html[lang="pl"] :is(h1, h2) + p.text-\[17px\]{ font-size:18px; color:var(--c-ink); }
 @media (min-width:640px){ html[lang="pl"] :is(h1, h2) + p.text-\[17px\]{ font-size:20px; } }
 html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lead b было 19px – в лиде 20px оно стало бы мельче текста */
+
+/* Плашка судов #twoj-sad (Грег, 25.09.2026: «правая часть супер, в левой грустно»). Тезис плашки – самый сильный уровень
+   слева и тем же языком, что стопка городов справа: узкий светлый «Pierwszy krok robisz u siebie,» (как названия городов)
+   и жирный «drugi – my w Warszawie.» (как Warszawa в стопке – единственный город, где оба шага наши). Кегль не меньше
+   названий городов (40px), иначе тезис проигрывает списку. Абзац – два шага (.so-text p), сумма – strong в кегле текста.
+   От 1024px «Potrzebujesz konsultacji?» стоит внизу левой колонки, на одной линии с «Miasta pozostałe». */
+.so-plate .so-lead{ font-weight:300; font-size:40px; line-height:1.02; letter-spacing:-.02em; }
+.so-plate .so-lead span{ font-weight:800; }
+@media (min-width:640px){ .so-plate .so-lead{ font-size:44px; } }
+.so-text p + p{ margin-top:.8rem; }
+.so-text strong{ font-size:inherit; font-weight:700; color:var(--c-ink); }
+@media (min-width:1024px){ .so-plate > .so-more{ align-self:end; } }
+/* телефон: тезис начинается под значком суда и занимает всю ширину (с полем под значок выходило по слову в строке) */
+@media (max-width:639px){
+  .so-plate > .slab-kicker{ margin-bottom:30px; }
+  .so-plate > .so-lead{ padding-right:0; font-size:34px; }
+}
