@@ -3961,3 +3961,18 @@ details[open] > summary .chev:not(.chev--x)::before{ transform:translateY(3px) r
 .ob-lead > .ob-ans:first-child{ padding-top:12px; }
 .ob-lead > .ob-ans + p{ margin-top:.5rem; }
 .ob-lead > p + .ob-ans{ margin-top:1.6rem; }
+
+/* ===== Цвет текста по роли + лид размером (Грег, 25.09.2026: «делай 3 вариант», стенд docs/tekst/) =====
+   Всё, что читают (вступления, абзацы, списки, ответы FAQ, подписи к фото, текст на плашках) – чернильный на любом фоне:
+   плашку выделяет заливка, а не цвет текста. Серый остаётся у служебного – подписи капсом, «/ dokument», сноски
+   и крошки в 60 % (text-ink/60) – эти правила не трогаются. Вступление сразу после h1/h2 (17px) – лид: 20px от 640px,
+   18px на телефоне; уже крупные лиды (главная 21px, /cennik/ 24px) не меняются.
+   Только польские страницы (html[lang="pl"]) – ua/ru/en догоняют общим проходом, тогда ограничение снять.
+   Не трогаются: прайс /cennik/ (#ceny), цены в FAQ (.faq-price), панель заявки (.qd), шапка, меню, подвал. */
+html[lang="pl"] :is(.text-ink\/65, .text-ink\/70, .text-ink\/75, .text-ink\/80, .text-ink\/85):not(.uppercase):not(#ceny *, .qd *, header *, nav *, #mobile-nav *, footer *){ color:var(--c-ink); }
+html[lang="pl"] :is(.tl-def-text, .tl-lead, .tl-meta, .step-lead, .scheme-item figcaption, .flow li, .opt span, .rules li,
+  .gdz--light .gdz-full, .gdz--light .gdz-docs li, .gdz--light .gdz-note p, .gdz-key-s, .gdz-src,
+  .kt-steps-list li, .ap-doc p, .ua-term-t, .so-text, .so-more, .so-addr i, .cmp-lead, .cmp-note p, .route-t, .route-sum){ color:var(--c-ink); }
+html[lang="pl"] :is(h1, h2) + p.text-\[17px\]{ font-size:18px; color:var(--c-ink); }
+@media (min-width:640px){ html[lang="pl"] :is(h1, h2) + p.text-\[17px\]{ font-size:20px; } }
+html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lead b было 19px – в лиде 20px оно стало бы мельче текста */
