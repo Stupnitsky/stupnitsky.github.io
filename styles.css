@@ -3854,7 +3854,7 @@ header:has(.hdr-row.on-dark) #mobile-nav a.mn-lang:not(.is-current){ color:rgba(
 .ob-acc summary h4 .font-light{ font-weight:400; }  /* Грег 24.09.2026: вторая часть строки не такая тонкая */
 .ob-lead p + p{ margin-top:.6rem; }
 .ob-lead p + p{ margin-top:1rem; }
-.ob-note{ margin-top:1.6rem; padding-top:1.1rem; border-top:1px solid rgba(31,33,32,.2); font-size:17px; line-height:1.55; max-width:52ch; }
+.ob-note{ margin-top:.5rem; font-size:17px; line-height:1.55; max-width:42ch; }  /* 25.09.2026: в левой колонке под ответами, без линии – ширина как у .ob-lead (было: под списком способов, линия 1px) */
 .so-list.ob-acc{ margin-top:.75rem; }  /* отступ от «Wybierz wygodną drogę»: вместе с полем строки 14px ≈ отступу заголовка слева (1.5rem) */
 /* FAQ (24.09.2026, Грег): шеврон вместо «+», как в аккордеоне способов на /kontakt/. Только в summary –
    крестики закрытия (.chev--x, .tl-close) остаются. Знак «+» в разметке скрыт размером шрифта. */
@@ -3863,3 +3863,93 @@ details > summary .chev:not(.chev--x)::before{ content:''; width:10px; height:10
   transform:translateY(-3px) rotate(45deg); transition:transform .25s ease; }
 details[open] > summary .chev:not(.chev--x){ transform:none; }
 details[open] > summary .chev:not(.chev--x)::before{ transform:translateY(3px) rotate(-135deg); }
+/* Кнопки в жёлтой плашке /kontakt/ #odbior (24.09.2026): серая подложка, главная «Wycena ze zdjęć» охрой,
+   под ней белый ряд из трёх ячеек – иконка серым над подписью */
+.ob-cta{ display:grid; gap:8px; padding:8px; background:#E5E5E1; border-radius:22px; max-width:420px; }
+.ob-cta .cta-btn--main{ width:100%; background:var(--c-terra); color:var(--c-ink); }
+.ob-seg{ display:grid; grid-template-columns:repeat(3,1fr); background:var(--c-paper); border-radius:16px; overflow:hidden; }
+.ob-seg a{ display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; padding:14px 6px 12px;
+  text-decoration:none; color:var(--c-ink); font-weight:700; font-size:17px; line-height:1.1; transition:background .2s ease; }
+.ob-seg a + a{ border-left:1px solid rgba(31,33,32,.14); }
+.ob-seg svg{ width:28px; height:28px; color:#6b6d6a; }
+.ob-seg a:hover, .ob-seg a:focus-visible{ background:#F1F1EF; }
+/* 24.09.2026, Грег: ряд ниже и без иконок – только подписи */
+.ob-seg svg{ display:none; }
+.ob-seg a{ padding:13px 6px; gap:0; }
+/* 24.09.2026, по образцу Грега: подпись «Skontaktuj się z nami», главная кнопка белая, как ячейки ряда */
+.ob-cta{ padding:10px; border-radius:24px; gap:10px; }
+.ob-cta-h{ padding:10px 14px 2px; font-size:17px; line-height:1.3; color:var(--c-ink); }
+.ob-cta .ob-cta-main{ width:100%; background:var(--c-paper); color:var(--c-ink); border-radius:16px; padding-top:18px; padding-bottom:18px; }
+.ob-cta .ob-cta-main:hover, .ob-cta .ob-cta-main:focus-visible{ background:var(--c-ink); color:var(--c-paper); }
+.ob-seg a{ padding:16px 4px; }
+/* 24.09.2026, Грег: кнопки прижаты к низу плашки, ниже на 24% (56 → 43px) */
+.ob-cta{ margin-top:auto; }
+.ob-cta .ob-cta-main{ padding-top:11px; padding-bottom:11px; }
+.ob-seg a{ padding-top:11px; padding-bottom:11px; }
+/* Кнопки жёлтой плашки /kontakt/ на компьютере (24.09.2026): полоса по низу под линией – подпись слева, три кнопки
+   справа, без кнопки формы. Уже 1024px пока прежний блок .ob-cta в колонке. */
+.ob-strip{ display:none; }
+@media (min-width:1024px){
+  .ob-cta{ display:none; }
+  .ob-strip{ display:flex; align-items:center; justify-content:space-between; gap:12px 24px;
+    margin-top:2.4rem; padding-top:1.6rem; border-top:1px solid rgba(31,33,32,.25); }
+  .ob-strip-h{ font-size:19px; font-weight:700; line-height:1.3; }
+  .ob-strip .cta-btns{ margin:0; }
+}
+.so-list.ob-acc{ margin-top:1.5rem; }  /* Грег 24.09.2026: отступ от «Wybierz wygodną drogę» больше */
+@media (min-width:1024px){ .ob-strip{ flex-wrap:wrap; } .ob-strip .cta-btns{ flex-wrap:nowrap; } }
+/* 24.09.2026, Грег: кнопки полосы кончаются там же, где текст «Wysyłasz oryginał?» (52ch при 17px).
+   Полоса повторяет сетку плашки: подпись – в левой колонке, кнопки – в правой, в пределах ширины текста. */
+@media (min-width:1024px){
+  .ob-strip{ display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:2rem; row-gap:12px; }
+  .ob-strip-h{ grid-column:1 / 6; }
+  .ob-strip .cta-btns{ grid-column:6 / 13; font-size:17px; width:100%; max-width:52ch; justify-content:flex-end; flex-wrap:wrap; }
+}
+.so-list.ob-acc{ font-size:17px; max-width:52ch; }  /* Грег 24.09.2026: шевроны и линии кончаются там же, где текст «Wysyłasz oryginał?», справа воздух */
+/* /kontakt/ #odbior: «Zamów wycenę» справа вверху секции – только от 1024px */
+.ob-quote{ display:none; }
+/* Правый край – как у кнопок полосы внизу плашки: та же сетка 12 колонок, поля плашки 3rem, правая колонка до 52ch */
+@media (min-width:1024px){
+  .ob-quote{ display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:2rem; padding:0 3rem; margin-top:-3rem; }
+  .ob-quote-in{ grid-column:6 / 13; width:100%; max-width:52ch; font-size:17px; justify-content:flex-end; }
+}
+/* Линия над полосой кнопок кончается там же, где кнопки (Грег, 24.09.2026): линия нарисована у двух ячеек,
+   у подписи она заходит в межколоночный зазор, чтобы не рваться */
+@media (min-width:1024px){
+  .ob-strip{ border-top:0; padding-top:0; align-items:stretch; }
+  .ob-strip-h, .ob-strip .cta-btns{ border-top:1px solid rgba(31,33,32,.25); padding-top:1.6rem; }
+  .ob-strip-h{ display:flex; align-items:center; margin-right:-2rem; padding-right:2rem; }
+}
+/* Грег 24.09.2026: строки аккордеона спорили с заголовками плашки (26/34px) – теперь явно ниже: 20px на телефоне, 24px от 640px */
+.so-list.ob-acc summary{ font-size:20px; padding-top:12px; padding-bottom:10px; }
+@media (min-width:640px){ .so-list.ob-acc summary{ font-size:24px; } }
+@media (min-width:1024px){ .ob-strip-h{ font-size:17px; } }  /* Грег 24.09.2026: как жирные подводки «Przy tłumaczeniu… / Przy Apostille…» – 17px, 700 */
+
+/* ===== Единая сетка плашек /kontakt/ (Грег, 24.09.2026: «желтая плашка не совпадает с серединой судов и MSZ»).
+   Эталон – плашка MSZ/Sądy (.gdz--duo): поле 3rem, две равные половины, от середины текст отступает на 3rem.
+   Жёлтая плашка #odbior, её нижняя полоса и кнопка «Zamów wycenę» над ней строятся так же – произвольные
+   12 колонок 5/7 и ширина 52ch отменены. Правый край всего – поле плашки, как у карточки судов. */
+@media (min-width:1024px){
+  .ob-grid{ grid-template-columns:1fr 1fr; column-gap:0; }
+  .ob-grid > div{ grid-column:auto; }
+  .ob-grid > div:first-child{ padding-right:3rem; }
+  .ob-grid > div:nth-child(2){ padding-left:3rem; }
+  .so-list.ob-acc, .ob-note{ max-width:none; }
+  .ob-strip{ grid-template-columns:1fr 1fr; column-gap:0; }
+  .ob-strip-h{ grid-column:1; margin-right:0; padding-right:3rem; }
+  .ob-strip .cta-btns{ grid-column:2; max-width:none; padding-left:3rem; }
+  .ob-quote{ grid-template-columns:1fr 1fr; column-gap:0; }
+  .ob-quote-in{ grid-column:2; max-width:none; }
+}
+@media (min-width:1024px){ .ob-lead{ max-width:none; } }  /* Грег 24.09.2026: текст левой половины – до «середина −48», как MSZ */
+/* 25.09.2026, полировка #odbior по стенду docs/odbior (Грег: «сделай это»). Совет «Wysyłasz oryginał?» переехал в левую колонку
+   без линии – правило «линия по длине текста, 28em» больше не нужно, от 1024px ширина совета – вся половина, как у ответов.
+   Кнопки полосы – сеткой 3 × 1fr ровно по правой колонке: одинаковые, от «Wybierz wygodną drogę» до поля плашки; на 1024–1200px
+   больше не переносятся в два ряда. Первые строки колонок на одной высоте: верх прописных «Przy tłumaczeniu…» (17px)
+   и «Osobiście…» (24px, поле строки 12px) расходился на 10px. */
+@media (min-width:1024px){
+  .ob-lead{ margin-top:10px; }
+  .ob-strip .cta-btns{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+  .ob-strip .cta-btn, .ob-strip .cta-btn:not(.cta-btn--main), .ob-strip .cta-btn:not(.cta-btn--main):hover,
+  .ob-strip .cta-btn:not(.cta-btn--main):focus-visible{ min-width:0; padding-left:.5em; padding-right:.5em; }
+}

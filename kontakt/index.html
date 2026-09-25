@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260924-105">
+<link rel="stylesheet" href="/styles.css?v=20260924-124">
 
 <script type="application/ld+json">
 {
@@ -432,17 +432,18 @@
 
 <!-- ================= ODBIÓR I WYSYŁKA ================= -->
 <section id="odbior" class="py-16 md:py-28">
-  <div class="mx-auto max-w-site px-5 sm:px-8">
+  <div class="relative mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ Odbiór i wysyłka</p>
     <h2 class="h2-swap tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
       <span class="h2-a">Jak przekazać i&nbsp;odebrać</span> <span class="h2-b font-light italic">Dokument</span>
     </h2>
+    <!-- 25.09.2026 (стенд docs/odbior, п. 1): вступление – рамка блока, а не пересказ левой колонки плашки -->
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
-      Kiedy potrzebny jest oryginał, zależy od usługi. <b class="font-semibold text-ink">Do tłumaczenia</b> wystarczy skan albo
-      zdjęcie – na nim zaczynamy pracę, a&nbsp;oryginał pokazujesz przy odbiorze gotowego tłumaczenia.
-      <b class="font-semibold text-ink">Do Apostille</b> oryginał jest potrzebny od początku, bo to na nim urząd stawia pieczęć –
-      kopii ani skanu nie da się zalegalizować.
+      Spotkanie w&nbsp;centrum Warszawy albo wysyłka&nbsp;– z&nbsp;każdego miejsca w&nbsp;Polsce i&nbsp;na świecie.
+      <b class="font-semibold text-ink">Skan gotowego dokumentu dostajesz od&nbsp;ręki</b>, a&nbsp;sam dokument&nbsp;– wybraną drogą.
     </p>
+    <!-- от 1024px «Zamów wycenę» – справа, по нижнему краю вступления, над плашкой (Грег, 24.09.2026) -->
+    <div class="ob-quote"><div class="ob-quote-in cta-btns"><a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a></div></div>
 
     <!-- .ob-plate (24.09.2026): пять способов – аккордеоном, как список городов на /apostille-bez-przyjazdu/ (.so-list:
          закрытая строка срезает низ слова). Текст остаётся в HTML – для Google вес тот же. details name="ob" – открыт один. -->
@@ -456,11 +457,16 @@
             <p><b class="font-bold">Przy tłumaczeniu – nie od razu.</b> Żeby zacząć, wystarczy skan albo zdjęcie. Oryginał pokazujesz przy odbiorze w&nbsp;Warszawie, a&nbsp;spoza Warszawy wysyłasz go do wglądu – wraca do Ciebie razem z&nbsp;tłumaczeniem.</p>
             <p><b class="font-bold">Przy Apostille – tak, od początku.</b> Pieczęć trafia na oryginał, więc bez niego nie zaczniemy. Apostille z&nbsp;tłumaczeniem – tak samo.</p>
           </div>
-        <div class="cta-btns" role="group" aria-label="Zamów wycenę, zadzwoń lub napisz">
-          <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
-          <a href="tel:+48507588155" class="cta-btn" aria-label="Zadzwoń: +48 507 588 155">Zadzwoń<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
-          <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
-          <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+          <!-- 25.09.2026 (стенд docs/odbior, п. 2): совет про конверт – про оригинал, стоит под ответами, а не под способами доставки -->
+          <p class="ob-note"><b class="font-bold">Wysyłasz oryginał?</b> Zrób zdjęcie koperty i&nbsp;podaj nam numer przesyłki – na WhatsApp, Telegram albo e-mail. Od tej chwili pilnujemy jej razem z&nbsp;Tobą.</p>
+        <div class="ob-cta" role="group" aria-label="Skontaktuj się z nami">
+          <p class="ob-cta-h">Skontaktuj się z nami</p>
+          <a href="/cennik/#wycena" data-quote class="cta-btn ob-cta-main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+          <div class="ob-seg">
+            <a href="tel:+48507588155" aria-label="Zadzwoń: +48 507 588 155"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg><span>Zadzwoń</span></a>
+            <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path fill="currentColor" d="M9.2 7.6c.2 0 .4 0 .5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c.6 1.2 1.6 2.2 2.9 2.8l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.3.3.5 0 .9-.8 1.8-1.8 1.8-2.8 0-6.4-3.5-6.4-6.4 0-1 .7-1.9 1.6-1.9z"/></svg><span>WhatsApp</span></a>
+            <a href="https://t.me/apostilo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path fill="#fff" d="M6.4 11.7l9.8-3.8c.5-.2.9.1.7.9l-1.7 7.9c-.1.6-.5.7-1 .4l-2.6-1.9-1.3 1.2c-.1.1-.3.3-.5.3l.2-2.7 4.8-4.3c.2-.2 0-.3-.3-.1l-5.9 3.7-2.5-.8c-.6-.2-.6-.6.3-.8z"/></svg><span>Telegram</span></a>
+          </div>
         </div>
         </div>
         <div class="col-span-12 lg:col-span-7">
@@ -485,7 +491,15 @@
             <p class="ob-t">Gotowy dokument możesz odebrać przez dowolną firmę kurierską – wybierasz ją i&nbsp;opłacasz sam. Zamów odbiór na nasz adres, a&nbsp;my przygotujemy, zapakujemy i&nbsp;przekażemy przesyłkę Twojemu kurierowi.</p>
           </div></details></li>
         </ul>
-          <p class="ob-note"><b class="font-bold">Wysyłasz oryginał?</b> Zrób zdjęcie koperty i&nbsp;podaj nam numer przesyłki – na WhatsApp, Telegram albo e-mail. Od tej chwili pilnujemy jej razem z&nbsp;Tobą.</p>
+        </div>
+      </div>
+      <!-- от 1024px кнопки – полосой по низу плашки (Грег, 24.09.2026, стенд m-obcta 4б); уже 1024 – блок .ob-cta в колонке -->
+      <div class="ob-strip" role="group" aria-label="Napisz lub zadzwoń">
+        <p class="ob-strip-h">Skontaktuj się z nami</p>
+        <div class="cta-btns">
+          <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+          <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+          <a href="tel:+48507588155" class="cta-btn" aria-label="Zadzwoń: +48 507 588 155">Zadzwoń<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
         </div>
       </div>
     </div>
@@ -858,7 +872,54 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260924-105" defer></script>
+<script src="/assets/app.js?v=20260924-124" defer></script>
 
+
+<!-- Голубые направляющие (Грег, 24.09.2026): по умолчанию выключены, показываются с ?guides в адресе. Не удалять – Грег периодически просит их.
+     Сплошные – сетка сайта: край контейнера max-w-site, поле 32px, 12 колонок с зазором 32px (как .ob-grid gap-8);
+     пунктир – плашка #odbior: её край, поле 48px и конец текста 52ch. -->
+<script>
+(function(){
+  /* выключены; включить – ?guides к адресу (например /kontakt/?guides) */
+  if (!/[?&]guides\b/.test(location.search)) return;
+  var layer = document.createElement('div');
+  layer.style.cssText = 'position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:9999';
+  document.body.appendChild(layer);
+  function line(x, label, dashed, strong, row){
+    var l = document.createElement('div');
+    l.style.cssText = 'position:absolute;top:0;bottom:0;width:0;left:' + x + 'px;border-left:1px ' + (dashed ? 'dashed' : 'solid') + ' ' + (strong ? '#00c8f0' : 'rgba(0,200,240,.45)');
+    if (label) for (var y = 0; y < layer.offsetHeight; y += 900) {
+      var t = document.createElement('span'); t.textContent = label + ' · ' + Math.round(x);
+      t.style.cssText = 'position:absolute;left:3px;top:' + (y + 90 + row * 15) + 'px;font:10.5px/1.3 -apple-system,sans-serif;color:#0088a8;white-space:nowrap;background:rgba(255,255,255,.85);padding:0 3px';
+      l.appendChild(t);
+    }
+    layer.appendChild(l);
+  }
+  function draw(){
+    layer.innerHTML = ''; layer.style.height = document.documentElement.scrollHeight + 'px';
+    var sx = scrollX;
+    var box = document.querySelector('#odbior .max-w-site') || document.querySelector('.max-w-site'); if (!box) return;
+    var r = box.getBoundingClientRect(), cs = getComputedStyle(box);
+    var L = r.left + sx, R = r.right + sx, pl = parseFloat(cs.paddingLeft), pr = parseFloat(cs.paddingRight);
+    var cl = L + pl, cr = R - pr, g = 32, w = (cr - cl - 11 * g) / 12;
+    line(L, 'контейнер', false, true, 0); line(R, 'контейнер', false, true, 0);
+    line(cl, 'поле сайта', false, true, 1); line(cr, 'поле сайта', false, true, 1);
+    /* общая схема плашек: поле плашки 48px, середина, текст от середины на 48px */
+    var ref = document.querySelector('.gdz--duo') || document.querySelector('.ob-plate');
+    if (ref && innerWidth >= 1024) {
+      var q = ref.getBoundingClientRect(), qc = getComputedStyle(ref), il = q.left + sx + parseFloat(qc.paddingLeft), ir = q.right + sx - parseFloat(qc.paddingRight), mid = (il + ir) / 2;
+      line(mid, 'середина плашек', false, true, 2); line(mid - 48, 'середина −48', false, false, 3); line(mid + 48, 'середина +48', false, false, 3);
+    }
+    var plate = document.querySelector('.ob-plate');
+    if (plate) {
+      var p = plate.getBoundingClientRect(), pc = getComputedStyle(plate);
+      line(p.left + sx, 'плашка', true, true, 4); line(p.right + sx, 'плашка', true, true, 4);
+      line(p.left + sx + parseFloat(pc.paddingLeft), 'поле плашки', true, true, 5); line(p.right + sx - parseFloat(pc.paddingRight), 'поле плашки', true, true, 5);
+    }
+  }
+  addEventListener('load', draw); addEventListener('resize', draw);
+  document.addEventListener('toggle', function(){ setTimeout(draw, 50); }, true);
+})();
+</script>
 </body>
 </html>
