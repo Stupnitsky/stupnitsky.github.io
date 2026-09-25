@@ -3945,11 +3945,19 @@ details[open] > summary .chev:not(.chev--x)::before{ transform:translateY(3px) r
 /* 25.09.2026, полировка #odbior по стенду docs/odbior (Грег: «сделай это»). Совет «Wysyłasz oryginał?» переехал в левую колонку
    без линии – правило «линия по длине текста, 28em» больше не нужно, от 1024px ширина совета – вся половина, как у ответов.
    Кнопки полосы – сеткой 3 × 1fr ровно по правой колонке: одинаковые, от «Wybierz wygodną drogę» до поля плашки; на 1024–1200px
-   больше не переносятся в два ряда. Первые строки колонок на одной высоте: верх прописных «Przy tłumaczeniu…» (17px)
-   и «Osobiście…» (24px, поле строки 12px) расходился на 10px. */
+   больше не переносятся в два ряда. */
 @media (min-width:1024px){
-  .ob-lead{ margin-top:10px; }
   .ob-strip .cta-btns{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
   .ob-strip .cta-btn, .ob-strip .cta-btn:not(.cta-btn--main), .ob-strip .cta-btn:not(.cta-btn--main):hover,
   .ob-strip .cta-btn:not(.cta-btn--main):focus-visible{ min-width:0; padding-left:.5em; padding-right:.5em; }
 }
+/* 25.09.2026, ход 5 стенда docs/odbior (Грег: «сделай пятый ход тоже»): ответы на «Czy muszę oddać oryginał?» – строками
+   того же уровня, что способы доставки справа («Polska – InPost»): узкий 20px на телефоне и 24px от 640px, жирное + обычное.
+   Плашка читается как два списка – что отдать и как доставить. Первая строка стоит на высоте «Osobiście…» полем 12px, как
+   строка аккордеона (поэтому отступ .ob-lead 10px из полировки снят); пояснение – 17px под строкой. */
+.ob-ans{ font-family:"Fira Sans Condensed","Fira Sans",sans-serif; font-size:20px; line-height:1.1; letter-spacing:-.02em; font-weight:400; color:var(--c-ink); }
+@media (min-width:640px){ .ob-ans{ font-size:24px; } }
+.ob-ans b{ font-weight:700; }
+.ob-lead > .ob-ans:first-child{ padding-top:12px; }
+.ob-lead > .ob-ans + p{ margin-top:.5rem; }
+.ob-lead > p + .ob-ans{ margin-top:1.6rem; }
