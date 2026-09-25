@@ -31,7 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260924-129">
+<link rel="stylesheet" href="/styles.css?v=20260924-130">
 </head>
 
 <body class="font-sans antialiased">
@@ -119,6 +119,27 @@
     <p class="text-[15px] text-ink/60 mb-4"><a href="/tlumaczenia-przysiegle/" class="underline">Tłumaczenia przysięgłe</a> › Ukraiński</p>
     <p class="font-cond uppercase tracking-[0.18em] text-[15px] font-semibold text-ink/75 mb-6">Ukraiński</p>
     <h1 class="tracking-tightest leading-[0.95] text-[36px] sm:text-[52px] md:text-[64px] font-black h1-page">Tłumacz przysięgły języka ukraińskiego w Warszawie</h1>
+    <!-- Образец перевода «po polsku» (25.09.2026, идея 4 стенда docs/typografia/): только украинские пары, под заголовком.
+         Язык один на все пары – подпись стоит на месте, меняются слова (app.js). Подпись «po ukraińsku», а не «Ukraiński»:
+         надзаголовок страницы уже «UKRAIŃSKI», подпись рифмуется со связкой. Украшение: aria-hidden. Стили – .pp-* в styles.css. -->
+    <div class="pp pp--under" aria-hidden="true">
+      <span class="pp-lab"><span class="pp-tx">po ukraińsku</span><i class="pp-hl"></i></span>
+      <div class="pp-src"><span class="pp-cell">
+        <span class="pp-l is-on"><span class="pp-sw" lang="uk">Свідоцтво про народження</span></span>
+        <span class="pp-l"><span class="pp-sw" lang="uk">Свідоцтво про шлюб</span></span>
+        <span class="pp-l"><span class="pp-sw" lang="uk">Довідка про несудимість</span></span>
+      </span></div>
+      <div class="pp-con"><i class="pp-dot"></i><span class="pp-cell">
+        <span class="pp-l is-on"><span class="pp-tx">po polsku</span><i class="pp-hl"></i></span>
+        <span class="pp-l"><span class="pp-tx">po polsku</span><i class="pp-hl"></i></span>
+        <span class="pp-l"><span class="pp-tx">po polsku</span><i class="pp-hl"></i></span>
+      </span></div>
+      <div class="pp-tgt"><span class="pp-cell">
+        <span class="pp-l is-on" lang="pl">Akt urodzenia</span>
+        <span class="pp-l" lang="pl">Akt małżeństwa</span>
+        <span class="pp-l" lang="pl">Zaświadczenie o&nbsp;niekaralności</span>
+      </span></div>
+    </div>
   </div>
 </section>
 
@@ -205,7 +226,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260924-129" defer></script>
+<script src="/assets/app.js?v=20260924-130" defer></script>
 
 </body>
 </html>

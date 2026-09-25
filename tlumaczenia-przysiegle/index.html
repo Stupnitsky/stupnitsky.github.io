@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260924-129">
+<link rel="stylesheet" href="/styles.css?v=20260924-130">
 
 <script type="application/ld+json">
 {
@@ -182,6 +182,34 @@
       <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20potrzebuj%C4%99%20wyceny%20t%C5%82umaczenia%20przysi%C4%99g%C5%82ego" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
       <a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
       <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+    </div>
+    <!-- Образец перевода «po polsku» (25.09.2026, идея 4 стенда docs/typografia/): документ на своём языке → он же по-польски.
+         От 1024px стоит в пустой правой колонке первого экрана (левая колонка не трогается; место и кегль считает app.js
+         по правому краю текста слева), уже 1024px – после кнопок. В каждой строке – слои всех пар в одной ячейке сетки,
+         пары меняет app.js. Украшение: aria-hidden. Стили – .pp-* в styles.css. Порядок слоёв в трёх строках один и тот же.
+         Документы – только те, что сайт называет сам (бегущая строка главной, раздел «Uczelnie»). -->
+    <div class="pp pp--side" aria-hidden="true">
+      <div class="pp-src"><span class="pp-cell">
+        <span class="pp-l is-on"><span class="pp-lab"><span class="pp-tx">Ukraiński</span><i class="pp-hl"></i></span><span class="pp-sw" lang="uk">Свідоцтво про народження</span></span>
+        <span class="pp-l"><span class="pp-lab"><span class="pp-tx">Rosyjski</span><i class="pp-hl"></i></span><span class="pp-sw" lang="ru">Диплом о&nbsp;высшем образовании</span></span>
+        <span class="pp-l"><span class="pp-lab"><span class="pp-tx">Ukraiński</span><i class="pp-hl"></i></span><span class="pp-sw" lang="uk">Свідоцтво про шлюб</span></span>
+        <span class="pp-l"><span class="pp-lab"><span class="pp-tx">Rosyjski</span><i class="pp-hl"></i></span><span class="pp-sw" lang="ru">Справка о&nbsp;несудимости</span></span>
+        <span class="pp-l"><span class="pp-lab"><span class="pp-tx">Polski</span><i class="pp-hl"></i></span><span class="pp-sw" lang="pl">Akt małżeństwa</span></span>
+      </span></div>
+      <div class="pp-con"><i class="pp-dot"></i><span class="pp-cell">
+        <span class="pp-l is-on"><span class="pp-tx">po polsku</span><i class="pp-hl"></i></span>
+        <span class="pp-l"><span class="pp-tx">po polsku</span><i class="pp-hl"></i></span>
+        <span class="pp-l"><span class="pp-tx">po polsku</span><i class="pp-hl"></i></span>
+        <span class="pp-l"><span class="pp-tx">po polsku</span><i class="pp-hl"></i></span>
+        <span class="pp-l"><span class="pp-tx">po angielsku</span><i class="pp-hl"></i></span>
+      </span></div>
+      <div class="pp-tgt"><span class="pp-cell">
+        <span class="pp-l is-on" lang="pl">Akt urodzenia</span>
+        <span class="pp-l" lang="pl">Dyplom ukończenia studiów</span>
+        <span class="pp-l" lang="pl">Akt małżeństwa</span>
+        <span class="pp-l" lang="pl">Zaświadczenie o&nbsp;niekaralności</span>
+        <span class="pp-l" lang="en">Marriage certificate</span>
+      </span></div>
     </div>
   </div>
 </section>
@@ -590,7 +618,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260924-129" defer></script>
+<script src="/assets/app.js?v=20260924-130" defer></script>
 
 </body>
 </html>
