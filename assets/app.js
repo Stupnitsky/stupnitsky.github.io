@@ -2708,3 +2708,125 @@
       near.observe(map); io.observe(map);
     }
   })();
+
+/* --- #jezyki на /tlumaczenia-przysiegle/: код языка раскрывается в самоназвание (Грег, 26.09.2026) ---
+   Мышь: наведение (или фокус) на ячейке – класс .is-w на ней, дальше всё делает CSS (.lng-w в styles.css).
+   Тач: ячейки раскрываются по очереди, пока сетка проходит через экран, до и после – ни одна.
+   --lng-dd / --lng-ws: на сколько при раскрытии отъезжает влево жёлтая точка и вправо слово (пара «точка + слово» по центру).
+   Фон: вместе с раскрытием «A» гаснет и за сеткой наплывом встаёт буква языка (data-g). Буква вписана в высоту прописной
+   «A», стоит на нижнем крае секции в середине видимой части «A», но целиком в окне – чужие буквы край не режет (обрезанная
+   Ы читалась бы как Ь, Ñ – как N); на телефоне – за сеткой: там буквы сменяются, пока сетка на экране, а низ секции ещё
+   за краем. Метрики букв меряются canvas-ом после загрузки шрифта. */
+(function () {
+  var grid = document.querySelector('.lng-grid');
+  if (!grid || !window.requestAnimationFrame) return;
+  var cells = [].slice.call(grid.querySelectorAll('.lng-cell')).filter(function (c) { return c.querySelector('.lng-w') || c.hasAttribute('data-g'); });
+  if (!cells.length) return;
+  var mouse = window.matchMedia('(hover:hover) and (pointer:fine)');
+  var cur = -1;
+  var sec = grid.closest ? grid.closest('.lng') : null, ghost = sec ? sec.querySelector('.lng-ghost') : null;
+  var FONT = "900 100px 'Fira Sans'", layers = [], front = 0, metrics = {}, geo = null;
+  if (ghost) layers = [0, 1].map(function () {
+    var s = document.createElement('span');
+    s.className = 'lng-g'; s.setAttribute('aria-hidden', 'true');
+    sec.insertBefore(s, ghost.nextSibling);
+    return s;
+  });
+
+  function measure() {
+    var ctx = document.createElement('canvas').getContext('2d');
+    if (!ctx) return;
+    ctx.font = FONT;
+    cells.forEach(function (c) {
+      var g = c.getAttribute('data-g');
+      if (!g) return;
+      var m = ctx.measureText(g);
+      metrics[g] = { l: m.actualBoundingBoxLeft / 100, r: m.actualBoundingBoxRight / 100,
+                     a: m.actualBoundingBoxAscent / 100, d: m.actualBoundingBoxDescent / 100 };
+    });
+  }
+  /* поле для буквы: высота – прописная «A» (0,696em), низ – край секции, середина – видимая часть «A» (её чернила
+     от −0,025 до 0,626em от левого края блока), поля слева и справа – как у контейнера */
+  function layout() {
+    if (!ghost) return;
+    var sr = sec.getBoundingClientRect(), gr = ghost.getBoundingClientRect();
+    var F = parseFloat(getComputedStyle(ghost).fontSize), W = sec.clientWidth, H = sec.clientHeight;
+    var pad = W >= 640 ? 32 : 20, aL = gr.left - sr.left - .025 * F, aR = Math.min(gr.left - sr.left + .626 * F, W);
+    geo = { cap: Math.min(.696 * F, H - pad), cx: (aL + aR) / 2, lo: pad, hi: W - pad, bottom: H };
+    if (W < 640) {
+      var g = grid.getBoundingClientRect();
+      geo.cap = g.height - 8; geo.bottom = g.bottom - sr.top; geo.cx = W / 2;
+    }
+    if (cur >= 0) place(layers[front], cells[cur].getAttribute('data-g'));
+  }
+  function place(el, g) {
+    var m = metrics[g];
+    el.textContent = g || '';
+    if (!m || !geo || !(m.l + m.r > 0)) return;
+    var w = m.l + m.r, h = m.a + m.d, size = Math.min(geo.cap / h, (geo.hi - geo.lo) / w);
+    var inkL = Math.max(geo.lo, Math.min(geo.cx - w * size / 2, geo.hi - w * size));
+    var x = inkL + m.l * size, base = geo.bottom - m.d * size;   /* при line-height:1 базовая линия Fira – 0,835em от верха */
+    el.style.fontSize = size.toFixed(1) + 'px';
+    el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + (base - .835 * size).toFixed(1) + 'px)';
+  }
+  function show(i) {
+    if (i === cur) return;
+    cur = i;
+    cells.forEach(function (c, k) { c.classList.toggle('is-w', k === i); });
+    if (!ghost) return;
+    var g = i >= 0 ? cells[i].getAttribute('data-g') : null;
+    layers[front].classList.remove('is-on');
+    if (!g) { sec.classList.remove('is-g'); return; }
+    front = 1 - front;
+    place(layers[front], g);
+    layers[front].classList.add('is-on');
+    sec.classList.add('is-g');
+  }
+
+  grid.addEventListener('mouseover', function (e) {
+    if (!mouse.matches) return;
+    var c = e.target.closest ? e.target.closest('.lng-cell') : null;
+    show(c ? cells.indexOf(c) : -1);
+  });
+  grid.addEventListener('mouseleave', function () { if (mouse.matches) show(-1); });
+  cells.forEach(function (c, k) {
+    c.addEventListener('focusin', function () { show(k); });
+    c.addEventListener('focusout', function () { show(-1); });
+  });
+
+  /* тач: от «верх сетки на 85 % экрана» до «низ сетки на 25 %» – около 85px прокрутки на язык */
+  var ticking = false;
+  function onScroll() {
+    if (ticking || mouse.matches) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      ticking = false;
+      var r = grid.getBoundingClientRect(), vh = window.innerHeight;
+      var p = (vh * .85 - r.top) / (r.height + vh * .6);
+      show(p < 0 || p >= 1 ? -1 : Math.min(cells.length - 1, Math.floor(p * cells.length)));
+    });
+  }
+  function fit() {
+    cells.forEach(function (c) {
+      var code = c.querySelector('.lng-code'), w = c.querySelector('.lng-w');
+      if (!code || !w) return;                                   /* клетка «pozostałe języki» – без кода */
+      var dot = getComputedStyle(code, '::before');
+      var dw = parseFloat(dot.width) || 0, gap = parseFloat(dot.marginRight) || 0;
+      if (!dw) return;                                           /* ячейка без точки */
+      var cr = code.getBoundingClientRect(), ce = c.getBoundingClientRect(), ww = w.getBoundingClientRect().width + 2;
+      /* точка + отступ + слово – парой по центру ячейки; слово при сдвиге не выходит за ячейку */
+      var s = Math.max(0, Math.min((dw + gap) / 2, (ce.width - ww) / 2 - 2));
+      var x = Math.max(ce.left + 2, ce.left + ce.width / 2 - ww / 2 + s - gap - dw);   /* левый край точки при наведении */
+      w.style.setProperty('--lng-ws', Math.round(s) + 'px');
+      code.style.setProperty('--lng-dd', Math.max(0, Math.round(cr.left - gap - dw - x)) + 'px');
+    });
+  }
+  function init() { measure(); layout(); fit(); }
+  if (document.fonts && document.fonts.load) {
+    var letters = 'A' + cells.map(function (c) { return c.getAttribute('data-g') || ''; }).join('');
+    document.fonts.load(FONT, letters).then(function () { return document.fonts.ready; }).then(init, init);
+  } else init();
+  window.addEventListener('resize', function () { requestAnimationFrame(function () { layout(); fit(); }); });
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();

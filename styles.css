@@ -4095,3 +4095,128 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
   .so-plate > .slab-kicker{ margin-bottom:30px; }
   .so-plate > .so-lead{ padding-right:0; font-size:34px; }
 }
+
+/* #jezyki на /tlumaczenia-przysiegle/ (Грег, 26.09.2026: «вот такое реализуй», лист 42 стенда docs/konstrukcje/ –
+   «сетка и призрачное A»). Коды языков Fira Sans 900, под ними названия узким 400. Сетку делят только внутренние
+   волосяные линейки, внешней рамки нет: у каждой ячейки линия слева и сверху, а обёртка срезает первую колонку и первый
+   ряд на 1px – так правило не зависит от числа колонок. Пустой последний ряд сохранён: линейки уходят вниз и обрываются.
+   Жёлтая точка у кода – язык, который делаем каждый день; расшифровка – жёлтая метка под сеткой.
+   За всем – гигантская «A» цветом sand на фоне страницы: стоит на нижнем крае секции, правую ногу срезает край окна
+   (около 20 % ширины буквы), на очень широких экранах буква не уходит дальше пятой колонки.
+   Колонки: 3 на телефоне (9 кодов = ровно три ряда), 5 от 640px. Ячейки UA/RU/EN – ссылки на подстраницы языков. */
+.lng{ position:relative; overflow:hidden; isolation:isolate; }
+/* метрики Fira Sans 900 «A» (замер): ширина 0,601em, чернила от −0,025 до 0,626em, прописная 0,696em,
+   при line-height:1 базовая линия на 0,165em выше низа строки */
+.lng-ghost{ position:absolute; z-index:-1; bottom:-.165em; right:max(calc(var(--lng-cut) * -1em), calc(50% - 420px - .601em));
+  font-family:"Fira Sans",sans-serif; font-weight:900; font-size:var(--lng-a); line-height:1; color:var(--c-sand);
+  pointer-events:none; -webkit-user-select:none; user-select:none; --lng-a:190vw; --lng-cut:.15; }
+/* телефон: вершина буквы – на ~72 % ширины экрана, видны вершина и просвет, срезана правая нога (~27 %) */
+.lng-wrap{ overflow:hidden; }
+.lng-grid{ --lng-h:108px; --lng-v:52px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  width:calc(100% + 1px); margin:-1px 0 0 -1px; padding:0; list-style:none; }
+.lng-cell{ display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:var(--lng-h);
+  border-left:1px solid rgba(31,33,32,.15); border-top:1px solid rgba(31,33,32,.15); }
+.lng-cell--void{ min-height:var(--lng-v); }
+.lng-cell:nth-child(n+13){ display:none; }   /* телефон: в четвёртом ряду «pozostałe języki» и две пустые клетки */
+.lng-link{ align-self:stretch; flex:1 1 auto; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--c-ink); }
+.lng-code{ position:relative; font-family:"Fira Sans",sans-serif; font-weight:900; font-size:clamp(42px, 12.5vw, 52px);
+  line-height:1; letter-spacing:-.02em; color:var(--c-ink); }
+/* точка – слева от кода по середине высоты прописных (Грег, 26.09.2026: «по левой оставим»). Висит на .lng-code, а не
+   на гаснущих буквах .lng-c, поэтому при наведении остаётся («при наведении она остаётся») и отъезжает влево к краю
+   самоназвания (--lng-dd); у ячеек с точкой слово сдвинуто вправо на половину точки с отступом (--lng-ws), чтобы точка
+   и слово стояли парой по центру ячейки и точка не прилипала к слову (оба числа считает app.js). */
+.lng-cell--day .lng-code::before{ content:""; position:absolute; right:100%; top:50%; width:max(7px,.147em); height:max(7px,.147em);
+  margin-right:.12em; border-radius:50%; background:var(--c-terra); transform:translate(0,-50%);
+  transition:transform .45s cubic-bezier(.2,.7,.25,1); }
+.lng-cell--day.is-w .lng-code::before{ transform:translate(calc(-1 * var(--lng-dd, 0px)), -50%); }
+@media (prefers-reduced-motion:reduce){ .lng-cell--day .lng-code::before{ transition:none; } }
+.lng-name{ margin-top:7px; font-family:"Fira Sans Condensed","Fira Sans",sans-serif; font-weight:400; font-size:16px; line-height:1.2;
+  color:var(--c-ink); white-space:nowrap; }
+.lng-name svg{ display:inline-block; width:.6em; height:.6em; margin-left:.3em; vertical-align:0; transition:transform .25s cubic-bezier(.2,.7,.25,1); }
+@media (hover:hover){ .lng-link:hover .lng-name svg{ transform:translateX(4px); } }
+.lng-link:focus-visible{ outline:2px solid var(--c-ink); outline-offset:-8px; }
+.lng-sr{ position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%);
+  white-space:nowrap; border:0; }
+.lng-foot{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin-top:32px;
+  font-family:"Fira Sans Condensed","Fira Sans",sans-serif; font-weight:600; font-size:13px; line-height:1.5; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--c-ink); }
+.lng-price > span{ white-space:nowrap; }   /* цена и страница – строкой; на телефоне переносятся целыми кусками */
+.lng-tag{ padding:3px calc(7px - .18em) 3px 7px; background:var(--c-terra); }
+.lng-note{ margin-top:1rem; color:var(--c-ink); }
+@media (min-width:640px){
+  .lng-ghost{ --lng-a:min(90vw, 1150px); --lng-cut:.18; }   /* видимая часть буквы – около 0,43 ширины сетки на любом экране */
+  .lng-grid{ --lng-h:128px; --lng-v:88px; grid-template-columns:repeat(5,minmax(0,1fr)); }
+  .lng-cell:nth-child(n+13){ display:flex; }
+  .lng-code{ font-size:56px; }
+  .lng-name{ margin-top:8px; font-size:17px; }
+  .lng-foot{ margin-top:40px; }
+}
+@media (min-width:1024px){
+  .lng-grid{ --lng-h:150px; --lng-v:110px; }
+  .lng-code{ font-size:68px; }
+  .lng-foot{ margin-top:44px; }
+}
+@media (prefers-reduced-motion:reduce){ .lng-name svg{ transition:none; } }
+/* Код раскрывается в самоназвание (Грег, 26.09.2026: «реализуй 1 сразу на стр»; вместо сменяющихся букв за сеткой).
+   Наведение или фокус на ячейке (на телефоне – по очереди при прокрутке, класс .is-w ставит app.js): код гаснет, на его
+   месте – самоназвание языка: сначала общее с кодом начало (Es, De, En, Fr, It, P, N), из него выезжает хвост (Es|pañol).
+   Начертание – как самоназвания на главной: жирный курсив; жёлтую черту Грег снял («подчёркивание убрать»).
+   Размер (Грег: «слишком крупно и непонятно, зачем другие скрывать»): самое длинное слово (Nederlands, Українська ≈ 4,9em)
+   помещается в свою ячейку – соседей слово не задевает, они не гаснут. Слово – по середине высоты кода (прописные кода
+   и слова на одной средней линии), не у его низа: «сейчас слишком вниз». */
+.lng-c{ position:relative; display:inline-block; transition:opacity .18s ease; }
+.lng-w{ position:absolute; left:50%; top:50%; transform:translate(calc(-50% + var(--lng-ws, 0px)),-50%); white-space:nowrap; pointer-events:none;
+  font-size:clamp(15px, calc((100vw - 40px) / 18), 22px); font-weight:700; font-style:italic; letter-spacing:-.02em; }
+@media (min-width:640px){ .lng-w{ font-size:min(34px, calc((100vw - 64px) / 30)); } }   /* с обеих сторон самого длинного слова остаётся место под точку */
+.lng-p{ opacity:0; transition:opacity .18s ease; }
+.lng-t{ display:inline-block; clip-path:inset(-.4em 100% -.4em 0); transition:clip-path .22s ease; }   /* в покое – пустая полоса: иначе хвост «p» торчал под кодом */
+.lng-cell.is-w .lng-c{ opacity:0; }
+.lng-cell.is-w .lng-p{ opacity:1; }
+.lng-cell.is-w .lng-t{ clip-path:inset(-.4em -.3em -.4em -.3em); transition:clip-path .45s cubic-bezier(.2,.7,.25,1) .06s; }
+@media (prefers-reduced-motion:reduce){ .lng-c, .lng-p, .lng-t{ transition:none !important; } }
+
+/* Safari (WebKit) отключает лигатуры fi/fl при ненулевом letter-spacing; заголовки у нас с трекингом –
+   явный "liga" возвращает их (Chrome ставит и так) (26.09.2026) */
+h1, h2, h3, h4{ font-feature-settings:"liga" 1; }
+
+/* Буква языка за сеткой (Грег, 26.09.2026: «на фоне давай и её изменять будем, верни символы»). Вместе с раскрытием
+   самоназвания «A» гаснет, а за сеткой проявляется буква этого языка из data-g: Ł Ї Ы & ß È Ç Ñ Ĳ. Слои .lng-g создаёт
+   и расставляет app.js: высота – как у прописной «A», стоит на нижнем крае секции в середине видимой части «A», край окна
+   её не режет (обрезанная Ы читалась бы как Ь); на телефоне – за сеткой, пока она на экране. Две штуки – для наплыва. */
+.lng-g{ position:absolute; left:0; top:0; z-index:-1; display:block; font-family:"Fira Sans",sans-serif; font-weight:900; line-height:1;
+  white-space:pre; color:var(--c-sand); opacity:0; transition:opacity .35s ease; pointer-events:none; -webkit-user-select:none; user-select:none; }
+.lng-g.is-on{ opacity:1; }
+.lng-ghost{ transition:opacity .35s ease; }
+.lng.is-g .lng-ghost{ opacity:0; }
+@media (prefers-reduced-motion:reduce){ .lng-g, .lng-ghost{ transition:none; } }
+
+/* Клетка «pozostałe języki» (Грег, 26.09.2026: «Pozostałe języki можно добавить в последнюю клеточку», «поставь в ячейку
+   под Fr», «уберём ?/Zapytaj, оставим только Pozostałe języki и поднимем повыше, при наведении большой вопрос»):
+   продолжение «найди свой код» – не нашёл, спроси. Кода нет – только подпись, по середине высоты линий нижнего ряда.
+   Под FR: на телефоне это и так следующая клетка после NL (FR – первая колонка), от 640px – явное место в пустом ряду
+   (ряд 3, колонка 2), пустые клетки обтекают. Ряд остаётся высотой пустого. Наведение – за сеткой «?» (data-g, app.js). */
+.lng-cell--label{ min-height:var(--lng-v); }
+.lng-cell--label .lng-link{ padding:12px 6px; }   /* подпись – по середине клетки */
+@media (min-width:640px){ .lng-cell--more{ grid-column:2; grid-row:3; } }
+.lng-cell--label .lng-name{ white-space:normal; text-align:center; padding:0 6px; }
+.lng-cell--label .lng-name svg{ margin-left:.25em; }
+
+
+/* #z-apostille на /tlumaczenia-przysiegle/ (Грег, 26.09.2026): вопрос для окошка и варианты-ответы. Вопрос – смысловой узел
+   блока, крупно парой начертаний (жирный + светлый курсив) в кавычках – это фраза, которую клиент скажет в окошке. Над ним –
+   задача клиенту обычным предложением, жирным 20/22px, не кикер (Грег: «это не кикер, а задача для клиента»). Варианты – строками,
+   как ответы в #odbior на /kontakt/ (узкий 20/22px, жирное + обычное), шаги через стрелки; между строками – волосяная линия.
+   От 1024px вопрос слева, ответы справа, верхом на одной линии; на телефоне – друг под другом. */
+.zap{ display:grid; row-gap:1.4rem; border-top:1px solid rgba(31,33,32,.15); padding-top:1.6rem; }
+@media (min-width:1024px){ .zap{ grid-template-columns:minmax(0,5fr) minmax(0,7fr); column-gap:3.5rem; } }
+.zap-task{ margin-bottom:.7rem; font-size:20px; line-height:1.25; font-weight:700; letter-spacing:-.01em; color:var(--c-ink); }
+@media (min-width:640px){ .zap-task{ font-size:22px; } }
+.zap-q{ max-width:17ch; font-size:30px; line-height:1.02; font-weight:800; letter-spacing:-.03em; color:var(--c-ink); }
+@media (min-width:640px){ .zap-q{ font-size:36px; } }
+.zap-list{ margin:0; padding:0; list-style:none; }
+.zap-list li{ padding:.85rem 0; border-top:1px solid rgba(31,33,32,.15); font-family:"Fira Sans Condensed","Fira Sans",sans-serif;
+  font-size:20px; line-height:1.25; font-weight:400; letter-spacing:-.01em; color:var(--c-ink); }
+.zap-list li:first-child{ border-top:0; padding-top:0; }
+@media (min-width:640px){ .zap-list li{ font-size:22px; } }
+.zap-list b{ font-weight:700; }
+.zap-list small{ display:block; margin-top:.3rem; font-family:"Fira Sans",sans-serif; font-size:15px; line-height:1.4; letter-spacing:0; color:rgba(31,33,32,.6); }
