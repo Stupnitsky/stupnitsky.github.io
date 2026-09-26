@@ -2300,7 +2300,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260926-28';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260926-41';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -2619,14 +2619,26 @@
       if (!h1) return;
       var lead = h1.nextElementSibling && h1.nextElementSibling.tagName === 'P' ? h1.nextElementSibling : null;
       var more = cont.querySelector('.hero-more'), btns = cont.querySelector('.cta-btns');
+      /* отступ строк документа и перевода (26.09.2026, Грег: «под плашками, правее, после po polsku»): начало волоска
+         после «po polsku» в первом слое связки – от левого края блока; на всех ширинах */
+      function ind(){
+        var hl = box.querySelector('.pp-con .pp-l .pp-hl');
+        if (!hl) return 0;
+        var v = Math.round(hl.getBoundingClientRect().left - box.getBoundingClientRect().left);
+        if (v > 0) box.style.setProperty('--pp-ind', v + 'px');
+        return v > 0 ? v : 0;
+      }
       function lay(){
         try {
+          var iw = ind();
           if (!mq('(min-width:1024px)')) return;
           var cr = cont.getBoundingClientRect(), pr = parseFloat(getComputedStyle(cont).paddingRight) || 0;
           var right = Math.max(textRight(h1), textRight(lead), textRight(more), textRight(btns));
           var gap = Math.max(40, Math.min(64, window.innerWidth * 0.04));
           var x = right - cr.left + gap, w = cr.width - pr - x;
-          var fs = Math.max(22, Math.min(mq('(min-width:1280px)') ? 48 : 34, Math.floor(w / 8.4)));
+          /* кегль меньше (Грег: «спорит с главным заголовком, а это просто украшение»): до 26px, от 1280px – до 30px;
+             ширина строк – за вычетом отступа */
+          var fs = Math.max(20, Math.min(mq('(min-width:1280px)') ? 30 : 26, Math.floor((w - iw) / 8.4)));
           box.style.setProperty('--pp-x', x + 'px');
           box.style.setProperty('--pp-side-fs', fs + 'px');
           /* верх (26.09.2026): волосок связки «po polsku» – на уровне середины зазора между h1 и лидом слева:
@@ -2835,8 +2847,11 @@
   })();
 
 /* --- #jezyki на /tlumaczenia-przysiegle/: код языка раскрывается в самоназвание (Грег, 26.09.2026) ---
-   Мышь: наведение (или фокус) на ячейке – класс .is-w на ней, дальше всё делает CSS (.lng-w в styles.css).
+   Мышь: наведение (или фокус) на ячейке – класс .is-w на ней (код гаснет, CSS) и «табло» на её слове (flipIn / flipOut).
    Тач: ячейки раскрываются по очереди, пока сетка проходит через экран, до и после – ни одна.
+   Табло (Грег, 26.09.2026, стенд docs/jezyki-ruch/): буквы самоназвания серым перебирают алфавит своего языка и встают
+   на место слева направо, уходят с конца. Перебор идёт в копии букв (.lng-ov) ровно на местах настоящих (замер Range по
+   каждой букве; лигатурные пары fi, fl, ff… держатся вместе); копия сложилась – убирается, остаётся живое слово.
    --lng-dd / --lng-ws: на сколько при раскрытии отъезжает влево жёлтая точка и вправо слово (пара «точка + слово» по центру).
    Фон: вместе с раскрытием «A» гаснет и за сеткой наплывом встаёт буква языка (data-g). Буква вписана в высоту прописной
    «A», стоит на нижнем крае секции в середине видимой части «A», но целиком в окне – чужие буквы край не режет (обрезанная
@@ -2894,10 +2909,122 @@
     el.style.fontSize = size.toFixed(1) + 'px';
     el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + (base - .835 * size).toFixed(1) + 'px)';
   }
+  /* ---- табло ---- */
+  var calm = window.matchMedia('(prefers-reduced-motion:reduce)');
+  var ABC = {   /* алфавит языка (строчные) и его особые буквы – их в переборе чаще, по ним язык и узнаётся */
+    pl: ['aąbcćdeęfghijklłmnńoóprsśtuwyzźż', 'ąćęłńóśźż'],
+    uk: ['абвгґдеєжзиіїйклмнопрстуфхцчшщьюя', 'ґєії'],
+    ru: ['абвгдеёжзийклмнопрстуфхцчшщъыьэюя', 'ёъыэ'],
+    en: ['abcdefghijklmnopqrstuvwxyz', ''],
+    de: ['abcdefghijklmnopqrstuvwxyzäöüß', 'äöüß'],
+    it: ['abcdefghilmnopqrstuvzàèéìòù', 'àèéìòù'],
+    fr: ['abcdefghijklmnopqrstuvwxyzàâæçéèêëîïôœùûüÿ', 'àâçéèêëîïôœù'],
+    es: ['abcdefghijklmnñopqrstuvwxyzáéíóúü', 'ñáéíóú'],
+    nl: ['abcdefghijklmnopqrstuvwxyzĳéëïö', 'ĳéëö']
+  }, abcs = {};
+  function caps(a) {                                             /* прописные; ß → SS – не одна буква, не берём */
+    return a.map(function (ch) { return ch.toUpperCase(); }).filter(function (ch) { return ch.length === 1; });
+  }
+  function abc(lang) {
+    if (!abcs[lang]) {
+      var s = ABC[lang] || ABC.en, L = Array.from(s[0]), S = Array.from(s[1]);
+      abcs[lang] = { L: L, U: caps(L), SL: S, SU: caps(S) };
+    }
+    return abcs[lang];
+  }
+  function pick(ab, ch, prev) {                                  /* того же регистра, не прежняя и не итоговая */
+    var up = ch !== ch.toLowerCase(), all = up ? ab.U : ab.L, sp = up ? ab.SU : ab.SL, r;
+    for (var n = 0; n < 8; n++) {
+      var src = sp.length && Math.random() < .45 ? sp : all;
+      r = src[Math.floor(Math.random() * src.length)];
+      if (r !== prev && r !== ch) break;
+    }
+    return r;
+  }
+  function flipStop(w) {
+    var r = w._flip;
+    if (!r) return;
+    w._flip = null;
+    cancelAnimationFrame(r.raf);
+    if (r.ov.parentNode) r.ov.parentNode.removeChild(r.ov);
+    w.classList.remove('is-flip');
+  }
+  function flipBuild(w) {
+    var wr = w.getBoundingClientRect(), rg = document.createRange(), us = [];
+    var ov = document.createElement('span');
+    ov.className = 'lng-ov'; ov.setAttribute('aria-hidden', 'true');
+    [].forEach.call(w.childNodes, function (n) {
+      if (n.nodeType !== 3) return;
+      var re = /ff[il]|f[fijlt]|[\s\S]/gu, m;
+      while ((m = re.exec(n.data))) {
+        rg.setStart(n, m.index); rg.setEnd(n, m.index + m[0].length);
+        var b = rg.getBoundingClientRect(), s = document.createElement('span');
+        s.textContent = m[0];
+        s.style.left = (b.left - wr.left) + 'px'; s.style.top = (b.top - wr.top) + 'px'; s.style.width = b.width + 'px';
+        s.style.height = s.style.lineHeight = b.height + 'px';
+        ov.appendChild(s);
+        us.push({ ch: m[0], el: s });
+      }
+    });
+    w.appendChild(ov);
+    w.classList.add('is-flip');
+    return (w._flip = { us: us, ov: ov, raf: 0 });
+  }
+  function flipIn(c) {                                           /* буквы встают слева направо за ~0,5 с */
+    var w = c.querySelector('.lng-w');
+    if (!w) return;
+    flipStop(w);
+    w.classList.add('is-on');
+    if (calm.matches) return;
+    var ab = abc(w.getAttribute('lang')), r = flipBuild(w), t0 = performance.now();
+    r.us.forEach(function (u, i) {
+      u.at = 110 + i * 48; u.ok = false; u.next = t0 + Math.random() * 50;
+      u.el.className = 'lng-x'; u.el.textContent = pick(ab, u.ch);
+    });
+    (function frame(now) {
+      if (w._flip !== r) return;
+      var left = 0;
+      r.us.forEach(function (u) {
+        if (u.ok) return;
+        if (now - t0 >= u.at) { u.ok = true; u.el.className = ''; u.el.textContent = u.ch; }
+        else { left++; if (now >= u.next) { u.next = now + 50; u.el.textContent = pick(ab, u.ch, u.el.textContent); } }
+      });
+      if (left) r.raf = requestAnimationFrame(frame); else flipStop(w);
+    })(t0);
+  }
+  function flipOut(c) {                                          /* уходят с конца: мелькнула чужая буква – и нет её */
+    var w = c.querySelector('.lng-w'), code = c.querySelector('.lng-code');
+    if (code) code.style.setProperty('--lng-back', '0ms');
+    if (!w || !w.classList.contains('is-on')) return;
+    if (calm.matches) { flipStop(w); w.classList.remove('is-on'); return; }
+    var ab = abc(w.getAttribute('lang')), r = w._flip;
+    if (r) cancelAnimationFrame(r.raf); else r = flipBuild(w);
+    var t0 = performance.now(), n = r.us.length;
+    /* жёлтая точка едет обратно к коду, только когда ушла первая буква (Грег, 26.09.2026: «точка при возврате не может
+       опережать букву У») – раньше она стартовала сразу и проезжала поверх ещё видимого начала слова; +40 мс – запас
+       на кадр: буквы гаснут в requestAnimationFrame, а задержка перехода идёт по часам CSS */
+    if (code) code.style.setProperty('--lng-back', ((n - 1) * 22 + 90 + 40) + 'ms');
+    r.us.forEach(function (u, i) { u.at = (n - 1 - i) * 22; u.end = u.at + 90; u.gone = false; u.next = 0; });
+    (function frame(now) {
+      if (w._flip !== r) return;
+      var left = 0, t = now - t0;
+      r.us.forEach(function (u) {
+        if (u.gone) return;
+        if (t >= u.end) { u.gone = true; u.el.style.visibility = 'hidden'; return; }
+        left++;
+        if (t >= u.at && now >= u.next) { u.next = now + 45; u.el.className = 'lng-x'; u.el.textContent = pick(ab, u.ch, u.el.textContent); }
+      });
+      if (left) r.raf = requestAnimationFrame(frame);
+      else { flipStop(w); w.classList.remove('is-on'); }
+    })(t0);
+  }
+
   function show(i) {
     if (i === cur) return;
+    if (cur >= 0) flipOut(cells[cur]);
     cur = i;
     cells.forEach(function (c, k) { c.classList.toggle('is-w', k === i); });
+    if (i >= 0) flipIn(cells[i]);
     if (!ghost) return;
     var g = i >= 0 ? cells[i].getAttribute('data-g') : null;
     layers[front].classList.remove('is-on');

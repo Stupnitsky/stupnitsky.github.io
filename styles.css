@@ -4343,8 +4343,9 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
    и слово стояли парой по центру ячейки и точка не прилипала к слову (оба числа считает app.js). */
 .lng-cell--day .lng-code::before{ content:""; position:absolute; right:100%; top:50%; width:max(7px,.147em); height:max(7px,.147em);
   margin-right:.12em; border-radius:50%; background:var(--c-terra); transform:translate(0,-50%);
-  transition:transform .45s cubic-bezier(.2,.7,.25,1); }
-.lng-cell--day.is-w .lng-code::before{ transform:translate(calc(-1 * var(--lng-dd, 0px)), -50%); }
+  transition:transform .45s cubic-bezier(.2,.7,.25,1) var(--lng-back, 0ms); }
+/* --lng-back – задержка обратного хода: пока видна первая буква самоназвания, точка стоит (ставит app.js в flipOut) */
+.lng-cell--day.is-w .lng-code::before{ transform:translate(calc(-1 * var(--lng-dd, 0px)), -50%); transition-delay:0ms; }
 @media (prefers-reduced-motion:reduce){ .lng-cell--day .lng-code::before{ transition:none; } }
 .lng-name{ margin-top:7px; font-family:"Fira Sans Condensed","Fira Sans",sans-serif; font-weight:400; font-size:16px; line-height:1.2;
   color:var(--c-ink); white-space:nowrap; }
@@ -4357,7 +4358,7 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
   font-family:"Fira Sans Condensed","Fira Sans",sans-serif; font-weight:600; font-size:13px; line-height:1.5; letter-spacing:.18em;
   text-transform:uppercase; color:var(--c-ink); }
 .lng-price > span{ white-space:nowrap; }   /* цена и страница – строкой; на телефоне переносятся целыми кусками */
-.lng-tag{ padding:3px calc(7px - .18em) 3px 7px; background:var(--c-terra); }
+.lng-tag{ padding:3px calc(7px - .18em) 3px 7px; background:var(--c-terra); }   /* углы острые (скругление 3px Грег снял 26.09.2026) */
 .lng-note{ margin-top:1rem; color:var(--c-ink); }
 @media (min-width:640px){
   .lng-ghost{ --lng-a:min(90vw, 1150px); --lng-cut:.18; }   /* видимая часть буквы – около 0,43 ширины сетки на любом экране */
@@ -4375,21 +4376,27 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
 @media (prefers-reduced-motion:reduce){ .lng-name svg{ transition:none; } }
 /* Код раскрывается в самоназвание (Грег, 26.09.2026: «реализуй 1 сразу на стр»; вместо сменяющихся букв за сеткой).
    Наведение или фокус на ячейке (на телефоне – по очереди при прокрутке, класс .is-w ставит app.js): код гаснет, на его
-   месте – самоназвание языка: сначала общее с кодом начало (Es, De, En, Fr, It, P, N), из него выезжает хвост (Es|pañol).
-   Начертание – как самоназвания на главной: жирный курсив; жёлтую черту Грег снял («подчёркивание убрать»).
+   месте – самоназвание языка. Начертание – как самоназвания на главной: жирный курсив; жёлтую черту Грег снял
+   («подчёркивание убрать»).
    Размер (Грег: «слишком крупно и непонятно, зачем другие скрывать»): самое длинное слово (Nederlands, Українська ≈ 4,9em)
    помещается в свою ячейку – соседей слово не задевает, они не гаснут. Слово – по середине высоты кода (прописные кода
-   и слова на одной средней линии), не у его низа: «сейчас слишком вниз». */
-.lng-c{ position:relative; display:inline-block; transition:opacity .18s ease; }
+   и слова на одной средней линии), не у его низа: «сейчас слишком вниз».
+   Появление – «табло» (Грег, 26.09.2026: «реализуй Табло на странице», вариант 6 стенда docs/jezyki-ruch/; раньше хвост
+   выезжал шторкой сбоку): буквы серым перебирают алфавит своего языка (ї є ґ, ñ, ł ż…) и встают на место слева направо,
+   уходят с конца. На время перебора буквы – копией поверх слова (.lng-ov, app.js ставит её по замерам настоящих букв),
+   само слово под ней прозрачное (.is-flip); копия сложилась – убирается, остаётся живое слово: кернинг и лигатуры целы.
+   Слово видно при .is-on (app.js), код гаснет по .is-w. Слово в разметке – одним куском, без деления на начало и хвост. */
+.lng-c{ position:relative; display:inline-block; transition:opacity .22s ease .1s; }   /* код возвращается, пока буквы уходят */
+.lng-cell.is-w .lng-c{ opacity:0; transition:opacity .15s ease; }
 .lng-w{ position:absolute; left:50%; top:50%; transform:translate(calc(-50% + var(--lng-ws, 0px)),-50%); white-space:nowrap; pointer-events:none;
-  font-size:clamp(15px, calc((100vw - 40px) / 18), 22px); font-weight:700; font-style:italic; letter-spacing:-.02em; }
+  font-size:clamp(15px, calc((100vw - 40px) / 18), 22px); font-weight:700; font-style:italic; letter-spacing:-.02em; opacity:0; }
 @media (min-width:640px){ .lng-w{ font-size:min(34px, calc((100vw - 64px) / 30)); } }   /* с обеих сторон самого длинного слова остаётся место под точку */
-.lng-p{ opacity:0; transition:opacity .18s ease; }
-.lng-t{ display:inline-block; clip-path:inset(-.4em 100% -.4em 0); transition:clip-path .22s ease; }   /* в покое – пустая полоса: иначе хвост «p» торчал под кодом */
-.lng-cell.is-w .lng-c{ opacity:0; }
-.lng-cell.is-w .lng-p{ opacity:1; }
-.lng-cell.is-w .lng-t{ clip-path:inset(-.4em -.3em -.4em -.3em); transition:clip-path .45s cubic-bezier(.2,.7,.25,1) .06s; }
-@media (prefers-reduced-motion:reduce){ .lng-c, .lng-p, .lng-t{ transition:none !important; } }
+.lng-w.is-on{ opacity:1; }
+.lng-w.is-flip{ color:transparent; }
+.lng-ov{ position:absolute; left:0; top:0; color:var(--c-ink); }
+.lng-ov > span{ position:absolute; white-space:pre; text-align:left; }
+.lng-ov > .lng-x{ opacity:.32; text-align:center; }   /* буква в переборе – серым, по середине места своей буквы */
+@media (prefers-reduced-motion:reduce){ .lng-c{ transition:none !important; } }
 
 /* ПРАВИЛО ДЛЯ ВСЕГО САЙТА (Грег, 26.09.2026): лигатуры работают всегда, при любых раскладах.
    Браузеры (особенно Safari/WebKit) выключают fi/fl/ff при ненулевом letter-spacing – явные liga/clig/calt возвращают их
@@ -4439,3 +4446,66 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
 @media (min-width:640px){ .zap-list li{ font-size:22px; } }
 .zap-list b{ font-weight:700; }
 .zap-list small{ display:block; margin-top:.3rem; font-family:"Fira Sans",sans-serif; font-size:15px; line-height:1.4; letter-spacing:0; color:rgba(31,33,32,.6); }
+
+/* Образец «po polsku» в hero /tlumaczenia-przysiegle/ (.pp--side) – мельче и с отступом (Грег, 26.09.2026: «текст языков
+   перевода под плашками, правее и после po polsku; размер уменьшить, а то спорит с главным заголовком, а это просто
+   украшение»). Подписи (язык и «po polsku» с волоском) стоят как были; строки документа и перевода начинаются правее –
+   там, где после «po polsku» начинается волосок (--pp-ind, меряет app.js; запасное 7.25rem). Кегль: до 22px на телефоне,
+   26px от 640px, от 1024px – до 26px, от 1280px – до 30px (app.js, ширина за вычетом отступа / 8.4).
+   /tlumaczenia-przysiegle/ukrainski/ (.pp--under) не тронут. */
+.pp.pp--side{ --pp-fs:max(18px, min(22px, calc((100vw - 40px - var(--pp-ind, 7.25rem)) / 8.4)));
+  max-width:min(100%, calc(14em + var(--pp-ind, 7.25rem))); }
+.pp--side .pp-sw, .pp--side .pp-tgt .pp-l{ padding-left:var(--pp-ind, 7.25rem); }
+@media (min-width:640px){ .pp.pp--side{ --pp-fs:26px; } }
+@media (min-width:1024px){
+  .pp.pp--side{ max-width:none;
+    --pp-fs:var(--pp-side-fs, max(20px, min(26px, calc((min(100vw, 1320px) - 736px - clamp(40px, 4vw, 64px) - var(--pp-ind, 7.25rem)) / 8.4)))); }
+}
+@media (min-width:1280px){
+  .pp.pp--side{ --pp-fs:var(--pp-side-fs, max(20px, min(30px, calc((min(100vw, 1320px) - 736px - clamp(40px, 4vw, 64px) - var(--pp-ind, 7.25rem)) / 8.4)))); }
+}
+
+/* Главная, #faq (Грег, 26.09.2026: идея 5 стенда docs/typografia/ – «на главной так реализуем»): «Częste pytania» –
+   одна чёрная строка от края до края колонки. Кегль – от ширины колонки: h2 – контейнер, строка .hw-fit-l получает
+   100cqw / ширину своих чернил в em. Подгонка по чернилам, а не по коробке: «C» встаёт в ось кикера, конец «a» – в конец
+   линейки под заголовком. Числа для «Częste pytania» (Fira Sans 900, −0.045em; canvas measureText, 26.09.2026):
+   --k – чернила 6.104em, --l – «C» начинается на 0.02em правее начала строки, --pb – хвосты ę, p, y уходят на 0.163em
+   ниже коробки строки при line-height .82; под хвостами – mb-9 (36px) до линейки, как у заголовков разделов.
+   Трекинг задан на самой строке: у h2 −0.045em считается от его 48px и наследовался бы готовыми пикселями.
+   Другой текст – свои --k, --l, --pb в style строки. Без поддержки cqw остаются 34/48px из классов h2.
+   Варианты для подстраниц (там вторая часть – тема страницы) – стенд docs/faq-h/. */
+.hw-fit{ container-type:inline-size; }
+@supports (width:1cqw){
+  .hw-fit-l{ --k:6.104; --l:-.02; --pb:.163;
+    display:block; width:max-content; white-space:nowrap; letter-spacing:-.045em; line-height:.82;
+    font-size:calc(100cqw / var(--k)); margin-left:calc(var(--l) * 1em); padding-bottom:calc(var(--pb) * 1em); }
+}
+
+/* Вопрос для окошка карточкой (.zap--card) – только /apostille/ (Грег, 26.09.2026: вариант 3 стенда docs/pytanie/
+   «на странице Apostille реализуй 3-й вариант, подумай над изюминкой из жёлтого»). Вопрос – серая карточка на всю ширину,
+   одним начертанием (Fira Sans 800, без светлого курсива), «czy oba?”» не рвётся; маршруты – под ней в две колонки
+   (с 1024px). За вопросом – серый «?» ростом в карточку, как «A» в сетке языков: слой .zap-gw (absolute, inset:0,
+   container-type:size), кегль min(152cqh, 80cqw) – высота глифа «?» 0,69 кегля, низ точки на 6 % высоты карточки
+   ниже края (точку срезает). Жёлтое – маркер сайта (как под ценами во вводном абзаце /cennik/) под «oba» в вопросе
+   и под «Oba» в первом маршруте: самый частый ответ отмечен там, где его спрашивают, и там, где он описан.
+   Жёлтый – заливка, не цвет текста. На /tlumaczenia-przysiegle/ блок .zap без .zap--card – как был. */
+.zap--card{ border-top:0; padding-top:0; }
+.zap--card .zap-ask{ position:relative; isolation:isolate; background:var(--c-sand); border-radius:26px; padding:28px 24px 34px; }
+@media (min-width:640px){ .zap--card .zap-ask{ padding:40px 40px 48px; } }
+.zap--card .zap-q{ max-width:16ch; text-wrap:balance; }
+.zap-gw{ position:absolute; inset:0; z-index:-1; overflow:hidden; container-type:size; pointer-events:none; border-radius:inherit; }
+.zap-g{ position:absolute; right:2cqw; bottom:calc(-.165em - 6cqh); font-family:"Fira Sans",sans-serif; font-weight:900;
+  font-size:min(152cqh, 80cqw); line-height:1; color:rgba(31,33,32,.055); -webkit-user-select:none; user-select:none; }
+@media (min-width:1024px){
+  .zap.zap--card{ grid-template-columns:1fr; row-gap:28px; }
+  .zap--card .zap-ask{ padding:44px 48px 52px; }
+  .zap--card .zap-q{ max-width:24ch; font-size:48px; line-height:1; }
+  .zap--card .zap-list{ display:grid; grid-template-columns:1fr 1fr; column-gap:48px; }
+  .zap--card .zap-list li, .zap--card .zap-list li:first-child{ border-top:1px solid rgba(31,33,32,.15); padding:.85rem 0; }
+}
+.zap-mark{ background-image:linear-gradient(var(--c-terra),var(--c-terra)); background-repeat:no-repeat;
+  background-position:0 88%; background-size:100% .42em; }
+
+/* «pozostałe języki» при наведении – курсивом (Грег, 26.09.2026: «при наведении в italic, посмотрим»). Класс .is-w ставит
+   app.js: наведение и фокус на маке, очередь при прокрутке на телефоне – подпись ведёт себя так же, как коды языков. */
+.lng-cell--more.is-w .lng-name{ font-style:italic; }

@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260926-28">
+<link rel="stylesheet" href="/styles.css?v=20260926-41">
 
 <script type="application/ld+json">
 {
@@ -214,6 +214,49 @@
   </div>
 </section>
 
+<!-- ================= JĘZYKI ================= -->
+<!-- 26.09.2026 (Грег): сразу после hero – под кнопками после h1; раньше стоял после «Cena». -->
+<!-- Сетка кодов и призрачное «A» (Грег, 26.09.2026: «вот такое реализуй», лист 42 стенда docs/konstrukcje/).
+     Заменила тёмную плиту из трёх карточек: описания языков живут на подстраницах, ячейки UA/RU/EN ведут туда.
+     Жёлтая точка – язык, который делаем каждый день; расшифровка – жёлтая метка под сеткой. Пустые ячейки в конце
+     сетки – часть приёма, не удалять. .lng-w – самоназвание языка: код раскрывается в него «табло» – буквы перебирают
+     алфавит языка и встают на место (наведение на маке, по очереди при прокрутке на телефоне; app.js). data-g – буква языка,
+     которая в это же время встаёт за сеткой вместо «A». Клетка «pozostałe języki» (Грег, 26.09.2026) – не нашёл свой код,
+     спроси: стоит под FR (на маке – в пустом ряду, на телефоне – следующим рядом), подпись по середине клетки, без кода;
+     ведёт на форму заявки, при наведении за сеткой – большой «?».
+     Стили – .lng-* в конце styles.css. -->
+<section id="jezyki" class="lng pb-16 md:pb-28">
+  <div class="lng-ghost" aria-hidden="true">A</div>
+  <div class="relative mx-auto max-w-site px-5 sm:px-8">
+    <p class="kicker">/ Języki</p>
+    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
+      Twój język <span class="font-light italic">w&nbsp;parze z&nbsp;polskim</span>
+    </h2>
+    <div class="lng-wrap mt-9 md:mt-12">
+      <ul class="lng-grid" aria-label="Języki Tłumaczeń Przysięgłych">
+        <li class="lng-cell" data-g="Ł"><span class="lng-code" aria-hidden="true"><span class="lng-c">PL</span><span class="lng-w" lang="pl">Polski</span></span><span class="lng-name">Polski</span></li>
+        <li class="lng-cell lng-cell--day" data-g="Ї"><a href="/tlumaczenia-przysiegle/ukrainski/" class="lng-link"><span class="lng-code" aria-hidden="true"><span class="lng-c">UA</span><span class="lng-w" lang="uk">Українська</span></span><span class="lng-name">Ukraiński<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span><span class="lng-sr"> – zawsze dostępny; tłumacz przysięgły języka ukraińskiego</span></a></li>
+        <li class="lng-cell lng-cell--day" data-g="Ы"><a href="/tlumaczenia-przysiegle/rosyjski/" class="lng-link"><span class="lng-code" aria-hidden="true"><span class="lng-c">RU</span><span class="lng-w" lang="ru">Русский</span></span><span class="lng-name">Rosyjski<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span><span class="lng-sr"> – zawsze dostępny; tłumacz przysięgły języka rosyjskiego</span></a></li>
+        <li class="lng-cell lng-cell--day" data-g="&amp;"><a href="/tlumaczenia-przysiegle/angielski/" class="lng-link"><span class="lng-code" aria-hidden="true"><span class="lng-c">EN</span><span class="lng-w" lang="en">English</span></span><span class="lng-name">Angielski<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span><span class="lng-sr"> – zawsze dostępny; tłumacz przysięgły języka angielskiego</span></a></li>
+        <li class="lng-cell" data-g="ß"><span class="lng-code" aria-hidden="true"><span class="lng-c">DE</span><span class="lng-w" lang="de">Deutsch</span></span><span class="lng-name">Niemiecki</span></li>
+        <li class="lng-cell" data-g="È"><span class="lng-code" aria-hidden="true"><span class="lng-c">IT</span><span class="lng-w" lang="it">Italiano</span></span><span class="lng-name">Włoski</span></li>
+        <li class="lng-cell" data-g="Ç"><span class="lng-code" aria-hidden="true"><span class="lng-c">FR</span><span class="lng-w" lang="fr">Français</span></span><span class="lng-name">Francuski</span></li>
+        <li class="lng-cell" data-g="Ñ"><span class="lng-code" aria-hidden="true"><span class="lng-c">ES</span><span class="lng-w" lang="es">Español</span></span><span class="lng-name">Hiszpański</span></li>
+        <li class="lng-cell" data-g="Ĳ"><span class="lng-code" aria-hidden="true"><span class="lng-c">NL</span><span class="lng-w" lang="nl">Nederlands</span></span><span class="lng-name">Niderlandzki</span></li>
+        <li class="lng-cell lng-cell--label lng-cell--more" data-g="?"><a href="/cennik/#wycena" data-quote class="lng-link"><span class="lng-name">pozostałe języki<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span><span class="lng-sr"> – zapytaj o&nbsp;inny język w&nbsp;formularzu wyceny</span></a></li>
+        <li class="lng-cell lng-cell--void" aria-hidden="true"></li><li class="lng-cell lng-cell--void" aria-hidden="true"></li>
+        <li class="lng-cell lng-cell--void" aria-hidden="true"></li><li class="lng-cell lng-cell--void" aria-hidden="true"></li><li class="lng-cell lng-cell--void" aria-hidden="true"></li>
+      </ul>
+    </div>
+    <p class="lng-foot"><span class="lng-tag">UA / RU / EN&nbsp; zawsze dostępne</span><span class="lng-price"><span>90,-&nbsp;zł / strona&nbsp;·</span> <span>1125 znaków ze&nbsp;spacjami</span></span></p>
+    <p class="lng-note text-[17px] leading-[1.6] max-w-[62ch]">
+      <b class="font-bold">Niemiecki, Włoski, Francuski, Hiszpański i&nbsp;Niderlandzki</b> – przez współpracujących tłumaczy
+      przysięgłych. Termin i&nbsp;cena za stronę zależą od języka – podajemy je przy wycenie. <b class="font-bold">Pozostałe języki</b> –
+      zapytaj, sprawdzimy dostępność.
+    </p>
+  </div>
+</section>
+
 <!-- ================= CO TO JEST ================= -->
 <section id="co-to-jest" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
@@ -348,48 +391,6 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ================= JĘZYKI ================= -->
-<!-- Сетка кодов и призрачное «A» (Грег, 26.09.2026: «вот такое реализуй», лист 42 стенда docs/konstrukcje/).
-     Заменила тёмную плиту из трёх карточек: описания языков живут на подстраницах, ячейки UA/RU/EN ведут туда.
-     Жёлтая точка – язык, который делаем каждый день; расшифровка – жёлтая метка под сеткой. Пустые ячейки в конце
-     сетки – часть приёма, не удалять. .lng-w – самоназвание языка: код раскрывается в него (наведение на маке,
-     по очереди при прокрутке на телефоне; app.js), .lng-p – общее начало с кодом, .lng-t – хвост. data-g – буква языка,
-     которая в это же время встаёт за сеткой вместо «A». Клетка «pozostałe języki» (Грег, 26.09.2026) – не нашёл свой код,
-     спроси: стоит под FR (на маке – в пустом ряду, на телефоне – следующим рядом), подпись по середине клетки, без кода;
-     ведёт на форму заявки, при наведении за сеткой – большой «?».
-     Стили – .lng-* в конце styles.css. -->
-<section id="jezyki" class="lng pb-16 md:pb-28">
-  <div class="lng-ghost" aria-hidden="true">A</div>
-  <div class="relative mx-auto max-w-site px-5 sm:px-8">
-    <p class="kicker">/ Języki</p>
-    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
-      Twój język <span class="font-light italic">w&nbsp;parze z&nbsp;polskim</span>
-    </h2>
-    <div class="lng-wrap mt-9 md:mt-12">
-      <ul class="lng-grid" aria-label="Języki Tłumaczeń Przysięgłych">
-        <li class="lng-cell" data-g="Ł"><span class="lng-code" aria-hidden="true"><span class="lng-c">PL</span><span class="lng-w" lang="pl"><span class="lng-p">P</span><span class="lng-t">olski</span></span></span><span class="lng-name">Polski</span></li>
-        <li class="lng-cell lng-cell--day" data-g="Ї"><a href="/tlumaczenia-przysiegle/ukrainski/" class="lng-link"><span class="lng-code" aria-hidden="true"><span class="lng-c">UA</span><span class="lng-w" lang="uk"><span class="lng-p"></span><span class="lng-t">Українська</span></span></span><span class="lng-name">Ukraiński<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span><span class="lng-sr"> – codziennie; tłumacz przysięgły języka ukraińskiego</span></a></li>
-        <li class="lng-cell lng-cell--day" data-g="Ы"><a href="/tlumaczenia-przysiegle/rosyjski/" class="lng-link"><span class="lng-code" aria-hidden="true"><span class="lng-c">RU</span><span class="lng-w" lang="ru"><span class="lng-p"></span><span class="lng-t">Русский</span></span></span><span class="lng-name">Rosyjski<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span><span class="lng-sr"> – codziennie; tłumacz przysięgły języka rosyjskiego</span></a></li>
-        <li class="lng-cell lng-cell--day" data-g="&amp;"><a href="/tlumaczenia-przysiegle/angielski/" class="lng-link"><span class="lng-code" aria-hidden="true"><span class="lng-c">EN</span><span class="lng-w" lang="en"><span class="lng-p">En</span><span class="lng-t">glish</span></span></span><span class="lng-name">Angielski<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span><span class="lng-sr"> – codziennie; tłumacz przysięgły języka angielskiego</span></a></li>
-        <li class="lng-cell" data-g="ß"><span class="lng-code" aria-hidden="true"><span class="lng-c">DE</span><span class="lng-w" lang="de"><span class="lng-p">De</span><span class="lng-t">utsch</span></span></span><span class="lng-name">Niemiecki</span></li>
-        <li class="lng-cell" data-g="È"><span class="lng-code" aria-hidden="true"><span class="lng-c">IT</span><span class="lng-w" lang="it"><span class="lng-p">It</span><span class="lng-t">aliano</span></span></span><span class="lng-name">Włoski</span></li>
-        <li class="lng-cell" data-g="Ç"><span class="lng-code" aria-hidden="true"><span class="lng-c">FR</span><span class="lng-w" lang="fr"><span class="lng-p">Fr</span><span class="lng-t">ançais</span></span></span><span class="lng-name">Francuski</span></li>
-        <li class="lng-cell" data-g="Ñ"><span class="lng-code" aria-hidden="true"><span class="lng-c">ES</span><span class="lng-w" lang="es"><span class="lng-p">Es</span><span class="lng-t">pañol</span></span></span><span class="lng-name">Hiszpański</span></li>
-        <li class="lng-cell" data-g="Ĳ"><span class="lng-code" aria-hidden="true"><span class="lng-c">NL</span><span class="lng-w" lang="nl"><span class="lng-p">N</span><span class="lng-t">ederlands</span></span></span><span class="lng-name">Niderlandzki</span></li>
-        <li class="lng-cell lng-cell--label lng-cell--more" data-g="?"><a href="/cennik/#wycena" data-quote class="lng-link"><span class="lng-name">pozostałe języki<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span><span class="lng-sr"> – zapytaj o&nbsp;inny język w&nbsp;formularzu wyceny</span></a></li>
-        <li class="lng-cell lng-cell--void" aria-hidden="true"></li><li class="lng-cell lng-cell--void" aria-hidden="true"></li>
-        <li class="lng-cell lng-cell--void" aria-hidden="true"></li><li class="lng-cell lng-cell--void" aria-hidden="true"></li><li class="lng-cell lng-cell--void" aria-hidden="true"></li>
-      </ul>
-    </div>
-    <p class="lng-foot"><span class="lng-tag">UA / RU / EN codziennie</span><span class="lng-price"><span>90,-&nbsp;zł / strona&nbsp;·</span> <span>1125 znaków ze&nbsp;spacjami</span></span></p>
-    <p class="lng-note text-[17px] leading-[1.6] max-w-[62ch]">
-      <b class="font-bold">Niemiecki, włoski, francuski, hiszpański i&nbsp;niderlandzki</b> – przez współpracujących tłumaczy
-      przysięgłych. Termin i&nbsp;cena za stronę zależą od języka – podajemy je przy wycenie. <b class="font-bold">Pozostałe języki</b> –
-      zapytaj, sprawdzimy dostępność.
-    </p>
   </div>
 </section>
 
@@ -653,7 +654,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260926-28" defer></script>
+<script src="/assets/app.js?v=20260926-41" defer></script>
 
 </body>
 </html>
