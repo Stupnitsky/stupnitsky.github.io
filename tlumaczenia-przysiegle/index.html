@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260926-41">
+<link rel="stylesheet" href="/styles.css?v=20260926-44">
 
 <script type="application/ld+json">
 {
@@ -166,14 +166,20 @@
     <p class="font-cond uppercase tracking-[0.18em] text-[15px] font-semibold text-ink/75 mb-6">Tłumaczenia przysięgłe</p>
     <h1 class="tracking-tightest leading-[0.95] text-[36px] sm:text-[52px] md:text-[64px] font-black h1-page">Tłumacz przysięgły w&nbsp;Warszawie – ukraiński, rosyjski, angielski</h1>
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
-      Tłumaczenia przysięgłe do urzędów, sądów, banków i&nbsp;uczelni – z&nbsp;polskiego i&nbsp;na polski.
-      Wykonują je tłumacze z&nbsp;listy Ministra Sprawiedliwości, a&nbsp;my prowadzimy całe zlecenie:
-      od zdjęcia dokumentu na WhatsApp po odbiór gotowego tłumaczenia w&nbsp;centrum Warszawy albo Paczkomatem.
-      Jeśli dokument potrzebuje też Apostille, załatwiamy obie rzeczy w&nbsp;jednym zleceniu.
+      <!-- лид под запросы (Грег, 26.09.2026, подсказки Google: ищут документ + цену, учреждения почти не ищут):
+           документы – как их вбивают (akt urodzenia, prawo jazdy, dokumenty samochodowe, dyplom, zaświadczenie o niekaralności),
+           три языка в обе стороны, цена и срок, «online», Warszawa и Paczkomat, Apostille в том же заказе -->
+      Tłumaczymy akty urodzenia i&nbsp;małżeństwa, prawa jazdy, dokumenty samochodowe, dyplomy i&nbsp;zaświadczenia
+      o&nbsp;niekaralności – z&nbsp;ukraińskiego, rosyjskiego i&nbsp;angielskiego na polski oraz z&nbsp;polskiego.
+      To tłumaczenia przysięgłe, więc przyjmują je urzędy, sądy i&nbsp;banki w&nbsp;całej Polsce. Strona kosztuje 90&nbsp;zł,
+      a&nbsp;gotowe tłumaczenie dostajesz zwykle w&nbsp;ciągu 2–4 dni roboczych. Zamawiasz online: zdjęcie dokumentu załączasz
+      w&nbsp;<a href="/cennik/#wycena" data-quote class="underline">formularzu wyceny</a>, a&nbsp;tłumaczenie odbierasz
+      na spotkaniu w&nbsp;centrum Warszawy albo w&nbsp;Paczkomacie. Jeśli potrzebujesz też Apostille, załatwimy ją
+      w&nbsp;tym samym zleceniu.
     </p>
     <!-- ссылка-стрелка привязана к абзацу (стоит сразу под ним), кнопки – ниже, после воздуха -->
     <p class="hero-more">
-      <a href="#cena" class="k-where-link k-where-link--dark">90&nbsp;zł za stronę – jak liczymy
+      <a href="#cena" class="k-where-link k-where-link--dark">Jak liczymy strony
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
       </a>
     </p>
@@ -385,12 +391,68 @@
             ostateczną kwotę podajemy zwykle w&nbsp;15 minut.
             Pełny <a href="/cennik/#tlumaczenia" class="underline font-semibold">cennik tłumaczeń i&nbsp;Apostille</a>.
           </p>
-          <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20potrzebuj%C4%99%20wyceny%20t%C5%82umaczenia%20przysi%C4%99g%C5%82ego" class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn btn-center gt-btn">
+          <a href="/cennik/#wycena" data-quote class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn btn-center gt-btn">
             Wyceń tłumaczenie <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
           </a>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ================= JAK TO DZIAŁA ================= -->
+<!-- Грег, 26.09.2026 («реализуй всё»): как всё идёт без визита – вопрос иностранца сразу после цены. Четыре шага строкой
+     (факты – как на /kontakt/: форма, ответ за 15 минут, BLIK/przelew/gotówka, 2–4 dni, skan od ręki, odbiór w Śródmieściu
+     albo Paczkomat, Oryginał pokazujesz przy odbiorze albo wysyłasz do wglądu). В конце – главное действие, форма. Стили – .tl-go-*. -->
+<section id="jak-to-dziala" class="pb-16 md:pb-28">
+  <div class="mx-auto max-w-site px-5 sm:px-8">
+    <p class="kicker">/ Jak to działa</p>
+    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
+      Od zdjęcia telefonem <span class="font-light italic">do tłumaczenia z&nbsp;pieczęcią</span>
+    </h2>
+    <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
+      Nie musisz przychodzić ani zostawiać Oryginału na start. Całe zlecenie prowadzimy zdalnie, a&nbsp;gotowe
+      tłumaczenie odbierasz w&nbsp;centrum Warszawy albo w&nbsp;Paczkomacie w&nbsp;dowolnym mieście.
+    </p>
+    <ol class="tl-go">
+      <li><span class="tl-go-n">1</span><b>Zdjęcie dokumentu</b><span>Robisz je telefonem i&nbsp;załączasz w&nbsp;formularzu wyceny. Wystarczy czytelny skan albo zdjęcie.</span></li>
+      <li><span class="tl-go-n">2</span><b>Wycena w&nbsp;15 minut</b><span>E-mailem: liczba stron, cena końcowa i&nbsp;termin. Płacisz BLIK-iem, przelewem albo gotówką przy spotkaniu.</span></li>
+      <li><span class="tl-go-n">3</span><b>Tłumaczenie</b><span>Zwykle 2–4 dni robocze od płatności. Skan gotowego tłumaczenia wysyłamy od ręki.</span></li>
+      <li><span class="tl-go-n">4</span><b>Odbiór</b><span>W&nbsp;Śródmieściu albo Paczkomatem. Oryginał pokazujesz przy odbiorze albo wysyłasz do wglądu – wraca razem z&nbsp;tłumaczeniem.</span></li>
+    </ol>
+    <div class="cta-btns tl-go-cta" role="group" aria-label="Zamów wycenę">
+      <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NAJCZĘSTSZE DOKUMENTY ================= -->
+<!-- Грег, 26.09.2026 («реализуй всё», неочевидный ход из разбора страницы): клиент думает документом («mam akt urodzenia»),
+     а не учреждением – строка «документ – сколько обычно страниц – сколько это стоит». Страницы – «zwykle», по опыту;
+     точное число – после zdjęcia. Документы – только те, что сайт уже называет (Dla kogo, образец в hero, #cena).
+     Цены – 90 zł за страницу, без «od»; дипломы с приложением – «wycena po zdjęciu». Стили – .tl-doc-*. -->
+<section id="dokumenty" class="pb-16 md:pb-28">
+  <div class="mx-auto max-w-site px-5 sm:px-8">
+    <p class="kicker">/ Dokumenty</p>
+    <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
+      Ile stron ma <span class="font-light italic">Twój dokument</span>
+    </h2>
+    <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
+      Strona to 1125 znaków ze spacjami gotowego tłumaczenia – razem z&nbsp;opisem pieczęci i&nbsp;podpisów.
+      Tak zwykle wychodzi przy dokumentach, które tłumaczymy najczęściej. Dokładną liczbę stron i&nbsp;cenę
+      podajemy po zdjęciu, zanim cokolwiek zlecisz.
+    </p>
+    <ul class="tl-doc">
+      <li><b>Akt urodzenia, małżeństwa lub zgonu</b><span class="tl-doc-p">zwykle 1&nbsp;strona</span><span class="tl-doc-c"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span></span></li>
+      <li><b>Prawo jazdy</b><span class="tl-doc-p">zwykle 1&nbsp;strona</span><span class="tl-doc-c"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span></span></li>
+      <li><b>Zaświadczenie o&nbsp;niekaralności</b><span class="tl-doc-p">zwykle 1&nbsp;strona</span><span class="tl-doc-c"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span></span></li>
+      <li><b>Dowód rejestracyjny i&nbsp;dokumenty samochodowe</b><span class="tl-doc-p">zwykle 1–2 strony</span><span class="tl-doc-c"><b class="font-bold">90–180,-&nbsp;zł</b></span></li>
+      <li><b>Świadectwo szkolne</b><span class="tl-doc-p">1–2 strony</span><span class="tl-doc-c"><b class="font-bold">90–180,-&nbsp;zł</b></span></li>
+      <li><b>Świadectwo pracy</b><span class="tl-doc-p">1–2 strony</span><span class="tl-doc-c"><b class="font-bold">90–180,-&nbsp;zł</b></span></li>
+      <li><b>Umowa o&nbsp;pracę</b><span class="tl-doc-p">3–5 stron</span><span class="tl-doc-c"><b class="font-bold">270–450,-&nbsp;zł</b></span></li>
+      <li><b>Dyplom z&nbsp;suplementem</b><span class="tl-doc-p">kilkanaście stron</span><span class="tl-doc-c"><b class="font-bold">wycena po zdjęciu</b></span></li>
+    </ul>
+    <p class="tl-doc-note">Ceny w&nbsp;tabeli – dla ukraińskiego, rosyjskiego i&nbsp;angielskiego. Dokumenty samochodowe z&nbsp;Niemiec, Francji czy Holandii tłumaczymy przez współpracujących tłumaczy – cenę podajemy według języka. Od 6&nbsp;stron w&nbsp;jednym zleceniu – rabat 10%. Komplet do karty pobytu czy do USC to zwykle kilka dokumentów.</p>
   </div>
 </section>
 
@@ -409,15 +471,15 @@
         <p class="text-[17px] leading-[1.6] text-ink/75">
           <b class="font-bold text-ink">Na którym dokumencie Apostille?</b> Tego nie da się ustalić z&nbsp;góry – decyduje
           instytucja, która przyjmie dokument, i&nbsp;kraj, do którego trafi. Najczęściej Apostille potrzebna jest i&nbsp;na
-          oryginale, i&nbsp;na Tłumaczeniu Przysięgłym – tak wymagają na przykład Włochy i&nbsp;Hiszpania. Bywa jednak, że
+          oryginale, i&nbsp;na tłumaczeniu przysięgłym – tak wymagają na przykład Włochy i&nbsp;Hiszpania. Bywa jednak, że
           wystarczy Apostille na samym tłumaczeniu albo tylko na oryginale. Wymogi pozostałych krajów trzeba sprawdzić
           na miejscu.
         </p>
       </div>
       <div>
         <p class="text-[17px] leading-[1.6] text-ink/75">
-          <b class="font-bold text-ink">Każdy wariant w&nbsp;jednym zleceniu.</b> Apostille w&nbsp;MSZ i&nbsp;Tłumaczenie
-          Przysięgłe robimy w&nbsp;jednym miejscu, w&nbsp;językach z&nbsp;listy powyżej – nie szukasz osobno tłumacza
+          <b class="font-bold text-ink">Każdy wariant w&nbsp;jednym zleceniu.</b> Apostille w&nbsp;MSZ i&nbsp;tłumaczenie
+          przysięgłe robimy w&nbsp;jednym miejscu, w&nbsp;językach z&nbsp;listy powyżej – nie szukasz osobno tłumacza
           i&nbsp;pośrednika. Sprawdź wymagania u&nbsp;odbiorcy dokumentu
           i&nbsp;<a href="/cennik/#wycena" data-quote class="underline font-semibold">wskaż wariant w&nbsp;zamówieniu</a>.
           Dla Dokumentów z&nbsp;Ukrainy Apostille uzyskujemy przez partnera w&nbsp;Ukrainie – także wtedy, gdy jesteś
@@ -432,11 +494,11 @@
         <p class="zap-q">„Co ma mieć Apostille&nbsp;– <span class="font-light italic">oryginał, tłumaczenie czy oba?”</span></p>
       </div>
       <ul class="zap-list">
-        <li><b>Oba:</b> Apostille&nbsp;na&nbsp;oryginał&nbsp;→ Tłumaczenie&nbsp;Przysięgłe&nbsp;→ Apostille&nbsp;na&nbsp;tłumaczenie
+        <li><b>Oba:</b> Apostille&nbsp;na&nbsp;oryginał&nbsp;→ Tłumaczenie&nbsp;przysięgłe&nbsp;→ Apostille&nbsp;na&nbsp;tłumaczenie
           <small>Najczęściej – tak jest np. we Włoszech i&nbsp;w&nbsp;Hiszpanii</small></li>
-        <li><b>Oryginał:</b> Apostille&nbsp;na&nbsp;oryginał&nbsp;→ Tłumaczenie&nbsp;Przysięgłe</li>
-        <li><b>Tłumaczenie:</b> Tłumaczenie&nbsp;Przysięgłe&nbsp;→ Apostille&nbsp;na&nbsp;tłumaczenie</li>
-        <li><b>Dokument z&nbsp;Ukrainy:</b> Apostille&nbsp;w&nbsp;Ukrainie&nbsp;→ Tłumaczenie&nbsp;Przysięgłe na&nbsp;polski</li>
+        <li><b>Oryginał:</b> Apostille&nbsp;na&nbsp;oryginał&nbsp;→ Tłumaczenie&nbsp;przysięgłe</li>
+        <li><b>Tłumaczenie:</b> Tłumaczenie&nbsp;przysięgłe&nbsp;→ Apostille&nbsp;na&nbsp;tłumaczenie</li>
+        <li><b>Dokument z&nbsp;Ukrainy:</b> Apostille&nbsp;w&nbsp;Ukrainie&nbsp;→ Tłumaczenie&nbsp;przysięgłe na&nbsp;polski</li>
       </ul>
     </div>
   </div>
@@ -573,6 +635,36 @@
   </div>
 </section>
 
+<!-- ================= NA KONIEC ================= -->
+<!-- Грег, 26.09.2026 («реализуй всё»): после FAQ страница кончалась без действия. Плашка sand (как #cena) с ролями каналов:
+     форма – документы (главная кнопка), звонок – доверие (явной кнопкой, с часами), мессенджеры – вопросы.
+     FAQ выше не трогался: его большой нижний отступ (pb-28 / md:pb-44) съедает отрицательный верх .tl-fin. -->
+<section id="zamow" class="tl-fin pb-28 md:pb-44">
+  <div class="mx-auto max-w-site px-5 sm:px-8">
+    <div class="bg-sand text-ink rounded-[26px] p-7 sm:p-12">
+      <p class="kicker">/ Zamówienie</p>
+      <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
+        Wyślij zdjęcie – <span class="font-light italic">wycena w&nbsp;15 minut</span>
+      </h2>
+      <div class="tl-fin-cols">
+        <div>
+          <p class="tl-fin-t"><b>Dokumenty.</b> Zdjęcie albo skan załączasz w&nbsp;formularzu – odpowiadamy ceną końcową i&nbsp;terminem.</p>
+          <div class="cta-btns"><a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a></div>
+        </div>
+        <div>
+          <p class="tl-fin-t"><b>Rozmowa.</b> Nie wiesz, jakiego tłumaczenia potrzebujesz? Zadzwoń – codziennie <span class="whitespace-nowrap">7:00–21:00</span>.</p>
+          <div class="cta-btns"><a href="tel:+48507588155" class="cta-btn" aria-label="Zadzwoń: +48 507 588 155, 7:00–21:00">+48 507 588 155<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a></div>
+        </div>
+        <div>
+          <p class="tl-fin-t"><b>Pytanie.</b> Krótkie pytanie o&nbsp;język, termin albo odbiór – napisz na komunikatorze.</p>
+          <div class="cta-btns"><a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20t%C5%82umaczenie%20przysi%C4%99g%C5%82e" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a><a href="https://t.me/apostilo" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 </main>
 
 <!-- sync:footer -->
@@ -654,7 +746,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260926-41" defer></script>
+<script src="/assets/app.js?v=20260926-44" defer></script>
 
 </body>
 </html>

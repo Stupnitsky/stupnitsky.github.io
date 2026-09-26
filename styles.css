@@ -4509,3 +4509,78 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
 /* «pozostałe języki» при наведении – курсивом (Грег, 26.09.2026: «при наведении в italic, посмотрим»). Класс .is-w ставит
    app.js: наведение и фокус на маке, очередь при прокрутке на телефоне – подпись ведёт себя так же, как коды языков. */
 .lng-cell--more.is-w .lng-name{ font-style:italic; }
+
+/* ===== /tlumaczenia-przysiegle/: три новых блока (Грег, 26.09.2026: «реализуй всё, только не меняй уже готовое») =====
+   Порядок готовых блоков не менялся; новые вставлены: «Jak to działa» и «Dokumenty» – после #cena, «Zamówienie» – после FAQ. */
+
+/* #jak-to-dziala – четыре шага строкой: номер, жирный заголовок шага, строка текста; волосок сверху, как у рядов сетки.
+   Телефон – столбиком, от 640px – 2 × 2, от 1024px – в одну строку. В конце – главное действие (форма). */
+.tl-go{ margin:2.25rem 0 0; padding:0; list-style:none; display:grid; grid-template-columns:minmax(0,1fr); gap:1.6rem 2rem; }
+@media (min-width:640px){ .tl-go{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (min-width:1024px){ .tl-go{ grid-template-columns:repeat(4,minmax(0,1fr)); } }
+.tl-go li{ padding-top:1rem; border-top:1px solid rgba(31,33,32,.15); font-size:17px; line-height:1.55; color:var(--c-ink); }
+.tl-go-n{ display:block; margin-bottom:.6rem; font-family:"Fira Sans Condensed","Fira Sans",sans-serif; font-weight:700; font-size:22px; line-height:1; }
+.tl-go b{ display:block; margin-bottom:.35rem; font-size:20px; line-height:1.2; font-weight:700; letter-spacing:-.01em; }
+@media (min-width:640px){ .tl-go b{ font-size:22px; } }
+.tl-go-cta{ margin-top:2.25rem; }
+
+/* #dokumenty – строка «документ · сколько страниц · цена»: от 640px в три колонки, на телефоне название сверху,
+   страницы и цена – строкой под ним. Цены – с накруткой при наведении, как в остальных ценах сайта (.price-hit). */
+.tl-doc{ margin:2rem 0 0; padding:0; list-style:none; max-width:880px; border-bottom:1px solid rgba(31,33,32,.15); }
+.tl-doc li{ display:grid; grid-template-columns:minmax(0,1fr) auto; column-gap:1rem; row-gap:.2rem; align-items:baseline;
+  padding:.9rem 0; border-top:1px solid rgba(31,33,32,.15); color:var(--c-ink); }
+.tl-doc li > b{ grid-column:1 / -1; font-size:18px; line-height:1.3; font-weight:700; }
+.tl-doc-p{ font-family:"Fira Sans Condensed","Fira Sans",sans-serif; font-size:17px; line-height:1.3; }
+.tl-doc-c{ text-align:right; font-size:18px; line-height:1.3; white-space:nowrap; }
+@media (min-width:640px){
+  .tl-doc li{ grid-template-columns:minmax(0,1fr) 10rem 11rem; column-gap:1.5rem; }
+  .tl-doc li > b{ grid-column:auto; font-size:20px; }
+  .tl-doc-c{ font-size:20px; }
+}
+.tl-doc-note{ margin-top:1rem; max-width:62ch; font-size:17px; line-height:1.55; color:var(--c-ink); }
+
+/* #zamow – закрывающая плашка после FAQ: три роли каналов подписью run-in («Dokumenty.» + текст) и кнопкой под ней;
+   от 1024px – три колонки, кнопки на одной линии (прижаты к низу колонки). Большой нижний отступ FAQ (pb-28 / md:pb-44)
+   не трогаем – съедаем его отрицательным верхом, чтобы до плашки было, как между остальными блоками. */
+.tl-fin{ margin-top:-3rem; }
+@media (min-width:768px){ .tl-fin{ margin-top:-4rem; } }
+.tl-fin-cols{ display:grid; grid-template-columns:minmax(0,1fr); gap:1.8rem 2.5rem; margin-top:2rem; }
+@media (min-width:1024px){ .tl-fin-cols{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+.tl-fin-cols > div{ display:flex; flex-direction:column; }
+.tl-fin-t{ font-size:17px; line-height:1.55; color:var(--c-ink); max-width:40ch; }
+.tl-fin-t b{ font-weight:700; }
+.tl-fin-cols .cta-btns{ margin-top:1rem; }
+@media (min-width:1024px){ .tl-fin-cols .cta-btns{ margin-top:auto; padding-top:1.1rem; } }
+
+/* Бирка-стикер «PL → UA» в hero /tlumaczenia-przysiegle/ukrainski/ (26.09.2026, лист k-58 docs/konstrukcje/).
+   Две полосы: белая с «Apostilo» курсивом и жёлтая с ценой, парой и языком; текст повёрнут (vertical-rl), правый край скруглён.
+   Стрелка – своя SVG: стебель + уголок толщиной штриха букв, конец обрезан, угол острый – в родстве с шевроном сайта.
+   Все размеры в em от font-size бирки: 9px на телефоне, 11px от 640px. От 1280px бирка стоит справа от h1 (absolute),
+   уже – в потоке под образцом перевода. */
+.stk{ font-size:9px; display:flex; width:max-content; height:28em; margin-top:3rem; color:var(--c-ink);
+ border-radius:0 6em 6em 0; overflow:hidden; line-height:1; }
+@media (min-width:640px){ .stk{ font-size:11px; } }
+@media (min-width:1280px){ .stk{ position:absolute; top:0; right:2rem; margin:0; } }
+.stk-sr{ position:absolute; width:1px; height:1px; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; }
+.stk-a{ background:#fff; width:9em; display:flex; align-items:center; justify-content:center; }
+.stk-a span{ writing-mode:vertical-rl; font-weight:800; font-style:italic; font-size:4em; letter-spacing:-.01em; }
+.stk-b{ background:var(--c-terra); width:19em; display:flex; align-items:center; justify-content:center; gap:1em; padding-right:1.5em; }
+.stk-price, .stk-lang{ writing-mode:vertical-rl; font-family:"Fira Sans Condensed","Fira Sans",sans-serif; font-weight:700; white-space:nowrap; }
+.stk-price{ font-size:3em; font-variant-numeric:lining-nums; font-feature-settings:"lnum" 1, "liga" 1, "clig" 1, "calt" 1; }
+.stk-lang{ font-size:1.4em; letter-spacing:.2em; text-transform:uppercase; }
+.stk-pair{ display:flex; flex-direction:column; align-items:center; font-weight:900; font-size:6.6em; letter-spacing:-.02em; }
+.stk-pair span{ writing-mode:vertical-rl; }
+/* стрелка шириной в высоту прописной (≈.69em Fira 900), зазоры до букв – как межбуквенный у пары */
+.stk-pair svg{ width:.62em; height:.99em; margin:.1em 0 .12em; }
+
+/* Кнопка «Zamów wycenę» внизу экрана на телефоне (.m-dock, Грег, 26.09.2026). Разметку и показ ведёт app.js (класс .is-on).
+   Во всю ширину с полями 12px, над нижним краем с учётом «домашней полоски» iPhone; вид – главная кнопка сайта
+   (.cta-btn--main) с лёгкой тенью, чтобы отделялась от текста под ней. Выезжает снизу. От 768px её нет. */
+.m-dock{ position:fixed; left:12px; right:12px; bottom:calc(12px + env(safe-area-inset-bottom, 0px)); z-index:45;
+  opacity:0; visibility:hidden; transform:translateY(calc(100% + 16px));
+  transition:opacity .3s ease, transform .35s cubic-bezier(.2,.7,.25,1), visibility .35s; pointer-events:none; }
+.m-dock.is-on{ opacity:1; visibility:visible; transform:none; pointer-events:auto; }
+.m-dock .cta-btn{ display:flex; width:100%; justify-content:center; box-shadow:0 8px 24px rgba(31,33,32,.18); }
+@media (min-width:768px){ .m-dock{ display:none; } }
+@media (prefers-reduced-motion:reduce){ .m-dock{ transition:none; } }
+@media print{ .m-dock{ display:none; } }

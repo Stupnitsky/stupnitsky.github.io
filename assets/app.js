@@ -365,6 +365,9 @@
       btn.classList.toggle('is-live', deep && (goingUp || atEnd));
       // стрелка упирается в футер и не заходит на него
       var base = window.matchMedia('(max-width:640px)').matches ? 28 : 64;   /* было 100 – зазор под кнопку WhatsApp, её убрали 20.09.2026 */
+      /* на телефоне внизу может висеть кнопка «Zamów wycenę» (.m-dock, 26.09.2026) – стрелка встаёт над ней */
+      var dock = document.documentElement.classList.contains('mdock-on') ? document.querySelector('.m-dock') : null;
+      if (dock) base = Math.max(base, window.innerHeight - dock.getBoundingClientRect().top + 14);
       var bottom = base;
       if (foot) {
         var top = foot.getBoundingClientRect().bottom;
@@ -375,6 +378,7 @@
     }
     window.addEventListener('scroll', check, { passive:true });
     window.addEventListener('resize', check);
+    window.addEventListener('mdock', check);
     check();
     btn.addEventListener('click', function (e) {
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
@@ -2300,7 +2304,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260926-41';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260926-44';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -3081,4 +3085,60 @@
   window.addEventListener('resize', function () { requestAnimationFrame(function () { layout(); fit(); }); });
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+/* --- Кнопка «Zamów wycenę» внизу экрана на телефоне (.m-dock; Грег, 26.09.2026: «вот это давай») ---
+   Только уже 768px. Появляется, когда главная кнопка первого экрана ушла вверх (нет её – после полэкрана), прячется,
+   пока на экране видна другая главная кнопка страницы (.cta-btn--main в <main>) – двух одинаковых рядом не бывает, –
+   у конца контента (подвал – шторка, ориентир – низ <main>), при открытом меню и панели заявки.
+   Текст и адрес берутся у кнопки заявки в шапке (.navlink--plate) – на ua/ru/en кнопка сама на своём языке;
+   нажатие передаётся ей, панель заявки открывает её обработчик. Стрелка «наверх» встаёт над доком (событие mdock). */
+(function () {
+  var plate = document.querySelector('header .navlink--plate');
+  var main = document.querySelector('body > main');
+  if (!plate || !main || !window.matchMedia) return;
+  var phone = window.matchMedia('(max-width:767px)');
+  var root = document.documentElement;
+  var label = (plate.textContent || '').trim();
+  var chev = '<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span>';
+  var dock = document.createElement('div');
+  dock.className = 'm-dock';
+  dock.innerHTML = '<a class="cta-btn cta-btn--main" href="' + plate.getAttribute('href') + '"></a>';
+  var a = dock.firstChild;
+  a.textContent = label;
+  a.insertAdjacentHTML('beforeend', chev);
+  a.addEventListener('click', function (e) {
+    if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+    if (plate.hasAttribute('data-quote')) { e.preventDefault(); plate.click(); }
+  });
+  document.body.appendChild(dock);
+
+  var mains = [].slice.call(main.querySelectorAll('.cta-btn--main'));
+  var first = mains[0] || null;
+  var on = false, ticking = false;
+  function seen(el) {
+    if (!el.offsetParent && getComputedStyle(el).position !== 'fixed') return false;   /* скрытые (display:none) не считаются */
+    var r = el.getBoundingClientRect();
+    return r.bottom > 0 && r.top < window.innerHeight && r.width > 0;
+  }
+  function apply() {
+    ticking = false;
+    var vh = window.innerHeight, show = phone.matches;
+    if (show && (root.classList.contains('menu-open') || root.classList.contains('qd-open'))) show = false;
+    if (show) show = first ? first.getBoundingClientRect().bottom < 0 : window.scrollY > vh * 0.5;
+    if (show && mains.some(seen)) show = false;
+    if (show && main.getBoundingClientRect().bottom < vh + 40) show = false;
+    if (show !== on) {
+      on = show;
+      dock.classList.toggle('is-on', on);
+      root.classList.toggle('mdock-on', on);
+      try { window.dispatchEvent(new Event('mdock')); } catch (e) {}
+    }
+  }
+  function req() { if (!ticking) { ticking = true; requestAnimationFrame(apply); } }
+  window.addEventListener('scroll', req, { passive: true });
+  window.addEventListener('resize', req);
+  /* меню и панель заявки меняют класс у <html> – следим за ним */
+  if (window.MutationObserver) new MutationObserver(req).observe(root, { attributes: true, attributeFilter: ['class'] });
+  apply();
 })();
