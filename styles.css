@@ -3817,6 +3817,108 @@ header:has(.hdr-row.on-dark) #mobile-nav a.mn-lang:not(.is-current){ color:rgba(
   .route-legs li + li{ border-left:1px solid rgba(31,33,32,.15); padding-left:2rem; }
   .route-far{ font-size:32px; }
 }
+
+/* #czas – маршрут (Грег, 25.09.2026: идея 7 со стенда docs/typografia/, «встроить в сайт»). Схема пешего маршрута
+   по Вене (Fonts inspirations/136951.png): остановки узким Fira Sans Condensed 300 по центру, нитка 1px видна только
+   между ними и уходит за край карточки; две колонки – туда и обратно, вторая кончается там, где началась первая;
+   одна жёлтая точка – у MSZ; подписи повёрнуты и читаются снизу вверх. Телефон: одна колонка, вся петля сверху вниз.
+   Список .route-legs остаётся для экранных чтецов (визуально скрыт), схема .rt-map – aria-hidden.
+   Мышь (app.js): наведение на отрезок раскрывает его – остановки плавно переходят из узкого начертания в обычную
+   ширину Fira Sans (два слоя .rt-c/.rt-w, в каждом кадре одной ширины), нитка отрезка прорисовывается 2px по ходу
+   маршрута, «1 dzień» разрежается, остальное уходит в тень, под линейкой вместо итога – текст отрезка.
+   Появление: нитка один раз прорисовывается сверху вниз, как пройденный путь, остановки по пути на миг раскрываются
+   (эффект показывает себя сам, и на телефоне); жёлтая точка – когда путь дошёл до MSZ. */
+.route--map{ --rt-pad:1.75rem; position:relative; padding-top:var(--rt-pad); }   /* sm:p-10 в сборке нет – везде 28px */
+.route--map > .route-legs{ position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden;
+  clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; border:0; }
+.rt-map{ --rt-fs:26px; --rt-gap:70px; --rt-stub:26px; --rt-m:10px; --rt-line:rgba(31,33,32,.85); --rt-ease:cubic-bezier(.2,.7,.1,1);
+  display:grid; grid-template-columns:auto minmax(0,1fr); column-gap:10px; margin-top:calc(-1 * var(--rt-pad));
+  color:var(--c-ink); cursor:default; }
+@media (min-width:640px){ .rt-map{ --rt-fs:30px; --rt-gap:74px; } }
+@media (min-width:768px){ .rt-map{ --rt-fs:32px; --rt-gap:80px; --rt-stub:34px;
+  grid-template-columns:auto minmax(0,1fr) auto minmax(0,1fr) auto; column-gap:clamp(12px, 2.4vw, 40px); } }
+@media (min-width:1024px){ .rt-map{ --rt-fs:40px; --rt-gap:84px; --rt-stub:36px; --rt-m:12px; } }
+/* строки колонки – во всю её ширину: наведение ловится по всей строке, а не только по слову */
+.rt-col{ display:flex; flex-direction:column; align-items:stretch; min-width:0; }
+.rt-st{ display:block; margin:0; text-align:center; white-space:nowrap; font-family:"Fira Sans Condensed","Fira Sans",sans-serif;
+  font-weight:300; font-size:var(--rt-fs); line-height:1; letter-spacing:-.02em; }
+.rt-st--key{ font-weight:600; }
+.rt-dot{ display:inline-block; position:relative; top:-.04em; width:.25em; height:.25em; margin-right:.28em; border-radius:50%;
+  background:var(--c-terra); vertical-align:middle; }
+/* нитка: отрезки только в промежутках – имена её прерывают; концы уходят за край: сверху – до края карточки,
+   снизу – до линейки итога */
+.rt-gap{ display:flex; flex-direction:column; align-items:center; flex:none; height:var(--rt-gap); }
+.rt-ln{ display:block; position:relative; width:1px; min-height:0; background:var(--rt-line); transform-origin:50% 0; }
+.rt-gap > .rt-ln{ flex:1 1 auto; margin:var(--rt-m) 0; }
+.rt-ln--top, .rt-ln--bot{ flex:none; align-self:center; }
+.rt-ln--top{ height:calc(var(--rt-pad) + var(--rt-stub)); margin-bottom:var(--rt-m); }
+.rt-ln--bot{ height:var(--rt-stub); margin-top:var(--rt-m); }
+.rt-dur{ display:block; margin:calc(7px - var(--rt-m)) 0; padding-left:.18em; white-space:nowrap;
+  font-family:"Fira Sans Condensed","Fira Sans",sans-serif; font-size:12px; font-weight:600; line-height:1;
+  letter-spacing:.18em; text-transform:uppercase; }
+/* повёрнутые подписи – снизу вверх */
+.rt-rot{ margin:0; align-self:center; justify-self:center; writing-mode:vertical-rl; transform:rotate(180deg); white-space:nowrap;
+  font-family:"Fira Sans Condensed","Fira Sans",sans-serif; font-size:18px; font-weight:400; line-height:1; }
+.rt-rot--key{ font-weight:600; }
+.rt-rot .rt-dot{ top:0; width:8px; height:8px; margin-right:0; margin-inline-end:.4em; }
+@media (min-width:768px){ .rt-rot{ font-size:20px; } }
+/* телефон: одна колонка – вся петля сверху вниз; главная подпись повёрнута слева, две другие убраны */
+@media (max-width:767px){
+  .rt-map > .rt-rot--key{ grid-column:1; grid-row:1 / span 2; }
+  .rt-map > .rt-col{ grid-column:2; }
+  .rt-map > .rt-col--a{ grid-row:1; }
+  .rt-map > .rt-col--b{ grid-row:2; }
+  .rt-map > .rt-rot--a, .rt-map > .rt-rot--b{ display:none; }
+  .rt-col--b > .rt-ln--top{ height:calc(var(--rt-gap) - var(--rt-stub) - 2 * var(--rt-m)); }
+}
+/* низ нитки упирается в линейку итога – край «кадра»; линейка во всю ширину карточки, текст – в прежней мере.
+   Итог и подписи отрезков лежат в одной клетке сетки: высота – по самому длинному, при смене ничего не прыгает */
+.route-foot{ display:grid; border-top:1px solid rgba(31,33,32,.15); padding-top:1.4rem; }
+.route-foot > *{ grid-area:1 / 1; }
+.route-foot > .route-sum{ margin-top:0; padding-top:0; border-top:0; }
+.rt-cap{ margin:0; max-width:62ch; font-size:17px; line-height:1.55; color:var(--c-ink); opacity:0; translate:0 6px; pointer-events:none; }
+.rt-cap b{ font-weight:700; }
+
+/* ---- наведение (классы ставит app.js; только мышь) ---- */
+.rt-map [data-leg], .route-foot > *{ transition:opacity .3s ease, translate .3s ease; }
+.rt-map.is-live [data-leg]:not(.is-on){ opacity:.2; }
+/* Ширина: узкий слой растягивается и гаснет, обычный приходит из сжатого – в каждом кадре оба одной ширины.
+   Обычный слой ещё и разрежен (+.02em против −.02em): одна смена гарнитуры даёт только +11 %, так – около +22 %.
+   Наплыв без провала в серый: приходящий слой проявляется поверх ещё плотного уходящего, уходящий гаснет уже под ним
+   (задержки – у того, кто уходит; переход берётся из состояния, в которое идём).
+   is-on – наведение, is-pass – остановка, мимо которой при появлении проходит нитка (раскрывается на 0,4 с);
+   is-tight – обычная ширина не влезает в колонку (iPhone 320), слово остаётся узким. */
+.rt-x{ position:relative; display:inline-block; }
+.rt-c{ display:inline-block; transition:transform .55s var(--rt-ease), opacity .12s linear; }
+.rt-w{ position:absolute; left:50%; top:0; font-family:"Fira Sans",sans-serif; letter-spacing:.02em; white-space:nowrap; opacity:0;
+  transform:translateX(-50%) scaleX(var(--rt-k, .82)); transition:transform .55s var(--rt-ease), opacity .14s linear .1s;
+  pointer-events:none; -webkit-user-select:none; user-select:none; }
+.rt-st:is(.is-on, .is-pass):not(.is-tight) .rt-c{ transform:scaleX(var(--rt-r, 1.22)); opacity:0;
+  transition:transform .55s var(--rt-ease), opacity .12s linear .1s; }
+.rt-st:is(.is-on, .is-pass):not(.is-tight) .rt-w{ transform:translateX(-50%) scaleX(1); opacity:1;
+  transition:transform .55s var(--rt-ease), opacity .14s linear; }
+.rt-dot{ transition:translate .55s var(--rt-ease); }
+.rt-st:is(.is-on, .is-pass):not(.is-tight) .rt-dot{ translate:calc(-1 * var(--rt-dx, .5em)) 0; }   /* точка отходит с левым краем слова */
+/* нитка отрезка – 2px по ходу маршрута (--o – порядок кусочка в отрезке, ставит app.js) */
+.rt-ln::after{ content:""; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--c-ink);
+  transform:scaleY(0); transform-origin:50% 0; transition:transform .2s ease; }
+.rt-gap.is-on > .rt-ln::after, .rt-ln.is-on::after{ transform:scaleY(1);
+  transition:transform .34s cubic-bezier(.3,.6,.2,1) calc(var(--o, 0) * 90ms); }
+.rt-dur{ transition:letter-spacing .5s var(--rt-ease), padding-left .5s var(--rt-ease); }
+.rt-gap.is-on > .rt-dur{ letter-spacing:.34em; padding-left:.34em; }
+.route-foot.is-leg > .route-sum{ opacity:0; translate:0 -6px; }
+.route-foot > .rt-cap.is-on{ opacity:1; translate:0 0; }
+
+/* ---- появление: нитка прорисовывается один раз сверху вниз (--i – порядок кусочка по всему маршруту) ---- */
+.rt-map.rt-pre .rt-ln{ scale:1 0; }
+.rt-map.rt-pre .rt-dot{ scale:0; }
+.rt-map.rt-go .rt-ln{ scale:1 1; transition:scale .42s cubic-bezier(.3,.6,.2,1) calc(var(--i, 0) * 80ms); }
+.rt-map.rt-go .rt-dot{ scale:1; transition:translate .55s var(--rt-ease), scale .5s cubic-bezier(.3,1.6,.5,1) .62s; }
+@media print{ .rt-map.rt-pre .rt-ln, .rt-map.rt-pre .rt-dot{ scale:none; } }
+@media (prefers-reduced-motion:reduce){
+  .rt-map *, .rt-map *::after, .route-foot > *{ transition-duration:.01s !important; transition-delay:0s !important; }
+}
+
 /* #koszt: подзаголовок-вопрос над карточками сравнения; карточки идут с mt-9/md:mt-12 */
 .cmp-ask{ margin-top:2.4rem; font-size:24px; line-height:1.2; font-weight:900; letter-spacing:-.02em; color:var(--c-ink); max-width:34ch; }
 .cmp-ask span{ font-weight:300; font-style:italic; }
