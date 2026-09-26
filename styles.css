@@ -4584,3 +4584,19 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
 @media (min-width:768px){ .m-dock{ display:none; } }
 @media (prefers-reduced-motion:reduce){ .m-dock{ transition:none; } }
 @media print{ .m-dock{ display:none; } }
+
+/* Панель wyceny: вид перевода (.qd-kind, Грег, 26.09.2026) – «Tłumaczenie: Przysięgłe · Zwykłe · Nie wiem», необязательно.
+   Строка по центру, как «Sprawa pilna» под ней: подпись тем же кеглем и тоном (17px / 500 / #4a4a45), варианты – плашки
+   формы панели (скругление 10px, без капса), выбранная – охра, как включённый переключатель срочности. */
+.qd .wy-v2 .qd-kind{ margin:26px 0 0; padding:0; border:0; min-width:0; text-align:center; }
+.qd .wy-v2 .qd-kind legend{ display:block; width:100%; margin:0 0 .6rem; padding:0; font-size:17px; line-height:1.2; font-weight:500; color:#4a4a45; }
+.qd .wy-v2 .qd-kind-opts{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px; }
+.qd .wy-v2 .qd-kind label{ position:relative; cursor:pointer; }
+.qd .wy-v2 .qd-kind input{ position:absolute; opacity:0; width:1px; height:1px; margin:0; }
+.qd .wy-v2 .qd-kind span{ display:inline-block; padding:.5rem .95rem; border:1px solid rgba(31,33,32,.22); border-radius:10px;
+  font-size:16px; line-height:1.2; font-weight:500; color:var(--c-ink); background:transparent; transition:background-color .18s ease, border-color .18s ease; }
+@media (hover:hover){ .qd .wy-v2 .qd-kind label:hover span{ border-color:rgba(31,33,32,.45); } }
+.qd .wy-v2 .qd-kind input:checked + span{ background:var(--c-terra); border-color:var(--c-terra); }
+.qd .wy-v2 .qd-kind input:focus-visible + span{ outline:2px solid var(--c-terra); outline-offset:3px; }
+/* «Sprawa pilna» стоит теперь под выбором вида перевода – воздух между строками как между группами полей */
+.qd .wy-v2 .qd-kind + .qd-urgent{ margin-top:22px; }

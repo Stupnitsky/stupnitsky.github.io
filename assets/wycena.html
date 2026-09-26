@@ -95,6 +95,17 @@
                   <p class="qd-files-cap" aria-live="polite"></p>
                 </div>
 
+                <!-- Вид перевода (Грег, 26.09.2026): przysięgłe или zwykłe; «Nie wiem» – для тех, кто не уверен (и чтобы можно
+                     было снять случайный выбор). Необязательно: для одной Apostille поле просто пропускают. Уходит в письмо полем «tlumaczenie». -->
+                <fieldset class="qd-kind">
+                  <legend>Tłumaczenie</legend>
+                  <div class="qd-kind-opts">
+                    <label><input type="radio" name="tlumaczenie" value="Przysięgłe"><span>Przysięgłe</span></label>
+                    <label><input type="radio" name="tlumaczenie" value="Zwykłe"><span>Zwykłe</span></label>
+                    <label><input type="radio" name="tlumaczenie" value="Nie wiem"><span>Nie wiem</span></label>
+                  </div>
+                </fieldset>
+
                 <label class="qd-urgent"><span>Sprawa pilna</span><input type="checkbox" name="temat" value="Pilne" role="switch"><i aria-hidden="true"></i></label>
 
                 <!-- zgoda: bez checkboxa, odnotowana w mailu; tekst pod przyciskiem -->
