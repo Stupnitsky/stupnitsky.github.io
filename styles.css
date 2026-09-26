@@ -4600,3 +4600,11 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
 .qd .wy-v2 .qd-kind input:focus-visible + span{ outline:2px solid var(--c-terra); outline-offset:3px; }
 /* «Sprawa pilna» стоит теперь под выбором вида перевода – воздух между строками как между группами полей */
 .qd .wy-v2 .qd-kind + .qd-urgent{ margin-top:22px; }
+
+/* #cena на /tlumaczenia-przysiegle/: из столбца Go Tabular убрана строка «260 Apostille MSZ» (Грег, 26.09.2026: «блок про переводы»).
+   Остались столбик 1125 / −10% и «90» под ним – это ≈1,75 кегля в высоту, а не 2,35: с 1024px кегль считаем по новой высоте,
+   иначе «90» мельчало бы без причины. Отступ столбика сверху (был – от «260») не нужен. */
+@media (min-width:1024px){
+  .gt--ap.gt--tl{ --gt-f:min(var(--gt-fw), calc((100cqh - 40px) / 1.75)); }
+}
+.gt--tl .gt-m:first-child b, .gt--tl .gt-m:first-child small{ margin-top:0; }
