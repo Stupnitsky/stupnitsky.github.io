@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260924-130">
+<link rel="stylesheet" href="/styles.css?v=20260926-200">
 
 <script type="application/ld+json">
 {
@@ -165,7 +165,7 @@
 
 <!-- ================= HERO ================= -->
 <section class="relative overflow-hidden pt-8 pb-16 md:pt-14 md:pb-24">
-  <div class="relative mx-auto max-w-site px-5 sm:px-8">
+  <div class="relative mx-auto max-w-site px-5 sm:px-8 gt-host">
     <p class="font-cond uppercase tracking-[0.18em] text-[15px] font-semibold text-ink/75 mb-6">Koszt Apostille w&nbsp;Warszawie</p>
     <h1 class="tracking-tightest leading-[0.95] text-[36px] sm:text-[52px] md:text-[64px] font-extrabold h1-page h1-wide"><span class="font-medium">Cennik</span> Apostille<br><span class="font-medium">i</span>&nbsp;Tłumaczeń Przysięgłych<span class="h1-out italic slide-in"><span class="font-medium">w</span>&nbsp;Warszawie</span></h1>
     <p class="mt-6 text-[20px] sm:text-[24px] leading-[1.45] font-semibold text-ink lead-lines">
@@ -178,6 +178,17 @@
       dokumentu – zwykle w&nbsp;<span class="mark" style="--d:2.97s">15 minut</span>.
       Płatność z&nbsp;góry – <span class="mark" style="--d:3.53s">BLIK</span>, <span class="mark" style="--d:3.93s">przelew</span> lub <span class="mark" style="--d:4.33s">gotówka</span>.
     </p>
+    <!-- Go Tabular (26.09.2026, идея 8 стенда docs/typografia/): вставной песочный блок со столбцом цен справа от абзаца,
+         только с 1280px (стили – «Go Tabular» в конце styles.css). aria-hidden: те же цены уже есть в абзаце выше -->
+    <div class="gt gt--cn" aria-hidden="true">
+      <div class="gt-blk"><div class="gt-clip"><i></i><i></i><i></i><i></i></div></div>
+      <div class="gt-col">
+        <span class="gt-n">260</span><span class="gt-l"><b>Apostille MSZ</b><small>,-&nbsp;zł / dokument</small></span>
+        <span class="gt-n">120</span><span class="gt-l"><b>Sąd Okręgowy</b><small>,-&nbsp;zł / podpis</small></span>
+        <span class="gt-n">550</span><span class="gt-l"><b>Dokumenty<br>z&nbsp;Ukrainy</b><small>,-&nbsp;zł / dokument</small></span>
+        <span class="gt-n">90</span><span class="gt-l"><b>Tłumaczenie</b><small>,-&nbsp;zł / strona</small></span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -461,7 +472,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260924-130" defer></script>
+<script src="/assets/app.js?v=20260926-200" defer></script>
 
 </body>
 </html>

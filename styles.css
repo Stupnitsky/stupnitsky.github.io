@@ -4055,3 +4055,125 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
 @media (prefers-reduced-motion:reduce){
   .pp .pp-l, .pp.is-live .pp-l.is-on, .pp.is-live .pp-l.is-out{ transition:none !important; transform:none !important; }
 }
+
+/* ===== Go Tabular – цены столбцом огромных табличных цифр (Грег, 26.09.2026: идея 8 стенда docs/typografia/ – в сайт;
+   образец Fonts inspirations/219064.png «GO TABULAR»). Только польские страницы: /apostille/ и /cennik/.
+   /apostille/ #ile-trwa: список ul.faq-price остаётся в разметке для экранных чтецов (.gt-sr, визуально скрыт), на экране –
+   столбец .gt--ap (aria-hidden): 260 / 120 / 200 / 90 – Fira Sans 800, табличные цифры, «90» стоит под «60».
+   У каждой цифры подпись Fira Sans Condensed: услуга капсом 600 с разрядкой и «,- zł / единица» (единицы – как в прайсе
+   /cennik/). За цифрами – тонкие белые контуры листов A4, повёрнутые на 23°, цепочкой по диагонали, обрезаны краем карточки.
+   Телефон и планшет – столбец под абзацами, внутри карточки. С 1024px карточка – две колонки на всю высоту: сноска
+   и кнопка «Wyceń dokument» (тот же элемент, [data-quote]) встают под абзацы слева, столбец – справа, по центру карточки;
+   за верх и низ карточки он выходит только явно (правило ниже).
+   /cennik/ первый экран: с 1280px справа от вводного абзаца – вставной песочный блок .gt--cn с тем же столбцом
+   (260 / 120 / 550 / 90); уже 1280px его нет – цены и так перечислены в абзаце.
+   Всё на CSS, без JS: кегль цифр – от ширины колонки (cqi), правило вылета – от высоты карточки (cqh). */
+.faq-price.gt-sr{ position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden;
+  clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; border:0; }
+
+/* Общий столбец. Три табличные цифры 800 с трекингом -.03em = 1,59 кегля; кегль --gt-f считается от ширины контейнера:
+   ширина = 3 цифры + зазор --gt-gap + колонка подписей --gt-lw. --gt-ov – на сколько подписи заходят в поле карточки справа */
+.gt{ position:relative; container-type:inline-size; --gt-lw:120px; --gt-gap:18px; --gt-ov:0px; --gt-rot:23deg;
+  --gt-f:clamp(56px, min(calc((100cqi + var(--gt-ov) - var(--gt-lw) - var(--gt-gap)) / 1.59), 24vw), 190px); }
+.gt-col{ position:relative; z-index:1; display:grid; grid-template-columns:max-content max-content; column-gap:var(--gt-gap);
+  align-items:center; justify-content:start; }
+.gt .gt-n{ display:block; font-family:"Fira Sans",sans-serif; font-weight:800; font-style:normal; font-size:var(--gt-f);
+  line-height:.9; letter-spacing:-.03em; color:var(--c-ink); font-variant-numeric:tabular-nums lining-nums;
+  font-feature-settings:"tnum" 1, "lnum" 1; text-align:right; white-space:nowrap; }
+/* подпись поверх контуров листов: песочный ореол вокруг букв, чтобы белая линия не зачёркивала мелкий текст */
+.gt .gt-l{ display:flex; flex-direction:column; gap:4px; min-width:0; color:var(--c-ink);
+  text-shadow:0 0 2px var(--c-sand), 0 0 4px var(--c-sand), 0 0 6px var(--c-sand), 0 0 8px var(--c-sand); }
+.gt .gt-l b{ font-family:"Fira Sans Condensed","Fira Sans",sans-serif; font-weight:600; font-size:12.5px; line-height:1.25;
+  letter-spacing:.3em; text-transform:uppercase; color:var(--c-ink); margin-right:-.3em; white-space:nowrap; }
+.gt .gt-l small{ font-family:"Fira Sans Condensed","Fira Sans",sans-serif; font-weight:500; font-size:13px; line-height:1.2;
+  letter-spacing:.02em; color:rgba(31,33,32,.6); white-space:nowrap; }
+/* цифры выходят за блок – подписи крайних строк сходятся к центру на --gt-d (задаётся ниже для каждого места), чтобы не
+   садиться на край карточки: цифры шире блока, подписи внутри, как в образце. Цифры помещаются – подпись по центру цифры */
+.gt .gt-l:nth-child(2){ transform:translateY(calc(var(--gt-d, 0px) * 1.5)); }
+.gt .gt-l:nth-child(4){ transform:translateY(calc(var(--gt-d, 0px) * .5)); }
+.gt .gt-l:nth-child(6){ transform:translateY(calc(var(--gt-d, 0px) * -.5)); }
+.gt .gt-l:nth-child(8){ transform:translateY(calc(var(--gt-d, 0px) * -1.5)); }
+
+/* Листы: белый контур 1px, A4 (1 : 1,414), поворот 23°, цепочка вдоль собственной вертикали листа (sin 23° = .3907,
+   cos 23° = .9205), как квадраты в образце; --gt-cx – центр цепочки по горизонтали = середина колонки подписей */
+.gt-clip{ position:absolute; z-index:0; overflow:hidden; pointer-events:none; left:-28px; right:-28px; top:-18px; bottom:-10px;
+  --gt-sw:calc(var(--gt-f) * .7); --gt-sh:calc(var(--gt-f) * .99); --gt-st:calc(var(--gt-f) * 1.06);
+  --gt-cx:calc(28px + var(--gt-f) * 1.59 + var(--gt-gap) + var(--gt-lw) / 2); }
+.gt-clip i{ position:absolute; left:var(--gt-cx); top:50%; width:var(--gt-sw); height:var(--gt-sh);
+  margin:calc(var(--gt-sh) / -2) 0 0 calc(var(--gt-sw) / -2); box-sizing:border-box; border:1px solid rgba(255,255,255,.92);
+  transform:translate(calc(var(--gt-i) * var(--gt-st) * -.3907), calc(var(--gt-i) * var(--gt-st) * .9205)) rotate(var(--gt-rot)); }
+.gt-clip i:nth-child(1){ --gt-i:-1.5; }
+.gt-clip i:nth-child(2){ --gt-i:-.5; }
+.gt-clip i:nth-child(3){ --gt-i:.5; }
+.gt-clip i:nth-child(4){ --gt-i:1.5; }
+
+/* /apostille/, телефон и планшет: столбец под абзацами, внутри карточки */
+.gt--ap{ margin:4px 0 10px; }
+/* до 1024px слой листов обрывается внутри карточки – концы линий тают, а не обрезаются по невидимой черте */
+@media (max-width:1023px){
+  .gt--ap .gt-clip{ -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 22%, #000 78%, transparent 100%);
+    mask-image:linear-gradient(to bottom, transparent 0, #000 22%, #000 78%, transparent 100%); }
+}
+@media (max-width:639px){
+  .gt--ap{ --gt-lw:96px; --gt-gap:10px;
+    --gt-f:clamp(56px, min(calc((100cqi - var(--gt-lw) - var(--gt-gap)) / 1.59), 26vw), 120px); }
+  .gt--ap .gt-l b{ font-size:11px; letter-spacing:.2em; margin-right:-.2em; }
+  .gt--ap .gt-l small{ font-size:12px; }
+}
+@media (min-width:640px){
+  .gt--ap .gt-clip{ left:-48px; right:-48px; --gt-cx:calc(48px + var(--gt-f) * 1.59 + var(--gt-gap) + var(--gt-lw) / 2); }
+}
+
+/* /apostille/ с 1024px: карточка – две колонки на всю высоту. Колонка 5 растворяется в сетке (display:contents), сноска
+   и кнопка встают под абзацы слева, столбец цифр – справа, по центру карточки.
+   Правило вылета (со стенда): цифры выходят за верх и низ карточки либо явно – не меньше 24px с каждой стороны, – либо никак;
+   цифры, которые едва касаются края карточки, выглядят как ошибка вёрстки. На стенде это считал JS, здесь – CSS:
+   .gt--ap стоит на обеих строках сетки, поэтому её высота (100cqh, container-type:size) = высота содержимого карточки,
+   вся карточка H = 100cqh + 96px (поля 48px). 3,39 – высота столбца от верха первой цифры до базовой линии последней
+   в кеглях (4 строки: 3 × .9 + .69).
+   1) --gt-fw – кегль по ширине колонки (подписи заходят в правое поле карточки на 12px). Если с ним вылет не меньше 24px
+      (3,39·fw − H ≥ 48px) – он и остаётся (примерно с 1300px; с 1384px кегль 213px, вылет ≈ 33px).
+   2) Иначе, если не хватает немного: --gt-fo – кегль, при котором вылет ровно 24px. Берётся, если он не больше 224px
+      и подписи зайдут в поле не дальше 28px (fo − fw ≤ 16px / 1,59 = 10,06px) – примерно 1260–1300px.
+   3) Иначе цифры стоят внутри (1024 – ~1260px): кегль не больше --gt-fi – верх цифры на уровне кикера, низ – на уровне
+      низа сноски. Сверено со стендом на 1024–1920px: кегль и положение совпадают до 0,1px.
+   «Если – то» без JS: max(Б, min(А, x × 10000)) = А при x ≥ 0 и Б при x < 0, когда А ≥ Б – в обоих выборах так и есть
+   (fo ≥ fi; в случае 1 fw ≥ fo). --gt-ov – на сколько подписи заходят в поле при выбранном кегле (не меньше 12px);
+   --gt-d – схождение подписей: 35.2px – высота подписи (12.5 × 1.25 + 4 + 13 × 1.2). */
+@media (min-width:1024px){
+  .gt-card > .grid{ row-gap:28px; }
+  .gt-card .gt-c5{ display:contents; }
+  .gt-card .gt-note{ grid-column:1 / span 7; grid-row:2; align-self:center; margin:0; max-width:min(52ch, calc(100% - 222px)); }
+  .gt-card .gt-btn{ grid-column:1 / span 7; grid-row:2; align-self:center; justify-self:end; margin:0; }
+  .gt--ap{ grid-column:8 / -1; grid-row:1 / span 2; align-self:stretch; margin:0; container-type:size;
+    --gt-fw:clamp(120px, calc((100cqi + 12px - var(--gt-lw) - var(--gt-gap)) / 1.59), 224px);
+    --gt-h:calc(100cqh + 96px);
+    --gt-fo:calc((var(--gt-h) + 48px) / 3.39);
+    --gt-fi:min(var(--gt-fw), calc(100cqh / 3.39));
+    --gt-f2:max(var(--gt-fi), min(var(--gt-fo), calc(min(224px - var(--gt-fo), var(--gt-fw) + 10.06px - var(--gt-fo)) * 10000)));
+    --gt-f:max(var(--gt-f2), min(var(--gt-fw), calc((3.39 * var(--gt-fw) - var(--gt-h) - 48px) * 10000)));
+    --gt-ov:max(12px, calc(1.59 * var(--gt-f) + var(--gt-lw) + var(--gt-gap) - 100cqi));
+    --gt-d:max(0px, calc(.9 * var(--gt-f) - (100cqh - 35.2px) / 3)); }
+  .gt--ap .gt-col{ position:absolute; right:calc(-1 * var(--gt-ov)); top:50%; transform:translateY(-50%); justify-content:end; }
+  .gt--ap .gt-clip{ top:-48px; bottom:-48px; left:-16px; right:-48px; border-radius:0 26px 26px 0;
+    --gt-cx:calc(100% - 48px + var(--gt-ov) - var(--gt-lw) / 2); }
+}
+
+/* /cennik/ первый экран, с 1280px: вставной песочный блок справа от вводного абзаца (.lead-lines – 36em при 24px = 864px;
+   поля страницы 32px, зазор до блока 40px). Блок ниже столбца цифр (3,08 кегля): первая цифра выходит за его верх,
+   последняя – за низ; подписи сходятся так, что крайние стоят в 14px от края блока
+   (62px = 2 × (14 + 34 / 2), 34px – высота подписи: 12 × 1.25 + 4 + 12.5 × 1.2). */
+.gt--cn{ display:none; }
+@media (min-width:1280px){
+  .gt-host{ position:relative; }
+  .gt--cn{ display:block; position:absolute; top:0; bottom:0; right:32px; width:calc(100% - 64px - 864px - 40px);
+    --gt-lw:112px; --gt-gap:14px;
+    --gt-f:clamp(80px, calc((100cqi - 46px - var(--gt-lw) - var(--gt-gap)) / 1.59), 150px);
+    --gt-d:max(0px, calc(.9 * var(--gt-f) - (3.08 * var(--gt-f) - 62px) / 3)); }
+  .gt--cn .gt-l b{ font-size:12px; letter-spacing:.26em; margin-right:-.26em; }
+  .gt--cn .gt-l small{ font-size:12.5px; }
+  .gt-blk{ position:absolute; left:0; right:0; top:50%; height:calc(var(--gt-f) * 3.08); transform:translateY(-50%);
+    background:var(--c-sand); border-radius:26px; overflow:hidden; }
+  .gt--cn .gt-col{ position:absolute; left:20px; top:50%; transform:translateY(-50%); }
+  .gt--cn .gt-clip{ inset:0; border-radius:inherit; --gt-cx:calc(20px + var(--gt-f) * 1.59 + var(--gt-gap) + var(--gt-lw) / 2); }
+}
