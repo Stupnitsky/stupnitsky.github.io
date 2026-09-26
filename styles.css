@@ -4280,6 +4280,38 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
   .gt--cn .gt-clip{ inset:0; border-radius:inherit; --gt-cx:calc(20px + var(--gt-f) * 1.59 + var(--gt-gap) + var(--gt-lw) / 2); }
 }
 
+/* Go Tabular на /tlumaczenia-przysiegle/ #cena (Грег, 26.09.2026: «сверху оставить 260 Apostille, потом внизу 90, над ней
+   1125 znaków и −10%»). Классы .gt--ap (как «Ile trwa» на /apostille/) + .gt--tl: две огромные строки – 260 (Apostille MSZ
+   do tłumaczenia) и 90 (Tłumaczenie ,- zł / strona); между ними, прижатый к «90», маленький табличный столбик .gt-cap
+   средним кеглем (0,3 большого): 1125 – znaków ze spacjami = 1 strona, −10% – od 6 stron w zleceniu. Цифры столбика стоят
+   вправо, как большие. Скидка больше не стоит среди цен большим кеглем – она уточняет цену за страницу.
+   Отличия от .gt--ap: три листа, подписи без схождения; с 1024px кегль – по ширине колонки, но так, чтобы весь столбец
+   (≈ 2,35 кегля) помещался в высоту карточки; вылета за карточку нет. */
+.gt--tl .gt-clip i:nth-child(1){ --gt-i:-1; }
+.gt--tl .gt-clip i:nth-child(2){ --gt-i:0; }
+.gt--tl .gt-clip i:nth-child(3){ --gt-i:1; }
+.gt--tl .gt-l{ transform:none !important; }
+/* столбик 1125 / −10% – строки той же сетки, что большие цифры: числа стоят правым краем под «260» и «90», подписи – в колонке
+   подписей; отступ сверху отделяет его от «260», снизу он прижат к «90» */
+.gt--tl .gt-cap, .gt--tl .gt-m{ display:contents; }
+.gt--tl .gt-m b{ justify-self:end; align-self:baseline; font-family:"Fira Sans",sans-serif; font-weight:800;
+  font-size:max(24px, calc(var(--gt-f) * .3)); line-height:.95; letter-spacing:-.03em; color:var(--c-ink); text-align:right;
+  font-variant-numeric:tabular-nums lining-nums; font-feature-settings:"tnum" 1, "lnum" 1; white-space:nowrap; }
+.gt--tl .gt-m small{ align-self:baseline; font-family:"Fira Sans Condensed","Fira Sans",sans-serif; font-weight:500; font-size:13px;
+  line-height:1.2; letter-spacing:.02em; color:rgba(31,33,32,.6);
+  text-shadow:0 0 2px var(--c-sand), 0 0 4px var(--c-sand), 0 0 6px var(--c-sand); }
+.gt--tl .gt-m:first-child b, .gt--tl .gt-m:first-child small{ margin-top:calc(var(--gt-f) * .1); }
+.gt--tl .gt-m:last-child b, .gt--tl .gt-m:last-child small{ margin-bottom:calc(var(--gt-f) * .02); }
+@media (max-width:639px){
+  /* колонка подписей может сужаться – подписи переносятся, а не выходят за карточку */
+  .gt--tl .gt-col{ grid-template-columns:max-content minmax(0, 1fr); }
+  .gt--tl .gt-l small{ white-space:normal; }
+  .gt--tl .gt-m small{ font-size:12px; }
+}
+@media (min-width:1024px){
+  .gt--ap.gt--tl{ --gt-f:min(var(--gt-fw), calc((100cqh - 40px) / 2.35)); --gt-ov:max(12px, calc(1.59 * var(--gt-f) + var(--gt-lw) + var(--gt-gap) - 100cqi)); --gt-d:0px; }
+}
+
 /* #jezyki на /tlumaczenia-przysiegle/ (Грег, 26.09.2026: «вот такое реализуй», лист 42 стенда docs/konstrukcje/ –
    «сетка и призрачное A»). Коды языков Fira Sans 900, под ними названия узким 400. Сетку делят только внутренние
    волосяные линейки, внешней рамки нет: у каждой ячейки линия слева и сверху, а обёртка срезает первую колонку и первый

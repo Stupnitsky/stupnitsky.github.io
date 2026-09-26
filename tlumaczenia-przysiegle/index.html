@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260926-24">
+<link rel="stylesheet" href="/styles.css?v=20260926-25">
 
 <script type="application/ld+json">
 {
@@ -299,7 +299,7 @@
 <!-- ================= CENA ================= -->
 <section id="cena" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
-    <div class="bg-sand text-ink rounded-[26px] p-7 sm:p-12">
+    <div class="bg-sand text-ink rounded-[26px] p-7 sm:p-12 gt-card">
       <div class="grid grid-cols-12 gap-8">
         <div class="col-span-12 lg:col-span-7">
           <p class="kicker">/ Cena i termin</p>
@@ -318,18 +318,31 @@
             od ręki, oryginał z&nbsp;pieczęcią odbierasz na spotkaniu albo dostajesz Paczkomatem.
           </p>
         </div>
-        <div class="col-span-12 lg:col-span-5 flex flex-col justify-end gap-4">
-          <ul class="faq-price">
+        <div class="col-span-12 lg:col-span-5 flex flex-col justify-end gap-4 gt-c5">
+          <!-- Go Tabular (26.09.2026, как в «Ile trwa i ile kosztuje» на /apostille/):
+               список цен – для экранных чтецов (визуально скрыт), на экране – столбец .gt (aria-hidden), вариант .gt--tl (Грег,
+               26.09.2026): сверху 260 – Apostille к переводу, внизу 90 за страницу, над ней средним кеглем 1125 znaków = 1 strona
+               и −10% od 6 stron.
+               Стили – «Go Tabular» в конце styles.css -->
+          <ul class="faq-price gt-sr">
             <li><span>Tłumaczenie przysięgłe</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ strona</span></span></span></li>
             <li><span>Od 6 stron w&nbsp;zleceniu</span><b class="font-bold">rabat 10%</b></li>
             <li><span>Apostille MSZ do tłumaczenia</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></li>
           </ul>
-          <p class="text-[15px] leading-[1.6] text-ink/70 max-w-[40ch]">
+          <div class="gt gt--ap gt--tl" aria-hidden="true">
+            <div class="gt-clip"><i></i><i></i><i></i></div>
+            <div class="gt-col">
+              <span class="gt-n">260</span><span class="gt-l"><b>Apostille MSZ</b><small>,-&nbsp;zł / do tłumaczenia</small></span>
+              <span class="gt-cap"><span class="gt-m"><b>1125</b><small>znaków ze spacjami = 1&nbsp;strona</small></span><span class="gt-m"><b>−10%</b><small>od 6&nbsp;stron w&nbsp;zleceniu</small></span></span>
+              <span class="gt-n">90</span><span class="gt-l"><b>Tłumaczenie</b><small>,-&nbsp;zł / strona</small></span>
+            </div>
+          </div>
+          <p class="text-[15px] leading-[1.6] text-ink/70 max-w-[40ch] gt-note">
             Strona = 1125 znaków ze spacjami. Cena za stronę zależy od języka i&nbsp;rodzaju dokumentu –
             ostateczną kwotę podajemy zwykle w&nbsp;15 minut.
             Pełny <a href="/cennik/#tlumaczenia" class="underline font-semibold">cennik tłumaczeń i&nbsp;Apostille</a>.
           </p>
-          <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20potrzebuj%C4%99%20wyceny%20t%C5%82umaczenia%20przysi%C4%99g%C5%82ego" class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn btn-center">
+          <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20potrzebuj%C4%99%20wyceny%20t%C5%82umaczenia%20przysi%C4%99g%C5%82ego" class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn btn-center gt-btn">
             Wyceń tłumaczenie <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
           </a>
         </div>
@@ -640,7 +653,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260926-24" defer></script>
+<script src="/assets/app.js?v=20260926-25" defer></script>
 
 </body>
 </html>
