@@ -34,7 +34,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260926-200">
+<link rel="stylesheet" href="/styles.css?v=20260926-24">
 
 <script type="application/ld+json">
 {
@@ -334,13 +334,42 @@
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
       Apostille zdalnie to trzy odcinki: Paczkomat&nbsp;InPost do Warszawy, MSZ i&nbsp;Paczkomat z&nbsp;powrotem. Liczymy je od dnia, w&nbsp;którym nadajesz kopertę, do dnia, w&nbsp;którym odbierasz gotowy dokument – bez wizyty w&nbsp;MSZ i&nbsp;bez dnia wolnego.
     </p>
-    <div class="route mt-8 bg-sand rounded-[26px] p-7 sm:p-10">
+    <!-- Маршрут (Грег, 25.09.2026: идея 7 со стенда docs/typografia/ – «встроить в сайт»): три отрезка – схемой пешего
+         маршрута, как прогулка по Вене (Fonts inspirations/136951.png). Список .route-legs – для экранных чтецов
+         (визуально скрыт; из него же app.js берёт подписи отрезков под линейкой), схема .rt-map – aria-hidden.
+         data-leg – отрезок: 1 – туда, 2 – MSZ, 3 – обратно. Стили – .rt-* в styles.css, наведение и прорисовка – app.js. -->
+    <div class="route route--map mt-8 bg-sand rounded-[26px] p-7 sm:p-10">
       <ol class="route-legs">
         <li><span class="route-k">Twoje miasto → Warszawa</span><span class="route-n">1&nbsp;dzień</span><span class="route-t">Paczkomat zwykle dowozi kopertę następnego dnia roboczego.</span></li>
         <li><span class="route-k">MSZ, ul.&nbsp;Krucza</span><span class="route-n">zwykle 1–3&nbsp;dni</span><span class="route-t">Rezerwujemy termin, składamy i&nbsp;odbieramy dokument z&nbsp;klauzulą. Ekspres – składamy tego samego dnia.</span></li>
         <li><span class="route-k">Warszawa → Twoje miasto</span><span class="route-n">1&nbsp;dzień</span><span class="route-t">Gotowy dokument wraca do paczkomatu, który wskażesz.</span></li>
       </ol>
-      <p class="route-sum"><b>Razem 3–5&nbsp;dni roboczych, w&nbsp;ekspresie 2–3.</b> Nadajesz w&nbsp;poniedziałek – dokument z&nbsp;Apostille zwykle wraca do Ciebie jeszcze w&nbsp;tym samym tygodniu.</p>
+      <div class="rt-map" aria-hidden="true">
+        <p class="rt-rot rt-rot--key" data-leg="2"><i class="rt-dot"></i>MSZ, ul.&nbsp;Krucza – zwykle 1–3&nbsp;dni</p>
+        <div class="rt-col rt-col--a">
+          <i class="rt-ln rt-ln--top" data-leg="1"></i>
+          <span class="rt-st" data-leg="1">Twoje miasto</span>
+          <span class="rt-gap" data-leg="1"><i class="rt-ln"></i><span class="rt-dur">1&nbsp;dzień</span><i class="rt-ln"></i></span>
+          <span class="rt-st" data-leg="1">Warszawa</span>
+          <span class="rt-gap" data-leg="2"><i class="rt-ln"></i></span>
+          <span class="rt-st rt-st--key" data-leg="2"><i class="rt-dot"></i>MSZ, ul.&nbsp;Krucza</span>
+          <i class="rt-ln rt-ln--bot" data-leg="2"></i>
+        </div>
+        <p class="rt-rot rt-rot--a" data-leg="1">Z&nbsp;Twojego miasta do MSZ</p>
+        <div class="rt-col rt-col--b">
+          <i class="rt-ln rt-ln--top" data-leg="2"></i>
+          <span class="rt-st" data-leg="2">Klauzula Apostille</span>
+          <span class="rt-gap" data-leg="2"><i class="rt-ln"></i></span>
+          <span class="rt-st" data-leg="3">Warszawa</span>
+          <span class="rt-gap" data-leg="3"><i class="rt-ln"></i><span class="rt-dur">1&nbsp;dzień</span><i class="rt-ln"></i></span>
+          <span class="rt-st" data-leg="3">Twoje miasto</span>
+          <i class="rt-ln rt-ln--bot" data-leg="3"></i>
+        </div>
+        <p class="rt-rot rt-rot--b" data-leg="3">i&nbsp;z&nbsp;powrotem do paczkomatu</p>
+      </div>
+      <div class="route-foot">
+        <p class="route-sum"><b>Razem 3–5&nbsp;dni roboczych, w&nbsp;ekspresie 2–3.</b> Nadajesz w&nbsp;poniedziałek – dokument z&nbsp;Apostille zwykle wraca do Ciebie jeszcze w&nbsp;tym samym tygodniu.</p>
+      </div>
     </div>
     <p class="route-far"><span>Odległość nie zmienia terminu</span> – Paczkomat jedzie przez noc.</p>
     <p class="mt-4 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
@@ -643,7 +672,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260926-200" defer></script>
+<script src="/assets/app.js?v=20260926-24" defer></script>
 
 </body>
 </html>

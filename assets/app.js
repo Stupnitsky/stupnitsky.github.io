@@ -2275,7 +2275,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260926-200';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260926-24';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -2664,3 +2664,263 @@
       }
     } catch (e) {}
   })();
+
+  /* /apostille-bez-przyjazdu/ #czas – маршрут (Грег, 25.09.2026: идея 7 со стенда docs/typografia/, «встроить в сайт»).
+     Схема – в разметке страницы (.rt-map), стили – .rt-* в styles.css. Здесь:
+     1) у каждой остановки два слоя: узкий .rt-c (в потоке) и обычный .rt-w (поверх, по центру). Мерим, во сколько раз
+        обычный шире, – по этому числу слои растягиваются так, что в каждом кадре перехода они одной ширины;
+     2) мышь: отрезок под курсором раскрывается (is-live на схеме, is-on на его частях), под линейкой вместо итога –
+        текст отрезка из списка .route-legs. Между словами и по пустым местам карточки отрезок держится, гаснет –
+        когда курсор ушёл с карточки. Прокрутка под неподвижной мышью ничего не включает;
+     3) появление: нитка один раз прорисовывается сверху вниз, остановки по пути на миг раскрываются (без reduced motion). */
+  (function(){
+    var card = document.querySelector('.route--map'), map = card && card.querySelector('.rt-map');
+    if (!map) return;
+    var foot = card.querySelector('.route-foot');
+    var mouse = window.matchMedia('(hover:hover) and (pointer:fine)');
+    var still = window.matchMedia('(prefers-reduced-motion:reduce)');
+    var slice = Array.prototype.slice;
+
+    /* 1. два слоя у остановки; точка (у MSZ) остаётся снаружи слоёв */
+    var stops = slice.call(map.querySelectorAll('.rt-st'));
+    stops.forEach(function(st){
+      var text = '';
+      slice.call(st.childNodes).forEach(function(n){ if (n.nodeType === 3) { text += n.nodeValue; st.removeChild(n); } });
+      var x = document.createElement('span'), c = document.createElement('span'), w = document.createElement('span');
+      x.className = 'rt-x'; c.className = 'rt-c'; w.className = 'rt-w';
+      c.textContent = w.textContent = text.trim();
+      x.appendChild(c); x.appendChild(w); st.appendChild(x);
+    });
+    function measure(){
+      stops.forEach(function(st){
+        var a = st.querySelector('.rt-c').offsetWidth, b = st.querySelector('.rt-w').offsetWidth;   /* без transform */
+        if (!a || !b) return;
+        st.style.setProperty('--rt-r', (b / a).toFixed(4));
+        st.style.setProperty('--rt-k', (a / b).toFixed(4));
+        st.style.setProperty('--rt-dx', ((b - a) / 2).toFixed(1) + 'px');
+        /* обычная ширина не влезает в колонку (iPhone 320 – «Klauzula Apostille») – слово не раскрывается, иначе
+           заденет повёрнутую подпись; до 16px на оба края уходит в межколоночный зазор */
+        var dot = st.querySelector('.rt-dot');
+        st.classList.toggle('is-tight', b + (dot ? dot.offsetWidth * 2 : 0) - st.clientWidth > 16);
+      });
+    }
+    measure();
+    if (document.fonts && document.fonts.load) {
+      Promise.all(['300 40px "Fira Sans"', '600 40px "Fira Sans"', '300 40px "Fira Sans Condensed"', '600 40px "Fira Sans Condensed"']
+        .map(function(f){ return document.fonts.load(f); })).then(measure, measure);
+    }
+    var rs = 0;
+    window.addEventListener('resize', function(){ clearTimeout(rs); rs = setTimeout(measure, 150); }, { passive:true });
+
+    /* порядок кусочков нитки: --i – по всему маршруту (появление), --o – внутри отрезка (наведение) */
+    var count = {};
+    slice.call(map.querySelectorAll('.rt-ln')).forEach(function(ln, i){
+      var host = ln.closest('[data-leg]'), leg = host ? host.getAttribute('data-leg') : '0';
+      count[leg] = count[leg] || 0;
+      ln.style.setProperty('--i', i);
+      ln.style.setProperty('--o', count[leg]++);
+    });
+
+    /* 2. подписи отрезков – из списка для чтецов (текст в одном месте); только там, где есть мышь:
+       клетка итога растёт по самой длинной подписи */
+    var caps = [], parts = slice.call(map.querySelectorAll('[data-leg]')), on = '';
+    function buildCaps(){
+      if (caps.length || !foot) return;
+      slice.call(card.querySelectorAll('.route-legs > li')).forEach(function(li, i){
+        var k = li.querySelector('.route-k'), n = li.querySelector('.route-n'), t = li.querySelector('.route-t');
+        if (!k || !n || !t) return;
+        var p = document.createElement('p'), b = document.createElement('b');
+        p.className = 'rt-cap'; p.setAttribute('aria-hidden', 'true'); p.setAttribute('data-leg', String(i + 1));
+        b.textContent = k.textContent.trim() + ': ' + n.textContent.trim() + '.';
+        p.appendChild(b); p.appendChild(document.createTextNode(' ' + t.textContent.trim()));
+        foot.appendChild(p); caps.push(p);
+      });
+    }
+    var walk = [];
+    function stopWalk(){
+      walk.forEach(clearTimeout); walk = [];
+      stops.forEach(function(st){ st.classList.remove('is-pass'); });
+    }
+    function set(leg){
+      if (leg === on) return;
+      on = leg;
+      if (leg) stopWalk();
+      map.classList.toggle('is-live', !!leg);
+      parts.forEach(function(el){ el.classList.toggle('is-on', !!leg && el.getAttribute('data-leg') === leg); });
+      if (foot) foot.classList.toggle('is-leg', !!leg && caps.length > 0);
+      caps.forEach(function(p){ p.classList.toggle('is-on', p.getAttribute('data-leg') === leg); });
+    }
+    if (mouse.matches) buildCaps();
+    function onMouse(){ if (mouse.matches) buildCaps(); else set(''); }
+    if (mouse.addEventListener) mouse.addEventListener('change', onMouse); else if (mouse.addListener) mouse.addListener(onMouse);
+
+    var lx = null, ly = null, off = 0;
+    card.addEventListener('pointermove', function(e){
+      if (e.pointerType !== 'mouse' || !mouse.matches) return;
+      if (e.clientX === lx && e.clientY === ly) return;
+      lx = e.clientX; ly = e.clientY;
+      clearTimeout(off);
+      var t = e.target.closest ? e.target.closest('[data-leg]') : null;
+      /* повёрнутые подписи – не цели: по пути из колонки в колонку курсор их пересекает */
+      if (t && map.contains(t) && !t.classList.contains('rt-rot')) set(t.getAttribute('data-leg'));
+    });
+    card.addEventListener('pointerleave', function(e){
+      if (e.pointerType !== 'mouse') return;
+      clearTimeout(off);
+      off = setTimeout(function(){ set(''); }, 160);
+    });
+
+    /* 3. появление: нитка прорисовывается по ходу маршрута (кусочек за кусочком через 80 мс), точка – когда путь
+       дошёл до MSZ; каждая остановка на 0,4 с раскрывается, когда до неё доходит нитка, – эффект наведения
+       показывает себя сам, и на телефоне тоже */
+    if (!still.matches && 'IntersectionObserver' in window) {
+      /* нитка прячется, только когда карточка подъезжает к окну: наблюдатель сработал – значит, прорисовка точно
+         будет (headless-снимки стенда с виртуальным временем его не вызывают – там нитка просто видна) */
+      var near = new IntersectionObserver(function(entries){
+        if (!entries.some(function(en){ return en.isIntersecting; })) return;
+        near.disconnect();
+        if (!map.classList.contains('rt-go')) map.classList.add('rt-pre');
+      }, { rootMargin:'30% 0px 30% 0px' });
+      var io = new IntersectionObserver(function(entries){
+        if (!entries.some(function(en){ return en.isIntersecting; })) return;
+        io.disconnect(); near.disconnect();
+        map.classList.add('rt-pre');
+        void map.offsetWidth;
+        map.classList.add('rt-go');
+        setTimeout(function(){ map.classList.remove('rt-pre', 'rt-go'); }, 1700);
+        if (on) return;
+        var ln = slice.call(map.querySelectorAll('.rt-ln'));
+        stops.forEach(function(st){
+          /* номер кусочка нитки прямо над остановкой: его прорисовка почти кончилась – путь дошёл */
+          var above = 0;
+          ln.forEach(function(l, i){ if (l.compareDocumentPosition(st) & Node.DOCUMENT_POSITION_FOLLOWING) above = i; });
+          var at = above * 80 + 280;
+          walk.push(setTimeout(function(){ st.classList.add('is-pass'); }, at));
+          walk.push(setTimeout(function(){ st.classList.remove('is-pass'); }, at + 400));
+        });
+      }, { threshold:0.2 });
+      near.observe(map); io.observe(map);
+    }
+  })();
+
+/* --- #jezyki на /tlumaczenia-przysiegle/: код языка раскрывается в самоназвание (Грег, 26.09.2026) ---
+   Мышь: наведение (или фокус) на ячейке – класс .is-w на ней, дальше всё делает CSS (.lng-w в styles.css).
+   Тач: ячейки раскрываются по очереди, пока сетка проходит через экран, до и после – ни одна.
+   --lng-dd / --lng-ws: на сколько при раскрытии отъезжает влево жёлтая точка и вправо слово (пара «точка + слово» по центру).
+   Фон: вместе с раскрытием «A» гаснет и за сеткой наплывом встаёт буква языка (data-g). Буква вписана в высоту прописной
+   «A», стоит на нижнем крае секции в середине видимой части «A», но целиком в окне – чужие буквы край не режет (обрезанная
+   Ы читалась бы как Ь, Ñ – как N); на телефоне – за сеткой: там буквы сменяются, пока сетка на экране, а низ секции ещё
+   за краем. Метрики букв меряются canvas-ом после загрузки шрифта. */
+(function () {
+  var grid = document.querySelector('.lng-grid');
+  if (!grid || !window.requestAnimationFrame) return;
+  var cells = [].slice.call(grid.querySelectorAll('.lng-cell')).filter(function (c) { return c.querySelector('.lng-w') || c.hasAttribute('data-g'); });
+  if (!cells.length) return;
+  var mouse = window.matchMedia('(hover:hover) and (pointer:fine)');
+  var cur = -1;
+  var sec = grid.closest ? grid.closest('.lng') : null, ghost = sec ? sec.querySelector('.lng-ghost') : null;
+  var FONT = "900 100px 'Fira Sans'", layers = [], front = 0, metrics = {}, geo = null;
+  if (ghost) layers = [0, 1].map(function () {
+    var s = document.createElement('span');
+    s.className = 'lng-g'; s.setAttribute('aria-hidden', 'true');
+    sec.insertBefore(s, ghost.nextSibling);
+    return s;
+  });
+
+  function measure() {
+    var ctx = document.createElement('canvas').getContext('2d');
+    if (!ctx) return;
+    ctx.font = FONT;
+    cells.forEach(function (c) {
+      var g = c.getAttribute('data-g');
+      if (!g) return;
+      var m = ctx.measureText(g);
+      metrics[g] = { l: m.actualBoundingBoxLeft / 100, r: m.actualBoundingBoxRight / 100,
+                     a: m.actualBoundingBoxAscent / 100, d: m.actualBoundingBoxDescent / 100 };
+    });
+  }
+  /* поле для буквы: высота – прописная «A» (0,696em), низ – край секции, середина – видимая часть «A» (её чернила
+     от −0,025 до 0,626em от левого края блока), поля слева и справа – как у контейнера */
+  function layout() {
+    if (!ghost) return;
+    var sr = sec.getBoundingClientRect(), gr = ghost.getBoundingClientRect();
+    var F = parseFloat(getComputedStyle(ghost).fontSize), W = sec.clientWidth, H = sec.clientHeight;
+    var pad = W >= 640 ? 32 : 20, aL = gr.left - sr.left - .025 * F, aR = Math.min(gr.left - sr.left + .626 * F, W);
+    geo = { cap: Math.min(.696 * F, H - pad), cx: (aL + aR) / 2, lo: pad, hi: W - pad, bottom: H };
+    if (W < 640) {
+      var g = grid.getBoundingClientRect();
+      geo.cap = g.height - 8; geo.bottom = g.bottom - sr.top; geo.cx = W / 2;
+    }
+    if (cur >= 0) place(layers[front], cells[cur].getAttribute('data-g'));
+  }
+  function place(el, g) {
+    var m = metrics[g];
+    el.textContent = g || '';
+    if (!m || !geo || !(m.l + m.r > 0)) return;
+    var w = m.l + m.r, h = m.a + m.d, size = Math.min(geo.cap / h, (geo.hi - geo.lo) / w);
+    var inkL = Math.max(geo.lo, Math.min(geo.cx - w * size / 2, geo.hi - w * size));
+    var x = inkL + m.l * size, base = geo.bottom - m.d * size;   /* при line-height:1 базовая линия Fira – 0,835em от верха */
+    el.style.fontSize = size.toFixed(1) + 'px';
+    el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + (base - .835 * size).toFixed(1) + 'px)';
+  }
+  function show(i) {
+    if (i === cur) return;
+    cur = i;
+    cells.forEach(function (c, k) { c.classList.toggle('is-w', k === i); });
+    if (!ghost) return;
+    var g = i >= 0 ? cells[i].getAttribute('data-g') : null;
+    layers[front].classList.remove('is-on');
+    if (!g) { sec.classList.remove('is-g'); return; }
+    front = 1 - front;
+    place(layers[front], g);
+    layers[front].classList.add('is-on');
+    sec.classList.add('is-g');
+  }
+
+  grid.addEventListener('mouseover', function (e) {
+    if (!mouse.matches) return;
+    var c = e.target.closest ? e.target.closest('.lng-cell') : null;
+    show(c ? cells.indexOf(c) : -1);
+  });
+  grid.addEventListener('mouseleave', function () { if (mouse.matches) show(-1); });
+  cells.forEach(function (c, k) {
+    c.addEventListener('focusin', function () { show(k); });
+    c.addEventListener('focusout', function () { show(-1); });
+  });
+
+  /* тач: от «верх сетки на 85 % экрана» до «низ сетки на 25 %» – около 85px прокрутки на язык */
+  var ticking = false;
+  function onScroll() {
+    if (ticking || mouse.matches) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      ticking = false;
+      var r = grid.getBoundingClientRect(), vh = window.innerHeight;
+      var p = (vh * .85 - r.top) / (r.height + vh * .6);
+      show(p < 0 || p >= 1 ? -1 : Math.min(cells.length - 1, Math.floor(p * cells.length)));
+    });
+  }
+  function fit() {
+    cells.forEach(function (c) {
+      var code = c.querySelector('.lng-code'), w = c.querySelector('.lng-w');
+      if (!code || !w) return;                                   /* клетка «pozostałe języki» – без кода */
+      var dot = getComputedStyle(code, '::before');
+      var dw = parseFloat(dot.width) || 0, gap = parseFloat(dot.marginRight) || 0;
+      if (!dw) return;                                           /* ячейка без точки */
+      var cr = code.getBoundingClientRect(), ce = c.getBoundingClientRect(), ww = w.getBoundingClientRect().width + 2;
+      /* точка + отступ + слово – парой по центру ячейки; слово при сдвиге не выходит за ячейку */
+      var s = Math.max(0, Math.min((dw + gap) / 2, (ce.width - ww) / 2 - 2));
+      var x = Math.max(ce.left + 2, ce.left + ce.width / 2 - ww / 2 + s - gap - dw);   /* левый край точки при наведении */
+      w.style.setProperty('--lng-ws', Math.round(s) + 'px');
+      code.style.setProperty('--lng-dd', Math.max(0, Math.round(cr.left - gap - dw - x)) + 'px');
+    });
+  }
+  function init() { measure(); layout(); fit(); }
+  if (document.fonts && document.fonts.load) {
+    var letters = 'A' + cells.map(function (c) { return c.getAttribute('data-g') || ''; }).join('');
+    document.fonts.load(FONT, letters).then(function () { return document.fonts.ready; }).then(init, init);
+  } else init();
+  window.addEventListener('resize', function () { requestAnimationFrame(function () { layout(); fit(); }); });
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();

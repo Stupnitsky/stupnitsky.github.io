@@ -36,7 +36,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260926-200">
+<link rel="stylesheet" href="/styles.css?v=20260926-24">
 
 <script type="application/ld+json">
 {
@@ -72,7 +72,7 @@
     { "@type": "Question", "name": "Czy Tłumaczenie Przysięgłe może być elektroniczne?",
       "acceptedAnswer": { "@type": "Answer", "text": "Tak – tłumacz może wydać plik PDF podpisany kwalifikowanym podpisem elektronicznym. Przyjmuje go część urzędów i większość instytucji online, ale nie da się na nim postawić Apostille i nie każde okienko go akceptuje. Jeśli nie wiesz, co przyjmie odbiorca – zamów wersję papierową, a skan i tak dostaniesz od ręki." } },
     { "@type": "Question", "name": "Czy na tłumaczenie można postawić Apostille?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Tak. MSZ potwierdza wtedy podpis tłumacza przysięgłego – potrzebne, gdy polskie tłumaczenie ma być użyte za granicą. Warunek: oryginał tłumaczenia z odręcznym podpisem i pieczęcią tłumacza, nie skan. Kolejność: najpierw Apostille na dokument, potem tłumaczenie, na końcu Apostille na tłumaczenie." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Tak. MSZ potwierdza wtedy podpis tłumacza przysięgłego – potrzebne, gdy polskie tłumaczenie ma być użyte za granicą. Warunek: oryginał tłumaczenia z odręcznym podpisem i pieczęcią tłumacza, nie skan. Kolejność zależy od odbiorcy dokumentu: najczęściej Apostille na dokument, potem tłumaczenie, na końcu Apostille na tłumaczenie – tak wymagają np. Włochy i Hiszpania. Bywa też, że Apostille potrzebuje tylko samo tłumaczenie. Wymagania sprawdź tam, gdzie składasz dokument." } },
     { "@type": "Question", "name": "Czy mogę zlecić kilka dokumentów naraz?",
       "acceptedAnswer": { "@type": "Answer", "text": "Tak, i to najczęstszy przypadek – komplet do karty pobytu czy do USC to zwykle kilka dokumentów. Od 6 stron w jednym zleceniu udzielamy 10% rabatu, a wszystkie dokumenty, które potrzebują Apostille, składamy w MSZ w jednym terminie." } }
   ]
@@ -339,71 +339,91 @@
 </section>
 
 <!-- ================= JĘZYKI ================= -->
-<section id="jezyki" class="pb-16 md:pb-28">
-  <div class="mx-auto max-w-site px-5 sm:px-8">
+<!-- Сетка кодов и призрачное «A» (Грег, 26.09.2026: «вот такое реализуй», лист 42 стенда docs/konstrukcje/).
+     Заменила тёмную плиту из трёх карточек: описания языков живут на подстраницах, ячейки UA/RU/EN ведут туда.
+     Жёлтая точка – язык, который делаем каждый день; расшифровка – жёлтая метка под сеткой. Пустые ячейки в конце
+     сетки – часть приёма, не удалять. .lng-w – самоназвание языка: код раскрывается в него (наведение на маке,
+     по очереди при прокрутке на телефоне; app.js), .lng-p – общее начало с кодом, .lng-t – хвост. data-g – буква языка,
+     которая в это же время встаёт за сеткой вместо «A». Клетка «pozostałe języki» (Грег, 26.09.2026) – не нашёл свой код,
+     спроси: стоит под FR (на маке – в пустом ряду, на телефоне – следующим рядом), подпись по середине клетки, без кода;
+     ведёт на форму заявки, при наведении за сеткой – большой «?».
+     Стили – .lng-* в конце styles.css. -->
+<section id="jezyki" class="lng pb-16 md:pb-28">
+  <div class="lng-ghost" aria-hidden="true">A</div>
+  <div class="relative mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ Języki</p>
     <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
-      Trzy języki codziennie, <span class="font-light italic">osiem w&nbsp;zasięgu</span>
+      Twój język <span class="font-light italic">w&nbsp;parze z&nbsp;polskim</span>
     </h2>
-    <div class="slab gdz mt-9 md:mt-12 bg-ink text-paper rounded-[9px] px-2 sm:px-4 py-2 sm:py-3">
-      <div class="ap3">
-        <div class="ap3-cell px-4 sm:px-6 py-7 lg:py-9">
-          <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Українська</span>
-          <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Ukraiński</h3>
-          <p class="ap-desc">Najczęstszy język w&nbsp;naszych zleceniach: akty stanu cywilnego, dyplomy z&nbsp;dodatkami, zaświadczenia o&nbsp;niekaralności, dokumenty do karty pobytu i&nbsp;do USC. Jeśli dokument potrzebuje Apostille z&nbsp;Ukrainy, uzyskujemy ją bez wyjazdu klienta i&nbsp;tłumaczymy od razu po klauzuli.</p>
-          <a href="/tlumaczenia-przysiegle/ukrainski/" class="k-where-link">Tłumacz przysięgły języka ukraińskiego<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></a>
-          <p class="slab-price"><span>Ukraiński → polski</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span></p>
-        </div>
-        <div class="ap3-cell px-4 sm:px-6 py-7 lg:py-9">
-          <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Русский</span>
-          <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Rosyjski</h3>
-          <p class="ap-desc">Dokumenty z&nbsp;Rosji, Białorusi, Kazachstanu i&nbsp;starsze dokumenty z&nbsp;Ukrainy wydane po rosyjsku: świadectwa, dyplomy, świadectwa pracy do ZUS, dokumenty sądowe. Tłumacz zachowuje pisownię nazwisk zgodną z&nbsp;paszportem – ważne przy karcie pobytu.</p>
-          <a href="/tlumaczenia-przysiegle/rosyjski/" class="k-where-link">Tłumacz przysięgły języka rosyjskiego<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></a>
-          <p class="slab-price"><span>Rosyjski → polski</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span></p>
-        </div>
-        <div class="ap3-cell px-4 sm:px-6 py-7 lg:py-9">
-          <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">English</span>
-          <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Angielski</h3>
-          <p class="ap-desc">W&nbsp;obie strony: polskie akty, KRK i&nbsp;dokumenty firmowe do pracy i&nbsp;urzędów za granicą oraz zagraniczne dyplomy, umowy, wyciągi i&nbsp;certyfikaty do polskich instytucji. Najczęściej razem z&nbsp;Apostille MSZ na dokument lub na samo tłumaczenie.</p>
-          <a href="/tlumaczenia-przysiegle/angielski/" class="k-where-link">Tłumacz przysięgły języka angielskiego<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></a>
-          <p class="slab-price"><span>Angielski ↔ polski</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span></p>
-        </div>
-      </div>
-      <div class="gdz-note">
-        <p><b>Pozostałe języki</b> – niemiecki, hiszpański, włoski, niderlandzki i&nbsp;francuski, w&nbsp;parze
-        z&nbsp;polskim, przez współpracujących tłumaczy przysięgłych. Termin i&nbsp;cena za stronę zależą od języka,
-        podajemy je przy wycenie. Inny język – zapytaj, sprawdzimy dostępność.</p>
-      </div>
+    <div class="lng-wrap mt-9 md:mt-12">
+      <ul class="lng-grid" aria-label="Języki Tłumaczeń Przysięgłych">
+        <li class="lng-cell" data-g="Ł"><span class="lng-code" aria-hidden="true"><span class="lng-c">PL</span><span class="lng-w" lang="pl"><span class="lng-p">P</span><span class="lng-t">olski</span></span></span><span class="lng-name">Polski</span></li>
+        <li class="lng-cell lng-cell--day" data-g="Ї"><a href="/tlumaczenia-przysiegle/ukrainski/" class="lng-link"><span class="lng-code" aria-hidden="true"><span class="lng-c">UA</span><span class="lng-w" lang="uk"><span class="lng-p"></span><span class="lng-t">Українська</span></span></span><span class="lng-name">Ukraiński<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span><span class="lng-sr"> – codziennie; tłumacz przysięgły języka ukraińskiego</span></a></li>
+        <li class="lng-cell lng-cell--day" data-g="Ы"><a href="/tlumaczenia-przysiegle/rosyjski/" class="lng-link"><span class="lng-code" aria-hidden="true"><span class="lng-c">RU</span><span class="lng-w" lang="ru"><span class="lng-p"></span><span class="lng-t">Русский</span></span></span><span class="lng-name">Rosyjski<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span><span class="lng-sr"> – codziennie; tłumacz przysięgły języka rosyjskiego</span></a></li>
+        <li class="lng-cell lng-cell--day" data-g="&amp;"><a href="/tlumaczenia-przysiegle/angielski/" class="lng-link"><span class="lng-code" aria-hidden="true"><span class="lng-c">EN</span><span class="lng-w" lang="en"><span class="lng-p">En</span><span class="lng-t">glish</span></span></span><span class="lng-name">Angielski<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span><span class="lng-sr"> – codziennie; tłumacz przysięgły języka angielskiego</span></a></li>
+        <li class="lng-cell" data-g="ß"><span class="lng-code" aria-hidden="true"><span class="lng-c">DE</span><span class="lng-w" lang="de"><span class="lng-p">De</span><span class="lng-t">utsch</span></span></span><span class="lng-name">Niemiecki</span></li>
+        <li class="lng-cell" data-g="È"><span class="lng-code" aria-hidden="true"><span class="lng-c">IT</span><span class="lng-w" lang="it"><span class="lng-p">It</span><span class="lng-t">aliano</span></span></span><span class="lng-name">Włoski</span></li>
+        <li class="lng-cell" data-g="Ç"><span class="lng-code" aria-hidden="true"><span class="lng-c">FR</span><span class="lng-w" lang="fr"><span class="lng-p">Fr</span><span class="lng-t">ançais</span></span></span><span class="lng-name">Francuski</span></li>
+        <li class="lng-cell" data-g="Ñ"><span class="lng-code" aria-hidden="true"><span class="lng-c">ES</span><span class="lng-w" lang="es"><span class="lng-p">Es</span><span class="lng-t">pañol</span></span></span><span class="lng-name">Hiszpański</span></li>
+        <li class="lng-cell" data-g="Ĳ"><span class="lng-code" aria-hidden="true"><span class="lng-c">NL</span><span class="lng-w" lang="nl"><span class="lng-p">N</span><span class="lng-t">ederlands</span></span></span><span class="lng-name">Niderlandzki</span></li>
+        <li class="lng-cell lng-cell--label lng-cell--more" data-g="?"><a href="/cennik/#wycena" data-quote class="lng-link"><span class="lng-name">pozostałe języki<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span><span class="lng-sr"> – zapytaj o&nbsp;inny język w&nbsp;formularzu wyceny</span></a></li>
+        <li class="lng-cell lng-cell--void" aria-hidden="true"></li><li class="lng-cell lng-cell--void" aria-hidden="true"></li>
+        <li class="lng-cell lng-cell--void" aria-hidden="true"></li><li class="lng-cell lng-cell--void" aria-hidden="true"></li><li class="lng-cell lng-cell--void" aria-hidden="true"></li>
+      </ul>
     </div>
+    <p class="lng-foot"><span class="lng-tag">UA / RU / EN codziennie</span><span class="lng-price"><span>90,-&nbsp;zł / strona&nbsp;·</span> <span>1125 znaków ze&nbsp;spacjami</span></span></p>
+    <p class="lng-note text-[17px] leading-[1.6] max-w-[62ch]">
+      <b class="font-bold">Niemiecki, włoski, francuski, hiszpański i&nbsp;niderlandzki</b> – przez współpracujących tłumaczy
+      przysięgłych. Termin i&nbsp;cena za stronę zależą od języka – podajemy je przy wycenie. <b class="font-bold">Pozostałe języki</b> –
+      zapytaj, sprawdzimy dostępność.
+    </p>
   </div>
 </section>
 
 <!-- ================= Z APOSTILLE ================= -->
+<!-- Грег, 26.09.2026. Две боли: всё в одном месте (заголовок) и «на каком документе Apostille» (текст). Единого порядка нет –
+     решает учреждение и страна; клиент сам узнаёт требования и называет вариант, мы делаем любой. Текст – основа для поиска,
+     вопрос для окошка и варианты-маршруты – дополнение: ответы на вопрос «oryginał, tłumaczenie czy oba?». Стили – .zap-*. -->
 <section id="z-apostille" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
-    <p class="kicker">/ W jednym zleceniu</p>
+    <p class="kicker">/ Z Apostille</p>
     <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
-      Tłumaczenie i&nbsp;Apostille <span class="font-light italic">bez dwóch firm</span>
+      Tłumaczenie i&nbsp;Apostille <span class="font-light italic">w&nbsp;jednym miejscu</span>
     </h2>
     <div class="ap-cols mt-8">
       <div>
         <p class="text-[17px] leading-[1.6] text-ink/75">
-          Tłumacz przysięgły nie stawia Apostille, a&nbsp;pośrednik od Apostille nie tłumaczy. Klient zwykle
-          odkrywa to w&nbsp;okienku, gdy urząd prosi o&nbsp;„Apostille i&nbsp;tłumaczenie” – i&nbsp;zaczyna drugą sprawę
-          w&nbsp;drugiej firmie. U&nbsp;nas to jedno zlecenie: sprawdzamy, czy dokument potrzebuje klauzuli,
-          uzyskujemy ją w&nbsp;MSZ, a&nbsp;tłumacz tłumaczy dokument razem z&nbsp;klauzulą.
-          <a href="/apostille/#kolejnosc" class="underline font-semibold">Kolejność ma znaczenie</a>.
+          <b class="font-bold text-ink">Na którym dokumencie Apostille?</b> Tego nie da się ustalić z&nbsp;góry – decyduje
+          instytucja, która przyjmie dokument, i&nbsp;kraj, do którego trafi. Najczęściej Apostille potrzebna jest i&nbsp;na
+          oryginale, i&nbsp;na Tłumaczeniu Przysięgłym – tak wymagają na przykład Włochy i&nbsp;Hiszpania. Bywa jednak, że
+          wystarczy Apostille na samym tłumaczeniu albo tylko na oryginale. Wymogi pozostałych krajów trzeba sprawdzić
+          na miejscu.
         </p>
       </div>
       <div>
         <p class="text-[17px] leading-[1.6] text-ink/75">
-          W&nbsp;drugą stronę działa to tak samo. Polski dokument na wyjazd: Apostille w&nbsp;MSZ, tłumaczenie
-          na język kraju docelowego, w&nbsp;razie potrzeby Apostille na podpis tłumacza. Dokument
-          z&nbsp;Ukrainy do polskiego urzędu: klauzulę uzyskujemy przez partnera w&nbsp;Ukrainie, tłumaczenie
-          na polski robimy w&nbsp;Warszawie –
-          <a href="/apostille-ukraina/" class="underline font-semibold">Apostille na dokumenty z&nbsp;Ukrainy</a>.
+          <b class="font-bold text-ink">Każdy wariant w&nbsp;jednym zleceniu.</b> Apostille w&nbsp;MSZ i&nbsp;Tłumaczenie
+          Przysięgłe robimy w&nbsp;jednym miejscu, w&nbsp;językach z&nbsp;listy powyżej – nie szukasz osobno tłumacza
+          i&nbsp;pośrednika. Sprawdź wymagania u&nbsp;odbiorcy dokumentu
+          i&nbsp;<a href="/cennik/#wycena" data-quote class="underline font-semibold">wskaż wariant w&nbsp;zamówieniu</a>.
+          Dla Dokumentów z&nbsp;Ukrainy Apostille uzyskujemy przez partnera w&nbsp;Ukrainie – także wtedy, gdy jesteś
+          w&nbsp;Polsce – a&nbsp;potem tłumaczymy je na polski:
+          <a href="/apostille-ukraina/" class="underline font-semibold">Apostille na Dokumenty z&nbsp;Ukrainy</a>.
         </p>
       </div>
+    </div>
+    <div class="zap mt-10 md:mt-14">
+      <div class="zap-ask">
+        <p class="zap-task">Zapytaj tam, gdzie składasz dokument:</p>
+        <p class="zap-q">„Co ma mieć Apostille&nbsp;– <span class="font-light italic">oryginał, tłumaczenie czy oba?”</span></p>
+      </div>
+      <ul class="zap-list">
+        <li><b>Oba:</b> Apostille&nbsp;na&nbsp;oryginał&nbsp;→ Tłumaczenie&nbsp;Przysięgłe&nbsp;→ Apostille&nbsp;na&nbsp;tłumaczenie
+          <small>Najczęściej – tak jest np. we Włoszech i&nbsp;w&nbsp;Hiszpanii</small></li>
+        <li><b>Oryginał:</b> Apostille&nbsp;na&nbsp;oryginał&nbsp;→ Tłumaczenie&nbsp;Przysięgłe</li>
+        <li><b>Tłumaczenie:</b> Tłumaczenie&nbsp;Przysięgłe&nbsp;→ Apostille&nbsp;na&nbsp;tłumaczenie</li>
+        <li><b>Dokument z&nbsp;Ukrainy:</b> Apostille&nbsp;w&nbsp;Ukrainie&nbsp;→ Tłumaczenie&nbsp;Przysięgłe na&nbsp;polski</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -513,7 +533,9 @@
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
           Tak. MSZ potwierdza wtedy podpis tłumacza przysięgłego – potrzebne, gdy polskie tłumaczenie ma być
           użyte za granicą. Warunek: oryginał tłumaczenia z&nbsp;odręcznym podpisem i&nbsp;pieczęcią tłumacza,
-          nie skan. Kolejność: najpierw Apostille na dokument, potem tłumaczenie, na końcu Apostille na tłumaczenie.
+          nie skan. Kolejność zależy od odbiorcy dokumentu: najczęściej Apostille na dokument, potem tłumaczenie, na końcu
+          Apostille na tłumaczenie – tak wymagają np. Włochy i&nbsp;Hiszpania. Bywa też, że Apostille potrzebuje tylko samo
+          tłumaczenie. Wymagania sprawdź tam, gdzie składasz dokument.
         </p>
       </details>
 
@@ -618,7 +640,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260926-200" defer></script>
+<script src="/assets/app.js?v=20260926-24" defer></script>
 
 </body>
 </html>
