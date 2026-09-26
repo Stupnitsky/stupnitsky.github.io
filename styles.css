@@ -3993,3 +3993,65 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
   .so-plate > .slab-kicker{ margin-bottom:30px; }
   .so-plate > .so-lead{ padding-right:0; font-size:34px; }
 }
+
+/* ===== Образец перевода «po polsku» (.pp, 25.09.2026 – идея 4 «По-польски» со стенда docs/typografia/) =====
+   По мотивам Bookmania «Markers / becomes / Markers»: подпись языка (узкий капс 12px, как .kicker), название документа
+   на своём языке (Fira 300 курсив – «второй голос» сайта), связка «po polsku» с волоском и точкой-меткой (заливка, не текст),
+   то же название по-польски (Fira 900, -0.045em) – акцент весом, а не кеглем. Разметка – в hero /tlumaczenia-przysiegle/
+   (.pp--side, пять пар, подпись языка едет вместе со своим словом) и /tlumaczenia-przysiegle/ukrainski/ (.pp--under,
+   под h1, три украинские пары; подпись одна, «po ukraińsku», и стоит на месте – надзаголовок страницы уже «UKRAIŃSKI»).
+   Документы – только те, что сайт называет сам. ua/ru/en не трогались – PL ведёт.
+   Каждая строка образца – ячейка сетки .pp-cell, в которой лежат слои всех пар сразу (grid-area 1/1): высота ячейки =
+   самый высокий слой, поэтому при смене пар ничего ниже не прыгает. Оригинал прижат вниз, к связке, перевод – вверх,
+   к связке: пустота резерва уходит за края блока. Смену пар раз в 3,5 с ведёт app.js; класс .is-live включает переходы –
+   старый слой уходит вверх и гаснет, новый выходит снизу: ±92%, .58s и кривая – как у слова на плашке главной (.swap).
+   Кегль строк – --pp-fs: 30px на телефоне, 40px от 640px, под h1 – 48px от 1024px; подписи всегда 12px, отступы – от --pp-fs.
+   От 1024px .pp--side стоит absolute в пустой правой колонке первого экрана (левая колонка не перетекает): левый край,
+   верх и кегль считает app.js (--pp-x, --pp-y, --pp-side-fs): левый край – по правому краю текста слева, верх – подпись
+   двухстрочного оригинала на линии надзаголовка страницы. До скрипта – запасные значения ниже (правый край лида ≈ 704px
+   от края сетки + зазор 4% окна, 40–64px; верх 5px – середина надзаголовка; кегль – ширина / 8.4: самая длинная пара
+   слов «Dyplom ukończenia» = 8.15em, две строки максимум). */
+.pp{ --pp-fs:max(22px, min(30px, calc((100vw - 40px) / 8.4))); display:block; font-size:var(--pp-fs); color:var(--c-ink);
+ margin-top:3.5rem; max-width:min(100%, 14em); }
+@media (min-width:640px){ .pp{ --pp-fs:40px; margin-top:4rem; } }
+/* 13em: «Zaświadczenie o niekaralności» (12.6em) встаёт в одну строку при 40 и 48px – резерв высоты не растёт */
+.pp.pp--under{ margin-top:2.75rem; max-width:min(100%, 13em); }
+@media (min-width:768px){ .pp.pp--under{ margin-top:3.25rem; } }
+@media (min-width:1024px){
+  .pp.pp--under{ --pp-fs:48px; }
+  .pp.pp--side{ position:absolute; margin:0; left:var(--pp-x, calc(704px + clamp(40px, 4vw, 64px))); top:var(--pp-y, 5px);
+   right:2rem; width:auto; max-width:none;
+   --pp-fs:var(--pp-side-fs, max(22px, min(34px, calc((min(100vw, 1320px) - 736px - clamp(40px, 4vw, 64px)) / 8.4)))); }
+}
+@media (min-width:1280px){
+  .pp.pp--side{ --pp-fs:var(--pp-side-fs, min(48px, calc((min(100vw, 1320px) - 736px - clamp(40px, 4vw, 64px)) / 8.4))); }
+}
+/* подписи: узкий капс 12px / 600 / .22em; язык – чернильный, связка – служебная, 60% */
+.pp-lab, .pp-con{ display:flex; align-items:center; gap:.9rem; font-family:"Fira Sans Condensed","Fira Sans",sans-serif;
+ font-size:12px; font-weight:600; font-style:normal; letter-spacing:.22em; line-height:1; text-transform:uppercase; white-space:nowrap; }
+.pp-lab{ color:var(--c-ink); margin-bottom:calc(var(--pp-fs) * .3 + 6px); }
+.pp-con{ color:rgba(31,33,32,.6); margin:calc(var(--pp-fs) * .36 + 8px) 0 calc(var(--pp-fs) * .3 + 8px); }
+.pp-tx{ flex:0 0 auto; white-space:nowrap; }
+/* волосок до правого края; точка акцентом перед связкой */
+.pp-hl{ flex:1 1 auto; min-width:1.5rem; height:1px; background:rgba(31,33,32,.2); }
+.pp-dot{ flex:0 0 auto; width:7px; height:7px; border-radius:50%; background:var(--c-terra); margin-right:-.25rem; }
+/* ячейка со слоями всех пар; клип только по вертикали, поля – под диакритику и выносные */
+.pp-cell{ display:grid; overflow-x:visible; overflow-y:clip; padding:.16em .12em .2em 0; margin:-.16em -.12em -.2em 0; }
+.pp-con .pp-cell{ flex:1 1 auto; min-width:0; padding:.4em 0; margin:-.4em 0; }
+.pp-l{ grid-area:1 / 1; min-width:0; opacity:0; transform:translateY(92%); transition:none; }
+.pp-con .pp-l{ display:flex; align-items:center; gap:.9rem; }
+.pp-src .pp-l, .pp-tgt .pp-l, .pp-sw{ display:block; }
+.pp-l.is-on{ opacity:1; transform:none; }
+/* движение – ровно как у слова на плашке главной (.swap: sw-out / sw-in): ±92%, .58s, одна кривая на прозрачность и сдвиг */
+.pp.is-live .pp-l.is-on{ transition:opacity .58s cubic-bezier(.2,.72,.24,1), transform .58s cubic-bezier(.2,.72,.24,1); }
+.pp.is-live .pp-l.is-out{ opacity:0; transform:translateY(-92%); transition:opacity .58s cubic-bezier(.2,.72,.24,1), transform .58s cubic-bezier(.2,.72,.24,1); }
+.pp.is-live .pp-con .pp-l.is-on{ transition-delay:.05s; }
+.pp.is-live .pp-tgt .pp-l.is-on{ transition-delay:.1s; }
+.pp-src .pp-l{ align-self:end; }
+.pp-tgt .pp-l{ align-self:start; }
+.pp-src, .pp-tgt{ font-family:"Fira Sans",sans-serif; line-height:.95; text-wrap:balance; overflow-wrap:break-word; }
+.pp-sw{ font-weight:300; font-style:italic; letter-spacing:-.03em; }
+.pp-tgt{ font-weight:900; letter-spacing:-.045em; }
+@media (prefers-reduced-motion:reduce){
+  .pp .pp-l, .pp.is-live .pp-l.is-on, .pp.is-live .pp-l.is-out{ transition:none !important; transform:none !important; }
+}

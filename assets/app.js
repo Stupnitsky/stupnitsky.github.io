@@ -2275,7 +2275,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260924-129';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260924-130';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -2569,4 +2569,98 @@
         set(dx < 0 ? 'new' : 'old');
       }, { passive:true });
     });
+  })();
+
+  /* Образец перевода «po polsku» (.pp) в hero /tlumaczenia-przysiegle/ и /ukrainski/ (25.09.2026, идея 4 стенда docs/typografia/).
+     1) .pp--side от 1024px стоит в пустой правой колонке первого экрана: левый край – правый край текста слева (h1, лид,
+        ссылка, кнопки) плюс зазор 4% окна (40–64px); кегль – не больше 34px (от 1280px – 48px) и не больше ширины / 8.4
+        («Dyplom ukończenia» = 8.15em – две строки максимум), не меньше 22px; верх – подпись самого высокого оригинала
+        на линии надзаголовка страницы (если оригиналы разной высоты), иначе верх h1 + 4px. Уже 1024px всё задаёт CSS.
+     2) Пары меняются раз в 3,5 с тем же выталкиванием снизу вверх, что слово на плашке главной (переходы – в styles.css,
+        включает класс .is-live); строка, текст которой не меняется, стоит на месте. Пауза при наведении – только там,
+        где есть мышь (hover:hover); prefers-reduced-motion – стоит первая пара.
+     Всё в try: ошибка здесь не должна остановить остальной app.js. */
+  (function(){
+    function mq(q){ try { return window.matchMedia(q).matches; } catch (e) { return false; } }
+    function textRight(el){
+      if (!el) return 0;
+      var mx = 0, rg = document.createRange(); rg.selectNodeContents(el);
+      var rs = rg.getClientRects();
+      for (var i = 0; i < rs.length; i++) if (rs[i].width > 0) mx = Math.max(mx, rs[i].right);
+      return mx;
+    }
+    function side(box){
+      var cont = box.parentElement, h1 = cont && cont.querySelector('h1');
+      if (!h1) return;
+      var lead = h1.nextElementSibling && h1.nextElementSibling.tagName === 'P' ? h1.nextElementSibling : null;
+      var more = cont.querySelector('.hero-more'), btns = cont.querySelector('.cta-btns');
+      function lay(){
+        try {
+          if (!mq('(min-width:1024px)')) return;
+          var cr = cont.getBoundingClientRect(), pr = parseFloat(getComputedStyle(cont).paddingRight) || 0;
+          var right = Math.max(textRight(h1), textRight(lead), textRight(more), textRight(btns));
+          var gap = Math.max(40, Math.min(64, window.innerWidth * 0.04));
+          var x = right - cr.left + gap, w = cr.width - pr - x;
+          var fs = Math.max(22, Math.min(mq('(min-width:1280px)') ? 48 : 34, Math.floor(w / 8.4)));
+          box.style.setProperty('--pp-x', x + 'px');
+          box.style.setProperty('--pp-side-fs', fs + 'px');
+          /* верх: резерв под двухстрочный оригинал уходит вверх, а не вниз. Подпись двухстрочного оригинала стоит
+             на линии надзаголовка страницы («TŁUMACZENIA PRZYSIĘGŁE»), однострочного – на строку ниже, у верха h1;
+             связка и перевод стоят рядом с h1. Высоты слоёв меряются уже при новом кегле и ширине. */
+          var ls = box.querySelectorAll('.pp-src .pp-l'), hi = 0, lo = Infinity;
+          for (var i = 0; i < ls.length; i++) { var h = ls[i].getBoundingClientRect().height; hi = Math.max(hi, h); lo = Math.min(lo, h); }
+          var d = ls.length ? hi - lo : 0;
+          var y = h1.getBoundingClientRect().top - cr.top + 4 - d;
+          var eb = h1.previousElementSibling;
+          if (d > 0 && eb && eb.tagName === 'P') {
+            var er = eb.getBoundingClientRect();
+            if (er.height > 0 && er.height < 48) y = er.top + er.height / 2 - 6 - cr.top;
+          }
+          box.style.setProperty('--pp-y', Math.max(0, y) + 'px');
+        } catch (e) {}
+      }
+      lay();
+      window.addEventListener('resize', lay, { passive:true });
+      try { if (document.fonts && document.fonts.ready) document.fonts.ready.then(lay, function(){}); } catch (e) {}
+    }
+    function rotate(box){
+      var rows = [], cells = box.querySelectorAll('.pp-cell');
+      for (var i = 0; i < cells.length; i++) rows.push(cells[i].querySelectorAll('.pp-l'));
+      var n = rows.length ? rows[0].length : 0;
+      if (n < 2 || mq('(prefers-reduced-motion:reduce)')) return;
+      for (i = 0; i < rows.length; i++) if (rows[i].length !== n) return;   /* слоёв в строках поровну – иначе не крутим */
+      var cur = 0, paused = false;
+      for (i = 0; i < n; i++) if (rows[0][i].classList.contains('is-on')) { cur = i; break; }
+      function tick(){
+        if (paused) return;
+        try {
+          var nx = (cur + 1) % n, r, k;
+          box.classList.add('is-live');
+          for (r = 0; r < rows.length; r++) for (k = 0; k < n; k++) rows[r][k].classList.remove('is-out');
+          void box.offsetWidth;   /* ушедший слой встаёт вниз без движения – следующий раз он выйдет снизу, а не сверху */
+          for (r = 0; r < rows.length; r++) {
+            var a = rows[r][cur], b = rows[r][nx];
+            a.classList.remove('is-on');
+            if (a.textContent === b.textContent) {            /* текст строки тот же – без движения */
+              b.style.transition = 'none'; b.classList.add('is-on'); void b.offsetWidth; b.style.transition = '';
+            } else {
+              a.classList.add('is-out'); b.classList.add('is-on');
+            }
+          }
+          cur = nx;
+        } catch (e) {}
+      }
+      if (mq('(hover:hover)')) {
+        box.addEventListener('mouseenter', function(){ paused = true; });
+        box.addEventListener('mouseleave', function(){ paused = false; });
+      }
+      setInterval(tick, 3500);
+    }
+    try {
+      var boxes = document.querySelectorAll('.pp');
+      for (var i = 0; i < boxes.length; i++) {
+        try { if (boxes[i].classList.contains('pp--side')) side(boxes[i]); } catch (e) {}
+        try { rotate(boxes[i]); } catch (e) {}
+      }
+    } catch (e) {}
   })();
