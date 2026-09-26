@@ -34,7 +34,7 @@ footer#stopka{ margin-bottom:0; }
 #step-modal[hidden], #step-data[hidden]{ display:none !important; }
 section[id]{ scroll-margin-top:88px; }
 .price-num{ display:inline-block; font-variant-numeric:tabular-nums;
- font-feature-settings:"tnum" 1; text-align:right; }
+ font-feature-settings:"tnum" 1, "liga" 1, "clig" 1, "calt" 1; text-align:right; }
 .price-hit{ cursor:default; }
 .slab-price .price-hit{ font-family:inherit; text-transform:none; letter-spacing:normal;
  font-size:inherit; color:inherit; }
@@ -4109,9 +4109,9 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
    старый слой уходит вверх и гаснет, новый выходит снизу: ±92%, .58s и кривая – как у слова на плашке главной (.swap).
    Кегль строк – --pp-fs: 30px на телефоне, 40px от 640px, под h1 – 48px от 1024px; подписи всегда 12px, отступы – от --pp-fs.
    От 1024px .pp--side стоит absolute в пустой правой колонке первого экрана (левая колонка не перетекает): левый край,
-   верх и кегль считает app.js (--pp-x, --pp-y, --pp-side-fs): левый край – по правому краю текста слева, верх – подпись
-   двухстрочного оригинала на линии надзаголовка страницы. До скрипта – запасные значения ниже (правый край лида ≈ 704px
-   от края сетки + зазор 4% окна, 40–64px; верх 5px – середина надзаголовка; кегль – ширина / 8.4: самая длинная пара
+   верх и кегль считает app.js (--pp-x, --pp-y, --pp-side-fs): левый край – по правому краю текста слева, верх – волосок связки
+   на середине зазора между h1 и лидом. До скрипта – запасные значения ниже (правый край лида ≈ 704px
+   от края сетки + зазор 4% окна, 40–64px; верх 5px – запасной до скрипта; кегль – ширина / 8.4: самая длинная пара
    слов «Dyplom ukończenia» = 8.15em, две строки максимум). */
 .pp{ --pp-fs:max(22px, min(30px, calc((100vw - 40px) / 8.4))); display:block; font-size:var(--pp-fs); color:var(--c-ink);
  margin-top:3.5rem; max-width:min(100%, 14em); }
@@ -4181,7 +4181,7 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
   align-items:center; justify-content:start; }
 .gt .gt-n{ display:block; font-family:"Fira Sans",sans-serif; font-weight:800; font-style:normal; font-size:var(--gt-f);
   line-height:.9; letter-spacing:-.03em; color:var(--c-ink); font-variant-numeric:tabular-nums lining-nums;
-  font-feature-settings:"tnum" 1, "lnum" 1; text-align:right; white-space:nowrap; }
+  font-feature-settings:"tnum" 1, "lnum" 1, "liga" 1, "clig" 1, "calt" 1; text-align:right; white-space:nowrap; }
 /* подпись поверх контуров листов: песочный ореол вокруг букв, чтобы белая линия не зачёркивала мелкий текст */
 .gt .gt-l{ display:flex; flex-direction:column; gap:4px; min-width:0; color:var(--c-ink);
   text-shadow:0 0 2px var(--c-sand), 0 0 4px var(--c-sand), 0 0 6px var(--c-sand), 0 0 8px var(--c-sand); }
@@ -4296,7 +4296,7 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
 .gt--tl .gt-cap, .gt--tl .gt-m{ display:contents; }
 .gt--tl .gt-m b{ justify-self:end; align-self:baseline; font-family:"Fira Sans",sans-serif; font-weight:800;
   font-size:max(24px, calc(var(--gt-f) * .3)); line-height:.95; letter-spacing:-.03em; color:var(--c-ink); text-align:right;
-  font-variant-numeric:tabular-nums lining-nums; font-feature-settings:"tnum" 1, "lnum" 1; white-space:nowrap; }
+  font-variant-numeric:tabular-nums lining-nums; font-feature-settings:"tnum" 1, "lnum" 1, "liga" 1, "clig" 1, "calt" 1; white-space:nowrap; }
 .gt--tl .gt-m small{ align-self:baseline; font-family:"Fira Sans Condensed","Fira Sans",sans-serif; font-weight:500; font-size:13px;
   line-height:1.2; letter-spacing:.02em; color:rgba(31,33,32,.6);
   text-shadow:0 0 2px var(--c-sand), 0 0 4px var(--c-sand), 0 0 6px var(--c-sand); }
@@ -4391,9 +4391,12 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
 .lng-cell.is-w .lng-t{ clip-path:inset(-.4em -.3em -.4em -.3em); transition:clip-path .45s cubic-bezier(.2,.7,.25,1) .06s; }
 @media (prefers-reduced-motion:reduce){ .lng-c, .lng-p, .lng-t{ transition:none !important; } }
 
-/* Safari (WebKit) отключает лигатуры fi/fl при ненулевом letter-spacing; заголовки у нас с трекингом –
-   явный "liga" возвращает их (Chrome ставит и так) (26.09.2026) */
-h1, h2, h3, h4{ font-feature-settings:"liga" 1; }
+/* ПРАВИЛО ДЛЯ ВСЕГО САЙТА (Грег, 26.09.2026): лигатуры работают всегда, при любых раскладах.
+   Браузеры (особенно Safari/WebKit) выключают fi/fl/ff при ненулевом letter-spacing – явные liga/clig/calt возвращают их
+   везде, включая кнопки, поля, кикеры с трекингом и псевдоэлементы. font-feature-settings не складывается:
+   любое правило, где он задан (tnum, lnum…), обязано повторять "liga" 1, "clig" 1, "calt" 1 – иначе лигатуры там пропадут. */
+*, *::before, *::after{ font-variant-ligatures:common-ligatures contextual;
+  font-feature-settings:"liga" 1, "clig" 1, "calt" 1; }
 
 /* Буква языка за сеткой (Грег, 26.09.2026: «на фоне давай и её изменять будем, верни символы»). Вместе с раскрытием
    самоназвания «A» гаснет, а за сеткой проявляется буква этого языка из data-g: Ł Ї Ы & ß È Ç Ñ Ĳ. Слои .lng-g создаёт

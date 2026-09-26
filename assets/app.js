@@ -2129,6 +2129,31 @@
         el.textContent = fmt(target);
       });
     });
+    /* столбец Go Tabular (.gt): строки нет – курсор ловим на цифре и её подписи справа */
+    document.querySelectorAll('.gt .gt-n').forEach(function(el){
+      var target = parseInt(el.textContent.replace(/\D/g, ''), 10);
+      if (!target) return;
+      var raf = null;
+      function run(){
+        if (raf) cancelAnimationFrame(raf);
+        var start = performance.now(), from = Math.round(target * FROM);
+        (function tick(now){
+          var t = Math.min((now - start) / DUR, 1);
+          var e = 1 - Math.pow(1 - t, 3);
+          el.textContent = Math.round(from + (target - from) * e);
+          if (t < 1) raf = requestAnimationFrame(tick); else el.textContent = target;
+        })(start);
+      }
+      function stop(){ if (raf) cancelAnimationFrame(raf); el.textContent = target; }
+      var pair = [el, el.nextElementSibling].filter(Boolean);
+      function inPair(n){ return pair.some(function(p){ return n && p.contains(n); }); }
+      pair.forEach(function(n){
+        n.style.cursor = 'default';
+        /* переход цифра ↔ подпись – та же строка, заново не крутим */
+        n.addEventListener('mouseenter', function(e){ if (!inPair(e.relatedTarget)) run(); });
+        n.addEventListener('mouseleave', function(e){ if (!inPair(e.relatedTarget)) stop(); });
+      });
+    });
   })();
 
   /* --- Логотип: отобранные начертания ------------------------------------
@@ -2275,7 +2300,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260926-25';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260926-28';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -2575,7 +2600,7 @@
      1) .pp--side от 1024px стоит в пустой правой колонке первого экрана: левый край – правый край текста слева (h1, лид,
         ссылка, кнопки) плюс зазор 4% окна (40–64px); кегль – не больше 34px (от 1280px – 48px) и не больше ширины / 8.4
         («Dyplom ukończenia» = 8.15em – две строки максимум), не меньше 22px; верх – подпись самого высокого оригинала
-        на линии надзаголовка страницы (если оригиналы разной высоты), иначе верх h1 + 4px. Уже 1024px всё задаёт CSS.
+        волоском связки на середине зазора между h1 и лидом (без лида – верх h1 + 4px). Уже 1024px всё задаёт CSS.
      2) Пары меняются раз в 3,5 с тем же выталкиванием снизу вверх, что слово на плашке главной (переходы – в styles.css,
         включает класс .is-live); строка, текст которой не меняется, стоит на месте. Пауза при наведении – только там,
         где есть мышь (hover:hover); prefers-reduced-motion – стоит первая пара.
@@ -2604,17 +2629,23 @@
           var fs = Math.max(22, Math.min(mq('(min-width:1280px)') ? 48 : 34, Math.floor(w / 8.4)));
           box.style.setProperty('--pp-x', x + 'px');
           box.style.setProperty('--pp-side-fs', fs + 'px');
-          /* верх: резерв под двухстрочный оригинал уходит вверх, а не вниз. Подпись двухстрочного оригинала стоит
-             на линии надзаголовка страницы («TŁUMACZENIA PRZYSIĘGŁE»), однострочного – на строку ниже, у верха h1;
-             связка и перевод стоят рядом с h1. Высоты слоёв меряются уже при новом кегле и ширине. */
-          var ls = box.querySelectorAll('.pp-src .pp-l'), hi = 0, lo = Infinity;
-          for (var i = 0; i < ls.length; i++) { var h = ls[i].getBoundingClientRect().height; hi = Math.max(hi, h); lo = Math.min(lo, h); }
-          var d = ls.length ? hi - lo : 0;
-          var y = h1.getBoundingClientRect().top - cr.top + 4 - d;
-          var eb = h1.previousElementSibling;
-          if (d > 0 && eb && eb.tagName === 'P') {
-            var er = eb.getBoundingClientRect();
-            if (er.height > 0 && er.height < 48) y = er.top + er.height / 2 - 6 - cr.top;
+          /* верх (26.09.2026): волосок связки «po polsku» – на уровне середины зазора между h1 и лидом слева:
+             оригинал стоит рядом с h1, перевод – рядом с лидом. Края текста – по рамкам строк (range), без интерлиньяжа;
+             высоты слоёв меряются уже при новом кегле и ширине. Без лида – по старому: у верха h1. */
+          var y = h1.getBoundingClientRect().top - cr.top + 4;
+          var con = box.querySelector('.pp-con');
+          if (lead && con) {
+            var rg = document.createRange(), hr, lr;
+            rg.selectNodeContents(h1); hr = rg.getClientRects();
+            rg.selectNodeContents(lead); lr = rg.getClientRects();
+            var hb = 0, lt = Infinity;
+            for (var i = 0; i < hr.length; i++) if (hr[i].height > 0) hb = Math.max(hb, hr[i].bottom);
+            for (i = 0; i < lr.length; i++) if (lr[i].height > 0) lt = Math.min(lt, lr[i].top);
+            if (hb > 0 && lt < Infinity) {
+              var br = box.getBoundingClientRect(), cn = con.getBoundingClientRect();
+              var off = cn.top + cn.height / 2 - br.top;              /* волосок от верха блока */
+              y = (hb + lt) / 2 - cr.top - off;
+            }
           }
           box.style.setProperty('--pp-y', Math.max(0, y) + 'px');
         } catch (e) {}
