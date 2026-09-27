@@ -36,8 +36,10 @@ section[id]{ scroll-margin-top:88px; }
 /* 27.09.2026: от 1150px шапка не прячется и кончается на ~108px – кикер раздела и вопрос FAQ не уходят под неё */
 @media (min-width:1150px){ section[id]{ scroll-margin-top:124px; } }
 #faq details[id]{ scroll-margin-top:124px; }
-/* класса нет в собранном tailwind.css, а абзацы #cena (Tłumaczenia) и #ile-trwa (Apostille) на него рассчитаны */
-.max-w-\[56ch\]{ max-width:56ch; }
+/* класса нет в собранном tailwind.css. Мера в px – одна для лида 20px и абзаца 17px (56ch давала им разные края).
+   С 1024px в .gt-card меры нет: абзацы, сноска и кнопка – один блок в 7 колонок, как утверждено 26.09.2026 (Go Tabular) */
+.max-w-\[56ch\]{ max-width:625px; }
+@media (min-width:1024px){ .gt-card .max-w-\[56ch\]{ max-width:none; } }
 .price-num{ display:inline-block; font-variant-numeric:tabular-nums;
  font-feature-settings:"tnum" 1, "liga" 1, "clig" 1, "calt" 1; text-align:right; }
 .price-hit{ cursor:default; }
@@ -4525,6 +4527,13 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
 @media (min-width:640px){ .tl-go{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media (min-width:1024px){ .tl-go{ grid-template-columns:repeat(4,minmax(0,1fr)); } }
 .tl-go li{ padding-top:1rem; border-top:1px solid rgba(31,33,32,.15); font-size:17px; line-height:1.55; color:var(--c-ink); }
+/* Шаги делят общие строки (subgrid): номер, заголовок, описание – описания в ряду начинаются на одной высоте, даже если
+   заголовок переносится («Bezpłatna wycena zwykle w 15 minut», 27.09.2026). 3 = число детей li; ниже 640px одна колонка. */
+@media (min-width:640px){
+  @supports (grid-template-rows:subgrid){
+    .tl-go li{ display:grid; grid-row:span 3; grid-template-rows:subgrid; row-gap:0; align-content:start; }
+  }
+}
 .tl-go-n{ display:block; margin-bottom:.6rem; font-family:"Fira Sans Condensed","Fira Sans",sans-serif; font-weight:700; font-size:22px; line-height:1; }
 .tl-go b{ display:block; margin-bottom:.35rem; font-size:20px; line-height:1.2; font-weight:700; letter-spacing:-.01em; }
 @media (min-width:640px){ .tl-go b{ font-size:22px; } }
@@ -4581,14 +4590,15 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
 
 /* Кнопка «Zamów wycenę» внизу экрана на телефоне (.m-dock, Грег, 26.09.2026). Разметку и показ ведёт app.js (класс .is-on).
    Во всю ширину с полями 12px, над нижним краем с учётом «домашней полоски» iPhone; вид – главная кнопка сайта
-   (.cta-btn--main) с лёгкой тенью, чтобы отделялась от текста под ней. Выезжает снизу. От 768px её нет. */
+   (.cta-btn--main) с лёгкой тенью, чтобы отделялась от текста под ней. Выезжает снизу. На 768–1149px – справа, по ширине
+   текста, в одну вертикаль со стрелкой «наверх»; от 1150px её нет (там кнопка в шапке). */
 .m-dock{ position:fixed; left:12px; right:12px; bottom:calc(12px + env(safe-area-inset-bottom, 0px)); z-index:45;
   opacity:0; visibility:hidden; transform:translateY(calc(100% + 16px));
   transition:opacity .3s ease, transform .35s cubic-bezier(.2,.7,.25,1), visibility .35s; pointer-events:none; }
 .m-dock.is-on{ opacity:1; visibility:visible; transform:none; pointer-events:auto; }
 .m-dock .cta-btn{ display:flex; width:100%; justify-content:center; box-shadow:0 8px 24px rgba(31,33,32,.18); }
 /* 27.09.2026 (Грег): док и на 768–1149px – там в шапке нет кнопки заявки; кнопка справа, по ширине текста */
-@media (min-width:768px) and (max-width:1149px){ .m-dock{ left:auto; right:24px; } .m-dock .cta-btn{ width:auto; padding-inline:1.6em; } }
+@media (min-width:768px) and (max-width:1149px){ .m-dock{ left:auto; right:17px; } .m-dock .cta-btn{ width:auto; padding-inline:1.6em; } }
 @media (min-width:1150px){ .m-dock{ display:none; } }
 @media (prefers-reduced-motion:reduce){ .m-dock{ transition:none; } }
 @media print{ .m-dock{ display:none; } }

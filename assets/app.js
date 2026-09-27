@@ -2309,7 +2309,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260926-59';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260926-60';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -3131,7 +3131,8 @@
 })();
 
 /* --- Кнопка «Zamów wycenę» внизу экрана на телефоне (.m-dock; Грег, 26.09.2026: «вот это давай») ---
-   Только уже 768px. Появляется, когда главная кнопка первого экрана ушла вверх (нет её – после полэкрана), прячется,
+   Уже 1150px (27.09.2026: и на планшете – там в шапке нет кнопки заявки). Видна с первого экрана, пока главная кнопка hero
+   не в окне (нет её – после полэкрана); на /cennik/ уступает плавающим якорям прайса (.cn-dock). Прячется,
    пока на экране видна другая главная кнопка страницы (.cta-btn--main в <main>) – двух одинаковых рядом не бывает, –
    у конца контента (подвал – шторка, ориентир – низ <main>), при открытом меню и панели заявки.
    Текст и адрес берутся у кнопки заявки в шапке (.navlink--plate) – на ua/ru/en кнопка сама на своём языке;
@@ -3158,6 +3159,8 @@
 
   var mains = [].slice.call(main.querySelectorAll('.cta-btn--main'));
   var first = mains[0] || null;
+  var cn = document.querySelector('.cn-dock');   /* /cennik/: плавающие якоря прайса внизу окна (от 640px) – пока они видны, док не показываем */
+  if (cn && window.MutationObserver) new MutationObserver(req).observe(cn, { attributes: true, attributeFilter: ['class'] });
   var on = false, ticking = false;
   function seen(el) {
     if (!el.offsetParent && getComputedStyle(el).position !== 'fixed') return false;   /* скрытые (display:none) не считаются */
@@ -3168,6 +3171,7 @@
     ticking = false;
     var vh = window.innerHeight, show = phone.matches;
     if (show && (root.classList.contains('menu-open') || root.classList.contains('qd-open'))) show = false;
+    if (show && cn && cn.classList.contains('is-on') && getComputedStyle(cn).display !== 'none') show = false;   /* position:fixed – offsetParent всегда null */
     if (show) show = first ? !seen(first) : window.scrollY > vh * 0.5;   /* с первого экрана, пока кнопки hero не в окне (Грег, 27.09.2026) */
     if (show && mains.some(seen)) show = false;
     if (show && main.getBoundingClientRect().bottom < vh + 40) show = false;
