@@ -95,6 +95,19 @@
                   <p class="qd-files-cap" aria-live="polite"></p>
                 </div>
 
+                <!-- Вариант Apostille (аналитика /apostille/, 27.09.2026): на каком документе нужна Apostille. Необязательно, как вид перевода.
+                     Скрыт по умолчанию – app.js открывает его только на /apostille/ и /apostille-bez-przyjazdu/ (и копиях ua/ru/en).
+                     Скрытое поле в письмо не уходит; открытое – полем «apostille». -->
+                <fieldset class="qd-kind qd-ap" hidden>
+                  <legend>Apostille na</legend>
+                  <div class="qd-kind-opts">
+                    <label><input type="radio" name="apostille" value="Oryginał"><span>Oryginał</span></label>
+                    <label><input type="radio" name="apostille" value="Tłumaczenie"><span>Tłumaczenie</span></label>
+                    <label><input type="radio" name="apostille" value="Oba"><span>Oba</span></label>
+                    <label><input type="radio" name="apostille" value="Nie wiem"><span>Nie wiem</span></label>
+                  </div>
+                </fieldset>
+
                 <!-- Вид перевода (Грег, 26.09.2026): przysięgłe или zwykłe; «Nie wiem» – для тех, кто не уверен (и чтобы можно
                      было снять случайный выбор). Необязательно: для одной Apostille поле просто пропускают. Уходит в письмо полем «tlumaczenie». -->
                 <fieldset class="qd-kind">

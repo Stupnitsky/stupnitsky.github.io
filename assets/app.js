@@ -477,6 +477,8 @@
       head.style.transition = !anim || calm.matches ? 'none'
         : anim === 'menu' ? '--hp .34s cubic-bezier(.2,.7,.25,1)' : '--hp 1s cubic-bezier(.35,0,.15,1)';
       head.style.setProperty('--ps', ps + 'px');
+      /* ширина пилюли – для кнопки «Zamów wycenę» внизу экрана (.m-dock): она по размеру и форме как пилюля (Грег, 27.09.2026) */
+      root.style.setProperty('--pill-w', (w - 2 * ps) + 'px');
       /* наибольшее увеличение у верха страницы: 1.36, но по бокам остаётся не меньше 12px воздуха – иначе на
          телефоне пилюля вставала бы от края до края, как прежняя полная шапка. На 320 «/ Cennik» (240px) – ×1.13 */
       zMax = Math.max(1, Math.min(ZOOM, (w - 24) / Math.max(1, w - 2 * ps)));
@@ -2312,7 +2314,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260926-63';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260927-2';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -2410,6 +2412,10 @@
         box.innerHTML = html;
         qd = box.firstElementChild;
         document.body.appendChild(qd);
+        /* «Apostille na: Oryginał · Tłumaczenie · Oba · Nie wiem» (.qd-ap, 27.09.2026) – только на страницах про Apostille;
+           на остальных fieldset остаётся hidden, и его радио в письмо не попадают */
+        var apSet = qd.querySelector('.qd-ap');
+        if (apSet && /^\/(?:(?:ua|ru|en)\/)?apostille(?:-bez-przyjazdu)?\/$/.test(location.pathname)) apSet.hidden = false;
         bind();
         return qd;
       }).catch(function(err){
@@ -3160,7 +3166,7 @@
   });
   document.body.appendChild(dock);
 
-  var mains = [].slice.call(main.querySelectorAll('.cta-btn--main, .gt-btn'));   /* .gt-btn – кнопка заявки в плитах цен */
+  var mains = [].slice.call(main.querySelectorAll('.cta-btn--main, .gt-btn, .tl-go-go'));   /* .gt-btn – кнопка заявки в плитах цен, .tl-go-go – во фразе-часах #jak-to-dziala */
   var first = mains[0] || null;
   var cn = document.querySelector('.cn-dock');   /* /cennik/: плавающие якоря прайса внизу окна (от 640px) – пока они видны, док не показываем */
   if (cn && window.MutationObserver) new MutationObserver(req).observe(cn, { attributes: true, attributeFilter: ['class'] });
@@ -3191,4 +3197,48 @@
   /* меню и панель заявки меняют класс у <html> – следим за ним */
   if (window.MutationObserver) new MutationObserver(req).observe(root, { attributes: true, attributeFilter: ['class'] });
   apply();
+})();
+
+/* Фраза-часы в конце #jak-to-dziala на /tlumaczenia-przysiegle/ (PL, 27.09.2026, стенд docs/jak-cta/ – вариант 10).
+   «Jest 14:32. [Zamów wycenę] teraz, a cenę i termin dostaniesz e-mailem zwykle do 14:47.» – часы посетителя и +15 минут.
+   Рабочее окно – по Варшаве, codziennie 7:00–21:00 (в праздники тоже, как .ws-msg выше). За 15 минут до закрытия –
+   «zwykle jeszcze dziś». Ночью фраза кончается на «e-mailem», а когда ответим – в подписи: «Jutro rano – odpowiadamy od 7:00»
+   (7:00 варшавского времени в часах посетителя). DOM трогаем только при смене текста – иначе сбрасывается выделение. */
+(function () {
+  var p = document.querySelector('.tl-go-now');
+  if (!p) return;
+  var clock = p.querySelector('.tl-go-clock'), nowEl = p.querySelector('[data-now]'), whenEl = p.querySelector('[data-when]');
+  var note = document.querySelector('.tl-go-note[data-note]');
+  var OPEN = 7 * 60, CLOSE = 21 * 60, NB = '\u00a0', DAY_NOTE = note ? note.innerHTML : '';
+  function waw(t) {
+    var o = {};
+    try {
+      new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Warsaw', hour12: false, hour: '2-digit', minute: '2-digit' })
+        .formatToParts(t).forEach(function (x) { o[x.type] = x.value; });
+      return { h: parseInt(o.hour, 10) % 24, m: parseInt(o.minute, 10) };
+    } catch (e) { return { h: t.getHours(), m: t.getMinutes() }; }
+  }
+  function hm(t) { return t.getHours() + ':' + ('0' + t.getMinutes()).slice(-2); }
+  function mid(t) { return new Date(t.getFullYear(), t.getMonth(), t.getDate()).getTime(); }
+  function set(el, html) { if (el && el._h !== html) { el.innerHTML = html; el._h = html; } }
+  function tick() {
+    var n = new Date(), t = new Date(n.getTime() - n.getSeconds() * 1000 - n.getMilliseconds());
+    var w = waw(t), wm = w.h * 60 + w.m;
+    if (nowEl.textContent !== hm(t)) nowEl.textContent = hm(t);
+    if (wm >= OPEN && wm < CLOSE) {
+      set(whenEl, wm + 15 > CLOSE ? ' zwykle jeszcze' + NB + 'dziś' : ' zwykle do' + NB + '<span class="tl-go-t">' + hm(new Date(t.getTime() + 15 * 60000)) + '</span>');
+      set(note, DAY_NOTE);
+    } else {
+      /* ближайшие 7:00 по Варшаве; в ночь перевода часов поправляем по факту */
+      var at = new Date(t.getTime() + ((OPEN - wm + 1440) % 1440) * 60000);
+      var h = waw(at).h; if (h !== 7) at = new Date(at.getTime() + (7 - h) * 3600000);
+      var day = Math.round((mid(at) - mid(t)) / 864e5) <= 0 ? 'Dziś' : 'Jutro';
+      if (at.getHours() >= 5 && at.getHours() < 12) day += NB + 'rano';
+      set(whenEl, '');
+      set(note, day + ' – odpowiadamy od' + NB + '<span class="tl-go-t">' + hm(at) + '</span>.');
+    }
+  }
+  clock.hidden = false;
+  tick();
+  setInterval(tick, 10000);
 })();
