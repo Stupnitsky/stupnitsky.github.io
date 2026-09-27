@@ -4405,12 +4405,13 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
 *, *::before, *::after{ font-variant-ligatures:common-ligatures contextual;
   font-feature-settings:"liga" 1, "clig" 1, "calt" 1; }
 
-/* Буква языка за сеткой (Грег, 26.09.2026: «на фоне давай и её изменять будем, верни символы»). Вместе с раскрытием
-   самоназвания «A» гаснет, а за сеткой проявляется буква этого языка из data-g: Ł Ї Ы & ß È Ç Ñ Ĳ. Слои .lng-g создаёт
-   и расставляет app.js: высота – как у прописной «A», стоит на нижнем крае секции в середине видимой части «A», край окна
-   её не режет (обрезанная Ы читалась бы как Ь); на телефоне – за сеткой, пока она на экране. Две штуки – для наплыва. */
+/* Код языка за сеткой (Грег, 26.09.2026: «на фоне давай и её изменять будем, верни символы»; 27.09.2026: «при наведении
+   серым в фоне показывай EN NL DE и тд» – вместо букв Ł Ї Ы & ß È Ç Ñ Ĳ; «смени PL на Pl» – Pl, Ua, En…). Вместе с раскрытием самоназвания «A» гаснет,
+   а за сеткой проявляется код этого языка из data-g, трекинг – как у кода в сетке. Слои .lng-g создаёт и расставляет
+   app.js: от 640px – на базовой линии «A», верх над линией сетки, 16px под заголовком, привязан к краю
+   окна: край режет вторую букву, 36 % её за краем (Грег, 27.09.2026); «?» – как было: в высоту «A», целиком в окне; на телефоне – за сеткой целиком, пока она на экране. Две штуки – для наплыва. */
 .lng-g{ position:absolute; left:0; top:0; z-index:-1; display:block; font-family:"Fira Sans",sans-serif; font-weight:900; line-height:1;
-  white-space:pre; color:var(--c-sand); opacity:0; transition:opacity .35s ease; pointer-events:none; -webkit-user-select:none; user-select:none; }
+  letter-spacing:-.02em; white-space:pre; color:var(--c-sand); opacity:0; transition:opacity .35s ease; pointer-events:none; -webkit-user-select:none; user-select:none; }
 .lng-g.is-on{ opacity:1; }
 .lng-ghost{ transition:opacity .35s ease; }
 .lng.is-g .lng-ghost{ opacity:0; }

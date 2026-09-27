@@ -1935,7 +1935,7 @@
           var acc = form.querySelector('.qd-acc--static');
           if (acc) acc.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-        if (tooBig) say('Plik „' + tooBig.name + '” jest za duży (' + fmt(tooBig.size) + '). Zrób zdjęcie telefonem albo wyślij ten plik na WhatsApp.', false);
+        if (tooBig) say('Plik „' + tooBig.name + '” jest za duży (' + fmt(tooBig.size) + '). Zrób zdjęcie telefonem albo zapisz skan jako mniejszy plik – do 20 MB – i dodaj go jeszcze raz.', false);   /* документы – только через форму */
         else hush();
       });
     }
@@ -2095,7 +2095,7 @@
             ? 'Brak internetu – spróbuj, gdy wróci zasięg.' : 'Nie udało się wysłać.';
           failBox.hidden = false; hush(); return;
         }
-        say('Nie udało się wysłać. Spróbuj jeszcze raz albo napisz na WhatsApp – zdjęcia możesz wysłać tam.', false);
+        say('Nie udało się wysłać. Spróbuj jeszcze raz albo zadzwoń: +48 507 588 155.', false);   /* документы – только через форму (Грег, 24.09.2026) */
       }
       xhr.send(new FormData(form));
     });
@@ -2304,7 +2304,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260926-46';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260926-58';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -2408,12 +2408,14 @@
         /* file:// или ошибка сети – уводим на страницу с формой, чтобы кнопка не молчала */
         console.error('Wycena: nie udało się wczytać ' + FRAG, err);
         loading = null;
-        window.location.href = '/cennik/#wycena';
+        /* уже на /cennik/ – не уводим: #wycena снова открыл бы панель, и ошибка пошла бы по кругу */
+        if (location.pathname !== '/cennik/') window.location.href = '/cennik/#wycena';
       });
       return loading;
     }
     function open(){
       load().then(function(){
+        if (!qd) return;                   /* фрагмент не загрузился – load() уже увёл на /cennik/ */
         last = document.activeElement;
         qd.hidden = false;
         /* на десктопе страницу не блокируем: колесо над панелью крутит её содержимое,
@@ -2447,6 +2449,16 @@
     document.addEventListener('keydown', function(e){
       if (e.key === 'Escape' && qd && !qd.hidden) close();
     });
+    /* Адрес с #wycena сразу открывает панель – ссылка для постов и описания профиля ведёт прямо к фото
+       (аналитика 26.09.2026: …/tlumaczenia-przysiegle/?utm_source=instagram&utm_medium=bio#wycena).
+       Хэш после открытия снимаем, чтобы повторный переход по той же ссылке снова открыл панель. */
+    function byHash(){
+      if (location.hash !== '#wycena') return;
+      if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+      open();
+    }
+    window.addEventListener('hashchange', byHash);
+    byHash();
   })();
 
 
@@ -2857,10 +2869,13 @@
    на место слева направо, уходят с конца. Перебор идёт в копии букв (.lng-ov) ровно на местах настоящих (замер Range по
    каждой букве; лигатурные пары fi, fl, ff… держатся вместе); копия сложилась – убирается, остаётся живое слово.
    --lng-dd / --lng-ws: на сколько при раскрытии отъезжает влево жёлтая точка и вправо слово (пара «точка + слово» по центру).
-   Фон: вместе с раскрытием «A» гаснет и за сеткой наплывом встаёт буква языка (data-g). Буква вписана в высоту прописной
-   «A», стоит на нижнем крае секции в середине видимой части «A», но целиком в окне – чужие буквы край не режет (обрезанная
-   Ы читалась бы как Ь, Ñ – как N); на телефоне – за сеткой: там буквы сменяются, пока сетка на экране, а низ секции ещё
-   за краем. Метрики букв меряются canvas-ом после загрузки шрифта. */
+   Фон: вместе с раскрытием «A» гаснет и за сеткой наплывом встаёт код языка (data-g: En, De, Nl… – вторая строчная;
+   Грег, 27.09.2026 – раньше буква языка Ł Ї Ы & ß; строчные l и t не выше прописных – верх кода по-прежнему по сетке). От 640px код – кеглем и на базовой линии «A», привязан к краю окна (Грег, 27.09.2026:
+   «на место буквы А, чтобы в срез шло на максимум»; «резало вторую букву в том же месте»; «прячется не 66%, 42%»; «срез 36%»):
+   край режет вторую букву, 36 % её за краем, у всех кодов одинаково; верх кода – над линией сетки, 16px под
+   заголовком («отступ от заголовка», «ровно по высоте сетки, их нужно вынести»); «?» – как было до кодов: в высоту «A», целиком в окне.
+   На телефоне – за сеткой, целиком в окне: там коды сменяются, пока сетка на экране, а низ секции ещё за краем.
+   Метрики кодов меряются canvas-ом после загрузки шрифта, с трекингом .lng-g (−0,02em). */
 (function () {
   var grid = document.querySelector('.lng-grid');
   if (!grid || !window.requestAnimationFrame) return;
@@ -2869,7 +2884,7 @@
   var mouse = window.matchMedia('(hover:hover) and (pointer:fine)');
   var cur = -1;
   var sec = grid.closest ? grid.closest('.lng') : null, ghost = sec ? sec.querySelector('.lng-ghost') : null;
-  var FONT = "900 100px 'Fira Sans'", layers = [], front = 0, metrics = {}, geo = null;
+  var FONT = "900 100px 'Fira Sans'", CUT = .36, layers = [], front = 0, metrics = {}, geo = null;
   if (ghost) layers = [0, 1].map(function () {
     var s = document.createElement('span');
     s.className = 'lng-g'; s.setAttribute('aria-hidden', 'true');
@@ -2881,25 +2896,42 @@
     var ctx = document.createElement('canvas').getContext('2d');
     if (!ctx) return;
     ctx.font = FONT;
+    if ('letterSpacing' in ctx) ctx.letterSpacing = '-2px';      /* −0,02em от 100px – как letter-spacing у .lng-g */
     cells.forEach(function (c) {
       var g = c.getAttribute('data-g');
       if (!g) return;
-      var m = ctx.measureText(g);
+      var m = ctx.measureText(g), ch = Array.from(g);
       metrics[g] = { l: m.actualBoundingBoxLeft / 100, r: m.actualBoundingBoxRight / 100,
                      a: m.actualBoundingBoxAscent / 100, d: m.actualBoundingBoxDescent / 100 };
+      if (ch.length < 2) return;
+      metrics[g].cap = ctx.measureText(ch[0]).actualBoundingBoxAscent / 100;   /* высота заглавной – по ней кегль */
+      /* линия среза: 36 % чернил второй буквы – за краем окна; её правый край – правый край чернил всего кода */
+      var m2 = ctx.measureText(ch[ch.length - 1]);
+      metrics[g].cut = metrics[g].r - CUT * (m2.actualBoundingBoxLeft + m2.actualBoundingBoxRight) / 100;
     });
   }
-  /* поле для буквы: высота – прописная «A» (0,696em), низ – край секции, середина – видимая часть «A» (её чернила
-     от −0,025 до 0,626em от левого края блока), поля слева и справа – как у контейнера */
+  /* от 640px – базовая линия «A» на нижнем крае секции (bottom:−0,165em при line-height:1), кегль – как у «A», но верх
+     прописных – в просвете между заголовком и сеткой, 16px под заголовком (Грег, 27.09.2026: «немного бы уменьшил
+     буквы, чтобы был отступ от заголовка»; «ровно по высоте сетки, их нужно вынести» – над линией сетки, отступ от
+     заголовка небольшой). Код привязан к краю окна – край режет вторую букву
+     так, что 36 % её чернил за краем (cut из measure), у всех кодов одинаково.
+     «?» – как было (Грег, 27.09.2026: «вопрос верни как был»): поле высотой в прописную «A» (0,696em), низ – край секции,
+     середина – видимая часть «A» (её чернила от −0,025 до 0,626em от левого края блока), целиком в окне, поля по 32px.
+     Телефон: поле за сеткой – высота сетки, по середине окна, поля по 20px */
   function layout() {
     if (!ghost) return;
     var sr = sec.getBoundingClientRect(), gr = ghost.getBoundingClientRect();
-    var F = parseFloat(getComputedStyle(ghost).fontSize), W = sec.clientWidth, H = sec.clientHeight;
-    var pad = W >= 640 ? 32 : 20, aL = gr.left - sr.left - .025 * F, aR = Math.min(gr.left - sr.left + .626 * F, W);
-    geo = { cap: Math.min(.696 * F, H - pad), cx: (aL + aR) / 2, lo: pad, hi: W - pad, bottom: H };
-    if (W < 640) {
+    var F = parseFloat(getComputedStyle(ghost).fontSize), W = sec.clientWidth;
+    if (W >= 640) {
+      var H = sec.clientHeight, h2 = sec.querySelector('h2');
+      var top = h2 ? h2.getBoundingClientRect().bottom - sr.top + 16 : grid.parentNode.getBoundingClientRect().top - sr.top;
+      var aL = gr.left - sr.left - .025 * F, aR = Math.min(gr.left - sr.left + .626 * F, W);
+      geo = { a: true, F: F, room: H - top, base: H, edge: W,
+              cap: Math.min(.696 * F, H - 32), cx: (aL + aR) / 2, lo: 32, hi: W - 32, bottom: H };
+    }
+    else {
       var g = grid.getBoundingClientRect();
-      geo.cap = g.height - 8; geo.bottom = g.bottom - sr.top; geo.cx = W / 2;
+      geo = { cap: g.height - 8, cx: W / 2, lo: 20, hi: W - 20, bottom: g.bottom - sr.top };
     }
     if (cur >= 0) place(layers[front], cells[cur].getAttribute('data-g'));
   }
@@ -2907,6 +2939,12 @@
     var m = metrics[g];
     el.textContent = g || '';
     if (!m || !geo || !(m.l + m.r > 0)) return;
+    if (geo.a && m.cut != null) {                                /* код – срезом второй буквы по краю окна */
+      var fs = Math.min(geo.F, geo.room / m.cap);   /* по заглавной (Грег: «по заглавным смотреть»): l выше неё – торчит */
+      el.style.fontSize = fs.toFixed(1) + 'px';
+      el.style.transform = 'translate(' + (geo.edge - m.cut * fs).toFixed(1) + 'px,' + (geo.base - .835 * fs).toFixed(1) + 'px)';
+      return;
+    }
     var w = m.l + m.r, h = m.a + m.d, size = Math.min(geo.cap / h, (geo.hi - geo.lo) / w);
     var inkL = Math.max(geo.lo, Math.min(geo.cx - w * size / 2, geo.hi - w * size));
     var x = inkL + m.l * size, base = geo.bottom - m.d * size;   /* при line-height:1 базовая линия Fira – 0,835em от верха */
