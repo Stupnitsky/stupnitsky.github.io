@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Apostille Warszawa – MSZ i Sąd Okręgowy | Apostilo</title>
-<meta name="description" content="Apostille w Warszawie bez kolejek i wizyt: MSZ, Sąd Okręgowy, KRK, KRS. Wycena po zdjęciu dokumentu, odbiór w Śródmieściu lub w Paczkomacie InPost.">
+<meta name="description" content="Apostille w Warszawie bez rezerwacji wizyty w MSZ: 260 zł razem z opłatą skarbową, zwykle 1–3 dni robocze. Oryginał oddajesz w centrum albo Paczkomatem.">
 <link rel="canonical" href="https://apostilo.pl/apostille/">
 <link rel="alternate" hreflang="pl" href="https://apostilo.pl/apostille/">
 <link rel="alternate" hreflang="uk" href="https://apostilo.pl/ua/apostille/">
@@ -20,8 +20,8 @@
 <meta property="og:site_name" content="Apostilo">
 <meta property="og:locale" content="pl_PL">
 <meta property="og:url" content="https://apostilo.pl/apostille/">
-<meta property="og:title" content="Apostille Warszawa – MSZ i Sąd Okręgowy | Apostilo">
-<meta property="og:description" content="Apostille w Warszawie bez kolejek i wizyt: MSZ, Sąd Okręgowy, KRK, KRS. Wycena po zdjęciu dokumentu, odbiór w Śródmieściu lub w Paczkomacie InPost.">
+<meta property="og:title" content="Apostille w Warszawie bez wizyty w MSZ – 260 zł z opłatą skarbową">
+<meta property="og:description" content="Wyślij zdjęcie dokumentu – wycenę dostaniesz zwykle w 15 minut, a Apostille w 1–3 dni robocze. Jeśli MSZ odmówi, zwracamy całą wpłatę.">
 <meta property="og:image" content="https://apostilo.pl/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -36,21 +36,96 @@
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260926-61">
+<link rel="stylesheet" href="/styles.css?v=20260926-62">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Service",
+  "@id": "https://apostilo.pl/apostille/#service",
   "name": "Apostille w Warszawie",
   "serviceType": "Apostille i legalizacja dokumentów",
-  "provider": { "@type": "LocalBusiness", "name": "Apostilo", "telephone": "+48507588155", "url": "https://apostilo.pl/" },
-  "areaServed": "Warszawa",
   "url": "https://apostilo.pl/apostille/",
+  "provider": {
+    "@type": "ProfessionalService",
+    "@id": "https://apostilo.pl/#organization",
+    "name": "Apostilo",
+    "url": "https://apostilo.pl/",
+    "telephone": "+48507588155"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Warszawa"
+    },
+    {
+      "@type": "Country",
+      "name": "Polska"
+    }
+  ],
   "offers": [
-    { "@type": "Offer", "name": "Apostille MSZ", "priceCurrency": "PLN", "price": "260", "priceSpecification": { "@type": "PriceSpecification", "price": "260", "priceCurrency": "PLN" } },
-    { "@type": "Offer", "name": "Apostille – Sąd Okręgowy", "priceCurrency": "PLN", "price": "120", "priceSpecification": { "@type": "PriceSpecification", "price": "120", "priceCurrency": "PLN" } },
-    { "@type": "Offer", "name": "Uzyskanie dokumentu KRK / KRS", "priceCurrency": "PLN", "price": "200", "priceSpecification": { "@type": "PriceSpecification", "price": "200", "priceCurrency": "PLN" } }
+    {
+      "@type": "Offer",
+      "name": "Apostille MSZ",
+      "priceCurrency": "PLN",
+      "price": "260"
+    },
+    {
+      "@type": "Offer",
+      "name": "Apostille MSZ – tryb ekspresowy",
+      "priceCurrency": "PLN",
+      "price": "350"
+    },
+    {
+      "@type": "Offer",
+      "name": "Poświadczenie podpisu w Sądzie Okręgowym (przed Apostille MSZ)",
+      "priceCurrency": "PLN",
+      "price": "120"
+    },
+    {
+      "@type": "Offer",
+      "name": "Dokument notarialny z Apostille – Sąd Okręgowy i MSZ",
+      "priceCurrency": "PLN",
+      "price": "380"
+    },
+    {
+      "@type": "Offer",
+      "name": "Uzyskanie dokumentu z KRK lub KRS (bez Apostille)",
+      "priceCurrency": "PLN",
+      "price": "200"
+    },
+    {
+      "@type": "Offer",
+      "name": "Zaświadczenie o niekaralności z Apostille",
+      "priceCurrency": "PLN",
+      "price": "460"
+    },
+    {
+      "@type": "Offer",
+      "name": "Legalizacja dokumentu w MSZ (kraje spoza konwencji)",
+      "priceCurrency": "PLN",
+      "price": "260"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Apostilo",
+      "item": "https://apostilo.pl/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Apostille",
+      "item": "https://apostilo.pl/apostille/"
+    }
   ]
 }
 </script>
@@ -60,15 +135,17 @@
   "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "Ile trwa Apostille w Warszawie?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Zwykle 1–3 dni robocze dla dokumentów kierowanych do MSZ. Tryb ekspresowy – składamy tego samego dnia, jeśli dokument trafi do nas do godziny 11:00 i nie wymaga wcześniejszego tłumaczenia. Dokumenty notarialne i sądowe potrzebują wcześniej co najmniej dwóch dni roboczych w Sądzie Okręgowym. Czasem MSZ musi potwierdzić autentyczność dokumentu w urzędzie, który go wydał – np. zaświadczenia z wydziału komunikacji albo orzeczenia o niepełnosprawności. Wtedy wydanie Apostille trwa dłużej, od tygodnia do nawet miesiąca. Na ten etap nie mamy wpływu: dokument składamy od razu, a o każdym opóźnieniu informujemy Cię tego samego dnia." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Zwykle 1–3 dni robocze dla dokumentów kierowanych do MSZ. W trybie ekspresowym, za 350 zł, składamy dokument tego samego dnia, jeśli oryginał i potwierdzenie płatności mamy do 11:00, a dokument nie wymaga wcześniejszego tłumaczenia. Dokumenty notarialne i sądowe nie mają ekspresu, bo najpierw muszą przejść przez Sąd Okręgowy, co trwa co najmniej dwa dni robocze. Czasem MSZ musi potwierdzić autentyczność dokumentu w urzędzie, który go wydał – np. zaświadczenia z wydziału komunikacji albo orzeczenia o niepełnosprawności. Wtedy wydanie Apostille trwa dłużej, od tygodnia do nawet miesiąca. Na ten etap nie mamy wpływu: dokument składamy od razu, a o każdym opóźnieniu informujemy Cię tego samego dnia." } },
     { "@type": "Question", "name": "Gdzie w Warszawie robi się Apostille?",
-      "acceptedAnswer": { "@type": "Answer", "text": "W Referacie ds. Legalizacji MSZ przy ul. Kruczej 38/42 – wyłącznie po rezerwacji terminu online. Dokumenty notarialne i sądowe najpierw poświadcza Sąd Okręgowy przy al. „Solidarności” 127. My składamy i odbieramy dokumenty w obu miejscach, więc klient nie rezerwuje terminu i nie przyjeżdża – szczegóły na stronie kontaktu." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "W Referacie ds. Legalizacji MSZ przy ul. Kruczej 38/42, wyłącznie po rezerwacji terminu w systemie e-Konsulat. Dokumenty notarialne i sądowe najpierw poświadcza Sąd Okręgowy właściwy dla notariusza albo sądu, który je wydał – w Warszawie to sąd przy al. „Solidarności” 127 albo, dla prawego brzegu Wisły, przy ul. Poligonowej 3. Składamy i odbieramy dokumenty w warszawskich sądach i w MSZ, więc nie musisz rezerwować terminu ani przyjeżdżać – szczegóły na stronie kontaktu." } },
     { "@type": "Question", "name": "Apostille na oryginale czy na kopii?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Na oryginale albo na odpisie wydanym przez urząd – na zwykłej kserokopii Apostille nie zostanie nadana. Jeśli nie chcesz oddawać jedynego oryginału, notariusz może sporządzić poświadczoną kopię, a Apostille trafia wtedy na podpis notariusza (przez Sąd Okręgowy). Do wyceny wystarczy zdjęcie, oryginał przekazujesz przy odbiorze albo nadaniu dokumentów." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Na oryginale albo na odpisie wydanym przez urząd – na zwykłej kserokopii Apostille nie zostanie nadana. Jeśli nie chcesz oddawać jedynego oryginału, notariusz może sporządzić poświadczoną kopię i wtedy Apostille trafia na jego podpis, przez Sąd Okręgowy. Za samą kopię płacisz notariuszowi osobno. Do wyceny wystarczy zdjęcie, a oryginał przekazujesz na spotkaniu w centrum Warszawy albo wysyłasz Paczkomatem." } },
+    { "@type": "Question", "name": "Co, jeśli MSZ odmówi Apostille?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Zwracamy całą wpłatę, razem z opłatą skarbową. Dlatego zanim przyjmiemy zlecenie, oglądamy zdjęcie dokumentu i mówimy wprost, jeśli klauzuli nie da się nadać – na przykład na zwykłej kserokopii, dokumencie zalaminowanym albo z zatartą pieczęcią." } },
     { "@type": "Question", "name": "Tłumaczenie robi się przed Apostille czy po?",
       "acceptedAnswer": { "@type": "Answer", "text": "To zależy od instytucji, która przyjmie dokument, i kraju, do którego trafi. Najczęściej najpierw Apostille na oryginał, potem tłumaczenie przysięgłe, a na końcu Apostille na tłumaczenie – tak wymagają np. Włochy i Hiszpania. Bywa też, że wystarczy Apostille na samo tłumaczenie. Wymagania sprawdź tam, gdzie składasz dokument, i wskaż wariant przy wycenie – wykonamy każdy." } },
     { "@type": "Question", "name": "Jak wygląda klauzula Apostille?",
-      "acceptedAnswer": { "@type": "Answer", "text": "To pieczęć lub naklejka z nagłówkiem „Apostille (Convention de La Haye du 5 octobre 1961)” i dziesięcioma polami: kraj, kto podpisał dokument, w jakim charakterze, jaką pieczęcią, miejsce i data poświadczenia, organ, numer, pieczęć i podpis urzędnika. W Polsce MSZ umieszcza ją na ostatniej stronie dokumentu albo na doszytej karcie. Każdą klauzulę można sprawdzić po numerze w rejestrze MSZ." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "W Polsce to zadrukowana naklejka z hologramem i nagłówkiem „Apostille (Convention de La Haye du 5 octobre 1961)”. Ma dziesięć pól: kraj, kto podpisał dokument, w jakim charakterze, jaką pieczęcią, miejsce i data poświadczenia, organ, numer, pieczęć i podpis urzędnika. MSZ nakleja ją na ostatniej stronie dokumentu albo na doszytej karcie. Publicznego rejestru, w którym można by sprawdzić Apostille online, w Polsce nie ma, dlatego liczy się oryginał z naklejką." } },
     { "@type": "Question", "name": "Czy Apostille ma termin ważności?",
       "acceptedAnswer": { "@type": "Answer", "text": "Sama klauzula nie traci ważności. Termin może mieć dokument: urzędy za granicą często wymagają odpisu aktu stanu cywilnego lub zaświadczenia o niekaralności nie starszego niż 3–6 miesięcy. Dlatego Apostille lepiej robić wtedy, gdy dokument jest już potrzebny, a nie „na zapas”." } },
     { "@type": "Question", "name": "Kiedy zamiast Apostille potrzebna jest legalizacja?",
@@ -166,11 +243,12 @@
 <section class="relative overflow-hidden pt-8 pb-16 md:pt-14 md:pb-24">
   <div class="relative mx-auto max-w-site px-5 sm:px-8">
     <p class="font-cond uppercase tracking-[0.18em] text-[15px] font-semibold text-ink/75 mb-6">Apostille</p>
-    <h1 class="tracking-tightest leading-[0.95] text-[36px] sm:text-[52px] md:text-[64px] font-black h1-page">Apostille w&nbsp;Warszawie – MSZ i&nbsp;Sąd Okręgowy, cały proces zdalnie</h1>
+    <h1 class="tracking-tightest leading-[0.95] text-[36px] sm:text-[52px] md:text-[64px] font-black h1-page">Apostille w&nbsp;Warszawie&nbsp;– MSZ i&nbsp;Sąd Okręgowy, cały proces zdalnie</h1>
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
-      Odbieramy dokument, składamy go w&nbsp;odpowiednim urzędzie i&nbsp;pilnujemy terminu. Nie rezerwujesz
-      wizyty w&nbsp;MSZ, nie stoisz w&nbsp;kolejce i&nbsp;nie bierzesz wolnego – wystarczy zdjęcie dokumentu
-      w&nbsp;<a href="/cennik/#wycena" data-quote class="underline">formularzu wyceny</a>, a&nbsp;oryginał przekazujesz na spotkaniu w&nbsp;centrum Warszawy albo wysyłasz Paczkomatem.
+      Apostille w&nbsp;MSZ kosztuje u&nbsp;nas 260&nbsp;zł razem z&nbsp;opłatą skarbową, a&nbsp;gotowy dokument masz zwykle
+      po <span class="whitespace-nowrap">1–3</span>&nbsp;dniach roboczych. Nie rezerwujesz wizyty, nie stoisz w&nbsp;kolejce i&nbsp;nie bierzesz wolnego – wystarczy
+      zdjęcie dokumentu w&nbsp;<a href="/cennik/#wycena" data-quote class="underline">formularzu wyceny</a>, a&nbsp;oryginał przekazujesz
+      na spotkaniu w&nbsp;centrum Warszawy albo wysyłasz <a href="/apostille-bez-przyjazdu/" class="underline">Paczkomatem z&nbsp;dowolnego miasta</a>.
     </p>
     <!-- ссылка-стрелка привязана к абзацу (стоит сразу под ним), кнопки – ниже, после воздуха -->
     <p class="hero-more">
@@ -180,8 +258,8 @@
     </p>
     <!-- главное действие – форма заявки (панель wyceny), перед ней мессенджеры; как в hero /kontakt/ (21.09.2026) -->
     <div class="cta-btns hero-cta" role="group" aria-label="Zamów wycenę lub napisz na komunikatorze">
-      <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20Apostille%20lub%20t%C5%82umaczenie" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
-      <a href="https://t.me/apostilo?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20Apostille%20lub%20t%C5%82umaczenie" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20Apostille" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="https://t.me/apostilo?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20Apostille" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
       <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
     </div>
   </div>
@@ -197,17 +275,17 @@
     <div class="ap-cols mt-8">
       <div>
         <p class="text-[17px] leading-[1.6] text-ink/75">
-          Apostille to klauzula, którą urząd państwa wydającego dokument potwierdza, że podpis, pieczęć
-          i&nbsp;stanowisko osoby podpisującej są prawdziwe. Wprowadziła ją Konwencja haska z&nbsp;5&nbsp;października
-          1961&nbsp;roku; Polska stosuje ją od 2005&nbsp;roku. Dokument z&nbsp;Apostille jest uznawany we wszystkich
-          państwach konwencji – dziś to ponad 120 krajów, w&nbsp;tym cała Unia Europejska, Wielka Brytania,
+          Apostille to klauzula, którą urząd państwa wydającego dokument potwierdza autentyczność podpisu i&nbsp;pieczęci
+          oraz to, w&nbsp;jakim charakterze działała osoba podpisująca. Klauzulę wprowadziła Konwencja haska z&nbsp;5&nbsp;października
+          1961&nbsp;roku, a&nbsp;Polska jest jej stroną od 2005&nbsp;roku. Dokument z&nbsp;Apostille jest uznawany we wszystkich
+          państwach konwencji – dziś to blisko 130&nbsp;krajów, w&nbsp;tym cała Unia Europejska, Wielka Brytania,
           Stany Zjednoczone, Ukraina, Turcja i&nbsp;Izrael – bez dodatkowej legalizacji w&nbsp;konsulacie.
         </p>
         <p class="mt-4 text-[17px] leading-[1.6] text-ink/75">
           Klauzula nie potwierdza treści dokumentu, tylko autentyczność podpisu i&nbsp;pieczęci. Dlatego urząd za granicą
           zwykle chce obu rzeczy naraz: dokumentu z&nbsp;Apostille i&nbsp;jego tłumaczenia przysięgłego.
-          W&nbsp;Polsce wygląda to jak naklejka lub pieczęć formatu A5 z&nbsp;dziesięcioma ponumerowanymi
-          polami i&nbsp;nagłówkiem „Apostille (Convention de La Haye du 5 octobre 1961)”.
+          W&nbsp;Polsce ma postać zadrukowanej naklejki z&nbsp;hologramem, pieczęcią urzędową i&nbsp;odręcznym podpisem
+          urzędnika, z&nbsp;dziesięcioma ponumerowanymi polami i&nbsp;nagłówkiem „Apostille (Convention de La Haye du 5 octobre 1961)”.
         </p>
       </div>
       <div>
@@ -238,10 +316,11 @@
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
       O&nbsp;tym decyduje podpis na dokumencie, nie jego treść. Większość spraw kończy się w&nbsp;MSZ,
       ale dokument od notariusza lub z&nbsp;sądu musi wcześniej przejść przez Sąd Okręgowy,
-      a&nbsp;zaświadczenie z&nbsp;KRK czy odpis z&nbsp;KRS trzeba najpierw w&nbsp;ogóle uzyskać.
+      a&nbsp;zaświadczenie z&nbsp;KRK czy odpis z&nbsp;KRS trzeba najpierw w&nbsp;ogóle uzyskać. Apostilo to prywatna firma,
+      niezwiązana z&nbsp;MSZ ani z&nbsp;sądami – składamy i&nbsp;odbieramy dokumenty w&nbsp;Twoim imieniu.
     </p>
 
-    <div class="slab gdz mt-9 md:mt-12 bg-ink text-paper rounded-[9px] px-2 sm:px-4 py-2 sm:py-3">
+    <div class="gdz gdz--light gdz--ap mt-9 md:mt-12 bg-sand text-ink rounded-[26px] px-2 sm:px-4 py-2 sm:py-3">
       <div class="ap3">
 
         <div class="ap3-cell px-4 sm:px-6 py-7 lg:py-9">
@@ -252,11 +331,11 @@
             Apostille w&nbsp;MSZ dotyczy aktów stanu cywilnego z&nbsp;USC, zaświadczeń o&nbsp;niekaralności
             z&nbsp;Krajowego Rejestru Karnego, dokumentów firmowych, dokumentów notarialnych i&nbsp;sądowych
             po poświadczeniu w&nbsp;sądzie oraz tłumaczeń przysięgłych. Ministerstwo przyjmuje wyłącznie
-            po rezerwacji terminu – składamy i&nbsp;odbieramy dokumenty osobiście, więc klient nie
-            rezerwuje niczego i&nbsp;całą sprawę załatwia zdalnie.
+            po rezerwacji terminu w&nbsp;systemie e-Konsulat. Termin rezerwujemy sami, sami też składamy
+            i&nbsp;odbieramy dokumenty, więc całą sprawę załatwiasz zdalnie.
           </p>
           <dl class="gdz-meta">
-            <div><dt>Termin</dt><dd>zwykle 1–3 dni robocze, ekspres – złożenie tego samego dnia</dd></div>
+            <div><dt>Termin</dt><dd>zwykle <span class="whitespace-nowrap">1–3</span>&nbsp;dni robocze, w&nbsp;trybie ekspresowym składamy dokument tego samego dnia (350&nbsp;zł)</dd></div>
             <div><dt>Opłata skarbowa</dt><dd><b class="gdz-fee">60&nbsp;zł</b> za&nbsp;dokument – w&nbsp;naszej cenie</dd></div>
           </dl>
           <p class="slab-price"><span>Apostille MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></p>
@@ -265,16 +344,19 @@
         <div class="ap3-cell px-4 sm:px-6 py-7 lg:py-9">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Sądy</span>
           <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Sąd&nbsp;Okręgowy</h3>
-          <p class="gdz-full">Sąd Okręgowy w&nbsp;Warszawie, al.&nbsp;„Solidarności”&nbsp;127</p>
+          <p class="gdz-full">Sąd Okręgowy w&nbsp;Warszawie, al.&nbsp;„Solidarności”&nbsp;127, i&nbsp;Sąd Okręgowy Warszawa-Praga, ul.&nbsp;Poligonowa&nbsp;3</p>
           <p class="ap-desc">
             Sąd poświadcza podpisy notariuszy ze swojego okręgu oraz dokumenty sądowe: wyroki,
-            postanowienia, odpisy. To krok wymagany wtedy, gdy akt notarialny, pełnomocnictwo albo
-            orzeczenie ma zostać użyte za granicą – dopiero po poświadczeniu w&nbsp;sądzie dokument
-            trafia po Apostille do MSZ. Prowadzimy całą ścieżkę: sąd, a&nbsp;na końcu ministerstwo.
+            postanowienia, odpisy. Bez tego kroku akt notarialny, pełnomocnictwo czy orzeczenie nie dostanie
+            Apostille w&nbsp;MSZ. Notariusze z&nbsp;lewego brzegu Wisły podlegają sądowi przy al.&nbsp;„Solidarności”,
+            a&nbsp;z&nbsp;prawego&nbsp;– sądowi na Pradze. W&nbsp;Warszawie prowadzimy całą ścieżkę, od sądu po ministerstwo.
+            Jeśli Twój notariusz jest spoza Warszawy, pierwszy krok robisz
+            <a href="/apostille-bez-przyjazdu/#twoj-sad" class="underline">w&nbsp;Sądzie Okręgowym u&nbsp;siebie</a>, a&nbsp;MSZ załatwimy już my.
           </p>
           <dl class="gdz-meta">
-            <div><dt>Termin</dt><dd>min. 2&nbsp;dni robocze w&nbsp;sądzie, potem MSZ</dd></div>
+            <div><dt>Termin</dt><dd>co najmniej 2&nbsp;dni robocze w&nbsp;sądzie, razem z&nbsp;MSZ zwykle <span class="whitespace-nowrap">3–5</span>&nbsp;dni</dd></div>
             <div><dt>Opłata skarbowa</dt><dd><b class="gdz-fee">26&nbsp;zł</b> za&nbsp;podpis – w&nbsp;naszej cenie</dd></div>
+            <div><dt>Razem z&nbsp;MSZ</dt><dd><b class="gdz-fee">380&nbsp;zł</b> – 120&nbsp;zł za sąd i&nbsp;260&nbsp;zł za Apostille</dd></div>
           </dl>
           <p class="slab-price"><span>Sąd Okręgowy</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span></p>
         </div>
@@ -282,25 +364,27 @@
         <div class="ap3-cell px-4 sm:px-6 py-7 lg:py-9">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Rejestry</span>
           <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">KRK&nbsp;/&nbsp;KRS</h3>
-          <p class="gdz-full">Uzyskanie dokumentu w&nbsp;imieniu klienta, potem Apostille w&nbsp;MSZ</p>
+          <p class="gdz-full">Zaświadczenie lub odpis uzyskujemy w&nbsp;Twoim imieniu</p>
           <p class="ap-desc">
             Zaświadczenie o&nbsp;niekaralności z&nbsp;Krajowego Rejestru Karnego oraz odpisy i&nbsp;zaświadczenia
-            z&nbsp;Krajowego Rejestru Sądowego – najczęściej do pracy, przetargów i&nbsp;spraw firmowych za granicą.
-            Uzyskujemy dokument, w&nbsp;razie potrzeby tłumaczymy przysięgle, a&nbsp;na koniec uzyskujemy
-            Apostille w&nbsp;MSZ. Klient nie rejestruje się w&nbsp;systemie ani nie stawia się w&nbsp;urzędzie.
+            z&nbsp;Krajowego Rejestru Sądowego&nbsp;– najczęściej do pracy, przetargów i&nbsp;spraw firmowych za granicą.
+            Najpierw uzyskujemy dokument, potem Apostille w&nbsp;MSZ, a&nbsp;jeśli potrzebne jest tłumaczenie przysięgłe,
+            robimy je w&nbsp;kolejności, jakiej wymaga odbiorca. Do KRK potrzebne jest Twoje pisemne pełnomocnictwo,
+            ale nie musisz rejestrować się w&nbsp;systemie ani przychodzić do urzędu.
           </p>
           <dl class="gdz-meta">
-            <div><dt>Termin</dt><dd>KRK 1–2 dni robocze, KRS od ręki, plus MSZ</dd></div>
-            <div><dt>Opłata</dt><dd>opłaty rejestrów i&nbsp;MSZ – w&nbsp;naszej cenie</dd></div>
+            <div><dt>Termin</dt><dd>KRK <span class="whitespace-nowrap">1–2</span>&nbsp;dni robocze, KRS od ręki, potem MSZ</dd></div>
+            <div><dt>Opłata</dt><dd>opłata rejestru i&nbsp;pełnomocnictwa – w&nbsp;naszej cenie</dd></div>
+            <div><dt>Z&nbsp;Apostille</dt><dd><b class="gdz-fee">460&nbsp;zł</b> – 200&nbsp;zł za dokument i&nbsp;260&nbsp;zł za Apostille w&nbsp;MSZ</dd></div>
           </dl>
           <p class="slab-price"><span>Uzyskanie dokumentu</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>,-&nbsp;zł</b></span></p>
         </div>
       </div>
 
-      <div class="gdz-note">
+      <div class="gdz-note" id="najpierw-sad">
         <p><b>Kolejność ma znaczenie.</b> Dokument od&nbsp;notariusza najpierw potwierdza Sąd Okręgowy
-        i&nbsp;dopiero potem trafia do&nbsp;MSZ. Złożony od&nbsp;razu w&nbsp;ministerstwie wraca bez klauzuli
-        – a&nbsp;to stracony tydzień. Adresy i&nbsp;godziny obu urzędów – na stronie
+        i&nbsp;dopiero potem trafia do&nbsp;MSZ. Złożony od&nbsp;razu w&nbsp;ministerstwie wraca bez klauzuli&nbsp;–
+        a&nbsp;to stracony tydzień. Adresy i&nbsp;godziny urzędów znajdziesz na stronie
         <a href="/kontakt/#gdzie" class="underline">kontaktu</a>.</p>
       </div>
     </div>
@@ -315,35 +399,41 @@
       <span class="h2-a">Na jakie dokumenty</span> <span class="h2-b font-light italic">uzyskasz Apostille</span>
     </h2>
     <div class="ap-docs mt-8">
-      <div class="ap-doc">
-        <h3>Akty stanu cywilnego</h3>
-        <p>Akt urodzenia, małżeństwa, zgonu, zaświadczenie o&nbsp;stanie cywilnym lub o&nbsp;zdolności do zawarcia małżeństwa. Apostille nadaje się na odpisie wydanym przez USC – zupełnym lub skróconym, także wielojęzycznym. Odpis nie może być kserokopią.</p>
+      <div class="ap-doc" id="akt-urodzenia">
+        <h3>Akt urodzenia, małżeństwa, zgonu</h3>
+        <p>Apostille uzyskasz też na zaświadczeniu o&nbsp;stanie cywilnym albo o&nbsp;zdolności do zawarcia małżeństwa. MSZ nadaje ją na odpisie z&nbsp;USC – zupełnym, skróconym albo wielojęzycznym, ale nigdy na kserokopii.</p>
       </div>
-      <div class="ap-doc">
+      <div class="ap-doc" id="niekaralnosc">
         <h3>Zaświadczenie o&nbsp;niekaralności</h3>
-        <p>Z&nbsp;Krajowego Rejestru Karnego, do pracy i&nbsp;pobytu za granicą. Uzyskujemy je w&nbsp;imieniu klienta, tłumaczymy przysięgle, a&nbsp;na koniec uzyskujemy Apostille – w&nbsp;jednym zleceniu.</p>
+        <p>Z&nbsp;Krajowego Rejestru Karnego, najczęściej do pracy i&nbsp;pobytu za granicą. Zaświadczenie uzyskujemy w&nbsp;Twoim imieniu, potem załatwiamy Apostille, a&nbsp;jeśli potrzebne jest tłumaczenie przysięgłe, robimy je w&nbsp;kolejności, jakiej wymaga odbiorca. Wszystko w&nbsp;jednym zleceniu.</p>
       </div>
-      <div class="ap-doc">
+      <div class="ap-doc" id="firmowe">
         <h3>Dokumenty firmowe</h3>
         <p>Odpis z&nbsp;KRS, zaświadczenie z&nbsp;CEIDG, umowa spółki, uchwały i&nbsp;pełnomocnictwa – do przetargów, banków czy rejestracji oddziału za granicą. Odpis z&nbsp;KRS musi mieć pieczęć i&nbsp;podpis Centralnej Informacji KRS, sam wydruk ze strony internetowej nie wystarczy. Umowę, uchwałę albo pełnomocnictwo najpierw poświadcza notariusz, a&nbsp;potem Sąd Okręgowy. Faktur i&nbsp;świadectw pochodzenia nie prowadzimy – te legalizuje Krajowa Izba Gospodarcza.</p>
       </div>
-      <div class="ap-doc">
-        <h3>Dokumenty notarialne</h3>
-        <p>Akt notarialny, pełnomocnictwo, poświadczenie podpisu, oświadczenie, zgoda na wyjazd dziecka. Najpierw Sąd Okręgowy poświadcza podpis notariusza, potem MSZ nadaje Apostille.</p>
+      <div class="ap-doc" id="pelnomocnictwo">
+        <h3>Pełnomocnictwo i&nbsp;inne dokumenty notarialne</h3>
+        <p>Akt notarialny, poświadczenie podpisu, oświadczenie, zgoda na wyjazd dziecka. Najpierw Sąd Okręgowy poświadcza podpis notariusza, potem MSZ nadaje Apostille – razem 380&nbsp;zł.</p>
       </div>
-      <div class="ap-doc">
+      <div class="ap-doc" id="sadowe">
         <h3>Dokumenty sądowe</h3>
         <p>Wyroki rozwodowe, postanowienia o&nbsp;spadku, odpisy orzeczeń. Poświadcza je Sąd Okręgowy, Apostille nadaje MSZ. Do wyceny potrzebujemy zdjęcia każdej strony z&nbsp;podpisem i&nbsp;pieczęcią.</p>
       </div>
-      <div class="ap-doc">
-        <h3>Tłumaczenia przysięgłe</h3>
+      <div class="ap-doc" id="tlumaczenia">
+        <h3>Tłumaczenia Przysięgłe</h3>
         <p>Apostille można uzyskać także na samym tłumaczeniu – potwierdza wtedy podpis tłumacza przysięgłego z&nbsp;listy Ministra Sprawiedliwości. Tylko oryginał z&nbsp;podpisem tłumacza, nigdy kopia. Zamawiasz <a href="/tlumaczenia-przysiegle/" class="underline font-semibold">tłumaczenie i&nbsp;Apostille</a> w&nbsp;jednym zleceniu.</p>
       </div>
     </div>
-    <p class="mt-8 text-[15px] leading-[1.6] text-ink/70 max-w-[70ch]">
-      MSZ nie nadaje Apostille na kserokopiach, dokumentach zalaminowanych ani na dokumentach bez
-      podpisu osoby uprawnionej. Jeśli nie masz pewności, czy Twój dokument się nadaje – wyślij zdjęcie,
-      odpowiemy przed zleceniem.
+    <p class="mt-8 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]" id="dyplomy">
+      MSZ nie nadaje Apostille na kserokopiach, dokumentach zalaminowanych ani na dokumentach bez podpisu
+      osoby uprawnionej. Polskich dyplomów i&nbsp;świadectw nie prowadzimy – Apostille nadaje na nie NAWA albo
+      kuratorium oświaty. Dyplomami z&nbsp;Ukrainy zajmujemy się na co dzień:
+      <a href="/apostille-ukraina/" class="underline font-semibold">Apostille na Dokumenty z&nbsp;Ukrainy</a>.
+    </p>
+    <p class="mt-4 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+      Jeśli nie masz pewności, czy Twój dokument się nadaje, wyślij jego zdjęcie
+      w&nbsp;<a href="/cennik/#wycena" data-quote class="underline font-semibold">formularzu wyceny</a> – odpowiemy, zanim cokolwiek
+      zlecisz. A&nbsp;gdyby MSZ mimo to odmówiło Apostille na polski dokument, zwrócimy całą wpłatę razem z&nbsp;opłatą skarbową.
     </p>
   </div>
 </section>
@@ -359,37 +449,42 @@
             Ile trwa i&nbsp;ile kosztuje <span class="font-light italic">Apostille w&nbsp;Warszawie</span>
           </h2>
           <p class="mt-6 text-[17px] leading-[1.6] text-ink/75 max-w-[56ch]">
-            Dokument kierowany do MSZ ma Apostille zwykle w&nbsp;ciągu 1–3 dni roboczych. Tryb ekspresowy –
-            składamy tego samego dnia, jeśli oryginał trafi do nas do godziny 11:00 i&nbsp;nie wymaga wcześniejszego
-            tłumaczenia. Dokumenty notarialne i&nbsp;sądowe potrzebują wcześniej minimum dwóch dni w&nbsp;Sądzie Okręgowym.
+            Apostille w&nbsp;MSZ kosztuje 260&nbsp;zł, a&nbsp;gotowy dokument masz zwykle po <span class="whitespace-nowrap">1–3</span>&nbsp;dniach roboczych. Jeśli się
+            spieszysz, w&nbsp;trybie ekspresowym za 350&nbsp;zł składamy go tego samego dnia – pod warunkiem, że oryginał
+            i&nbsp;potwierdzenie płatności mamy do 11:00, a&nbsp;sam dokument nie wymaga wcześniejszego tłumaczenia.
+            Dokumenty notarialne i&nbsp;sądowe nie mają trybu ekspresowego, bo najpierw muszą przejść przez Sąd Okręgowy,
+            co trwa co najmniej dwa dni robocze. Razem z&nbsp;MSZ zajmuje to zwykle <span class="whitespace-nowrap">3–5</span>&nbsp;dni i&nbsp;kosztuje 380&nbsp;zł.
           </p>
           <p class="mt-4 text-[17px] leading-[1.6] text-ink/75 max-w-[56ch]">
             Termin liczymy od dnia, w&nbsp;którym mamy oryginał i&nbsp;potwierdzenie płatności. Dni ustawowo
-            wolne od pracy nie liczą się – MSZ i&nbsp;sądy są wtedy nieczynne. Skan gotowego dokumentu
-            wysyłamy od ręki, oryginał odbierasz na spotkaniu albo dostajesz Paczkomatem.
+            wolne od pracy się nie liczą, bo MSZ i&nbsp;sądy są wtedy nieczynne. Skan gotowego dokumentu wysyłamy
+            od ręki, a&nbsp;oryginał odbierasz na spotkaniu w&nbsp;centrum Warszawy albo dostajesz Paczkomatem. Przy zleceniu
+            od 350&nbsp;zł przesyłka jest w&nbsp;cenie, przy mniejszym kosztuje 30&nbsp;zł w&nbsp;jedną stronę. Za granicę wysyłamy
+            kurierem DHL Express, a&nbsp;jego koszt podajemy w&nbsp;wycenie.
           </p>
         </div>
-        <div class="col-span-12 lg:col-span-5 flex flex-col justify-end gap-4 gt-c5">
+        <div class="col-span-12 lg:col-span-5 flex flex-col justify-end gap-4 gt-c5" id="ceny">
           <!-- Go Tabular (26.09.2026, идея 8 стенда docs/typografia/): список цен – для экранных чтецов (визуально скрыт),
                на экране – столбец огромных табличных цифр .gt (aria-hidden). Стили – «Go Tabular» в конце styles.css -->
           <ul class="faq-price gt-sr">
             <li><span>Apostille MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></li>
-            <li><span>Apostille – Sąd Okręgowy</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span></li>
-            <li><span>Uzyskanie dokumentu KRK / KRS</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>,-&nbsp;zł</b></span></li>
+            <li><span>Poświadczenie w&nbsp;Sądzie Okręgowym (przed Apostille MSZ)</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span></li>
+            <li><span>Uzyskanie dokumentu KRK / KRS (bez Apostille)</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>,-&nbsp;zł</b></span></li>
             <li><span>Tłumaczenie przysięgłe</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ strona</span></span></span></li>
           </ul>
           <div class="gt gt--ap" aria-hidden="true">
             <div class="gt-clip"><i></i><i></i><i></i><i></i></div>
             <div class="gt-col">
               <span class="gt-n">260</span><span class="gt-l"><b>Apostille MSZ</b><small>,-&nbsp;zł / dokument</small></span>
-              <span class="gt-n">120</span><span class="gt-l"><b>Sąd Okręgowy</b><small>,-&nbsp;zł / podpis</small></span>
-              <span class="gt-n">200</span><span class="gt-l"><b>KRK / KRS</b><small>,-&nbsp;zł / dokument</small></span>
+              <span class="gt-n">120</span><span class="gt-l"><b>Sąd Okręgowy</b><small>,-&nbsp;zł + MSZ</small></span>
+              <span class="gt-n">200</span><span class="gt-l"><b>KRK / KRS</b><small>,-&nbsp;zł bez Apostille</small></span>
               <span class="gt-n">90</span><span class="gt-l"><b>Tłumaczenie</b><small>,-&nbsp;zł / strona</small></span>
             </div>
           </div>
           <p class="text-[15px] leading-[1.6] text-ink/70 max-w-[40ch] gt-note">
-            Ceny zawierają opłaty skarbowe: 60&nbsp;zł za Apostille w&nbsp;MSZ i&nbsp;26&nbsp;zł za legalizację podpisu w&nbsp;sądzie.
-            Ostateczną kwotę podajemy po zobaczeniu dokumentu, zwykle w&nbsp;15 minut.
+            Ceny zawierają opłaty skarbowe: 60&nbsp;zł za Apostille w&nbsp;MSZ i&nbsp;26&nbsp;zł za poświadczenie podpisu
+            w&nbsp;sądzie – te same, które płacisz, składając dokument samodzielnie. Ostateczną kwotę podajemy
+            po zobaczeniu dokumentu, zwykle w&nbsp;15&nbsp;minut.
             Pełny <a href="/cennik/#apostille" class="underline font-semibold">cennik Apostille i&nbsp;tłumaczeń</a>.
           </p>
           <button type="button" data-quote class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn btn-center gt-btn">
@@ -412,10 +507,10 @@
       <div>
         <p class="text-[17px] leading-[1.6] text-ink/75">
           Jednej reguły nie ma – kolejność wyznacza instytucja, która przyjmie dokument, i&nbsp;kraj, do którego trafi.
-          Najczęściej ścieżka wygląda tak: oryginał dostaje Apostille w&nbsp;MSZ, potem <a href="/tlumaczenia-przysiegle/" class="underline font-semibold">tłumacz przysięgły</a> tłumaczy dokument
+          Najczęściej ścieżka wygląda tak: oryginał dostaje Apostille w&nbsp;MSZ, potem <a href="/tlumaczenia-przysiegle/" class="underline font-semibold">tłumacz przysięgły</a> przekłada dokument
           razem z&nbsp;klauzulą, a&nbsp;na końcu Apostille trafia jeszcze na samo tłumaczenie – tak wymagają na przykład
           Włochy i&nbsp;Hiszpania. Klauzula jest częścią dokumentu i&nbsp;też podlega tłumaczeniu, więc jeśli Apostille ma mieć
-          oryginał, tłumaczenie zrobione wcześniej trzeba uzupełniać drugi raz – a&nbsp;to druga opłata i&nbsp;kilka dni więcej.
+          oryginał, tłumaczenie zrobione wcześniej trzeba potem uzupełnić o&nbsp;przekład klauzuli – a&nbsp;to druga opłata i&nbsp;kilka dni więcej.
         </p>
       </div>
       <div>
@@ -424,7 +519,7 @@
           gdzie składasz dokument, i&nbsp;wskaż wariant przy wycenie – wykonamy każdy. Dokumenty zagraniczne, które mają
           zadziałać w&nbsp;Polsce, dostają Apostille w&nbsp;kraju wydania, a&nbsp;tłumaczenie przysięgłe na polski robimy już tutaj.
           Tak działa <a href="/apostille-ukraina/" class="underline font-semibold">Apostille na Dokumenty z&nbsp;Ukrainy</a>:
-          klauzulę uzyskujemy przez partnera na miejscu, tłumaczenie robimy w&nbsp;Warszawie, klient nie wyjeżdża z&nbsp;Polski.
+          klauzulę uzyskujemy przez partnera na miejscu, tłumaczenie robimy w&nbsp;Warszawie, a&nbsp;Ty nie musisz wyjeżdżać z&nbsp;Polski.
         </p>
       </div>
     </div>
@@ -451,24 +546,24 @@
           oryginale, i&nbsp;na tłumaczeniu przysięgłym – tak wymagają na przykład Włochy i&nbsp;Hiszpania. Bywa jednak, że
           wystarczy Apostille na samym tłumaczeniu albo tylko na oryginale. Wymogi pozostałych krajów trzeba sprawdzić
           u&nbsp;odbiorcy dokumentu. Jeśli Apostille ma mieć oryginał, tłumacz przekłada dokument razem z&nbsp;klauzulą – tłumaczenie
-          zrobione wcześniej trzeba byłoby uzupełniać drugi raz, a&nbsp;to druga opłata i&nbsp;kilka dni więcej.
+          zrobione wcześniej trzeba by potem uzupełniać o&nbsp;przekład klauzuli, a&nbsp;to druga opłata i&nbsp;kilka dni więcej.
         </p>
       </div>
       <div>
         <p class="text-[17px] leading-[1.6] text-ink/75">
           <b class="font-bold text-ink">Każdy wariant w&nbsp;jednym zleceniu.</b> Apostille w&nbsp;MSZ i&nbsp;tłumaczenie
           przysięgłe robimy w&nbsp;jednym miejscu, w&nbsp;językach, w&nbsp;których mamy tłumacza przysięgłego
-          (<a href="/tlumaczenia-przysiegle/#jezyki" class="underline font-semibold">lista języków</a>) – nie szukasz osobno tłumacza
+          (<a href="/tlumaczenia-przysiegle/#jezyki" class="underline font-semibold">lista języków</a>)&nbsp;– nie szukasz osobno tłumacza
           i&nbsp;pośrednika. Apostille w&nbsp;MSZ kosztuje 260&nbsp;zł za dokument&nbsp;– tyle samo na oryginale co na tłumaczeniu&nbsp;–
-          i&nbsp;wydłuża termin o&nbsp;1–3 dni robocze. Sprawdź wymagania u&nbsp;odbiorcy dokumentu
-          i&nbsp;<a href="/cennik/#wycena" data-quote class="underline font-semibold">wskaż wariant w&nbsp;zamówieniu</a>.
-          Dla Dokumentów z&nbsp;Ukrainy Apostille uzyskujemy przez partnera w&nbsp;Ukrainie&nbsp;– zwykle w&nbsp;2–3 tygodnie (akty sprzed 2016 roku
-          dłużej), także wtedy, gdy jesteś w&nbsp;Polsce – a&nbsp;potem tłumaczymy je na polski:
+          i&nbsp;wydłuża termin o&nbsp;<span class="whitespace-nowrap">1–3</span>&nbsp;dni robocze. Sprawdź wymagania u&nbsp;odbiorcy dokumentu, a&nbsp;w&nbsp;<a href="/cennik/#wycena" data-quote class="underline font-semibold">zamówieniu</a>
+          napisz, do jakiego kraju jest dokument i&nbsp;który wariant wybierasz. Dla Dokumentów z&nbsp;Ukrainy Apostille uzyskujemy
+          przez partnera w&nbsp;Ukrainie, zwykle w&nbsp;<span class="whitespace-nowrap">2–3</span> tygodnie (akty sprzed 2016 roku dłużej), więc nie musisz wyjeżdżać
+          z&nbsp;Polski. Potem tłumaczymy je na polski:
           <a href="/apostille-ukraina/" class="underline font-semibold">Apostille na Dokumenty z&nbsp;Ukrainy</a>.
         </p>
       </div>
     </div>
-    <div class="zap zap--card mt-10 md:mt-14">
+    <div class="zap zap--card mt-10 md:mt-14" id="pytanie">
       <div class="zap-ask">
         <span class="zap-gw" aria-hidden="true"><span class="zap-g">?</span></span>
         <p class="zap-task">Zapytaj tam, gdzie składasz dokument:</p>
@@ -494,85 +589,99 @@
     </h2>
 
     <div class="border-t border-ink/15">
-      <details class="group border-b border-ink/15" open>
+      <details id="faq-ile-trwa" class="group border-b border-ink/15" open>
         <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Ile trwa Apostille w Warszawie?</h3>
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Ile trwa Apostille w&nbsp;Warszawie?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Zwykle 1–3 dni robocze dla dokumentów kierowanych do MSZ. Tryb ekspresowy – składamy tego samego dnia,
-          jeśli dokument trafi do nas do godziny 11:00 i&nbsp;nie wymaga wcześniejszego tłumaczenia.
-          Dokumenty notarialne i&nbsp;sądowe potrzebują wcześniej co najmniej dwóch dni roboczych w&nbsp;Sądzie Okręgowym.
-          Czasem MSZ musi potwierdzić autentyczność dokumentu w&nbsp;urzędzie, który go wydał – np. zaświadczenia z&nbsp;wydziału komunikacji albo orzeczenia o&nbsp;niepełnosprawności. Wtedy wydanie Apostille trwa dłużej, od tygodnia do nawet miesiąca. Na ten etap nie mamy wpływu: dokument składamy od razu, a&nbsp;o&nbsp;każdym opóźnieniu informujemy Cię tego samego dnia.
+          Zwykle <span class="whitespace-nowrap">1–3</span>&nbsp;dni robocze dla dokumentów kierowanych do MSZ. W&nbsp;trybie ekspresowym, za 350&nbsp;zł, składamy
+          dokument tego samego dnia, jeśli oryginał i&nbsp;potwierdzenie płatności mamy do 11:00, a&nbsp;dokument nie wymaga
+          wcześniejszego tłumaczenia. Dokumenty notarialne i&nbsp;sądowe nie mają ekspresu, bo najpierw muszą przejść przez
+          Sąd Okręgowy, co trwa co najmniej dwa dni robocze.
+          Czasem MSZ musi potwierdzić autentyczność dokumentu w&nbsp;urzędzie, który go wydał – np.&nbsp;zaświadczenia z&nbsp;wydziału komunikacji albo orzeczenia o&nbsp;niepełnosprawności. Wtedy wydanie Apostille trwa dłużej, od tygodnia do nawet miesiąca. Na ten etap nie mamy wpływu: dokument składamy od razu, a&nbsp;o&nbsp;każdym opóźnieniu informujemy Cię tego samego dnia.
         </p>
       </details>
 
-      <details class="group border-b border-ink/15">
+      <details id="faq-gdzie" class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Gdzie w Warszawie robi się Apostille?</h3>
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Gdzie w&nbsp;Warszawie robi się Apostille?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          W&nbsp;Referacie ds. Legalizacji MSZ przy ul.&nbsp;Kruczej 38/42 – wyłącznie po rezerwacji terminu online.
-          Dokumenty notarialne i&nbsp;sądowe najpierw poświadcza Sąd Okręgowy przy al.&nbsp;„Solidarności”&nbsp;127.
-          My składamy i&nbsp;odbieramy dokumenty w&nbsp;obu miejscach, więc klient nie rezerwuje terminu i&nbsp;nie
-          przyjeżdża – szczegóły na stronie <a href="/kontakt/#gdzie" class="underline font-semibold">kontaktu</a>.
+          W&nbsp;Referacie ds. Legalizacji MSZ przy ul.&nbsp;Kruczej 38/42, wyłącznie po rezerwacji terminu w&nbsp;systemie
+          e-Konsulat. Dokumenty notarialne i&nbsp;sądowe najpierw poświadcza Sąd Okręgowy właściwy dla notariusza albo sądu,
+          który je wydał – w&nbsp;Warszawie to sąd przy al.&nbsp;„Solidarności”&nbsp;127 albo, dla prawego brzegu Wisły, przy
+          ul.&nbsp;Poligonowej&nbsp;3. Składamy i&nbsp;odbieramy dokumenty w&nbsp;warszawskich sądach i&nbsp;w&nbsp;MSZ, więc nie musisz
+          rezerwować terminu ani przyjeżdżać – szczegóły na stronie <a href="/kontakt/#gdzie" class="underline font-semibold">kontaktu</a>.
         </p>
       </details>
 
-      <details class="group border-b border-ink/15">
+      <details id="faq-kopia" class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
           <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Apostille na oryginale czy na kopii?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
           Na oryginale albo na odpisie wydanym przez urząd – na zwykłej kserokopii Apostille nie zostanie nadana.
-          Jeśli nie chcesz oddawać jedynego oryginału, notariusz może sporządzić poświadczoną kopię, a&nbsp;Apostille
-          trafia wtedy na podpis notariusza (przez Sąd Okręgowy). Do wyceny wystarczy zdjęcie, oryginał
-          przekazujesz przy odbiorze albo nadaniu dokumentów.
+          Jeśli nie chcesz oddawać jedynego oryginału, notariusz może sporządzić poświadczoną kopię i&nbsp;wtedy Apostille
+          trafia na jego podpis, przez Sąd Okręgowy. Za samą kopię płacisz notariuszowi osobno. Do wyceny wystarczy
+          zdjęcie, a&nbsp;oryginał przekazujesz na spotkaniu w&nbsp;centrum Warszawy albo wysyłasz Paczkomatem.
         </p>
       </details>
 
-      <details class="group border-b border-ink/15">
+      <details id="faq-odmowa" class="group border-b border-ink/15">
+        <summary class="flex items-center justify-between gap-6 py-6">
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Co, jeśli MSZ odmówi Apostille?</h3>
+          <span class="chev shrink-0" aria-hidden="true">+</span>
+        </summary>
+        <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
+          Zwracamy całą wpłatę, razem z&nbsp;opłatą skarbową. Dlatego zanim przyjmiemy zlecenie, oglądamy zdjęcie
+          dokumentu i&nbsp;mówimy wprost, jeśli klauzuli nie da się nadać – na przykład na zwykłej kserokopii,
+          dokumencie zalaminowanym albo z&nbsp;zatartą pieczęcią.
+        </p>
+      </details>
+
+      <details id="faq-kolejnosc" class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
           <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Tłumaczenie robi się przed Apostille czy po?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
           To zależy od instytucji, która przyjmie dokument, i&nbsp;kraju, do którego trafi. Najczęściej najpierw Apostille
-          na oryginał, potem tłumaczenie przysięgłe, a&nbsp;na końcu Apostille na tłumaczenie – tak wymagają np. Włochy
+          na oryginał, potem tłumaczenie przysięgłe, a&nbsp;na końcu Apostille na tłumaczenie – tak wymagają np.&nbsp;Włochy
           i&nbsp;Hiszpania. Bywa też, że wystarczy Apostille na samo tłumaczenie. Wymagania sprawdź tam, gdzie składasz
           dokument, i&nbsp;wskaż wariant przy wycenie – wykonamy każdy.
         </p>
       </details>
 
-      <details class="group border-b border-ink/15">
+      <details id="faq-klauzula" class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
           <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Jak wygląda klauzula Apostille?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          To pieczęć lub naklejka z&nbsp;nagłówkiem „Apostille (Convention de La Haye du 5 octobre 1961)”
-          i&nbsp;dziesięcioma polami: kraj, kto podpisał dokument, w&nbsp;jakim charakterze, jaką pieczęcią, miejsce
-          i&nbsp;data poświadczenia, organ, numer, pieczęć i&nbsp;podpis urzędnika. W&nbsp;Polsce MSZ umieszcza ją
-          na ostatniej stronie dokumentu albo na doszytej karcie. Każdą klauzulę można sprawdzić po numerze
-          w&nbsp;rejestrze MSZ.
+          W&nbsp;Polsce to zadrukowana naklejka z&nbsp;hologramem i&nbsp;nagłówkiem „Apostille (Convention de La Haye du 5 octobre 1961)”.
+          Ma dziesięć pól: kraj, kto podpisał dokument, w&nbsp;jakim charakterze, jaką pieczęcią, miejsce i&nbsp;data poświadczenia,
+          organ, numer, pieczęć i&nbsp;podpis urzędnika. MSZ nakleja ją na ostatniej stronie dokumentu albo na doszytej karcie.
+          Publicznego rejestru, w&nbsp;którym można by sprawdzić Apostille online, w&nbsp;Polsce nie ma, dlatego liczy się
+          oryginał z&nbsp;naklejką.
         </p>
       </details>
 
-      <details class="group border-b border-ink/15">
+      <details id="faq-waznosc" class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
           <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Czy Apostille ma termin ważności?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
           Sama klauzula nie traci ważności. Termin może mieć dokument: urzędy za granicą często wymagają odpisu
-          aktu stanu cywilnego lub zaświadczenia o&nbsp;niekaralności nie starszego niż 3–6 miesięcy. Dlatego
+          aktu stanu cywilnego lub zaświadczenia o&nbsp;niekaralności nie starszego niż <span class="whitespace-nowrap">3–6</span> miesięcy. Dlatego
           Apostille lepiej robić wtedy, gdy dokument jest już potrzebny, a&nbsp;nie „na zapas”.
         </p>
       </details>
 
-      <details class="group border-b border-ink/15">
+      <details id="faq-legalizacja" class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
           <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Kiedy zamiast Apostille potrzebna jest legalizacja?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
@@ -586,7 +695,7 @@
         </p>
       </details>
 
-      <details class="group border-b border-ink/15">
+      <details id="faq-samemu" class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
           <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Czy opłaca się zrobić Apostille samemu?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
@@ -605,9 +714,9 @@
         </p>
       </details>
 
-      <details class="group border-b border-ink/15">
+      <details id="faq-ue" class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Czy Apostille jest potrzebna w Unii Europejskiej?</h3>
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Czy Apostille jest potrzebna w&nbsp;Unii Europejskiej?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
@@ -621,9 +730,37 @@
     </div>
 
     <p class="mt-8 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-      Pytania o&nbsp;odbiór, wysyłkę i&nbsp;płatność – na stronie <a href="/kontakt/#faq" class="underline font-semibold">kontaktu</a>.
+      Pytania o&nbsp;odbiór, wysyłkę i&nbsp;płatność&nbsp;– na stronie <a href="/kontakt/#faq" class="underline font-semibold">kontaktu</a>.
       Ceny wszystkich usług – w&nbsp;<a href="/cennik/" class="underline font-semibold">cenniku</a>.
     </p>
+  </div>
+</section>
+
+<!-- ================= ZAMÓWIENIE ================= -->
+<!-- 27.09.2026, аналитика №11: страница кончалась на FAQ – без действия и без звонка. Формат – #zamow с /tlumaczenia-przysiegle/
+     (класс tl-fin гасит нижний отступ FAQ), тексты – под Apostille. Роли каналов: форма – документы, звонок – разговор, мессенджеры – вопросы. -->
+<section id="zamow" class="tl-fin pb-28 md:pb-44">
+  <div class="mx-auto max-w-site px-5 sm:px-8">
+    <div class="bg-sand text-ink rounded-[26px] p-7 sm:p-12">
+      <p class="kicker">/ Zamówienie</p>
+      <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
+        Wyślij zdjęcie – <span class="font-light italic">wycena w&nbsp;15 minut</span>
+      </h2>
+      <div class="tl-fin-cols">
+        <div>
+          <p class="tl-fin-t"><b>Dokumenty.</b> Zdjęcie dokumentu załączasz w&nbsp;formularzu o&nbsp;każdej porze, a&nbsp;my odpisujemy z&nbsp;ceną końcową, urzędem i&nbsp;terminem – zwykle w&nbsp;15&nbsp;minut, codziennie <span class="whitespace-nowrap">7:00–21:00</span>. Wycena jest bezpłatna i&nbsp;do niczego nie zobowiązuje.</p>
+          <div class="cta-btns"><a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a></div>
+        </div>
+        <div>
+          <p class="tl-fin-t"><b>Rozmowa.</b> Wolisz porozmawiać, zanim oddasz oryginał, albo nie wiesz, czy dokument musi najpierw trafić do sądu? Zadzwoń – codziennie <span class="whitespace-nowrap">7:00–21:00</span>, po polsku, ukraińsku, rosyjsku lub angielsku.</p>
+          <div class="cta-btns"><a href="tel:+48507588155" class="cta-btn" aria-label="Zadzwoń: +48 507 588 155, 7:00–21:00">+48 507 588 155<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a></div>
+        </div>
+        <div>
+          <p class="tl-fin-t"><b>Pytanie.</b> O&nbsp;urząd, kolejność albo termin zapytaj na komunikatorze.</p>
+          <div class="cta-btns"><a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20Apostille" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a><a href="https://t.me/apostilo?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20Apostille" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -689,7 +826,7 @@
         <a href="/#regulamin" class="fl-link"><span class="nl-swap"><span class="nl-a">Regulamin świadczenia usług</span><span class="nl-b" aria-hidden="true">Regulamin świadczenia usług</span></span></a>
       </p>
       <div class="text-left" style="transform:translateX(-20%)">
-        <p class="text-[13px] text-paper/45">© 2026 Apostilo. Wszelkie prawa zastrzeżone.<br><span class="text-paper/35">Apostilo – [IMIĘ I&nbsp;NAZWISKO] · [ADRES DO&nbsp;KORESPONDENCJI], Warszawa · NIP&nbsp;[NIP]</span></p>
+        <p class="text-[13px] text-paper/45">© 2026 Apostilo. Wszelkie prawa zastrzeżone.<br><span class="text-paper/35">Apostilo – [IMIĘ I&nbsp;NAZWISKO] · [ADRES DO&nbsp;KORESPONDENCJI], Warszawa · NIP&nbsp;[NIP]</span><br><span class="text-paper/35">Prywatna firma, niezwiązana z&nbsp;MSZ ani z&nbsp;sądami.</span></p>
         <p class="text-[13px] text-paper/45 mt-1.5">
           Apostille Warszawa · Tłumaczenia przysięgłe · Legalizacja dokumentów
           <span class="text-paper/70 text-[17px] align-middle" style="font-weight:900">·</span>
@@ -708,7 +845,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260926-61" defer></script>
+<script src="/assets/app.js?v=20260926-62" defer></script>
 
 </body>
 </html>

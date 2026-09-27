@@ -4626,3 +4626,32 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
   .gt--ap.gt--tl{ --gt-f:min(var(--gt-fw), calc((100cqh - 40px) / 1.75)); }
 }
 .gt--tl .gt-m:first-child b, .gt--tl .gt-m:first-child small{ margin-top:0; }
+
+/* ===== /apostille/ после аналитики 27.09.2026 (docs/analityka-apostille-2026-09-27.md) =====
+   №17 – плита «Gdzie uzyskać Apostille» (#urzedy) светлая, как на /kontakt/: на чёрной мелкий серый текст не читался
+   (решение владельца по анкете). Та же .gdz--light, но три колонки .ap3 со своими полями ячеек. Класса .slab нет
+   намеренно – наблюдатель шапки считает .slab тёмной зоной. Цена чернильная: охра на песке не читается. */
+.gdz--ap .ap3-cell + .ap3-cell{ border-top-color:rgba(31,33,32,.15); }
+@media (min-width:1024px){ .gdz--ap .ap3-cell + .ap3-cell{ border-left-color:rgba(31,33,32,.15); } }
+.gdz--ap .ap3-cell .ap-desc{ font-size:17px; color:var(--c-ink); }
+.gdz--ap .slab-price::before{ background:rgba(31,33,32,.3); }
+.gdz--ap .slab-price > span:not(.price-hit){ color:rgba(31,33,32,.6); }
+.gdz--ap .slab-price b{ color:var(--c-ink); }
+.gdz--ap .gdz-note{ margin-top:0; padding:1.35rem 1rem 1.5rem; }
+@media (min-width:640px){ .gdz--ap .gdz-note{ padding:1.5rem 1.5rem 1.6rem; } }
+/* №33 – от 1024px три ячейки делят строки (subgrid), цены и таблицы стоят на одной высоте.
+   6 = детей .ap3-cell: подпись, h3, адрес, описание, dl, цена. Общее правило .gdz-meta (subgrid на 4 строки, для /kontakt/)
+   здесь отключено – у ячеек разное число строк в таблице. */
+@media (min-width:1024px){
+  @supports (grid-template-rows:subgrid){
+    .gdz--ap .ap3-cell{ display:grid; grid-template-rows:subgrid; grid-row:span 6; align-content:start; }
+    .gdz--ap .gdz-meta{ grid-template-rows:none; grid-row:auto; align-self:start; }
+    .gdz--ap .slab-price{ align-self:end; }
+  }
+}
+/* №32 – подпись «Najczęściej – tak jest np. we Włoszech…» – довод, а не служебная строка: чернильная (только PL) */
+html[lang="pl"] .zap-list small{ color:var(--c-ink); }
+/* №21–22 – якоря для постов и ссылок (карточки документов, «Kolejność ma znaczenie», столбец цен, вопрос для окошка):
+   тот же отступ под шапку, что у section[id] */
+:is(.gdz-note, .gt-c5, .ap-doc, .zap)[id], #dokumenty p[id]{ scroll-margin-top:88px; }
+@media (min-width:1150px){ :is(.gdz-note, .gt-c5, .ap-doc, .zap)[id], #dokumenty p[id]{ scroll-margin-top:124px; } }
