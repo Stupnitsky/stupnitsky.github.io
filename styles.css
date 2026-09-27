@@ -2644,6 +2644,9 @@ body > main{ background:var(--c-page); }
 /* подпись к телефону «na niego odpiszemy» – мельче и серым (17.09.2026) */
 .qd .wy-v2 .qd-acc--static .qd-acc-head > span{ text-align:center; }
 .qd .wy-v2 .qd-acc--static .qd-acc-note{ display:block; font-size:14px; font-weight:400; color:rgba(31,33,32,.55); }
+/* подпись «dokąd i na kiedy» у раскрывашки – как у E-mail и Telefon: блоком под заголовком, серым, по центру (27.09.2026) */
+.qd .wy-v2 .qd-acc:not(.qd-acc--static) .qd-acc-head > span{ text-align:center; }
+.qd .wy-v2 .qd-acc:not(.qd-acc--static) .qd-acc-note{ display:block; font-size:14px; font-weight:400; color:rgba(31,33,32,.55); }
 
 /* ===== Панель wyceny, этап 2 (17.09.2026, docs/promt-form-ideas.md) ===== */
 /* зона фото после добавления файлов выглядит так же, как пустая (17.09.2026) */
