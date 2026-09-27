@@ -577,9 +577,12 @@
 
     /* та же страница в другой языковой версии: /ua/kontakt/ ↔ /kontakt/ ↔ /en/kontakt/ */
     var LANG_DIRS = ['ua', 'ru', 'en'];
+    /* страницы, которых пока нет в ua/ru/en: ведём на раздел уровнем выше (иначе 404) */
+    var PL_ONLY = /^tlumaczenia-przysiegle\/(ukrainski|rosyjski|angielski)$/;
     function samePageIn(code) {
       var parts = location.pathname.split('/').filter(Boolean);
       if (parts.length && LANG_DIRS.indexOf(parts[0]) !== -1) parts.shift();
+      if (code !== 'pl' && PL_ONLY.test(parts.join('/'))) parts.pop();
       if (code !== 'pl') parts.unshift(code);
       return '/' + parts.join('/') + (parts.length ? '/' : '') + location.hash;
     }
@@ -2309,7 +2312,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260926-60';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260926-61';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -3157,7 +3160,7 @@
   });
   document.body.appendChild(dock);
 
-  var mains = [].slice.call(main.querySelectorAll('.cta-btn--main'));
+  var mains = [].slice.call(main.querySelectorAll('.cta-btn--main, .gt-btn'));   /* .gt-btn – кнопка заявки в плитах цен */
   var first = mains[0] || null;
   var cn = document.querySelector('.cn-dock');   /* /cennik/: плавающие якоря прайса внизу окна (от 640px) – пока они видны, док не показываем */
   if (cn && window.MutationObserver) new MutationObserver(req).observe(cn, { attributes: true, attributeFilter: ['class'] });
