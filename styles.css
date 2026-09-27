@@ -33,6 +33,11 @@ body{ background:var(--c-page); color:var(--c-ink); -webkit-font-smoothing:antia
 footer#stopka{ margin-bottom:0; }
 #step-modal[hidden], #step-data[hidden]{ display:none !important; }
 section[id]{ scroll-margin-top:88px; }
+/* 27.09.2026: от 1150px шапка не прячется и кончается на ~108px – кикер раздела и вопрос FAQ не уходят под неё */
+@media (min-width:1150px){ section[id]{ scroll-margin-top:124px; } }
+#faq details[id]{ scroll-margin-top:124px; }
+/* класса нет в собранном tailwind.css, а абзацы #cena (Tłumaczenia) и #ile-trwa (Apostille) на него рассчитаны */
+.max-w-\[56ch\]{ max-width:56ch; }
 .price-num{ display:inline-block; font-variant-numeric:tabular-nums;
  font-feature-settings:"tnum" 1, "liga" 1, "clig" 1, "calt" 1; text-align:right; }
 .price-hit{ cursor:default; }
@@ -4582,7 +4587,9 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
   transition:opacity .3s ease, transform .35s cubic-bezier(.2,.7,.25,1), visibility .35s; pointer-events:none; }
 .m-dock.is-on{ opacity:1; visibility:visible; transform:none; pointer-events:auto; }
 .m-dock .cta-btn{ display:flex; width:100%; justify-content:center; box-shadow:0 8px 24px rgba(31,33,32,.18); }
-@media (min-width:768px){ .m-dock{ display:none; } }
+/* 27.09.2026 (Грег): док и на 768–1149px – там в шапке нет кнопки заявки; кнопка справа, по ширине текста */
+@media (min-width:768px) and (max-width:1149px){ .m-dock{ left:auto; right:24px; } .m-dock .cta-btn{ width:auto; padding-inline:1.6em; } }
+@media (min-width:1150px){ .m-dock{ display:none; } }
 @media (prefers-reduced-motion:reduce){ .m-dock{ transition:none; } }
 @media print{ .m-dock{ display:none; } }
 

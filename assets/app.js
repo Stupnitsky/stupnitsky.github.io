@@ -1830,9 +1830,10 @@
       var name = form.querySelector('.file-name');
       if (name && !list) name.textContent = picked.length ? picked.length + (picked.length < 5 ? ' pliki' : ' plików') : 'Nie wybrano plików';
     }
-    function plural(n, docs) {
-      if (docs) return n === 1 ? '1 plik' : (n < 5 ? n + ' pliki' : n + ' plików');
-      return n === 1 ? '1 zdjęcie' : (n < 5 ? n + ' zdjęcia' : n + ' zdjęć');
+    function plural(n, docs) {                   /* 1 zdjęcie · 2–4, 22–24… zdjęcia · 5–21, 25… zdjęć */
+      var f = docs ? ['plik', 'pliki', 'plików'] : ['zdjęcie', 'zdjęcia', 'zdjęć'];
+      var d = n % 10, h = n % 100;
+      return n + ' ' + (n === 1 ? f[0] : (d >= 2 && d <= 4 && (h < 12 || h > 14) ? f[1] : f[2]));
     }
     function onlyDocs() { return picked.length && picked.every(function (f) { return !/^image\//.test(f.type); }); }
     /* кнопка со счётчиком: «Wyślij 2 zdjęcia do wyceny»; во встроенных формах .qd-submit-txt нет */
@@ -2097,7 +2098,11 @@
         }
         say('Nie udało się wysłać. Spróbuj jeszcze raz albo zadzwoń: +48 507 588 155.', false);   /* документы – только через форму (Грег, 24.09.2026) */
       }
-      xhr.send(new FormData(form));
+      /* откуда заявка: страница с метками utm_* и внешний источник – приходят в письме отдельными полями (аналитика 27.09.2026) */
+      var fd = new FormData(form);
+      fd.append('strona', location.pathname + location.search);
+      if (document.referrer && document.referrer.indexOf(location.origin) !== 0) fd.append('skad', document.referrer.split('?')[0]);
+      xhr.send(fd);
     });
   };
   window.initQuoteForm(document);
@@ -2304,7 +2309,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260926-58';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260926-59';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -3135,7 +3140,7 @@
   var plate = document.querySelector('header .navlink--plate');
   var main = document.querySelector('body > main');
   if (!plate || !main || !window.matchMedia) return;
-  var phone = window.matchMedia('(max-width:767px)');
+  var phone = window.matchMedia('(max-width:1149px)');   /* телефон и планшет: до 1150px в шапке нет кнопки заявки (Грег, 27.09.2026) */
   var root = document.documentElement;
   var label = (plate.textContent || '').trim();
   var chev = '<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span>';
@@ -3163,7 +3168,7 @@
     ticking = false;
     var vh = window.innerHeight, show = phone.matches;
     if (show && (root.classList.contains('menu-open') || root.classList.contains('qd-open'))) show = false;
-    if (show) show = first ? first.getBoundingClientRect().bottom < 0 : window.scrollY > vh * 0.5;
+    if (show) show = first ? !seen(first) : window.scrollY > vh * 0.5;   /* с первого экрана, пока кнопки hero не в окне (Грег, 27.09.2026) */
     if (show && mains.some(seen)) show = false;
     if (show && main.getBoundingClientRect().bottom < vh + 40) show = false;
     if (show !== on) {
