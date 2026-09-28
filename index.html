@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Защита (28.09.2026): браузер выполняет только наши скрипты; новый внешний сервис (gtag, карта) – сначала вписать сюда -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ga0M3hxX7BbNMOsk8k9ra3P80+aMOd6HTfkftF5FpXw='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; object-src 'none'; frame-src 'none'; base-uri 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 
 <!-- ============================================================
      APOSTILO – one-page landing
@@ -130,12 +133,10 @@
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fonts/fonts.css?v=20260928-3">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260927-2">
+<link rel="stylesheet" href="/styles.css?v=20260928-3">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -544,7 +545,7 @@
           <span class="chev chev--light shrink-0" aria-hidden="true">+</span>
         </summary>
         <div class="legal-wrap"><div class="space-y-3 text-[17px] leading-[1.6] text-paper/70 max-w-[70ch]">
-          <p><strong class="text-paper/90">Administrator danych.</strong> Administratorem danych osobowych jest [IMIĘ I&nbsp;NAZWISKO], prowadząca działalność pod nazwą Apostilo, [ADRES DO&nbsp;KORESPONDENCJI], Warszawa, NIP&nbsp;[NIP]. Kontakt: apostilo@gmail.com.</p>
+          <p><strong class="text-paper/90">Administrator danych.</strong> Administratorem danych osobowych jest [IMIĘ I&nbsp;NAZWISKO], prowadząca działalność pod nazwą Apostilo, [ADRES DO&nbsp;KORESPONDENCJI], Warszawa, NIP&nbsp;[NIP]. Kontakt: <span data-mail="apostilo|gmail.com">apostilo [at] gmail.com</span>.</p>
           <p><strong class="text-paper/90">Zakres i&nbsp;cel.</strong> Przetwarzamy imię, numer telefonu, adres e-mail oraz dane zawarte w&nbsp;przesłanych skanach dokumentów wyłącznie w&nbsp;celu przygotowania wyceny, wykonania usługi Apostille lub tłumaczenia oraz kontaktu zwrotnego.</p>
           <p><strong class="text-paper/90">Podstawa prawna.</strong> Art. 6 ust. 1 lit. b RODO (wykonanie umowy lub działania przed jej zawarciem) oraz art. 6 ust. 1 lit. a RODO (zgoda) w&nbsp;zakresie kontaktu marketingowego.</p>
           <p><strong class="text-paper/90">Odbiorcy.</strong> Dane mogą być przekazywane wyłącznie podmiotom niezbędnym do realizacji usługi: tłumaczom przysięgłym, urzędom (MSZ, sądy, KRK, KRS, USC), operatorom pocztowym i&nbsp;kurierskim oraz dostawcy hostingu.</p>
@@ -566,7 +567,7 @@
           <p><strong class="text-paper/90">§4 Ceny i&nbsp;płatności.</strong> Ceny podane na stronie są cenami końcowymi za jednostkę usługi i&nbsp;zawierają opłaty skarbowe. Wiążąca jest wycena indywidualna, która wymienia osobno każdą pozycję zlecenia – Apostille, tłumaczenie, wysyłkę. Cena zmienia się tylko wtedy, gdy dokument okazuje się inny niż na przesłanym zdjęciu; Klient jest o&nbsp;tym informowany przed przyjęciem zlecenia do&nbsp;realizacji. Płatność z&nbsp;góry – BLIK-iem, przelewem lub gotówką, na podstawie wyceny. Zlecenie wchodzi do&nbsp;realizacji po&nbsp;otrzymaniu potwierdzenia płatności.</p>
           <p><strong class="text-paper/90">§5 Odpowiedzialność.</strong> Apostilo odpowiada za staranne prowadzenie sprawy. Nie ponosi odpowiedzialności za czas rozpatrywania dokumentów przez urzędy ani za opóźnienia operatorów pocztowych. Jeżeli urząd odmówi nadania Apostille na dokument polski, Apostilo zwraca Klientowi całą wpłatę, łącznie z&nbsp;opłatą skarbową. Przy dokumentach z&nbsp;Ukrainy, gdy archiwum lub urząd odmówi wydania duplikatu, zwracana jest przedpłata pomniejszona o&nbsp;koszt przesyłki. Błędy w&nbsp;tłumaczeniu powstałe z&nbsp;winy Apostilo – np. w&nbsp;nazwisku, dacie albo numerze dokumentu – są poprawiane bezpłatnie, także gdy wskaże je urząd.</p>
           <p><strong class="text-paper/90">§6 Odstąpienie od umowy.</strong> Konsument może odstąpić od umowy w&nbsp;terminie 14 dni. Prawo to nie przysługuje, jeżeli usługa została w&nbsp;pełni wykonana za wyraźną zgodą Klienta przed upływem tego terminu.</p>
-          <p><strong class="text-paper/90">§7 Reklamacje.</strong> Reklamacje przyjmujemy na adres apostilo@gmail.com. Rozpatrujemy je w&nbsp;terminie 14 dni roboczych od otrzymania zgłoszenia.</p>
+          <p><strong class="text-paper/90">§7 Reklamacje.</strong> Reklamacje przyjmujemy na adres <span data-mail="apostilo|gmail.com">apostilo [at] gmail.com</span>. Rozpatrujemy je w&nbsp;terminie 14 dni roboczych od otrzymania zgłoszenia.</p>
         </div></div>
       </details>
     </div>
@@ -1032,7 +1033,7 @@
           <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20Apostille%20lub%20t%C5%82umaczenie" target="_blank" rel="noopener" class="fl-link"><span class="nl-swap"><span class="nl-a">WhatsApp</span><span class="nl-b" aria-hidden="true">WhatsApp</span></span></a>
           <a href="https://t.me/apostilo?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20Apostille%20lub%20t%C5%82umaczenie" target="_blank" rel="noopener" class="fl-link"><span class="nl-swap"><span class="nl-a">Telegram</span><span class="nl-b" aria-hidden="true">Telegram</span></span></a>
           <a href="tel:+48507588155" class="fl-link"><span class="nl-swap"><span class="nl-a">+48 507 588 155</span><span class="nl-b" aria-hidden="true">+48 507 588 155</span></span></a>
-          <a href="mailto:apostilo@gmail.com" class="fl-link"><span class="nl-swap"><span class="nl-a">apostilo@gmail.com</span><span class="nl-b" aria-hidden="true">apostilo@gmail.com</span></span></a>
+          <a href="/kontakt/" data-mail="apostilo|gmail.com" class="fl-link"><span class="nl-swap"><span class="nl-a" data-mail-t>apostilo [at] gmail.com</span><span class="nl-b" aria-hidden="true" data-mail-t>apostilo [at] gmail.com</span></span></a>
         </div>
       </div>
 
@@ -1064,7 +1065,7 @@
         <a href="/#regulamin" class="fl-link"><span class="nl-swap"><span class="nl-a">Regulamin świadczenia usług</span><span class="nl-b" aria-hidden="true">Regulamin świadczenia usług</span></span></a>
       </p>
       <div class="text-left" style="transform:translateX(-20%)">
-        <p class="text-[13px] text-paper/45"><span class="text-paper/70 font-medium">© 2026 Apostilo. Wszelkie prawa zastrzeżone.</span> Kopiowanie treści bez&nbsp;zgody zabronione.<br><span class="text-paper/35">Apostilo – [IMIĘ I&nbsp;NAZWISKO] · [ADRES DO&nbsp;KORESPONDENCJI], Warszawa · NIP&nbsp;[NIP]</span><br><span class="text-paper/35">Prywatna firma, niezwiązana z&nbsp;MSZ ani z&nbsp;sądami.</span></p>
+        <p class="text-[13px] text-paper/45"><span class="text-paper/70 font-medium">© 2026 Apostilo. Wszelkie prawa zastrzeżone. Kopiowanie treści bez&nbsp;zgody zabronione.</span> Kopiowanie treści bez&nbsp;zgody zabronione.<br><span class="text-paper/35">Apostilo – [IMIĘ I&nbsp;NAZWISKO] · [ADRES DO&nbsp;KORESPONDENCJI], Warszawa · NIP&nbsp;[NIP]</span><br><span class="text-paper/35">Prywatna firma, niezwiązana z&nbsp;MSZ ani z&nbsp;sądami.</span></p>
         <p class="text-[13px] text-paper/45 mt-1.5">
           Apostille Warszawa · Tłumaczenia przysięgłe · Legalizacja dokumentów
           <span class="text-paper/70 text-[17px] align-middle" style="font-weight:900">·</span>
@@ -1175,7 +1176,7 @@
     </div>
 </div>
 
-<script src="/assets/app.js?v=20260927-2" defer></script>
+<script src="/assets/app.js?v=20260928-3" defer></script>
 
 </body>
 </html>

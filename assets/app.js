@@ -2314,7 +2314,7 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260927-2';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena.html?v=20260928-3';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -3241,4 +3241,17 @@
   clock.hidden = false;
   tick();
   setInterval(tick, 10000);
+})();
+
+/* Почта без открытого адреса в коде (28.09.2026): роботы-сборщики читают HTML и не видят адрес.
+   В разметке: data-mail="имя|домен"; у ссылки ставим mailto, текст – в элементах [data-mail-t]
+   или в самом элементе. Без JS остаётся запасной текст «apostilo [at] gmail.com». */
+(function () {
+  document.querySelectorAll('[data-mail]').forEach(function (el) {
+    var addr = el.getAttribute('data-mail').split('|').join('@');
+    if (el.tagName === 'A') el.href = 'mailto:' + addr;
+    var slots = el.querySelectorAll('[data-mail-t]');
+    if (slots.length) slots.forEach(function (s) { s.textContent = addr; });
+    else el.textContent = addr;
+  });
 })();

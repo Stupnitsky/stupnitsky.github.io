@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Защита (28.09.2026): браузер выполняет только наши скрипты; новый внешний сервис (gtag, карта) – сначала вписать сюда -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ga0M3hxX7BbNMOsk8k9ra3P80+aMOd6HTfkftF5FpXw='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; object-src 'none'; frame-src 'none'; base-uri 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 
 <title>Cennik Apostille i Tłumaczeń Przysięgłych | Apostilo</title>
 <meta name="description" content="Ile kosztuje Apostille w Warszawie: MSZ 260 zł, sąd 120 zł, dokumenty z Ukrainy 550 zł, tłumaczenie 90 zł. Wycena po zdjęciu dokumentu.">
@@ -31,12 +34,10 @@
 <meta name="theme-color" content="#F1F1EF" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1F2120" media="(prefers-color-scheme: dark)">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fonts/fonts.css?v=20260928-3">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260927-2">
+<link rel="stylesheet" href="/styles.css?v=20260928-3">
 
 <script type="application/ld+json">
 {
@@ -420,7 +421,7 @@
           <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20Apostille%20lub%20t%C5%82umaczenie" target="_blank" rel="noopener" class="fl-link"><span class="nl-swap"><span class="nl-a">WhatsApp</span><span class="nl-b" aria-hidden="true">WhatsApp</span></span></a>
           <a href="https://t.me/apostilo?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20Apostille%20lub%20t%C5%82umaczenie" target="_blank" rel="noopener" class="fl-link"><span class="nl-swap"><span class="nl-a">Telegram</span><span class="nl-b" aria-hidden="true">Telegram</span></span></a>
           <a href="tel:+48507588155" class="fl-link"><span class="nl-swap"><span class="nl-a">+48 507 588 155</span><span class="nl-b" aria-hidden="true">+48 507 588 155</span></span></a>
-          <a href="mailto:apostilo@gmail.com" class="fl-link"><span class="nl-swap"><span class="nl-a">apostilo@gmail.com</span><span class="nl-b" aria-hidden="true">apostilo@gmail.com</span></span></a>
+          <a href="/kontakt/" data-mail="apostilo|gmail.com" class="fl-link"><span class="nl-swap"><span class="nl-a" data-mail-t>apostilo [at] gmail.com</span><span class="nl-b" aria-hidden="true" data-mail-t>apostilo [at] gmail.com</span></span></a>
         </div>
       </div>
 
@@ -452,7 +453,7 @@
         <a href="/#regulamin" class="fl-link"><span class="nl-swap"><span class="nl-a">Regulamin świadczenia usług</span><span class="nl-b" aria-hidden="true">Regulamin świadczenia usług</span></span></a>
       </p>
       <div class="text-left" style="transform:translateX(-20%)">
-        <p class="text-[13px] text-paper/45"><span class="text-paper/70 font-medium">© 2026 Apostilo. Wszelkie prawa zastrzeżone.</span> Kopiowanie treści bez&nbsp;zgody zabronione.<br><span class="text-paper/35">Apostilo – [IMIĘ I&nbsp;NAZWISKO] · [ADRES DO&nbsp;KORESPONDENCJI], Warszawa · NIP&nbsp;[NIP]</span><br><span class="text-paper/35">Prywatna firma, niezwiązana z&nbsp;MSZ ani z&nbsp;sądami.</span></p>
+        <p class="text-[13px] text-paper/45"><span class="text-paper/70 font-medium">© 2026 Apostilo. Wszelkie prawa zastrzeżone. Kopiowanie treści bez&nbsp;zgody zabronione.</span> Kopiowanie treści bez&nbsp;zgody zabronione.<br><span class="text-paper/35">Apostilo – [IMIĘ I&nbsp;NAZWISKO] · [ADRES DO&nbsp;KORESPONDENCJI], Warszawa · NIP&nbsp;[NIP]</span><br><span class="text-paper/35">Prywatna firma, niezwiązana z&nbsp;MSZ ani z&nbsp;sądami.</span></p>
         <p class="text-[13px] text-paper/45 mt-1.5">
           Apostille Warszawa · Tłumaczenia przysięgłe · Legalizacja dokumentów
           <span class="text-paper/70 text-[17px] align-middle" style="font-weight:900">·</span>
@@ -471,7 +472,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260927-2" defer></script>
+<script src="/assets/app.js?v=20260928-3" defer></script>
 
 </body>
 </html>
