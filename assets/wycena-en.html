@@ -1,0 +1,167 @@
+<!-- СОБРАНО docs/wycena-i18n.py из assets/wycena.html – руками не править, правь польский файл и таблицу в скрипте -->
+<div id="quote-drawer" class="qd" hidden lang="en">
+  <div class="qd-backdrop" data-close></div>
+  <div class="qd-wrap">
+    <button type="button" class="qd-close" data-close aria-label="Close the quote form">
+      <svg class="qd-ic qd-ic--chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
+      <svg class="qd-ic qd-ic--x" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
+    </button>
+    <div class="qd-topblur" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="qd-shell wy-v2" role="dialog" aria-modal="true" aria-labelledby="qd-title">
+      <!-- Шапка панели на телефоне и планшете (≤1023px), 21.09.2026. Там левая колонка стоит под формой, а её заголовок
+           был скрыт – панель начиналась сразу с «Sfotografuj telefonem». Грег: заголовок на тёмном стекле органично
+           смотрится сверху; затем – «верхнюю шапку закрепил бы при скролле». Поэтому блок стоит ВНЕ области прокрутки:
+           он не липкий, а просто не прокручивается – форма уходит под его нижний край, и стекло остаётся стеклом
+           (под липкой полупрозрачной шапкой просвечивал бы текст формы). На низком экране при прокрутке шапка
+           сжимается до одной строки (класс is-compact на .qd-shell ставит app.js). От 1024px блок скрыт –
+           там заголовок в левой колонке. aria-hidden: диалог уже назван через #qd-title. -->
+      <div class="qd-mhead" aria-hidden="true">
+        <p class="kicker">/ Quote</p>
+        <p class="qd-mhead-title tracking-tightest font-black">Express quote<br><span class="font-light italic">for your document</span></p>
+        <p class="qd-eta"><svg class="qd-clock" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2.2"/><circle class="qd-clock-pie" cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="8" stroke-dasharray="6.283 25.133" transform="rotate(-90 12 12)"/></svg><b>15 min</b><span>Send photos – get the price</span></p>
+      </div>
+    <div class="qd-scroll">
+        <div class="bg-sand text-ink rounded-[26px] overflow-hidden">
+          <div class="grid grid-cols-12">
+
+            <!-- Левая колонка -->
+            <div class="col-span-12 lg:col-span-5 p-7 sm:p-12 lg:p-14">
+              <div class="qd-left">
+              <div class="qd-head">
+                <p class="kicker">/ Quote</p>
+                <h2 id="qd-title" class="slide-group tracking-tightest leading-[0.94] text-[38px] sm:text-[48px] lg:text-[52px] font-black">
+                  <span class="slide-in">Express quote</span><br>
+                  <span class="font-light italic slide-in sd-2">for your document</span>
+                </h2>
+                <p class="qd-eta"><svg class="qd-clock" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2.2"/><circle class="qd-clock-pie" cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="8" stroke-dasharray="6.283 25.133" transform="rotate(-90 12 12)"/></svg><b>15 min</b><span>Send photos – get the price</span></p>
+              </div>
+              <p class="qd-lead mt-7">
+                <b class="qd-lead-a">We reply with the price and&nbsp;the turnaround time</b>
+                <span class="qd-lead-b">– no obligation.</span>
+              </p>
+              <p class="qd-human"><span>Documents where a&nbsp;lot is at stake</span> <span>are checked by our&nbsp;specialist.</span> <span>We keep every document confidential.</span></p>
+              <div class="qd-callwrap"><a class="qd-call" href="tel:+48507588155"><span class="qd-call-cc">+48</span>507&nbsp;588&nbsp;155</a></div>
+              <p class="qd-msgr">
+                <a href="https://wa.me/48507588155?text=Hello%2C%20I%20have%20a%20question%20before%20sending%20photos." target="_blank" rel="noopener"><span class="qd-mplus" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span>WhatsApp</a>
+                <a href="https://t.me/apostilo?text=Hello%2C%20I%20have%20a%20question%20before%20sending%20photos" target="_blank" rel="noopener"><span class="qd-mplus" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span>Telegram</a>
+              </p>
+              </div>
+            </div>
+
+            <!-- Форма -->
+            <div class="col-span-12 lg:col-span-7 bg-paper text-ink p-7 sm:p-12 lg:p-14">
+
+              <p class="qd-formhead qd-formhead--light"><span class="qd-fh-a">Use your phone to photograph</span><br><span class="qd-fh-b">every page of the document, in&nbsp;full</span></p>
+
+              <!-- ZMIEŃ action na swój endpoint (Formspree / Web3Forms / własny backend) -->
+              <form id="quote-form"
+                    action="https://formspree.io/f/FORM_ENDPOINT"
+                    method="POST"
+                    enctype="multipart/form-data"
+                    novalidate
+                    data-msg-required="Add a photo or scan of the document&#10;and enter your e-mail and phone –&#10;we can’t price it without them."
+                    class="quote-form">
+
+                <div class="qd-acc qd-acc--static">
+                  <label for="email" class="qd-acc-head"><span>E-mail <small class="qd-acc-note">we’ll reply here · required</small></span></label>
+                  <div class="qd-email qd-acc-body" id="qd-email"><input class="field qd-line" type="email" id="email" name="email" aria-label="E-mail address" placeholder="e.g. anna@gmail.com" required autocomplete="email" inputmode="email">
+                    <p class="qd-field-err" data-err="email" role="alert" hidden></p></div>
+                </div>
+                <div class="qd-acc qd-acc--static">
+                  <label for="phone" class="qd-acc-head"><span>Phone <small class="qd-acc-note">required</small></span></label>
+                  <div class="qd-acc-body"><input class="field qd-line" type="tel" id="phone" name="phone" placeholder="+48 600 000 000" required autocomplete="tel"
+                         inputmode="tel" pattern="[\+0-9\s\(\)\-]{7,20}">
+                    <p class="qd-field-err" data-err="phone" role="alert" hidden></p></div>
+                </div>
+                <div class="qd-acc">
+                  <button type="button" class="qd-acc-head" data-show-msg aria-expanded="false" aria-controls="qd-msg"><span>A few words about your case <small class="qd-acc-note">where&nbsp;and&nbsp;by&nbsp;when</small></span><svg class="qd-chev" width="11" height="7" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  <div class="qd-msg qd-acc-body" id="qd-msg" hidden><textarea class="field qd-line" id="message" name="message" rows="2" aria-label="A few words about your case: where and by when"
+                              placeholder="e.g. birth certificate for USC,&#10;needed by month-end"></textarea></div>
+                </div>
+
+                <div class="qd-photo">
+                  <input class="file-input-hidden" type="file" id="file" name="file"
+                         accept="image/*,application/pdf" multiple required aria-label="Add photos or a scan of the document">
+                  <label for="file" class="qd-drop">
+                    <span class="qd-drop-row">
+                      <span class="qd-plus" aria-hidden="true"><svg class="qd-pic qd-pic--plus" viewBox="0 0 24 24" width="24" height="24"><g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"><path d="M12 3v18"/><path d="M3 12h18"/></g></svg><svg class="qd-pic qd-pic--arrow" viewBox="0 0 24 24" width="24" height="24"><g fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"><path d="M12 3v15.5"/><path d="M4.5 13L12 20.5 19.5 13"/></g></svg></span>
+                      <span class="qd-drop-copy">
+                        <span class="qd-drop-btn">Add photos or a scan</span>
+                        <small class="qd-drop-drag">drag files here</small><small class="qd-drop-touch">take a photo or choose from your gallery</small>
+                      </span>
+                    </span>
+                  </label>
+                  <p class="qd-field-err" data-err="file" role="alert" hidden></p>
+                  <ul class="qd-files" aria-live="polite"></ul>
+                  <p class="qd-files-cap" aria-live="polite"></p>
+                </div>
+
+                <!-- Вариант Apostille (аналитика /apostille/, 27.09.2026): на каком документе нужна Apostille. Необязательно, как вид перевода.
+                     Скрыт по умолчанию – app.js открывает его только на /apostille/ и /apostille-bez-przyjazdu/ (и копиях ua/ru/en).
+                     Скрытое поле в письмо не уходит; открытое – полем «apostille». -->
+                <fieldset class="qd-kind qd-ap" hidden>
+                  <legend>What needs the Apostille?</legend>
+                  <div class="qd-kind-opts">
+                    <label><input type="radio" name="apostille" value="Oryginał"><span>Original</span></label>
+                    <label><input type="radio" name="apostille" value="Tłumaczenie"><span>Translation</span></label>
+                    <label><input type="radio" name="apostille" value="Oba"><span>Both</span></label>
+                    <label><input type="radio" name="apostille" value="Nie wiem"><span>Not sure</span></label>
+                  </div>
+                </fieldset>
+
+                <!-- Вид перевода (Грег, 26.09.2026): przysięgłe или zwykłe; «Nie wiem» – для тех, кто не уверен (и чтобы можно
+                     было снять случайный выбор). Необязательно: для одной Apostille поле просто пропускают. Уходит в письмо полем «tlumaczenie». -->
+                <fieldset class="qd-kind">
+                  <legend>Translation</legend>
+                  <div class="qd-kind-opts">
+                    <label><input type="radio" name="tlumaczenie" value="Przysięgłe"><span>Sworn</span></label>
+                    <label><input type="radio" name="tlumaczenie" value="Zwykłe"><span>Ordinary</span></label>
+                    <label><input type="radio" name="tlumaczenie" value="Nie wiem"><span>Not sure</span></label>
+                  </div>
+                </fieldset>
+
+                <label class="qd-urgent"><span>Urgent</span><input type="checkbox" name="temat" value="Pilne" role="switch"><i aria-hidden="true"></i></label>
+
+                <!-- zgoda: bez checkboxa, odnotowana w mailu; tekst pod przyciskiem -->
+                <input type="hidden" name="consent" value="tak">
+
+                <!-- honeypot: защита от спам-ботов -->
+                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
+
+                <div>
+                  <div class="qd-status-wrap"><p id="form-status" role="status" aria-live="polite" class="qd-status hidden"></p><button type="button" class="qd-status-close" aria-label="Close message"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></button></div>
+                  <button type="submit"
+                          class="inline-flex items-center justify-center gap-2 rounded-[12px] px-8 py-[18px] text-[16px] font-bold btn btn--pop qd-submit">
+                    <span class="qd-submit-txt">Send for a&nbsp;quote</span> <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
+                  </button>
+                  <p class="qd-need" hidden></p>
+                  <p class="qd-slow" hidden>Slow connection – please don’t close the window</p>
+                  <div class="qd-fail" role="alert" hidden>
+                    <p class="qd-fail-msg"></p>
+                    <p class="qd-fail-acts"><button type="button" class="qd-linkbtn" data-retry>Try again</button><a class="qd-linkbtn" href="tel:+48507588155">Call: 507&nbsp;588&nbsp;155</a></p>
+                  </div>
+                  <p class="qd-legal">By sending, you agree to your data being processed to prepare the quote.<br>
+                    <button type="button" class="qd-linkbtn qd-linkbtn--chev qd-policy-btn" data-policy aria-expanded="false" aria-controls="qd-policy">Privacy Policy <svg class="qd-chev" width="11" height="7" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></p>
+                  <div class="qd-policy" id="qd-policy" hidden>
+                    <p class="qd-policy-load">Loading…</p>
+                  </div>
+                </div>
+
+
+                <div class="qd-done" hidden tabindex="-1">
+                  <p class="qd-formhead">Thank you – we’ve received your photos.</p>
+                  <p class="qd-formsub">We’ll send the quote – the final price and&nbsp;the turnaround time, plus the page count for translations – to <b class="qd-done-email"></b>,
+                    usually within 15&nbsp;minutes, daily <span class="whitespace-nowrap">7:00–21:00</span>. You don’t pay until you accept it.</p>
+                  <p class="qd-formsub">No e-mail yet? Check your spam folder or call: <a href="tel:+48507588155" class="whitespace-nowrap underline font-semibold">507&nbsp;588&nbsp;155</a>.</p>
+                  <p class="qd-safe">We delete the photos once the case is closed.</p>
+                  <button type="button" class="qd-linkbtn" data-close>Close</button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>

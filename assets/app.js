@@ -27,8 +27,8 @@
           msgSun: 'Заявку приймемо зараз, відповімо в понеділок з 7:00.',
           msgOff: 'Відповідаємо як завжди. Установи сьогодні зачинені – документи подамо найближчого робочого дня.', holiday: 'Державний вихідний у Польщі', msgNext: 'Напишіть зараз – відповімо найближчого робочого дня з 7:00.',
           book: { hint: 'Натисніть на доступний день – оберете час зустрічі.', tz: 'час варшавський', pick: 'Оберіть час', cta: 'Записатися', note: 'Точний час підтвердимо у відповіді.', late: 'На сьогодні вже запізно – оберіть інший день.', placeL: 'Місце зустрічі',
-                  parts: ['Ранок','Обід','Вечір'], place: 'Krucza / Śródmieście',
-                  msg: 'Добрий день! Хочу записатися на зустріч на вул. Krucza: {date}, {part}, {time} за варшавським часом.' },
+                  parts: ['Ранок','Обід','Вечір'], place: 'Середмістя, центр Варшави',
+                  msg: 'Добрий день! Хочу записатися на зустріч у Середмісті: {date}, {part}, {time} за варшавським часом.' },
           hol: { ny: 'Новий рік', epi: 'Богоявлення (Трьох Королів)', may1: 'День праці', may3: 'День Конституції 3 Травня',
                  aug15: 'Успіння Богородиці · День Війська Польського', nov1: 'День усіх святих', nov11: 'День Незалежності Польщі',
                  xmasEve: 'Святвечір (Wigilia)', xmas1: 'Різдво – перший день', xmas2: 'Різдво – другий день', easter: 'Великдень',
@@ -43,8 +43,8 @@
           msgSun: 'Заявку примем сейчас, ответим в понедельник с 7:00.',
           msgOff: 'Отвечаем как обычно. Учреждения сегодня закрыты – документы подадим в ближайший рабочий день.', holiday: 'Государственный выходной в Польше', msgNext: 'Напишите сейчас – ответим в ближайший рабочий день с 7:00.',
           book: { hint: 'Нажмите на доступный день – выберете время встречи.', tz: 'время варшавское', pick: 'Выберите время', cta: 'Записаться', note: 'Точное время подтвердим в ответном сообщении.', late: 'На сегодня уже поздно – выберите другой день.', placeL: 'Место встречи',
-                  parts: ['Утро','Обед','Вечер'], place: 'Krucza / Śródmieście',
-                  msg: 'Здравствуйте! Хочу записаться на встречу на ул. Krucza: {date}, {part}, {time} по варшавскому времени.' },
+                  parts: ['Утро','Обед','Вечер'], place: 'Средместье, центр Варшавы',
+                  msg: 'Здравствуйте! Хочу записаться на встречу в Средместье: {date}, {part}, {time} по варшавскому времени.' },
           hol: { ny: 'Новый год', epi: 'Богоявление (Трёх Королей)', may1: 'День труда', may3: 'День Конституции 3 Мая',
                  aug15: 'Успение Богородицы · День Войска Польского', nov1: 'День всех святых', nov11: 'День Независимости Польши',
                  xmasEve: 'Сочельник (Wigilia)', xmas1: 'Рождество – первый день', xmas2: 'Рождество – второй день', easter: 'Пасха',
@@ -59,8 +59,8 @@
           msgSun: 'We take your request now and reply on Monday from 7:00.',
           msgOff: 'We reply as usual. Offices are closed today – we file documents on the next working day.', holiday: 'Public holiday in Poland', msgNext: 'Write now – we reply on the next working day from 7:00.',
           book: { hint: 'Click an available day to pick a meeting time.', tz: 'Warsaw time', pick: 'Pick a time', cta: 'Book a meeting', note: 'We confirm the exact time in our reply.', late: 'It is too late for today – pick another day.', placeL: 'Meeting place',
-                  parts: ['Morning','Afternoon','Evening'], place: 'Krucza / Śródmieście',
-                  msg: 'Hello! I would like to book a meeting on Krucza Street: {date}, {part}, {time} Warsaw time.' },
+                  parts: ['Morning','Afternoon','Evening'], place: 'Śródmieście, central Warsaw',
+                  msg: 'Hello! I would like to book a meeting in Śródmieście: {date}, {part}, {time} Warsaw time.' },
           hol: { ny: 'New Year', epi: 'Epiphany', may1: 'Labour Day', may3: 'Constitution Day (3 May)',
                  aug15: 'Assumption · Polish Armed Forces Day', nov1: 'All Saints', nov11: 'Independence Day',
                  xmasEve: 'Christmas Eve', xmas1: 'Christmas Day', xmas2: 'Second day of Christmas', easter: 'Easter Sunday',
@@ -400,10 +400,13 @@
        переводов попадают в «Tłumaczenia»); ссылки с якорем (#faq, #gdzie) не считаются. Пункт получает
        сдвиг и пульсирующую точку перед названием (точку рисует styles.css), а его название стоит лёгким серым рядом с логотипом в пилюле. */
     var here = null, hereLen = 0, pageLabel = null;
+    /* языковой префикс не мешает сравнению: страницы языков /tlumaczenia-przysiegle/ukrainski/… написаны по-украински и т.д.,
+       а меню у них от /ua|ru|en/ – пункт «Переклади» должен найтись (28.09.2026) */
+    var np = function (p) { return p.replace(/^\/(ua|ru|en)(?=\/)/, ''); };
     Array.prototype.forEach.call(document.querySelectorAll('#mobile-nav .mn-link'), function (a) {
       var u = new URL(a.href, location.href);
       if (u.hash || u.pathname.split('/').filter(Boolean).length === (/^\/(ua|ru|en)\//.test(u.pathname) ? 1 : 0)) return;
-      if (location.pathname.indexOf(u.pathname) === 0 && u.pathname.length > hereLen) { here = a; hereLen = u.pathname.length; }
+      if (np(location.pathname).indexOf(np(u.pathname)) === 0 && u.pathname.length > hereLen) { here = a; hereLen = u.pathname.length; }
     });
     if (here) {
       here.classList.add('is-here');
@@ -580,11 +583,14 @@
     /* та же страница в другой языковой версии: /ua/kontakt/ ↔ /kontakt/ ↔ /en/kontakt/ */
     var LANG_DIRS = ['ua', 'ru', 'en'];
     /* страницы, которых пока нет в ua/ru/en: ведём на раздел уровнем выше (иначе 404) */
-    var PL_ONLY = /^tlumaczenia-przysiegle\/(ukrainski|rosyjski|angielski)$/;
+    var PL_ONLY = /^(tlumaczenia-przysiegle\/(ukrainski|rosyjski|angielski)|apostille-bez-przyjazdu|apostille\/[a-z-]+)$/;   /* 28.09.2026: и /apostille-bez-przyjazdu/, и будущие подстраницы /apostille/… – копий ua/ru/en у них нет */
     function samePageIn(code) {
       var parts = location.pathname.split('/').filter(Boolean);
       if (parts.length && LANG_DIRS.indexOf(parts[0]) !== -1) parts.shift();
       if (code !== 'pl' && PL_ONLY.test(parts.join('/'))) parts.pop();
+      /* страницы языков /tlumaczenia-przysiegle/{ukrainski,rosyjski,angielski}/ написаны на своём языке (28.09.2026), польской версии
+         у них нет – и «Polski» ведёт на раздел переводов, а не на ту же страницу */
+      else if (code === 'pl' && /^tlumaczenia-przysiegle\/(ukrainski|rosyjski|angielski)$/.test(parts.join('/'))) parts.pop();
       if (code !== 'pl') parts.unshift(code);
       return '/' + parts.join('/') + (parts.length ? '/' : '') + location.hash;
     }
@@ -1798,6 +1804,69 @@
     });
   }
 
+  /* Язык формы заявки (28.09.2026): по lang страницы – uk/ru/en, иначе польский. Разметка панели – assets/wycena[-uk|-ru|-en].html
+     (языковые копии собирает docs/wycena-i18n.py), тексты сообщений – здесь. Значения полей в письме остаются польскими,
+     язык клиента уходит полем «jezyk». */
+  var QD_LANG = (function () {
+    var l = (document.documentElement.getAttribute('lang') || 'pl').toLowerCase().slice(0, 2);
+    return l === 'uk' || l === 'ru' || l === 'en' ? l : 'pl';
+  })();
+  window.QD_LANG = QD_LANG;
+  var QD_TX = {
+    pl: { none: 'Nie wybrano plików', pf: ['zdjęcie', 'zdjęcia', 'zdjęć'], pd: ['plik', 'pliki', 'plików'], file: 'PLIK',
+          sendN: 'Wyślij {n} do wyceny', send: 'Wyślij do wyceny', nEmail: 'e-mail', nPhone: 'numer', and: ' i ', need: 'Podaj {x}, aby wysłać',
+          del: 'Usuń {x}', addMore: 'Dodaj kolejne zdjęcie', addFirst: 'Dodaj zdjęcia lub skan', prep: 'Przygotowujemy zdjęcia…',
+          big: 'Plik „{x}” jest za duży ({s}). Zrób zdjęcie telefonem albo zapisz skan jako mniejszy plik – do 20 MB – i dodaj go jeszcze raz.',
+          home: '/', pol: 'Otwórz Politykę Prywatności na stronie głównej',
+          eFile: 'Dodaj zdjęcie – bez niego nie policzymy ceny.', eMailBad: 'Sprawdź adres e-mail.', eMail: 'Podaj e-mail – na niego wyślemy wycenę.',
+          ePhone: 'Podaj numer – zadzwonimy, jeśli coś będzie niejasne.', sFile: 'Dodaj zdjęcie dokumentu – bez niego nie policzymy ceny.',
+          sMail: 'Podaj adres e-mail – na niego wyślemy wycenę.', sPhone: 'Podaj numer telefonu – zadzwonimy, jeśli coś będzie niejasne.',
+          miss: 'Uzupełnij imię, telefon i wybierz usługę.', busy: 'Chwila – jeszcze przygotowujemy zdjęcia.', sending: 'Wysyłamy…', sent: '✓ Wysłane',
+          offline: 'Brak internetu – spróbuj, gdy wróci zasięg.', fail: 'Nie udało się wysłać.',
+          failFull: 'Nie udało się wysłać. Spróbuj jeszcze raz albo zadzwoń: +48 507 588 155.' },
+    uk: { none: 'Файли не вибрано', pf: ['фото', 'фото', 'фото'], pd: ['файл', 'файли', 'файлів'], file: 'ФАЙЛ',
+          sendN: 'Надіслати {n} на оцінку', send: 'Надіслати на оцінку', nEmail: 'e-mail', nPhone: 'номер', and: ' і ', need: 'Вкажіть {x}, щоб надіслати',
+          del: 'Видалити {x}', addMore: 'Додайте ще фото', addFirst: 'Додайте фото або скан', prep: 'Готуємо фото…',
+          big: 'Файл «{x}» завеликий ({s}). Сфотографуйте документ телефоном або збережіть скан у меншому розмірі – до 20 МБ – і додайте його ще раз.',
+          home: '/ua/', pol: 'Відкрити політику конфіденційності на головній сторінці',
+          eFile: 'Додайте фото – без нього ми не порахуємо ціну.', eMailBad: 'Перевірте адресу e-mail.', eMail: 'Вкажіть e-mail – на нього надішлемо оцінку.',
+          ePhone: 'Вкажіть номер – зателефонуємо, якщо щось буде незрозуміло.', sFile: 'Додайте фото документа – без нього ми не порахуємо ціну.',
+          sMail: 'Вкажіть адресу e-mail – на неї надішлемо оцінку.', sPhone: 'Вкажіть номер телефону – зателефонуємо, якщо щось буде незрозуміло.',
+          miss: 'Заповніть ім’я, телефон і оберіть послугу.', busy: 'Хвилинку – ще готуємо фото.', sending: 'Надсилаємо…', sent: '✓ Надіслано',
+          offline: 'Немає інтернету – спробуйте, коли з’явиться зв’язок.', fail: 'Не вдалося надіслати.',
+          failFull: 'Не вдалося надіслати. Спробуйте ще раз або зателефонуйте: +48 507 588 155.' },
+    ru: { none: 'Файлы не выбраны', pf: ['фото', 'фото', 'фото'], pd: ['файл', 'файла', 'файлов'], file: 'ФАЙЛ',
+          sendN: 'Отправить {n} на оценку', send: 'Отправить на оценку', nEmail: 'e-mail', nPhone: 'номер', and: ' и ', need: 'Укажите {x}, чтобы отправить',
+          del: 'Удалить {x}', addMore: 'Добавьте ещё фото', addFirst: 'Добавьте фото или скан', prep: 'Готовим фото…',
+          big: 'Файл «{x}» слишком большой ({s}). Сфотографируйте документ телефоном или сохраните скан в файл поменьше – до 20 МБ – и добавьте его ещё раз.',
+          home: '/ru/', pol: 'Открыть политику конфиденциальности на главной странице',
+          eFile: 'Добавьте фото – без него мы не посчитаем цену.', eMailBad: 'Проверьте адрес e-mail.', eMail: 'Укажите e-mail – на него пришлём оценку.',
+          ePhone: 'Укажите номер – позвоним, если что-то будет непонятно.', sFile: 'Добавьте фото документа – без него мы не посчитаем цену.',
+          sMail: 'Укажите адрес e-mail – на него пришлём оценку.', sPhone: 'Укажите номер телефона – позвоним, если что-то будет непонятно.',
+          miss: 'Заполните имя, телефон и выберите услугу.', busy: 'Секунду – ещё готовим фото.', sending: 'Отправляем…', sent: '✓ Отправлено',
+          offline: 'Нет интернета – попробуйте, когда появится связь.', fail: 'Не удалось отправить.',
+          failFull: 'Не удалось отправить. Попробуйте ещё раз или позвоните: +48 507 588 155.' },
+    en: { none: 'No files selected', pf: ['photo', 'photos', 'photos'], pd: ['file', 'files', 'files'], file: 'FILE',
+          sendN: 'Send {n} for a quote', send: 'Send for a quote', nEmail: 'e-mail', nPhone: 'phone number', and: ' and ', need: 'Enter your {x} to send',
+          del: 'Remove {x}', addMore: 'Add another photo', addFirst: 'Add photos or a scan', prep: 'Preparing your photos…',
+          big: 'The file “{x}” is too large ({s}). Take a photo with your phone or save the scan as a smaller file (up to 20 MB) and add it again.',
+          home: '/en/', pol: 'Open the Privacy Policy on the home page',
+          eFile: 'Add a photo – we can’t price the document without it.', eMailBad: 'Please check the e-mail address.', eMail: 'Enter your e-mail – we’ll send the quote there.',
+          ePhone: 'Enter your number – we’ll call if anything is unclear.', sFile: 'Add a photo of the document – we can’t price it without one.',
+          sMail: 'Enter your e-mail address – we’ll send the quote there.', sPhone: 'Enter your phone number – we’ll call if anything is unclear.',
+          miss: 'Please enter your name and phone number, and choose a service.', busy: 'One moment – we’re still preparing your photos.', sending: 'Sending…', sent: '✓ Sent',
+          offline: 'No internet connection – try again when you’re back online.', fail: 'Sending failed.',
+          failFull: 'Sending failed. Please try again or call +48 507 588 155.' }
+  };
+  function qt(k) { var d = QD_TX[QD_LANG]; return d && d[k] != null ? d[k] : QD_TX.pl[k]; }
+  /* числа: pl – 1 · 2–4, 22–24… · остальное; uk/ru – 1, 21, 31… · 2–4, 22–24… · остальное (11–14 – «много»); en – 1 · остальное */
+  function qdPlural(n, forms) {
+    var d = n % 10, h = n % 100, few = d >= 2 && d <= 4 && (h < 12 || h > 14);
+    if (QD_LANG === 'en') return forms[n === 1 ? 0 : 2];
+    if (QD_LANG === 'pl') return forms[n === 1 ? 0 : (few ? 1 : 2)];
+    return forms[d === 1 && h !== 11 ? 0 : (few ? 1 : 2)];
+  }
+
   window.initQuoteForm = function (scope) {
     var root = scope || document;
     var form = root.querySelector('form#quote-form, form.quote-form');
@@ -1824,7 +1893,11 @@
     /* крестик на плашке ошибки прячет сообщение */
     var statusClose = form.querySelector('.qd-status-close');
     if (statusClose) statusClose.addEventListener('click', hush);
-    function fmt(b) { return b < 1048576 ? Math.round(b / 1024) + ' KB' : (b / 1048576).toFixed(1) + ' MB'; }
+    function fmt(b) {                          /* «24,3 MB», по-украински и по-русски «24,3 МБ», по-английски «24.3 MB» */
+      var cyr = QD_LANG === 'uk' || QD_LANG === 'ru', mb = (b / 1048576).toFixed(1);
+      if (QD_LANG !== 'en') mb = mb.replace('.', ',');
+      return b < 1048576 ? Math.round(b / 1024) + (cyr ? ' КБ' : ' KB') : mb + (cyr ? ' МБ' : ' MB');
+    }
 
     /* ---- файлы: накапливаем, сжимаем, подставляем обратно в input ---- */
     function syncInput() {
@@ -1833,18 +1906,14 @@
       inp.files = dt.files;             /* FormData(form) увидит именно этот набор */
       if (drop) drop.classList.toggle('is-filled', picked.length > 0);
       var name = form.querySelector('.file-name');
-      if (name && !list) name.textContent = picked.length ? picked.length + (picked.length < 5 ? ' pliki' : ' plików') : 'Nie wybrano plików';
+      if (name && !list) name.textContent = picked.length ? plural(picked.length, true) : qt('none');
     }
-    function plural(n, docs) {                   /* 1 zdjęcie · 2–4, 22–24… zdjęcia · 5–21, 25… zdjęć */
-      var f = docs ? ['plik', 'pliki', 'plików'] : ['zdjęcie', 'zdjęcia', 'zdjęć'];
-      var d = n % 10, h = n % 100;
-      return n + ' ' + (n === 1 ? f[0] : (d >= 2 && d <= 4 && (h < 12 || h > 14) ? f[1] : f[2]));
-    }
+    function plural(n, docs) { return n + ' ' + qdPlural(n, qt(docs ? 'pd' : 'pf')); }   /* «2 zdjęcia», «5 фото», «3 files» */
     function onlyDocs() { return picked.length && picked.every(function (f) { return !/^image\//.test(f.type); }); }
     /* кнопка со счётчиком: «Wyślij 2 zdjęcia do wyceny»; во встроенных формах .qd-submit-txt нет */
     function updateBtn() {
       var t = btn && btn.querySelector('.qd-submit-txt'); if (!t) return;
-      t.textContent = picked.length ? 'Wyślij ' + plural(picked.length, onlyDocs()) + ' do wyceny' : 'Wyślij do\u00a0wyceny';
+      t.textContent = picked.length ? qt('sendN').replace('{n}', plural(picked.length, onlyDocs())) : qt('send');
     }
     /* подсказки панели (17.09.2026): ошибка под полем, «Podaj numer, aby wysłać» под кнопкой */
     var phoneEl = form.querySelector('[name="phone"]');
@@ -1865,10 +1934,10 @@
     function updateNeed() {
       var el = form.querySelector('.qd-need'); if (!el) return;
       var miss = [];
-      if (needEmail()) miss.push('e-mail');
-      if (needPhone()) miss.push('numer');
+      if (needEmail()) miss.push(qt('nEmail'));
+      if (needPhone()) miss.push(qt('nPhone'));
       var bad = (phoneEl && phoneEl.classList.contains('is-invalid')) || (emailEl && emailEl.classList.contains('is-invalid'));
-      el.textContent = miss.length ? 'Podaj ' + miss.join(' i ') + ', aby wysłać' : '';
+      el.textContent = miss.length ? qt('need').replace('{x}', miss.join(qt('and'))) : '';
       el.hidden = !(picked.length && miss.length) || bad;
     }
     /* польский номер читается тройками: 433 288 313, с кодом +48 433 288 313 (19.09.2026) */
@@ -1909,16 +1978,16 @@
           img.src = URL.createObjectURL(f); img.onload = function () { URL.revokeObjectURL(img.src); };
           img.onerror = function () { URL.revokeObjectURL(img.src); img.remove(); asDoc(ext || 'IMG'); };
           li.appendChild(img);
-        } else { asDoc(ext === 'PDF' ? 'PDF' : (ext || 'PLIK')); }
+        } else { asDoc(ext === 'PDF' ? 'PDF' : (ext || qt('file'))); }
         var x = document.createElement('button'); x.type = 'button'; x.className = 'qd-file-x';
         x.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>';
-        x.setAttribute('aria-label', 'Usuń ' + f.name);
+        x.setAttribute('aria-label', qt('del').replace('{x}', f.name));
         x.addEventListener('click', function () { picked.splice(i, 1); syncInput(); render(); });
         li.appendChild(x); list.appendChild(li);
       });
       var cap = form.querySelector('.qd-files-cap'); if (cap) cap.textContent = picked.length ? plural(picked.length, onlyDocs()) : '';
       var zoneTxt = form.querySelector('.qd-drop-btn');
-      if (zoneTxt) zoneTxt.textContent = picked.length ? 'Dodaj kolejne zdjęcie' : 'Dodaj zdjęcia lub skan';
+      if (zoneTxt) zoneTxt.textContent = picked.length ? qt('addMore') : qt('addFirst');
       if (picked.length) fieldErr('file', '');
       updateBtn(); updateNeed();
     }
@@ -1926,7 +1995,7 @@
       var arr = Array.prototype.slice.call(files || []);
       if (!arr.length || !inp) return;
       if (drop) drop.classList.add('is-busy');
-      say('Przygotowujemy zdjęcia…', true);
+      say(qt('prep'), true);
       Promise.all(arr.map(shrinkImage)).catch(function () { return []; }).then(function (out) {
         var tooBig = null;
         out.forEach(function (f) {
@@ -1941,7 +2010,7 @@
           var acc = form.querySelector('.qd-acc--static');
           if (acc) acc.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-        if (tooBig) say('Plik „' + tooBig.name + '” jest za duży (' + fmt(tooBig.size) + '). Zrób zdjęcie telefonem albo zapisz skan jako mniejszy plik – do 20 MB – i dodaj go jeszcze raz.', false);   /* документы – только через форму */
+        if (tooBig) say(qt('big').replace('{x}', tooBig.name).replace('{s}', fmt(tooBig.size)), false);   /* документы – только через форму */
         else hush();
       });
     }
@@ -1955,13 +2024,13 @@
       polBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
       if (!open || polBox.dataset.loaded) return;
       polBox.dataset.loaded = '1';
-      fetch('/').then(function (r) { return r.text(); }).then(function (html) {
+      fetch(qt('home')).then(function (r) { return r.text(); }).then(function (html) {
         var doc = new DOMParser().parseFromString(html, 'text/html');
         var src = doc.querySelector('#polityka-prywatnosci .legal-wrap');
         if (!src) throw new Error('brak treści');
         polBox.innerHTML = src.innerHTML;
       }).catch(function () {
-        polBox.innerHTML = '<p><a href="/#polityka-prywatnosci">Otwórz Politykę Prywatności na stronie głównej</a></p>';
+        polBox.innerHTML = '<p><a href="' + qt('home') + '#polityka-prywatnosci">' + qt('pol') + '</a></p>';
       });
     });
 
@@ -2038,9 +2107,9 @@
       /* панель: ошибки под полями, прокрутка к первому пустому, кнопка качнётся */
       if (panel && !noOther && (noFile || noPhone || noEmail)) {
         hush();
-        fieldErr('file', noFile ? 'Dodaj zdjęcie – bez niego nie policzymy ceny.' : '');
-        fieldErr('email', noEmail ? (email.value.trim() ? 'Sprawdź adres e-mail.' : 'Podaj e-mail – na niego wyślemy wycenę.') : '');
-        fieldErr('phone', noPhone ? 'Podaj numer – zadzwonimy, jeśli coś będzie niejasne.' : '');
+        fieldErr('file', noFile ? qt('eFile') : '');
+        fieldErr('email', noEmail ? (email.value.trim() ? qt('eMailBad') : qt('eMail')) : '');
+        fieldErr('phone', noPhone ? qt('ePhone') : '');
         if (noPhone) mark(phone);
         if (noEmail) mark(email);
         updateNeed();
@@ -2053,16 +2122,16 @@
       }
       if (!noOther) {
         if (noFile && (noPhone || noEmail)) { say(form.dataset.msgRequired, false); mark(noEmail ? email : phone); return; }
-        if (noFile)  { say('Dodaj zdjęcie dokumentu – bez niego nie policzymy ceny.', false); return; }
-        if (noEmail) { say(email.value.trim() ? 'Sprawdź adres e-mail.' : 'Podaj adres e-mail – na niego wyślemy wycenę.', false); mark(email); email.focus(); return; }
-        if (noPhone) { say('Podaj numer telefonu – zadzwonimy, jeśli coś będzie niejasne.', false); mark(phone); phone.focus(); return; }
+        if (noFile)  { say(qt('sFile'), false); return; }
+        if (noEmail) { say(email.value.trim() ? qt('eMailBad') : qt('sMail'), false); mark(email); email.focus(); return; }
+        if (noPhone) { say(qt('sPhone'), false); mark(phone); phone.focus(); return; }
       }
-      if (missing) { say(form.dataset.msgRequired || 'Uzupełnij imię, telefon i wybierz usługę.', false); return; }
-      if (drop && drop.classList.contains('is-busy')) { say('Chwila – jeszcze przygotowujemy zdjęcia.', false); return; }
+      if (missing) { say(form.dataset.msgRequired || qt('miss'), false); return; }
+      if (drop && drop.classList.contains('is-busy')) { say(qt('busy'), false); return; }
 
       btn.disabled = true;
       var txt = btn.querySelector('.qd-submit-txt'), txt0 = txt ? txt.textContent : '';
-      if (txt) txt.textContent = 'Wysyłamy…'; else say('Wysyłamy…', true);   /* в панели статус – в самой кнопке */
+      if (txt) txt.textContent = qt('sending'); else say(qt('sending'), true);   /* в панели статус – в самой кнопке */
       var failBox = form.querySelector('.qd-fail'), slow = form.querySelector('.qd-slow');
       if (failBox) failBox.hidden = true;
       var slowT = slow ? setTimeout(function () { slow.hidden = false; }, 15000) : 0;
@@ -2075,13 +2144,13 @@
         if (!ev.lengthComputable) return;
         var pc = Math.round(ev.loaded / ev.total * 100);
         btn.style.setProperty('--p', pc + '%');
-        if (txt) txt.textContent = 'Wysyłamy… ' + pc + '%';
+        if (txt) txt.textContent = qt('sending') + ' ' + pc + '%';
       };
       xhr.onload = function () {
         if (xhr.status >= 200 && xhr.status < 300) {
           stopSlow();
           if (window.gtag) gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXX/XXXXXXXX' });   /* только после успеха */
-          if (txt) { txt.textContent = '✓ Wysłane'; setTimeout(showDone, 500); } else showDone();
+          if (txt) { txt.textContent = qt('sent'); setTimeout(showDone, 500); } else showDone();
         } else fail();
       };
       function showDone() {
@@ -2098,14 +2167,15 @@
         btn.disabled = false; btn.style.removeProperty('--p'); if (txt) txt.textContent = txt0;
         if (failBox) {                                        /* панель: сообщение и два действия под кнопкой */
           failBox.querySelector('.qd-fail-msg').textContent = navigator.onLine === false
-            ? 'Brak internetu – spróbuj, gdy wróci zasięg.' : 'Nie udało się wysłać.';
+            ? qt('offline') : qt('fail');
           failBox.hidden = false; hush(); return;
         }
-        say('Nie udało się wysłać. Spróbuj jeszcze raz albo zadzwoń: +48 507 588 155.', false);   /* документы – только через форму (Грег, 24.09.2026) */
+        say(qt('failFull'), false);   /* документы – только через форму (Грег, 24.09.2026) */
       }
       /* откуда заявка: страница с метками utm_* и внешний источник – приходят в письме отдельными полями (аналитика 27.09.2026) */
       var fd = new FormData(form);
       fd.append('strona', location.pathname + location.search);
+      fd.append('jezyk', QD_LANG);   /* на каком языке отвечать клиенту */
       if (document.referrer && document.referrer.indexOf(location.origin) !== 0) fd.append('skad', document.referrer.split('?')[0]);
       xhr.send(fd);
     });
@@ -2314,7 +2384,8 @@
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
-    var FRAG = '/assets/wycena.html?v=20260928-3';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260928-10';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -2415,7 +2486,15 @@
         /* «Apostille na: Oryginał · Tłumaczenie · Oba · Nie wiem» (.qd-ap, 27.09.2026) – только на страницах про Apostille;
            на остальных fieldset остаётся hidden, и его радио в письмо не попадают */
         var apSet = qd.querySelector('.qd-ap');
-        if (apSet && /^\/(?:(?:ua|ru|en)\/)?apostille(?:-bez-przyjazdu)?\/$/.test(location.pathname)) apSet.hidden = false;
+        if (apSet && /^\/(?:(?:ua|ru|en)\/)?apostille(?:-bez-przyjazdu)?\/$/.test(location.pathname)) {
+          apSet.hidden = false;
+          /* 28.09.2026: на страницах Apostille в выборе перевода вместо «Zwykłe» – «Nie potrzebuję» (Apostille без перевода),
+             пример в поле «Kilka słów» – документ за границу */
+          var zw = qd.querySelector('.qd-kind:not(.qd-ap) input[value="Zwykłe"]');
+          if (zw) { zw.value = 'Nie potrzebuję'; if (zw.nextElementSibling) zw.nextElementSibling.textContent = 'Nie potrzebuję'; }
+          var msgF = qd.querySelector('#message');
+          if (msgF) msgF.placeholder = 'Np. akt urodzenia do Włoch,\npotrzebny do końca miesiąca';
+        }
         bind();
         return qd;
       }).catch(function(err){
@@ -3200,7 +3279,7 @@
 })();
 
 /* Фраза-часы в конце #jak-to-dziala на /tlumaczenia-przysiegle/ (PL, 27.09.2026, стенд docs/jak-cta/ – вариант 10).
-   «Jest 14:32. [Zamów wycenę] teraz, a cenę i termin dostaniesz e-mailem zwykle do 14:47.» – часы посетителя и +15 минут.
+   «Jest 14:32. [Zamów wycenę] teraz, a cenę i termin dostaniesz e-mailem, zwykle w 15 minut.» – часы посетителя (с 28.09 без «do 14:47»).
    Рабочее окно – по Варшаве, codziennie 7:00–21:00 (в праздники тоже, как .ws-msg выше). За 15 минут до закрытия –
    «zwykle jeszcze dziś». Ночью фраза кончается на «e-mailem», а когда ответим – в подписи: «Jutro rano – odpowiadamy od 7:00»
    (7:00 варшавского времени в часах посетителя). DOM трогаем только при смене текста – иначе сбрасывается выделение. */
@@ -3226,7 +3305,7 @@
     var w = waw(t), wm = w.h * 60 + w.m;
     if (nowEl.textContent !== hm(t)) nowEl.textContent = hm(t);
     if (wm >= OPEN && wm < CLOSE) {
-      set(whenEl, wm + 15 > CLOSE ? ' zwykle jeszcze' + NB + 'dziś' : ' zwykle do' + NB + '<span class="tl-go-t">' + hm(new Date(t.getTime() + 15 * 60000)) + '</span>');
+      set(whenEl, wm + 15 > CLOSE ? ', zwykle jeszcze' + NB + 'dziś' : ', zwykle w' + NB + '15' + NB + 'minut');
       set(note, DAY_NOTE);
     } else {
       /* ближайшие 7:00 по Варшаве; в ночь перевода часов поправляем по факту */
@@ -3254,4 +3333,19 @@
     if (slots.length) slots.forEach(function (s) { s.textContent = addr; });
     else el.textContent = addr;
   });
+})();
+
+/* Выбор суда по городу (.sad-pick, /apostille/pelnomocnictwo/#ktory-sad, 29.09.2026): показывает карточку выбранного
+   суда и строку «что дальше» – для Варшавы своя, для остальных городов общая */
+(function () {
+  var box = document.querySelector('[data-sad-pick]'); if (!box) return;
+  var sel = box.querySelector('select');
+  var cards = box.querySelectorAll('[data-sad]'), next = box.querySelectorAll('[data-sad-next]');
+  function show() {
+    var v = sel.value;
+    cards.forEach(function (c) { c.hidden = c.getAttribute('data-sad') !== v; });
+    next.forEach(function (p) { p.hidden = !v || (p.getAttribute('data-sad-next') === 'waw') !== (v === 'warszawa'); });
+  }
+  sel.addEventListener('change', show);
+  show();
 })();

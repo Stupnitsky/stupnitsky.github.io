@@ -404,17 +404,16 @@ html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibilit
 /* широкая плашка (планшет, узкое окно, телефон лёжа): список в две колонки, кнопки двумя рядами по две –
    лист во всю ширину шапки с одной колонкой слева выглядел бы пустым, а лёжа не помещался бы по высоте */
 @media (min-width:560px) and (max-width:1149px){
-  /* колонки по смыслу (Грег, 21.09.2026): слева услуги и вопросы – Apostille, Tłumaczenia, Częste pytania,
-     справа цена, место и связь – Cennik, Gdzie załatwić, Kontakt. Порядок в разметке прежний (на телефоне список
+  /* колонки (Грег, 21.09.2026; 28.09.2026 Cennik и Częste pytania поменяны местами): слева Apostille, Tłumaczenia,
+     Cennik, справа Częste pytania, Gdzie załatwić, Kontakt. Порядок в разметке прежний (на телефоне список
      идёт одним столбцом в нём же), места в сетке заданы явно */
   .mn-list{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:repeat(3, auto); column-gap:3rem; }
   .mn-link:nth-child(1){ grid-area:1 / 1; }
   .mn-link:nth-child(2){ grid-area:2 / 1; }
-  .mn-link:nth-child(5){ grid-area:3 / 1; }
-  .mn-link:nth-child(3){ grid-area:1 / 2; }
+  .mn-link:nth-child(3){ grid-area:3 / 1; border-bottom:0; }
+  .mn-link:nth-child(5){ grid-area:1 / 2; }
   .mn-link:nth-child(4){ grid-area:2 / 2; }
   .mn-link:nth-child(6){ grid-area:3 / 2; }
-  .mn-link:nth-last-child(2){ border-bottom:0; }
   #mobile-nav .mn-cta{ margin-top:16px; }
 }
 /* Кнопки в два ряда – от 700px и на телефоне лёжа: сверху телефон и главная справа (Грег, 23.09.2026: «главная
@@ -702,14 +701,14 @@ h1:has(.slide-in), h2:has(.slide-in), h3:has(.slide-in){ overflow-x:clip; }
   .gdz--light .gdz-cell{ padding-right:3rem; }
   .gdz--light .gdz-cell + .gdz-cell{ margin-top:0; padding:0 0 0 3rem; border-top:0; border-left:1px solid rgba(31,33,32,.15); }
 }
-.gdz--light .slab-kicker{ font-size:12px; color:rgba(31,33,32,.6); }
+.gdz--light .slab-kicker{ font-size:12px; color:rgba(31,33,32,.7); }
 .gdz--light .gdz-full{ font-size:17px; line-height:1.55; color:rgba(31,33,32,.75); max-width:40ch; }
 .gdz--light .gdz-meta{ gap:.85rem; }
 .gdz--light .gdz-meta > div{ padding-top:.85rem; border-top:1px solid rgba(31,33,32,.12); }
-.gdz--light .gdz-meta dt{ font-size:12px; color:rgba(31,33,32,.6); }
+.gdz--light .gdz-meta dt{ font-size:12px; color:rgba(31,33,32,.7); }
 .gdz--light .gdz-meta dd{ font-size:17px; line-height:1.5; }
 .gdz--light .gdz-fee{ color:inherit; }
-.gdz--light .gdz-docs-h{ color:rgba(31,33,32,.6); }
+.gdz--light .gdz-docs-h{ color:rgba(31,33,32,.7); }
 .gdz--light .gdz-docs-h::before{ background:rgba(31,33,32,.3); }
 .gdz--light .gdz-docs li{ font-size:17px; color:rgba(31,33,32,.75); }
 .gdz--light .gdz-docs li b{ color:var(--c-ink); }
@@ -4081,7 +4080,7 @@ details[open] > summary .chev:not(.chev--x)::before{ transform:translateY(3px) r
    18px на телефоне; уже крупные лиды (главная 21px, /cennik/ 24px) не меняются.
    Только польские страницы (html[lang="pl"]) – ua/ru/en догоняют общим проходом, тогда ограничение снять.
    Не трогаются: прайс /cennik/ (#ceny), цены в FAQ (.faq-price), панель заявки (.qd), шапка, меню, подвал. */
-html[lang="pl"] :is(.text-ink\/65, .text-ink\/70, .text-ink\/75, .text-ink\/80, .text-ink\/85):not(.uppercase):not(#ceny *, .qd *, header *, nav *, #mobile-nav *, footer *){ color:var(--c-ink); }
+html[lang="pl"] :is(.text-ink\/65, .text-ink\/70, .text-ink\/75, .text-ink\/80, .text-ink\/85):not(.uppercase):not(section#ceny *, .qd *, header *, nav *, #mobile-nav *, footer *){ color:var(--c-ink); }
 html[lang="pl"] :is(.tl-def-text, .tl-lead, .tl-meta, .step-lead, .scheme-item figcaption, .flow li, .opt span, .rules li,
   .gdz--light .gdz-full, .gdz--light .gdz-docs li, .gdz--light .gdz-note p, .gdz-key-s, .gdz-src,
   .kt-steps-list li, .ap-doc p, .ua-term-t, .so-text, .so-more, .so-addr i, .cmp-lead, .cmp-note p, .route-t, .route-sum){ color:var(--c-ink); }
@@ -4562,6 +4561,12 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
 .tl-go-note{ margin-top:1rem; font-size:17px; line-height:1.5; color:var(--c-ink); }
 @media (min-width:1024px){ .tl-go-note{ margin-top:1.25rem; font-size:18px; } }
 @media (prefers-reduced-motion:reduce){ .tl-go-go, .tl-go-go .cta-mark svg{ transition:none; } }
+/* Та же кнопка отдельной плашкой в конце «Ile kosztuje» (#cena, PL, 27–28.09.2026): вместо контурной .btn, кегль как во фразе
+   (26 / 40 / 48px), чуть выше, чем там (во фразе высоту держит межстрочный). Под сноской, по её левому краю, воздух 28px;
+   с 1024px – третьей строкой сетки .gt-card, столбец цифр (строки 1–2) не меняется. */
+.tl-go-go--gt{ align-self:flex-start; margin:12px 0 0; font-size:26px; padding:.15em .3em .19em .34em; }
+@media (min-width:640px){ .tl-go-go--gt{ font-size:40px; } }
+@media (min-width:1024px){ .gt-card .tl-go-go--gt{ grid-row:3; justify-self:start; align-self:start; margin:0; font-size:48px; } }
 
 /* #dokumenty – строка «документ · сколько страниц · цена»: от 640px в три колонки, на телефоне название сверху,
    страницы и цена – строкой под ним. Цены – с накруткой при наведении, как в остальных ценах сайта (.price-hit). */
@@ -4572,7 +4577,7 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
 .tl-doc-p{ font-family:"Fira Sans Condensed","Fira Sans",sans-serif; font-size:17px; line-height:1.3; }
 .tl-doc-c{ text-align:right; font-size:18px; line-height:1.3; white-space:nowrap; }
 @media (min-width:640px){
-  .tl-doc li{ grid-template-columns:minmax(0,1fr) 10rem 11rem; column-gap:1.5rem; }
+  .tl-doc li{ grid-template-columns:minmax(0,1fr) 10rem 12rem; column-gap:1.5rem; }   /* 12rem: «оцінка за 15 хвилин» (UA) не вылезает за линию, 28.09.2026 */
   .tl-doc li > b{ grid-column:auto; font-size:20px; }
   .tl-doc-c{ font-size:20px; }
 }
@@ -4661,7 +4666,7 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
 @media (min-width:1024px){ .gdz--ap .ap3-cell + .ap3-cell{ border-left-color:rgba(31,33,32,.15); } }
 .gdz--ap .ap3-cell .ap-desc{ font-size:17px; color:var(--c-ink); }
 .gdz--ap .slab-price::before{ background:rgba(31,33,32,.3); }
-.gdz--ap .slab-price > span:not(.price-hit){ color:rgba(31,33,32,.6); }
+.gdz--ap .slab-price > span:not(.price-hit){ color:rgba(31,33,32,.7); }
 .gdz--ap .slab-price b{ color:var(--c-ink); }
 .gdz--ap .gdz-note{ margin-top:0; padding:1.35rem 1rem 1.5rem; }
 @media (min-width:640px){ .gdz--ap .gdz-note{ padding:1.5rem 1.5rem 1.6rem; } }
@@ -4679,8 +4684,36 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
 html[lang="pl"] .zap-list small{ color:var(--c-ink); }
 /* №21–22 – якоря для постов и ссылок (карточки документов, «Kolejność ma znaczenie», столбец цен, вопрос для окошка):
    тот же отступ под шапку, что у section[id] */
-:is(.gdz-note, .gt-c5, .ap-doc, .zap)[id], #dokumenty p[id]{ scroll-margin-top:88px; }
-@media (min-width:1150px){ :is(.gdz-note, .gt-c5, .ap-doc, .zap)[id], #dokumenty p[id]{ scroll-margin-top:124px; } }
+:is(.gdz-note, .gt-c5, .gt--ap, .ap-doc, .zap)[id], #dokumenty p[id]{ scroll-margin-top:88px; }
+@media (min-width:1150px){ :is(.gdz-note, .gt-c5, .gt--ap, .ap-doc, .zap)[id], #dokumenty p[id]{ scroll-margin-top:124px; } }
 /* Два выбора подряд в панели wyceny (27.09.2026): «Apostille na» (.qd-ap, только на страницах про Apostille) и «Tłumaczenie» –
    второй ближе к первому, чтобы читались одной группой */
 .qd .wy-v2 .qd-kind + .qd-kind{ margin-top:18px; }
+/* /apostille/ #urzedy, анкета 28.09.2026: до 1024px в ячейке сначала адрес, сроки и цена, описание – последним
+   (плита на телефоне занимала 6 экранов, цена стояла после ~16 строк текста). От 1024px порядок прежний – subgrid выше. */
+@media (max-width:1023px){
+  .gdz--ap .ap3-cell{ display:flex; flex-direction:column; }
+  .gdz--ap .ap3-cell .ap-desc{ order:1; margin-top:1.4rem; }
+}
+
+/* Выбор суда по городу – /apostille/pelnomocnictwo/#ktory-sad (29.09.2026). Карточка суда – общий .so-card
+   со страницы /apostille-bez-przyjazdu/; select – нативный (на iPhone открывается системный список), 20px – без увеличения в Safari. */
+.sad-pick-l{ display:block; font-size:20px; font-weight:700; letter-spacing:-.01em; line-height:1.25; max-width:34ch; }
+.sad-pick-s{ margin-top:1rem; display:block; width:100%; max-width:420px; -webkit-appearance:none; appearance:none;
+  background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' fill='none' stroke='%231F2120' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 4px center / 14px 10px;
+  border:0; border-bottom:1px solid rgba(31,33,32,.35); border-radius:0; padding:.55rem 2rem .6rem 0;
+  font:inherit; font-size:20px; line-height:1.3; color:var(--c-ink); cursor:pointer; }
+.sad-pick-s:focus-visible{ outline:2px solid var(--c-terra); outline-offset:4px; }
+.sad-pick-out .so-card{ padding:1.5rem 0 0; }
+.sad-pick-next{ margin-top:1rem; font-size:17px; line-height:1.55; max-width:56ch; }
+.sad-pick-note{ margin-top:1.6rem; font-size:15px; line-height:1.6; color:var(--c-ink); max-width:62ch; }
+/* от 1024px: слева вопрос, выбор и примечание, справа карточка суда и «что дальше» – плашка не пустует */
+@media (min-width:1024px){
+  .sad-pick{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); column-gap:3.5rem; align-items:start; }
+  .sad-pick-l{ grid-column:1; grid-row:1; }
+  .sad-pick-s{ grid-column:1; grid-row:2; }
+  .sad-pick-note{ grid-column:1; grid-row:3; }
+  .sad-pick-out{ grid-column:2; grid-row:1 / span 2; }
+  .sad-pick-out .so-card{ padding-top:0; }
+  .sad-pick-next{ grid-column:2; grid-row:3; }
+}
