@@ -1822,8 +1822,25 @@
       var row = head && head.querySelector('.hdr-row');
       if (row) {
         var tOpen = 0, last = null, fast = false;
+        var hoverAt = 0;   /* когда меню открыто наведением */
         var plan = function () { clearTimeout(tOpen); tOpen = setTimeout(function () {
-          if (fine.matches && !fast && !isOpen() && !root.classList.contains('qd-open') && row.matches(':hover')) { fit(); setOpen(true); } }, 220); };
+          if (fine.matches && !fast && !isOpen() && !root.classList.contains('qd-open') && row.matches(':hover')) { fit(); setOpen(true); hoverAt = Date.now(); } }, 220); };
+        /* наведение и нажатие не спорят (Грег, 30.09.2026): меню только что раскрылось наведением, а человек по привычке нажимает
+           бургер или плашку – в ближайшие 1,5 с это нажатие меню не закрывает (перехват на шапке раньше обработчиков бургера
+           и документа). Позже нажатие закрывает, как обычно */
+        var fresh = function () { return isOpen() && Date.now() - hoverAt < 1500; };
+        head.addEventListener('click', function (e) {
+          if (fresh() && burger.contains(e.target)) { e.preventDefault(); e.stopPropagation(); }
+        }, true);
+        head.addEventListener('pointerdown', function (e) {
+          if (fresh() && row.contains(e.target) && !e.target.closest('a')) e.stopPropagation();
+        }, true);
+        /* нажатие по закрытой плашке (мимо логотипа и бургера) раскрывает меню – как бургер; на планшете у пилюли своё
+           действие (к началу страницы), поэтому только от 1150px */
+        row.addEventListener('click', function (e) {
+          if (!desk.matches || isOpen() || e.target.closest('a, button')) return;
+          fit(); setOpen(true);
+        });
         row.addEventListener('mouseenter', function () { fast = false; last = null; plan(); });
         row.addEventListener('mousemove', function (e) {
           var now = Date.now();
@@ -2492,7 +2509,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-7';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-8';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
