@@ -457,6 +457,12 @@ header:has(.hdr-row.on-dark) #mobile-nav .cta-btn--main:focus-visible{ backgroun
 #burger[aria-expanded="true"] span:first-child{ transform:translateY(3.5px) rotate(45deg); }
 #burger[aria-expanded="true"] span:last-child{ transform:translateY(-3.5px) rotate(-45deg); }
 @media (prefers-reduced-motion:reduce){ #burger span{ transition:none; } }
+/* Бургер при наведении на закрытую шапку складывается в стрелку вниз – меню раскроется вниз (Грег, 30.09.2026; стенд
+   docs/menu-desk/, вариант 118). Только там, где есть мышь (с 30.09.2026 бургер есть и на компьютере); открытое меню – крестик */
+@media (hover:hover) and (pointer:fine){
+  html:not(.menu-open) #top .hdr-row:hover #burger span:first-child{ transform:translate(-4px, 4.5px) rotate(40deg) scaleX(.5); }
+  html:not(.menu-open) #top .hdr-row:hover #burger span:last-child{ transform:translate(4px, -2.5px) rotate(-40deg) scaleX(.5); }
+}
 
 /* Кнопка WhatsApp: по умолчанию только логотип, подпись выезжает при наведении */
 .wa-btn{ padding:5px; background:transparent; color:var(--c-ink);
@@ -4716,4 +4722,110 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
   .sad-pick-out{ grid-column:2; grid-row:1 / span 2; }
   .sad-pick-out .so-card{ padding-top:0; }
   .sad-pick-next{ grid-column:2; grid-row:3; }
+}
+
+
+/* =====================================================================================================
+   Меню компьютера (30.09.2026; стенд docs/menu-desk/, вариант 126 – Грег: «126 реализуй на сайт», все языки).
+   От 1150px шапка – одна плашка во всю ширину: логотип, серым «/ страница», бургер; пунктов и переключателя языка
+   в ряду больше нет. Меню раскрывается вниз из той же плашки, как на планшете: строка языков справа, пункты в две
+   колонки, колонка связи шириной со строку языков (WhatsApp, Telegram – «Napisz do nas» при наведении на строку),
+   крупный номер с часами на уровне третьей строки пунктов, внизу жёлтая полоса «Ekspresowa wycena» с чёрной
+   створкой: на ней по кругу три строки, при наведении створка уходит вправо и открывает «Otwórz formularz wyceny ⌄».
+   Колонку связи, номер и полосу собирает app.js (.mnd-*); уже 1150px они скрыты – планшет и телефон как прежде.
+   Открывается бургером, нажатием и наведением с задержкой (app.js). Не откатывать без Грега.
+   ===================================================================================================== */
+.mnd-rail, .mnd-num, .mnd-floor{ display:none; }
+.mnd-grid{ display:contents; }
+@media (min-width:1150px){
+  /* ряд шапки: ширина – по ряду (края меню совпадают со стеклом, целые пиксели на 1440), без увеличения логотипа
+     (рядом подпись страницы) */
+  #top{ max-width:1354px; margin-inline:auto; --hdr-r:28px; --logo-scale:1 !important; --logo-extra:0px !important; }
+  #top .hdr-row{ max-width:none !important; margin:0 !important; }
+  #top #nav-main{ display:none !important; }
+  #top .hdr-seg--lang .lang-wrap{ display:none; }
+  #top #burger{ display:flex !important; }
+  #top .hdr-seg--menu{ flex:1 1 auto; }
+  #top .hdr-page{ display:block; flex:0 0 auto; margin-left:32px; white-space:nowrap; font-size:21px; font-weight:700; line-height:1;
+    letter-spacing:-.035em; color:rgba(31,33,32,.45); }
+  #top .hdr-page > span{ display:inline-block; white-space:pre; }
+  #top .hdr-row.on-dark .hdr-page{ color:rgba(255,255,255,.5); }
+
+  /* панель – под рядом, прозрачная; вниз растёт стекло ряда (--mn-h ставит app.js) */
+  .hdr-row::before{ transition:background-color .25s ease, bottom .34s cubic-bezier(.2,.7,.25,1); }
+  .hdr-row::after{ transition:box-shadow .25s ease, bottom .34s cubic-bezier(.2,.7,.25,1); }
+  html.menu-open .hdr-row::before, html.menu-open .hdr-row::after{ bottom:calc(-1 * var(--mn-h, 0px)); }
+  #mobile-nav{ --mn-top:108px; --mn-inset:50px; --mn-fs:26px; --mn-pad:13px;
+    display:block; position:absolute; z-index:1; left:1.25rem; right:1.25rem; top:100%; margin:0;
+    max-height:calc(100vh - var(--mn-top) - 12px); overflow-y:auto; overscroll-behavior:contain;
+    border-radius:0 0 var(--hdr-r) var(--hdr-r); background:none; box-shadow:none;
+    opacity:0; visibility:hidden; pointer-events:none; transition:opacity 0s linear .3s, visibility 0s linear .3s; }
+  html.menu-open #mobile-nav{ opacity:1; visibility:visible; pointer-events:auto; transition:opacity 0s, visibility 0s; }
+  #mobile-nav .mn-in{ -webkit-clip-path:inset(0 -40px 100% -40px); clip-path:inset(0 -40px 100% -40px);
+    transition:clip-path .3s cubic-bezier(.2,.7,.25,1), -webkit-clip-path .3s cubic-bezier(.2,.7,.25,1); }
+  html.menu-open #mobile-nav .mn-in{ -webkit-clip-path:inset(0 -40px 0 -40px); clip-path:inset(0 -40px 0 -40px);
+    transition:clip-path .34s cubic-bezier(.2,.7,.25,1), -webkit-clip-path .34s cubic-bezier(.2,.7,.25,1); }
+  #mobile-nav .mn-langs{ justify-content:flex-end; }
+  #mobile-nav .mn-cta{ display:none; }
+
+  /* пункты в две колонки + колонка связи шириной со строку языков (--mnd-w ставит app.js) */
+  #mobile-nav .mnd-grid{ display:grid; grid-template-columns:minmax(0,1fr) var(--mnd-w, 340px); column-gap:3rem; align-items:start; }
+  #mobile-nav .mnd-grid .mn-list{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:repeat(3, auto); column-gap:3rem; min-width:0; }
+  #mobile-nav .mn-link:nth-child(1){ grid-area:1 / 1; }
+  #mobile-nav .mn-link:nth-child(2){ grid-area:2 / 1; }
+  #mobile-nav .mn-link:nth-child(3){ grid-area:3 / 1; border-bottom:0; }
+  #mobile-nav .mn-link:nth-child(5){ grid-area:1 / 2; }
+  #mobile-nav .mn-link:nth-child(4){ grid-area:2 / 2; }
+  #mobile-nav .mn-link:nth-child(6){ grid-area:3 / 2; }
+  #mobile-nav .mnd-rail{ display:flex; flex-direction:column; min-width:0; }
+  #mobile-nav .mnd-rail a{ display:flex; align-items:center; justify-content:space-between; gap:12px; box-sizing:border-box;
+    height:calc(var(--mn-fs) * 1.15 + 2 * var(--mn-pad) + 1px); border-bottom:1px solid rgba(31,33,32,.1);
+    font-size:var(--mn-fs); font-weight:700; letter-spacing:-.035em; line-height:1.15; color:var(--c-ink); text-decoration:none; }
+  #mobile-nav .mnd-rail a:focus-visible{ outline:2px solid currentColor; outline-offset:-2px; border-radius:6px; }
+  /* «Napisz do nas» – как языки (16px, 400, тот же серый), появляется при наведении на строку */
+  #mobile-nav .mnd-hint{ font-size:16px; font-weight:400; letter-spacing:normal; line-height:1.1; color:rgba(31,33,32,.72);
+    opacity:0; transform:translateX(-6px); transition:opacity .2s ease, transform .25s cubic-bezier(.2,.7,.25,1); }
+  #mobile-nav .mnd-rail a:hover .mnd-hint, #mobile-nav .mnd-rail a:focus-visible .mnd-hint{ opacity:1; transform:none; }
+  header:has(.hdr-row.on-dark) #mobile-nav .mnd-hint{ color:rgba(255,255,255,.72); }
+
+  /* крупный номер у правого края – поднят в пустую третью строку колонки связи, ближе к часам */
+  #mobile-nav .mnd-num{ display:flex; flex-direction:column; align-items:flex-end; gap:6px; text-align:right;
+    margin-top:calc(-1 * var(--mn-fs) * 1.15 - var(--mn-pad) - 3px); }
+  #mobile-nav .mnd-num a{ position:relative; top:5px; font-size:38px; font-weight:700; letter-spacing:-.03em; line-height:1; color:var(--c-ink); text-decoration:none; }
+  #mobile-nav .mnd-num span{ font-size:16px; font-weight:600; color:rgba(31,33,32,.55); }
+  header:has(.hdr-row.on-dark) #mobile-nav .mnd-num span{ color:rgba(255,255,255,.6); }
+
+  /* жёлтая полоса: поля 10px внутри плашки, скругление 18 (плашка 28 = 18 + 10); охра – только до левого края
+     створки (--cl), под створку подкладывается при наведении и убирается через .75s после ухода, иначе на углах
+     створки из-под неё просвечивает жёлтая дуга */
+  #mobile-nav .mnd-floor{ position:relative; display:flex; align-items:center; margin:20px calc(10px - var(--mn-inset)) -12px;
+    padding:24px calc(var(--mn-inset) - 10px) 26px; border-radius:18px; overflow:hidden; color:var(--c-ink); text-decoration:none;
+    font-size:var(--mn-fs); font-weight:700; letter-spacing:-.035em; line-height:1.1;
+    background:linear-gradient(var(--c-terra), var(--c-terra)) 0 0 / calc(var(--cl, 100%) + 2px) 100% no-repeat;
+    transition:background-size 0s linear .75s; }
+  #mobile-nav .mnd-floor:hover, #mobile-nav .mnd-floor:focus-visible{ background-size:100% 100%; transition:background-size 0s; }
+  /* «Ekspresowa wycena» – по центру жёлтой зоны, без привязки к оси пунктов (Грег, 30.09.2026) */
+  #mobile-nav .mnd-floor{ padding-left:0; }
+  #mobile-nav .mnd-t{ flex:0 0 var(--cl, 40%); text-align:center; }
+  #mobile-nav .mnd-floor:focus-visible{ outline:2px solid var(--c-ink); outline-offset:3px; }
+  #mobile-nav .mnd-cur{ position:absolute; top:0; bottom:0; right:0; left:var(--cl, 60%); display:flex; align-items:center; justify-content:flex-end;
+    gap:14px; padding:0 calc(var(--mn-inset) - 10px) 0 28px; overflow:hidden; background:var(--c-ink); color:var(--c-paper);
+    transition:transform .7s cubic-bezier(.6,0,.2,1); }
+  #mobile-nav .mnd-floor:hover .mnd-cur, #mobile-nav .mnd-floor:focus-visible .mnd-cur{ transform:translateX(101%); }
+  #mobile-nav .mnd-car{ position:relative; flex:1; min-width:0; height:38px; overflow:hidden; }
+  #mobile-nav .mnd-car span{ position:absolute; right:0; top:0; white-space:nowrap; font-size:28px; font-weight:800; letter-spacing:-.03em; line-height:38px;
+    transform:translateY(100%); opacity:0; transition:transform .5s cubic-bezier(.3,.7,.2,1), opacity .4s ease; }
+  #mobile-nav .mnd-car span.on{ transform:none; opacity:1; }
+  #mobile-nav .mnd-car span.out{ transform:translateY(-100%); opacity:0; }
+  #mobile-nav .mnd-go{ position:absolute; top:0; bottom:0; right:calc(var(--mn-inset) - 10px); display:flex; align-items:center;
+    font-size:28px; font-weight:800; letter-spacing:-.03em; }
+  #mobile-nav .mnd-cur .cta-mark, #mobile-nav .mnd-go .cta-mark{ margin-left:12px; }
+  /* на охре стрелка вниз и мягко пульсирует, на чёрном – вправо */
+  #mobile-nav .mnd-go .cta-mark{ transform:translateY(-.08em) rotate(90deg); }
+  #mobile-nav .mnd-go .cta-mark svg{ animation:mndPulse 1.6s ease-in-out infinite; }
+  @keyframes mndPulse{ 0%,55%,100%{ transform:translateX(0); } 25%{ transform:translateX(.16em); } }
+}
+@media (min-width:1150px) and (prefers-reduced-motion:reduce){
+  #mobile-nav .mnd-cur, #mobile-nav .mnd-car span, #mobile-nav .mnd-hint{ transition:none; }
+  #mobile-nav .mnd-go .cta-mark svg{ animation:none; }
 }

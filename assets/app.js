@@ -1688,7 +1688,9 @@
        (.hdr-row::before / ::after в styles.css), а на сколько – говорит --mn-h: высота панели на этот момент.
        Панель скрыта через visibility, в потоке остаётся, поэтому её высоту можно снять до открытия. */
     var head = document.getElementById('top');
-    function fitPlate() { if (head) head.style.setProperty('--mn-h', nav.offsetHeight + 'px'); }
+    /* высота – дробная (getBoundingClientRect): по целому offsetHeight стекло кончалось на долю пикселя выше края
+       панели, и на Retina внизу проступала линия в 1px (стенд docs/menu-desk/, 30.09.2026) */
+    function fitPlate() { if (head) head.style.setProperty('--mn-h', nav.getBoundingClientRect().height + 'px'); }
     function setOpen(open, focusBurger, focusFirst) {
       if (open === isOpen()) return;
       if (open) fitPlate();
@@ -1715,6 +1717,14 @@
     /* закрываем по click, а не по pointerdown: иначе подложка исчезала бы раньше click,
        и тот приходил бы в элемент страницы под пальцем */
     shade.addEventListener('click', function () { setOpen(false); });
+    /* нажатие по самой плашке меню – мимо ссылок, кнопок и полей – тоже закрывает меню (Грег, 30.09.2026);
+       выделение текста мышью меню не закрывает */
+    nav.addEventListener('click', function (e) {
+      if (!isOpen() || e.target.closest('a, button, input, select, textarea, label, [role="button"]')) return;
+      var sel = window.getSelection && window.getSelection();
+      if (sel && !sel.isCollapsed) return;
+      setOpen(false);
+    });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && isOpen()) { e.preventDefault(); setOpen(false, true); }
     });
@@ -1722,12 +1732,112 @@
     document.addEventListener('pointerdown', function (e) {
       if (isOpen() && e.target !== shade && !nav.contains(e.target) && !burger.contains(e.target)) setOpen(false);
     });
-    /* окно стало широким (порог бургера в styles.css – 1150px) – панель не нужна, прокрутку возвращаем */
+    /* окно перешло порог 1150px – у меню другая раскладка (с 30.09.2026 меню есть и на компьютере), закрываем */
     var wide = window.matchMedia('(min-width:1150px)');
     (wide.addEventListener ? wide.addEventListener('change', onWide) : wide.addListener(onWide));
-    function onWide(e) { if (e.matches && isOpen()) setOpen(false); }
+    function onWide() { if (isOpen()) setOpen(false); }
     /* поворот телефона, смена ширины окна, адресная строка Safari – высота панели меняется, плашка за ней */
     window.addEventListener('resize', function () { if (isOpen()) fitPlate(); }, { passive: true });
+
+    /* Меню компьютера (30.09.2026; стенд docs/menu-desk/, вариант 126, все языки). От 1150px в панели другая раскладка:
+       колонка связи (WhatsApp, Telegram – «Napisz do nas» при наведении), крупный номер с часами и жёлтая полоса
+       «Ekspresowa wycena» с чёрной створкой (по кругу три строки; при наведении створка уходит и открывает
+       «Otwórz formularz wyceny»). Элементы собираются здесь из тех же ссылок и видны только от 1150px (styles.css, .mnd-*);
+       уже 1150px меню прежнее. Меню открывается и наведением на шапку – с задержкой и не при быстром пролёте мыши. */
+    (function () {
+      var inn = nav.querySelector('.mn-in'), list = nav.querySelector('.mn-list'), cta = nav.querySelector('.mn-cta');
+      if (!inn || !list || !cta) return;
+      var L = {
+        pl: { hint:'Napisz do nas', hours:'Codziennie 7:00–21:00', title:'Ekspresowa wycena', go:'Otwórz formularz wyceny',
+              car:['Wysyłasz zdjęcie 24/7', 'Odpisujemy codziennie od 7:00 do 21:00', 'Zwykle w 15 minut'] },
+        uk: { hint:'Напишіть нам', hours:'Щодня 7:00–21:00', title:'Експрес-оцінка', go:'Відкрити форму оцінки',
+              car:['Надсилаєте фото 24/7', 'Відповідаємо щодня з 7:00 до 21:00', 'Зазвичай за 15 хвилин'] },
+        ru: { hint:'Напишите нам', hours:'Ежедневно 7:00–21:00', title:'Экспресс-оценка', go:'Открыть форму оценки',
+              car:['Присылаете фото 24/7', 'Отвечаем ежедневно с 7:00 до 21:00', 'Обычно за 15 минут'] },
+        en: { hint:'Message us', hours:'Daily 7:00–21:00', title:'Express quote', go:'Open the quote form',
+              car:['Send a photo 24/7', 'We reply daily 7:00–21:00', 'Usually within 15 minutes'] }
+      };
+      var T = L[(root.lang || 'pl').slice(0, 2)] || L.pl;
+      var MARK = '<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span>';
+      function el(tag, cls, html) { var e = document.createElement(tag); e.className = cls; if (html) e.innerHTML = html; return e; }
+      function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]; }); }
+      var wa = cta.querySelector('a[href*="wa.me"]'), tg = cta.querySelector('a[href*="t.me"]'),
+          tel = cta.querySelector('a[href^="tel:"]'), main = cta.querySelector('.cta-btn--main');
+      /* пункты + колонка связи; уже 1150px обёртка .mnd-grid – display:contents и ничего не меняет */
+      var grid = el('div', 'mnd-grid'); list.parentNode.insertBefore(grid, list); grid.appendChild(list);
+      var rail = el('div', 'mnd-rail'); grid.appendChild(rail);
+      [wa, tg].forEach(function (a) {
+        if (!a) return;
+        var r = el('a', ''); r.href = a.getAttribute('href'); r.target = '_blank'; r.rel = 'noopener';
+        r.innerHTML = '<span>' + esc(a.textContent.trim()) + '</span><span class="mnd-hint">' + esc(T.hint) + '</span>';
+        r.addEventListener('click', function () { setOpen(false); }); rail.appendChild(r);
+      });
+      if (tel) {
+        var num = el('div', 'mnd-num'), ta = el('a', ''); ta.href = tel.getAttribute('href'); ta.textContent = tel.textContent.trim();
+        if (tel.getAttribute('aria-label')) ta.setAttribute('aria-label', tel.getAttribute('aria-label'));
+        num.appendChild(ta); num.appendChild(el('span', '', esc(T.hours))); inn.insertBefore(num, cta);
+      }
+      var floor = null, cur = null, title = null;
+      if (main) {
+        floor = el('a', 'mnd-floor'); floor.href = main.getAttribute('href');
+        if (main.hasAttribute('data-quote')) floor.setAttribute('data-quote', '');   /* панель wyceny привяжется ниже, как ко всем [data-quote] */
+        floor.setAttribute('aria-label', T.title + ' – ' + T.go);
+        floor.innerHTML = '<span class="mnd-t">' + esc(T.title) + '</span><span class="mnd-go" aria-hidden="true">' + esc(T.go) + MARK + '</span>' +
+          '<span class="mnd-cur" aria-hidden="true"><span class="mnd-car">' + T.car.map(function (t, i) { return '<span' + (i ? '' : ' class="on"') + '>' + esc(t) + '</span>'; }).join('') + '</span>' + MARK + '</span>';
+        floor.addEventListener('click', function () { setOpen(false); });
+        inn.appendChild(floor); cur = floor.querySelector('.mnd-cur'); title = floor.querySelector('.mnd-t');
+      }
+      var desk = window.matchMedia('(min-width:1150px)');
+      /* колонка связи – шириной со строку языков; створка – левее второй колонки пунктов на ширину слова «Kontakt»,
+         но не уже надписи на охре + 40px с каждой стороны; надпись – по центру зоны (Грег, 30.09.2026) */
+      function fit() {
+        if (!desk.matches) return;
+        var ls = nav.querySelectorAll('.mn-lang'), l = Infinity, r = -Infinity;
+        Array.prototype.forEach.call(ls, function (a) { var b = a.getBoundingClientRect(); if (b.width) { l = Math.min(l, b.left); r = Math.max(r, b.right); } });
+        if (r > l) nav.style.setProperty('--mnd-w', Math.ceil(r - l) + 'px');
+        if (floor && title) {
+          var f = floor.getBoundingClientRect(); if (!f.width) return;
+          var k = list.querySelector('.mn-link:nth-child(6)'), kl = 0;
+          if (k) { var rg = document.createRange(); rg.selectNodeContents(k); var kr = rg.getBoundingClientRect(); kl = kr.left - kr.width - f.left; }
+          var tr = document.createRange(); tr.selectNodeContents(title);   /* ширина самой надписи: блок надписи занимает всю зону */
+          floor.style.setProperty('--cl', Math.round(Math.max(tr.getBoundingClientRect().width + 80, kl)) + 'px');
+        }
+      }
+      fit(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+      window.addEventListener('resize', fit, { passive: true });
+      burger.addEventListener('click', fit, true);   /* до открытия (fitPlate меряет уже новую раскладку) */
+      /* строки на створке сменяются каждые 2,6 с, только пока меню открыто */
+      if (cur) {
+        var lines = cur.querySelectorAll('.mnd-car span'), k = 0;
+        setInterval(function () {
+          if (!root.classList.contains('menu-open') || !desk.matches || lines.length < 2) return;
+          var a = lines[k]; k = (k + 1) % lines.length; var b = lines[k];
+          a.classList.remove('on'); a.classList.add('out'); b.classList.remove('out'); b.classList.add('on');
+          setTimeout(function () { a.classList.remove('out'); }, 520);
+        }, 2600);
+      }
+      /* открытие наведением (компьютер с мышью): курсор задержался на шапке ~0,2 с и не пролетает быстро (к вкладкам
+         браузера мышь идёт через шапку); закрытие – когда мышь ушла и с шапки, и с меню, через 0,4 с */
+      var fine = window.matchMedia('(min-width:1150px) and (hover:hover) and (pointer:fine)');
+      var row = head && head.querySelector('.hdr-row');
+      if (row) {
+        var tOpen = 0, tClose = 0, last = null, fast = false;
+        var plan = function () { clearTimeout(tOpen); tOpen = setTimeout(function () {
+          if (fine.matches && !fast && !isOpen() && !root.classList.contains('qd-open') && row.matches(':hover')) { fit(); setOpen(true); } }, 220); };
+        row.addEventListener('mouseenter', function () { clearTimeout(tClose); fast = false; last = null; plan(); });
+        row.addEventListener('mousemove', function (e) {
+          var now = Date.now();
+          if (last) { fast = Math.hypot(e.clientX - last.x, e.clientY - last.y) / Math.max(1, now - last.t) > 1.1; if (fast) plan(); }
+          last = { x:e.clientX, y:e.clientY, t:now };
+        });
+        row.addEventListener('mouseleave', function () { clearTimeout(tOpen); });
+        head.addEventListener('mouseenter', function () { clearTimeout(tClose); });
+        head.addEventListener('mouseleave', function () {
+          if (!fine.matches) return;
+          clearTimeout(tClose); tClose = setTimeout(function () { if (isOpen() && !head.matches(':hover')) setOpen(false); }, 400);
+        });
+      }
+    })();
   })();
 
   // Плавное раскрытие юридических блоков
@@ -2385,7 +2495,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260928-10';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-2';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
