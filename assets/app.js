@@ -1817,25 +1817,22 @@
         }, 2600);
       }
       /* открытие наведением (компьютер с мышью): курсор задержался на шапке ~0,2 с и не пролетает быстро (к вкладкам
-         браузера мышь идёт через шапку); закрытие – когда мышь ушла и с шапки, и с меню, через 0,8 с */
+         браузера мышь идёт через шапку); закрывается только нажатием */
       var fine = window.matchMedia('(min-width:1150px) and (hover:hover) and (pointer:fine)');
       var row = head && head.querySelector('.hdr-row');
       if (row) {
-        var tOpen = 0, tClose = 0, last = null, fast = false;
+        var tOpen = 0, last = null, fast = false;
         var plan = function () { clearTimeout(tOpen); tOpen = setTimeout(function () {
           if (fine.matches && !fast && !isOpen() && !root.classList.contains('qd-open') && row.matches(':hover')) { fit(); setOpen(true); } }, 220); };
-        row.addEventListener('mouseenter', function () { clearTimeout(tClose); fast = false; last = null; plan(); });
+        row.addEventListener('mouseenter', function () { fast = false; last = null; plan(); });
         row.addEventListener('mousemove', function (e) {
           var now = Date.now();
           if (last) { fast = Math.hypot(e.clientX - last.x, e.clientY - last.y) / Math.max(1, now - last.t) > 1.1; if (fast) plan(); }
           last = { x:e.clientX, y:e.clientY, t:now };
         });
         row.addEventListener('mouseleave', function () { clearTimeout(tOpen); });
-        head.addEventListener('mouseenter', function () { clearTimeout(tClose); });
-        head.addEventListener('mouseleave', function () {
-          if (!fine.matches) return;
-          clearTimeout(tClose); tClose = setTimeout(function () { if (isOpen() && !head.matches(':hover')) setOpen(false); }, 800);   /* 0,8 с (Грег, 30.09.2026: «вдвое») */
-        });
+        /* закрывается только нажатием – крестик, мимо меню, по плашке, Escape (Грег, 30.09.2026: «закрытие по клику, надёжнее
+           и меньше раздражает»; до этого закрывалось само через 0,4–0,8 с после ухода мыши) */
       }
     })();
   })();
@@ -2495,7 +2492,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-4';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-5';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
