@@ -4742,6 +4742,12 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
      (рядом подпись страницы) */
   #top{ max-width:1354px; margin-inline:auto; --hdr-r:28px; --logo-scale:1 !important; --logo-extra:0px !important; }
   #top .hdr-row{ max-width:none !important; margin:0 !important; }
+  /* в покое плашка короче на 36% – правый край на месте, левый сдвинут; при наведении (и с клавиатуры) растягивается
+     во всю ширину и раскрывается вниз, открытое меню – во всю ширину (Грег, 30.09.2026). Пустое место слева от короткой
+     плашки нажатия не ловит – ссылки страницы под ним работают */
+  #top{ pointer-events:none; }
+  #top .hdr-row{ pointer-events:auto; margin-left:36% !important; transition:margin-left .34s cubic-bezier(.2,.7,.25,1); }
+  #top .hdr-row:hover, #top .hdr-row:focus-within, html.menu-open #top .hdr-row{ margin-left:0 !important; }
   #top #nav-main{ display:none !important; }
   #top .hdr-seg--lang .lang-wrap{ display:none; }
   #top #burger{ display:flex !important; }
