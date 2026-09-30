@@ -2,7 +2,7 @@
 <div id="quote-drawer" class="qd" hidden lang="ru">
   <div class="qd-backdrop" data-close></div>
   <div class="qd-wrap">
-    <button type="button" class="qd-close" data-close aria-label="Закрыть форму оценки">
+    <button type="button" class="qd-close" data-close aria-label="Закрыть форму расчёта">
       <svg class="qd-ic qd-ic--chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
       <svg class="qd-ic qd-ic--x" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
     </button>
@@ -16,8 +16,8 @@
            сжимается до одной строки (класс is-compact на .qd-shell ставит app.js). От 1024px блок скрыт –
            там заголовок в левой колонке. aria-hidden: диалог уже назван через #qd-title. -->
       <div class="qd-mhead" aria-hidden="true">
-        <p class="kicker">/ Оценка</p>
-        <p class="qd-mhead-title tracking-tightest font-black">Экспресс-оценка<br><span class="font-light italic">документа</span></p>
+        <p class="kicker">/ Расчёт</p>
+        <p class="qd-mhead-title tracking-tightest font-black">Экспресс-расчёт<br><span class="font-light italic">стоимости</span></p>
         <p class="qd-eta"><svg class="qd-clock" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2.2"/><circle class="qd-clock-pie" cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="8" stroke-dasharray="6.283 25.133" transform="rotate(-90 12 12)"/></svg><b>15 мин</b><span>Отправьте фото – узнаете цену</span></p>
       </div>
     <div class="qd-scroll">
@@ -28,10 +28,10 @@
             <div class="col-span-12 lg:col-span-5 p-7 sm:p-12 lg:p-14">
               <div class="qd-left">
               <div class="qd-head">
-                <p class="kicker">/ Оценка</p>
+                <p class="kicker">/ Расчёт</p>
                 <h2 id="qd-title" class="slide-group tracking-tightest leading-[0.94] text-[38px] sm:text-[48px] lg:text-[52px] font-black">
-                  <span class="slide-in">Экспресс-оценка</span><br>
-                  <span class="font-light italic slide-in sd-2">документа</span>
+                  <span class="slide-in">Экспресс-расчёт</span><br>
+                  <span class="font-light italic slide-in sd-2">стоимости</span>
                 </h2>
                 <p class="qd-eta"><svg class="qd-clock" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2.2"/><circle class="qd-clock-pie" cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="8" stroke-dasharray="6.283 25.133" transform="rotate(-90 12 12)"/></svg><b>15 мин</b><span>Отправьте фото – узнаете цену</span></p>
               </div>
@@ -132,7 +132,7 @@
                   <div class="qd-status-wrap"><p id="form-status" role="status" aria-live="polite" class="qd-status hidden"></p><button type="button" class="qd-status-close" aria-label="Закрыть сообщение"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></button></div>
                   <button type="submit"
                           class="inline-flex items-center justify-center gap-2 rounded-[12px] px-8 py-[18px] text-[16px] font-bold btn btn--pop qd-submit">
-                    <span class="qd-submit-txt">Отправить на&nbsp;оценку</span> <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
+                    <span class="qd-submit-txt">Отправить на&nbsp;расчёт</span> <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
                   </button>
                   <p class="qd-need" hidden></p>
                   <p class="qd-slow" hidden>Медленное соединение – не закрывайте окно</p>
@@ -140,7 +140,7 @@
                     <p class="qd-fail-msg"></p>
                     <p class="qd-fail-acts"><button type="button" class="qd-linkbtn" data-retry>Попробовать ещё раз</button><a class="qd-linkbtn" href="tel:+48507588155">Позвонить: 507&nbsp;588&nbsp;155</a></p>
                   </div>
-                  <p class="qd-legal">Отправляя заявку, вы соглашаетесь на обработку данных для подготовки оценки.<br>
+                  <p class="qd-legal">Отправляя заявку, вы соглашаетесь на обработку данных для расчёта стоимости.<br>
                     <button type="button" class="qd-linkbtn qd-linkbtn--chev qd-policy-btn" data-policy aria-expanded="false" aria-controls="qd-policy">Политика конфиденциальности <svg class="qd-chev" width="11" height="7" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></p>
                   <div class="qd-policy" id="qd-policy" hidden>
                     <p class="qd-policy-load">Загружаем…</p>
@@ -150,8 +150,8 @@
 
                 <div class="qd-done" hidden tabindex="-1">
                   <p class="qd-formhead">Спасибо, мы получили фото.</p>
-                  <p class="qd-formsub">Оценку – итоговую цену и&nbsp;срок, а&nbsp;для перевода ещё и&nbsp;число страниц – пришлём на <b class="qd-done-email"></b>
-                    обычно в&nbsp;течение 15&nbsp;минут, ежедневно <span class="whitespace-nowrap">7:00–21:00</span>. Платите только после того, как её примете.</p>
+                  <p class="qd-formsub">Итоговую цену и&nbsp;срок, а&nbsp;для перевода ещё и&nbsp;число страниц, пришлём на <b class="qd-done-email"></b>
+                    обычно в&nbsp;течение 15&nbsp;минут, ежедневно <span class="whitespace-nowrap">7:00–21:00</span>. Платите только после того, как согласитесь с&nbsp;расчётом.</p>
                   <p class="qd-formsub">Нет письма? Проверьте папку «Спам» или позвоните: <a href="tel:+48507588155" class="whitespace-nowrap underline font-semibold">507&nbsp;588&nbsp;155</a>.</p>
                   <p class="qd-safe">Фото удаляем после завершения дела.</p>
                   <button type="button" class="qd-linkbtn" data-close>Закрыть</button>
