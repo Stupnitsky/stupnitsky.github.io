@@ -4848,23 +4848,38 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
   #mobile-nav .mnd-num{ grid-column:2; grid-row:3; margin-top:12px; }
   #mobile-nav .mnd-floor{ grid-column:1 / -1; grid-row:4; }
 
-  /* WhatsApp и Telegram на одной полке (WhatsApp слева, Telegram у правого края); при наведении на один второй гаснет, и на его
-     месте – «napisz do nas» наведённого (Грег, 30.09.2026). Подпись – часть наведённой ссылки: по ней тоже можно нажать; у ненаведённой
-     подписи pointer-events:none, иначе она перехватывала бы наведение соседа. Номер – в освободившейся третьей строке колонки */
-  #mobile-nav .mnd-rail{ position:relative; flex-direction:row; justify-content:space-between; align-items:stretch; box-sizing:border-box;
+  /* WhatsApp и Telegram на одной полке: WhatsApp у левого края колонки, Telegram – левым краем под «Русский» (--tg-m ставит app.js).
+     При наведении на один второй гаснет, и на его месте всплывает облачко-сообщение: три прыгающие точки, через 0,9 с – «napisz do nas»
+     (как «Печатает…», вариант 130 стенда; Грег, 30.09.2026). Хвостик облачка – к наведённому. Облачко – часть наведённой ссылки, по нему
+     тоже можно нажать; у ненаведённой pointer-events:none, иначе оно перехватывало бы наведение соседа. Номер – в третьей строке колонки */
+  #mobile-nav .mnd-rail{ position:relative; flex-direction:row; justify-content:flex-start; align-items:stretch; box-sizing:border-box;
     height:calc(var(--mn-fs) * 1.15 + 2 * var(--mn-pad) + 1px); border-bottom:1px solid rgba(31,33,32,.1); }
   header:has(.hdr-row.on-dark) #mobile-nav .mnd-rail{ border-color:rgba(255,255,255,.14); }
   #mobile-nav .mnd-rail a{ height:auto; border-bottom:0; }
+  #mobile-nav .mnd-rail a + a{ margin-left:var(--tg-m, auto); }
   #mobile-nav .mnd-rail a > span:first-child{ transition:opacity .2s ease; }
-  #mobile-nav .mnd-rail .mnd-hint{ position:absolute; z-index:1; top:0; bottom:0; right:0; display:flex; align-items:center; pointer-events:none; }
-  #mobile-nav .mnd-rail a + a .mnd-hint{ right:auto; left:0; transform:translateX(6px); }
+  #mobile-nav .mnd-rail .mnd-hint{ position:absolute; z-index:1; top:50%; left:var(--tg-x, 55%); height:36px; margin-top:-18px; display:flex; align-items:center; gap:5px;
+    padding:0 15px; border-radius:18px 18px 18px 4px; background:#fff; box-shadow:0 2px 8px rgba(31,33,32,.12); color:var(--c-ink);
+    font-size:16px; font-weight:600; letter-spacing:-.01em; white-space:nowrap; pointer-events:none;
+    transform:scale(.6); transform-origin:0 100%; transition:transform .3s cubic-bezier(.3,1.5,.5,1), opacity .2s ease; }
+  #mobile-nav .mnd-rail a + a .mnd-hint{ left:0; border-radius:18px 18px 4px 18px; transform-origin:100% 100%; }
   #mobile-nav .mnd-rail a:hover .mnd-hint, #mobile-nav .mnd-rail a:focus-visible .mnd-hint{ pointer-events:auto; transform:none; }
+  header:has(.hdr-row.on-dark) #mobile-nav .mnd-rail .mnd-hint{ color:var(--c-ink); }
+  #mobile-nav .mnd-hint i{ width:7px; height:7px; border-radius:50%; background:rgba(31,33,32,.5); animation:mndDot 1s infinite; }
+  #mobile-nav .mnd-hint i:nth-child(2){ animation-delay:.15s; }
+  #mobile-nav .mnd-hint i:nth-child(3){ animation-delay:.3s; }
+  @keyframes mndDot{ 0%,60%,100%{ transform:none; opacity:.4; } 30%{ transform:translateY(-5px); opacity:1; } }
+  #mobile-nav .mnd-hint em{ display:none; font-style:normal; }
+  #mobile-nav .mnd-hint.done i{ display:none; }
+  #mobile-nav .mnd-hint.done em{ display:inline; }
   #mobile-nav .mnd-rail:has(> a:hover) > a:not(:hover) > span:first-child,
   #mobile-nav .mnd-rail:has(> a:focus-visible) > a:not(:focus-visible) > span:first-child{ opacity:0; }
 }
 @media (min-width:1150px) and (prefers-reduced-motion:reduce){
   #mobile-nav .mnd-cur, #mobile-nav .mnd-car span, #mobile-nav .mnd-hint{ transition:none; }
   #mobile-nav .mnd-go .cta-mark svg{ animation:none; }
+  #mobile-nav .mnd-hint i{ display:none; }
+  #mobile-nav .mnd-hint em{ display:inline; }
 }
 
 /* Плашка-ссылка «Masz dokument z Ukrainy?» – /apostille/ сразу под первым экраном (30.09.2026, проба перед решением о пункте меню).

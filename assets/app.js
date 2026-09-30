@@ -1771,7 +1771,13 @@
       [wa, tg].forEach(function (a) {
         if (!a) return;
         var r = el('a', ''); r.href = a.getAttribute('href'); r.target = '_blank'; r.rel = 'noopener';
-        r.innerHTML = '<span>' + esc(a.textContent.trim()) + '</span><span class="mnd-hint">' + esc(T.hint) + '</span>';
+        /* облачко «печатает…»: три точки, через 0,9 с – подпись (Грег, 30.09.2026) */
+        r.innerHTML = '<span>' + esc(a.textContent.trim()) + '</span><span class="mnd-hint"><i></i><i></i><i></i><em>' + esc(T.hint) + '</em></span>';
+        (function (hn) {
+          var th = 0, on = function () { clearTimeout(th); hn.classList.remove('done'); th = setTimeout(function () { hn.classList.add('done'); }, 900); },
+            off = function () { clearTimeout(th); hn.classList.remove('done'); };
+          r.addEventListener('mouseenter', on); r.addEventListener('focus', on); r.addEventListener('mouseleave', off); r.addEventListener('blur', off);
+        })(r.querySelector('.mnd-hint'));
         r.addEventListener('click', function () { setOpen(false); }); rail.appendChild(r);
       });
       if (tel) {
@@ -1800,6 +1806,13 @@
         var ls = nav.querySelectorAll('.mn-lang'), l = Infinity, r = -Infinity;
         Array.prototype.forEach.call(ls, function (a) { var b = a.getBoundingClientRect(); if (b.width) { l = Math.min(l, b.left); r = Math.max(r, b.right); } });
         if (r > l) nav.style.setProperty('--mnd-w', Math.ceil(r - l) + 'px');
+        /* Telegram – левым краем под «Русский» (третий язык в строке; Грег, 30.09.2026); облачко WhatsApp всплывает на его месте */
+        var ru = ls[2], rl = rail.getBoundingClientRect(), rk = rail.children;
+        if (ru && rl.width && rk.length > 1) {
+          var rx = ru.getBoundingClientRect().left - rl.left;
+          rail.style.setProperty('--tg-x', Math.round(rx) + 'px');
+          rail.style.setProperty('--tg-m', Math.max(12, Math.round(rx - rk[0].getBoundingClientRect().width)) + 'px');
+        }
         if (floor && title) {
           var f = floor.getBoundingClientRect(); if (!f.width) return;
           var k = list.querySelector('.mn-link:nth-child(6)'), kl = 0;
@@ -2532,7 +2545,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-30';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-32';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
