@@ -416,6 +416,12 @@
     var HOME = { pl: 'Główna', uk: 'Головна', ru: 'Главная', en: 'Home' };
     var pageName = here ? here.firstChild.textContent.trim()
       : /^\/((ua|ru|en)\/)?(index\.html)?$/.test(location.pathname) ? HOME[document.documentElement.lang] : '';
+    /* подстраница (Грег, 30.09.2026): «/ Apostille / Niekaralność» – короткое имя берётся из
+       <meta name="hdr-sub"> страницы; на главной и разделах меню его нет */
+    var subMeta = document.querySelector('meta[name="hdr-sub"]');
+    var sub = here && subMeta ? subMeta.content.trim() : '';
+    var parLen = sub ? pageName.length + 3 : 0;      /* «Apostille / » – прячется, если пилюля не помещается */
+    if (sub) pageName += '\u00a0/\u00a0' + sub;
     if (pageName) {
       pageLabel = document.createElement('span');
       pageLabel.className = 'hdr-page';
@@ -427,6 +433,7 @@
         var sp = document.createElement('span');
         sp.textContent = ch;
         sp.style.setProperty('--s', i ? (.25 + .6 * (i - 1) / word.length).toFixed(3) : '.12');
+        if (i && i <= parLen) sp.className = 'hp-par';
         pageLabel.appendChild(sp);
       });
       logoEl.insertAdjacentElement('afterend', pageLabel);
@@ -462,8 +469,9 @@
       var w = head.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
       /* ширина пилюли – по свёрнутому виду: логотип уменьшен на --shr, подпись страницы раскрыта полностью */
       var shr = parseFloat(cs.getPropertyValue('--shr')) || 0;
+      /* подпись с подстраницей не входит (телефон: бургер уезжал за край) – остаётся «/ Niekaralność» */
+      if (pageLabel && parLen) pageLabel.classList.remove('hp-short');
       var lw = pageLabel ? pageLabel.scrollWidth : 0;
-      if (pageLabel) head.style.setProperty('--lw', lw + 'px');
       /* дробные ширины: целые offsetWidth в свёрнутом и развёрнутом виде округляются по-разному, и пилюля после
          закрытия меню выходила на 2px уже, чем при загрузке */
       function bw(el) { return el.getBoundingClientRect().width; }
@@ -475,7 +483,10 @@
       var rightGap = bLine ? langSeg.offsetWidth - burger.offsetLeft - (burger.offsetWidth + bLine.offsetWidth) / 2 : 18;
       var pillX = Math.max(0, rightGap - parseFloat(getComputedStyle(logoSeg).paddingLeft));
       head.style.setProperty('--pill-x', pillX + 'px');
-      var ps = Math.max(0, (w - pad - logoW * (1 - shr) - lw - (pageLabel ? pillX + 10 + 10 : 0) - langSeg.offsetWidth) / 2);
+      var free = function () { return (w - pad - logoW * (1 - shr) - lw - (pageLabel ? pillX + 10 + 10 : 0) - langSeg.offsetWidth) / 2; };
+      if (parLen && free() < 12) { pageLabel.classList.add('hp-short'); lw = pageLabel.scrollWidth; }
+      if (pageLabel) head.style.setProperty('--lw', lw + 'px');
+      var ps = Math.max(0, free());
       /* доводка без рывка: начинает мягко и тормозит к концу (Грег, 23.09.2026: «в конце сжатия ещё медленнее») */
       head.style.transition = !anim || calm.matches ? 'none'
         : anim === 'menu' ? '--hp .34s cubic-bezier(.2,.7,.25,1)' : '--hp 1s cubic-bezier(.35,0,.15,1)';
@@ -2547,7 +2558,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-40';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-45';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -2648,7 +2659,8 @@
         /* «Apostille na: Oryginał · Tłumaczenie · Oba · Nie wiem» (.qd-ap, 27.09.2026) – только на страницах про Apostille;
            на остальных fieldset остаётся hidden, и его радио в письмо не попадают */
         var apSet = qd.querySelector('.qd-ap');
-        if (apSet && /^\/(?:(?:ua|ru|en)\/)?apostille(?:-bez-przyjazdu)?\/$/.test(location.pathname)) {
+        /* 30.09.2026: и на подстраницах /apostille/…/ (akt-urodzenia, pelnomocnictwo, KRK, gdzie) – их FAQ просят отметить вариант */
+        if (apSet && /^\/(?:(?:ua|ru|en)\/)?apostille(?:-bez-przyjazdu|\/[a-z-]+)?\/$/.test(location.pathname)) {
           apSet.hidden = false;
           /* 28.09.2026: на страницах Apostille в выборе перевода вместо «Zwykłe» – «Nie potrzebuję» (Apostille без перевода),
              пример в поле «Kilka słów» – документ за границу */
@@ -2656,6 +2668,22 @@
           if (zw) { zw.value = 'Nie potrzebuję'; if (zw.nextElementSibling) zw.nextElementSibling.textContent = 'Nie potrzebuję'; }
           var msgF = qd.querySelector('#message');
           if (msgF) msgF.placeholder = 'Np. akt urodzenia do Włoch,\npotrzebny do końca miesiąca';
+        }
+        /* 30.09.2026: страница может задать свой пример в «Kilka słów» (data-qd-ph на <main>, перевод строки – &#10;)
+           и не требовать фото (data-qd-nofile – /apostille/zaswiadczenie-o-niekaralnosci/: справки ещё нет, фотографировать нечего;
+           тогда поле «Kilka słów» сразу открыто – в нём клиент пишет, куда и на когда нужна справка) */
+        var pgMain = document.querySelector('body > main');
+        var pgPh = pgMain && pgMain.getAttribute('data-qd-ph');
+        var msgP = qd.querySelector('#message');
+        if (pgPh && msgP) msgP.placeholder = pgPh;
+        if (pgMain && pgMain.hasAttribute('data-qd-nofile')) {
+          var fIn = qd.querySelector('input[type="file"]');
+          if (fIn) fIn.required = false;
+          var mBtn = qd.querySelector('[data-show-msg]'), mBox = qd.querySelector('.qd-msg');
+          if (mBtn && mBox) { mBox.hidden = false; mBtn.setAttribute('aria-expanded', 'true'); }
+          /* заголовок панели «Sfotografuj telefonem…» здесь не к месту – клиенту ещё нечего фотографировать */
+          var fhA = qd.querySelector('.qd-fh-a'), fhB = qd.querySelector('.qd-fh-b');
+          if (fhA && fhB) { fhA.textContent = 'Napisz, dokąd'; fhB.textContent = 'i\u00a0na kiedy potrzebujesz dokumentu'; }
         }
         bind();
         return qd;
