@@ -4816,7 +4816,9 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
   #mobile-nav .mnd-cur{ position:absolute; top:0; bottom:0; right:0; left:var(--cl, 60%); display:flex; align-items:center; justify-content:flex-end;
     gap:14px; padding:0 calc(var(--mn-inset) - 10px) 0 28px; overflow:hidden; background:var(--c-ink); color:var(--c-paper);
     transition:transform .7s cubic-bezier(.6,0,.2,1); }
-  #mobile-nav .mnd-floor:hover .mnd-cur, #mobile-nav .mnd-floor:focus-visible .mnd-cur{ transform:translateX(101%); }
+  /* при наведении створка уезжает влево на --sl и накрывает «Ekspresowa wycena»: её строка остаётся на виду, справа сразу охра
+     с «Otwórz formularz wyceny» (стенд docs/menu-desk/, вариант 113; Грег, 30.09.2026); --sl считает app.js */
+  #mobile-nav .mnd-floor:hover .mnd-cur, #mobile-nav .mnd-floor:focus-visible .mnd-cur{ transform:translateX(calc(-1 * var(--sl, 50%))); }
   #mobile-nav .mnd-car{ position:relative; flex:1; min-width:0; height:38px; overflow:hidden; }
   #mobile-nav .mnd-car span{ position:absolute; right:0; top:0; white-space:nowrap; font-size:28px; font-weight:800; letter-spacing:-.03em; line-height:38px;
     transform:translateY(100%); opacity:0; transition:transform .5s cubic-bezier(.3,.7,.2,1), opacity .4s ease; }

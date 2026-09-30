@@ -1803,6 +1803,8 @@
           if (k) { var rg = document.createRange(); rg.selectNodeContents(k); var kr = rg.getBoundingClientRect(); kl = kr.left - kr.width - f.left; }
           var tr = document.createRange(); tr.selectNodeContents(title);   /* ширина самой надписи: блок надписи занимает всю зону */
           floor.style.setProperty('--cl', Math.round(Math.max(tr.getBoundingClientRect().width + 80, kl)) + 'px');
+          var g = floor.querySelector('.mnd-go').getBoundingClientRect();   /* створка влево: правый край встаёт в 36px левее «Otwórz formularz wyceny» */
+          if (g.width) floor.style.setProperty('--sl', Math.round(f.right - g.left + 36) + 'px');
         }
       }
       fit(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
@@ -2517,7 +2519,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-15';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-20';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
