@@ -4834,6 +4834,19 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
   #mobile-nav .mnd-go .cta-mark{ transform:translateY(-.08em) rotate(90deg); }
   #mobile-nav .mnd-go .cta-mark svg{ animation:mndPulse 1.6s ease-in-out infinite; }
   @keyframes mndPulse{ 0%,55%,100%{ transform:translateX(0); } 25%{ transform:translateX(.16em); } }
+
+  /* языки – первой строкой колонки связи, над WhatsApp и Telegram; пункты поднялись на место пустой строки языков (Грег, 30.09.2026).
+     Общая сетка .mn-in: слева пункты (3 строки), справа языки · WhatsApp · Telegram – строка в строку; под строками линии
+     с разрывами между колонками, верхняя линия под рядом шапки – целая (фон .mn-in). Ниже – номер и полоса во всю ширину */
+  #mobile-nav .mn-in{ display:grid; grid-template-columns:minmax(0,1fr) var(--mnd-w, 340px); column-gap:3rem; align-items:start;
+    background:linear-gradient(rgba(31,33,32,.1), rgba(31,33,32,.1)) content-box 0 0 / 100% 1px no-repeat; }
+  header:has(.hdr-row.on-dark) #mobile-nav .mn-in{ background-image:linear-gradient(rgba(255,255,255,.14), rgba(255,255,255,.14)); }
+  #mobile-nav .mnd-grid{ display:contents; }
+  #mobile-nav .mnd-grid .mn-list{ grid-column:1; grid-row:1 / span 2; }
+  #mobile-nav .mn-langs{ grid-column:2; grid-row:1; box-sizing:border-box; height:calc(var(--mn-fs) * 1.15 + 2 * var(--mn-pad) + 1px); padding:0; border-top:0; }
+  #mobile-nav .mnd-rail{ grid-column:2; grid-row:2; }
+  #mobile-nav .mnd-num{ grid-column:1 / -1; grid-row:3; margin-top:12px; }
+  #mobile-nav .mnd-floor{ grid-column:1 / -1; grid-row:4; }
 }
 @media (min-width:1150px) and (prefers-reduced-motion:reduce){
   #mobile-nav .mnd-cur, #mobile-nav .mnd-car span, #mobile-nav .mnd-hint{ transition:none; }

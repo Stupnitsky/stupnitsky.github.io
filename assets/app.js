@@ -1742,7 +1742,7 @@
     window.addEventListener('resize', function () { if (isOpen()) fitPlate(); }, { passive: true });
 
     /* Меню компьютера (30.09.2026; стенд docs/menu-desk/, вариант 126, все языки). От 1150px в панели другая раскладка:
-       колонка связи (WhatsApp, Telegram – «Napisz do nas» при наведении), крупный номер с часами и жёлтая полоса
+       колонка связи (WhatsApp, Telegram – «napisz do nas» строчными при наведении, Грег 30.09.2026), крупный номер с часами и жёлтая полоса
        «Ekspresowa wycena» с чёрной створкой (по кругу три строки; при наведении створка уходит и открывает
        «Otwórz formularz wyceny»). Элементы собираются здесь из тех же ссылок и видны только от 1150px (styles.css, .mnd-*);
        уже 1150px меню прежнее. Меню открывается и наведением на шапку – с задержкой и не при быстром пролёте мыши. */
@@ -1750,13 +1750,13 @@
       var inn = nav.querySelector('.mn-in'), list = nav.querySelector('.mn-list'), cta = nav.querySelector('.mn-cta');
       if (!inn || !list || !cta) return;
       var L = {
-        pl: { hint:'Napisz do nas', hours:'Codziennie 7:00–21:00', title:'Ekspresowa wycena', go:'Otwórz formularz wyceny',
+        pl: { hint:'napisz do nas', hours:'Codziennie 7:00–21:00', title:'Ekspresowa wycena', go:'Otwórz formularz wyceny',
               car:['Wysyłasz zdjęcie 24/7', 'Odpisujemy codziennie od 7:00 do 21:00', 'Zwykle w 15 minut'] },
-        uk: { hint:'Напишіть нам', hours:'Щодня 7:00–21:00', title:'Експрес-оцінка', go:'Відкрити форму оцінки',
+        uk: { hint:'напишіть нам', hours:'Щодня 7:00–21:00', title:'Експрес-оцінка', go:'Відкрити форму оцінки',
               car:['Надсилаєте фото 24/7', 'Відповідаємо щодня з 7:00 до 21:00', 'Зазвичай за 15 хвилин'] },
-        ru: { hint:'Напишите нам', hours:'Ежедневно 7:00–21:00', title:'Экспресс-расчёт', go:'Открыть форму расчёта',
+        ru: { hint:'напишите нам', hours:'Ежедневно 7:00–21:00', title:'Экспресс-расчёт', go:'Открыть форму расчёта',
               car:['Присылаете фото 24/7', 'Отвечаем ежедневно с 7:00 до 21:00', 'Обычно за 15 минут'] },
-        en: { hint:'Message us', hours:'Daily 7:00–21:00', title:'Express quote', go:'Open the quote form',
+        en: { hint:'message us', hours:'Daily 7:00–21:00', title:'Express quote', go:'Open the quote form',
               car:['Send a photo 24/7', 'We reply daily 7:00–21:00', 'Usually within 15 minutes'] }
       };
       var T = L[(root.lang || 'pl').slice(0, 2)] || L.pl;
@@ -1861,8 +1861,18 @@
           last = { x:e.clientX, y:e.clientY, t:now };
         });
         row.addEventListener('mouseleave', function () { clearTimeout(tOpen); armed = false; });
-        /* закрывается только нажатием – крестик, мимо меню, по плашке, Escape (Грег, 30.09.2026: «закрытие по клику, надёжнее
-           и меньше раздражает»; до этого закрывалось само через 0,4–0,8 с после ухода мыши) */
+        /* закрывается нажатием (крестик, мимо меню, по плашке, Escape) и само – через 3,2 с после того, как мышь ушла и с плашки,
+           и с меню (#mobile-nav внутри шапки); вернулась раньше – меню остаётся (Грег, 30.09.2026; до этого 0,4–0,8 с, потом только
+           нажатием). Не сворачивается, пока открыта панель wyceny или фокус с клавиатуры внутри меню */
+        var tClose = 0;
+        head.addEventListener('mouseleave', function () {
+          clearTimeout(tClose); if (!fine.matches || !isOpen()) return;
+          tClose = setTimeout(function () {
+            var ae = document.activeElement, kb = ae && nav.contains(ae) && ae.matches(':focus-visible');
+            if (isOpen() && !head.matches(':hover') && !root.classList.contains('qd-open') && !kb) setOpen(false);
+          }, 3200);
+        });
+        head.addEventListener('mouseenter', function () { clearTimeout(tClose); });
       }
     })();
   })();
@@ -2522,7 +2532,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-26';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-28';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
