@@ -2563,7 +2563,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-54';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-55';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -3157,13 +3157,10 @@
    на место слева направо, уходят с конца. Перебор идёт в копии букв (.lng-ov) ровно на местах настоящих (замер Range по
    каждой букве; лигатурные пары fi, fl, ff… держатся вместе); копия сложилась – убирается, остаётся живое слово.
    --lng-dd / --lng-ws: на сколько при раскрытии отъезжает влево жёлтая точка и вправо слово (пара «точка + слово» по центру).
-   Фон: вместе с раскрытием «A» гаснет и за сеткой наплывом встаёт код языка (data-g: En, De, Nl… – вторая строчная;
-   Грег, 27.09.2026 – раньше буква языка Ł Ї Ы & ß; строчные l и t не выше прописных – верх кода по-прежнему по сетке). От 640px код – кеглем и на базовой линии «A», привязан к краю окна (Грег, 27.09.2026:
-   «на место буквы А, чтобы в срез шло на максимум»; «резало вторую букву в том же месте»; «прячется не 66%, 42%»; «срез 36%»):
-   край режет вторую букву, 36 % её за краем, у всех кодов одинаково; верх кода – над линией сетки, 16px под
-   заголовком («отступ от заголовка», «ровно по высоте сетки, их нужно вынести»); «?» – как было до кодов: в высоту «A», целиком в окне.
-   На телефоне – за сеткой, целиком в окне: там коды сменяются, пока сетка на экране, а низ секции ещё за краем.
-   Метрики кодов меряются canvas-ом после загрузки шрифта, с трекингом .lng-g (−0,02em). */
+   Фон: вместе с раскрытием «A» гаснет и за сеткой наплывом встаёт ответ на языке клиента – «Tak.», «Так.», «Yes.», «Oui.»…
+   (Грег, 30.09.2026, вариант 1 «Yes» стенда docs/jezyki-fon/; раньше – код языка Pl, Ua… со срезом 36 % по краю окна,
+   ещё раньше – буква языка Ł Ї Ы & ß). Заголовок говорит «Twój język w parze z polskim» – фон отвечает; см. layout.
+   «pozostałe języki» – вместо «?» лента других языков (вариант 5 «Лента» того же стенда), см. placeMore. */
 (function () {
   var grid = document.querySelector('.lng-grid');
   if (!grid || !window.requestAnimationFrame) return;
@@ -3172,7 +3169,9 @@
   var mouse = window.matchMedia('(hover:hover) and (pointer:fine)');
   var cur = -1;
   var sec = grid.closest ? grid.closest('.lng') : null, ghost = sec ? sec.querySelector('.lng-ghost') : null;
-  var FONT = "900 100px 'Fira Sans'", CUT = .36, layers = [], front = 0, metrics = {}, geo = null;
+  var FONT = "900 100px 'Fira Sans'", FONT_I = "italic 300 100px 'Fira Sans'", layers = [], front = 0, em = {}, geo = null;
+  /* ответ за сеткой: «Так.» на языке клиента (Грег, 30.09.2026: «из 1 реализуй для всех», вариант 1 «Yes» стенда docs/jezyki-fon/) */
+  var YES = { Pl: 'Tak.', Ua: 'Так.', Ru: 'Да.', En: 'Yes.', De: 'Ja.', It: 'Sì.', Fr: 'Oui.', Es: 'Sí.', Nl: 'Ja.' };
   if (ghost) layers = [0, 1].map(function () {
     var s = document.createElement('span');
     s.className = 'lng-g'; s.setAttribute('aria-hidden', 'true');
@@ -3180,64 +3179,122 @@
     return s;
   });
 
+  /* замер ответов в em (Грег, 30.09.2026: «для Yes и других точка идёт в обрезку края страницы на 36% и подравняй по
+     высоте»): po – где начинается точка (DOM: ширина слова без точки тем же начертанием и трекингом, что у слоя), чернила
+     точки и первой буквы – canvas (одна буква – трекинг не мешает), cap – высота прописной H.
+     cut – от начала слова до линии среза: 36 % чернил точки – за краем окна; left – насколько первая буква выступает влево */
+  var CUT = .36;
   function measure() {
-    var ctx = document.createElement('canvas').getContext('2d');
+    if (!ghost) return;
+    var ctx = document.createElement('canvas').getContext('2d'), s = document.createElement('span');
     if (!ctx) return;
     ctx.font = FONT;
-    if ('letterSpacing' in ctx) ctx.letterSpacing = '-2px';      /* −0,02em от 100px – как letter-spacing у .lng-g */
-    cells.forEach(function (c) {
-      var g = c.getAttribute('data-g');
-      if (!g) return;
-      var m = ctx.measureText(g), ch = Array.from(g);
-      metrics[g] = { l: m.actualBoundingBoxLeft / 100, r: m.actualBoundingBoxRight / 100,
-                     a: m.actualBoundingBoxAscent / 100, d: m.actualBoundingBoxDescent / 100 };
-      if (ch.length < 2) return;
-      metrics[g].cap = ctx.measureText(ch[0]).actualBoundingBoxAscent / 100;   /* высота заглавной – по ней кегль */
-      /* линия среза: 36 % чернил второй буквы – за краем окна; её правый край – правый край чернил всего кода */
-      var m2 = ctx.measureText(ch[ch.length - 1]);
-      metrics[g].cut = metrics[g].r - CUT * (m2.actualBoundingBoxLeft + m2.actualBoundingBoxRight) / 100;
+    s.className = 'lng-g'; s.style.fontSize = '100px';
+    sec.appendChild(s);
+    var dot = ctx.measureText('.'), dl = dot.actualBoundingBoxLeft / 100, dw = (dot.actualBoundingBoxLeft + dot.actualBoundingBoxRight) / 100;
+    em.cap = ctx.measureText('H').actualBoundingBoxAscent / 100;
+    Object.keys(YES).forEach(function (g) {
+      var t = YES[g];
+      s.textContent = t.slice(0, -1);
+      var po = s.getBoundingClientRect().width / 100;
+      em[g] = { cut: po - dl + (1 - CUT) * dw, left: Math.max(0, ctx.measureText(Array.from(t)[0]).actualBoundingBoxLeft / 100) };
     });
+    sec.removeChild(s);
   }
-  /* от 640px – базовая линия «A» на нижнем крае секции (bottom:−0,165em при line-height:1), кегль – как у «A», но верх
-     прописных – в просвете между заголовком и сеткой, 16px под заголовком (Грег, 27.09.2026: «немного бы уменьшил
-     буквы, чтобы был отступ от заголовка»; «ровно по высоте сетки, их нужно вынести» – над линией сетки, отступ от
-     заголовка небольшой). Код привязан к краю окна – край режет вторую букву
-     так, что 36 % её чернил за краем (cut из measure), у всех кодов одинаково.
-     «?» – как было (Грег, 27.09.2026: «вопрос верни как был»): поле высотой в прописную «A» (0,696em), низ – край секции,
-     середина – видимая часть «A» (её чернила от −0,025 до 0,626em от левого края блока), целиком в окне, поля по 32px.
-     Телефон: поле за сеткой – высота сетки, по середине окна, поля по 20px */
+  /* Все ответы – одним кеглем, верх прописных на одной высоте (Грег: «подравняй по высоте»): прописные – от 16px под
+     заголовком до низа секции (базовая линия «A»), как было у кодов; слово привязано к правому краю окна – край режет точку,
+     36 % её чернил за краем. Самые длинные («Tak.», «Так.», «Yes.», «Oui.») не заходят левее сетки – если им не хватает
+     ширины, кегль всех слов меньше и верх ниже. Хвосты «Д» уходят под секцию на следующий блок (Грег, 30.09.2026: «большие
+     буквы могут заходить на следующий блок, это лучше, чем срезать их другим блоком» – по вертикали .lng не режет, см.
+     styles.css). Телефон – так же, но по высоте сетки: низ – по низу сетки, верх – не выше её верха. */
   function layout() {
-    if (!ghost) return;
-    var sr = sec.getBoundingClientRect(), gr = ghost.getBoundingClientRect();
-    var F = parseFloat(getComputedStyle(ghost).fontSize), W = sec.clientWidth;
-    if (W >= 640) {
-      var H = sec.clientHeight, h2 = sec.querySelector('h2');
-      var top = h2 ? h2.getBoundingClientRect().bottom - sr.top + 16 : grid.parentNode.getBoundingClientRect().top - sr.top;
-      var aL = gr.left - sr.left - .025 * F, aR = Math.min(gr.left - sr.left + .626 * F, W);
-      geo = { a: true, F: F, room: H - top, base: H, edge: W,
-              cap: Math.min(.696 * F, H - 32), cx: (aL + aR) / 2, lo: 32, hi: W - 32, bottom: H };
-    }
-    else {
-      var g = grid.getBoundingClientRect();
-      geo = { cap: g.height - 8, cx: W / 2, lo: 20, hi: W - 20, bottom: g.bottom - sr.top };
-    }
+    if (!ghost || !em.cap) return;
+    var sr = sec.getBoundingClientRect(), wr = grid.parentNode.getBoundingClientRect(), h2 = sec.querySelector('h2');
+    var W = sec.clientWidth, H = sec.clientHeight, phone = W < 640, L = wr.left - sr.left, fs = Infinity;
+    var base = phone ? wr.bottom - sr.top - 4 : H;
+    var top = phone ? wr.top - sr.top + 4 : (h2 ? h2.getBoundingClientRect().bottom - sr.top + 16 : wr.top - sr.top);
+    Object.keys(YES).forEach(function (g) { if (em[g]) fs = Math.min(fs, (W - L) / (em[g].cut + em[g].left)); });
+    geo = { edge: W, base: base, top: top, phone: phone, fs: Math.min(fs, (base - top) / em.cap) };
     if (cur >= 0) place(layers[front], cells[cur].getAttribute('data-g'));
   }
-  function place(el, g) {
-    var m = metrics[g];
-    el.textContent = g || '';
-    if (!m || !geo || !(m.l + m.r > 0)) return;
-    if (geo.a && m.cut != null) {                                /* код – срезом второй буквы по краю окна */
-      var fs = Math.min(geo.F, geo.room / m.cap);   /* по заглавной (Грег: «по заглавным смотреть»): l выше неё – торчит */
-      el.style.fontSize = fs.toFixed(1) + 'px';
-      el.style.transform = 'translate(' + (geo.edge - m.cut * fs).toFixed(1) + 'px,' + (geo.base - .835 * fs).toFixed(1) + 'px)';
-      return;
+  /* «pozostałe języki» (Грег, 30.09.2026: «Języki – behind the grid из 5 реализуй на сайте эффект только для клетки
+     pozostałe języki»; потом: «серые в фоне сделай пошире и они не заходят на первый столбец. Можно их чуть хаотичнее
+     разбросать»): за сеткой вместо «?» – самоназвания других языков, жирный через один со светлым курсивом (пара начертаний
+     заголовка), без движения и без обреза. Поле – от второго столбца сетки до края окна (над PL и IT пусто); по высоте –
+     как ответ «Yes.» за сеткой (Грег: «ещё более широко и крупнее, чтобы все вместе они были примерно таким же размером,
+     как Yes»): по высоте – не больше прописных ответа. Место по высоте (Грег: «повыше, чтобы были на границе первой и
+     второй строки, большая часть в первой строке»): первая строка слов стоит на линии между первым и вторым рядом сетки,
+     70 % её прописных – над линией, в первом ряду, остальные строки – ниже. На телефоне ответ мелкий – там поле во всю
+     высоту сетки, последняя строка – на её низу. Слова идут строками по 1–3 – берётся раскладка с самым крупным кеглем, строки
+     разводятся до 1,3 кегля, пока хватает высоты; в строке место раздаётся вразнобой
+     (веса из RND), поэтому слова не стоят столбиком, а строка с двумя словами тянется почти на всё поле. Соседние строки
+     начинаются разным начертанием (шахматка). Греческий и вьетнамский куски шрифта (fonts.css) грузятся при первом
+     показе – тогда лента встаёт заново. */
+  var MORE = [['Português', 'pt'], ['Čeština', 'cs'], ['Ελληνικά', 'el'], ['Türkçe', 'tr'],
+              ['Tiếng Việt', 'vi'], ['Lietuvių', 'lt'], ['Română', 'ro'], ['Slovenčina', 'sk']];
+  var RND = [.9, .08, .55, .3, 1, .42, .04, .78, .22, .66, .14, .95, .36, .6], GAP = .45;
+  function placeMore(el) {
+    if (!el.classList.contains('lng-g--more')) {
+      el.classList.add('lng-g--more');
+      el.innerHTML = MORE.map(function (m) { return '<span class="lng-mw" lang="' + m[1] + '"><b>' + m[0] + '</b><i>' + m[0] + '</i></span>'; }).join('');
+      if (document.fonts && document.fonts.load) {
+        var txt = el.textContent;
+        Promise.all([FONT, FONT_I].map(function (f) { return document.fonts.load(f, txt).catch(function () {}); }))
+          .then(function () { if (cur >= 0 && cells[cur].getAttribute('data-g') === '?' && layers[front] === el) placeMore(el); });
+      }
     }
-    var w = m.l + m.r, h = m.a + m.d, size = Math.min(geo.cap / h, (geo.hi - geo.lo) / w);
-    var inkL = Math.max(geo.lo, Math.min(geo.cx - w * size / 2, geo.hi - w * size));
-    var x = inkL + m.l * size, base = geo.bottom - m.d * size;   /* при line-height:1 базовая линия Fira – 0,835em от верха */
-    el.style.fontSize = size.toFixed(1) + 'px';
-    el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + (base - .835 * size).toFixed(1) + 'px)';
+    if (!geo) return;
+    var ws = [].slice.call(el.children), sr = sec.getBoundingClientRect(), wr = grid.parentNode.getBoundingClientRect();
+    var c2 = cells[1] ? cells[1].getBoundingClientRect().left : wr.left;   /* второй столбец: UA – вторая клетка и на телефоне */
+    var L = c2 - sr.left, A = geo.edge - L, cap = em.cap;
+    var room = geo.phone ? geo.base - geo.top : geo.fs * cap;     /* высота прописных ответа */
+    /* ширина каждого слова обоими начертаниями, в em (на время замера видны оба) */
+    ws.forEach(function (s) { s.className = 'lng-mw'; });
+    el.style.fontSize = '100px';
+    var wb = ws.map(function (s) { return s.firstChild.getBoundingClientRect().width / 100; });
+    var wi = ws.map(function (s) { return s.lastChild.getBoundingClientRect().width / 100; });
+    var best = null;
+    [1, 2, 3].forEach(function (k) {
+      var rows = [], i, r;
+      for (i = 0; i < ws.length; i += k) rows.push(ws.slice(i, i + k).map(function (s, j) { return i + j; }));
+      /* шахматка: жирное – когда (строка + место) чётное; при двух в строке нечётные строки переставлены – начинаются курсивом */
+      var lay = rows.map(function (row, ri) {
+        var ord = k % 2 === 0 && ri % 2 ? row.slice().reverse() : row;
+        return ord.map(function (n, j) { var b = (ri * (k % 2 ? k : 0) + j + (k % 2 === 0 && ri % 2 ? 1 : 0)) % 2 === 0;
+          return { n: n, b: b, w: b ? wb[n] : wi[n] }; });
+      });
+      var wide = 0;
+      lay.forEach(function (row) { wide = Math.max(wide, row.reduce(function (a, u) { return a + u.w; }, 0) + GAP * (row.length - 1)); });
+      var fs = Math.min(A * .98 / wide, room / (rows.length - 1 + cap));
+      if (!best || fs > best.fs * 1.02) best = { fs: fs, lay: lay };
+    });
+    var fs = best.fs, n = best.lay.length, pitch = n > 1 ? Math.min(fs * 1.3, (room - cap * fs) / (n - 1)) : 0;
+    var line = cells[0].getBoundingClientRect().bottom - sr.top;  /* линия между первым и вторым рядом сетки */
+    var b0 = geo.phone ? geo.base - (n - 1) * pitch : line + .3 * cap * fs;   /* базовая линия первой строки */
+    el.style.fontSize = fs.toFixed(2) + 'px';
+    best.lay.forEach(function (row, ri) {
+      var free = A - fs * (row.reduce(function (a, u) { return a + u.w; }, 0) + GAP * (row.length - 1));
+      var wt = [], sum = 0, x = 0;
+      for (var j = 0; j <= row.length; j++) { wt.push(RND[(ri * 5 + j * 3) % RND.length]); sum += wt[j]; }
+      row.forEach(function (u, j) {
+        x += free * wt[j] / sum + (j ? GAP * fs : 0);
+        var s = ws[u.n];
+        s.className = 'lng-mw ' + (u.b ? 'is-b' : 'is-i');
+        s.style.transform = 'translate(' + x.toFixed(1) + 'px,' + (b0 + ri * pitch - .835 * fs).toFixed(1) + 'px)';
+        x += u.w * fs;
+      });
+    });
+    el.style.width = A.toFixed(1) + 'px';
+    el.style.transform = 'translate(' + L.toFixed(1) + 'px,0)';   /* строки – от верха секции */
+  }
+  function place(el, g) {
+    if (g === '?') { placeMore(el); return; }
+    if (el.classList.contains('lng-g--more')) { el.classList.remove('lng-g--more'); el.style.width = ''; }
+    el.textContent = YES[g] || '';
+    var m = em[g];
+    if (!m || !geo || !(geo.fs > 0)) return;
+    el.style.fontSize = geo.fs.toFixed(1) + 'px';                /* при line-height:1 базовая линия Fira – 0,835em от верха */
+    el.style.transform = 'translate(' + (geo.edge - m.cut * geo.fs).toFixed(1) + 'px,' + (geo.base - .835 * geo.fs).toFixed(1) + 'px)';
   }
   /* ---- табло ---- */
   var calm = window.matchMedia('(prefers-reduced-motion:reduce)');
@@ -3405,10 +3462,12 @@
   }
   function init() { measure(); layout(); fit(); }
   if (document.fonts && document.fonts.load) {
-    var letters = 'A' + cells.map(function (c) { return c.getAttribute('data-g') || ''; }).join('');
+    var letters = 'A' + Object.keys(YES).map(function (g) { return YES[g]; }).join('');
     document.fonts.load(FONT, letters).then(function () { return document.fonts.ready; }).then(init, init);
   } else init();
   window.addEventListener('resize', function () { requestAnimationFrame(function () { layout(); fit(); }); });
+  /* догрузился кусок шрифта (кириллица, греческий…) – замер ответов заново: иначе срез точки считается по запасному шрифту */
+  if (document.fonts && document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', function () { measure(); layout(); });
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 })();

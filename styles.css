@@ -4338,6 +4338,11 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
    (около 20 % ширины буквы), на очень широких экранах буква не уходит дальше пятой колонки.
    Колонки: 3 на телефоне (9 кодов = ровно три ряда), 5 от 640px. Ячейки UA/RU/EN – ссылки на подстраницы языков. */
 .lng{ position:relative; overflow:hidden; isolation:isolate; }
+/* по вертикали не режем: хвосты «Д» в «Да.» за сеткой уходят под секцию на следующий блок (Грег, 30.09.2026: «большие
+   буквы могут заходить на следующий блок, это лучше, чем срезать их другим блоком»); по горизонтали «A» режет край окна.
+   Следующая секция – позиционированная, чтобы её текст шёл поверх серых букв, а не под ними */
+@supports (overflow:clip){ .lng{ overflow:visible; overflow-x:clip; } }
+.lng + section{ position:relative; }
 /* метрики Fira Sans 900 «A» (замер): ширина 0,601em, чернила от −0,025 до 0,626em, прописная 0,696em,
    при line-height:1 базовая линия на 0,165em выше низа строки */
 .lng-ghost{ position:absolute; z-index:-1; bottom:-.165em; right:max(calc(var(--lng-cut) * -1em), calc(50% - 420px - .601em));
@@ -4422,23 +4427,33 @@ html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lea
 *, *::before, *::after{ font-variant-ligatures:common-ligatures contextual;
   font-feature-settings:"liga" 1, "clig" 1, "calt" 1; }
 
-/* Код языка за сеткой (Грег, 26.09.2026: «на фоне давай и её изменять будем, верни символы»; 27.09.2026: «при наведении
-   серым в фоне показывай EN NL DE и тд» – вместо букв Ł Ї Ы & ß È Ç Ñ Ĳ; «смени PL на Pl» – Pl, Ua, En…). Вместе с раскрытием самоназвания «A» гаснет,
-   а за сеткой проявляется код этого языка из data-g, трекинг – как у кода в сетке. Слои .lng-g создаёт и расставляет
-   app.js: от 640px – на базовой линии «A», верх над линией сетки, 16px под заголовком, привязан к краю
-   окна: край режет вторую букву, 36 % её за краем (Грег, 27.09.2026); «?» – как было: в высоту «A», целиком в окне; на телефоне – за сеткой целиком, пока она на экране. Две штуки – для наплыва. */
+/* Ответ за сеткой (Грег, 30.09.2026: «из 1 реализуй для всех», вариант 1 «Yes» стенда docs/jezyki-fon/; раньше – код
+   языка Pl, Ua… со срезом по краю окна, ещё раньше – буква языка Ł Ї Ы & ß). Вместе с раскрытием самоназвания «A» гаснет,
+   а за сеткой проявляется «Tak.», «Так.», «Yes.», «Oui.»… – ответ на языке клиента на «Twój język w parze z polskim».
+   Слои .lng-g создаёт и расставляет app.js: один кегль на все слова (верх прописных на одной высоте, «подравняй по высоте»),
+   базовая линия – низ секции (на телефоне – низ сетки), правый край окна режет точку – 36 % её за краем, как было у кодов;
+   длинные слова не заходят левее сетки. Две штуки – для наплыва. */
 .lng-g{ position:absolute; left:0; top:0; z-index:-1; display:block; font-family:"Fira Sans",sans-serif; font-weight:900; line-height:1;
-  letter-spacing:-.02em; white-space:pre; color:var(--c-sand); opacity:0; transition:opacity .35s ease; pointer-events:none; -webkit-user-select:none; user-select:none; }
+  letter-spacing:-.03em; white-space:pre; color:var(--c-sand); opacity:0; transition:opacity .35s ease; pointer-events:none; -webkit-user-select:none; user-select:none; }
 .lng-g.is-on{ opacity:1; }
 .lng-ghost{ transition:opacity .35s ease; }
 .lng.is-g .lng-ghost{ opacity:0; }
 @media (prefers-reduced-motion:reduce){ .lng-g, .lng-ghost{ transition:none; } }
+/* «pozostałe języki» – за сеткой лента других языков вместо «?» (Грег, 30.09.2026, вариант 5 «Лента» стенда docs/jezyki-fon/):
+   Português Čeština Ελληνικά…, жирный через один со светлым курсивом, вразброс от второго столбца до правого края сетки.
+   В каждом слове оба начертания – видно одно (.is-b / .is-i); кегль, начертание и место каждого слова ставит app.js */
+.lng-g--more{ letter-spacing:0; }
+.lng-g--more .lng-mw{ position:absolute; left:0; top:0; line-height:1; white-space:nowrap; }
+.lng-g--more .lng-mw.is-b i, .lng-g--more .lng-mw.is-i b{ display:none; }
+.lng-g--more b{ font-weight:900; letter-spacing:-.035em; }
+.lng-g--more i{ font-weight:300; font-style:italic; letter-spacing:-.02em; padding-right:.06em; }
 
 /* Клетка «pozostałe języki» (Грег, 26.09.2026: «Pozostałe języki можно добавить в последнюю клеточку», «поставь в ячейку
    под Fr», «уберём ?/Zapytaj, оставим только Pozostałe języki и поднимем повыше, при наведении большой вопрос»):
    продолжение «найди свой код» – не нашёл, спроси. Кода нет – только подпись, по середине высоты линий нижнего ряда.
    Под FR: на телефоне это и так следующая клетка после NL (FR – первая колонка), от 640px – явное место в пустом ряду
-   (ряд 3, колонка 2), пустые клетки обтекают. Ряд остаётся высотой пустого. Наведение – за сеткой «?» (data-g, app.js). */
+   (ряд 3, колонка 2), пустые клетки обтекают. Ряд остаётся высотой пустого. Наведение – за сеткой лента других языков
+   (30.09.2026, раньше «?»; data-g="?", app.js). */
 .lng-cell--label{ min-height:var(--lng-v); }
 .lng-cell--label .lng-link{ padding:12px 6px; }   /* подпись – по середине клетки */
 @media (min-width:640px){ .lng-cell--more{ grid-column:2; grid-row:3; } }
