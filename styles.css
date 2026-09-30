@@ -4789,16 +4789,20 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
   header:has(.hdr-row.on-dark) #mobile-nav .mnd-hint{ color:rgba(255,255,255,.72); }
 
   /* крупный номер у правого края – поднят в пустую третью строку колонки связи, ближе к часам */
+  /* номер с подписью опущен ближе к жёлтой полосе: от подписи до полосы 12px (Грег, 30.09.2026); полоса на месте –
+     её отступ сверху уменьшен на те же 11px */
   #mobile-nav .mnd-num{ display:flex; flex-direction:column; align-items:flex-end; gap:6px; text-align:right;
-    margin-top:calc(-1 * var(--mn-fs) * 1.15 - var(--mn-pad) - 3px); }
+    margin-top:calc(-1 * var(--mn-fs) * 1.15 - var(--mn-pad) + 8px); }
   #mobile-nav .mnd-num a{ position:relative; top:5px; font-size:38px; font-weight:700; letter-spacing:-.03em; line-height:1; color:var(--c-ink); text-decoration:none; }
   #mobile-nav .mnd-num span{ font-size:16px; font-weight:600; color:rgba(31,33,32,.55); }
   header:has(.hdr-row.on-dark) #mobile-nav .mnd-num span{ color:rgba(255,255,255,.6); }
+  /* над тёмной секцией ссылки меню белеют (a:not(.cta-btn)) – полоса ссылка, но на охре текст чернильный */
+  header:has(.hdr-row.on-dark) #mobile-nav a.mnd-floor{ color:var(--c-ink); }
 
   /* жёлтая полоса: поля 10px внутри плашки, скругление 18 (плашка 28 = 18 + 10); охра – только до левого края
      створки (--cl), под створку подкладывается при наведении и убирается через .75s после ухода, иначе на углах
      створки из-под неё просвечивает жёлтая дуга */
-  #mobile-nav .mnd-floor{ position:relative; display:flex; align-items:center; margin:20px calc(10px - var(--mn-inset)) -12px;
+  #mobile-nav .mnd-floor{ position:relative; display:flex; align-items:center; margin:9px calc(10px - var(--mn-inset)) -12px;
     padding:24px calc(var(--mn-inset) - 10px) 26px; border-radius:18px; overflow:hidden; color:var(--c-ink); text-decoration:none;
     font-size:var(--mn-fs); font-weight:700; letter-spacing:-.035em; line-height:1.1;
     background:linear-gradient(var(--c-terra), var(--c-terra)) 0 0 / calc(var(--cl, 100%) + 2px) 100% no-repeat;
