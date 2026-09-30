@@ -4863,3 +4863,15 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
   .ua-hop-row{ flex-direction:column; align-items:flex-start; gap:.35rem; }
   .ua-hop-row b{ font-size:18px; }
 }
+
+/* /kontakt/ hero – четыре кнопки (30.09.2026, аналитика К2): на телефоне две строки по две, главная не во всю ширину;
+   уже 400px у главной прячется стрелка и сужаются поля – иначе «Zamów wycenę» не влезает в половину экрана 320px */
+@media (max-width:479px){ .hero-cta--4 .cta-btn--main{ grid-column:auto; } }
+@media (max-width:399px){
+  .hero-cta--4 .cta-btn--main .cta-mark{ display:none; }
+  .hero-cta--4 .cta-btn, .hero-cta--4 .cta-btn:not(.cta-btn--main){ padding-left:.45em; padding-right:.45em; }
+}
+/* календарь записи на тёмном (30.09.2026, аналитика К6): дни недели читаемее – были 11px и .36 (контраст 3,3) */
+.cal-wd{ font-size:12px; color:rgba(255,255,255,.62); }
+[data-book] .cal-cell.is-out.is-past:not(.is-weekend){ color:rgba(255,255,255,.4); }
+[data-book] .cal-cell.is-past.is-weekend{ color:rgba(255,255,255,.4); }

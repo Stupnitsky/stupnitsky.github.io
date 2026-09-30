@@ -1240,7 +1240,9 @@
       if (hmEl) hmEl.textContent = parts[0] + ':' + parts[1];
       if (secEl) secEl.textContent = parts[2];
       rows.forEach(function (li, n) {
-        var now = (n === 0 && weekday) || (n === 1 && !weekday);
+        /* data-now (30.09.2026, /kontakt/): always – строка горит всегда, weekday – только в рабочий день; без него – как раньше */
+        var mode = li.getAttribute('data-now');
+        var now = mode === 'always' ? true : mode === 'weekday' ? weekday : (n === 0 && weekday) || (n === 1 && !weekday);
         li.classList.toggle('is-now', now);
       });
     }
@@ -2515,7 +2517,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-12';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-13';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
