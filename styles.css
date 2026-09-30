@@ -4792,7 +4792,8 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
   /* крупный номер у правого края – поднят в пустую третью строку колонки связи, ближе к часам */
   /* номер с подписью опущен ближе к жёлтой полосе: от подписи до полосы 12px (Грег, 30.09.2026); полоса на месте –
      её отступ сверху уменьшен на те же 11px */
-  #mobile-nav .mnd-num{ display:flex; flex-direction:column; align-items:flex-end; gap:6px; text-align:right;
+  /* подпись часов ближе к номеру на 3px (Грег, 30.09.2026): зазор 6 → 3, номер на месте, до полосы теперь 15px */
+  #mobile-nav .mnd-num{ display:flex; flex-direction:column; align-items:flex-end; gap:3px; text-align:right;
     margin-top:calc(-1 * var(--mn-fs) * 1.15 - var(--mn-pad) + 8px); }
   #mobile-nav .mnd-num a{ position:relative; top:5px; font-size:38px; font-weight:700; letter-spacing:-.03em; line-height:1; color:var(--c-ink); text-decoration:none; }
   /* «+48» мелко у верха цифр, номер – основа (Грег, 30.09.2026) */
