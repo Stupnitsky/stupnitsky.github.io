@@ -34,10 +34,10 @@
 <meta name="theme-color" content="#F1F1EF" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1F2120" media="(prefers-color-scheme: dark)">
 
-<link rel="stylesheet" href="/assets/fonts/fonts.css?v=20260928-10">
+<link rel="stylesheet" href="/assets/fonts/fonts.css?v=20260930-12">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260930-9">
+<link rel="stylesheet" href="/styles.css?v=20260930-12">
 
 <script type="application/ld+json">
 {
@@ -154,7 +154,7 @@
     { "@type": "Question", "name": "Czy opłaca się zrobić Apostille samemu?",
       "acceptedAnswer": { "@type": "Answer", "text": "Samodzielnie zapłacisz tylko opłatę skarbową, czyli 60 zł. Najpierw trzeba jednak umówić wizytę w systemie e-Konsulat. MSZ udostępnia nowe terminy rano w dni robocze, na najbliższe dwa tygodnie, więc wolny termin bywa dopiero za kilka dni. Opłatę wnosisz wcześniej – w kasie urzędu miasta, na poczcie albo przelewem, bo w MSZ zapłacić się nie da. Wizyta wypada w dzień roboczy, o godzinie z rezerwacji, więc zwykle trzeba zwolnić się z pracy. Jeśli dokument jest od notariusza, najpierw zanosisz go do Sądu Okręgowego i odbierasz najwcześniej po dwóch dniach roboczych. U nas Apostille kosztuje 260 zł razem z opłatą skarbową. Wysyłasz zdjęcie w formularzu, oryginał przekazujesz w centrum Warszawy albo nadajesz w Paczkomacie, a wszystkim innym, od rezerwacji po odbiór z urzędu, zajmujemy się my. Aktualne zasady MSZ znajdziesz na gov.pl, a jeśli mieszkasz poza Warszawą, zobacz, ile kosztuje sam dojazd." } },
     { "@type": "Question", "name": "Czy Apostille jest potrzebna w Unii Europejskiej?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Nie zawsze. Od 2019 roku rozporządzenie UE 2016/1191 zwalnia z Apostille część dokumentów urzędowych między państwami Unii – głównie akty stanu cywilnego i zaświadczenia o niekaralności, jeśli są przedstawiane urzędowi (nie bankowi czy pracodawcy). W praktyce wiele instytucji nadal o nią prosi. Zanim zlecisz, zapytaj odbiorcę dokumentu – a my podpowiemy, czy zamiast Apostille wystarczy wielojęzyczny formularz standardowy." } }
+      "acceptedAnswer": { "@type": "Answer", "text": "Tak. W praktyce urzędy, sądy, pracodawcy i banki w innych krajach Unii wymagają Apostille tak samo jak poza nią, dlatego zakładaj, że będzie potrzebna. Jeśli odbiorca wprost napisze, że jej nie chce, po prostu jej nie zamawiasz." } }
   ]
 }
 </script>
@@ -266,6 +266,27 @@
   </div>
 </section>
 
+<!-- ================= DOKUMENTY Z UKRAINY – ODSYŁACZ ================= -->
+<!-- 30.09.2026, владелец: страницу /apostille-ukraina/ трудно найти (её нет в меню) – сначала заметная ссылка сразу под первым
+     экраном, по ней решим, нужен ли пункт в меню. Вся плашка – одна ссылка. Стили – «.ua-hop» в конце styles.css. -->
+<section class="pb-16 md:pb-24" aria-label="Dokumenty z Ukrainy">
+  <div class="mx-auto max-w-site px-5 sm:px-8">
+    <a href="/apostille-ukraina/" class="ua-hop bg-sand text-ink rounded-[26px]">
+      <span class="ua-hop-head">
+        <span class="ua-hop-q">Masz dokument z&nbsp;Ukrainy?</span>
+        <span class="ua-hop-t">Apostille na ukraiński dokument uzyskamy w&nbsp;Ukrainie przez naszego partnera, więc nie musisz tam jechać,
+          a&nbsp;tłumaczenie przysięgłe na polski, jeśli go potrzebujesz, zrobimy potem w&nbsp;Warszawie&nbsp;– osobno od ceny Apostille. Cena i&nbsp;termin zależą od tego, jaki masz dokument.</span>
+        <span class="k-where-link k-where-link--dark ua-hop-go">Apostille na Dokumenty z&nbsp;Ukrainy <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span>
+      </span>
+      <span class="ua-hop-list">
+        <span class="ua-hop-row"><span class="ua-hop-n">Akt stanu cywilnego wydany po 2016&nbsp;roku<small>zwykle <span class="whitespace-nowrap">2–3</span>&nbsp;tygodnie</small></span><b>550,-&nbsp;zł</b></span>
+        <span class="ua-hop-row"><span class="ua-hop-n">Dyplom albo świadectwo<small>około dwóch tygodni, a&nbsp;dyplom z&nbsp;dodatkiem z&nbsp;ocenami kosztuje 1&nbsp;100&nbsp;zł</small></span><b>550,-&nbsp;zł</b></span>
+        <span class="ua-hop-row"><span class="ua-hop-n">Stary akt, także radziecki, na który najpierw uzyskujemy duplikat<small>zwykle <span class="whitespace-nowrap">5–6</span>&nbsp;tygodni</small></span><b>1&nbsp;100,-&nbsp;zł</b></span>
+      </span>
+    </a>
+  </div>
+</section>
+
 <!-- ================= TRZY DROGI ================= -->
 <section id="urzedy" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
@@ -323,8 +344,8 @@
           <p class="gdz-full">Zaświadczenie lub odpis uzyskujemy w&nbsp;Twoim imieniu</p>
           <p class="ap-desc">
             Takiego dokumentu najczęściej wymaga pracodawca, organizator przetargu albo urząd, w&nbsp;którym rejestrujesz
-            firmę za granicą. Do KRK wystarczy Twoje pisemne pełnomocnictwo, więc nie zakładasz konta w&nbsp;systemie
-            i&nbsp;nie przychodzisz do urzędu. Potem uzyskujemy Apostille w&nbsp;MSZ, a&nbsp;tłumaczenie przysięgłe, jeśli jest
+            firmę za granicą. Do KRK wystarczą skany Twojego podpisanego pełnomocnictwa i&nbsp;wniosku, więc nigdzie
+            nie przychodzisz, nawet jeśli jesteś w&nbsp;innym mieście albo za granicą. Potem uzyskujemy Apostille w&nbsp;MSZ, a&nbsp;tłumaczenie przysięgłe, jeśli jest
             potrzebne, robimy w&nbsp;kolejności, jakiej wymaga odbiorca.
           </p>
           <dl class="gdz-meta">
@@ -717,11 +738,8 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Nie zawsze. Od 2019&nbsp;roku rozporządzenie UE 2016/1191 zwalnia z&nbsp;Apostille część dokumentów
-          urzędowych między państwami Unii&nbsp;– głównie akty stanu cywilnego i&nbsp;zaświadczenia o&nbsp;niekaralności,
-          jeśli są przedstawiane urzędowi (nie bankowi czy pracodawcy). W&nbsp;praktyce wiele instytucji nadal
-          o&nbsp;nią prosi. Zanim zlecisz, zapytaj odbiorcę dokumentu&nbsp;– a&nbsp;my podpowiemy, czy zamiast Apostille
-          wystarczy wielojęzyczny formularz standardowy.
+          Tak. W&nbsp;praktyce urzędy, sądy, pracodawcy i&nbsp;banki w&nbsp;innych krajach Unii wymagają Apostille tak samo jak poza nią,
+          dlatego zakładaj, że będzie potrzebna. Jeśli odbiorca wprost napisze, że jej nie chce, po prostu jej nie zamawiasz.
         </p>
       </details>
     </div>
@@ -850,7 +868,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260930-9" defer></script>
+<script src="/assets/app.js?v=20260930-12" defer></script>
 
 </body>
 </html>

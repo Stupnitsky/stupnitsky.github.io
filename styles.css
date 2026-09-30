@@ -4833,3 +4833,33 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
   #mobile-nav .mnd-cur, #mobile-nav .mnd-car span, #mobile-nav .mnd-hint{ transition:none; }
   #mobile-nav .mnd-go .cta-mark svg{ animation:none; }
 }
+
+/* Плашка-ссылка «Masz dokument z Ukrainy?» – /apostille/ сразу под первым экраном (30.09.2026, проба перед решением о пункте меню).
+   Вопрос – заголовок плиты как в #odbior (600, 26/34, lh 1.03), текст 17px чернильный, внизу ссылка-стрелка; вся плашка кликабельна.
+   От 768px вопрос слева, текст и стрелка справа. */
+.ua-hop{ display:grid; gap:1rem; padding:1.75rem; text-decoration:none; color:var(--c-ink); transition:background-color .2s ease; }
+@media (min-width:640px){ .ua-hop{ padding:2.25rem 2.5rem; } }
+@media (min-width:768px){ .ua-hop{ grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:2.5rem; align-items:start; } }
+.ua-hop-q{ font-weight:600; font-size:26px; line-height:1.03; letter-spacing:-.045em; }
+@media (min-width:640px){ .ua-hop-q{ font-size:34px; } }
+.ua-hop-body{ display:grid; gap:1rem; justify-items:start; }
+.ua-hop-t{ font-size:17px; line-height:1.55; max-width:56ch; }
+.ua-hop .ua-hop-go{ margin-top:0; }
+@media (hover:hover){ .ua-hop:hover{ background-color:#DDDDD8; } .ua-hop:hover .k-where-link svg{ transform:translateX(4px); } }
+.ua-hop:focus-visible{ outline:2px solid var(--c-terra); outline-offset:4px; }
+
+/* .ua-hop, вариант 2 (30.09.2026, владелец: «текста скудно, фигня про доставку»): слева вопрос, пояснение и стрелка,
+   справа три типичных случая строками «документ · срок – цена» (данные – /apostille-ukraina/); про пересылку не пишем. */
+.ua-hop-head{ display:grid; gap:1rem; justify-items:start; align-content:start; }
+.ua-hop-list{ display:grid; }
+.ua-hop-row{ display:flex; align-items:baseline; justify-content:space-between; gap:1.25rem; padding:.9rem 0; border-top:1px solid rgba(31,33,32,.14); }
+.ua-hop-row:last-child{ border-bottom:1px solid rgba(31,33,32,.14); }
+.ua-hop-n{ display:grid; gap:.2rem; font-size:17px; line-height:1.35; font-weight:600; }
+.ua-hop-n small{ font-size:15px; font-weight:400; line-height:1.4; color:var(--c-ink); }
+.ua-hop-row b{ font-size:20px; font-weight:700; white-space:nowrap; font-variant-numeric:tabular-nums; }
+@media (min-width:768px){ .ua-hop{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:3rem; } }
+/* .ua-hop на телефоне: название во всю ширину, цена строкой ниже – иначе колонка цены сжимала названия до 4 строк */
+@media (max-width:639px){
+  .ua-hop-row{ flex-direction:column; align-items:flex-start; gap:.35rem; }
+  .ua-hop-row b{ font-size:18px; }
+}
