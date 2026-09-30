@@ -4858,9 +4858,9 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
   #mobile-nav .mnd-rail a{ height:auto; border-bottom:0; }
   #mobile-nav .mnd-rail a + a{ margin-left:var(--tg-m, auto); }
   #mobile-nav .mnd-rail a > span:first-child{ transition:opacity .2s ease; }
-  #mobile-nav .mnd-rail .mnd-hint{ position:absolute; z-index:1; top:50%; left:var(--tg-x, 55%); height:36px; margin-top:-18px; display:flex; align-items:center; gap:5px;
-    padding:0 15px; border-radius:18px 18px 18px 4px; background:#fff; box-shadow:0 2px 8px rgba(31,33,32,.12); color:rgba(31,33,32,.72);
-    font-size:16px; font-weight:400; letter-spacing:normal; line-height:1.1; white-space:nowrap; pointer-events:none;   /* текст – как неактивный язык */
+  #mobile-nav .mnd-rail .mnd-hint{ position:absolute; z-index:1; top:50%; left:var(--tg-x, 55%); height:30px; margin-top:-13px; display:flex; align-items:center; gap:4px;
+    padding:0 12px; border-radius:15px 15px 15px 4px; background:#fff; box-shadow:0 1px 3px rgba(31,33,32,.08); color:rgba(31,33,32,.72);
+    font-size:15px; font-weight:400; letter-spacing:normal; line-height:1.1; white-space:nowrap; pointer-events:none;   /* текст – как неактивный язык, на кегль меньше; облачко на 2px ниже середины – по оптическому центру строки */
     transform:scale(.6); transform-origin:0 100%; transition:transform .3s cubic-bezier(.3,1.5,.5,1), opacity .2s ease; }
   /* наведение на Telegram: он переезжает на место WhatsApp (тот гаснет), облачко – там же, где у WhatsApp (Грег, 30.09.2026).
      Пока Telegram наведён, его зона – вся полка (::before), иначе переехавшая надпись уходила бы из-под курсора и дёргалась */
@@ -4870,7 +4870,7 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
   #mobile-nav .mnd-rail a + a:hover::before{ content:""; position:absolute; inset:0; }
   #mobile-nav .mnd-rail a:hover .mnd-hint, #mobile-nav .mnd-rail a:focus-visible .mnd-hint{ pointer-events:auto; transform:none; }
   header:has(.hdr-row.on-dark) #mobile-nav .mnd-rail .mnd-hint{ color:rgba(31,33,32,.72); }
-  #mobile-nav .mnd-hint i{ width:7px; height:7px; border-radius:50%; background:rgba(31,33,32,.5); animation:mndDot 1s infinite; }
+  #mobile-nav .mnd-hint i{ width:6px; height:6px; border-radius:50%; background:rgba(31,33,32,.5); animation:mndDot 1s infinite; }
   #mobile-nav .mnd-hint i:nth-child(2){ animation-delay:.15s; }
   #mobile-nav .mnd-hint i:nth-child(3){ animation-delay:.3s; }
   @keyframes mndDot{ 0%,60%,100%{ transform:none; opacity:.4; } 30%{ transform:translateY(-5px); opacity:1; } }
