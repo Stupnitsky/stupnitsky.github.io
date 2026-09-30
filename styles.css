@@ -4842,11 +4842,25 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
     background:linear-gradient(rgba(31,33,32,.1), rgba(31,33,32,.1)) content-box 0 0 / 100% 1px no-repeat; }
   header:has(.hdr-row.on-dark) #mobile-nav .mn-in{ background-image:linear-gradient(rgba(255,255,255,.14), rgba(255,255,255,.14)); }
   #mobile-nav .mnd-grid{ display:contents; }
-  #mobile-nav .mnd-grid .mn-list{ grid-column:1; grid-row:1 / span 2; }
+  #mobile-nav .mnd-grid .mn-list{ grid-column:1; grid-row:1 / span 3; }
   #mobile-nav .mn-langs{ grid-column:2; grid-row:1; box-sizing:border-box; height:calc(var(--mn-fs) * 1.15 + 2 * var(--mn-pad) + 1px); padding:0; border-top:0; }
   #mobile-nav .mnd-rail{ grid-column:2; grid-row:2; }
-  #mobile-nav .mnd-num{ grid-column:1 / -1; grid-row:3; margin-top:12px; }
+  #mobile-nav .mnd-num{ grid-column:2; grid-row:3; margin-top:12px; }
   #mobile-nav .mnd-floor{ grid-column:1 / -1; grid-row:4; }
+
+  /* WhatsApp и Telegram на одной полке (WhatsApp слева, Telegram у правого края); при наведении на один второй гаснет, и на его
+     месте – «napisz do nas» наведённого (Грег, 30.09.2026). Подпись – часть наведённой ссылки: по ней тоже можно нажать; у ненаведённой
+     подписи pointer-events:none, иначе она перехватывала бы наведение соседа. Номер – в освободившейся третьей строке колонки */
+  #mobile-nav .mnd-rail{ position:relative; flex-direction:row; justify-content:space-between; align-items:stretch; box-sizing:border-box;
+    height:calc(var(--mn-fs) * 1.15 + 2 * var(--mn-pad) + 1px); border-bottom:1px solid rgba(31,33,32,.1); }
+  header:has(.hdr-row.on-dark) #mobile-nav .mnd-rail{ border-color:rgba(255,255,255,.14); }
+  #mobile-nav .mnd-rail a{ height:auto; border-bottom:0; }
+  #mobile-nav .mnd-rail a > span:first-child{ transition:opacity .2s ease; }
+  #mobile-nav .mnd-rail .mnd-hint{ position:absolute; z-index:1; top:0; bottom:0; right:0; display:flex; align-items:center; pointer-events:none; }
+  #mobile-nav .mnd-rail a + a .mnd-hint{ right:auto; left:0; transform:translateX(6px); }
+  #mobile-nav .mnd-rail a:hover .mnd-hint, #mobile-nav .mnd-rail a:focus-visible .mnd-hint{ pointer-events:auto; transform:none; }
+  #mobile-nav .mnd-rail:has(> a:hover) > a:not(:hover) > span:first-child,
+  #mobile-nav .mnd-rail:has(> a:focus-visible) > a:not(:focus-visible) > span:first-child{ opacity:0; }
 }
 @media (min-width:1150px) and (prefers-reduced-motion:reduce){
   #mobile-nav .mnd-cur, #mobile-nav .mnd-car span, #mobile-nav .mnd-hint{ transition:none; }
