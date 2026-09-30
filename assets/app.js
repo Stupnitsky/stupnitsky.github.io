@@ -1887,7 +1887,7 @@
           last = { x:e.clientX, y:e.clientY, t:now };
         });
         row.addEventListener('mouseleave', function () { clearTimeout(tOpen); armed = false; });
-        /* закрывается нажатием (крестик, мимо меню, по плашке, Escape) и само – через 3,2 с после того, как мышь ушла и с плашки,
+        /* закрывается нажатием (крестик, мимо меню, по плашке, Escape) и само – через 2,2 с после того, как мышь ушла и с плашки,
            и с меню (#mobile-nav внутри шапки); вернулась раньше – меню остаётся (Грег, 30.09.2026; до этого 0,4–0,8 с, потом только
            нажатием). Не сворачивается, пока открыта панель wyceny или фокус с клавиатуры внутри меню */
         var tClose = 0;
@@ -1896,7 +1896,7 @@
           tClose = setTimeout(function () {
             var ae = document.activeElement, kb = ae && nav.contains(ae) && ae.matches(':focus-visible');
             if (isOpen() && !head.matches(':hover') && !root.classList.contains('qd-open') && !kb) setOpen(false);
-          }, 3200);
+          }, 2200);   /* было 3,2 с – Грег, 30.09.2026: «2.2» */
         });
         head.addEventListener('mouseenter', function () { clearTimeout(tClose); });
       }
@@ -2558,7 +2558,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-45';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-52';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
