@@ -4795,6 +4795,8 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
   #mobile-nav .mnd-num{ display:flex; flex-direction:column; align-items:flex-end; gap:6px; text-align:right;
     margin-top:calc(-1 * var(--mn-fs) * 1.15 - var(--mn-pad) + 8px); }
   #mobile-nav .mnd-num a{ position:relative; top:5px; font-size:38px; font-weight:700; letter-spacing:-.03em; line-height:1; color:var(--c-ink); text-decoration:none; }
+  /* «+48» мелко у верха цифр, номер – основа (Грег, 30.09.2026) */
+  #mobile-nav .mnd-num .mnd-cc{ position:relative; top:-.95em; margin-right:.4em; font-size:16px; font-weight:700; letter-spacing:0; }
   #mobile-nav .mnd-num span{ font-size:16px; font-weight:600; color:rgba(31,33,32,.55); }
   header:has(.hdr-row.on-dark) #mobile-nav .mnd-num span{ color:rgba(255,255,255,.6); }
   /* над тёмной секцией ссылки меню белеют (a:not(.cta-btn)) – полоса ссылка, но на охре текст чернильный */

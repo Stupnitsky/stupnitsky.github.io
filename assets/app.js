@@ -1775,7 +1775,10 @@
         r.addEventListener('click', function () { setOpen(false); }); rail.appendChild(r);
       });
       if (tel) {
-        var num = el('div', 'mnd-num'), ta = el('a', ''); ta.href = tel.getAttribute('href'); ta.textContent = tel.textContent.trim();
+        var num = el('div', 'mnd-num'), ta = el('a', ''); ta.href = tel.getAttribute('href');
+        /* код страны мелко, основа – сам номер (Грег, 30.09.2026) */
+        var tt = tel.textContent.trim(), cc = /^(\+\d{1,3})\s*(.+)$/.exec(tt);
+        if (cc) { ta.appendChild(el('small', 'mnd-cc', esc(cc[1]))); ta.appendChild(document.createTextNode(cc[2])); } else ta.textContent = tt;
         if (tel.getAttribute('aria-label')) ta.setAttribute('aria-label', tel.getAttribute('aria-label'));
         num.appendChild(ta); num.appendChild(el('span', '', esc(T.hours))); inn.insertBefore(num, cta);
       }
@@ -2519,7 +2522,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-20';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-22';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
