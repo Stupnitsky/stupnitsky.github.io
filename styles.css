@@ -4859,12 +4859,17 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
   #mobile-nav .mnd-rail a + a{ margin-left:var(--tg-m, auto); }
   #mobile-nav .mnd-rail a > span:first-child{ transition:opacity .2s ease; }
   #mobile-nav .mnd-rail .mnd-hint{ position:absolute; z-index:1; top:50%; left:var(--tg-x, 55%); height:36px; margin-top:-18px; display:flex; align-items:center; gap:5px;
-    padding:0 15px; border-radius:18px 18px 18px 4px; background:#fff; box-shadow:0 2px 8px rgba(31,33,32,.12); color:var(--c-ink);
-    font-size:16px; font-weight:600; letter-spacing:-.01em; white-space:nowrap; pointer-events:none;
+    padding:0 15px; border-radius:18px 18px 18px 4px; background:#fff; box-shadow:0 2px 8px rgba(31,33,32,.12); color:rgba(31,33,32,.72);
+    font-size:16px; font-weight:400; letter-spacing:normal; line-height:1.1; white-space:nowrap; pointer-events:none;   /* текст – как неактивный язык */
     transform:scale(.6); transform-origin:0 100%; transition:transform .3s cubic-bezier(.3,1.5,.5,1), opacity .2s ease; }
-  #mobile-nav .mnd-rail a + a .mnd-hint{ left:0; border-radius:18px 18px 4px 18px; transform-origin:100% 100%; }
+  /* наведение на Telegram: он переезжает на место WhatsApp (тот гаснет), облачко – там же, где у WhatsApp (Грег, 30.09.2026).
+     Пока Telegram наведён, его зона – вся полка (::before), иначе переехавшая надпись уходила бы из-под курсора и дёргалась */
+  #mobile-nav .mnd-rail a + a > span:first-child{ transition:transform .4s cubic-bezier(.3,.8,.2,1), opacity .2s ease; }
+  #mobile-nav .mnd-rail a + a:hover > span:first-child,
+  #mobile-nav .mnd-rail a + a:focus-visible > span:first-child{ transform:translateX(calc(-1 * var(--tg-x, 0px))); }
+  #mobile-nav .mnd-rail a + a:hover::before{ content:""; position:absolute; inset:0; }
   #mobile-nav .mnd-rail a:hover .mnd-hint, #mobile-nav .mnd-rail a:focus-visible .mnd-hint{ pointer-events:auto; transform:none; }
-  header:has(.hdr-row.on-dark) #mobile-nav .mnd-rail .mnd-hint{ color:var(--c-ink); }
+  header:has(.hdr-row.on-dark) #mobile-nav .mnd-rail .mnd-hint{ color:rgba(31,33,32,.72); }
   #mobile-nav .mnd-hint i{ width:7px; height:7px; border-radius:50%; background:rgba(31,33,32,.5); animation:mndDot 1s infinite; }
   #mobile-nav .mnd-hint i:nth-child(2){ animation-delay:.15s; }
   #mobile-nav .mnd-hint i:nth-child(3){ animation-delay:.3s; }
