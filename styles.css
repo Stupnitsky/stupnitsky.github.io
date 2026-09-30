@@ -4845,7 +4845,7 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
   #mobile-nav .mnd-grid .mn-list{ grid-column:1; grid-row:1 / span 3; }
   #mobile-nav .mn-langs{ grid-column:2; grid-row:1; box-sizing:border-box; height:calc(var(--mn-fs) * 1.15 + 2 * var(--mn-pad) + 1px); padding:0; border-top:0; }
   #mobile-nav .mnd-rail{ grid-column:2; grid-row:2; }
-  #mobile-nav .mnd-num{ grid-column:2; grid-row:3; margin-top:12px; }
+  #mobile-nav .mnd-num{ grid-column:2; grid-row:3; margin-top:12px; margin-right:var(--tg-r, 0px); }   /* правый край – по концу «Telegram» */
   #mobile-nav .mnd-floor{ grid-column:1 / -1; grid-row:4; }
 
   /* WhatsApp и Telegram на одной полке: WhatsApp у левого края колонки, Telegram – левым краем под «Русский» (--tg-m ставит app.js).

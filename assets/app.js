@@ -1812,6 +1812,8 @@
           var rx = ru.getBoundingClientRect().left - rl.left;
           rail.style.setProperty('--tg-x', Math.round(rx) + 'px');
           rail.style.setProperty('--tg-m', Math.max(12, Math.round(rx - rk[0].getBoundingClientRect().width)) + 'px');
+          /* номер с часами – правым краем по концу слова Telegram (Грег, 30.09.2026) */
+          nav.style.setProperty('--tg-r', Math.max(0, Math.round(rl.right - rk[1].getBoundingClientRect().right)) + 'px');
         }
         if (floor && title) {
           var f = floor.getBoundingClientRect(); if (!f.width) return;
@@ -2545,7 +2547,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-36';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-40';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
