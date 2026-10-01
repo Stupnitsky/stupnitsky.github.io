@@ -2594,12 +2594,112 @@
     apply();
   })();
 
+  /* Krok po kroku – шаги стопкой карточек (01.10.2026, вариант 39 со стенда docs/kroki/). Только .kt-steps[data-kroki]
+     (польские страницы). Стоит ДО панели wyceny: кнопка «Otwórz formularz wyceny» и ссылки на форму внутри шагов получают
+     data-quote-обработчик панели вместе со всеми. Исходный список остаётся в разметке (без JS виден он), при сборке скрыт.
+     Смена шагов – по шагу (Грег: «нелинейная прокрутка – карточка должна побыть в центре»): x – непрерывная позиция прокрутки
+     0…M, k = floor(x) – текущий слайд; отрезок слайда i заполняется, пока читаешь i−1. Стили – .kk-* в конце styles.css. */
+  (function(){
+    var blocks = document.querySelectorAll('.kt-steps[data-kroki]');
+    if (!blocks.length) return;
+    var CHEV = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>';
+    var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function el(tag, cls, html){ var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+    function clamp(x, a, b){ return Math.max(a, Math.min(b, x)); }
+    /* название шага парой начертаний: первое слово жирное, остальное тонким курсивом */
+    function pair(html){ var m = html.match(/^(\S+?)(?:\s|&nbsp;)+([\s\S]*)$/); return m ? '<b>' + m[1] + '</b> <i>' + m[2] + '</i>' : '<b>' + html + '</b>'; }
+
+    Array.prototype.forEach.call(blocks, function(box){
+      var list = box.querySelector('ol.kt-steps-list'); if (!list) return;
+      var steps = Array.prototype.map.call(list.children, function(li){
+        var b = li.querySelector('b'), c = li.cloneNode(true), cb = c.querySelector('b'); if (cb) cb.remove();
+        return { t:b ? b.innerHTML.trim().replace(/\.$/, '') : '', tt:b ? b.textContent.trim().replace(/\.$/, '') : '', x:c.innerHTML.trim() };
+      });
+      var N = steps.length, M = N + 1;   /* M – шаги и слайд заявки */
+      var root = el('div', 'kk'), pin = el('div', 'kk-pin'), st = el('div', 'kk-st'), nav = el('div', 'kk-nav'), seg = el('ol', 'kk-seg');
+      var cs = steps.map(function(s, i){
+        return el('article', 'kk-c', '<div class="kk-in"><p class="kk-t">' + pair(s.t) + '</p><p class="kk-x">' + s.x + '</p></div><span class="kk-wm" aria-hidden="true">' + (i + 1) + '</span>');
+      });
+      var cta = el('article', 'kk-c kk-cta bg-terra', '<div class="kk-in"><p class="kk-t"><b>Prześlij</b> <i>zdjęcia dokumentu</i></p>' +
+        '<p class="kk-x">Od 7:00 do 21:00 cenę końcową i&nbsp;termin poznasz zwykle w&nbsp;15&nbsp;minut. Wycena jest bezpłatna i&nbsp;do niczego nie zobowiązuje.</p>' +
+        '<p class="kk-btn"><a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Otwórz formularz wyceny<span class="cta-mark" aria-hidden="true">' + CHEV + '</span></a></p></div>');
+      cs.push(cta);
+      cs.forEach(function(c, i){ c.style.zIndex = String(100 - i); st.appendChild(c); });
+      /* отрезки – у слайдов 1…N (у первого нет: он всегда полный), последний – слайд заявки */
+      var names = steps.map(function(s){ return s.tt; }).concat('Prześlij zdjęcia');
+      seg.style.setProperty('--n', N);
+      var ls = []; for (var j = 1; j <= N; j++) (function(i){
+        var li = el('li', '', '<button type="button"><span class="bar"><i></i></span></button>'); li._i = i;
+        li.firstChild.setAttribute('aria-label', names[i]); seg.appendChild(li); ls.push(li);
+      })(j);
+      var ln = el('p', 'kk-ln', '<button type="button" class="dn">Pokaż wszystkie kroki' + CHEV + '</button><button type="button">Pomiń' + CHEV + '</button>');
+      nav.appendChild(seg); nav.appendChild(ln);
+      pin.appendChild(st); pin.appendChild(nav); root.appendChild(pin);
+      var all = el('ol', 'kk-all'), back = el('p', 'kk-back', '<button type="button">Pokaż po jednym' + CHEV + '</button>');
+      steps.forEach(function(s){ all.appendChild(el('li', '', '<b>' + s.t + '.</b> ' + s.x)); });
+      all.hidden = true; back.hidden = true;
+      list.parentNode.insertBefore(root, list.nextSibling); root.parentNode.insertBefore(all, root.nextSibling); all.parentNode.insertBefore(back, all.nextSibling);
+      box.classList.add('kk-on');
+
+      var dist = 0, top0 = 110, cur = -1;
+      function size(){
+        var h = 0; cs.forEach(function(c){ c.style.height = ''; h = Math.max(h, c.offsetHeight); });
+        cs.forEach(function(c){ c.style.height = h + 'px'; });
+        st.style.height = (h + 24) + 'px';   /* +24 – края стопки под карточкой */
+        var cl = cs[0].offsetLeft, cw = cs[0].offsetWidth, pad = parseFloat(getComputedStyle(cs[0]).paddingLeft) || 0;
+        nav.style.marginLeft = (cl + pad) + 'px'; nav.style.width = (cw - 2 * pad) + 'px';   /* полоса – по ширине текста карточки */
+        /* пока блок стоит – по центру окна; от 1150px не выше шапки (она не прячется, кончается на ~108px) */
+        top0 = Math.max(window.innerWidth >= 1150 ? 124 : 16, Math.round((window.innerHeight - pin.offsetHeight) / 2)); pin.style.top = top0 + 'px';
+        dist = M * window.innerHeight * .55;   /* по 55 % окна прокрутки на слайд, на слайде заявки тоже можно задержаться */
+        root.style.height = (pin.offsetHeight + dist) + 'px';
+      }
+      function prog(){ return dist ? clamp((top0 - root.getBoundingClientRect().top) / dist, 0, 1) : 0; }
+      function upd(){
+        if (root.style.display === 'none') return;
+        var x = prog() * M, k = Math.min(M - 1, Math.floor(x));
+        ls.forEach(function(li){ li.firstChild.firstChild.firstChild.style.setProperty('--f', clamp(x - li._i + 1, 0, 1).toFixed(3)); });
+        if (k === cur) return; cur = k;
+        cs.forEach(function(c, i){ var dd = i - k; c.style.setProperty('--d', dd);
+          c.classList.toggle('is-cur', dd === 0); c.classList.toggle('is-past', dd < 0); c.classList.toggle('is-next', dd > 0); c.classList.toggle('is-deep', dd > 3); });
+        ls.forEach(function(li){ li.classList.toggle('on', li._i === k); li.classList.toggle('done', li._i < k); });
+      }
+      function go(i){
+        var t = root.getBoundingClientRect().top + window.scrollY;
+        var y = i >= M ? t + root.offsetHeight - window.innerHeight * .35 : t - top0 + dist * (i + .02) / M;
+        window.scrollTo({ top:y, behavior:calm ? 'auto' : 'smooth' });
+      }
+      /* нажатие на карточку – следующий слайд; на слайде заявки – панель wyceny; ссылки и кнопки внутри работают сами */
+      cs.forEach(function(c, i){ c.addEventListener('click', function(e){
+        if (e.target.closest('a, button')) return;
+        if (i === N && cur === N) { cta.querySelector('[data-quote]').click(); return; }
+        go(i === cur ? i + 1 : i);
+      }); });
+      ls.forEach(function(li){ li.firstChild.addEventListener('click', function(){ go(li._i); }); });
+      function showAll(on){
+        root.style.display = on ? 'none' : ''; all.hidden = !on; back.hidden = !on;
+        if (!on) { size(); cur = -1; upd(); }
+        var t = (on ? all : root).getBoundingClientRect().top + window.scrollY - (window.innerWidth >= 1150 ? 140 : 90);
+        window.scrollTo({ top:Math.max(0, t), behavior:'auto' });
+      }
+      ln.children[0].addEventListener('click', function(){ showAll(true); });
+      ln.children[1].addEventListener('click', function(){ go(M); });
+      back.firstChild.addEventListener('click', function(){ showAll(false); });
+
+      var ticking = false;
+      function onScroll(){ if (!ticking) { ticking = true; requestAnimationFrame(function(){ ticking = false; upd(); }); } }
+      window.addEventListener('scroll', onScroll, { passive:true });
+      window.addEventListener('resize', function(){ if (root.style.display !== 'none') { size(); upd(); } });
+      size(); upd();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ if (root.style.display !== 'none') { size(); upd(); } });
+    });
+  })();
+
   /* Панель «Ekspresowa wycena». Разметка панели лежит одним файлом – /assets/wycena.html –
      и подгружается при первом нажатии на [data-quote]. Открывается на всех страницах,
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20261001-3';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20261001-4';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */

@@ -5005,3 +5005,77 @@ html[lang="pl"] #ile-trwa .faq-price span{ color:var(--c-ink); }
   .ua-hop-n small{ grid-column:1 / -1; grid-row:2; font-size:14px; line-height:1.4; }
   .ua-hop-row b{ grid-column:2; grid-row:1; font-size:17px; }
 }
+
+/* Krok po kroku – шаги стопкой карточек (01.10.2026, вариант 39 со стенда docs/kroki/, Грег: «39 реализуй на сайте»).
+   Только блоки .kt-steps[data-kroki] – пока польские страницы (/apostille-bez-przyjazdu/, /apostille-ukraina/, /kontakt/);
+   ua/ru/en – прежний список, переводы потом. Собирает app.js (блок «Krok po kroku» перед панелью wyceny); без JS – обычный список.
+   Блок встаёт на месте, прокрутка ведёт шаги ПО ШАГУ: карточка стоит целиком, пока заполняется следующий отрезок полосы,
+   потом вылетает вверх, под ней уже целиком следующая (без медленных затуханий). Под текущей – края 2–3 следующих (стопка).
+   Номер шага – водяным знаком на самой карточке. Последний слайд – жёлтая «Prześlij zdjęcia dokumentu» с кнопкой формы.
+   Полоса уже карточки на её поле: заполняемый отрезок белый, пройденные серые; первого отрезка нет (он всегда полный).
+   Под полосой «Pokaż wszystkie kroki» (обычный список без номеров) и «Pomiń» – строка шире карточки на её поле. */
+.kt-steps.kk-on > .kt-steps-list{ display:none; }
+.kk{ position:relative; margin-top:2rem; }
+.kk-pin{ position:sticky; top:110px; padding:6px 0 10px; }
+.kk-st{ position:relative; }
+.kk-c{ position:absolute; left:calc((100% - min(760px, 100%)) / 2); top:0; width:min(760px, 100%); box-sizing:border-box;
+  padding:34px 40px 38px; border-radius:26px; background:var(--c-paper); cursor:pointer; overflow:hidden; will-change:transform;
+  --sx:12px; --sy:8px; box-shadow:0 1px 2px rgba(31,33,32,.05), 0 10px 24px -14px rgba(31,33,32,.22);
+  transform-origin:50% 100%; transition:transform .5s cubic-bezier(.5,0,.75,0), opacity .12s linear .38s, box-shadow .3s ease; }
+.kk-c.kk-cta{ background:var(--c-terra); overflow:visible; }
+.kk-c:not(.is-cur){ pointer-events:none; }
+.kk-c.is-next{ transform:translate(calc(var(--d) * var(--sx)), calc(var(--d) * var(--sy))) scale(calc(1 - var(--d) * .015));
+  transition:transform .45s cubic-bezier(.2,.7,.3,1); }
+.kk-c.is-next .kk-in{ opacity:0; }
+.kk-c.is-deep{ visibility:hidden; }
+.kk-c.is-past{ transform:translateY(-135%) rotate(-2deg); opacity:0; box-shadow:0 24px 40px -20px rgba(31,33,32,.3); }
+.kk-c.is-cur{ transition:transform .45s cubic-bezier(.2,.7,.3,1), opacity .06s linear, box-shadow .3s ease; }
+.kk-in{ position:relative; z-index:1; display:flex; flex-direction:column; height:100%; }
+.kk-t{ margin:0 0 18px; font-size:44px; line-height:1.02; letter-spacing:-.045em; color:var(--c-ink); }
+.kk-t b{ font-weight:900; }
+.kk-t i{ font-weight:300; }
+.kk-x{ margin:0; font-size:20px; line-height:1.5; color:var(--c-ink); }
+.kk-btn{ margin:auto 0 0; padding-top:26px; }
+.kk-btn .cta-btn{ font-size:19px; max-width:100%; }
+.kk-wm{ position:absolute; right:-.04em; bottom:-.2em; z-index:0; pointer-events:none; -webkit-user-select:none; user-select:none;
+  font-family:'Fira Sans Condensed','Fira Sans',sans-serif; font-weight:900; font-size:300px; line-height:1; letter-spacing:-.04em; color:#ECECE8; }
+.kk-nav{ position:relative; margin-top:24px; }
+.kk-seg{ display:grid; grid-template-columns:repeat(var(--n), minmax(0, 1fr)); column-gap:2rem; margin:0; padding:0; list-style:none; }
+.kk-seg li{ min-width:0; }
+.kk-seg button{ display:block; width:100%; padding:6px 0; border:0; background:none; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.kk-seg .bar{ position:relative; display:block; height:10px; border-radius:5px; background:var(--c-sand); overflow:hidden; }
+.kk-seg .bar i{ position:absolute; inset:0; background:var(--c-paper); transform:scaleX(var(--f, 0)); transform-origin:0 50%; transition:background-color .2s ease; }
+.kk-seg li.done .bar i, .kk-seg li.on .bar i{ background:rgba(31,33,32,.2); }
+.kk-seg button:focus-visible{ outline:2px solid var(--c-ink); outline-offset:2px; border-radius:6px; }
+.kk-ln{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px 16px; margin:12px -80px 0; }
+.kk-ln button, .kk-back button{ display:inline-flex; align-items:center; gap:8px; padding:0; border:0; background:none; cursor:pointer;
+  font-weight:600; font-size:16px; line-height:1.3; color:var(--c-ink); white-space:nowrap; }
+.kk-ln svg, .kk-back svg{ width:14px; height:14px; flex:none; transition:transform .25s cubic-bezier(.2,.7,.25,1); }
+.kk-ln button:hover svg, .kk-back button:hover svg{ transform:translateX(3px); }
+.kk-ln button.dn svg{ transform:rotate(90deg); }
+.kk-ln button.dn:hover svg{ transform:rotate(90deg) translateX(3px); }
+.kk-all{ margin:2rem 0 0; padding:0; list-style:none; display:grid; gap:18px; max-width:70ch; }
+.kk-all li{ font-size:17px; line-height:1.55; color:var(--c-ink); }
+.kk-all b{ font-weight:700; }
+.kk-back{ margin:1.5rem 0 0; }
+.kk-all[hidden], .kk-back[hidden]{ display:none; }   /* свой display перебивал бы hidden */
+@media (max-width:1023px){
+  .kk-pin{ top:24px; }
+  .kk-c{ padding:26px 26px 30px; }
+  .kk-t{ font-size:34px; }
+  .kk-x{ font-size:18px; }
+  .kk-seg{ column-gap:12px; }
+  .kk-ln{ margin-left:-46px; margin-right:-46px; }
+  .kk-wm{ font-size:240px; }
+}
+@media (max-width:767px){ .kk-seg{ column-gap:6px; } }
+@media (max-width:639px){
+  .kk-c{ padding:22px 20px 26px; border-radius:22px; --sx:6px; --sy:6px; }
+  .kk-t{ font-size:27px; margin-bottom:12px; }
+  .kk-x{ font-size:17px; }
+  .kk-btn{ padding-top:20px; }
+  .kk-btn .cta-btn{ display:flex; width:100%; justify-content:space-between; white-space:normal; text-align:left; font-size:17px; line-height:1.2; padding:.8em 1em .8em 1.1em; }
+  .kk-ln{ margin-left:-32px; margin-right:-32px; }
+  .kk-wm{ font-size:200px; }
+}
+@media (prefers-reduced-motion:reduce){ .kk-c, .kk-seg .bar i, .kk-ln svg, .kk-back svg{ transition:none !important; } }
