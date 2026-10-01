@@ -2493,6 +2493,7 @@
         })(start);
       }
       function stop(){ if (raf) cancelAnimationFrame(raf); el.textContent = target; }
+      el._gtRun = run;
       var pair = [el, el.nextElementSibling].filter(Boolean);
       function inPair(n){ return pair.some(function(p){ return n && p.contains(n); }); }
       pair.forEach(function(n){
@@ -2501,6 +2502,26 @@
         n.addEventListener('mouseenter', function(e){ if (!inPair(e.relatedTarget)) run(); });
         n.addEventListener('mouseleave', function(e){ if (!inPair(e.relatedTarget)) stop(); });
       });
+    });
+    /* Вставной блок .gt--cn (hero /cennik/ и /apostille/): изредка сама накручивается одна цена – 260 или 550,
+       по очереди, раз в 14–26 с; только пока блок на экране, вкладка открыта и курсор не над блоком (01.10.2026) */
+    document.querySelectorAll('.gt--cn').forEach(function(box){
+      var nums = [].filter.call(box.querySelectorAll('.gt-n'), function(n){ return /^(260|550)$/.test(n.textContent.trim()); });
+      if (!nums.length) return;
+      var seen = false, over = false, i = 0, timer = null;
+      box.addEventListener('mouseenter', function(){ over = true; });
+      box.addEventListener('mouseleave', function(){ over = false; });
+      function next(){
+        clearTimeout(timer);
+        timer = setTimeout(function(){
+          if (seen && !over && !document.hidden){ nums[i % nums.length]._gtRun(); i++; }
+          next();
+        }, 14000 + Math.random() * 12000);
+      }
+      if ('IntersectionObserver' in window){
+        new IntersectionObserver(function(es){ seen = es[0].isIntersecting; }).observe(box);
+      } else seen = true;
+      next();
     });
   })();
 
@@ -2749,7 +2770,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20261001-11';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20261001-12';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
