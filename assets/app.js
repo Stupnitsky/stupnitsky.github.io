@@ -2001,7 +2001,8 @@
           sMail: 'Podaj adres e-mail – na niego wyślemy wycenę.', sPhone: 'Podaj numer telefonu – zadzwonimy, jeśli coś będzie niejasne.',
           miss: 'Uzupełnij imię, telefon i wybierz usługę.', busy: 'Chwila – jeszcze przygotowujemy zdjęcia.', sending: 'Wysyłamy…', sent: '✓ Wysłane',
           offline: 'Brak internetu – spróbuj, gdy wróci zasięg.', fail: 'Nie udało się wysłać.',
-          failFull: 'Nie udało się wysłać. Spróbuj jeszcze raz albo zadzwoń: +48 507 588 155.' },
+          failFull: 'Nie udało się wysłać. Spróbuj jeszcze raz albo zadzwoń: +48 507 588 155.',
+          total: 'Pliki razem ważą {s}, a za jednym razem przyjmiemy do 25 MB. Wyślij teraz część, a resztę osobno tym samym formularzem.' },
     uk: { none: 'Файли не вибрано', pf: ['фото', 'фото', 'фото'], pd: ['файл', 'файли', 'файлів'], file: 'ФАЙЛ',
           sendN: 'Надіслати {n} на оцінку', send: 'Надіслати на оцінку', nEmail: 'e-mail', nPhone: 'номер', and: ' і ', need: 'Вкажіть {x}, щоб надіслати',
           del: 'Видалити {x}', addMore: 'Додайте ще фото', addFirst: 'Додайте фото або скан', prep: 'Готуємо фото…',
@@ -2012,7 +2013,8 @@
           sMail: 'Вкажіть адресу e-mail – на неї надішлемо оцінку.', sPhone: 'Вкажіть номер телефону – зателефонуємо, якщо щось буде незрозуміло.',
           miss: 'Заповніть ім’я, телефон і оберіть послугу.', busy: 'Хвилинку – ще готуємо фото.', sending: 'Надсилаємо…', sent: '✓ Надіслано',
           offline: 'Немає інтернету – спробуйте, коли з’явиться зв’язок.', fail: 'Не вдалося надіслати.',
-          failFull: 'Не вдалося надіслати. Спробуйте ще раз або зателефонуйте: +48 507 588 155.' },
+          failFull: 'Не вдалося надіслати. Спробуйте ще раз або зателефонуйте: +48 507 588 155.',
+          total: 'Файли разом важать {s}, а за один раз ми приймаємо до 25 МБ. Надішліть частину зараз, а решту окремо через цю ж форму.' },
     ru: { none: 'Файлы не выбраны', pf: ['фото', 'фото', 'фото'], pd: ['файл', 'файла', 'файлов'], file: 'ФАЙЛ',
           sendN: 'Отправить {n} на расчёт', send: 'Отправить на расчёт', nEmail: 'e-mail', nPhone: 'номер', and: ' и ', need: 'Укажите {x}, чтобы отправить',
           del: 'Удалить {x}', addMore: 'Добавьте ещё фото', addFirst: 'Добавьте фото или скан', prep: 'Готовим фото…',
@@ -2023,7 +2025,8 @@
           sMail: 'Укажите адрес e-mail – на него пришлём расчёт.', sPhone: 'Укажите номер телефона – позвоним, если что-то будет непонятно.',
           miss: 'Заполните имя, телефон и выберите услугу.', busy: 'Секунду – ещё готовим фото.', sending: 'Отправляем…', sent: '✓ Отправлено',
           offline: 'Нет интернета – попробуйте, когда появится связь.', fail: 'Не удалось отправить.',
-          failFull: 'Не удалось отправить. Попробуйте ещё раз или позвоните: +48 507 588 155.' },
+          failFull: 'Не удалось отправить. Попробуйте ещё раз или позвоните: +48 507 588 155.',
+          total: 'Файлы вместе весят {s}, а за один раз мы принимаем до 25 МБ. Отправьте часть сейчас, а остальное отдельно через эту же форму.' },
     en: { none: 'No files selected', pf: ['photo', 'photos', 'photos'], pd: ['file', 'files', 'files'], file: 'FILE',
           sendN: 'Send {n} for a quote', send: 'Send for a quote', nEmail: 'e-mail', nPhone: 'phone number', and: ' and ', need: 'Enter your {x} to send',
           del: 'Remove {x}', addMore: 'Add another photo', addFirst: 'Add photos or a scan', prep: 'Preparing your photos…',
@@ -2034,7 +2037,8 @@
           sMail: 'Enter your e-mail address – we’ll send the quote there.', sPhone: 'Enter your phone number – we’ll call if anything is unclear.',
           miss: 'Please enter your name and phone number, and choose a service.', busy: 'One moment – we’re still preparing your photos.', sending: 'Sending…', sent: '✓ Sent',
           offline: 'No internet connection – try again when you’re back online.', fail: 'Sending failed.',
-          failFull: 'Sending failed. Please try again or call +48 507 588 155.' }
+          failFull: 'Sending failed. Please try again or call +48 507 588 155.',
+          total: 'Your files add up to {s}, and we can take up to 25 MB at a time. Send some of them now and the rest separately using the same form.' }
   };
   function qt(k) { var d = QD_TX[QD_LANG]; return d && d[k] != null ? d[k] : QD_TX.pl[k]; }
   /* числа: pl – 1 · 2–4, 22–24… · остальное; uk/ru – 1, 21, 31… · 2–4, 22–24… · остальное (11–14 – «много»); en – 1 · остальное */
@@ -2051,7 +2055,8 @@
     if (!form || form.dataset.bound) return;
     form.dataset.bound = '1';
 
-    var MAX_FILE = 20 * 1024 * 1024;   /* Formspree: 25 MB на файл – держим запас */
+    var MAX_FILE = 20 * 1024 * 1024;   /* на один файл */
+    var MAX_TOTAL = 25 * 1024 * 1024;  /* на заявку: Apps Script принимает до ~50 MB тела, base64 добавляет треть (01.10.2026) */
     var status = form.querySelector('[role="status"]');
     var inp    = form.querySelector('[name="file"]');
     var drop   = form.querySelector('.qd-drop');
@@ -2306,6 +2311,8 @@
       }
       if (missing) { say(form.dataset.msgRequired || qt('miss'), false); return; }
       if (drop && drop.classList.contains('is-busy')) { say(qt('busy'), false); return; }
+      var totalBytes = picked.reduce(function (s, f) { return s + f.size; }, 0);
+      if (totalBytes > MAX_TOTAL) { say(qt('total').replace('{s}', fmt(totalBytes)), false); return; }
 
       btn.disabled = true;
       var txt = btn.querySelector('.qd-submit-txt'), txt0 = txt ? txt.textContent : '';
@@ -2315,18 +2322,25 @@
       var slowT = slow ? setTimeout(function () { slow.hidden = false; }, 15000) : 0;
       function stopSlow() { clearTimeout(slowT); if (slow) slow.hidden = true; }
 
+      /* Google Apps Script (01.10.2026, docs/forma-apps-script/): тело – JSON строкой text/plain, файлы в base64.
+         Слушатель upload.onprogress здесь нельзя: с ним браузер шлёт предзапрос CORS, а Apps Script на него не отвечает –
+         поэтому полоса в кнопке идёт по времени (до 90 %), а не по байтам. Ответ сайту – {ok:true}, иначе ошибка */
+      var gas = /^https:\/\/script\.google\.com\//.test(form.action), tick = 0;
       var xhr = new XMLHttpRequest();
       xhr.open('POST', form.action);
       xhr.setRequestHeader('Accept', 'application/json');   /* Formspree/Web3Forms: ответ JSON, без редиректа */
-      xhr.upload.onprogress = function (ev) {
+      if (!gas) xhr.upload.onprogress = function (ev) {
         if (!ev.lengthComputable) return;
         var pc = Math.round(ev.loaded / ev.total * 100);
         btn.style.setProperty('--p', pc + '%');
         if (txt) txt.textContent = qt('sending') + ' ' + pc + '%';
       };
       xhr.onload = function () {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          stopSlow();
+        var ok = xhr.status >= 200 && xhr.status < 300;
+        if (ok && gas) { try { ok = JSON.parse(xhr.responseText).ok === true; } catch (er) { ok = false; } }
+        if (ok) {
+          stopSlow(); clearInterval(tick);
+          if (gas) btn.style.setProperty('--p', '100%');
           if (window.gtag) gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXX/XXXXXXXX' });   /* только после успеха */
           if (txt) { txt.textContent = qt('sent'); setTimeout(showDone, 500); } else showDone();
         } else fail();
@@ -2339,9 +2353,9 @@
           var done = form.querySelector('.qd-done'); if (done) { done.hidden = false; done.focus && done.focus(); }
           hush();
       }
-      xhr.onerror = fail; xhr.ontimeout = fail; xhr.timeout = 60000;
+      xhr.onerror = fail; xhr.ontimeout = fail; xhr.timeout = gas ? 180000 : 60000;   /* Apps Script ещё кладёт файлы на Drive и шлёт письмо */
       function fail() {
-        stopSlow();
+        stopSlow(); clearInterval(tick);
         btn.disabled = false; btn.style.removeProperty('--p'); if (txt) txt.textContent = txt0;
         if (failBox) {                                        /* панель: сообщение и два действия под кнопкой */
           failBox.querySelector('.qd-fail-msg').textContent = navigator.onLine === false
@@ -2355,7 +2369,25 @@
       fd.append('strona', location.pathname + location.search);
       fd.append('jezyk', QD_LANG);   /* на каком языке отвечать клиенту */
       if (document.referrer && document.referrer.indexOf(location.origin) !== 0) fd.append('skad', document.referrer.split('?')[0]);
-      xhr.send(fd);
+      if (!gas) { xhr.send(fd); return; }
+      var fields = {}, files = [];
+      fd.forEach(function (v, k) {
+        if (typeof v === 'string') fields[k] = fields[k] ? fields[k] + ', ' + v : v;   /* несколько значений одного поля – через запятую */
+        else if (v && v.size) files.push(v);                                         /* пустой input (страница без фото) – не файл */
+      });
+      Promise.all(files.map(function (f) {
+        return new Promise(function (res, rej) {
+          var r = new FileReader();
+          r.onload = function () { var s = String(r.result); res({ name: f.name, type: f.type, data: s.slice(s.indexOf(',') + 1) }); };
+          r.onerror = function () { rej(r.error); };
+          r.readAsDataURL(f);
+        });
+      })).then(function (list) {
+        var t0 = Date.now(), tau = Math.max(2500, totalBytes / 1048576 * 1500);   /* ~1 MB за 1,5 с: на телефоне в дороге медленнее */
+        tick = setInterval(function () { btn.style.setProperty('--p', (90 * (1 - Math.exp(-(Date.now() - t0) / tau))).toFixed(1) + '%'); }, 200);
+        xhr.setRequestHeader('Content-Type', 'text/plain;charset=utf-8');
+        xhr.send(JSON.stringify({ fields: fields, files: list }));
+      }, fail);
     });
   };
   window.initQuoteForm(document);
@@ -2563,7 +2595,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-56';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-58';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
