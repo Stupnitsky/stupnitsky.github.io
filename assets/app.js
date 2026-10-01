@@ -2563,7 +2563,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-55';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-56';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
@@ -3590,16 +3590,40 @@
 })();
 
 /* Выбор суда по городу (.sad-pick, /apostille/pelnomocnictwo/#ktory-sad, 29.09.2026): показывает карточку выбранного
-   суда и строку «что дальше» – для Варшавы своя, для остальных городов общая */
+   суда и строку «что дальше» – для Варшавы своя, для остальных городов общая.
+   01.10.2026 (владелица: «делаем все три»): до выбора – подсказка (.sad-pick-empty, видна от 1024px); города без своего
+   окружного суда – опции с data-sad-to="<суд>": открывают карточку того суда и строку над ней (.sad-pick-via);
+   ссылка сразу на город – #sad-<город> (#sad-krakow, #sad-gdynia): выбирает город и прокручивает к плашке. */
 (function () {
   var box = document.querySelector('[data-sad-pick]'); if (!box) return;
   var sel = box.querySelector('select');
-  var cards = box.querySelectorAll('[data-sad]'), next = box.querySelectorAll('[data-sad-next]');
+  var cards = box.querySelectorAll('.so-card[data-sad]'), next = box.querySelectorAll('[data-sad-next]');
+  var empty = box.querySelector('.sad-pick-empty'), via = box.querySelector('.sad-pick-via');
   function show() {
-    var v = sel.value;
-    cards.forEach(function (c) { c.hidden = c.getAttribute('data-sad') !== v; });
-    next.forEach(function (p) { p.hidden = !v || (p.getAttribute('data-sad-next') === 'waw') !== (v === 'warszawa'); });
+    var opt = sel.options[sel.selectedIndex], v = sel.value;
+    var court = (opt && opt.getAttribute('data-sad-to')) || v;
+    cards.forEach(function (c) { c.hidden = c.getAttribute('data-sad') !== court; });
+    next.forEach(function (p) { p.hidden = !v || (p.getAttribute('data-sad-next') === 'waw') !== (court === 'warszawa'); });
+    if (empty) empty.hidden = !!v;
+    if (via) {
+      var alias = !!(opt && opt.getAttribute('data-sad-to'));
+      via.hidden = !alias;
+      if (alias) {
+        var town = opt.textContent.split(' → ')[0];
+        via.textContent = court === 'warszawa'
+          ? town + ' należy do jednego z\u00a0warszawskich sądów okręgowych.'
+          : town + ' nie ma własnego sądu okręgowego. Podpis notariusza z\u00a0tego miasta poświadcza:';
+      }
+    }
+  }
+  function fromHash() {
+    var m = /^#sad-([a-z-]+)$/.exec(location.hash); if (!m) return false;
+    if (!sel.querySelector('option[value="' + m[1] + '"]')) return false;
+    sel.value = m[1]; show();
+    box.scrollIntoView({ block: 'start' });
+    return true;
   }
   sel.addEventListener('change', show);
-  show();
+  window.addEventListener('hashchange', fromHash);
+  if (!fromHash()) show();
 })();

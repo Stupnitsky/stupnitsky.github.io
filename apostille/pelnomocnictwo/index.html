@@ -33,10 +33,10 @@
 <meta name="theme-color" content="#F1F1EF" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1F2120" media="(prefers-color-scheme: dark)">
 
-<link rel="stylesheet" href="/assets/fonts/fonts.css?v=20260930-55">
+<link rel="stylesheet" href="/assets/fonts/fonts.css?v=20260930-56">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260930-55">
+<link rel="stylesheet" href="/styles.css?v=20260930-56">
 
 <script type="application/ld+json">
 {
@@ -276,61 +276,154 @@
     <!-- Выбор суда по городу (29.09.2026, владелец: «сделай и посмотрим»). Города и карточки – копия списка
          /apostille-bez-przyjazdu/#twoj-sad (все окружные суды, адреса, часы, ссылки на страницы легализации);
          Варшава – своя карточка с официальными названиями, как на /apostille/. Скрипт – в конце app.js; без JS
-         блок молчит, а ссылка на список судов остаётся в тексте ниже. -->
+         блок молчит, а ссылка на список судов остаётся в тексте ниже.
+         01.10.2026 (владелица: «делаем все три»): подсказка до выбора (.sad-pick-empty, видна от 1024px); города без своего
+         окружного суда – опции data-sad-to="<суд>" (сверено по «Właściwości terytorialne sądów powszechnych», Wikipedia/MS,
+         01.10.2026); ссылка сразу на город – #sad-<город> (и для городов без суда: #sad-gdynia). -->
     <div class="sad-pick bg-sand text-ink rounded-[26px] p-7 sm:p-10 mt-8" data-sad-pick>
       <label for="sad-miasto" class="sad-pick-l">W&nbsp;jakim mieście jest kancelaria Twojego notariusza?</label>
       <select id="sad-miasto" class="sad-pick-s">
         <option value="">Wybierz miasto</option>
         <option value="warszawa">Warszawa i&nbsp;okolice</option>
-        <optgroup label="Pozostałe sądy okręgowe">
+        <optgroup label="Pozostałe miasta">
+          <option value="augustow" data-sad-to="suwalki">Augustów → Suwałki</option>
+          <option value="belchatow" data-sad-to="piotrkow-trybunalski">Bełchatów → Piotrków Trybunalski</option>
+          <option value="bedzin" data-sad-to="sosnowiec">Będzin → Sosnowiec</option>
+          <option value="biala-podlaska" data-sad-to="lublin">Biała Podlaska → Lublin</option>
           <option value="bialystok">Białystok</option>
           <option value="bielsko-biala">Bielsko-Biała</option>
+          <option value="boleslawiec" data-sad-to="jelenia-gora">Bolesławiec → Jelenia Góra</option>
+          <option value="brzeg" data-sad-to="opole">Brzeg → Opole</option>
           <option value="bydgoszcz">Bydgoszcz</option>
+          <option value="bytom" data-sad-to="katowice">Bytom → Katowice</option>
+          <option value="chelm" data-sad-to="lublin">Chełm → Lublin</option>
+          <option value="chojnice" data-sad-to="slupsk">Chojnice → Słupsk</option>
+          <option value="chorzow" data-sad-to="katowice">Chorzów → Katowice</option>
+          <option value="ciechanow" data-sad-to="plock">Ciechanów → Płock</option>
+          <option value="cieszyn" data-sad-to="bielsko-biala">Cieszyn → Bielsko-Biała</option>
           <option value="czestochowa">Częstochowa</option>
+          <option value="dabrowa-gornicza" data-sad-to="sosnowiec">Dąbrowa Górnicza → Sosnowiec</option>
+          <option value="debica" data-sad-to="rzeszow">Dębica → Rzeszów</option>
+          <option value="dzierzoniow" data-sad-to="swidnica">Dzierżoniów → Świdnica</option>
           <option value="elblag">Elbląg</option>
+          <option value="elk" data-sad-to="suwalki">Ełk → Suwałki</option>
+          <option value="garwolin" data-sad-to="siedlce">Garwolin → Siedlce</option>
           <option value="gdansk">Gdańsk</option>
+          <option value="gdynia" data-sad-to="gdansk">Gdynia → Gdańsk</option>
+          <option value="gizycko" data-sad-to="olsztyn">Giżycko → Olsztyn</option>
           <option value="gliwice">Gliwice</option>
+          <option value="glogow" data-sad-to="legnica">Głogów → Legnica</option>
+          <option value="gniezno" data-sad-to="poznan">Gniezno → Poznań</option>
           <option value="gorzow-wielkopolski">Gorzów Wielkopolski</option>
+          <option value="grodzisk-mazowiecki" data-sad-to="warszawa">Grodzisk Mazowiecki → Warszawa</option>
+          <option value="grojec" data-sad-to="radom">Grójec → Radom</option>
+          <option value="grudziadz" data-sad-to="torun">Grudziądz → Toruń</option>
+          <option value="ilawa" data-sad-to="elblag">Iława → Elbląg</option>
+          <option value="inowroclaw" data-sad-to="bydgoszcz">Inowrocław → Bydgoszcz</option>
+          <option value="jaroslaw" data-sad-to="przemysl">Jarosław → Przemyśl</option>
+          <option value="jastrzebie-zdroj" data-sad-to="rybnik">Jastrzębie-Zdrój → Rybnik</option>
+          <option value="jaworzno" data-sad-to="sosnowiec">Jaworzno → Sosnowiec</option>
           <option value="jelenia-gora">Jelenia Góra</option>
           <option value="kalisz">Kalisz</option>
           <option value="katowice">Katowice</option>
+          <option value="kedzierzyn-kozle" data-sad-to="opole">Kędzierzyn-Koźle → Opole</option>
           <option value="kielce">Kielce</option>
+          <option value="kolobrzeg" data-sad-to="koszalin">Kołobrzeg → Koszalin</option>
           <option value="konin">Konin</option>
           <option value="koszalin">Koszalin</option>
           <option value="krakow">Kraków</option>
           <option value="krosno">Krosno</option>
+          <option value="kutno" data-sad-to="lodz">Kutno → Łódź</option>
+          <option value="kwidzyn" data-sad-to="gdansk">Kwidzyn → Gdańsk</option>
+          <option value="legionowo" data-sad-to="warszawa">Legionowo → Warszawa</option>
           <option value="legnica">Legnica</option>
+          <option value="leszno" data-sad-to="poznan">Leszno → Poznań</option>
+          <option value="lebork" data-sad-to="slupsk">Lębork → Słupsk</option>
+          <option value="lubin" data-sad-to="legnica">Lubin → Legnica</option>
           <option value="lublin">Lublin</option>
           <option value="lomza">Łomża</option>
           <option value="lodz">Łódź</option>
+          <option value="malbork" data-sad-to="gdansk">Malbork → Gdańsk</option>
+          <option value="mielec" data-sad-to="tarnobrzeg">Mielec → Tarnobrzeg</option>
+          <option value="minsk-mazowiecki" data-sad-to="siedlce">Mińsk Mazowiecki → Siedlce</option>
+          <option value="mlawa" data-sad-to="plock">Mława → Płock</option>
+          <option value="myslowice" data-sad-to="katowice">Mysłowice → Katowice</option>
+          <option value="nowa-sol" data-sad-to="zielona-gora">Nowa Sól → Zielona Góra</option>
+          <option value="nowy-dwor-mazowiecki" data-sad-to="warszawa">Nowy Dwór Mazowiecki → Warszawa</option>
           <option value="nowy-sacz">Nowy Sącz</option>
+          <option value="nowy-targ" data-sad-to="nowy-sacz">Nowy Targ → Nowy Sącz</option>
+          <option value="nysa" data-sad-to="opole">Nysa → Opole</option>
           <option value="olsztyn">Olsztyn</option>
           <option value="opole">Opole</option>
           <option value="ostroleka">Ostrołęka</option>
+          <option value="ostrowiec-swietokrzyski" data-sad-to="kielce">Ostrowiec Świętokrzyski → Kielce</option>
+          <option value="ostroda" data-sad-to="elblag">Ostróda → Elbląg</option>
+          <option value="ostrow-wielkopolski" data-sad-to="kalisz">Ostrów Wielkopolski → Kalisz</option>
+          <option value="oswiecim" data-sad-to="krakow">Oświęcim → Kraków</option>
+          <option value="otwock" data-sad-to="warszawa">Otwock → Warszawa</option>
+          <option value="pabianice" data-sad-to="lodz">Pabianice → Łódź</option>
+          <option value="piaseczno" data-sad-to="warszawa">Piaseczno → Warszawa</option>
+          <option value="pila" data-sad-to="poznan">Piła → Poznań</option>
           <option value="piotrkow-trybunalski">Piotrków Trybunalski</option>
           <option value="plock">Płock</option>
           <option value="poznan">Poznań</option>
+          <option value="pruszkow" data-sad-to="warszawa">Pruszków → Warszawa</option>
           <option value="przemysl">Przemyśl</option>
+          <option value="pulawy" data-sad-to="lublin">Puławy → Lublin</option>
+          <option value="pultusk" data-sad-to="ostroleka">Pułtusk → Ostrołęka</option>
+          <option value="raciborz" data-sad-to="rybnik">Racibórz → Rybnik</option>
           <option value="radom">Radom</option>
+          <option value="ruda-slaska" data-sad-to="gliwice">Ruda Śląska → Gliwice</option>
           <option value="rybnik">Rybnik</option>
           <option value="rzeszow">Rzeszów</option>
+          <option value="sanok" data-sad-to="krosno">Sanok → Krosno</option>
           <option value="siedlce">Siedlce</option>
           <option value="sieradz">Sieradz</option>
+          <option value="skarzysko-kamienna" data-sad-to="kielce">Skarżysko-Kamienna → Kielce</option>
+          <option value="skierniewice" data-sad-to="lodz">Skierniewice → Łódź</option>
           <option value="slupsk">Słupsk</option>
+          <option value="sochaczew" data-sad-to="plock">Sochaczew → Płock</option>
+          <option value="sopot" data-sad-to="gdansk">Sopot → Gdańsk</option>
           <option value="sosnowiec">Sosnowiec</option>
+          <option value="stalowa-wola" data-sad-to="tarnobrzeg">Stalowa Wola → Tarnobrzeg</option>
+          <option value="starachowice" data-sad-to="kielce">Starachowice → Kielce</option>
+          <option value="stargard" data-sad-to="szczecin">Stargard → Szczecin</option>
+          <option value="starogard-gdanski" data-sad-to="gdansk">Starogard Gdański → Gdańsk</option>
           <option value="suwalki">Suwałki</option>
           <option value="szczecin">Szczecin</option>
+          <option value="szczecinek" data-sad-to="koszalin">Szczecinek → Koszalin</option>
           <option value="swidnica">Świdnica</option>
+          <option value="swinoujscie" data-sad-to="szczecin">Świnoujście → Szczecin</option>
           <option value="tarnobrzeg">Tarnobrzeg</option>
           <option value="tarnow">Tarnów</option>
+          <option value="tczew" data-sad-to="gdansk">Tczew → Gdańsk</option>
+          <option value="tomaszow-mazowiecki" data-sad-to="piotrkow-trybunalski">Tomaszów Mazowiecki → Piotrków Trybunalski</option>
           <option value="torun">Toruń</option>
+          <option value="tychy" data-sad-to="katowice">Tychy → Katowice</option>
+          <option value="walbrzych" data-sad-to="swidnica">Wałbrzych → Świdnica</option>
+          <option value="wejherowo" data-sad-to="gdansk">Wejherowo → Gdańsk</option>
+          <option value="wieliczka" data-sad-to="krakow">Wieliczka → Kraków</option>
           <option value="wloclawek">Włocławek</option>
+          <option value="wolomin" data-sad-to="warszawa">Wołomin → Warszawa</option>
           <option value="wroclaw">Wrocław</option>
+          <option value="zabrze" data-sad-to="gliwice">Zabrze → Gliwice</option>
+          <option value="zakopane" data-sad-to="nowy-sacz">Zakopane → Nowy Sącz</option>
           <option value="zamosc">Zamość</option>
+          <option value="zdunska-wola" data-sad-to="sieradz">Zduńska Wola → Sieradz</option>
+          <option value="zgierz" data-sad-to="lodz">Zgierz → Łódź</option>
           <option value="zielona-gora">Zielona Góra</option>
+          <option value="zary" data-sad-to="zielona-gora">Żary → Zielona Góra</option>
+          <option value="zory" data-sad-to="rybnik">Żory → Rybnik</option>
+          <option value="zyrardow" data-sad-to="plock">Żyrardów → Płock</option>
+          <option value="zywiec" data-sad-to="bielsko-biala">Żywiec → Bielsko-Biała</option>
         </optgroup>
       </select>
       <div class="sad-pick-out" aria-live="polite">
+      <div class="sad-pick-empty">
+        <p><b>Warszawa i&nbsp;okolice</b>&nbsp;– sąd i&nbsp;MSZ załatwiamy my, razem 380&nbsp;zł.</p>
+        <p><b>Inne miasto</b>&nbsp;– sąd robisz u&nbsp;siebie albo wysyłasz do niego dokument pocztą (26&nbsp;zł), a&nbsp;Apostille w&nbsp;MSZ uzyskamy za 260&nbsp;zł.</p>
+      </div>
+      <p class="sad-pick-via" hidden></p>
       <div class="so-card" data-sad="warszawa" hidden><p class="so-court">W&nbsp;Warszawie oba kroki robimy my</p><p class="so-addr">Sąd Okręgowy w&nbsp;Warszawie <i>· lewy brzeg Wisły</i><br>al.&nbsp;„Solidarności”&nbsp;127</p><p class="so-addr so-addr2">Sąd Okręgowy Warszawa-Praga <i>· prawy brzeg Wisły</i><br>ul.&nbsp;Poligonowa&nbsp;3</p><p class="so-addr so-addr2">Z&nbsp;okolic do warszawskich sądów należą m.in. Pruszków, Piaseczno, Łomianki, Legionowo, Otwock, Wołomin i&nbsp;Nowy Dwór Mazowiecki. Mińsk Mazowiecki i&nbsp;Garwolin należą do Siedlec, Grójec do Radomia, a&nbsp;Żyrardów i&nbsp;Sochaczew do Płocka&nbsp;– wybierz wtedy to miasto z&nbsp;listy.</p><p class="so-go"><a href="/apostille/gdzie/">Godziny, opłata, dokumenty&nbsp;→</a></p></div>
       <div class="so-card" data-sad="bialystok" hidden><p class="so-court">Sąd&nbsp;Okręgowy w&nbsp;Białymstoku</p><p class="so-addr">ul. Skłodowskiej-Curie 1 <i>· pok. A&nbsp;126</i></p><p class="so-hours"><span class="so-hr"><span>pn.–pt.</span> <b>9:00–14:00</b></span></p><p class="so-go"><a href="https://bialystok.so.gov.pl/informacje/legalizacja-dokumentow.html" target="_blank" rel="noopener">Legalizacja na stronie sądu&nbsp;↗</a></p></div>
       <div class="so-card" data-sad="bielsko-biala" hidden><p class="so-court">Sąd Okręgowy w&nbsp;Bielsku-Białej</p><p class="so-addr">ul.&nbsp;Cieszyńska 10</p><p class="so-go"><a href="https://bielsko-biala.so.gov.pl/legalizacja-i-uwierzytelnianie-dokumentow,m,m2,296,128" target="_blank" rel="noopener">Legalizacja na stronie sądu&nbsp;↗</a></p></div>
@@ -380,7 +473,7 @@
       </div>
       <p class="sad-pick-next" data-sad-next="waw" hidden>Tu nigdzie nie chodzisz: wyślij zdjęcie dokumentu w&nbsp;<a href="/cennik/#wycena" data-quote class="underline font-semibold">formularzu wyceny</a>, a&nbsp;sąd i&nbsp;MSZ załatwimy za Ciebie&nbsp;– razem 380&nbsp;zł z&nbsp;opłatami.</p>
       <p class="sad-pick-next" data-sad-next="inne" hidden>Do tego sądu możesz pójść z&nbsp;oryginałem sam, bez zapisów, albo wysłać go tam pocztą z&nbsp;wnioskiem i&nbsp;potwierdzeniem opłaty&nbsp;– większość sądów tak przyjmuje, szczegóły są na stronie sądu. Opłata skarbowa wynosi 26&nbsp;zł za podpis. Potem wyślij nam zdjęcie dokumentu w&nbsp;<a href="/cennik/#wycena" data-quote class="underline font-semibold">formularzu wyceny</a>, a&nbsp;po naszej odpowiedzi nadaj oryginał w&nbsp;Paczkomacie&nbsp;– Apostille w&nbsp;MSZ uzyskamy za 260&nbsp;zł.</p>
-      <p class="sad-pick-note">Na liście są miasta wszystkich sądów okręgowych w&nbsp;Polsce. Jeśli Twojego miasta tu nie ma, kancelaria należy do jednego z&nbsp;nich, choć nie zawsze do najbliższego&nbsp;– Mińsk Mazowiecki należy do Siedlec, a&nbsp;Żyrardów do Płocka. Pewność da <a href="https://www.gov.pl/web/sprawiedliwosc/znajdz-wybrany-sad-powszechny" target="_blank" rel="noopener" class="underline font-semibold">wykaz sądów Ministerstwa Sprawiedliwości</a>, a&nbsp;możesz też po prostu przesłać nam zdjęcie dokumentu w&nbsp;<a href="/cennik/#wycena" data-quote class="underline font-semibold">formularzu wyceny</a>&nbsp;– podpowiemy, który sąd go poświadczy.</p>
+      <p class="sad-pick-note">Na liście są miasta wszystkich sądów okręgowych w&nbsp;Polsce i&nbsp;większe miasta bez własnego sądu&nbsp;– przy nich strzałka pokazuje, który sąd poświadcza podpis. Jeśli Twojego miasta tu nie ma, kancelaria należy do jednego z&nbsp;tych sądów, choć nie zawsze do najbliższego. Pewność da <a href="https://www.gov.pl/web/sprawiedliwosc/znajdz-wybrany-sad-powszechny" target="_blank" rel="noopener" class="underline font-semibold">wykaz sądów Ministerstwa Sprawiedliwości</a>, a&nbsp;możesz też po prostu przesłać nam zdjęcie dokumentu w&nbsp;<a href="/cennik/#wycena" data-quote class="underline font-semibold">formularzu wyceny</a>&nbsp;– podpowiemy, który sąd go poświadczy.</p>
     </div>
     <div class="ap-cols mt-10">
       <div>
@@ -501,7 +594,7 @@
       </div>
       <div>
         <p class="text-[17px] leading-[1.6] text-ink/75">
-          W&nbsp;Polsce zostaje już tylko tłumaczenie przysięgłe na polski, razem z&nbsp;przekładem klauzuli Apostille, i&nbsp;to zrobimy my.
+          W&nbsp;Polsce zostaje już tylko tłumaczenie przysięgłe na polski, razem z&nbsp;klauzulą Apostille, i&nbsp;to zrobimy my.
           Wyślij zdjęcie dokumentu w&nbsp;<a href="/cennik/#wycena" data-quote class="underline font-semibold">formularzu wyceny</a>, a&nbsp;podamy cenę i&nbsp;termin. Języki, z&nbsp;których
           tłumaczymy, znajdziesz na stronie <a href="/tlumaczenia-przysiegle/#jezyki" class="underline font-semibold">tłumaczeń przysięgłych</a>.
         </p>
@@ -716,7 +809,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260930-55" defer></script>
+<script src="/assets/app.js?v=20260930-56" defer></script>
 
 </body>
 </html>
