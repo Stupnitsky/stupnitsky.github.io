@@ -1838,6 +1838,62 @@
       fit(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
       window.addEventListener('resize', fit, { passive: true });
       burger.addEventListener('click', fit, true);   /* до открытия (fitPlate меряет уже новую раскладку) */
+      /* Растровый переход охры в чёрную створку (стенд docs/menu-desk/, вариант 190; Грег, 01.10.2026). Створка в зоне перехода
+         прозрачна (styles.css), чёрное там рисует SVG с маской-растром – в дырках просвечивает сама охра кнопки, шва нет.
+         Растр как в печати: доля охры c = 0…1, c ≥ .5 – охра с чёрными ромбиками-дырками, c < .5 – ромбики охры на чёрном;
+         сплошная охра у края – одним прямоугольником маски. Ширина --hr – до 190px и до начала самой длинной строки на створке.
+         Наведение: створка уезжает влево, растр едет впереди неё и с 0,22 с за 0,62 с заливается в чёрный; уход – растр
+         вырастает за 0,36 с и створка уходит вправо мягким краем */
+      if (cur) (function () {
+        var NS = 'http://www.w3.org/2000/svg', RMAX = 190, P = 10, W = 0, H = 0, R = RMAX, E = RMAX, full = true, raf = 0, t1 = 0;
+        var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+        var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('class', 'mnd-ht'); svg.setAttribute('aria-hidden', 'true');
+        svg.innerHTML = '<defs><mask id="mnd-ht-m" maskUnits="userSpaceOnUse" x="-2" y="-2"><rect x="-2" y="-2" fill="#fff"/><path fill="#000"/><path fill="#fff"/></mask></defs>' +
+          '<rect class="mnd-ht-ink" x="0" y="0" mask="url(#mnd-ht-m)"/>';
+        cur.insertBefore(svg, cur.firstChild);
+        var mk = svg.querySelector('mask'), mr = mk.querySelector('rect'), ps = mk.querySelectorAll('path'), ink = svg.querySelector('.mnd-ht-ink');
+        function ramp(v) { v = Math.max(0, Math.min(1, v)); return v * v * (3 - 2 * v); }
+        function size() {
+          var r = cur.getBoundingClientRect(); if (!r.width) return false; W = r.width; H = Math.ceil(r.height);
+          var car = cur.querySelector('.mnd-car'), mw = 0;
+          if (car) Array.prototype.forEach.call(car.children, function (x) { mw = Math.max(mw, x.scrollWidth); });
+          var free = car ? car.getBoundingClientRect().right - r.left - mw - 24 : RMAX;
+          R = Math.round(Math.max(70, Math.min(RMAX, free))); if (full) E = R;
+          var X = R + 24; floor.style.setProperty('--hr', R + 'px');
+          svg.setAttribute('width', X); svg.setAttribute('height', H); svg.setAttribute('viewBox', '0 0 ' + X + ' ' + H);
+          [mk, mr].forEach(function (e) { e.setAttribute('width', X + 4); e.setAttribute('height', H + 4); });
+          ink.setAttribute('width', X); ink.setAttribute('height', H); return true;
+        }
+        function dia(x, y, s) { return 'M' + x + ' ' + (y - s).toFixed(2) + 'L' + (x + s).toFixed(2) + ' ' + y + 'L' + x + ' ' + (y + s).toFixed(2) + 'L' + (x - s).toFixed(2) + ' ' + y + 'Z'; }
+        function draw() {
+          if (!W && !size()) return;
+          var cov = function (x) { return E > 1 ? ramp((E - x) / R) : 0; }, X = R + 24, o = '', k = '', solid = -1, i, j, x, y, c;
+          for (i = 0; i * P <= X + P; i++) if (cov(i * P) >= .5) solid = i * P + P / 2;
+          if (solid > 0) o = 'M-2 -2H' + solid + 'V' + (H + 2) + 'H-2Z';
+          for (j = 0; j * P < H + P; j++) for (i = 0; i * P <= X + P; i++) { x = i * P; y = j * P; c = cov(x); if (c > .01 && c < .5) o += dia(x, y, P * Math.sqrt(c / 2)); }
+          for (j = 0; j * P < H + P; j++) for (i = 0; i * P <= X; i++) { x = (i + .5) * P; y = (j + .5) * P; c = cov(x); if (c > .3 && c < .995) k += dia(x, y, Math.min(P / 2, P * Math.sqrt((1 - c) / 2))); }
+          ps[0].setAttribute('d', o); ps[1].setAttribute('d', k);
+        }
+        function set(v) { cancelAnimationFrame(raf); E = v; full = E >= R; draw(); }
+        function ease(t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+        function run(to, dur) {
+          if (calm.matches) { set(to); return; }
+          cancelAnimationFrame(raf); var from = E, t0 = performance.now();
+          (function step() { var t = Math.min(1, (performance.now() - t0) / dur); E = from + (to - from) * ease(t); full = E >= R; draw(); if (t < 1) raf = requestAnimationFrame(step); })();
+        }
+        function refit() { if (size()) draw(); }
+        /* сдвиг створки – .7s cubic-bezier(.6,0,.2,1): трогается медленно, идёт быстро; заливка к концу сдвига */
+        function on() { clearTimeout(t1); t1 = setTimeout(function () { run(0, 620); }, calm.matches ? 0 : 220); }
+        function off() { clearTimeout(t1); run(R, 360); }
+        floor.addEventListener('mouseenter', on); floor.addEventListener('focus', on);
+        floor.addEventListener('mouseleave', off); floor.addEventListener('blur', off);
+        /* меню закрыли нажатием по полосе – mouseleave не пришёл: при следующем открытии растр снова на месте */
+        new MutationObserver(function () { if (root.classList.contains('menu-open')) setTimeout(function () { if (!floor.matches(':hover')) { clearTimeout(t1); full = true; E = R; } refit(); }, 40); })
+          .observe(root, { attributes: true, attributeFilter: ['class'] });
+        window.addEventListener('resize', refit, { passive: true });
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(refit);
+        refit();
+      })();
       /* строки на створке сменяются каждые 2,6 с, только пока меню открыто */
       if (cur) {
         var lines = cur.querySelectorAll('.mnd-car span'), k = 0;
@@ -2693,7 +2749,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20261001-7';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20261001-9';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
