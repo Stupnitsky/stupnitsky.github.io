@@ -1818,10 +1818,6 @@
         var ls = head.querySelectorAll('.mn-langs .mn-lang'), l = Infinity, r = -Infinity;   /* языки от 1150px – в ряду шапки */
         Array.prototype.forEach.call(ls, function (a) { var b = a.getBoundingClientRect(); if (b.width) { l = Math.min(l, b.left); r = Math.max(r, b.right); } });
         if (r > l) nav.style.setProperty('--mnd-w', Math.ceil(r - l) + 'px');
-        /* облачко «napisz do nas» у обоих мессенджеров – на одной вертикали: имя каждого занимает ширину слова «WhatsApp»,
-           у Telegram облачко чуть дальше от слова (Грег, 01.10.2026). Ширина – по самому тексту (Range), не по рамке с min-width */
-        var rn = rail.querySelector('a > span:first-child');
-        if (rn) { var rr = document.createRange(); rr.selectNodeContents(rn); var rw = rr.getBoundingClientRect().width; if (rw) rail.style.setProperty('--wa-w', Math.ceil(rw) + 'px'); }
         if (floor && title) {
           var f = floor.getBoundingClientRect(); if (!f.width) return;
           var k = list.querySelector('.mn-link:nth-child(6)'), kl = 0;
@@ -2774,7 +2770,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20261001-17';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20261001-19';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
