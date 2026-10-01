@@ -4871,13 +4871,13 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
   /* Языки – этажом выше: в ряду шапки, слева от крестика, видны при открытом меню (app.js переносит .mn-langs в .hdr-seg--menu от 1150px;
      Грег, 01.10.2026: «языки на один этаж выше»). Общая сетка .mn-in: слева пункты (3 строки), справа WhatsApp и Telegram – отдельными
      строками по левому краю колонки, номер – в третьей; под строками линии с разрывами между колонками. Первая тонкая линия – целая,
-     на 5px выше прежнего (Грег, 01.10.2026: «поднять на 4–6 px»): панель со стеклом поднята на 5px, пункты опущены внутри на те же 5px –
+     на 8px выше прежнего (Грег, 01.10.2026: «поднять на 4–6 px», затем ещё на 3): панель со стеклом поднята на 8px, пункты опущены внутри на те же 8px –
      двигается только линия (над краем панели её рисовать нельзя – #mobile-nav с overflow-y:auto срезает всё выше себя) */
-  #mobile-nav .mn-in{ display:grid; grid-template-columns:minmax(0,1fr) var(--mnd-w, 340px); column-gap:3rem; align-items:start; position:relative; padding-top:5px; }
+  #mobile-nav .mn-in{ display:grid; grid-template-columns:minmax(0,1fr) var(--mnd-w, 340px); column-gap:3rem; align-items:start; position:relative; padding-top:8px; }
   #mobile-nav .mn-in::before{ content:""; position:absolute; left:var(--mn-inset); right:var(--mn-inset); top:0; height:1px; background:rgba(31,33,32,.1); }
   header:has(.hdr-row.on-dark) #mobile-nav .mn-in::before{ background:rgba(255,255,255,.14); }
-  #mobile-nav{ top:calc(100% - 5px); }
-  html.menu-open .hdr-row::before, html.menu-open .hdr-row::after{ bottom:calc(5px - var(--mn-h, 0px)); }
+  #mobile-nav{ top:calc(100% - 8px); }
+  html.menu-open .hdr-row::before, html.menu-open .hdr-row::after{ bottom:calc(8px - var(--mn-h, 0px)); }
   #mobile-nav .mnd-grid{ display:contents; }
   #mobile-nav .mnd-grid .mn-list{ grid-column:1; grid-row:1 / span 3; }
   #mobile-nav .mnd-rail{ grid-column:2; grid-row:1 / span 2; }
