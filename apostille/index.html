@@ -34,10 +34,10 @@
 <meta name="theme-color" content="#F1F1EF" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1F2120" media="(prefers-color-scheme: dark)">
 
-<link rel="stylesheet" href="/assets/fonts/fonts.css?v=20260930-56">
+<link rel="stylesheet" href="/assets/fonts/fonts.css?v=20260930-58">
 
 <link rel="stylesheet" href="/tailwind.css">
-<link rel="stylesheet" href="/styles.css?v=20260930-56">
+<link rel="stylesheet" href="/styles.css?v=20260930-58">
 
 <script type="application/ld+json">
 {
@@ -146,7 +146,7 @@
     { "@type": "Question", "name": "Tłumaczenie robi się przed Apostille czy po?",
       "acceptedAnswer": { "@type": "Answer", "text": "To zależy od instytucji, która przyjmie dokument, i kraju, do którego trafi. Najczęściej najpierw Apostille na oryginał, potem tłumaczenie przysięgłe, a na końcu Apostille na tłumaczenie – tak wymagają np. Włochy i Hiszpania. Bywa też, że wystarczy Apostille na samo tłumaczenie. Wymagania sprawdź tam, gdzie składasz dokument, i wskaż wariant przy wycenie – wykonamy każdy." } },
     { "@type": "Question", "name": "Jak wygląda klauzula Apostille?",
-      "acceptedAnswer": { "@type": "Answer", "text": "W Polsce to zadrukowana naklejka z hologramem i nagłówkiem „Apostille (Convention de La Haye du 5 octobre 1961)”. Ma dziesięć pól: kraj, kto podpisał dokument, w jakim charakterze, jaką pieczęcią, miejsce i data poświadczenia, organ, numer, pieczęć i podpis urzędnika. MSZ nakleja ją na ostatniej stronie dokumentu albo na doszytej karcie. Publicznego rejestru, w którym można by sprawdzić Apostille online, w Polsce nie ma, dlatego liczy się oryginał z naklejką." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "W Polsce to zadrukowana naklejka z hologramem i nagłówkiem „Apostille (Convention de La Haye du 5 octobre 1961)”. Ma dziesięć pól: kraj, kto podpisał dokument, w jakim charakterze, jaką pieczęcią, miejsce i data poświadczenia, organ, numer, pieczęć i podpis urzędnika. MSZ nakleja ją na ostatniej stronie dokumentu albo na doszytej karcie. Publicznego rejestru, w którym można by sprawdzić Apostille online, w Polsce nie ma, dlatego liczy się oryginał z naklejką. Przykład znajdziesz wyżej na tej stronie." } },
     { "@type": "Question", "name": "Czy Apostille ma termin ważności?",
       "acceptedAnswer": { "@type": "Answer", "text": "Sama klauzula nie traci ważności. Termin może mieć dokument: urzędy za granicą często wymagają odpisu aktu stanu cywilnego lub zaświadczenia o niekaralności nie starszego niż 3–6 miesięcy. Dlatego Apostille lepiej robić wtedy, gdy dokument jest już potrzebny, a nie „na zapas”." } },
     { "@type": "Question", "name": "Kiedy zamiast Apostille potrzebna jest legalizacja?",
@@ -273,9 +273,10 @@
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <a href="/apostille-ukraina/" class="ua-hop bg-sand text-ink rounded-[26px]">
       <span class="ua-hop-head">
-        <span class="ua-hop-q">Masz dokument z&nbsp;Ukrainy?</span>
-        <span class="ua-hop-t">Apostille na ukraiński dokument uzyskamy w&nbsp;Ukrainie przez naszego partnera, więc nie musisz tam jechać,
+        <span class="ua-hop-q">Masz dokument z&nbsp;Ukrainy?<svg class="ua-hop-q-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span>
+        <span class="ua-hop-t ua-hop-t--long">Apostille na ukraiński dokument uzyskamy w&nbsp;Ukrainie przez naszego partnera, więc nie musisz tam jechać,
           a&nbsp;tłumaczenie przysięgłe na polski, jeśli go potrzebujesz, zrobimy potem w&nbsp;Warszawie&nbsp;– osobno od ceny Apostille. Cena i&nbsp;termin zależą od tego, jaki masz dokument.</span>
+        <span class="ua-hop-t ua-hop-t--short">Apostille uzyskamy przez partnera w&nbsp;Ukrainie, więc nie musisz tam jechać. Tłumaczenie przysięgłe zrobimy w&nbsp;Warszawie, osobno od ceny Apostille.</span>
         <span class="k-where-link k-where-link--dark ua-hop-go">Apostille na Dokumenty z&nbsp;Ukrainy <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span>
       </span>
       <span class="ua-hop-list">
@@ -522,6 +523,16 @@
         </p>
       </div>
     </div>
+    <!-- Образец клаузулы (01.10.2026, фото владелицы): вырезан с нотариальной копии, перевёрнут; имя судьи, номер,
+         подпись и фамилия сотрудника MSZ закрыты мозаикой, лишние печати вне наклейки убраны. Фото odpisu и справки KRK
+         не ставим – владелица: «индивидуальные документы с личными данными, незачем». -->
+    <figure class="ap-wzor" id="wzor">
+      <img src="/assets/img/apostille-wzor.jpg" width="585" height="469" loading="lazy" decoding="async"
+           alt="Klauzula Apostille MSZ – naklejka z hologramem na dokumencie poświadczonym w Sądzie Okręgowym w Warszawie, nazwiska, numer i podpis zasłonięte">
+      <figcaption><b>Tak wygląda Apostille z&nbsp;MSZ.</b> Naklejka z&nbsp;hologramem, dziesięć pól po polsku i&nbsp;angielsku, pieczęć
+        ministerstwa i&nbsp;numer. Tu MSZ nadało ją na dokumencie, który wcześniej poświadczył Sąd Okręgowy w&nbsp;Warszawie. To prawdziwa
+        klauzula&nbsp;– nazwiska, numer i&nbsp;podpis zasłoniliśmy.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -689,7 +700,7 @@
           Ma dziesięć pól: kraj, kto podpisał dokument, w&nbsp;jakim charakterze, jaką pieczęcią, miejsce i&nbsp;data poświadczenia,
           organ, numer, pieczęć i&nbsp;podpis urzędnika. MSZ nakleja ją na ostatniej stronie dokumentu albo na doszytej karcie.
           Publicznego rejestru, w&nbsp;którym można by sprawdzić Apostille online, w&nbsp;Polsce nie ma, dlatego liczy się
-          oryginał z&nbsp;naklejką.
+          oryginał z&nbsp;naklejką. Przykład znajdziesz <a href="#wzor" class="underline font-semibold">wyżej na tej stronie</a>.
         </p>
       </details>
 
@@ -876,7 +887,7 @@
 
 <!-- /sync:footer -->
 
-<script src="/assets/app.js?v=20260930-56" defer></script>
+<script src="/assets/app.js?v=20260930-58" defer></script>
 
 </body>
 </html>

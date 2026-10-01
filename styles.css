@@ -4956,7 +4956,7 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
 /* Список цен подстраниц: названия услуг – читаемый текст, поэтому чернильные (цвет по роли, К6) */
 html[lang="pl"] #ile-trwa .faq-price span{ color:var(--c-ink); }
 /* Крупная цена и срок в #ile-trwa – смысловой узел парой начертаний: жирная цена, светлый курсив срока (К6).
-   Пока только /apostille/akt-urodzenia/ – показ владелице, потом решить про pełnomocnictwo и KRK */
+   Владелица 01.10.2026: «чтоб везде выглядело как один стиль» – akt-urodzenia (260), pełnomocnictwo (380), KRK (460) */
 .ile-big{ margin-top:1.5rem; display:flex; flex-wrap:wrap; align-items:baseline; column-gap:.45em; row-gap:.2em;
   line-height:.95; letter-spacing:-.035em; }
 .ile-big b{ font-weight:900; font-size:clamp(52px, 13vw, 88px); white-space:nowrap; font-variant-numeric:tabular-nums; }
@@ -4974,3 +4974,29 @@ html[lang="pl"] #ile-trwa .faq-price span{ color:var(--c-ink); }
 .sad-pick{ scroll-margin-top:88px; }
 @media (min-width:1150px){ .sad-pick{ scroll-margin-top:124px; } }
 @media (min-width:1024px){ .sad-pick-via{ padding-top:0; } }
+
+/* Образец клаузулы Apostille в #co-to-jest на /apostille/ (01.10.2026): фото слева, подпись run-in справа от 768px */
+.ap-wzor{ margin-top:2.5rem; display:grid; gap:1rem; align-items:end; }
+.ap-wzor img{ display:block; width:100%; max-width:585px; height:auto; border-radius:14px; border:1px solid rgba(31,33,32,.12); background:#fff; }
+.ap-wzor figcaption{ font-size:15px; line-height:1.55; color:var(--c-ink); max-width:44ch; }
+.ap-wzor figcaption b{ font-weight:700; }
+@media (min-width:768px){ .ap-wzor{ grid-template-columns:minmax(0,585px) minmax(0,1fr); gap:2rem; } }
+#wzor{ scroll-margin-top:88px; }
+@media (min-width:1150px){ #wzor{ scroll-margin-top:124px; } }
+
+/* .ua-hop на телефоне в один экран (владелица 01.10.2026; было 939px на 320): уже 640px – короткий текст
+   (.ua-hop-t--short, длинный остаётся от 640px) и строки цен компактнее – цена справа от названия, срок под ним */
+.ua-hop-t--short, .ua-hop-q-go{ display:none; }
+@media (max-width:639px){
+  .ua-hop{ padding:1.5rem 1.4rem; gap:.9rem; }
+  .ua-hop-t--long{ display:none; }
+  .ua-hop-t--short{ display:block; }
+  /* стрелка – у вопроса, отдельная строка-ссылка «Apostille na Dokumenty z Ukrainy» здесь скрыта (вся плашка – ссылка) */
+  .ua-hop-go{ display:none; }
+  .ua-hop-q-go{ display:inline-block; width:.62em; height:.62em; margin-left:.3em; vertical-align:.02em; }
+  /* строка – сетка: название и цена в одной линии, срок под ними во всю ширину (.ua-hop-n раскрыт через contents) */
+  .ua-hop-row{ display:grid; grid-template-columns:minmax(0,1fr) auto; column-gap:.9rem; row-gap:.2rem; align-items:baseline; padding:.7rem 0; }
+  .ua-hop-n{ display:contents; font-size:16px; line-height:1.3; }
+  .ua-hop-n small{ grid-column:1 / -1; grid-row:2; font-size:14px; line-height:1.4; }
+  .ua-hop-row b{ grid-column:2; grid-row:1; font-size:17px; }
+}
