@@ -1928,20 +1928,25 @@ details[open] .chev{ transform:rotate(45deg); }
 .cn-v2 .cn-nav--end{ margin-top:2.25rem; }
 
 /* Отдельное плавающее меню внизу окна – клон якорей, который app.js создаёт и показывает
-   при прокрутке; у подвала останавливается над ним. Со списком в потоке не связано. */
-.cn-dock{ position:fixed; left:0; right:0; bottom:24px; z-index:60;
- display:flex; flex-wrap:wrap; gap:.5rem; justify-content:flex-start;
- width:100%; max-width:1320px; margin:0 auto; padding:0 1.25rem;
- pointer-events:none; opacity:0; transform:translateY(12px);
+   при прокрутке; у подвала останавливается над ним. Со списком в потоке не связано.
+   Как у butter.video/product: одна белая плашка по центру, кнопки внутри прозрачные –
+   между ними не просвечивает текст страницы. Узкое окно – плашка листается вбок. */
+.cn-dock{ position:fixed; left:50%; bottom:24px; z-index:60;
+ display:flex; flex-wrap:nowrap; gap:2px; align-items:center;
+ width:max-content; max-width:calc(100% - 2.5rem);
+ padding:6px; border-radius:12px; background:var(--c-paper);
+ box-shadow:0 1px 2px rgba(31,33,32,.06), 0 8px 24px rgba(31,33,32,.08);
+ overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:none;
+ pointer-events:none; opacity:0; transform:translate(-50%,12px);
  transition:opacity .3s ease, transform .3s ease; }
-@media (min-width:640px){ .cn-dock{ padding:0 2rem; } }
-.cn-dock.is-on{ opacity:1; transform:none; }
-.cn-dock a{ background:var(--c-paper); }
-.cn-dock.is-on a{ pointer-events:auto; }
+.cn-dock::-webkit-scrollbar{ display:none; }
+@media (min-width:640px){ .cn-dock{ max-width:calc(100% - 4rem); } }
+.cn-dock.is-on{ opacity:1; transform:translate(-50%,0); pointer-events:auto; }
+.cn-dock a{ background:transparent; white-space:nowrap; flex:none; }
+.cn-dock a:hover, .cn-dock a:focus-visible{ background:#EDEDEA; }
 @media (max-width:639px){ .cn-dock{ display:none; } }
-/* наведение без подсветки – плашка остаётся белой */
-/* текущий раздел – серая плашка, как ярлык «Cennik» */
-.cn-dock a.is-here{ background:#D0D0CB; }
+/* текущий раздел – мягкий серый, как плашки условий в прайсе (.cn-pill) */
+.cn-dock a.is-here{ background:var(--c-sand); }
 @media (prefers-reduced-motion:reduce){ .cn-dock{ transition:none; } }
 
 /* Статусная строка: две плашки рядом со скруглением 6px – серый ярлык и жёлтая с текстом,
