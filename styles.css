@@ -4891,11 +4891,11 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
 
   /* облачко «napisz do nas» – сразу за названием наведённого мессенджера, через 36px (Грег, 01.10.2026: «баблы очень далеко от Telegram
      и Wapp»; 36px – Грег, 01.10.2026): три прыгающие точки, через 0,9 с – подпись (как «Печатает…», вариант 130 стенда). Хвостик – к названию. Облачко – часть
-     ссылки, по нему тоже можно нажать; на 2px ниже середины строки – по оптическому центру */
+     ссылки, по нему тоже можно нажать; на 1px ниже середины строки (Грег, 01.10.2026: «поднять на 1 px», было 2px) */
   /* отступ облачка от слова – свой у каждого (Грег, 01.10.2026: «для Wapp 39, а Teleg 43») */
   #mobile-nav .mnd-rail a{ position:relative; justify-content:flex-start; gap:39px; }
   #mobile-nav .mnd-rail a + a{ gap:43px; }
-  #mobile-nav .mnd-rail .mnd-hint{ position:relative; z-index:1; top:2px; flex:none; height:30px; display:flex; align-items:center; gap:4px;
+  #mobile-nav .mnd-rail .mnd-hint{ position:relative; z-index:1; top:1px; flex:none; height:30px; display:flex; align-items:center; gap:4px;
     padding:0 12px; border-radius:15px 15px 15px 4px; background:#fff; box-shadow:0 1px 3px rgba(31,33,32,.08); color:rgba(31,33,32,.72);
     font-size:15px; font-weight:400; letter-spacing:normal; line-height:1.1; white-space:nowrap; pointer-events:none;   /* текст – как неактивный язык, на кегль меньше */
     transform:scale(.6); transform-origin:0 100%; transition:transform .3s cubic-bezier(.3,1.5,.5,1), opacity .2s ease; }
