@@ -4893,6 +4893,7 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
      и Wapp»; 36px – Грег, 01.10.2026): три прыгающие точки, через 0,9 с – подпись (как «Печатает…», вариант 130 стенда). Хвостик – к названию. Облачко – часть
      ссылки, по нему тоже можно нажать; на 2px ниже середины строки – по оптическому центру */
   #mobile-nav .mnd-rail a{ position:relative; justify-content:flex-start; gap:36px; }
+  #mobile-nav .mnd-rail a > span:first-child{ min-width:var(--wa-w, 0px); }   /* облачка WhatsApp и Telegram – на одной вертикали */
   #mobile-nav .mnd-rail .mnd-hint{ position:relative; z-index:1; top:2px; flex:none; height:30px; display:flex; align-items:center; gap:4px;
     padding:0 12px; border-radius:15px 15px 15px 4px; background:#fff; box-shadow:0 1px 3px rgba(31,33,32,.08); color:rgba(31,33,32,.72);
     font-size:15px; font-weight:400; letter-spacing:normal; line-height:1.1; white-space:nowrap; pointer-events:none;   /* текст – как неактивный язык, на кегль меньше */
