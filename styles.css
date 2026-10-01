@@ -5079,3 +5079,8 @@ html[lang="pl"] #ile-trwa .faq-price span{ color:var(--c-ink); }
   .kk-wm{ font-size:200px; }
 }
 @media (prefers-reduced-motion:reduce){ .kk-c, .kk-seg .bar i, .kk-ln svg, .kk-back svg{ transition:none !important; } }
+
+/* Заголовки разделов (h2 34/48px) с 01.10.2026 – одним начертанием 900, без пары со светлым курсивом (стенд docs/naglowki/,
+   вариант 7; пара осталась у FAQ и карточек). Строки делятся поровну, чтобы последнее слово не висело одно
+   («Ile trwa i ile kosztuje Apostille na / odpis»). */
+h2[class*="text-[34px]"]{ text-wrap:balance; }
