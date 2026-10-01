@@ -1881,8 +1881,12 @@
         }, true);
         /* нажатие по закрытой плашке (мимо логотипа и бургера) раскрывает меню – как бургер; на планшете у пилюли своё
            действие (к началу страницы), поэтому только от 1150px */
+        /* нажатие по открытой плашке её закрывает: документ закрывает меню уже на pointerdown, и click того же нажатия раскрывал
+           его снова – меню мигало и оставалось открытым. Запоминаем, было ли меню открыто в момент нажатия (Грег, 01.10.2026) */
+        var downOpen = false;
+        row.addEventListener('pointerdown', function () { downOpen = isOpen(); }, true);
         row.addEventListener('click', function (e) {
-          if (!desk.matches || isOpen() || e.target.closest('a, button')) return;
+          if (!desk.matches || isOpen() || downOpen || e.target.closest('a, button')) return;
           fit(); setOpen(true);
         });
         row.addEventListener('mouseenter', function () { armed = !isOpen(); fast = false; last = null; plan(); });
@@ -2595,7 +2599,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20260930-58';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20261001-1';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
