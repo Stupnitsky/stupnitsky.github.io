@@ -1743,7 +1743,8 @@
     });
     /* нажатие в ряду шапки мимо бургера (логотип, «Zamów wycenę») – меню закрывается, панель wyceny откроется сама */
     document.addEventListener('pointerdown', function (e) {
-      if (isOpen() && e.target !== shade && !nav.contains(e.target) && !burger.contains(e.target)) setOpen(false);
+      /* языки в ряду шапки (компьютер) – меню не закрываем на pointerdown: иначе они пропали бы до click, и язык бы не сменился */
+      if (isOpen() && e.target !== shade && !nav.contains(e.target) && !burger.contains(e.target) && !(e.target.closest && e.target.closest('.mn-langs'))) setOpen(false);
     });
     /* окно перешло порог 1150px – у меню другая раскладка (с 30.09.2026 меню есть и на компьютере), закрываем */
     var wide = window.matchMedia('(min-width:1150px)');
@@ -1814,23 +1815,9 @@
          но не уже надписи на охре + 40px с каждой стороны; надпись – по центру зоны (Грег, 30.09.2026) */
       function fit() {
         if (!desk.matches) return;
-        var ls = nav.querySelectorAll('.mn-lang'), l = Infinity, r = -Infinity;
+        var ls = head.querySelectorAll('.mn-langs .mn-lang'), l = Infinity, r = -Infinity;   /* языки от 1150px – в ряду шапки */
         Array.prototype.forEach.call(ls, function (a) { var b = a.getBoundingClientRect(); if (b.width) { l = Math.min(l, b.left); r = Math.max(r, b.right); } });
         if (r > l) nav.style.setProperty('--mnd-w', Math.ceil(r - l) + 'px');
-        /* WhatsApp – правым краем по концу «Українська», Telegram – левым краем под «Русский» (второй и третий языки строки;
-           Грег, 30.09.2026): пара мессенджеров стоит по обе стороны промежутка между ними */
-        var ua = ls[1], ru = ls[2], rl = rail.getBoundingClientRect(), rk = rail.children;
-        if (ua && ru && rl.width && rk.length > 1) {
-          var ww = rk[0].getBoundingClientRect().width, ux = ua.getBoundingClientRect().right - rl.left, rx = ru.getBoundingClientRect().left - rl.left,
-            wx = Math.max(0, ux - ww);
-          rail.style.setProperty('--wa-x', wx.toFixed(1) + 'px');
-          rail.style.setProperty('--tg-x', rx.toFixed(1) + 'px');
-          rail.style.setProperty('--tg-m', Math.max(12, rx - wx - ww).toFixed(1) + 'px');
-          /* наведённый Telegram уезжает на место WhatsApp и встаёт так же – правым краем по концу «Українська» (Грег, 30.09.2026) */
-          rail.style.setProperty('--tg-s', (ux - rx - rk[1].getBoundingClientRect().width).toFixed(1) + 'px');
-          /* номер с часами – правым краем по концу слова Telegram (Грег, 30.09.2026) */
-          nav.style.setProperty('--tg-r', Math.max(0, Math.round(rl.right - rk[1].getBoundingClientRect().right)) + 'px');
-        }
         if (floor && title) {
           var f = floor.getBoundingClientRect(); if (!f.width) return;
           var k = list.querySelector('.mn-link:nth-child(6)'), kl = 0;
@@ -1841,6 +1828,13 @@
           if (g.width) floor.style.setProperty('--sl', Math.round(f.right - g.left + 36) + 'px');
         }
       }
+      /* языки – этажом выше: от 1150px строка языков стоит в ряду шапки слева от крестика (видна при открытом меню, styles.css),
+         уже 1150px – первой строкой в панели, как было (Грег, 01.10.2026) */
+      var langs = nav.querySelector('.mn-langs'), lseg = head && head.querySelector('.hdr-seg--menu');
+      function placeLangs() { if (!langs || !lseg) return;
+        if (desk.matches) { if (langs.parentNode !== lseg) lseg.appendChild(langs); }
+        else if (langs.parentNode !== inn) inn.insertBefore(langs, inn.firstChild); }
+      placeLangs(); (desk.addEventListener ? desk.addEventListener('change', placeLangs) : desk.addListener(placeLangs));
       fit(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
       window.addEventListener('resize', fit, { passive: true });
       burger.addEventListener('click', fit, true);   /* до открытия (fitPlate меряет уже новую раскладку) */
@@ -2699,7 +2693,7 @@
      в том числе там, где та же форма уже стоит в секции #wycena (главная, /cennik/). */
   (function(){
     var QL = window.QD_LANG || 'pl';   /* язык панели – по lang страницы (28.09.2026), копии wycena-uk/ru/en собирает docs/wycena-i18n.py */
-    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20261001-4';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
+    var FRAG = '/assets/wycena' + (QL === 'pl' ? '' : '-' + QL) + '.html?v=20261001-7';   /* формат ГГГГММДД-N; поднимать вместе с версиями styles.css и app.js в HTML */
     var qd = null, last = null, loading = null;
 
     /* id внутри панели дублировали бы форму на /cennik/ и главной – добавляем суффикс */
