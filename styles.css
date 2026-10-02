@@ -5167,7 +5167,8 @@ h2[class*="text-[34px]"]{ text-wrap:balance; }
 #ceny.cn-v3 .cn-list li.xpopli{margin-top:14px!important}
 #ceny.cn-v3 .cn-price{align-self:center!important}
 #ceny.cn-v3 .cn-list li > .xc{position:absolute;right:1.3rem;top:50%;margin:-7px 0 0}
-#ceny.cn-v3 .cn-group-h{font:900 48px/.98 "Fira Sans",sans-serif!important;letter-spacing:-.045em!important;margin-top:.7rem}
+/* 02.10 (Грег: «все заголовки в таком стиле», как «Co jest w cenie, a za co płacisz osobno»): заголовки групп – h2 сайта, одно начертание 900 48px, без пары Condensed */
+#ceny.cn-v3 .cn-group-h{font:900 48px/.95 "Fira Sans",sans-serif!important;letter-spacing:-.045em!important;margin-top:.7rem;text-wrap:balance}
 #ceny.cn-v3 .cn-group-t{font-size:18px!important;color:var(--c-ink)!important;margin-top:.9rem}
 #ceny.cn-v3 .cn-list li .cg90{display:none;grid-column:1 / -1;justify-self:start;margin-top:1rem}
 #ceny.cn-v3 .cn-list li.open .cg90{display:inline-flex;animation:xIn .35s ease both}
@@ -5249,10 +5250,6 @@ h2[class*="text-[34px]"]{ text-wrap:balance; }
 #ceny.cn-v3 .cn-list li .cn-name{font-family:"Fira Sans Condensed","Fira Sans",sans-serif!important;letter-spacing:-.02em!important;font-weight:400!important;font-size:26px!important}
 #ceny.cn-v3 .cn-list li .cn-name .xpa{font-weight:700}
 #ceny.cn-v3 .cn-list li .cn-name .xpb{font-weight:400}
-#ceny.cn-v3 .cn-groups:not(.cn-incl) > .cn-group > .cn-group-h{font-family:"Fira Sans Condensed","Fira Sans",sans-serif!important;letter-spacing:-.02em!important;font-weight:400!important;font-size:52px!important}
-#ceny.cn-v3 .cn-groups:not(.cn-incl) > .cn-group > .cn-group-h .xpa{font-weight:700}
-#ceny.cn-v3 .cn-groups:not(.cn-incl) > .cn-group > .cn-group-h .xpb{font-weight:400}
-#ceny.cn-v3 .cn-groups:not(.cn-incl) > .cn-group > .cn-group-h{line-height:1!important}
 #ceny.cn-v3 .cn-meta{display:block!important;margin-top:.5rem!important;font:400 20px/1.3 "Fira Sans Condensed","Fira Sans",sans-serif;letter-spacing:-.01em;color:var(--c-ink)}
 #ceny.cn-v3 .cn-meta .cn-pill{all:unset;font:inherit}
 #ceny.cn-v3 .cn-meta .cn-term .cn-pill{font-weight:700}
