@@ -4092,7 +4092,8 @@ details[open] > summary .chev:not(.chev--x)::before{ transform:translateY(3px) r
    и крошки в 60 % (text-ink/60) – эти правила не трогаются. Вступление сразу после h1/h2 (17px) – лид: 20px от 640px,
    18px на телефоне; уже крупные лиды (главная 21px, /cennik/ 24px) не меняются.
    Только польские страницы (html[lang="pl"]) – ua/ru/en догоняют общим проходом, тогда ограничение снять.
-   Не трогаются: прайс /cennik/ (#ceny), цены в FAQ (.faq-price), панель заявки (.qd), шапка, меню, подвал. */
+   Не трогаются здесь: прайс /cennik/ (#ceny) и цены в FAQ (.faq-price) – их чернит правило ниже (02.10.2026);
+   панель заявки (.qd), шапка, меню, подвал. */
 html[lang="pl"] :is(.text-ink\/65, .text-ink\/70, .text-ink\/75, .text-ink\/80, .text-ink\/85):not(.uppercase):not(section#ceny *, .qd *, header *, nav *, #mobile-nav *, footer *){ color:var(--c-ink); }
 html[lang="pl"] :is(.tl-def-text, .tl-lead, .tl-meta, .step-lead, .scheme-item figcaption, .flow li, .opt span, .rules li,
   .gdz--light .gdz-full, .gdz--light .gdz-docs li, .gdz--light .gdz-note p, .gdz-key-s, .gdz-src,
@@ -4100,6 +4101,12 @@ html[lang="pl"] :is(.tl-def-text, .tl-lead, .tl-meta, .step-lead, .scheme-item f
 html[lang="pl"] :is(h1, h2) + p.text-\[17px\]{ font-size:18px; color:var(--c-ink); }
 @media (min-width:640px){ html[lang="pl"] :is(h1, h2) + p.text-\[17px\]{ font-size:20px; } }
 html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lead b было 19px – в лиде 20px оно стало бы мельче текста */
+/* Прайс и цены – тоже чернильные (Грег, 02.10.2026: «исправь серый ink/65 на чернильный»; было rgba(31,33,32,.65)):
+   описания и вводные строки групп /cennik/ (#ceny), пояснения «Odbiór i wysyłka», примечания под прайсом, строки цен
+   .faq-price (главная #faq, /apostille-ukraina/ #dyplom). Единицы «/ strona», «/ dokument» и «= 1125 znaków ze spacjami» –
+   служебные, остаются серыми. Как были: курсивные формулы .cn-sum (80 %) и текст панели заявки после отправки (75 %). */
+html[lang="pl"] :is(.faq-price span:not(.fp-unit):not(.fp-note), .cn-v2 .cn-group-t, .cn-v2 .cn-desc, .cn-v2 .cn-name small,
+  .cn-v2 .cn-foot p){ color:var(--c-ink); }
 
 /* Плашка судов #twoj-sad (Грег, 25.09.2026: «правая часть супер, в левой грустно»). Тезис плашки – самый сильный уровень
    слева и тем же языком, что стопка городов справа: узкий светлый «Pierwszy krok robisz u siebie,» (как названия городов)
