@@ -5288,3 +5288,8 @@ h2[class*="text-[34px]"]{ text-wrap:balance; }
 /* /cennik/: кнопки Zadzwoń · Zamów wycenę под подвалом прайса (анкета 02.10.2026), отступ – как между группами */
 .cn-foot .cn-foot-cta{ margin-top:28px; }
 .cn-foot .cn-foot-cta a.cta-btn{ text-decoration:none; }   /* .cn-v2 .cn-foot a подчёркивает ссылки текста */
+
+/* /cennik/, строка статуса (финальная аналитика 02.10.2026, Н5 и Н6; только PL): жёлтое скруглённое – только главная кнопка,
+   поэтому плашка песочная, рядом с серым ярлыком «Cennik»; месяц по-польски строчными */
+html[lang="pl"] .cn-v2 .cn-status > span{ background:var(--c-sand); }
+html[lang="pl"] .cn-v2 .cn-status .cennik-updated{ text-transform:none; }
