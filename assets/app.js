@@ -451,6 +451,7 @@
         sp.textContent = ch;
         sp.style.setProperty('--s', i ? (.25 + .6 * (i - 1) / word.length).toFixed(3) : '.12');
         if (i && i <= parLen) sp.className = 'hp-par';
+        else if (parLen && i > parLen) sp.className = 'hp-sub';   /* имя подстраницы – на 2 кегля меньше (styles.css; Грег, 02.10.2026) */
         pageLabel.appendChild(sp);
       });
       logoEl.insertAdjacentElement('afterend', pageLabel);

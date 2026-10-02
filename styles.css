@@ -3585,6 +3585,7 @@ html.qd-open #burger > span{ opacity:0; }
   #top .hdr-row.on-dark .hdr-page{ color:rgba(255,255,255,.5); }
   /* раздел перед подстраницей прячется, когда пилюля не помещается (app.js, 30.09.2026) */
   #top .hdr-page.hp-short > .hp-par{ display:none; }
+  #top .hdr-page > .hp-sub{ font-size:.9em; }   /* имя подстраницы на 2 кегля меньше раздела (Грег, 02.10.2026) */
   #top .hdr-page > span{ display:inline-block; white-space:pre;
     --o:clamp(0, (var(--hp, 0) - var(--s)) / .12, 1);
     opacity:var(--o); transform:translateX(calc((1 - var(--o)) * -6px)); }
@@ -4783,6 +4784,7 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
   #top .hdr-page{ display:block; flex:0 0 auto; margin-left:32px; white-space:nowrap; font-size:21px; font-weight:700; line-height:1;
     letter-spacing:-.035em; color:rgba(31,33,32,.45); }
   #top .hdr-page > span{ display:inline-block; white-space:pre; }
+  #top .hdr-page > .hp-sub{ font-size:.9em; }   /* 19px при 21px раздела */
   #top .hdr-row.on-dark .hdr-page{ color:rgba(255,255,255,.5); }
 
   /* панель – под рядом, прозрачная; вниз растёт стекло ряда (--mn-h ставит app.js) */
