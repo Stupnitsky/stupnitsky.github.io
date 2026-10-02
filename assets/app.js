@@ -2471,6 +2471,9 @@
     if (reduce) return;
     var DUR = 620;          // длительность накрутки, мс
     var FROM = 0.15;        // старт = 15% от цены
+    /* свои стартовые числа для основных цен (Грег, 02.10.2026); остальные – с 15% */
+    var START = { 260:23, 120:14, 550:31, 90:6 };
+    function startOf(target){ return START[target] != null ? START[target] : Math.round(target * FROM); }
     document.querySelectorAll('.price-hit').forEach(function(box){
       var el = box.querySelector('.price-num');
       if (!el) return;
@@ -2482,10 +2485,10 @@
       el.style.minWidth = el.getBoundingClientRect().width + 'px';
       hit.addEventListener('mouseenter', function(){
         if (raf) cancelAnimationFrame(raf);
-        var start = performance.now(), from = Math.round(target * FROM);
+        var start = performance.now(), from = startOf(target);
         (function tick(now){
           var t = Math.min((now - start) / DUR, 1);
-          var e = 1 - Math.pow(1 - t, 3);            // easeOutCubic
+          var e = t * t * t;                         // easeInCubic: вначале медленно, к концу разгон (Грег, 02.10.2026)
           el.textContent = fmt(Math.round(from + (target - from) * e));
           if (t < 1) raf = requestAnimationFrame(tick); else el.textContent = fmt(target);
         })(start);
@@ -2502,10 +2505,10 @@
       var raf = null;
       function run(){
         if (raf) cancelAnimationFrame(raf);
-        var start = performance.now(), from = Math.round(target * FROM);
+        var start = performance.now(), from = startOf(target);
         (function tick(now){
           var t = Math.min((now - start) / DUR, 1);
-          var e = 1 - Math.pow(1 - t, 3);
+          var e = t * t * t;                         // easeInCubic, как у прайса выше
           el.textContent = Math.round(from + (target - from) * e);
           if (t < 1) raf = requestAnimationFrame(tick); else el.textContent = target;
         })(start);

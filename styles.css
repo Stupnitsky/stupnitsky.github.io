@@ -4312,6 +4312,34 @@ html[lang="pl"] .wy-v2 :is(#quote-form, #quote-form-qd) .qd-done .qd-formsub{ co
   .gt--cn .gt-clip{ inset:0; border-radius:inherit; --gt-cx:calc(20px + var(--gt-f) * 1.59 + var(--gt-gap) + var(--gt-lw) / 2); }
 }
 
+/* .gt--cn, вид 40 со стенда docs/ceny-gt/ (Грег, 02.10.2026: «40 реализуй на сайте»). Вместо одной плашки с листами –
+   серая полоса под каждой строкой; цифры – жирный курсив, межстрочный интервал .792 (на 12% плотнее); столбец наклонён
+   вслед курсиву: строки сдвинуты на ±.06 / ±.18 кегля; подпись – услуга капсом, под ней крупный курсивный «zł»
+   и «/ ЕДИНИЦА» капсом. Полоса – две половинки: .gt-n::before (от знаков цифры) + .gt-l::before (до конца колонки
+   подписей), обе одной высоты, сходятся встык; z-index:-1 – внутри .gt-col (у неё z-index:1), под текстом.
+   Ширина .gt-n – по числу знаков (табличные цифры: 1ch минус трекинг), иначе при накрутке цены (app.js) левый край
+   полосы прыгал бы. Схождение подписей (--gt-d) снято: подпись стоит по центру своей полосы. */
+@media (min-width:1280px){
+  .gt--cn .gt-blk{ display:none; }
+  .gt--cn .gt-col{ left:0; }
+  .gt--cn .gt-n, .gt--cn .gt-l{ position:relative; translate:calc(var(--gt-k, 0) * var(--gt-f) * -.12) 0; }
+  .gt--cn .gt-n:nth-child(1), .gt--cn .gt-l:nth-child(2){ --gt-k:-1.5; }
+  .gt--cn .gt-n:nth-child(3), .gt--cn .gt-l:nth-child(4){ --gt-k:-.5; }
+  .gt--cn .gt-n:nth-child(5), .gt--cn .gt-l:nth-child(6){ --gt-k:.5; }
+  .gt--cn .gt-n:nth-child(7), .gt--cn .gt-l:nth-child(8){ --gt-k:1.5; }
+  .gt--cn .gt-n{ font-style:italic; line-height:.792; justify-self:end; padding-right:.04em;
+    min-width:calc(var(--gt-dg, 3) * (1ch - .03em) + .04em); }
+  .gt--cn .gt-n:nth-child(7){ --gt-dg:2; }
+  .gt--cn .gt-col .gt-l{ transform:none; align-self:stretch; justify-content:center; gap:4px; }   /* .gt-col – перебить .gt .gt-l:nth-child(n) */
+  .gt--cn .gt-n::before, .gt--cn .gt-l::before{ content:""; position:absolute; z-index:-1; background:var(--c-sand);
+    top:calc(var(--gt-f) * .07); bottom:calc(var(--gt-f) * .03); }
+  .gt--cn .gt-n::before{ left:-14px; right:-1px; border-radius:14px 0 0 14px; }
+  .gt--cn .gt-l::before{ left:calc(-1 * var(--gt-gap)); right:-14px; border-radius:0 14px 14px 0; }
+  .gt--cn .gt-l small{ display:flex; align-items:baseline; gap:6px; font-size:12.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:rgba(31,33,32,.75); }
+  .gt--cn .gt-z{ font:italic 800 calc(var(--gt-f) * .3)/.9 "Fira Sans",sans-serif; letter-spacing:-.01em; text-transform:none; color:var(--c-ink); }
+}
+
 /* Go Tabular на /tlumaczenia-przysiegle/ #cena (Грег, 26.09.2026: «сверху оставить 260 Apostille, потом внизу 90, над ней
    1125 znaków и −10%»). Классы .gt--ap (как «Ile trwa» на /apostille/) + .gt--tl: две огромные строки – 260 (Apostille MSZ
    do tłumaczenia) и 90 (Tłumaczenie ,- zł / strona); между ними, прижатый к «90», маленький табличный столбик .gt-cap
