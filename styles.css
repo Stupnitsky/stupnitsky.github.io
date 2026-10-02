@@ -5125,3 +5125,165 @@ html[lang="pl"] #ile-trwa .faq-price span{ color:var(--c-ink); }
    вариант 7; пара осталась у FAQ и карточек). Строки делятся поровну, чтобы последнее слово не висело одно
    («Ile trwa i ile kosztuje Apostille na / odpis»). */
 h2[class*="text-[34px]"]{ text-wrap:balance; }
+
+/* ===== Прайс /cennik/ #ceny, вид 116 со стенда docs/ceny-gt (Грег, 02.10.2026: «реализуй на сайт»). Только PL – раздел
+   помечен .cn-v3; ua/ru/en /cennik/ со старой разметкой не задеты. Правила собраны со стенда как есть (88 → 98 → 99 → 107 →
+   109 → 110 → 111–116): группа – серая плита со строками-кнопками (li.xh, раскрытая – .open, белая), цена – курсив 800
+   (свёрнутая 44px, раскрытая 58px; «Wycena» не растёт), окончание по одной схеме (.xe: значение · zł · единица ·
+   пояснение капсом), «Odbiór i wysyłka» – жёлтая плита со списком /kontakt/ (.cg105), «W cenie / Poza ceną» – две плиты
+   (.cg108), названия и заголовки – пара Fira Sans Condensed 700 + 400 (.xp). Поведение – «Прайс /cennik/ (.cn-v3)» в app.js. */
+#ceny.cn-v3 .cn-list li.xpopli{position:relative;margin-top:18px}
+#ceny.cn-v3 .xpop{position:absolute;z-index:2;top:-11px;left:1.4rem;background:var(--c-terra);color:var(--c-ink);border-radius:6px;padding:.4em .7em .45em;font:700 12px/1 "Fira Sans Condensed","Fira Sans",sans-serif;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;box-shadow:0 2px 6px rgba(31,33,32,.12);pointer-events:none}
+#ceny.cn-v3 .tcell{flex-direction:row!important;align-items:baseline;gap:8px;position:relative;padding:0 14px 0 0!important}
+#ceny.cn-v3 .tcell .price-hit b.tp{font:italic 800 var(--tf,52px)/.85 "Fira Sans",sans-serif!important;letter-spacing:-.03em!important;font-variant-numeric:tabular-nums lining-nums;background:none!important;padding:0 .04em 0 0;margin:0;color:var(--c-ink)}
+#ceny.cn-v3 .tcell .tu{display:flex;align-items:baseline;gap:5px;white-space:nowrap;align-self:center;translate:0 calc(var(--tf,52px) * .08)}
+#ceny.cn-v3 .tcell .tz{font:italic 800 calc(var(--tf,52px) * .36)/1 "Fira Sans",sans-serif;letter-spacing:-.01em;color:var(--c-ink)}
+#ceny.cn-v3 .tcell small{margin:0!important;font:500 12px/1 "Fira Sans Condensed","Fira Sans",sans-serif!important;letter-spacing:.14em!important;text-transform:uppercase;color:rgba(31,33,32,.72)!important}
+#ceny.cn-v3 .tcell{--tf:52px}
+#ceny.cn-v3 .cn-list{border-top:0!important}
+#ceny.cn-v3 .cn-list::before{display:none}
+#ceny.cn-v3 .cn-list li{border:0!important;background:var(--c-sand);border-radius:16px;padding:1.1rem 1.4rem!important;margin-top:8px}
+#ceny.cn-v3 .cn-desc,#ceny.cn-v3 .cn-name small,#ceny.cn-v3 .cn-sum{color:var(--c-ink)!important;font-size:17px!important;line-height:1.45!important;font-weight:500}
+#ceny.cn-v3 .cn-name small{display:block;margin-top:.25rem}
+#ceny.cn-v3 .cn-price:not(.tcell) b{font:italic 800 30px/1 "Fira Sans",sans-serif!important;letter-spacing:-.02em!important;text-transform:none!important;background:none!important;padding:0!important;margin:0!important;color:var(--c-ink)!important}
+#ceny.cn-v3 .cn-price:not(.tcell) small{font:500 12px/1.2 "Fira Sans Condensed","Fira Sans",sans-serif!important;letter-spacing:.14em!important;text-transform:uppercase;color:rgba(31,33,32,.72)!important}
+#ceny.cn-v3.xexp .cn-list li.xh .cn-desc,#ceny.cn-v3.xexp .cn-list li.xh .cn-sum,#ceny.cn-v3.xexp .cn-list li.xh .cn-tags,#ceny.cn-v3.xexp .cn-list li.xh .cn-name small{display:none!important}
+#ceny.cn-v3.xexp .cn-list li.xh.open .cn-desc,#ceny.cn-v3.xexp .cn-list li.xh.open .cn-sum,#ceny.cn-v3.xexp .cn-list li.xh.open .cn-name small{display:block!important;animation:xIn .35s ease both}
+#ceny.cn-v3.xexp .cn-list li.xh.open .cn-tags{display:contents!important}
+@keyframes xIn{from{opacity:0;transform:translateY(-4px)}}
+#ceny.cn-v3.xexp .cn-list li.xh{cursor:pointer}
+#ceny.cn-v3 .cn-name{display:block!important}
+#ceny.cn-v3 .xc{display:inline-flex;align-items:center;justify-content:center;width:auto;height:auto;color:var(--c-ink);vertical-align:1px;margin-left:8px;flex:none}
+#ceny.cn-v3 .xc svg{width:14px;height:14px;transform:rotate(90deg);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+#ceny.cn-v3 .cn-list li.open .xc svg{transform:rotate(-90deg)}
+#ceny.cn-v3 .tcell{flex-wrap:wrap;justify-content:flex-end;row-gap:8px}
+#ceny.cn-v3 .cg86z{flex-basis:100%;text-align:right;padding-right:14px;font:600 12.5px/1 "Fira Sans Condensed","Fira Sans",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--c-ink)}
+#ceny.cn-v3 .cg86z b{font:italic 800 20px/1 "Fira Sans",sans-serif;letter-spacing:-.01em;margin:0 .15em}
+#ceny.cn-v3 .cn-group > .cn-list{background:var(--c-sand);border-radius:26px;padding:.6rem!important;border:0!important;display:grid;gap:6px}
+#ceny.cn-v3 .cn-group > .cn-list::before{display:none}
+#ceny.cn-v3 .cn-list li{background:none!important;border:0!important;margin:0!important;border-radius:16px!important;padding:1rem 3.6rem 1rem 1.2rem!important;position:relative}
+#ceny.cn-v3 .cn-list li.xh:hover{background:rgba(255,255,255,.5)!important}
+#ceny.cn-v3 .cn-list li.open,#ceny.cn-v3 .cn-list li.open:hover{background:var(--c-paper)!important}
+#ceny.cn-v3 .cn-list li.xpopli{margin-top:14px!important}
+#ceny.cn-v3 .cn-price{align-self:center!important}
+#ceny.cn-v3 .cn-list li > .xc{position:absolute;right:1.3rem;top:50%;margin:-7px 0 0}
+#ceny.cn-v3 .cn-group-h{font:900 48px/.98 "Fira Sans",sans-serif!important;letter-spacing:-.045em!important;margin-top:.7rem}
+#ceny.cn-v3 .cn-group-t{font-size:18px!important;color:var(--c-ink)!important;margin-top:.9rem}
+#ceny.cn-v3 .cn-list li .cg90{display:none;grid-column:1 / -1;justify-self:start;margin-top:1rem}
+#ceny.cn-v3 .cn-list li.open .cg90{display:inline-flex;animation:xIn .35s ease both}
+#ceny.cn-v3 .cn-list li.open .cn-price{align-self:end!important}
+#ceny.cn-v3 .cn-list li.open > .xc{top:1.45rem;margin-top:0}
+#ceny.cn-v3 .cn-list li .tcell{--tf:44px}
+#ceny.cn-v3 .cn-list li.open .tcell{--tf:58px}
+#ceny.cn-v3 .cn-list li.open .tcell.xwyc{--tf:44px}
+#ceny.cn-v3.xready .tcell .price-hit b.tp,#ceny.cn-v3.xready .tcell .tz{transition:font-size .3s cubic-bezier(.4,0,.2,1)}
+@media (min-width:1024px){ #ceny.cn-v3 .cn-groups > .cn-r{grid-column:1 / span 8!important} }
+#ceny.cn-v3 #razem{grid-column:1 / -1!important}
+#ceny.cn-v3 #razem .cn-list{grid-template-columns:1fr!important;column-gap:0!important}
+#ceny.cn-v3 #razem .cn-group-t,#ceny.cn-v3 #razem .cn-note{max-width:none}
+#ceny.cn-v3 #razem .cn-note{margin-top:1.4rem;font-size:16px;color:var(--c-ink)}
+#ceny.cn-v3 .cn-incl{column-gap:2rem!important}
+#ceny.cn-v3 .cn-incl > .kicker{grid-column:1 / -1;margin-bottom:0}
+#ceny.cn-v3 .cn-plain{background:var(--c-sand);border-radius:26px;padding:.6rem!important;border:0!important;margin-top:1.4rem!important;display:grid;gap:6px}
+#ceny.cn-v3 .cn-plain::before{display:none}
+#ceny.cn-v3 .cn-plain li{border:0!important;border-radius:16px;padding:.95rem 1.2rem .95rem 3rem!important;font-size:17px;color:var(--c-ink)}
+#ceny.cn-v3 .cn-plain li::after{left:1.2rem;top:1.15rem}
+#ceny.cn-v3 .cn-plain li::before{left:calc(1.2rem + 3px);top:calc(1.15rem + 3px)}
+#ceny.cn-v3 .cn-foot p{color:var(--c-ink)!important;font-size:17px!important}
+#ceny.cn-v3 .cn-price.xend{display:block!important;padding:0!important;align-self:center}
+#ceny.cn-v3 .cn-list li.open .cn-price.xend{align-self:end!important}
+#ceny.cn-v3 .xe{display:flex;flex-direction:column;align-items:flex-end;gap:7px;text-align:right}
+#ceny.cn-v3 .xl1{display:flex;align-items:baseline;gap:6px;white-space:nowrap}
+#ceny.cn-v3 .xv{font:italic 800 var(--tf,44px)/.85 "Fira Sans",sans-serif;letter-spacing:-.03em;font-variant-numeric:tabular-nums lining-nums;color:var(--c-ink);padding-right:.04em}
+#ceny.cn-v3 .xz{font:italic 800 calc(var(--tf,44px) * .36)/1 "Fira Sans",sans-serif;color:var(--c-ink)}
+#ceny.cn-v3 .xu,#ceny.cn-v3 .xn{font:500 12px/1.25 "Fira Sans Condensed","Fira Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(31,33,32,.72);margin:0!important}
+#ceny.cn-v3 .tcell small.xn,#ceny.cn-v3 .tcell small.xcap,#ceny.cn-v3 .xn,#ceny.cn-v3 .xcap{font:600 12.5px/1.35 "Fira Sans Condensed","Fira Sans",sans-serif!important;letter-spacing:.12em!important;text-transform:uppercase;color:var(--c-ink)!important;white-space:nowrap;margin:0!important}
+#ceny.cn-v3 .tcell small.xn b,#ceny.cn-v3 .tcell small.xcap b,#ceny.cn-v3 .xn b,#ceny.cn-v3 .xcap b{font:italic 800 20px/1 "Fira Sans",sans-serif;letter-spacing:-.01em;margin:0 .15em;text-transform:none}
+#ceny.cn-v3 .xcap{display:none}
+#ceny.cn-v3.xready .xv,#ceny.cn-v3.xready .xz{transition:font-size .3s cubic-bezier(.4,0,.2,1)}
+#ceny.cn-v3 .cg86z{display:none}
+#ceny.cn-v3 #odbior > .cn-list{background:var(--c-terra)!important}
+#ceny.cn-v3 #odbior .cn-list li.xh:hover{background:color-mix(in srgb, var(--c-terra) 75%, #fff)!important}
+#ceny.cn-v3 #odbior .cn-list li.open,#ceny.cn-v3 #odbior .cn-list li.open:hover{background:color-mix(in srgb, var(--c-terra) 45%, #fff)!important}
+#ceny.cn-v3 #odbior .cn-desc p + p{margin-top:.5rem}
+#ceny.cn-v3 .cn-incl.cg108{position:relative;column-gap:1.6rem!important;align-items:stretch}
+#ceny.cn-v3 .cg108 > .kicker{margin-bottom:1.5rem!important}
+#ceny.cn-v3 .cg108 > .cn-group{border-radius:26px;padding:2.6rem 2.8rem 2.4rem;background:var(--c-paper)}
+#ceny.cn-v3 .cg108 > .cn-group + .cn-group{background:var(--c-sand)}
+#ceny.cn-v3 .cg108 .cn-group-h{font:400 40px/1.02 "Fira Sans",sans-serif!important;letter-spacing:-.045em!important;margin:0!important}
+#ceny.cn-v3 .cg108 .cn-group-h b{font-weight:900}
+#ceny.cn-v3 .cg108 .cn-group-h i{font-weight:300}
+#ceny.cn-v3 .cg108k{margin-top:.9rem;font:600 12.5px/1 "Fira Sans Condensed","Fira Sans",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(31,33,32,.6)}
+#ceny.cn-v3 .cg108 .cn-plain{background:none!important;padding:0!important;margin-top:1.6rem!important;display:grid;gap:1.1rem}
+#ceny.cn-v3 .cg108 .cn-plain li{padding:0 0 0 2.2rem!important;border-radius:0;font-size:18px!important;line-height:1.55;font-weight:500}
+#ceny.cn-v3 .cg108 .cn-plain li b{font-weight:700}
+#ceny.cn-v3 .cg108 .cn-plain li::after{left:0;top:.3em;width:16px;height:16px}
+#ceny.cn-v3 .cg108 .cn-plain li::before{display:none}
+#ceny.cn-v3 .cg108 .cn-plain--out li::after{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M8 4l8 8-8 8' fill='none' stroke='%231F2120' stroke-width='3.8'/></svg>")}
+#ceny.cn-v3 .cg108c{position:absolute;left:50%;top:calc(var(--cg108t, 4.6rem) + 2.6rem);width:64px;height:64px;margin-left:-32px;border-radius:50%;background:var(--c-terra);box-shadow:0 0 0 8px var(--c-page);display:flex;align-items:center;justify-content:center;font:700 34px/1 "Fira Sans",sans-serif;color:var(--c-ink);z-index:2}
+#ceny.cn-v3 .cg108 > .cn-group:first-of-type{background:var(--c-paper)}
+#ceny.cn-v3 .cg108 .cn-plain li{padding-left:0!important}
+#ceny.cn-v3 .cg108 .cn-plain li::after,#ceny.cn-v3 .cg108 .cn-plain li::before{display:none!important}
+#ceny.cn-v3 .cg108k{display:none}
+#ceny.cn-v3 .cg108 .cn-plain{margin-top:1.4rem!important}
+#ceny.cn-v3 .cg108 > .kicker{margin-bottom:0!important}
+#ceny.cn-v3 .cg108h{grid-column:1 / -1;font:900 48px/.95 "Fira Sans",sans-serif;letter-spacing:-.045em;margin:.7rem 0 1.8rem}
+#ceny.cn-v3 .cg110b{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:2rem;align-items:end}
+#ceny.cn-v3 .cg110b > .cg106{padding-bottom:1.3rem;margin-right:22px}
+#ceny.cn-v3 .cg105{border-radius:26px;padding:.6rem 2.2rem 1.2rem;margin-top:1.4rem}
+#ceny.cn-v3 .cg105 .so-list.ob-acc{margin-top:0!important}
+#ceny.cn-v3 .cg105 .ob-acc li + li::before{border-top-color:rgba(31,33,32,.2)}
+#ceny.cn-v3 .cg105 .ob-acc .so-card{max-width:60ch}
+#ceny.cn-v3 .cg106 small b{font:italic 800 20px/1 "Fira Sans",sans-serif;letter-spacing:-.01em;margin:0 .12em;text-transform:none;color:var(--c-ink)}
+#ceny.cn-v3 .cg106{margin-left:auto;display:inline-flex;flex-direction:column;align-items:flex-end;gap:5px;text-align:right;font-weight:400}
+#ceny.cn-v3 .cg106 b{font:italic 800 30px/.9 "Fira Sans",sans-serif;letter-spacing:-.02em}
+#ceny.cn-v3 .cg106 i{font:italic 800 13px/1 "Fira Sans",sans-serif;margin-left:4px}
+#ceny.cn-v3 .cg106 small{font:500 11.5px/1.2 "Fira Sans Condensed","Fira Sans",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:rgba(31,33,32,.75)}
+#ceny.cn-v3 .cg106 .r{display:inline-flex;align-items:baseline;gap:4px}
+#ceny.cn-v3 .cg106 .ln{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+#ceny.cn-v3 .cg106 .ln + .ln{margin-top:8px}
+#ceny.cn-v3 .cg106 small.n{font:600 12.5px/1.35 "Fira Sans Condensed","Fira Sans",sans-serif;letter-spacing:.12em;color:var(--c-ink);max-width:240px;text-wrap:balance}
+#ceny.cn-v3 .cg105 .ob-acc summary{gap:1.4rem}
+#ceny.cn-v3 .cg105 details:not([open]) .cg106{display:none}
+#ceny.cn-v3 .cg105 details[open] .cg106{animation:xIn .3s ease both}
+#ceny.cn-v3 .cn-list li .cn-name{font-family:"Fira Sans Condensed","Fira Sans",sans-serif!important;letter-spacing:-.02em!important;font-weight:400!important;font-size:26px!important}
+#ceny.cn-v3 .cn-list li .cn-name .xpa{font-weight:700}
+#ceny.cn-v3 .cn-list li .cn-name .xpb{font-weight:400}
+#ceny.cn-v3 .cn-groups:not(.cn-incl) > .cn-group > .cn-group-h{font-family:"Fira Sans Condensed","Fira Sans",sans-serif!important;letter-spacing:-.02em!important;font-weight:400!important;font-size:52px!important}
+#ceny.cn-v3 .cn-groups:not(.cn-incl) > .cn-group > .cn-group-h .xpa{font-weight:700}
+#ceny.cn-v3 .cn-groups:not(.cn-incl) > .cn-group > .cn-group-h .xpb{font-weight:400}
+#ceny.cn-v3 .cn-groups:not(.cn-incl) > .cn-group > .cn-group-h{line-height:1!important}
+#ceny.cn-v3 .cn-meta{display:block!important;margin-top:.5rem!important;font:400 20px/1.3 "Fira Sans Condensed","Fira Sans",sans-serif;letter-spacing:-.01em;color:var(--c-ink)}
+#ceny.cn-v3 .cn-meta .cn-pill{all:unset;font:inherit}
+#ceny.cn-v3 .cn-meta .cn-term .cn-pill{font-weight:700}
+#ceny.cn-v3 .cn-meta .cn-term .cn-pill + .cn-pill::before{content:", ";font-weight:700}
+#ceny.cn-v3 .cn-meta .cn-tags .cn-pill::before{content:", "}
+#ceny.cn-v3 .cn-meta .cn-tags .cn-pill:first-child::before{content:" – "}
+#ceny.cn-v3 .cn-meta .cn-tags:first-child .cn-pill:first-child::before{content:none}
+#ceny.cn-v3 .xe .xz{font:700 calc(var(--tf,44px) * .5)/1 "Fira Sans Condensed","Fira Sans",sans-serif;font-style:normal;letter-spacing:-.02em}
+#ceny.cn-v3 .xe .xu{font:400 18px/1.25 "Fira Sans Condensed","Fira Sans",sans-serif!important;letter-spacing:-.01em!important;text-transform:none!important;color:var(--c-ink)!important}
+#ceny.cn-v3 .cn-group-t{font:400 22px/1.35 "Fira Sans Condensed","Fira Sans",sans-serif!important;letter-spacing:-.01em;color:var(--c-ink)!important}
+#ceny.cn-v3 .cn-group-t .xpa{font-weight:700}
+#ceny.cn-v3 .cg108 .cn-plain li{font:400 20px/1.4 "Fira Sans Condensed","Fira Sans",sans-serif!important;letter-spacing:-.01em}
+/* Прайс .cn-v3 уже 640px – чтобы не вылезал за экран (02.10.2026; телефоны – следующий этап, здесь только «не ломать»):
+   цена – под названием и описанием, кегль цены 34 / 40px, заголовки групп и плит меньше, окончание доставки – под текстом */
+@media (max-width:639px){
+  #ceny.cn-v3 .cn-groups:not(.cn-incl) > .cn-group > .cn-group-h{font-size:34px!important}
+  #ceny.cn-v3 .cn-list li{grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"name" "desc" "sum" "meta" "price"!important;padding:1rem 2.8rem 1rem 1rem!important}
+  #ceny.cn-v3 .cn-list li > .xc{right:1rem}
+  #ceny.cn-v3 .cn-list li .cn-name{font-size:21px!important}
+  #ceny.cn-v3 .cn-price.xend{justify-self:start;align-self:start!important;margin-top:.7rem}
+  #ceny.cn-v3 .xe{align-items:flex-start;text-align:left}
+  #ceny.cn-v3 .cn-list li .tcell{--tf:34px}
+  #ceny.cn-v3 .cn-list li.open .tcell{--tf:40px}
+  #ceny.cn-v3 .xn{white-space:normal}
+  #ceny.cn-v3 .cg105{padding:.3rem 1.2rem 1rem}
+  #ceny.cn-v3 .so-list.ob-acc summary{font-size:22px}
+  #ceny.cn-v3 .cg110b{grid-template-columns:minmax(0,1fr)}
+  #ceny.cn-v3 .cg110b > .cg106{justify-self:start;align-items:flex-start;margin:0 0 1.1rem;padding:0}
+  #ceny.cn-v3 .cg106 .ln{align-items:flex-start}
+  #ceny.cn-v3 .cg108 > .cn-group{padding:1.6rem 1.4rem}
+  #ceny.cn-v3 .cg108 .cn-group-h{font-size:30px!important}
+  #ceny.cn-v3 .cg108h{font-size:34px!important}
+  #ceny.cn-v3 .cn-list li .cg90{grid-row:20}   /* «Zamów wycenę» – последней строкой, после цены */
+}

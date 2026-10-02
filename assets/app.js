@@ -2477,6 +2477,7 @@
     document.querySelectorAll('.price-hit').forEach(function(box){
       var el = box.querySelector('.price-num');
       if (!el) return;
+      if (box.closest('.cn-v3')) return;   /* прайс /cennik/ вида 116: цифры статичны, накрутка – только при раскрытии строки (блок «Прайс /cennik/ (.cn-v3)» ниже) */
       /* курсор ловим на всей строке прайса, а не только на самой цене */
       var hit = box.closest('li, .flex') || box;
       var target = parseInt(el.dataset.price, 10);
@@ -2544,6 +2545,53 @@
       } else seen = true;
       next();
     });
+  })();
+
+  /* --- Прайс /cennik/ (.cn-v3, вид 116 со стенда docs/ceny-gt, 02.10.2026) ---------------------------
+     Строка прайса (li.xh) – кнопка: нажатие или Enter / пробел раскрывает и сворачивает её (.open), открытые остаются
+     открытыми; первая строка группы раскрыта в разметке. Ссылки внутри строки («Zamów wycenę» – [data-quote], «jak to
+     działa») работают как ссылки, строку не переключают. Цена накручивается только в момент раскрытия – те же стартовые
+     числа и ease-in, что у накрутки выше; в остальное время цифры статичны. «Odbiór i wysyłka» – <details> с /kontakt/:
+     при раскрытии накручивается сумма в окончании (.cg106). .xready (через 0,6 с) включает плавную смену кегля цены –
+     строка, раскрытая сразу, не растёт на глазах. */
+  (function(){
+    var sec = document.querySelector('#ceny.cn-v3');
+    if (!sec) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var START = { 260:23, 120:14, 550:31, 90:6 };
+    function fmt(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0'); }
+    function countUp(n){
+      if (!n || reduce) return;
+      var to = parseInt(n.dataset.price, 10); if (!to) return;
+      var from = START[to] != null ? START[to] : Math.round(to * .15), s0 = performance.now();
+      if (n._raf) cancelAnimationFrame(n._raf);
+      clearTimeout(n._end);
+      (function tick(now){
+        var t = Math.max(0, Math.min((now - s0) / 620, 1));   /* метка кадра бывает раньше s0 – без нуля число уходило ниже стартового */
+        n.textContent = fmt(Math.round(from + (to - from) * t * t * t));
+        if (t < 1) n._raf = requestAnimationFrame(tick);
+      })(s0);
+      /* в фоновой вкладке кадры не идут – цена всё равно встаёт на итоговую */
+      n._end = setTimeout(function(){ cancelAnimationFrame(n._raf); n.textContent = fmt(to); }, 700);
+    }
+    sec.querySelectorAll('.cn-list li.xh').forEach(function(li){
+      li.setAttribute('tabindex', '0');
+      li.setAttribute('aria-expanded', li.classList.contains('open') ? 'true' : 'false');
+      function toggle(){
+        var open = !li.classList.contains('open');
+        li.classList.toggle('open', open); li.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) countUp(li.querySelector('.tcell .price-num'));
+      }
+      li.addEventListener('click', function(e){ if (e.target.closest('a')) return; toggle(); });
+      li.addEventListener('keydown', function(e){
+        if (e.target !== li || (e.key !== 'Enter' && e.key !== ' ')) return;
+        e.preventDefault(); toggle();
+      });
+    });
+    sec.querySelectorAll('.cg105 details').forEach(function(x){
+      x.addEventListener('toggle', function(){ if (x.open) countUp(x.querySelector('.cg106 .price-num')); });
+    });
+    setTimeout(function(){ sec.classList.add('xready'); }, 600);
   })();
 
   /* --- Логотип: отобранные начертания ------------------------------------
