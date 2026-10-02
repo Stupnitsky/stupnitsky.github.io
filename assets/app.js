@@ -408,6 +408,12 @@
       if (u.hash || u.pathname.split('/').filter(Boolean).length === (/^\/(ua|ru|en)\//.test(u.pathname) ? 1 : 0)) return;
       if (np(location.pathname).indexOf(np(u.pathname)) === 0 && u.pathname.length > hereLen) { here = a; hereLen = u.pathname.length; }
     });
+    /* страница вне пути своего раздела (/apostille-ukraina/, /apostille-bez-przyjazdu/) – раздел из <meta name="hdr-par" content="/apostille/">:
+       в меню отмечается он, в шапке – «/ Apostille / Имя» (Грег, 02.10.2026: «не все мелкие подстраницы отображаются серым») */
+    var parMeta = document.querySelector('meta[name="hdr-par"]');
+    if (!here && parMeta) Array.prototype.forEach.call(document.querySelectorAll('#mobile-nav .mn-link'), function (a) {
+      if (np(new URL(a.href, location.href).pathname) === np(parMeta.content.trim())) here = a;
+    });
     if (here) {
       here.classList.add('is-here');
       here.setAttribute('aria-current', 'page');
@@ -420,6 +426,17 @@
        <meta name="hdr-sub"> страницы; на главной и разделах меню его нет */
     var subMeta = document.querySelector('meta[name="hdr-sub"]');
     var sub = here && subMeta ? subMeta.content.trim() : '';
+    /* подстраница, которая сама пункт меню (/apostille/gdzie/ – «Gdzie załatwić»): раздел – пункт меню уровнем выше,
+       «/ Apostille / Gdzie załatwić», а не «/ Gdzie załatwić / Gdzie załatwić» (02.10.2026) */
+    if (sub && np(new URL(here.href, location.href).pathname) === np(location.pathname)) {
+      var sec = null, secLen = 0;
+      Array.prototype.forEach.call(document.querySelectorAll('#mobile-nav .mn-link'), function (a) {
+        var u = new URL(a.href, location.href);
+        if (a === here || u.hash || u.pathname.split('/').filter(Boolean).length === (/^\/(ua|ru|en)\//.test(u.pathname) ? 1 : 0)) return;
+        if (np(location.pathname).indexOf(np(u.pathname)) === 0 && u.pathname.length > secLen) { sec = a; secLen = u.pathname.length; }
+      });
+      if (sec) pageName = sec.firstChild.textContent.trim(); else sub = '';
+    }
     var parLen = sub ? pageName.length + 3 : 0;      /* «Apostille / » – прячется, если пилюля не помещается */
     if (sub) pageName += '\u00a0/\u00a0' + sub;
     if (pageName) {
