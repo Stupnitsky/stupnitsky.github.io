@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Защита (28.09.2026, языковые версии – 02.10.2026): браузер выполняет только наши скрипты; новый внешний сервис (gtag, карта) – сначала вписать сюда -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ga0M3hxX7BbNMOsk8k9ra3P80+aMOd6HTfkftF5FpXw='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://formspree.io https://script.google.com https://script.googleusercontent.com; form-action 'self' https://formspree.io https://script.google.com; object-src 'none'; frame-src 'none'; base-uri 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 
 <!-- ============================================================
      APOSTILO – one-page landing
@@ -132,9 +135,7 @@
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fonts/fonts.css?v=20261002-2">
 
 <link rel="stylesheet" href="/tailwind.css">
 <link rel="stylesheet" href="/styles.css?v=20261002-2">
@@ -168,15 +169,15 @@
       <div class="flex items-center gap-[3px]">
 
         <div class="lang-wrap">
+          <!-- Переключатель языка как в PL (02.10.2026): ссылки с hreflang, app.js подменяет href на ту же страницу в другом языке -->
           <button type="button" id="lang-switch" class="lang-switch text-[17px] font-bold tracking-tight"
-                  aria-haspopup="true" aria-expanded="false"
-                  aria-label="Язык сайта"><span class="ls-now"><span class="nl-swap"><span class="nl-a">Русский</span><span class="nl-b" aria-hidden="true">Русский</span></span></span></button>
-          <!-- список языков: раскрывается при наведении на переключатель -->
-          <div class="lang-pop" id="lang-pop" role="menu">
-            <button type="button" class="lang-opt" role="menuitem" data-lang="pl">Polski</button>
-            <button type="button" class="lang-opt" role="menuitem" data-lang="ua">Українська</button>
-            <button type="button" class="lang-opt is-current" role="menuitem" data-lang="ru">Русский</button>
-            <button type="button" class="lang-opt" role="menuitem" data-lang="en">English</button>
+                  aria-haspopup="true" aria-expanded="false" aria-controls="lang-pop"
+                  aria-label="Язык сайта: Русский"><span class="ls-now"><span class="nl-swap"><span class="nl-a">Русский</span><span class="nl-b" aria-hidden="true">Русский</span></span></span><svg class="ls-chev" width="11" height="7" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="lang-pop" id="lang-pop">
+            <a class="lang-opt" href="/" hreflang="pl" lang="pl" data-lang="pl"><span class="lo-name">Polski</span></a>
+            <a class="lang-opt" href="/ua/" hreflang="uk" lang="uk" data-lang="ua"><span class="lo-name">Українська</span></a>
+            <a class="lang-opt is-current" href="/ru/" hreflang="ru" lang="ru" data-lang="ru" aria-current="true"><span class="lo-name">Русский</span></a>
+            <a class="lang-opt" href="/en/" hreflang="en" lang="en" data-lang="en"><span class="lo-name">English</span></a>
           </div>
         </div>
 
@@ -527,7 +528,7 @@
           <span class="chev chev--light shrink-0" aria-hidden="true">+</span>
         </summary>
         <div class="legal-wrap"><div class="space-y-3 text-[17px] leading-[1.6] text-paper/70 max-w-[70ch]">
-          <p><strong class="text-paper/90">Администратор данных.</strong> Администратором персональных данных является [IMIĘ I&nbsp;NAZWISKO], ведущая деятельность под названием Apostilo, [ADRES DO&nbsp;KORESPONDENCJI], Warszawa, NIP&nbsp;[NIP]. Контакт: apostilo@gmail.com. Юридически обязательной является польская версия этого текста.</p>
+          <p><strong class="text-paper/90">Администратор данных.</strong> Администратором персональных данных является [IMIĘ I&nbsp;NAZWISKO], ведущая деятельность под названием Apostilo, [ADRES DO&nbsp;KORESPONDENCJI], Warszawa, NIP&nbsp;[NIP]. Контакт: <span data-mail="apostilo|gmail.com">apostilo [at] gmail.com</span>. Юридически обязательной является польская версия этого текста.</p>
           <p><strong class="text-paper/90">Объём и&nbsp;цель.</strong> Мы обрабатываем имя, номер телефона, адрес e-mail и&nbsp;данные из&nbsp;присланных сканов документов исключительно для подготовки расчёта, выполнения услуги апостиля или перевода и&nbsp;обратной связи.</p>
           <p><strong class="text-paper/90">Правовое основание.</strong> Ст. 6(1)(b) GDPR (исполнение договора или действия до его заключения) и&nbsp;ст. 6(1)(a) GDPR (согласие) – в&nbsp;части маркетинговых контактов.</p>
           <p><strong class="text-paper/90">Получатели.</strong> Данные могут передаваться только тем, без кого услугу не выполнить: присяжным переводчикам, учреждениям (MSZ, суды, KRK, KRS, USC), почтовым и&nbsp;курьерским операторам и&nbsp;хостинг-провайдеру.</p>
@@ -549,7 +550,7 @@
           <p><strong class="text-paper/90">§4 Цены и&nbsp;оплата.</strong> Цены на сайте – итоговые за единицу услуги и&nbsp;включают госпошлины. Окончательную стоимость определяет индивидуальный расчёт, в&nbsp;котором отдельно указана каждая позиция заказа – апостиль, перевод, пересылка. Цена может измениться, только если документ окажется не таким, как на присланном фото; об&nbsp;этом Клиента уведомляют до того, как заказ берут в&nbsp;работу. Оплата вперёд – BLIK, банковским переводом или наличными, на основании расчёта. Заказ берут в&nbsp;работу после получения подтверждения оплаты.</p>
           <p><strong class="text-paper/90">§5 Ответственность.</strong> Apostilo отвечает за добросовестное ведение дела, но не несёт ответственности за сроки рассмотрения документов в&nbsp;учреждениях и&nbsp;за задержки почтовых операторов. Если учреждение откажет в&nbsp;апостиле на польский документ, Apostilo возвращает Клиенту всю оплаченную сумму вместе с&nbsp;госпошлиной. По документам из&nbsp;Украины: если архив или учреждение откажет в&nbsp;выдаче дубликата, возвращается предоплата за вычетом стоимости пересылки. Ошибки в&nbsp;переводе, допущенные по вине Apostilo (например, в&nbsp;фамилии, дате или номере документа), исправляются бесплатно, в&nbsp;том числе если на них указало учреждение.</p>
           <p><strong class="text-paper/90">§6 Отказ от договора.</strong> Потребитель может отказаться от договора в&nbsp;течение 14 дней. Это право не действует, если услуга полностью выполнена с&nbsp;явного согласия Клиента до истечения этого срока.</p>
-          <p><strong class="text-paper/90">§7 Жалобы.</strong> Жалобы принимаем по адресу apostilo@gmail.com и&nbsp;рассматриваем в&nbsp;течение 14 рабочих дней с&nbsp;момента получения.</p>
+          <p><strong class="text-paper/90">§7 Жалобы.</strong> Жалобы принимаем по адресу <span data-mail="apostilo|gmail.com">apostilo [at] gmail.com</span> и&nbsp;рассматриваем в&nbsp;течение 14 рабочих дней с&nbsp;момента получения.</p>
         </div></div>
       </details>
     </div>
@@ -1013,7 +1014,7 @@
           <a href="https://wa.me/48507588155?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%83%20%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BE%D0%B1%20%D0%B0%D0%BF%D0%BE%D1%81%D1%82%D0%B8%D0%BB%D0%B5%20%D0%B8%D0%BB%D0%B8%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%D0%B5" target="_blank" rel="noopener" class="fl-link"><span class="nl-swap"><span class="nl-a">WhatsApp</span><span class="nl-b" aria-hidden="true">WhatsApp</span></span></a>
           <a href="https://t.me/apostilo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%83%20%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BE%D0%B1%20%D0%B0%D0%BF%D0%BE%D1%81%D1%82%D0%B8%D0%BB%D0%B5%20%D0%B8%D0%BB%D0%B8%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%D0%B5" target="_blank" rel="noopener" class="fl-link"><span class="nl-swap"><span class="nl-a">Telegram</span><span class="nl-b" aria-hidden="true">Telegram</span></span></a>
           <a href="tel:+48507588155" class="fl-link"><span class="nl-swap"><span class="nl-a">+48 507 588 155</span><span class="nl-b" aria-hidden="true">+48 507 588 155</span></span></a>
-          <a href="mailto:apostilo@gmail.com" class="fl-link"><span class="nl-swap"><span class="nl-a">apostilo@gmail.com</span><span class="nl-b" aria-hidden="true">apostilo@gmail.com</span></span></a>
+          <a href="/ru/kontakt/" data-mail="apostilo|gmail.com" class="fl-link"><span class="nl-swap"><span class="nl-a" data-mail-t>apostilo [at] gmail.com</span><span class="nl-b" aria-hidden="true" data-mail-t>apostilo [at] gmail.com</span></span></a>
         </div>
       </div>
 

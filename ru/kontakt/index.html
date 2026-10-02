@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Защита (28.09.2026, языковые версии – 02.10.2026): браузер выполняет только наши скрипты; новый внешний сервис (gtag, карта) – сначала вписать сюда -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ga0M3hxX7BbNMOsk8k9ra3P80+aMOd6HTfkftF5FpXw='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://formspree.io https://script.google.com https://script.googleusercontent.com; form-action 'self' https://formspree.io https://script.google.com; object-src 'none'; frame-src 'none'; base-uri 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 
 <title>Контакты и выдача документов – апостиль в Варшаве | Apostilo</title>
 <meta name="description" content="Апостиль и присяжные переводы в Варшаве: расчёт по фото обычно за 15 минут. Тел. +48 507 588 155, ежедневно 7:00–21:00. Передача документов в центре или через InPost.">
@@ -31,9 +34,7 @@
 <meta name="theme-color" content="#F1F1EF" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1F2120" media="(prefers-color-scheme: dark)">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fonts/fonts.css?v=20261002-2">
 
 <link rel="stylesheet" href="/tailwind.css">
 <link rel="stylesheet" href="/styles.css?v=20261002-2">
@@ -87,7 +88,6 @@
       "description": "Частная фирма в Варшаве: апостиль, легализация документов и присяжные переводы.",
       "url": "https://apostilo.pl/",
       "telephone": "+48507588155",
-      "email": "apostilo@gmail.com",
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
@@ -143,7 +143,6 @@
           "@type": "ContactPoint",
           "contactType": "customer service",
           "telephone": "+48507588155",
-          "email": "apostilo@gmail.com",
           "url": "https://apostilo.pl/ru/kontakt/",
           "availableLanguage": [
             "Polish",
@@ -197,8 +196,6 @@
       "acceptedAnswer": { "@type": "Answer", "text": "Скан готового документа присылаем сразу, как только заберём документ из учреждения. Оригинал отправляем в тот же рабочий день, если он готов до 15:00, иначе – на следующее утро. Личную встречу для передачи назначаем на ближайшее удобное время." } },
     { "@type": "Question", "name": "Вы работаете по субботам и в праздники?",
       "acceptedAnswer": { "@type": "Answer", "text": "Да – отвечаем на звонки и сообщения ежедневно с 7:00 до 21:00, в том числе в выходные и праздники. Учреждения – MSZ, суды, USC – в эти дни закрыты, поэтому мы принимаем заявки и делаем расчёт, а документы подаём в ближайший рабочий день. Календарь выше на этой странице показывает, какие дни нерабочие." } },
-    { "@type": "Question", "name": "Отвечает бот?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Нет. И в мессенджерах, и по телефону вам отвечает живой человек." } },
     { "@type": "Question", "name": "На каком языке можно писать?",
       "acceptedAnswer": { "@type": "Answer", "text": "По-польски, по-украински, по-русски или по-английски – отвечаем на том языке, на котором вы пишете." } }
   ]
@@ -234,15 +231,15 @@
       <div class="flex items-center gap-[3px]">
 
         <div class="lang-wrap">
+          <!-- Переключатель языка как в PL (02.10.2026): ссылки с hreflang, app.js подменяет href на ту же страницу в другом языке -->
           <button type="button" id="lang-switch" class="lang-switch text-[17px] font-bold tracking-tight"
-                  aria-haspopup="true" aria-expanded="false"
-                  aria-label="Язык сайта"><span class="ls-now"><span class="nl-swap"><span class="nl-a">Русский</span><span class="nl-b" aria-hidden="true">Русский</span></span></span></button>
-          <!-- список языков: раскрывается при наведении на переключатель -->
-          <div class="lang-pop" id="lang-pop" role="menu">
-            <button type="button" class="lang-opt" role="menuitem" data-lang="pl">Polski</button>
-            <button type="button" class="lang-opt" role="menuitem" data-lang="ua">Українська</button>
-            <button type="button" class="lang-opt is-current" role="menuitem" data-lang="ru">Русский</button>
-            <button type="button" class="lang-opt" role="menuitem" data-lang="en">English</button>
+                  aria-haspopup="true" aria-expanded="false" aria-controls="lang-pop"
+                  aria-label="Язык сайта: Русский"><span class="ls-now"><span class="nl-swap"><span class="nl-a">Русский</span><span class="nl-b" aria-hidden="true">Русский</span></span></span><svg class="ls-chev" width="11" height="7" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="lang-pop" id="lang-pop">
+            <a class="lang-opt" href="/" hreflang="pl" lang="pl" data-lang="pl"><span class="lo-name">Polski</span></a>
+            <a class="lang-opt" href="/ua/" hreflang="uk" lang="uk" data-lang="ua"><span class="lo-name">Українська</span></a>
+            <a class="lang-opt is-current" href="/ru/" hreflang="ru" lang="ru" data-lang="ru" aria-current="true"><span class="lo-name">Русский</span></a>
+            <a class="lang-opt" href="/en/" hreflang="en" lang="en" data-lang="en"><span class="lo-name">English</span></a>
           </div>
         </div>
 
@@ -358,7 +355,7 @@
           </li>
           <li class="kt-ch">
             <span class="kt-ch-h">E-mail</span>
-            <a class="kt-ch-v" href="mailto:apostilo@gmail.com">apostilo@gmail.com</a>
+            <a class="kt-ch-v" href="/ru/kontakt/" data-mail="apostilo|gmail.com">apostilo [at] gmail.com</a>
             <span class="kt-ch-t">Вопросы и&nbsp;дела компаний – например, фактура на фирму.</span>
           </li>
         </ul>
@@ -650,7 +647,6 @@
       <details class="group border-b border-ink/15"><summary class="flex items-center justify-between gap-6 py-6"><h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Как и когда я плачу?</h3><span class="chev shrink-0" aria-hidden="true">+</span></summary><p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">Заранее, после согласования расчёта – через BLIK, банковским переводом или наличными на встрече, при передаче документов. Сумма из расчёта окончательная: госпошлины и&nbsp;судебные сборы уже в&nbsp;цене, а&nbsp;пересылка указана отдельной строкой (по Польше при заказе от 350&nbsp;zł она входит в&nbsp;цену, за границу всегда оплачивается отдельно). Заказ берём в&nbsp;работу после подтверждения оплаты – достаточно скриншота из банковского приложения.</p></details>
       <details class="group border-b border-ink/15"><summary class="flex items-center justify-between gap-6 py-6"><h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Когда вы отправляете готовый документ?</h3><span class="chev shrink-0" aria-hidden="true">+</span></summary><p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">Скан готового документа присылаем сразу, как только заберём документ из учреждения. Оригинал отправляем в&nbsp;тот же рабочий день, если он готов до 15:00, иначе – на следующее утро. Личную встречу для передачи назначаем на ближайшее удобное время.</p></details>
       <details class="group border-b border-ink/15"><summary class="flex items-center justify-between gap-6 py-6"><h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Вы работаете по субботам и в праздники?</h3><span class="chev shrink-0" aria-hidden="true">+</span></summary><p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">Да – отвечаем на звонки и&nbsp;сообщения ежедневно с&nbsp;7:00 до 21:00, в&nbsp;том числе в&nbsp;выходные и&nbsp;праздники. Учреждения – MSZ, суды, USC – в&nbsp;эти дни закрыты, поэтому мы принимаем заявки и&nbsp;делаем расчёт, а&nbsp;документы подаём в&nbsp;ближайший рабочий день. Календарь выше на этой странице показывает, какие дни нерабочие.</p></details>
-      <details class="group border-b border-ink/15"><summary class="flex items-center justify-between gap-6 py-6"><h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Отвечает бот?</h3><span class="chev shrink-0" aria-hidden="true">+</span></summary><p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">Нет. И&nbsp;в&nbsp;мессенджерах, и&nbsp;по телефону вам отвечает живой человек.</p></details>
       <details class="group border-b border-ink/15"><summary class="flex items-center justify-between gap-6 py-6"><h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">На каком языке можно писать?</h3><span class="chev shrink-0" aria-hidden="true">+</span></summary><p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">По-польски, по-украински, по-русски или по-английски – отвечаем на том языке, на котором вы пишете.</p></details>
     </div>
     <p class="mt-8 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">Вопросы об&nbsp;учреждениях и&nbsp;штампе – на странице <a href="/ru/apostille/#faq" class="underline font-semibold">Апостиль</a>, о&nbsp;переводах – <a href="/ru/tlumaczenia-przysiegle/#faq" class="underline font-semibold">Присяжные переводы</a>, о&nbsp;документах, выданных в&nbsp;Украине, – <a href="/ru/apostille-ukraina/#faq" class="underline font-semibold">Документы из&nbsp;Украины</a>. Цены всех услуг – в&nbsp;<a href="/ru/cennik/" class="underline font-semibold">прайсе</a>.</p>
@@ -686,7 +682,7 @@
           <a href="https://wa.me/48507588155?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%83%20%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BE%D0%B1%20%D0%B0%D0%BF%D0%BE%D1%81%D1%82%D0%B8%D0%BB%D0%B5%20%D0%B8%D0%BB%D0%B8%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%D0%B5" target="_blank" rel="noopener" class="fl-link"><span class="nl-swap"><span class="nl-a">WhatsApp</span><span class="nl-b" aria-hidden="true">WhatsApp</span></span></a>
           <a href="https://t.me/apostilo?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%83%20%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BE%D0%B1%20%D0%B0%D0%BF%D0%BE%D1%81%D1%82%D0%B8%D0%BB%D0%B5%20%D0%B8%D0%BB%D0%B8%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%D0%B5" target="_blank" rel="noopener" class="fl-link"><span class="nl-swap"><span class="nl-a">Telegram</span><span class="nl-b" aria-hidden="true">Telegram</span></span></a>
           <a href="tel:+48507588155" class="fl-link"><span class="nl-swap"><span class="nl-a">+48 507 588 155</span><span class="nl-b" aria-hidden="true">+48 507 588 155</span></span></a>
-          <a href="mailto:apostilo@gmail.com" class="fl-link"><span class="nl-swap"><span class="nl-a">apostilo@gmail.com</span><span class="nl-b" aria-hidden="true">apostilo@gmail.com</span></span></a>
+          <a href="/ru/kontakt/" data-mail="apostilo|gmail.com" class="fl-link"><span class="nl-swap"><span class="nl-a" data-mail-t>apostilo [at] gmail.com</span><span class="nl-b" aria-hidden="true" data-mail-t>apostilo [at] gmail.com</span></span></a>
         </div>
       </div>
 

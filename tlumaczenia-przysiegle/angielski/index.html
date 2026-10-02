@@ -180,15 +180,15 @@
       <div class="flex items-center gap-[3px]">
 
         <div class="lang-wrap">
+          <!-- Переключатель языка как в PL (02.10.2026): ссылки с hreflang, app.js подменяет href на ту же страницу в другом языке -->
           <button type="button" id="lang-switch" class="lang-switch text-[17px] font-bold tracking-tight"
-                  aria-haspopup="true" aria-expanded="false"
-                  aria-label="Site language"><span class="ls-now"><span class="nl-swap"><span class="nl-a">English</span><span class="nl-b" aria-hidden="true">English</span></span></span></button>
-          <!-- список языков: раскрывается при наведении на переключатель -->
-          <div class="lang-pop" id="lang-pop" role="menu">
-            <button type="button" class="lang-opt" role="menuitem" data-lang="pl">Polski</button>
-            <button type="button" class="lang-opt" role="menuitem" data-lang="ua">Українська</button>
-            <button type="button" class="lang-opt" role="menuitem" data-lang="ru">Русский</button>
-            <button type="button" class="lang-opt is-current" role="menuitem" data-lang="en">English</button>
+                  aria-haspopup="true" aria-expanded="false" aria-controls="lang-pop"
+                  aria-label="Site language: English"><span class="ls-now"><span class="nl-swap"><span class="nl-a">English</span><span class="nl-b" aria-hidden="true">English</span></span></span><svg class="ls-chev" width="11" height="7" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="lang-pop" id="lang-pop">
+            <a class="lang-opt" href="/" hreflang="pl" lang="pl" data-lang="pl"><span class="lo-name">Polski</span></a>
+            <a class="lang-opt" href="/ua/" hreflang="uk" lang="uk" data-lang="ua"><span class="lo-name">Українська</span></a>
+            <a class="lang-opt" href="/ru/" hreflang="ru" lang="ru" data-lang="ru"><span class="lo-name">Русский</span></a>
+            <a class="lang-opt is-current" href="/en/" hreflang="en" lang="en" data-lang="en" aria-current="true"><span class="lo-name">English</span></a>
           </div>
         </div>
 
