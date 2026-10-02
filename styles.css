@@ -5284,3 +5284,7 @@ h2[class*="text-[34px]"]{ text-wrap:balance; }
   #ceny.cn-v3 .cg108h{font-size:34px!important}
   #ceny.cn-v3 .cn-list li .cg90{grid-row:20}   /* «Zamów wycenę» – последней строкой, после цены */
 }
+
+/* /cennik/: кнопки Zadzwoń · Zamów wycenę под подвалом прайса (анкета 02.10.2026), отступ – как между группами */
+.cn-foot .cn-foot-cta{ margin-top:28px; }
+.cn-foot .cn-foot-cta a.cta-btn{ text-decoration:none; }   /* .cn-v2 .cn-foot a подчёркивает ссылки текста */

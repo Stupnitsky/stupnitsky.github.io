@@ -612,10 +612,14 @@
     /* та же страница в другой языковой версии: /ua/kontakt/ ↔ /kontakt/ ↔ /en/kontakt/ */
     var LANG_DIRS = ['ua', 'ru', 'en'];
     /* страницы, которых пока нет в ua/ru/en: ведём на раздел уровнем выше (иначе 404) */
-    var PL_ONLY = /^(tlumaczenia-przysiegle\/(ukrainski|rosyjski|angielski)|apostille-bez-przyjazdu|apostille\/[a-z-]+)$/;   /* 28.09.2026: и /apostille-bez-przyjazdu/, и будущие подстраницы /apostille/… – копий ua/ru/en у них нет */
+    var PL_ONLY = /^(tlumaczenia-przysiegle\/(ukrainski|rosyjski|angielski|jezyk-angielski)|apostille-bez-przyjazdu|apostille\/[a-z-]+)$/;   /* 28.09.2026: и /apostille-bez-przyjazdu/, и будущие подстраницы /apostille/… – копий ua/ru/en у них нет */
     function samePageIn(code) {
       var parts = location.pathname.split('/').filter(Boolean);
       if (parts.length && LANG_DIRS.indexOf(parts[0]) !== -1) parts.shift();
+      /* пара английской страницы (02.10.2026): /tlumaczenia-przysiegle/angielski/ (EN) ↔ /tlumaczenia-przysiegle/jezyk-angielski/ (PL) */
+      var pj = parts.join('/');
+      if (code === 'pl' && pj === 'tlumaczenia-przysiegle/angielski') return '/tlumaczenia-przysiegle/jezyk-angielski/' + location.hash;
+      if (code === 'en' && pj === 'tlumaczenia-przysiegle/jezyk-angielski') return '/tlumaczenia-przysiegle/angielski/' + location.hash;
       if (code !== 'pl' && PL_ONLY.test(parts.join('/'))) parts.pop();
       /* страницы языков /tlumaczenia-przysiegle/{ukrainski,rosyjski,angielski}/ написаны на своём языке (28.09.2026), польской версии
          у них нет – и «Polski» ведёт на раздел переводов, а не на ту же страницу */
