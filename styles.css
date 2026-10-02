@@ -5310,8 +5310,8 @@ html[lang="pl"] .cn-v2 .cn-status .cennik-updated{ text-transform:none; }
 .gdz-crest--big{ width:52px; }
 @media (min-width:640px){ .gdz-crest--big{ width:66px; } }
 
-/* Бумага на /apostille/ – вариант 51 стенда docs/papier/ (Грег, 03.10.2026: «51 реализуй на сайт»). Только при html.papier (стоит
-   в разметке /apostille/, PL). Плитки фактуры рисует assets/papier.js и кладёт в --papier-page / --papier-plate / --papier-veil; до этого
+/* Бумага на /apostille/ – вариант 51 стенда docs/papier/ (Грег, 03.10.2026: «51 реализуй на сайт»); с 03.10 и /tlumaczenia-przysiegle/.
+   Только при html.papier (стоит в разметке этих страниц, PL). Плитки фактуры рисует assets/papier.js и кладёт в --papier-page / --papier-plate / --papier-veil; до этого
    (класс papier-ready) страница гладкая, как раньше. Плашки .papier-sand – серые блоки (не ссылки и не кнопки), их тоже размечает скрипт. */
 html.papier body{ position:relative; }
 html.papier.papier-ready body, html.papier.papier-ready .papier-page{ background-image:var(--papier-page) !important; background-size:512px 512px !important; background-repeat:repeat !important; }

@@ -1,4 +1,5 @@
-/* assets/papier.js – бумага на /apostille/ (PL), вариант 51 стенда docs/papier/ (Грег, 03.10.2026: «51 реализуй на сайт»).
+/* assets/papier.js – бумага на /apostille/ (PL), вариант 51 стенда docs/papier/ (Грег, 03.10.2026: «51 реализуй на сайт»);
+   с 03.10 и на /tlumaczenia-przysiegle/ (Грег: «перенеси на страницу Tłumaczenia фактуры плашкам») – там без пометок (data-papier).
    Работает, только если у <html> класс papier (стоит в разметке страницы; «pp» занят образцом «po polsku»). Без скачиваемых картинок фактуры: плитки рисуются
    в браузере (canvas → blob:, в CSP img-src есть blob: и data:), один раз, по одной в свободное время после загрузки.
    1) Фактура: страница (main, body) – облачность, зерно, редкие ворсинки; серые плашки (кроме ссылок и кнопок) – верже 5px
@@ -369,6 +370,8 @@
     Array.prototype.forEach.call(doc.querySelectorAll('.papier-note'), function(e){ e.remove(); });
     if (!win.matchMedia('(min-width:1100px)').matches) return;
     defs();
+    /* пометки ниже – только для /apostille/ (data-papier="apostille"); на других страницах с бумагой (/tlumaczenia-przysiegle/ – data-papier="tlumaczenia") пока только фактура, свет и край */
+    if ((html.getAttribute('data-papier') || 'apostille') !== 'apostille') return;
     /* «Apostille» у «Ministerstwo» (плашка #urzedy) – файл с обводкой, слово стоит там же, где на стенде */
     var r = find(doc, '#urzedy', 'Ministerstwo');
     if (r) { var L = lines(r)[0], w = 114, h = 52, ks = w / 132.8, dyo = 7.71 * ks;
@@ -413,9 +416,11 @@
     if (r2) penStroke(loop(lines(r2)[0], rng(27)), 'pencil', 'rgb(177,80,31)', 2);
   }
 
+  /* общие функции – для assets/papier-extra.js (варианты 59, 62, 68, 69 стенда, собранные docs/papier/build-extra.py) */
+  win.PAPIER = { rng:rng, find:find, lines:lines, box:box, paper:paper, fine:FINE, went:0 };
   function start(){
     mark(); lamp(); textures();
-    var go = function(){ tearAll(); notes(); };
+    var go = function(){ tearAll(); notes(); win.PAPIER.went++; if (win.PAPIER_EXTRA) win.PAPIER_EXTRA(win.PAPIER.went); };
     (doc.fonts && doc.fonts.ready ? doc.fonts.ready : Promise.resolve()).then(function(){ setTimeout(go, 150); });
     var rt = 0, lw = win.innerWidth;
     win.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ if (win.innerWidth !== lw) { lw = win.innerWidth; go(); } }, 250); });
