@@ -5293,3 +5293,34 @@ h2[class*="text-[34px]"]{ text-wrap:balance; }
    поэтому плашка песочная, рядом с серым ярлыком «Cennik»; месяц по-польски строчными */
 html[lang="pl"] .cn-v2 .cn-status > span{ background:var(--c-sand); }
 html[lang="pl"] .cn-v2 .cn-status .cennik-updated{ text-transform:none; }
+
+/* Сгиб бумаги между #jezyki и «Definicja» на /tlumaczenia-przysiegle/ (02.10.2026, Грег: «из 23 реализуй только эту полоску
+   на той странице и больше нигде»; стенд docs/papier/, вариант 23 «Сгибы письма»). Только PL, только здесь. Элемент – первый
+   в #przysiegle-czy-zwykle (у него position:relative от .lng + section), стоит посередине нижнего отступа #jezyki (pb-16 / md:pb-28):
+   тень – умножением, блик на ребре – мягким светом, на тексте почти не виден. */
+.pp-fold-sec{ --g:64px; position:absolute; left:0; right:0; top:calc(var(--g) / -2 - 30px); height:60px; pointer-events:none; z-index:1;
+  background:linear-gradient(180deg, rgba(31,33,32,0), rgba(31,33,32,.06) 47%, rgba(31,33,32,0) 50%, rgba(31,33,32,.025) 53%, rgba(31,33,32,0));
+  mix-blend-mode:multiply; }
+.pp-fold-sec::after{ content:""; position:absolute; inset:0; mix-blend-mode:soft-light;
+  background:linear-gradient(180deg, rgba(255,255,255,0) 47%, rgba(255,255,255,.9) 50%, rgba(255,255,255,0) 53%); }
+@media (min-width:768px){ .pp-fold-sec{ --g:112px; } }
+
+/* Иконка судов серым карандашом на /apostille/gdzie/ (02.10.2026, Грег: «тоньше, её можно увеличить по размеру») – крупнее
+   обычного .gdz-crest (40/50px). Только эта иконка; модификатор, базовый класс не меняется. */
+.gdz-crest--big{ width:52px; }
+@media (min-width:640px){ .gdz-crest--big{ width:66px; } }
+
+/* Бумага на /apostille/ – вариант 51 стенда docs/papier/ (Грег, 03.10.2026: «51 реализуй на сайт»). Только при html.papier (стоит
+   в разметке /apostille/, PL). Плитки фактуры рисует assets/papier.js и кладёт в --papier-page / --papier-plate / --papier-veil; до этого
+   (класс papier-ready) страница гладкая, как раньше. Плашки .papier-sand – серые блоки (не ссылки и не кнопки), их тоже размечает скрипт. */
+html.papier body{ position:relative; }
+html.papier.papier-ready body, html.papier.papier-ready .papier-page{ background-image:var(--papier-page) !important; background-size:512px 512px !important; background-repeat:repeat !important; }
+html.papier.papier-ready .papier-sand{ background-image:var(--papier-veil), var(--papier-plate) !important; background-size:1370px 1370px, 510px 510px !important; background-repeat:repeat !important; }
+/* свет лампы: светлое пятно сверху (мягкий свет) и тень к краям экрана (умножение); стоит на месте, страница едет под ним */
+.papier-lamp, .papier-vig{ position:fixed; inset:0; pointer-events:none; z-index:45; }
+.papier-lamp{ background:radial-gradient(75% 60% at 50% -5%, rgba(255,255,255,1), rgba(255,255,255,0) 70%); mix-blend-mode:soft-light; }
+.papier-vig{ background:radial-gradient(120% 95% at 50% 15%, rgba(31,33,32,0) 50%, rgba(31,33,32,.208)); mix-blend-mode:multiply; }
+/* рваный край плашки: светлый ободок по оборванным участкам; пометки карандашом – поверх страницы, ниже шапки */
+.papier-rim{ position:absolute; left:0; top:0; pointer-events:none; z-index:0; }
+.papier-note{ position:absolute; z-index:44; pointer-events:none; overflow:visible; }
+
