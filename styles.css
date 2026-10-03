@@ -5344,3 +5344,38 @@ html.papier.papier-ready .papier-sand{ background-image:var(--papier-veil), var(
    (только PL, модификатор): тонкая контактная тень и короткая мягкая снизу */
 .ob-plate--lift{ box-shadow:0 1px 1.5px rgba(31,33,32,.10), 0 7px 14px -9px rgba(31,33,32,.26); }
 
+/* Окошко конверта у образца перевода в hero /tlumaczenia-przysiegle/ – вариант 58 стенда docs/papier-tl/ (Грег, 03.10.2026).
+   Сначала его ставил скрипт через 1,2 с после загрузки, и образец на миг показывался в прежнем, большом размере («начало
+   загрузки с большего размера») – теперь всё в CSS, с первого кадра, без скрипта. Только эта страница (html.papier
+   data-papier="tlumaczenia"), от 1100px, где образец стоит absolute справа.
+   – Образец уменьшен до 64% (scale от левого верхнего угла) и сдвинут вправо на 60px (translate – поверх left из --pp-x,
+     который считает app.js; ширина блока та же, что была).
+   – Верх: верх рамки окошка – на верхней линии прописных первой строки h1. От верха колонки: кикер 22,5px + отступ 24px = верх h1
+     46,5px; прописные h1 (64px, интерлиньяж .95) начинаются на 6,5px ниже; рамка выше блока на 16px × .64 = 10px → top 63px.
+     Свой top вместо --pp-y: app.js меряет блок уже уменьшенным, и его значение здесь не годится.
+   – Окошко: ::before – лист письма в прорези (светлее страницы, утоплен: тень кромки сверху и слева), ::after – плёнка-пергамин
+     с двумя диагональными бликами. Поля рамки: слева 20, справа 16, сверху 16, снизу 18px (до уменьшения). */
+@media (min-width:1100px){
+  html.papier[data-papier="tlumaczenia"] .pp.pp--side{ isolation:isolate; scale:.64; transform-origin:0 0; translate:60px 0; top:63px; }
+  html.papier[data-papier="tlumaczenia"] .pp.pp--side::before,
+  html.papier[data-papier="tlumaczenia"] .pp.pp--side::after{ content:""; position:absolute; left:-20px; right:-16px; top:-16px; bottom:-18px;
+    border-radius:14px; pointer-events:none; }
+  html.papier[data-papier="tlumaczenia"] .pp.pp--side::before{ z-index:-1; background-color:#F8F8F6;
+    background-image:var(--papier-page, none); background-size:512px 512px;
+    box-shadow:inset 0 2px 3px rgba(31,33,32,.17), inset 2px 0 3px -1px rgba(31,33,32,.11), inset 0 0 0 .5px rgba(31,33,32,.12),
+      0 1px 0 rgba(255,255,255,.7), 1px 0 0 rgba(255,255,255,.45); }
+  html.papier[data-papier="tlumaczenia"] .pp.pp--side::after{ z-index:3;
+    background:linear-gradient(112deg, rgba(255,255,255,0) 14%, rgba(255,255,255,.3) 27%, rgba(255,255,255,.09) 37%, rgba(255,255,255,0) 47%,
+      rgba(255,255,255,0) 69%, rgba(255,255,255,.17) 77%, rgba(255,255,255,0) 85%), rgba(248,249,247,.09);
+    box-shadow:inset -1px -1px 0 rgba(255,255,255,.75), inset 0 0 14px rgba(255,255,255,.22); }
+}
+
+/* Свет лампы на /kontakt/ (Грег, 03.10.2026: «под чёрной плашкой реализован свет, найди, где он, и опубликуй на сайт» – увидел его
+   на тёмном первом экране /kontakt/ в кадре стенда docs/papier/). Это те же два слоя, что .papier-lamp / .papier-vig на страницах
+   с бумагой (на стенде – JC.P2.lamp в docs/papier/lamp.js): светлое пятно сверху по центру (мягкий свет) и тень к краям экрана
+   (умножение). На тёмном фоне пятно читается как свечение из-под плашки шапки. Здесь – чистым CSS, без скрипта и без фактуры
+   бумаги: класс papier-swiatlo у <html> (только PL /kontakt/), слои – псевдоэлементы body, под шапкой (z 45). */
+html.papier-swiatlo body::before, html.papier-swiatlo body::after{ content:""; position:fixed; inset:0; pointer-events:none; z-index:45; }
+html.papier-swiatlo body::before{ background:radial-gradient(75% 60% at 50% -5%, rgba(255,255,255,1), rgba(255,255,255,0) 70%); mix-blend-mode:soft-light; }
+html.papier-swiatlo body::after{ background:radial-gradient(120% 95% at 50% 15%, rgba(31,33,32,0) 50%, rgba(31,33,32,.208)); mix-blend-mode:multiply; }
+

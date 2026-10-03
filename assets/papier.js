@@ -294,7 +294,7 @@
     s.style.left = (x0 - hb.x) + 'px'; s.style.top = (y0 - hb.y) + 'px';
     s.innerHTML = '<g filter="url(#papier-' + kind + ')"><g transform="translate(' + (-x0) + ' ' + (-y0) + ')">' + ds.map(function(dd){
       return '<path d="' + dd + '" fill="none" stroke="' + color + '" stroke-width="' + width + '" stroke-linecap="round" stroke-linejoin="round"/>'; }).join('') + '</g></g>';
-    (host || doc.body).appendChild(s);
+    (host || doc.body).appendChild(s); return s;
   }
   function img(file, x, y, w, h, rot, origin){
     var i = doc.createElement('img'); i.src = IMG + file; i.alt = ''; i.setAttribute('aria-hidden', 'true'); i.className = 'papier-note';
@@ -399,10 +399,11 @@
       var ni = doc.createElement('img'); ni.src = IMG + 'czesty-temat.svg'; ni.alt = ''; ni.setAttribute('aria-hidden', 'true'); ni.className = 'papier-note';
       ni.style.cssText = 'opacity:.88;width:' + wn.toFixed(1) + 'px;height:' + hn.toFixed(1) + 'px;left:' + (x2 + 8 - sb.x).toFixed(1) + 'px;top:' + (Lk.y + Lk.h * .79 + 2 - bn - sb.y).toFixed(1) + 'px;transform:rotate(-4deg);transform-origin:50% ' + bn.toFixed(1) + 'px';
       sm.appendChild(ni); }
-    /* 61 (Грег, 03.10.2026: «61 напротив Masz dokument z Ukrainy?») – две дырки дырокола на левом поле напротив плашки .ua-hop:
-       лист из папки дела; посередине поля между краем окна и текстом */
-    var ua = doc.querySelector('.ua-hop'), wrapU = ua && ua.parentElement;
-    if (ua) { var lb = box(wrapU), lft = lb.x + (parseFloat(win.getComputedStyle(wrapU).paddingLeft) || 0), D = Math.max(12, Math.min(22, lft * .3)), hx = Math.min(40, lft * .42), ub = box(ua), ucy = ub.y + ub.h * .5, ug = Math.min(150, ub.h * .21);
+    /* 61 (Грег, 03.10.2026: «61 напротив Masz dokument z Ukrainy?»; позже стрелками на снимке – с поля на саму плашку):
+       две дырки дырокола на левом поле плашки .ua-hop, посередине между её краем и текстом – лист из папки дела */
+    var ua = doc.querySelector('.ua-hop');
+    if (ua) { var ub = box(ua), uq = ua.querySelector('.ua-hop-q') || ua.firstElementChild, upad = uq ? box(uq).x - ub.x : 48;
+      var D = Math.max(12, Math.min(22, upad * .46)), hx = ub.x + upad / 2, ucy = ub.y + ub.h * .5, ug = Math.min(150, ub.h * .21);
       punchHole(doc, hx, ucy - ug, D, 611); punchHole(doc, hx, ucy + ug, D, 612); }
     /* 63 (Грег, 03.10.2026) – скобы степлера на левом и правом краю плашки #urzedy: левая выше середины, правая ниже */
     var gp = doc.querySelector('#urzedy .gdz');
@@ -418,7 +419,7 @@
 
   /* общие функции – для assets/papier-extra.js (варианты 59, 62, 68, 69 стенда, собранные docs/papier/build-extra.py) */
   win.PAPIER = { rng:rng, find:find, lines:lines, box:box, paper:paper, fine:FINE, went:0,
-    stroke:function(ds, kind, o){ defs(); penStroke(ds, kind, (o && o.color) || 'rgba(31,33,32,.85)', (o && o.width) || 2); } };
+    stroke:function(ds, kind, o){ defs(); return penStroke(ds, kind, (o && o.color) || 'rgba(31,33,32,.85)', (o && o.width) || 2); } };
   function start(){
     mark(); lamp(); textures();
     var go = function(){ tearAll(); notes(); win.PAPIER.went++; if (win.PAPIER_EXTRA) win.PAPIER_EXTRA(win.PAPIER.went); };

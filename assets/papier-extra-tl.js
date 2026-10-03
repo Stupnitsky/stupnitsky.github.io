@@ -1,4 +1,4 @@
-/* assets/papier-extra-tl.js – СОБРАНО docs/papier/build-extra.py из вариантов стенда docs/papier-tl (v3.js, v8.js, v13.js, v17.js, v19.js, v20.js). Руками не править:
+/* assets/papier-extra-tl.js – СОБРАНО docs/papier/build-extra.py из вариантов стенда docs/papier-tl (v3.js, v8.js, v13.js, v17.js, v19.js, v20.js, v47.js, v49.js, v64.js, v73.js). Руками не править:
    менять варианты на стенде и пересобирать. Только страница html.papier[data-papier="tlumaczenia"], после assets/papier.js. */
 (function(){
   var html = document.documentElement;
@@ -7,7 +7,7 @@
   var P = window.PAPIER; if (!P) return;
   /* JC – прокладка: бумагу уже кладёт papier.js (JC.v[51] – пустышка), штрихи рисует его penStroke */
   var JC = { v:{ 51:{ apply:function(){} } }, STATIC:true,
-    pen:{ rng:P.rng, find:P.find, lines:P.lines, box:P.box, stroke:function(d, ds, kind, o){ P.stroke(ds, kind, o); return { show:function(){}, el:null }; } },
+    pen:{ rng:P.rng, find:P.find, lines:P.lines, box:P.box, stroke:function(d, ds, kind, o){ var el = P.stroke(ds, kind, o); return { show:function(){}, el:el }; } },
     paper:function(win, o, cb){ P.paper(o, cb); }, pp:{ F:{ fine:P.fine } } };
 /* ---------- вариант 3 (docs/papier-tl/v3.js) ---------- */
 /* 3. Подчёркивание в «Definicja» (03.10.2026). С 03.10 по Грегу – одинарное, без слова «to ważne» (описание ниже – прежнее). В #przysiegle-czy-zwykle, правая колонка, после run-in «Którego potrzebujesz?» –
@@ -397,11 +397,246 @@ JC.v[20] = { en:'Tear-off perforation', name:'Отрывной край', at:'#p
     }, 1200);
   } };
 
-  var GATE = {3:1100, 8:1100, 13:1100, 17:1100, 19:1100, 20:1100}, ONCE = [], css = '';
+/* ---------- вариант 47 (docs/papier-tl/v47.js) ---------- */
+/* 47. Линия подписи бланка, 03.10.2026 (третья пачка; бланковая типографика – двуязычные подписи полей 12 👍).
+   #przysiegle-czy-zwykle («/ Definicja»): левая колонка длиннее правой на ~7 строк, под правой колонкой – пустое поле ~190px.
+   В его правом нижнем углу – поле подписи, каким кончается любой перевод: точечная линейка 220px и под ней подпись поля на двух
+   языках – «PODPIS TŁUMACZA» узким капсом 11px и ниже мельче «підпис перекладача». Сама линия ПУСТАЯ: подпись не имитируем,
+   это только поле бланка. Намёк: каждый присяжный перевод подписан тем, кто его сделал.
+   Отличие от задания: подпись поля – в две строки (польская капсом, под ней украинская строчными, как поля бланка в 12), а не одной
+   строкой через «/»: одна строка капсом с разрядкой выходит ~265px и шире линейки в 220px.
+   Место (края – по соседям): правый край линейки – правый край правой колонки; точки – на базовой линии последней строки левой
+   колонки, то есть обе колонки кончаются на одной линии: слева – текстом, справа – полем подписи. Подпись поля – под линейкой,
+   по её середине. Если левая колонка длиннее правой меньше чем на 3 строки – линейка в 56px под последней строкой правой.
+   На сайте в этом же поле стоят пометки варианта 17 («[pieczęć okrągła]», «[podpis nieczytelny]») – вверху слева, по левому краю
+   колонки; линия подписи – внизу справа, между ними ~70px по ширине и ~90px по высоте.
+   Точки – как в 12 (шаг 4.5px, ink 42%). Элемент – absolute в body, вёрстку не сдвигает; при смене ширины пересчитывается.
+   Кадр – от сгиба бумаги над разделом (при at:'#jezyki .lng-note' низ левой колонки и подпись поля уходили за нижний край кадра).
+   Только от 1100px. */
+JC.v[47] = { en:'Blank signature line', name:'Линия подписи бланка', at:'#przysiegle-czy-zwykle .pp-fold-sec',
+  cap:'В конце блока «Tłumaczenie Przysięgłe czy zwykłe», в пустом поле под правой колонкой, – поле подписи, каким кончается перевод: точечная линейка и под ней мелко на двух языках «PODPIS TŁUMACZA / підпис перекладача». Линия пустая – подпись не изображаем, это только поле бланка: напоминание, что каждый присяжный перевод подписан тем, кто его сделал. Линейка кончается по правому краю колонки и стоит на базовой линии последней строки левой колонки – обе колонки кончаются на одной линии.',
+  css:'.v47-sig{position:absolute;z-index:44;pointer-events:none;width:220px;font-family:"Fira Sans Condensed","Fira Sans",sans-serif;text-align:center;font-feature-settings:"liga" 1,"clig" 1,"calt" 1}' +
+    /* точечная линейка – как отточие в бланке (12) */
+    '.v47-dots{display:block;height:3px;background:radial-gradient(circle,rgba(31,33,32,.42) 0 .75px,rgba(31,33,32,0) 1.1px) 0 100%/4.5px 3px repeat-x}' +
+    '.v47-pl{display:block;margin-top:8px;font-size:11px;font-weight:500;letter-spacing:.14em;margin-right:-.14em;text-transform:uppercase;line-height:1;white-space:nowrap;color:rgba(31,33,32,.6)}' +
+    '.v47-ua{display:block;margin-top:5px;font-size:10.5px;font-weight:400;letter-spacing:.03em;line-height:1;white-space:nowrap;color:rgba(31,33,32,.48)}',
+  apply:function(d, b, win){
+    function build(){
+      Array.prototype.forEach.call(d.querySelectorAll('.v47-sig'), function(x){ x.parentNode.removeChild(x); });
+      if (win.innerWidth < 1100) return;
+      var P = JC.pen, sec = d.getElementById('przysiegle-czy-zwykle'), cols = sec && sec.querySelector('.ap-cols');
+      if (!cols || cols.children.length < 2) return;
+      var Lc = cols.children[0], Rc = cols.children[1], lb = P.box(Lc), rb = P.box(Rc);
+      if (rb.x < lb.x + lb.w || rb.w < 260) return;            /* колонки друг под другом или правая уже линейки */
+      /* последняя строка колонки: рамка строки → её базовая линия (.935 кегля от верха рамки в 1.2 кегля) и низ */
+      function last(col){ var ps = col.querySelectorAll('p'); if (!ps.length) return null;
+        var rg = d.createRange(); rg.selectNodeContents(ps[ps.length - 1]); var ls = P.lines(rg), l = ls[ls.length - 1];
+        return l ? { base:l.y + l.h * .779, bottom:l.y + l.h } : null; }
+      var L = last(Lc), R = last(Rc); if (!L || !R) return;
+      /* точки – на базовой линии последней строки левой колонки; если колонки почти равны – под правой, в 56px от её последней строки */
+      var base = L.base - R.base >= 80 ? L.base : R.base + 56;
+      if (win.getComputedStyle(d.body).position === 'static') d.body.style.position = 'relative';
+      var s = d.createElement('div'); s.className = 'v47-sig'; s.setAttribute('aria-hidden', 'true');
+      /* линейка 3px высотой, середина точки – в 1.5px над её низом: низ линейки на .5px ниже базовой линии */
+      s.style.left = (rb.x + rb.w - 220).toFixed(1) + 'px'; s.style.top = (base + .5 - 3).toFixed(1) + 'px';
+      s.innerHTML = '<span class="v47-dots"></span><span class="v47-pl" lang="pl">podpis tłumacza</span><span class="v47-ua" lang="uk">підпис перекладача</span>';
+      d.body.appendChild(s);
+    }
+    setTimeout(function(){
+      var go = function(){ try { build(); } catch (e) { console.error('v47', e); } }, t = 0;
+      (d.fonts && d.fonts.ready ? d.fonts.ready : Promise.resolve()).then(go, go);
+      win.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(go, 200); }, { passive:true });
+    }, 1200);
+  } };
+
+/* ---------- вариант 49 (docs/papier-tl/v49.js) ---------- */
+/* 49. Подсчёт карандашом, 03.10.2026 (третья пачка; пометка-пояснение без восклицаний).
+   Плашка #cena .gt-card («Ile kosztuje Tłumaczenie Przysięgłe»), столбец Go Tabular: «1125 / −10% / 90». Слева от «−10%», в пустом
+   поле между абзацами и цифрами, графитом от руки – счёт столбиком, как его прикидывают на полях прайса:
+     6 × 90 = 540
+     − 10% = 486 zł
+   Знаки «=» стоят друг под другом. Арифметика: 6 стр. × 90 zł = 540 zł; 10% = 54 zł; 540 − 54 = 486 zł (скидка – от 6 страниц
+   в заказе, как в подписи «od 6 stron w zleceniu» рядом). Скидка перестаёт быть процентом и становится суммой.
+   Надпись – hand/v49-rachunek.svg (генератор hand/v49-make_svg.py – копия v17-make_svg.py: «×», «%» и «5» нарисованы от руки
+   лентами – x шрифта читалась как «p», процент – как «6», пятёрка – как «S»; «−» – дефис шрифта; пробелы уже, «=» сжат; строки
+   выровнены по «=»; ł собрана; нарисовано в 48px и уменьшено до 22px; файл 275.7×108.2, базовая линия первой строки 37.9, шаг строк 60.48).
+   Место: нижняя строка счёта – на базовой линии «−10%»; правый край надписи – в 16px от левого края цифр «1125» / «−10%»
+   (берётся тот, что левее); до текста абзацев слева – не меньше 20px (меряется по строкам абзацев в этой полосе высоты).
+   Кегль 22 → 20 → 18px, пока входит (на 1440 просвет от края колонки текста до цифр ~166px, надпись при 22px – 126px). Не входит – над «1125», левым краем по
+   её левому краю, на 16px выше цифр (пустой правый верх плашки); не входит и там – пометки нет.
+   Растровая «90» сайта (вариант 8) лежит ниже и правее, под подписи и левее цифр не заходит – не пересекаются.
+   Наклон −1.5° от начала первой строки. Элемент – img в body (z 44), столбец цен и накрутка цифр не тронуты. Только от 1100px. */
+JC.v[49] = { en:'Pencil sum by the discount', name:'Подсчёт карандашом', at:'#cena',
+  cap:'В плашке «Ile kosztuje Tłumaczenie Przysięgłe», справа от мелкой сноски о цене (03.10: перенесён от «−10%» вниз, к сноске), графитом от руки – счёт столбиком: «6 × 90 = 540» и под ним «− 10% = 486 zł», знаки «=» друг под другом. Польза: скидка перестаёт быть процентом и становится суммой – шесть страниц стоят 486 zł, а не 540, и считать самому не нужно. Нижняя строка счёта стоит на базовой линии «−10%».',
+  css:'',
+  apply:function(d, b, win){
+    setTimeout(function(){
+      (d.fonts && d.fonts.ready ? d.fonts.ready : Promise.resolve()).then(function(){
+        if (win.innerWidth < 1100 || d.querySelector('.v49-note')) return;
+        var P = JC.pen, card = d.querySelector('#cena .gt-card'), col = card && card.querySelector('.gt--tl'); if (!col) return;
+        var bs = col.querySelectorAll('.gt-m b'), b10 = null, b11 = null, i;
+        for (i = 0; i < bs.length; i++) { if (/10\s*%/.test(bs[i].textContent)) b10 = bs[i]; else if (!b11) b11 = bs[i]; }
+        if (!b10) return;
+        function ink(el){ var rg = d.createRange(); rg.selectNodeContents(el); return P.lines(rg)[0] || null; }   /* рамка самих знаков (блок шире – цифры прижаты вправо) */
+        var r10 = ink(b10), r11 = b11 ? ink(b11) : null; if (!r10) return;
+        var cb = P.box(card), numL = Math.min(r10.x, r11 ? r11.x : r10.x), base = r10.y + r10.h * .779;   /* базовая линия «−10%»: .935 кегля от верха рамки в 1.2 кегля */
+        var W0 = 275.7, H0 = 108.2, B0 = 37.9, LH0 = 60.48, FS0 = 48;
+        /* правый край текста плашки в полосе высоты y0…y1: строки абзацев, заголовка, сноски и кнопка (в столбце цен абзацев нет) */
+        function textRight(y0, y1){
+          var mx = 0, btn = card.querySelector('.gt-btn');
+          Array.prototype.forEach.call(card.querySelectorAll('p, h2'), function(el){ var rg = d.createRange(); rg.selectNodeContents(el);
+            P.lines(rg).forEach(function(l){ if (l.y < y1 && l.y + l.h > y0) mx = Math.max(mx, l.x + l.w); }); });
+          if (btn) { var q = P.box(btn); if (q.y < y1 && q.y + q.h > y0) mx = Math.max(mx, q.x + q.w); }
+          return mx;
+        }
+        var X = null, Y = null, fs = 0;
+        /* 0) 03.10 Грег (стрелкой на снимке): счёт стоит не у «−10%», а ниже – справа от мелкой сноски «Cena 90 zł za stronę dotyczy…»
+              (.gt-note), в пустом месте левой колонки: в 36px от правого края строк сноски, по высоте – по её середине */
+        var note = card.querySelector('.gt-note');
+        if (note) { var nrg = d.createRange(); nrg.selectNodeContents(note); var nl = P.lines(nrg), nb = P.box(note), nr = 0;
+          nl.forEach(function(l){ nr = Math.max(nr, l.x + l.w); });
+          [22, 20, 18].some(function(f){ var sc = f / FS0, w = W0 * sc, h = H0 * sc, x = nr + 36, top = nb.y + (nb.h - h) / 2;
+            if (nl.length && x + w <= numL - 24) { fs = f; X = x; Y = top; return true; } return false; }); }
+        /* 1) слева от «−10%»: нижняя строка – на его базовой линии (запасное место, если у сноски не входит) */
+        if (!fs) [22, 20, 18].some(function(f){
+          var sc = f / FS0, w = W0 * sc, top = base - (B0 + LH0) * sc, x = numL - 16 - w;
+          var tr = textRight(top - 6, top + H0 * sc + 6);
+          if (x >= Math.max(tr + 20, cb.x + 20)) { fs = f; X = x; Y = top + 2; return true; }   /* +2px: из-за наклона конец нижней строки поднимается на ~4px */
+          return false;
+        });
+        /* 2) запасное место – над «1125», в пустом правом верху плашки */
+        if (!fs && r11) {
+          var sc2 = 20 / FS0, h2 = H0 * sc2, top2 = r11.y + r11.h * .2 - 16 - h2;   /* верх цифр «1125» ≈ .2 рамки строки */
+          if (top2 >= cb.y + 24 && r11.x + W0 * sc2 <= cb.x + cb.w - 24 && textRight(top2 - 6, top2 + h2 + 6) + 20 <= r11.x) { fs = 20; X = r11.x; Y = top2; }
+        }
+        if (!fs) return;
+        var s = fs / FS0, bl = B0 * s;
+        if (win.getComputedStyle(d.body).position === 'static') d.body.style.position = 'relative';
+        var im = d.createElement('img'); im.className = 'v49-note'; im.src = '/assets/img/papier/v49-rachunek.svg'; im.alt = ''; im.setAttribute('aria-hidden', 'true');
+        im.style.cssText = 'position:absolute;z-index:44;pointer-events:none;max-width:none;opacity:.9;width:' + (W0 * s).toFixed(1) + 'px;height:' + (H0 * s).toFixed(1) + 'px;left:' + X.toFixed(1) + 'px;top:' + Y.toFixed(1) + 'px;transform:rotate(-1.5deg);transform-origin:0 ' + bl.toFixed(1) + 'px';
+        d.body.appendChild(im);
+      });
+    }, 1200);
+  } };
+
+/* ---------- вариант 64 (docs/papier-tl/v64.js) ---------- */
+/* 64. Подчёркнутое правило счёта, 03.10.2026 (Грег: «реализуй ещё 36 идей»).
+   Плашка #cena («Ile kosztuje Tłumaczenie Przysięgłe»), первый абзац: фраза «Każda rozpoczęta strona liczy się jako cała»
+   подчёркнута одной линией красного мелка (pp-crayon, rgba(172,42,26,.88), 2.1px) – как в варианте 3 после правок Грега:
+   одинарная, прямой штрих с лёгким подъёмом, вылет за конец фразы 30px. Это правило, из-за которого в wycenie получается целое
+   число страниц: полторы страницы текста – это две страницы в цене.
+   Вылет. Фраза стоит в одной строке (на 1440 – с начала четвёртой строки абзаца, за ней «Standardowy akt…»): линия уходит
+   за «cała» на 30px и на этом отрезке опускается на ~5px, в просвет между строками, – следующее слово она не подчёркивает.
+   Если фраза разорвана переносом – подчёркнута каждая её строка, вылет у первой (она дошла до края колонки): на поле между
+   текстом и столбцом цен, с рывком вверх. Начало линии – на 3–6px левее первой буквы. От 1100px. */
+JC.v[64] = { en:'Underlined counting rule', name:'Подчёркнутое правило счёта', at:'#cena',
+  cap:'В плашке «Ile kosztuje Tłumaczenie Przysięgłe» фраза «Każda rozpoczęta strona liczy się jako cała» подчёркнута одной линией красного мелка с коротким вылетом на 30px – тем же жестом, что в варианте 3. Польза: это правило счёта, из-за которого полторы страницы текста стоят как две; в длинном абзаце его легко пропустить, а вопрос «почему в wycenie больше страниц, чем я думал» оно снимает заранее.',
+  css:'',
+  apply:function(d, b, win){
+    setTimeout(function(){
+      (d.fonts && d.fonts.ready ? d.fonts.ready : Promise.resolve()).then(function(){
+        if (win.innerWidth < 1100 || d.querySelector('.v64-note')) return;
+        var P = JC.pen, sec = d.getElementById('cena'); if (!sec) return;
+        var r = P.find(d, sec, 'Każda rozpoczęta strona liczy się jako cała'); if (!r) return;
+        var Ls = P.lines(r); if (!Ls.length) return;
+        var R = P.rng(6464), iw = win.innerWidth;
+        function smooth(q){ var s = 'M' + q[0][0].toFixed(1) + ' ' + q[0][1].toFixed(1);
+          for (var i = 0; i < q.length - 1; i++) { var a0 = q[i - 1] || q[i], b0 = q[i], c0 = q[i + 1], e0 = q[i + 2] || c0;
+            s += 'C' + (b0[0] + (c0[0] - a0[0]) / 6).toFixed(1) + ' ' + (b0[1] + (c0[1] - a0[1]) / 6).toFixed(1) + ' ' + (c0[0] - (e0[0] - b0[0]) / 6).toFixed(1) + ' ' + (c0[1] - (e0[1] - b0[1]) / 6).toFixed(1) + ' ' + c0[0].toFixed(1) + ' ' + c0[1].toFixed(1); }
+          return s; }
+        /* какая строка улетает: первая, если фраза перенесена (она дошла до края колонки), иначе единственная */
+        var wrapped = Ls.length > 1, ds = [];
+        Ls.forEach(function(L, k){
+          var y1 = L.y + L.h * .95, x0 = L.x - 3 - R() * 3, x1 = L.x + L.w + 4, isFly = k === 0, tail = 0, n = 10, q = [];
+          if (isFly) { x1 = Math.min(L.x + L.w + 30, iw - 14); tail = wrapped ? -2.5 : 5; }
+          var xp = isFly ? L.x + L.w + 4 : x1;   /* до конца фразы – ровный штрих с подъёмом, дальше – вылет */
+          for (var i = 0; i <= n; i++) { var t = i / n, x = x0 + (xp - x0) * t; q.push([x, y1 + 1.2 - 2.6 * t + Math.sin(t * 3 + R() * 2) * .7]); }
+          /* вылет – двумя точками (шаг как у основного штриха: сплайн без петли на стыке) */
+          if (isFly) { var m = 2, yE = q[q.length - 1][1];
+            for (i = 1; i <= m; i++) { var u = i / m; q.push([xp + (x1 - xp) * u, yE + tail * u * u + (R() - .5) * .5]); } }
+          ds.push(smooth(q));
+        });
+        var st = P.stroke(d, ds, 'crayon', { color:'rgba(172,42,26,.88)', width:2.1 });
+        st.show(true);
+        st.el.setAttribute('class', (st.el.getAttribute('class') || '') + ' v64-note');
+      });
+    }, 1200);
+  } };
+
+/* ---------- вариант 73 (docs/papier-tl/v73.js) ---------- */
+/* 73. Второй лист под плашкой, 03.10.2026 (Грег: «реализуй ещё 36 идей»).
+   Из-под плашки цены #cena .gt-card выглядывает край второго листа той же бумаги: стопка из двух страниц – намёк, что перевод
+   считают страницами (90 zł за страницу, каждая начатая – целая). Лист того же размера и с тем же скруглением, что плашка,
+   лежит под ней чуть косо и сдвинут вправо вниз – виден только справа и снизу.
+   Отступление от задания (поворот 1,2°): плашка шириной 1256px (1440) – при 1,2° нижний край листа ушёл бы на 26px, это уже
+   не «выглядывает». Угол считается от ширины плашки так, чтобы клин по низу рос на 9px: на 1440 это 0,41° (на узкой плашке –
+   больше, но не больше 1,2°). Видно: по низу – от 2px слева до 11px справа, по правому краю – от ~10px вверху до 3,5px внизу;
+   сверху и слева лист спрятан под плашкой не меньше чем на 2px (глубже рваного края сайта, 1,5px), у правого верхнего и левого
+   нижнего углов выходит из-под скругления постепенно.
+   Вид листа: тот же песочный #E5E5E1 и своя плитка верже (JC.paper, зерно 733 – полоски идут под углом листа, а не плашки),
+   тень на странице – короткая вправо вниз. Тень между листами: верхний лист (плашка) бросает тень на нижний – отдельный слой
+   по контуру плашки внутри листа (обратный поворот и сдвиг), обрезан краем листа, поэтому на страницу не падает; у плашки
+   на сайте тени нет, и здесь её нет там, где второго листа не видно.
+   Слои: лист – отдельный div перед плашкой в её обёртке (position:absolute, z-index 0), плашка идёт следом и рисуется поверх;
+   её маска рваного края, ободок и содержимое не тронуты. Через рваные участки по низу и справа виден нижний лист.
+   При смене размера плашки лист пересчитывается.
+   Кадр – от абзаца «Termin standardowy…» в плашке (как у 21): правый нижний угол – в середине кадра; в задании – элемент выше
+   #cena, но оттуда низ плашки (она ~970px высотой) за краем кадра. Только от 1100px. */
+JC.v[73] = { en:'Second sheet underneath', name:'Второй лист под плашкой', at:'#cena .gt-card p.mt-4',
+  cap:'Из-под плашки «Ile kosztuje Tłumaczenie Przysięgłe» справа и снизу выглядывает край второго листа той же бумаги: он лежит чуть косо, поэтому полоска по низу растёт от пары пикселей слева до одиннадцати у правого угла; между листами – тень. Польза: стопка из двух страниц без слов напоминает, что перевод считают страницами – «90 zł за страницу, каждая начатая считается целой», – и плашка выглядит как документ на столе, а не блок интерфейса. Вёрстка и рваный край плашки не тронуты, лист – отдельный слой под ней.',
+  css:'.v73-sheet{position:absolute;z-index:0;pointer-events:none;overflow:hidden;background-color:#E5E5E1;background-repeat:repeat;transform-origin:50% 50%;' +
+      'box-shadow:0 0 0 .5px rgba(31,33,32,.06),0 1px 2px rgba(31,33,32,.13),2px 4px 9px -3px rgba(31,33,32,.16)}' +
+    /* тень верхнего листа на нижнем: контур плашки */
+    '.v73-sh{position:absolute;left:0;top:0;width:100%;height:100%;transform-origin:50% 50%;' +
+      'box-shadow:0 0 0 1px rgba(31,33,32,.09),1px 2px 3px rgba(31,33,32,.28),3px 6px 12px rgba(31,33,32,.14)}',
+  apply:function(d, b, win){
+    var sheet = null, sh = null, tile = null, tm = 0, lw = 0, lh = 0;
+    function texture(){
+      try {
+        var F = JC.pp && JC.pp.F && JC.pp.F.fine, fine = { n:40 }, key;
+        if (F) for (key in F) if (key !== 'n') fine[key] = F[key];
+        /* та же бумага, что у плашек сайта (верже 5px, зерно), другое зерно случайности; _t – мимо кэша JC.paper */
+        JC.paper(win, { seed:733, size:510, cloud:.025, grain:.05, laid:{ step:5, a:.022, w:1.21 }, fibers:F ? [fine] : [], _t:+new Date() }, function(u, s){ tile = [u, s]; place(); });
+      } catch (e) { console.error('v73', e); }
+    }
+    function place(){
+      var pl = d.querySelector('#cena .gt-card'); if (!pl) return;
+      var cont = pl.parentNode;
+      if (win.innerWidth < 1100) { if (sheet) sheet.style.display = 'none'; lw = lh = 0; return; }
+      if (win.getComputedStyle(cont).position === 'static') cont.style.position = 'relative';
+      var cs = win.getComputedStyle(pl);
+      if (cs.position === 'static') pl.style.position = 'relative';   /* плашка – в том же слое, что лист, и после него */
+      var first = !sheet;
+      if (first) {
+        sheet = d.createElement('div'); sheet.className = 'v73-sheet'; sheet.setAttribute('aria-hidden', 'true');
+        sh = d.createElement('div'); sh.className = 'v73-sh'; sheet.appendChild(sh);
+        cont.insertBefore(sheet, pl);
+      }
+      lw = pl.offsetWidth; lh = pl.offsetHeight;
+      var rad = parseFloat(cs.borderTopLeftRadius) || 26, w = lw / 2, h = lh / 2;
+      /* угол: клин по низу растёт на 9px (±4,5px от середины), не больше 1,2°; сдвиг – чтобы верх и левый край остались под плашкой */
+      var th = Math.min(1.2 * Math.PI / 180, 4.5 / w), ty = th * w + 2, tx = th * h + 3.5, deg = th * 180 / Math.PI;
+      sheet.style.cssText = 'display:block;left:' + pl.offsetLeft + 'px;top:' + pl.offsetTop + 'px;width:' + lw + 'px;height:' + lh + 'px;border-radius:' + rad + 'px;' +
+        'transform:translate(' + tx.toFixed(2) + 'px,' + ty.toFixed(2) + 'px) rotate(' + deg.toFixed(3) + 'deg)' +
+        (tile ? ';background-image:url(' + tile[0] + ');background-size:' + tile[1] + 'px ' + tile[1] + 'px;background-position:-137px -61px' : '');
+      /* слой тени возвращён на место плашки: обратный сдвиг, потом обратный поворот */
+      sh.style.cssText = 'border-radius:' + rad + 'px;transform:rotate(' + (-deg).toFixed(3) + 'deg) translate(' + (-tx).toFixed(2) + 'px,' + (-ty).toFixed(2) + 'px)';
+      if (first) texture();
+    }
+    function run(){ try { place(); } catch (e) { console.error('v73', e); } }
+    function check(){ var pl = d.querySelector('#cena .gt-card'); if (pl && (pl.offsetWidth !== lw || pl.offsetHeight !== lh || win.innerWidth < 1100)) run(); }
+    setTimeout(function(){
+      (d.fonts && d.fonts.ready ? d.fonts.ready : Promise.resolve()).then(run, run);
+      win.addEventListener('resize', function(){ clearTimeout(tm); tm = setTimeout(check, 250); });
+      if (win.ResizeObserver) { var pl = d.querySelector('#cena .gt-card'); if (pl) new win.ResizeObserver(function(){ clearTimeout(tm); tm = setTimeout(check, 250); }).observe(pl); }
+    }, 1200);
+  } };
+
+  var GATE = {3:1100, 8:1100, 13:1100, 17:1100, 19:1100, 20:1100, 47:1100, 49:1100, 64:1100, 73:1100}, ONCE = [47, 73], css = '';
   Object.keys(GATE).forEach(function(n){ if (JC.v[n] && JC.v[n].css) css += JC.v[n].css; });
   if (css) { var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st); }
   function run(time){
-    if (time > 1) Array.prototype.forEach.call(document.querySelectorAll('.v8-ht, .v13-note, .v17-note, .v19-tab, .v20-rim'), function(e){ e.remove(); });
+    if (time > 1) Array.prototype.forEach.call(document.querySelectorAll('.v8-ht, .v13-note, .v17-note, .v19-tab, .v20-rim, .v49-note'), function(e){ e.remove(); });
     Object.keys(GATE).forEach(function(n){ if (window.innerWidth >= GATE[n] && JC.v[n]) { if (time > 1 && ONCE.indexOf(+n) >= 0) return; try { JC.v[n].apply(document, document.body, window); } catch (e) {} } });
   }
   window.PAPIER_EXTRA = run;

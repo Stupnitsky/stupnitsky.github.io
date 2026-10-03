@@ -7,7 +7,7 @@
   var P = window.PAPIER; if (!P) return;
   /* JC – прокладка: бумагу уже кладёт papier.js (JC.v[51] – пустышка), штрихи рисует его penStroke */
   var JC = { v:{ 51:{ apply:function(){} } }, STATIC:true,
-    pen:{ rng:P.rng, find:P.find, lines:P.lines, box:P.box, stroke:function(d, ds, kind, o){ P.stroke(ds, kind, o); return { show:function(){}, el:null }; } },
+    pen:{ rng:P.rng, find:P.find, lines:P.lines, box:P.box, stroke:function(d, ds, kind, o){ var el = P.stroke(ds, kind, o); return { show:function(){}, el:el }; } },
     paper:function(win, o, cb){ P.paper(o, cb); }, pp:{ F:{ fine:P.fine } } };
 /* ---------- помощник (docs/papier/v88.js) ---------- */
 /* 88–90. Растр в блоке цен первого экрана (.gt--cn: 260 / 120 / 550 / 90) – 03.10.2026, Грег: «добавь здесь халфтон, подумай, как лучше».
