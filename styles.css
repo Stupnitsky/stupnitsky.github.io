@@ -5347,18 +5347,118 @@ html.papier.papier-ready .papier-sand{ background-image:var(--papier-veil), var(
 @media (min-width:1024px){
   .ob-strip--perf{ position:relative; }
   .ob-strip--perf .ob-strip-h, .ob-strip--perf .cta-btns{ border-top-color:transparent; }
-  .ob-strip--perf::before, .ob-strip--perf::after{ content:""; position:absolute; left:-3rem; right:-3rem; pointer-events:none; }
-  /* 03.10 Грег: «контраст на дырочках слегка уменьшить, фон под ними темнее» – в отверстиях не светлый фон страницы, а серый
-     с жёлтым рефлексом #DDD2BC (то, что лежит под листом; #CFCABB рядом с охрой уходил в зелень), кромка тоньше; выемки у краёв плашки остаются цвета страницы – там страница и есть */
-  .ob-strip--perf::before{ top:-5px; height:10px;
-    background:radial-gradient(circle at 5.5px 50%, #DDD2BC 0 2.3px, rgba(31,33,32,.14) 2.3px 2.8px, rgba(31,33,32,0) 3.1px) 2px 0 / 11px 10px repeat-x; }
-  .ob-strip--perf::after{ top:-8px; height:16px;
-    background:radial-gradient(circle at 0 50%, var(--c-page) 0 7px, rgba(31,33,32,.14) 7px 7.6px, rgba(31,33,32,0) 8px),
-               radial-gradient(circle at 100% 50%, var(--c-page) 0 7px, rgba(31,33,32,.14) 7px 7.6px, rgba(31,33,32,0) 8px); }
+  .ob-strip--perf::before, .ob-strip--perf::after{ content:""; position:absolute; left:-3rem; right:-3rem; z-index:-1; pointer-events:none; }
+  /* 03.10 Грег: «вырез, а там белая плашка», «дырочки тоже должны быть вырезом». Раньше выемки и отверстия были кружками,
+     нарисованными поверх жёлтого (выемка – цветом страницы, отверстия – #DDD2BC): тень края шла через выемку прямой линией,
+     и она читалась наклейкой. Теперь это настоящие вырезы – сквозь них видна сама страница. Свой фон у плашки снят, жёлтое
+     рисуют три части, лежащие под содержимым (z −1):
+     – лист – .ob-grid::after, от верха плашки до 8px над линией отрыва;
+     – лента отрыва – .ob-strip--perf::before, 18px по линии: фон-градиенты с прозрачным центром. У краёв – выемки r 7px
+       (две клетки по 11px), между ними – ряд отверстий ⌀4,6px; ряд начинается в 10px от края плашки (поле ленты), клетка
+       ≈11px подгоняется (round) под целое число отверстий: от выемки до первого столько же, сколько между соседними;
+     – корешок – .ob-strip--perf::after, от 8px под линией до низа плашки.
+     Части заходят друг на друга на 1px, чтобы на дробных координатах не было шва. Привязано к полю плашки 3rem и отступу
+     полосы 2.4rem (margin-top .ob-strip). В режиме html.plain псевдоэлементы полосы сняты (конец файла), фон плашки – свой. */
+  html:not(.plain) .ob-plate--lift{ background-color:transparent; }
+  html:not(.plain) .ob-plate--lift .ob-grid{ position:relative; }
+  html:not(.plain) .ob-plate--lift .ob-grid::after{ content:""; position:absolute; z-index:-1; pointer-events:none;
+    left:-3rem; right:-3rem; top:-3rem; bottom:calc(8px - 2.4rem); border-radius:26px 26px 0 0; background:var(--c-terra); }
+  .ob-strip--perf::before{ top:-9px; height:18px; padding:0 10px;
+    background:
+      radial-gradient(circle at 0 50%, rgba(239,176,31,0) 7px, var(--c-terra) 7.5px) 0 0 / 11px 100% no-repeat border-box,
+      radial-gradient(circle at 100% 50%, rgba(239,176,31,0) 7px, var(--c-terra) 7.5px) 100% 0 / 11px 100% no-repeat border-box,
+      radial-gradient(circle at 50% 50%, rgba(239,176,31,0) 2.3px, var(--c-terra) 2.8px) 0 0 / 11px 100% round no-repeat content-box; }
+  .ob-strip--perf::after{ top:8px; bottom:-3rem; border-radius:0 0 26px 26px; background:var(--c-terra); }
 }
 /* 03.10.2026 Грег: «небольшую тень плашке дай, минимальную» – жёлтая плашка /kontakt/ #odbior с перфорацией чуть приподнята над страницей
    (только PL, модификатор): тонкая контактная тень и короткая мягкая снизу */
 .ob-plate--lift{ box-shadow:0 1px 1.5px rgba(31,33,32,.10), 0 7px 14px -9px rgba(31,33,32,.26); }
+/* от 1024px, где у плашки вырезы, тени те же, но не box-shadow самой плашки (он идёт по прямоугольнику, мимо вырезов, и внутри
+   него не рисуется). Контактная – фильтром по силуэту: огибает выемки и ложится в каждое отверстие (у drop-shadow размытие –
+   сигма, вдвое шире, чем у box-shadow, поэтому 1.5px → .75px). Мягкая – от ::before под жёлтым (плашка минус 9px, то есть прежний
+   разлёт −9px), видна и в выемке. Фон этого ::before – тень под листом: её видно только сквозь отверстия, страница в них темнее,
+   чем рядом с плашкой (Грег: «фон под ними темнее»). */
+@media (min-width:1024px){
+  html:not(.plain) .ob-plate--lift{ box-shadow:none; filter:drop-shadow(0 1px .75px rgba(31,33,32,.10)); }
+  html:not(.plain) .ob-plate--lift::before{ content:""; position:absolute; inset:9px; z-index:-2; border-radius:17px; pointer-events:none;
+    background:rgba(31,33,32,.13); box-shadow:0 7px 14px rgba(31,33,32,.26); }
+}
+/* Чёрная страница /kontakt/ – бумага и свет, вариант 29 стенда docs/czern/ (Грег, 03.10.2026: «реализуй на сайт 29, а на серой плашке как и
+   везде добавь фактуру»). Класс papier-czern у <html> (только PL), плитки рисует assets/papier.js (функция czern); в режиме html.plain
+   ничего из этого нет.
+   1) Плашки – полосатая бумага верже, как серые плашки на /apostille/ и /tlumaczenia-przysiegle/ («жёлтой плашке придай форму полосатой
+      рифлёной бумаги, как на других страницах»): --papier-plate – линии через 5px, зерно и редкие ворсинки; вуаль местами приглушает линии –
+      охристая (--papier-veil-y) на жёлтой #odbior, серая (--papier-veil) на «Gdzie». Уже 1024px фактура лежит на самой жёлтой плашке; от 1024px
+      её фон рисуют лист (.ob-grid::after) и корешок (.ob-strip--perf::after) – корешок сдвигает плитки на --ob-perf-y (ставит papier.js),
+      чтобы линии продолжали лист. Лента отрыва 18px с отверстиями остаётся гладкой. */
+html.papier-czern.papier-ready:not(.plain) .ob-plate--lift,
+html.papier-czern.papier-ready:not(.plain) .pg-ink .gdz{ background-size:1370px 1370px, 510px 510px; }
+html.papier-czern.papier-ready:not(.plain) .ob-plate--lift{ background-image:var(--papier-veil-y), var(--papier-plate); }
+html.papier-czern.papier-ready:not(.plain) .pg-ink .gdz{ background-image:var(--papier-veil), var(--papier-plate); }
+@media (min-width:1024px){
+  html.papier-czern.papier-ready:not(.plain) .ob-plate--lift{ background-image:none; }
+  html.papier-czern.papier-ready:not(.plain) .ob-plate--lift .ob-grid::after,
+  html.papier-czern.papier-ready:not(.plain) .ob-strip--perf::after{ background-image:var(--papier-veil-y), var(--papier-plate); background-size:1370px 1370px, 510px 510px; }
+  html.papier-czern.papier-ready:not(.plain) .ob-strip--perf::after{ background-position:0 var(--ob-perf-y, 0px), 0 var(--ob-perf-y, 0px); }
+}
+/* 2) Чёрный фон – бумага: редкие охристые и белые вкрапления, редкие светлые ворсинки, матовое зерно, мягкие линии верже под вуалью
+      (всё на грани видимости – силу Грег убавлял на стенде). Один фон на <main>, тёмные секции прозрачные: рисунок идёт через всю страницу
+      без стыков между разделами. Список плиток и их размеры – в --papier-czern / --papier-czern-s. */
+html.papier-czern:not(.plain) .pg-ink main > section.bg-ink{ background-color:transparent; }
+html.papier-czern.papier-czern-ready:not(.plain) body.pg-ink > main{ background-image:var(--papier-czern); background-size:var(--papier-czern-s); }
+/* 2б) Отрывная полоса «молнией» с мессенджерами в конце «Gdzie» – вариант 61 стенда docs/czern/ (Грег, 04.10.2026: «на сайт»). Собирает assets/papier.js
+      (czernPasek) от 1100px на месте кнопок WhatsApp / Telegram в .gdz-cta: вскрытая отрывная лента в чёрной бумаге, под ней охра подвала, на охре
+      «WhatsApp», «Telegram», «Zadzwoń» набором меню; у мессенджеров сразу за словом – облачко меню с тремя точками (всплывает на 1 с по наведению).
+      Кнопки остаются в разметке и работают уже 1100px, без скрипта и в режиме «без бумаги»; от 1100px полоса заменяет весь ряд. */
+@media (min-width:1100px){
+  .gdz-cta.pasek-on > .cta-btns{ display:none; }
+  .pasek{ position:relative; flex:none; }
+  .pasek > *{ position:absolute; }
+  .pasek-slits, .pasek-rim, .pasek-edgew, .pasek-flapw{ pointer-events:none; }
+  .pasek-rim{ position:absolute; overflow:visible; }
+  .pasek-doc{ overflow:hidden; }
+  .pasek-paper{ position:absolute; inset:0; display:flex; align-items:center; gap:24.5px; box-sizing:border-box;
+    background-color:var(--c-ochre); background-image:var(--papier-veil-y, none), var(--papier-plate, none); background-size:1370px 1370px, 510px 510px; }
+  .pasek-tight .pasek-paper{ gap:14px; }
+  /* в CSS 18 / 17,5 и 24,5px – видимые расстояния (от края букв до края облачка) выходят 18 и 26px: у букв «m» и «T» свои поля */
+  .pasek-a{ position:relative; z-index:1; display:flex; align-items:center; gap:18px; height:44px; font-size:26px; font-weight:700; letter-spacing:-.035em;
+    line-height:1.15; color:var(--c-ink); text-decoration:none; white-space:nowrap; }
+  .pasek-a + .pasek-a{ gap:17.5px; }
+  .pasek-a:focus-visible{ outline:2px solid currentColor; outline-offset:5px; border-radius:6px; }
+  .pasek-ish{ position:absolute; left:0; top:0; pointer-events:none; }
+  .pasek-flapw{ transform-origin:0 62%; clip-path:inset(-60px -100px -60px 0); filter:drop-shadow(0 7px 6px rgba(0,0,0,.6)) drop-shadow(0 1px 1.5px rgba(0,0,0,.5)); }
+  .pasek-flap{ position:absolute; right:0; top:-8px; bottom:-8px; background-color:#2E302F; background-size:auto, 192px 192px; }
+  .pasek-fold{ position:absolute; left:0; top:0; bottom:0; width:18px; background:linear-gradient(90deg, rgba(255,255,255,.22), rgba(255,255,255,.05) 9px, rgba(255,255,255,0)); }
+  /* облачко – как .mnd-hint меню, без подписи: место под него занято всегда, показ – классом on на 1 с */
+  .pasek-hint{ position:relative; top:1px; flex:none; height:30px; display:flex; align-items:center; pointer-events:none; opacity:0; transform:scale(.6);
+    transform-origin:0 100%; transition:transform .3s cubic-bezier(.3,1.5,.5,1), opacity .2s ease; }
+  .pasek-bub{ flex:none; height:30px; display:flex; align-items:center; gap:4px; padding:0 12px; border-radius:15px 15px 15px 4px; background:#fff; box-shadow:0 1px 3px rgba(31,33,32,.08); }
+  .pasek-hint.on{ opacity:1; transform:none; }
+  .pasek-hint i{ width:6px; height:6px; border-radius:50%; background:rgba(31,33,32,.5); opacity:.4; }
+  .pasek-hint.on i{ animation:pasekDot 1s 1 both; }
+  .pasek-hint.on i:nth-child(2){ animation-delay:.15s; }
+  .pasek-hint.on i:nth-child(3){ animation-delay:.3s; }
+  @keyframes pasekDot{ 0%,60%,100%{ transform:none; opacity:.4; } 30%{ transform:translateY(-5px); opacity:1; } }
+}
+@media (min-width:1100px) and (prefers-reduced-motion:reduce){ .pasek-hint{ transition:none; } .pasek-hint.on i{ animation:none; } }
+/* 3) Свет по разделам (вариант 11 стенда): раздел за пределами окна стоит в полутьме – классы pg-dim / is-lit ставит papier.js – и «включается»,
+      когда до него дошли. Грег, 04.10.2026: «при повторном выезде включи данный эффект и удлини ещё больше время до того, как засветится в полную
+      силу» – свет загорается каждый раз, когда раздел снова входит в окно, и набирает полную силу за 1,4 с (было 0,5 с, один раз). Гаснет раздел
+      быстро и только за краем окна. Гаснет содержимое раздела, фон остаётся. */
+html.papier-czern:not(.plain) .pg-ink main > section.pg-dim > div{ opacity:.3; transition:opacity .3s ease; }
+html.papier-czern:not(.plain) .pg-ink main > section.pg-dim.is-lit > div{ opacity:1; transition:opacity 1.4s cubic-bezier(.3,0,.4,1); }
+@media (prefers-reduced-motion:reduce){ html.papier-czern:not(.plain) .pg-ink main > section.pg-dim > div{ transition:none; } }
+/* 4) Свет по верхней кромке (вариант 7 стенда после правки Грега: «уменьши тень от плашки и уменьши белый край, на который падает свет»):
+      лампа сверху – у карточек, плашек и кнопок светится верхняя кромка 1px, под ними короткая тень. Только вместе со светом лампы
+      (papier-swiatlo; в режиме «без бумаги» этого класса нет). */
+html.papier-swiatlo .pg-ink .kk-c:not(.kk-cta){ box-shadow:inset 0 1px 0 rgba(255,255,255,.24), inset 0 0 0 1px rgba(255,255,255,.07), 0 10px 18px -12px rgba(0,0,0,.7); }
+html.papier-swiatlo .pg-ink .kk-c.kk-cta{ box-shadow:inset 0 1px 0 rgba(255,255,255,.34), 0 10px 18px -12px rgba(0,0,0,.7); }
+html.papier-swiatlo .pg-ink .gdz{ box-shadow:inset 0 1px 0 rgba(255,255,255,.7), 0 12px 18px -12px rgba(0,0,0,.65); }
+html.papier-swiatlo .pg-ink section.bg-ink .cta-btn{ box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 5px 9px -6px rgba(0,0,0,.6); }
+@media (min-width:1024px){
+  html.papier-swiatlo .pg-ink .ob-plate--lift .ob-grid::after{ box-shadow:inset 0 1px 0 rgba(255,255,255,.34); }
+  html.papier-swiatlo .pg-ink .ob-plate--lift{ filter:drop-shadow(0 7px 6px rgba(0,0,0,.38)); }
+}
 
 /* Окошко конверта у образца перевода в hero /tlumaczenia-przysiegle/ – вариант 58 стенда docs/papier-tl/ (Грег, 03.10.2026).
    Сначала его ставил скрипт через 1,2 с после загрузки, и образец на миг показывался в прежнем, большом размере («начало
@@ -5394,6 +5494,47 @@ html.papier.papier-ready .papier-sand{ background-image:var(--papier-veil), var(
 html.papier-swiatlo body::before, html.papier-swiatlo body::after{ content:""; position:fixed; inset:0; pointer-events:none; z-index:45; }
 html.papier-swiatlo body::before{ background:radial-gradient(75% 60% at 50% -5%, rgba(255,255,255,1), rgba(255,255,255,0) 70%); mix-blend-mode:soft-light; }
 html.papier-swiatlo body::after{ background:radial-gradient(120% 95% at 50% 15%, rgba(31,33,32,0) 50%, rgba(31,33,32,.208)); mix-blend-mode:multiply; }
+
+/* /kontakt/ (PL): вся страница на тёмном, как её второй блок #kontakt (Грег, 03.10.2026: «Всю страницу тоже чёрным сделай
+   как и второй её блок»). В разметке: body.pg-ink, секциям hero / #odbior / #gdzie / #faq даны bg-ink text-paper – по section.bg-ink
+   шапка и плавающая кнопка понимают, что под ними тёмное, кнопки идут по схеме .bg-ink. Текст – как в #kontakt: заголовки белые,
+   кикеры охрой (.kicker--light), читаемый текст text-paper/80, линии rgba(255,255,255,.2). Плашки (жёлтая #odbior, серая «Gdzie»,
+   карточки шагов) остаются светлыми со своим чернильным текстом. */
+body.pg-ink, body.pg-ink > main{ background:var(--c-ink); }
+/* первый экран заходит под шапку (отступ вверх = прибавка поля, текст на месте): у самого верха страницы шапка иначе не знает,
+   что под ней тёмное */
+.pg-ink > main > section:first-child{ margin-top:-140px; padding-top:calc(140px + 2rem); }
+@media (min-width:768px){ .pg-ink > main > section:first-child{ padding-top:calc(140px + 3.5rem); } }
+/* шапка тёмная с первого кадра: класс on-dark ставит app.js (defer), до него на чёрной странице на миг показалась бы светлая
+   плашка с чернильным логотипом. На этой странице под шапкой всегда тёмное, поэтому её тёмный вид здесь – вид по умолчанию. */
+.pg-ink .hdr-row::before{ background:var(--hdr-bg-dark); }
+.pg-ink .hdr-row::after{ box-shadow:var(--hdr-shadow-dark); }
+.pg-ink .logo-brand, .pg-ink header .navlink, .pg-ink .lang-switch{ color:var(--c-paper); }
+.pg-ink .logo-brand b:nth-child(9){ color:var(--c-terra); }
+.pg-ink .hdr-glass #burger span{ background:var(--c-paper); }
+.pg-ink #top .hdr-row .hdr-page{ color:rgba(255,255,255,.5); }
+/* лид после h1/h2: правило PL красит его чернильным – на тёмном он светлый */
+html[lang="pl"] .pg-ink section.bg-ink :is(h1, h2) + p.text-\[17px\]{ color:rgba(255,255,255,.8); }
+/* ссылка-стрелка на тёмном – белая, как чернильная на светлом: при наведении едет только стрелка, без охры */
+.k-where-link--paper, .k-where-link--paper:hover, .k-where-link--paper:focus-visible{ color:var(--c-paper); }
+/* FAQ: линии – как в #kontakt */
+.pg-ink #faq .border-ink\/15{ border-color:rgba(255,255,255,.2); }
+/* карточки шагов – чёрные (Грег, 03.10.2026: «карточки можно чёрными сделать»): темнее страницы, текст белый, номер-водяной знак
+   чуть светлее карточки. Белые карточки разделяла тень – на тёмном её не видно, поэтому у каждой тонкая светлая кромка: по ней
+   читается стопка. Последняя, жёлтая («Prześlij zdjęcia dokumentu»), остаётся жёлтой с чернильным текстом. */
+.pg-ink .kk-c:not(.kk-cta){ background:#0E0F0F; box-shadow:inset 0 0 0 1px rgba(255,255,255,.16), 0 12px 26px -14px rgba(0,0,0,.7); }
+.pg-ink .kk-c:not(.kk-cta) :is(.kk-t, .kk-x){ color:var(--c-paper); }
+.pg-ink .kk-c:not(.kk-cta) .kk-wm{ color:#1C1E1D; }
+.pg-ink .kk-c.is-past:not(.kk-cta){ box-shadow:inset 0 0 0 1px rgba(255,255,255,.16), 0 24px 40px -20px rgba(0,0,0,.7); }
+/* шаги стопкой карточек: то, что лежит на самой странице (полоса, строка под ней, полный список), – светлым */
+.pg-ink .kk-ln button, .pg-ink .kk-back button{ color:var(--c-paper); }
+html[lang="pl"] .pg-ink .kt-steps-list li, .pg-ink .kk-all li{ color:rgba(255,255,255,.8); }
+.pg-ink .kt-steps-list li b{ color:var(--c-paper); }
+.pg-ink .kk-seg .bar{ background:rgba(255,255,255,.2); }
+.pg-ink .kk-seg li.done .bar i, .pg-ink .kk-seg li.on .bar i{ background:rgba(255,255,255,.55); }
+.pg-ink .kk-seg button:focus-visible{ outline-color:var(--c-paper); }
+/* в светлых плашках внутри тёмной секции обводка фокуса кнопок остаётся чернильной */
+.pg-ink :is(.bg-terra, .bg-sand, .kk-c) .cta-btn:focus-visible{ outline-color:var(--c-ink); }
 
 /* Режим «без бумаги» (html.plain – ставит app.js, ползунок «Papier» в меню, инструмент Грега; 03.10.2026). Основное гасится само:
    без класса papier у <html> не работают assets/papier*.js и стили html.papier… / html.papier-swiatlo. Здесь – «не цифровое»
