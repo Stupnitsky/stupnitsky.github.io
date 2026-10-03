@@ -417,7 +417,8 @@
   }
 
   /* общие функции – для assets/papier-extra.js (варианты 59, 62, 68, 69 стенда, собранные docs/papier/build-extra.py) */
-  win.PAPIER = { rng:rng, find:find, lines:lines, box:box, paper:paper, fine:FINE, went:0 };
+  win.PAPIER = { rng:rng, find:find, lines:lines, box:box, paper:paper, fine:FINE, went:0,
+    stroke:function(ds, kind, o){ defs(); penStroke(ds, kind, (o && o.color) || 'rgba(31,33,32,.85)', (o && o.width) || 2); } };
   function start(){
     mark(); lamp(); textures();
     var go = function(){ tearAll(); notes(); win.PAPIER.went++; if (win.PAPIER_EXTRA) win.PAPIER_EXTRA(win.PAPIER.went); };

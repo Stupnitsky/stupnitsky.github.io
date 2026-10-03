@@ -1,13 +1,15 @@
-/* assets/papier-extra.js – СОБРАНО docs/papier/build-extra.py из docs/papier/v59.js, v62.js, v68.js, v69.js. Руками не править:
-   менять варианты на стенде и пересобирать. Только /apostille/ (html.papier[data-papier="apostille"]), после assets/papier.js. */
+/* assets/papier-extra.js – СОБРАНО docs/papier/build-extra.py из вариантов стенда docs/papier (v59.js, v62.js, v68.js, v69.js, v89.js). Руками не править:
+   менять варианты на стенде и пересобирать. Только страница html.papier[data-papier="apostille"], после assets/papier.js. */
 (function(){
   var html = document.documentElement;
   if (!html.classList.contains('papier') || (html.getAttribute('data-papier') || 'apostille') !== 'apostille') return;
-  try { if (window.top !== window && /\/docs\/papier\//.test(window.parent.location.pathname)) return; } catch (e) {}
+  try { if (window.top !== window && /\/docs\/papier(-tl)?\//.test(window.parent.location.pathname)) return; } catch (e) {}
   var P = window.PAPIER; if (!P) return;
-  var JC = { v:{ 51:{ apply:function(){} } }, pen:{ rng:P.rng, find:P.find, lines:P.lines, box:P.box },
+  /* JC – прокладка: бумагу уже кладёт papier.js (JC.v[51] – пустышка), штрихи рисует его penStroke */
+  var JC = { v:{ 51:{ apply:function(){} } }, STATIC:true,
+    pen:{ rng:P.rng, find:P.find, lines:P.lines, box:P.box, stroke:function(d, ds, kind, o){ P.stroke(ds, kind, o); return { show:function(){}, el:null }; } },
     paper:function(win, o, cb){ P.paper(o, cb); }, pp:{ F:{ fine:P.fine } } };
-/* ---------- помощник растра (docs/papier/v88.js) ---------- */
+/* ---------- помощник (docs/papier/v88.js) ---------- */
 /* 88–90. Растр в блоке цен первого экрана (.gt--cn: 260 / 120 / 550 / 90) – 03.10.2026, Грег: «добавь здесь халфтон, подумай, как лучше».
    Общее – JC.HT в этом файле: точки растра по маске цифр. Маска рисуется на canvas тем же шрифтом, что у цифры (computed font,
    letter-spacing), базовая линия – верх строки текста (Range) + fontBoundingBoxAscent; точки – сетка под 45°, размер точки =
@@ -460,12 +462,12 @@ JC.v[89] = { en:'Halftone instead of grey bars', name:'Растр вместо �
     });
   } };
 
-  var GATE = {59:1100, 62:1100, 68:1280, 69:0, 89:1280}, css = '';
+  var GATE = {59:1100, 62:1100, 68:1280, 69:0, 89:1280}, ONCE = [69], css = '';
   Object.keys(GATE).forEach(function(n){ if (JC.v[n] && JC.v[n].css) css += JC.v[n].css; });
   if (css) { var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st); }
   function run(time){
     if (time > 1) Array.prototype.forEach.call(document.querySelectorAll('.papier-x59, .v62-note, .v68-ht, .v89-ht'), function(e){ e.remove(); });
-    Object.keys(GATE).forEach(function(n){ if (window.innerWidth >= GATE[n] && JC.v[n]) { if (n == 69 && time > 1) return; try { JC.v[n].apply(document, document.body, window); } catch (e) {} } });
+    Object.keys(GATE).forEach(function(n){ if (window.innerWidth >= GATE[n] && JC.v[n]) { if (time > 1 && ONCE.indexOf(+n) >= 0) return; try { JC.v[n].apply(document, document.body, window); } catch (e) {} } });
   }
   window.PAPIER_EXTRA = run;
   if (P.went) run(1);

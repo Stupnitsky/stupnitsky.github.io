@@ -447,7 +447,7 @@
 
     <!-- .ob-plate (24.09.2026): пять способов – аккордеоном, как список городов на /apostille-bez-przyjazdu/ (.so-list:
          закрытая строка срезает низ слова). Текст остаётся в HTML – для Google вес тот же. details name="ob" – открыт один. -->
-    <div class="ob-plate mt-10 bg-terra text-ink rounded-[26px] p-7 sm:p-12">
+    <div class="ob-plate ob-plate--lift mt-10 bg-terra text-ink rounded-[26px] p-7 sm:p-12">
       <div class="ob-grid grid grid-cols-12 gap-8">
         <div class="col-span-12 lg:col-span-5 flex flex-col gap-6">
           <h3 class="ob-h text-[26px] sm:text-[34px] font-semibold tracking-tightest leading-[1.03]">
@@ -497,7 +497,8 @@
         </div>
       </div>
       <!-- от 1024px кнопки – полосой по низу плашки (Грег, 24.09.2026, стенд m-obcta 4б); уже 1024 – блок .ob-cta в колонке -->
-      <div class="ob-strip" role="group" aria-label="Napisz lub zadzwoń">
+      <!-- 03.10.2026 Грег: вместо линии над полосой кнопок – перфорация для отрыва (как талон), модификатор ob-strip--perf, только PL -->
+      <div class="ob-strip ob-strip--perf" role="group" aria-label="Napisz lub zadzwoń">
         <p class="ob-strip-h">Skontaktuj się z nami</p>
         <div class="cta-btns">
           <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>

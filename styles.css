@@ -5324,3 +5324,23 @@ html.papier.papier-ready .papier-sand{ background-image:var(--papier-veil), var(
 .papier-rim{ position:absolute; left:0; top:0; pointer-events:none; z-index:0; }
 .papier-note{ position:absolute; z-index:44; pointer-events:none; overflow:visible; }
 
+/* Перфорация вместо линии над полосой кнопок жёлтой плашки /kontakt/ #odbior (Грег, 03.10.2026: «реализуй такое… только как
+   перфорацию для отрыва, вместо линии»; по мотивам варианта 20 стенда docs/papier-tl/). Только PL (модификатор .ob-strip--perf),
+   от 1024px, где есть сама полоса. Ряд круглых отверстий ⌀4,6px через 11px от края до края плашки (поля плашки 3rem): сквозь них
+   виден фон страницы, по кромке – тонкая тень; у обоих краёв плашки – полукруглые выемки, как у отрывного талона. */
+@media (min-width:1024px){
+  .ob-strip--perf{ position:relative; }
+  .ob-strip--perf .ob-strip-h, .ob-strip--perf .cta-btns{ border-top-color:transparent; }
+  .ob-strip--perf::before, .ob-strip--perf::after{ content:""; position:absolute; left:-3rem; right:-3rem; pointer-events:none; }
+  /* 03.10 Грег: «контраст на дырочках слегка уменьшить, фон под ними темнее» – в отверстиях не светлый фон страницы, а серый
+     с жёлтым рефлексом #DDD2BC (то, что лежит под листом; #CFCABB рядом с охрой уходил в зелень), кромка тоньше; выемки у краёв плашки остаются цвета страницы – там страница и есть */
+  .ob-strip--perf::before{ top:-5px; height:10px;
+    background:radial-gradient(circle at 5.5px 50%, #DDD2BC 0 2.3px, rgba(31,33,32,.14) 2.3px 2.8px, rgba(31,33,32,0) 3.1px) 2px 0 / 11px 10px repeat-x; }
+  .ob-strip--perf::after{ top:-8px; height:16px;
+    background:radial-gradient(circle at 0 50%, var(--c-page) 0 7px, rgba(31,33,32,.14) 7px 7.6px, rgba(31,33,32,0) 8px),
+               radial-gradient(circle at 100% 50%, var(--c-page) 0 7px, rgba(31,33,32,.14) 7px 7.6px, rgba(31,33,32,0) 8px); }
+}
+/* 03.10.2026 Грег: «небольшую тень плашке дай, минимальную» – жёлтая плашка /kontakt/ #odbior с перфорацией чуть приподнята над страницей
+   (только PL, модификатор): тонкая контактная тень и короткая мягкая снизу */
+.ob-plate--lift{ box-shadow:0 1px 1.5px rgba(31,33,32,.10), 0 7px 14px -9px rgba(31,33,32,.26); }
+
