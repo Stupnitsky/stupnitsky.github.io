@@ -1,3 +1,31 @@
+/* Режим «без бумаги» – инструмент Грега (03.10.2026: «ползунок в меню, который отключает фактуры, обводки и подписи карандашом –
+   всё "не цифровое"»; виден только на локальном сайте или после ?plain=1). Когда включён, у <html> снимаются классы бумаги
+   (papier, papier-swiatlo): assets/papier*.js сами не запускаются, стили html.papier… не действуют; «бумажное» вне этой системы
+   (сгиб, перфорация, тень листа) гасит html.plain в styles.css, карандашные иконки меняются на обычные. Состояние – localStorage
+   'ap-plain'; ?plain=1 / ?plain=0 в адресе включает и выключает режим и показывает ползунок и на опубликованном сайте
+   ('ap-plain-ui'). Сам ползунок «Papier» ставит блок меню компьютера ниже. В кадрах стендов docs/… режим не действует.
+   Правило: новое бумажное украшение – под html.papier либо с отменой под html.plain, иначе режим «протечёт». */
+(function () {
+  var root = document.documentElement, ls = null, q = /[?&]plain=([01])(?:&|$)/.exec(location.search);
+  try { if (window.top !== window && /\/docs\//.test(window.parent.location.pathname)) return; } catch (e) {}
+  try { ls = window.localStorage; ls.getItem('ap-plain'); } catch (e) { ls = null; }
+  var local = /^(localhost|127\.0\.0\.1|\[::1\])$|\.local$/.test(location.hostname);
+  if (q && ls) { ls.setItem('ap-plain', q[1]); ls.setItem('ap-plain-ui', '1'); }
+  var on = q ? q[1] === '1' : !!ls && ls.getItem('ap-plain') === '1';
+  window.AP_PLAIN = { on: on, ui: local || !!q || (!!ls && ls.getItem('ap-plain-ui') === '1'),
+    set: function (v) {
+      if (ls) ls.setItem('ap-plain', v ? '1' : '0');
+      var u = new URL(location.href);
+      if (u.searchParams.has('plain')) { u.searchParams.set('plain', v ? '1' : '0'); location.replace(u.toString()); } else location.reload();
+    } };
+  if (!on) return;
+  root.classList.remove('papier', 'papier-swiatlo'); root.classList.add('plain');
+  /* иконки карандашом → обычные: ico-*-reka.svg → ico-*.svg, без увеличения */
+  Array.prototype.forEach.call(document.querySelectorAll('img[src*="-reka.svg"]'), function (im) {
+    im.src = im.getAttribute('src').replace('-reka.svg', '.svg'); im.classList.remove('gdz-crest--big');
+  });
+})();
+
 (function () {
   // Словарь для часов и календаря: язык берётся из <html lang>
   var I18N = {
@@ -1766,7 +1794,7 @@
     /* нажатие в ряду шапки мимо бургера (логотип, «Zamów wycenę») – меню закрывается, панель wyceny откроется сама */
     document.addEventListener('pointerdown', function (e) {
       /* языки в ряду шапки (компьютер) – меню не закрываем на pointerdown: иначе они пропали бы до click, и язык бы не сменился */
-      if (isOpen() && e.target !== shade && !nav.contains(e.target) && !burger.contains(e.target) && !(e.target.closest && e.target.closest('.mn-langs'))) setOpen(false);
+      if (isOpen() && e.target !== shade && !nav.contains(e.target) && !burger.contains(e.target) && !(e.target.closest && e.target.closest('.mn-langs, .mnd-plain'))) setOpen(false);
     });
     /* окно перешло порог 1150px – у меню другая раскладка (с 30.09.2026 меню есть и на компьютере), закрываем */
     var wide = window.matchMedia('(min-width:1150px)');
@@ -1857,6 +1885,15 @@
         if (desk.matches) { if (langs.parentNode !== lseg) lseg.appendChild(langs); }
         else if (langs.parentNode !== inn) inn.insertBefore(langs, inn.firstChild); }
       placeLangs(); (desk.addEventListener ? desk.addEventListener('change', placeLangs) : desk.addListener(placeLangs));
+      /* ползунок «Papier» – инструмент Грега (03.10.2026): слева от языков в ряду шапки, виден при открытом меню и только
+         на локальном сайте или после ?plain=… (window.AP_PLAIN в начале файла). Включён = бумага есть; нажатие перезагружает страницу */
+      if (window.AP_PLAIN && window.AP_PLAIN.ui && lseg) {
+        var pl = el('button', 'mnd-plain', '<span>Papier</span><i aria-hidden="true"></i>');
+        pl.type = 'button'; pl.setAttribute('role', 'switch'); pl.setAttribute('aria-checked', String(!window.AP_PLAIN.on));
+        pl.title = 'Фактуры, обводки и пометки карандашом: ' + (window.AP_PLAIN.on ? 'выключены' : 'включены');
+        pl.addEventListener('click', function (e) { e.stopPropagation(); window.AP_PLAIN.set(!window.AP_PLAIN.on); });
+        lseg.insertBefore(pl, lseg.firstChild);
+      }
       fit(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
       window.addEventListener('resize', fit, { passive: true });
       burger.addEventListener('click', fit, true);   /* до открытия (fitPlate меряет уже новую раскладку) */

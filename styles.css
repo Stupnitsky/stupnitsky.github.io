@@ -4927,6 +4927,22 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
   html.menu-open #top .hdr-seg--menu .mn-langs{ opacity:1; visibility:visible; transition:opacity .25s ease .06s, visibility 0s; }
   header:has(.hdr-row.on-dark) .hdr-seg--menu a.mn-lang{ color:var(--c-paper); }
   header:has(.hdr-row.on-dark) .hdr-seg--menu a.mn-lang:not(.is-current){ color:rgba(255,255,255,.72); }
+  /* ползунок «Papier» – инструмент Грега (только локально или после ?plain=…, app.js): слева от языков, виден при открытом меню.
+     Подпись – как неактивный язык; включён (бумага есть) – чернильный */
+  #top .hdr-seg--menu .mnd-plain{ display:flex; align-items:center; gap:10px; margin:0 34px 0 0; padding:0; border:0; background:none; cursor:pointer;
+    font:inherit; font-size:16px; font-weight:400; line-height:1.1; color:rgba(31,33,32,.72);
+    opacity:0; visibility:hidden; transition:opacity .2s ease, visibility 0s linear .2s; }
+  html.menu-open #top .hdr-seg--menu .mnd-plain{ opacity:1; visibility:visible; transition:opacity .25s ease .06s, visibility 0s; }
+  #top .mnd-plain i{ position:relative; flex:none; width:34px; height:20px; border-radius:10px; background:rgba(31,33,32,.28); transition:background-color .2s ease; }
+  #top .mnd-plain i::after{ content:""; position:absolute; left:2px; top:2px; width:16px; height:16px; border-radius:50%; background:#fff; transition:transform .2s ease; }
+  #top .mnd-plain[aria-checked="true"]{ color:var(--c-ink); }
+  #top .mnd-plain[aria-checked="true"] i{ background:var(--c-ink); }
+  #top .mnd-plain[aria-checked="true"] i::after{ transform:translateX(14px); }
+  #top .mnd-plain:focus-visible{ outline:2px solid currentColor; outline-offset:4px; border-radius:6px; }
+  header:has(.hdr-row.on-dark) #top .mnd-plain{ color:rgba(255,255,255,.72); }
+  header:has(.hdr-row.on-dark) #top .mnd-plain[aria-checked="true"]{ color:var(--c-paper); }
+  header:has(.hdr-row.on-dark) #top .mnd-plain i{ background:rgba(255,255,255,.3); }
+  header:has(.hdr-row.on-dark) #top .mnd-plain[aria-checked="true"] i{ background:var(--c-terra); }
 
   /* облачко «napisz do nas» – сразу за названием наведённого мессенджера, через 36px (Грег, 01.10.2026: «баблы очень далеко от Telegram
      и Wapp»; 36px – Грег, 01.10.2026): три прыгающие точки, через 0,9 с – подпись (как «Печатает…», вариант 130 стенда). Хвостик – к названию. Облачко – часть
@@ -5379,3 +5395,13 @@ html.papier-swiatlo body::before, html.papier-swiatlo body::after{ content:""; p
 html.papier-swiatlo body::before{ background:radial-gradient(75% 60% at 50% -5%, rgba(255,255,255,1), rgba(255,255,255,0) 70%); mix-blend-mode:soft-light; }
 html.papier-swiatlo body::after{ background:radial-gradient(120% 95% at 50% 15%, rgba(31,33,32,0) 50%, rgba(31,33,32,.208)); mix-blend-mode:multiply; }
 
+/* Режим «без бумаги» (html.plain – ставит app.js, ползунок «Papier» в меню, инструмент Грега; 03.10.2026). Основное гасится само:
+   без класса papier у <html> не работают assets/papier*.js и стили html.papier… / html.papier-swiatlo. Здесь – «не цифровое»
+   вне этой системы: сгиб бумаги на /tlumaczenia-przysiegle/, перфорация и тень поднятого листа на /kontakt/ (возвращается
+   обычная линия). Новое бумажное украшение без html.papier – добавить сюда отмену. */
+html.plain .pp-fold-sec{ display:none; }
+html.plain .ob-plate--lift{ box-shadow:none; }
+@media (min-width:1024px){
+  html.plain .ob-strip--perf::before, html.plain .ob-strip--perf::after{ content:none; }
+  html.plain .ob-strip--perf .ob-strip-h, html.plain .ob-strip--perf .cta-btns{ border-top-color:rgba(31,33,32,.25); }
+}
