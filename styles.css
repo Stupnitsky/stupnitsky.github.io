@@ -1789,6 +1789,32 @@ details[open] .chev{ transform:rotate(45deg); }
 /* стрелка основной кнопки не должна сжиматься, когда подпись переносится на две строки */
 .cal-go .btn-mark{ flex:0 0 auto; }
 .cal-go .btn-mark > span{ overflow:visible; }
+/* /kontakt/ (PL): календарь – на две трети блока, окна встречи – в левой колонке (Грег, 04.10.2026: на снимке стрелкой перенёс правую
+   колонку со временем под «Śródmieście, centrum Warszawy», «а правую часть колонки отдать под календарь, который на 2/3»).
+   Модификатор .kt-cal--wide стоит в разметке PL; ua/ru/en – прежние три колонки. От 1024px (уже – зоны друг под другом, как было):
+   слева вступление, место встречи и под ними дата, окна и кнопка записи; справа, за вертикальной линией, – календарь во всю ширину
+   двух третей. Потолок 495px («нельзя растягивать даты календаря», 21.09) на этой странице снят этой же просьбой: сетка растёт вместе
+   с колонкой, а с ней – ячейки, кружки дней и цифры (--cd – диаметр кружка, --ch – высота ячейки, считаются от ширины колонки), иначе
+   кружки 36px терялись бы в ячейках по 106px. Заголовок месяца – уровнем заголовка левой колонки (26px): цифры (до 22px) меньше
+   заголовка и больше текста. Строки сетки – auto 1fr: лишняя высота календаря уходит под окна, а не между вступлением и окнами. */
+@media (min-width:1024px){
+  .kt-cal--wide{ grid-template-columns:minmax(0,1fr) minmax(0,2fr); grid-template-rows:auto 1fr; }
+  .kt-cal--wide .kt-cal-intro{ grid-column:1; grid-row:1; }
+  .kt-cal--wide .kt-cal-side{ grid-column:1; grid-row:2; min-height:0; padding:28px 0 0; border-left:0; }
+  .kt-cal--wide .kt-cal-main{ grid-column:2; grid-row:1 / span 2; align-self:stretch; min-height:0; container-type:inline-size; }
+  .kt-cal--wide .cal-book-hint{ padding-top:0; }
+  .kt-cal--wide .cal-head, .kt-cal--wide .cal-grid{ max-width:none; }
+  .kt-cal--wide .cal-head{ margin-bottom:18px; }
+  .kt-cal--wide .cal-title{ font-size:26px; }
+  .kt-cal--wide .cal-grid{ --cd:clamp(38px, 7.2cqw, 56px); --ch:clamp(46px, 9.2cqw, 72px); }
+  .kt-cal--wide .cal-wd{ padding-bottom:12px; }
+  .kt-cal--wide .cal-cell{ height:var(--ch); font-size:clamp(16px, 2.85cqw, 22px); }
+  .kt-cal--wide .cal-day, .kt-cal--wide .cal-hol{ width:var(--cd); height:var(--cd); }
+  /* точка «сегодня» – на том же месте внутри кружка, что и в малом календаре, и растёт вместе с ним */
+  .kt-cal--wide .cal-cell.is-today::after{ bottom:calc((var(--ch) - var(--cd)) / 2 + var(--cd) * .083); width:calc(var(--cd) * .14); height:calc(var(--cd) * .14);
+    margin-left:calc(var(--cd) * -.07); }
+  .kt-cal--wide .cal-note{ margin-top:18px; }
+}
 
 /* ===== Группа кнопок действия (.cta-btns): WhatsApp · Telegram · «Zamów wycenę» (21.09.2026) =====
    Форма – как у кнопок WhatsApp / Telegram в панели wyceny (.qd-msgr a): скругление 12px, Fira Sans 17px / 600
@@ -1868,6 +1894,8 @@ details[open] .chev{ transform:rotate(45deg); }
 .ap-doc{ padding-top:1rem; border-top:2px solid rgba(31,33,32,.15); }
 .ap-doc h3{ font-size:20px; font-weight:700; letter-spacing:-.01em; line-height:1.2; }
 .ap-doc p{ margin-top:.5rem; font-size:15.5px; line-height:1.55; color:rgba(31,33,32,.72); }
+/* 04.10.2026 (аналитика 02.10, В6): текст карточек – основной, 17px; только PL, ua/ru/en – при общем проходе */
+html[lang="pl"] .ap-doc p{ font-size:17px; }
 
 /* ===== Страница /cennik/ ===== */
 .cn-groups{ display:grid; gap:2.5rem; }
@@ -1947,6 +1975,15 @@ details[open] .chev{ transform:rotate(45deg); }
 @media (max-width:639px){ .cn-dock{ display:none; } }
 /* текущий раздел – мягкий серый, как плашки условий в прайсе (.cn-pill) */
 .cn-dock a.is-here{ background:var(--c-sand); }
+/* 03.10.2026 (Грег): «давай якоря влево по верхней плашке меню выставим, а кнопка не будет мешать». От 1150px плитка якорей
+   стоит не по центру, а слева – левый край по левому краю плашки шапки (ряд #top: 1354px минус поля 1.25rem); справа, по правому
+   краю плашки, – всплывающая «Ekspresowa wycena» (.m-dock), она на /cennik/ больше не уступает якорям (app.js). Середины плитки
+   и кнопки – на одной линии (высоту ставит app.js). Ширина плитки – до кнопки (её 322px + зазор). Уже 1150px – как было, по центру. */
+@media (min-width:1150px){
+  .cn-dock{ left:calc(max(0px, (100% - 1354px) / 2) + 1.25rem); transform:translate(0,12px);
+    max-width:calc(min(100%, 1354px) - 2.5rem - 350px); }
+  .cn-dock.is-on{ transform:none; }
+}
 @media (prefers-reduced-motion:reduce){ .cn-dock{ transition:none; } }
 
 /* Статусная строка: две плашки рядом со скруглением 6px – серый ярлык и жёлтая с текстом,
@@ -4103,15 +4140,17 @@ details[open] > summary .chev:not(.chev--x)::before{ transform:translateY(3px) r
    и крошки в 60 % (text-ink/60) – эти правила не трогаются. Вступление сразу после h1/h2 (17px) – лид: 20px от 640px,
    18px на телефоне; уже крупные лиды (главная 21px, /cennik/ 24px) не меняются.
    Только польские страницы (html[lang="pl"]) – ua/ru/en догоняют общим проходом, тогда ограничение снять.
+   04.10.2026 (аналитика 02.10, В5): /tlumaczenia-przysiegle/ukrainski|rosyjski|angielski/ лежат в польской зоне, но lang у них
+   uk/ru/en – им дан класс html.pl-zone, правила ниже действуют и на него.
    Не трогаются здесь: прайс /cennik/ (#ceny), цены в FAQ (.faq-price) и текст панели после отправки – их чернит
    правило ниже (02.10.2026); остальная панель заявки (.qd), шапка, меню, подвал. */
-html[lang="pl"] :is(.text-ink\/65, .text-ink\/70, .text-ink\/75, .text-ink\/80, .text-ink\/85):not(.uppercase):not(section#ceny *, .qd *, header *, nav *, #mobile-nav *, footer *){ color:var(--c-ink); }
-html[lang="pl"] :is(.tl-def-text, .tl-lead, .tl-meta, .step-lead, .scheme-item figcaption, .flow li, .opt span, .rules li,
+:is(html[lang="pl"], html.pl-zone) :is(.text-ink\/65, .text-ink\/70, .text-ink\/75, .text-ink\/80, .text-ink\/85):not(.uppercase):not(section#ceny *, .qd *, header *, nav *, #mobile-nav *, footer *){ color:var(--c-ink); }
+:is(html[lang="pl"], html.pl-zone) :is(.tl-def-text, .tl-lead, .tl-meta, .step-lead, .scheme-item figcaption, .flow li, .opt span, .rules li,
   .gdz--light .gdz-full, .gdz--light .gdz-docs li, .gdz--light .gdz-note p, .gdz-key-s, .gdz-src,
   .kt-steps-list li, .ap-doc p, .ua-term-t, .so-text, .so-more, .so-addr i, .cmp-lead, .cmp-note p, .route-t, .route-sum){ color:var(--c-ink); }
-html[lang="pl"] :is(h1, h2) + p.text-\[17px\]{ font-size:18px; color:var(--c-ink); }
-@media (min-width:640px){ html[lang="pl"] :is(h1, h2) + p.text-\[17px\]{ font-size:20px; } }
-html[lang="pl"] :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lead b было 19px – в лиде 20px оно стало бы мельче текста */
+:is(html[lang="pl"], html.pl-zone) :is(h1, h2) + p.text-\[17px\]{ font-size:18px; color:var(--c-ink); }
+@media (min-width:640px){ :is(html[lang="pl"], html.pl-zone) :is(h1, h2) + p.text-\[17px\]{ font-size:20px; } }
+:is(html[lang="pl"], html.pl-zone) :is(h1, h2) + p.text-\[17px\] b{ font-size:1em; }   /* .hero-lead b было 19px – в лиде 20px оно стало бы мельче текста */
 /* Прайс и цены – тоже чернильные (Грег, 02.10.2026: «исправь серый ink/65 на чернильный», затем «сделай если нужно»;
    было 65–80 %): описания и вводные строки групп /cennik/ (#ceny), пояснения «Odbiór i wysyłka», примечания под прайсом,
    курсивные формулы сумм .cn-sum (их и так отличает курсив), строки цен .faq-price (главная #faq, /apostille-ukraina/ #dyplom),
@@ -4710,10 +4749,90 @@ html[lang="pl"] .wy-v2 :is(#quote-form, #quote-form-qd) .qd-done .qd-formsub{ co
 .m-dock.is-on{ opacity:1; visibility:visible; transform:none; pointer-events:auto; }
 .m-dock .cta-btn{ display:flex; width:100%; height:50px; padding-block:0; border-radius:var(--hdr-r);
   justify-content:center; box-shadow:0 8px 24px rgba(31,33,32,.18); }
-/* 30.09.2026 (Грег): и на компьютере – в шапке меню 126 кнопки заявки нет; справа внизу, по ширине подписи */
-@media (min-width:1150px){ .m-dock{ left:auto; right:32px; margin-inline:0; width:auto; min-width:0; } .m-dock .cta-btn{ padding-inline:1.6em; } }
-@media (prefers-reduced-motion:reduce){ .m-dock{ transition:none; } }
-@media print{ .m-dock{ display:none; } }
+/* 30.09.2026 (Грег): и на компьютере – в шапке меню 126 кнопки заявки нет; справа внизу, по ширине подписи
+   (right:32px, width:auto) – так было до 03.10.2026, см. ниже */
+/* 03.10.2026 (Грег): «кнопка „Ekspresowa wycena“ – как плашка меню (те же параметры), такого же размера и имеет свечение,
+   жёлтого цвета только, а не белого». Сначала док был близнецом плашки во всю её ширину (1314×90, охра 64 % с размытием);
+   Грег в тот же день: «кнопку необходимо уменьшать и уводить в правый край, насыщать охрой», «до размера букв», «правый
+   край кнопки там же можно оставить, по высоте уменьшить на 24 %», а на плотную охру – «прозрачность похоже исчезла?».
+   От 1150px: кнопка справа внизу, правый край – по правому краю плашки шапки (ряд #top: 1354px минус поля 1.25rem), от низа
+   окна 18px – как плашка от верха; высота 68px (90px плашки − 24 %), ширина – по подписи (поля 30px), скругление 28px и тень –
+   плашки (--hdr-shadow).
+   С вечера 03.10 охра – вид при наведении, в покое кнопка тёмная (см. «Цвета» в блоке правил ниже).
+   Охра – стекло плашки, окрашенное охрой, в два слоя: .m-dock-glass (ставит app.js за доком) – то же стекло, что у шапки
+   (--hdr-bg 64 % белого + --hdr-blur), по размеру кнопки (ширину --dock-w меряет app.js); сам док с охрой ложится на него
+   умножением. Так охра насыщенная (на бумаге ≈ #E9AA1D), а страница под кнопкой видна, как под плашкой; охра 64 % обычным
+   наложением на светлом выцветала до #EFC76A. Оба слоя – прямо в <body>: умножение из-под слоя с position:fixed на страницу
+   не действует, а стекло внутри слоя с умножением не видит страницу.
+   Над тёмным блоком (.m-dock.on-dark, ставит app.js) – как тёмная плашка меню (Грег: «прозрачность очень низкая, посмотри
+   как в чёрной версии меню»): охра 78 % (доля --hdr-bg-dark) обычным наложением с тем же размытием – светлый текст под
+   кнопкой виден так же, как под тёмной плашкой; умножение на чёрном дало бы чёрное, поэтому там без него и без подложки.
+   Подпись – как на жёлтой полосе меню: «Ekspresowa wycena» 26px / 700 (.md-l, текст берёт app.js у .mnd-t; уже 1150px –
+   прежняя .md-s). Слои 46 (стекло) и 47 (док) – над светом лампы и тенью к краям (z 45): тень умножением гасила охру до
+   горчичного. Появление – выездом, оба слоя одним переходом.
+   Свечение – слой .m-dock-glow (ставит app.js за доком): ореол по форме кнопки – тень-свечение охрой на ~115px вокруг неё
+   (сначала было пятно размером со свет лампы, 75 % × 60 % окна; Грег: «свечение от кнопки слишком рассеянное»). На всех
+   страницах, и без света лампы (Грег про /cennik/: «и будет целый блок светить»); гаснет только в режиме «без бумаги»
+   (html.plain) – как калька на строках прайса. Наложение – умножением:
+   бумага желтеет, а текст остаётся чернильным (обычным наложением чёрное уходило в коричневый); над тёмным блоком –
+   осветлением (screen), иначе на чёрном свечения не видно. */
+.m-dock .md-l, .m-dock-glow, .m-dock-lamp, .m-dock-glass{ display:none; }
+@media (min-width:1150px){
+  /* --dock-lift – подъём у конца страницы (app.js): кнопка не исчезает, а остаётся над подвалом и уезжает вместе со страницей */
+  .m-dock, .m-dock-glass, .m-dock-glow, .m-dock-lamp{ left:auto; right:calc(max(0px, (100% - 1354px) / 2) + 1.25rem); bottom:calc(18px + var(--dock-lift, 0px));
+    transform:translateY(calc(100% + 30px));
+    transition:transform .35s cubic-bezier(.2,.7,.25,1), opacity 0s linear .35s, visibility 0s linear .35s; }
+  .m-dock.is-on{ transition:transform .35s cubic-bezier(.2,.7,.25,1), opacity 0s, visibility 0s; }
+  /* Цвета (Грег, 03.10.2026, вечер: «давай перевернём цвета при наведении и в покое»).
+     В покое – стекло тёмной плашки меню: --hdr-bg-dark 78 %, то же размытие и тёмная тень, подпись белая; так и на светлом,
+     и на тёмном фоне; над тёмным под ней белый свет, как под плашкой меню, на светлом – тень.
+     При наведении кнопка загорается охрой: на светлом – охра умножением на белом стекле плашки (.m-dock-glass, см. выше),
+     на тёмном (.m-dock.on-dark) – охра 78 % обычным наложением с размытием; свет под ней тоже становится охрой. */
+  .m-dock{ margin-inline:0; width:auto; min-width:0; z-index:47; }
+  .m-dock-glass, .m-dock-glow, .m-dock-lamp{ position:fixed; width:var(--dock-w, 0px); height:68px; border-radius:28px; pointer-events:none; opacity:0; visibility:hidden; }
+  .m-dock-glass{ display:block; z-index:46; background:var(--hdr-bg); -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur); }
+  /* свет под кнопкой – два слоя (Грег, 03.10: «под кнопкой жёлтым, когда подводим и меняется на жёлтый, а так белым, как и
+     плашка меню»; затем: «только на чёрном фоне белое свечение под кнопкой, а на белом фоне от неё тень и нет света. Жёлтый
+     при наведении остаётся так же»). В покое: над тёмным блоком – белый .m-dock-lamp мягким светом, тем же наложением, что
+     у света лампы под шапкой (.papier-lamp); на светлом света нет, у кнопки тень (box-shadow ниже). При наведении – охра
+     .m-dock-glow (умножением, над тёмным – осветлением), с заливкой и под самой кнопкой, на любом фоне */
+  html:not(.plain) .m-dock-lamp{ display:block; z-index:46; mix-blend-mode:soft-light; box-shadow:0 0 90px 24px #fff; }
+  html:not(.plain) .m-dock-glow{ display:block; z-index:45; mix-blend-mode:multiply;
+    background:rgba(239,176,31,.6); box-shadow:0 0 90px 24px rgba(239,176,31,.6); }
+  .m-dock.is-on ~ .m-dock-glass{ transform:none; transition:transform .35s cubic-bezier(.2,.7,.25,1), opacity 0s linear .3s, visibility 0s linear .3s; }
+  .m-dock.is-on ~ .m-dock-lamp, .m-dock.is-on ~ .m-dock-glow{ visibility:visible; transform:none;
+    transition:transform .35s cubic-bezier(.2,.7,.25,1), opacity .3s ease, visibility 0s; }
+  .m-dock.is-on.on-dark ~ .m-dock-lamp{ opacity:1; }
+  .m-dock.is-on ~ .m-dock-glow{ opacity:0; }
+  .m-dock.on-dark ~ .m-dock-glow{ mix-blend-mode:screen; }
+  .m-dock .cta-btn{ height:68px; padding-inline:30px; border-radius:28px; font-size:26px; font-weight:700; letter-spacing:-.035em;
+    background:var(--hdr-bg-dark); color:var(--c-paper); -webkit-backdrop-filter:var(--hdr-blur); backdrop-filter:var(--hdr-blur);
+    /* на светлом в покое – тень от кнопки вместо света: контактная линия + мягкая вниз. Грег, 03.10: «давай сделаем тень
+       более сильной» – было 0 8px 24px / .22 (тень дока на телефоне). Стало вдвое плотнее и шире во все стороны, а не ниже:
+       кнопка стоит в 18px от низа окна, и тень, уходящая вниз, почти вся оказывалась за краем экрана */
+    box-shadow:0 2px 5px -1px rgba(31,33,32,.35), 0 8px 40px 6px rgba(31,33,32,.5);
+    transition:background-color .3s ease, color .3s ease, box-shadow .3s ease; }
+  .m-dock.on-dark .cta-btn{ box-shadow:var(--hdr-shadow-dark); }
+  /* наведение на светлом: док – умножением, под ним появляется белое стекло; своё размытие кнопке тут не нужно */
+  .m-dock:not(.on-dark):hover{ mix-blend-mode:multiply; }
+  .m-dock:not(.on-dark) .cta-btn:hover, .m-dock:not(.on-dark) .cta-btn:focus-visible{ background:var(--c-terra); color:var(--c-ink);
+    -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:var(--hdr-shadow); }
+  .m-dock.is-on:not(.on-dark):hover ~ .m-dock-glass{ opacity:1; visibility:visible; transition:opacity 0s, visibility 0s; }
+  /* наведение на тёмном */
+  .m-dock.on-dark .cta-btn:hover, .m-dock.on-dark .cta-btn:focus-visible{ background:rgba(239,176,31,.78); color:var(--c-ink); }
+  .m-dock.is-on:hover ~ .m-dock-glow{ opacity:1; }
+  .m-dock.is-on:hover ~ .m-dock-lamp{ opacity:0; }
+  /* то же с клавиатуры */
+  .m-dock:not(.on-dark):has(.cta-btn:focus-visible){ mix-blend-mode:multiply; }
+  .m-dock.is-on:not(.on-dark):has(.cta-btn:focus-visible) ~ .m-dock-glass{ opacity:1; visibility:visible; transition:opacity 0s, visibility 0s; }
+  .m-dock.is-on:has(.cta-btn:focus-visible) ~ .m-dock-glow{ opacity:1; }
+  .m-dock.is-on:has(.cta-btn:focus-visible) ~ .m-dock-lamp{ opacity:0; }
+  .m-dock .cta-mark{ margin-left:12px; }
+  .m-dock .md-s{ display:none; }
+  .m-dock .md-l{ display:inline; }
+}
+@media (prefers-reduced-motion:reduce){ .m-dock, .m-dock.is-on, .m-dock-glow, .m-dock-lamp, .m-dock-glass, .m-dock.is-on ~ .m-dock-glass, .m-dock.is-on ~ .m-dock-glow, .m-dock.is-on ~ .m-dock-lamp{ transition:none; } }
+@media print{ .m-dock, .m-dock-glow, .m-dock-lamp, .m-dock-glass{ display:none; } }
 
 /* Панель wyceny: вид перевода (.qd-kind, Грег, 26.09.2026) – «Tłumaczenie: Przysięgłe · Zwykłe · Nie wiem», необязательно.
    Строка по центру, как «Sprawa pilna» под ней: подпись тем же кеглем и тоном (17px / 500 / #4a4a45), варианты – плашки
@@ -5146,6 +5265,34 @@ html[lang="pl"] #ile-trwa .faq-price span{ color:var(--c-ink); }
   .kk-wm{ font-size:200px; }
 }
 @media (prefers-reduced-motion:reduce){ .kk-c, .kk-seg .bar i, .kk-ln svg, .kk-back svg{ transition:none !important; } }
+/* Индикатор шагов – точки в пилюле, как у галерей apple.com (Грег, 04.10.2026: «реализуй по такому же принципу и у нас на сайте»; кнопку
+   повтора рядом с пилюлей он зачеркнул). Заменяет полосу из равных отрезков (.kk-seg выше – больше не собирается, правила оставлены).
+   Точка на каждый слайд, включая слайд заявки: 8px, через 16px. У текущего слайда точка вытянута в полоску 48px (.on), и полоска
+   заполняется слева направо, пока слайд читают (--f ставит app.js); заполнилась – слайд сменился, полоска за 0,4 с снова стала точкой,
+   вытянулась следующая. Точки нажимаются (переход к слайду), зона нажатия – во всю высоту пилюли.
+   От 768px пилюля стоит по центру той же строки, что «Pokaż wszystkie kroki» и «Pomiń»; уже – над этой строкой. */
+.kk-dots{ display:flex; align-items:center; width:max-content; height:48px; margin:0 auto; padding:0 14px; list-style:none; border-radius:24px; background:var(--c-sand); }
+.kk-dots button{ display:flex; align-items:center; height:48px; padding:0 8px; border:0; background:none; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.kk-dots .bar{ position:relative; display:block; width:8px; height:8px; border-radius:4px; overflow:hidden; background:rgba(31,33,32,.3);
+  transition:width .4s cubic-bezier(.3,.7,.3,1), background-color .2s ease; }
+.kk-dots li.on .bar{ width:48px; }
+/* заполнение – полоска того же размера, выезжает слева: передний край скруглён, задний срезает сама дорожка */
+.kk-dots .bar i{ position:absolute; inset:0; border-radius:4px; background:var(--c-ink); opacity:0; transform:translateX(calc((var(--f, 0) - 1) * 100%)); transition:opacity .2s ease; }
+.kk-dots li.on .bar i{ opacity:1; }
+@media (hover:hover){ .kk-dots li:not(.on) button:hover .bar{ background:rgba(31,33,32,.55); } }
+.kk-dots button:focus-visible{ outline:2px solid var(--c-ink); outline-offset:-8px; border-radius:14px; }
+.kk-dots + .kk-ln{ margin-top:12px; }
+@media (min-width:768px){
+  .kk-dots{ position:absolute; left:50%; top:0; z-index:1; margin:0; transform:translateX(-50%); }
+  .kk-dots + .kk-ln{ margin-top:0; min-height:48px; align-items:center; }
+}
+/* на тёмном (чёрная /kontakt/): пилюля – светлая подложка 10 %, как серые кружки календаря, точки и заполнение белые */
+.bg-ink .kk-dots{ background:rgba(255,255,255,.1); }
+.bg-ink .kk-dots .bar{ background:rgba(255,255,255,.42); }
+.bg-ink .kk-dots .bar i{ background:var(--c-paper); }
+@media (hover:hover){ .bg-ink .kk-dots li:not(.on) button:hover .bar{ background:rgba(255,255,255,.7); } }
+.bg-ink .kk-dots button:focus-visible{ outline-color:var(--c-paper); }
+@media (prefers-reduced-motion:reduce){ .kk-dots .bar, .kk-dots .bar i{ transition:none; } }
 
 /* Заголовки разделов (h2 34/48px) с 01.10.2026 – одним начертанием 900, без пары со светлым курсивом (стенд docs/naglowki/,
    вариант 7; пара осталась у FAQ и карточек). Строки делятся поровну, чтобы последнее слово не висело одно
@@ -5324,6 +5471,32 @@ h2[class*="text-[34px]"]{ text-wrap:balance; }
   #ceny.cn-v3 .cn-group > .cn-list li.xh .cn-meta{margin-top:0!important;align-self:center}
   #ceny.cn-v3 .cn-group > .cn-list li.xh.open .cn-meta{align-self:start;margin-top:.2rem!important}
 }
+/* Калька на строках прайса (Грег, 03.10.2026: «Tracing paper plate – добавь такой эффект при появлении белой плашки, при
+   подведении и открытии цены»; вариант 75 стенда docs/papier/). Белая плашка строки – не заливка, а лист кальки, положенный
+   на серую плиту: молочный и полупрозрачный (плита просвечивает), со своей облачностью массы, кромка светлее (белый ободок
+   1px + мягкое свечение внутрь), правый нижний угол чуть приподнят – светлее, и тень от него уходит вправо-вниз. Плотность
+   листа показывает состояние: наведение – тонкий лист (.6), раскрытая строка – плотный. Лист – ::before строки под её
+   содержимым (isolation у строки), проявляется целиком за .22 с – цвет, облачность, кромка и тень вместе (раньше плашка
+   вставала мгновенно). Только CSS: облачность – плитка-svg (feTurbulence: светлые и тёмные хлопья) в data:, без скрипта и
+   без html.papier; у соседних строк плитка сдвинута, чтобы пятна не повторялись. backdrop-filter из 75 не взят: под строкой
+   ровная плита, размывать нечего. В режиме «без бумаги» (html.plain) остаётся прежняя белая плашка. */
+html:not(.plain) #ceny.cn-v3 .cn-list li.xh{isolation:isolate}
+html:not(.plain) #ceny.cn-v3 .cn-list li.xh:hover,
+html:not(.plain) #ceny.cn-v3 .cn-list li.xh.open,
+html:not(.plain) #ceny.cn-v3 .cn-list li.xh.open:hover{background:none!important}
+html:not(.plain) #ceny.cn-v3 .cn-list li.xh::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;opacity:0;
+  background-color:rgba(252,252,250,.8);
+  background-image:linear-gradient(135deg,rgba(255,255,255,0) calc(100% - 90px),rgba(255,255,255,.32) 100%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420'><filter id='k' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'><feTurbulence type='fractalNoise' baseFrequency='.01' numOctaves='3' seed='751' stitchTiles='stitch' result='n'/><feColorMatrix in='n' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 .3 0 0 0 -.15' result='l'/><feColorMatrix in='n' values='0 0 0 0 .12 0 0 0 0 .13 0 0 0 0 .125 -.24 0 0 0 .12'/><feMerge><feMergeNode in='l'/><feMergeNode/></feMerge></filter><rect width='420' height='420' filter='url(%23k)'/></svg>");
+  background-size:100% 100%,420px 420px;background-repeat:no-repeat,repeat;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.85),inset 0 0 22px rgba(255,255,255,.42),0 1px 1px rgba(31,33,32,.05),12px 12px 18px -14px rgba(31,33,32,.24);
+  transition:opacity .22s ease}
+html:not(.plain) #ceny.cn-v3 .cn-list li.xh:nth-child(2n)::before{background-position:0 0,-170px -60px}
+html:not(.plain) #ceny.cn-v3 .cn-list li.xh:nth-child(3n)::before{background-position:0 0,-80px -210px}
+html:not(.plain) #ceny.cn-v3 .cn-list li.xh:hover::before{opacity:.6}
+html:not(.plain) #ceny.cn-v3 .cn-list li.xh.open::before,
+html:not(.plain) #ceny.cn-v3 .cn-list li.xh.open:hover::before{opacity:1}
+@media (prefers-reduced-motion:reduce){ html:not(.plain) #ceny.cn-v3 .cn-list li.xh::before{transition:none} }
 
 /* /cennik/: кнопки Zadzwoń · Zamów wycenę под подвалом прайса (анкета 02.10.2026), отступ – как между группами */
 .cn-foot .cn-foot-cta{ margin-top:28px; }
@@ -5610,4 +5783,14 @@ html.plain body > main{ box-shadow:none; }   /* тень страницы на �
 @media (min-width:1024px){
   html.plain .ob-strip--perf::before, html.plain .ob-strip--perf::after{ content:none; }
   html.plain .ob-strip--perf .ob-strip-h, html.plain .ob-strip--perf .cta-btns{ border-top-color:rgba(31,33,32,.25); }
+}
+
+/* /apostille-ukraina/ #sprawdz – светлая плита (04.10.2026) */
+/* Плита «Apostille od razu czy najpierw duplikat» теперь на .gdz--light .gdz--ap, как #urzedy на /apostille/ (класса .slab нет –
+   шапка считает .slab тёмной зоной). У сценария 3 две строки цены («Uzyskanie dokumentu» и «Z Apostille»), поэтому от 1024px
+   ячейки делят 7 строк, а не 6: первая цена всех трёх сценариев стоит на одной высоте, вторая строка третьего – под ней. */
+@media (min-width:1024px){
+  @supports (grid-template-rows:subgrid){
+    #sprawdz .gdz--ap .ap3-cell{ grid-row:span 7; }
+  }
 }

@@ -6,6 +6,10 @@
 <!-- Защита (28.09.2026): браузер выполняет только наши скрипты; новый внешний сервис (gtag, карта) – сначала вписать сюда -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ga0M3hxX7BbNMOsk8k9ra3P80+aMOd6HTfkftF5FpXw='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://formspree.io https://script.google.com https://script.googleusercontent.com; form-action 'self' https://formspree.io https://script.google.com; object-src 'none'; frame-src 'none'; base-uri 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preload" href="/assets/fonts/fira-sans-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-900-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 
 <!-- ============================================================
      APOSTILO – one-page landing
@@ -246,7 +250,7 @@
   <div class="relative mx-auto max-w-site px-5 sm:px-8">
 
     <p class="font-cond uppercase tracking-[0.18em] text-[15px] font-semibold text-ink/75 mb-6">
-      Załatwiamy formalności w Warszawie · Wysyłka na terenie całej Polski i za granicę
+      Załatwiamy formalności w&nbsp;Warszawie · Wysyłka na terenie całej Polski i&nbsp;za granicę
     </p>
 
     <div class="grid grid-cols-12 gap-y-10 md:gap-x-6 items-end">
@@ -307,7 +311,7 @@
         </p>
 
         <p class="mt-5 text-[14px] text-ink/70 leading-relaxed text-center">
-          Zgłoszenia przyjmujemy <span class="font-semibold text-ink/80">24/7</span> – odpowiadamy codziennie 7:00 – 21:00.<br>
+          Zgłoszenia przyjmujemy <span class="font-semibold text-ink/80">24/7</span>&nbsp;– odpowiadamy codziennie 7:00–21:00.<br>
           Obsługa w&nbsp;języku polskim, ukraińskim, rosyjskim i&nbsp;angielskim.
         </p>
       </div>
@@ -349,8 +353,8 @@
         <div class="slab-panel" id="slab-panel-0" role="region" aria-label="MSZ – Ministerstwo Spraw Zagranicznych">
           <div class="slab-panel-clip">
             <div class="slab-panel-in">
-              <h3 class="text-[19px] md:text-[22px] font-bold tracking-tight mb-3">MSZ – Ministerstwo Spraw Zagranicznych</h3>
-              <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Akty USC, zaświadczenia z&nbsp;KRK, dokumenty firmowe i&nbsp;tłumaczenia przysięgłe. Składamy i&nbsp;odbieramy osobiście – klient nie rezerwuje terminu w&nbsp;MSZ. <a href="/apostille/" class="underline">Więcej o&nbsp;Apostille</a>.</p>
+              <h3 class="text-[19px] md:text-[22px] font-bold tracking-tight mb-3">MSZ&nbsp;– Ministerstwo Spraw Zagranicznych</h3>
+              <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Akty USC, zaświadczenia z&nbsp;KRK, dokumenty firmowe i&nbsp;tłumaczenia przysięgłe. Składamy i&nbsp;odbieramy osobiście&nbsp;– klient nie rezerwuje terminu w&nbsp;MSZ. <a href="/apostille/" class="underline">Więcej o&nbsp;Apostille</a>.</p>
               <p class="slab-price"><span>Apostille MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></p>
             </div>
           </div>
@@ -359,7 +363,7 @@
           <div class="slab-panel-clip">
             <div class="slab-panel-in">
               <h3 class="text-[19px] md:text-[22px] font-bold tracking-tight mb-3">Sąd Okręgowy w&nbsp;Warszawie</h3>
-              <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Poświadczenie podpisu notariusza i&nbsp;dokumentów sądowych – krok przed Apostille w&nbsp;MSZ. Prowadzimy całą ścieżkę: sąd, potem ministerstwo. <a href="/apostille/#urzedy" class="underline">Więcej</a>.</p>
+              <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Poświadczenie podpisu notariusza i&nbsp;dokumentów sądowych&nbsp;– krok przed Apostille w&nbsp;MSZ. Prowadzimy całą ścieżkę: sąd, potem ministerstwo. <a href="/apostille/#urzedy" class="underline">Więcej</a>.</p>
               <p class="slab-price"><span>Sąd i&nbsp;MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="380">380</span>,-&nbsp;zł</b></span></p>
             </div>
           </div>
@@ -378,10 +382,10 @@
           <div class="slab-panel-clip">
             <div class="slab-panel-in">
               <h3 class="text-[19px] md:text-[22px] font-bold tracking-tight mb-3">Apostille Ukraina</h3>
-              <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Akty, dyplomy i&nbsp;świadectwa z&nbsp;Ukrainy – Apostille przez partnera na miejscu, duplikaty aktów sprzed 2016, tłumaczenie w&nbsp;Warszawie. Klient nie wyjeżdża z&nbsp;Polski. <a href="/apostille-ukraina/" class="underline">Więcej</a>.</p>
+              <p class="text-[16px] leading-[1.65] text-paper/65 max-w-[92ch]">Akty, dyplomy i&nbsp;świadectwa z&nbsp;Ukrainy: Apostille uzyskujemy przez partnera na miejscu, w&nbsp;razie potrzeby także duplikat aktu sprzed 2016&nbsp;roku, a&nbsp;tłumaczenie robimy w&nbsp;Warszawie. Klient nie wyjeżdża z&nbsp;Polski. <a href="/apostille-ukraina/" class="underline">Więcej</a>.</p>
               <p class="slab-price"><span>Apostille Ukraina</span><span class="sp-val"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span></p>
               <p class="slab-price"><span>Uzyskanie dokumentu z&nbsp;Ukrainy</span><span class="sp-val"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span></p>
-              <p class="text-[15px] leading-[1.6] text-paper/55 mt-3 max-w-[92ch]">Akt stanu cywilnego wydany przed 2016&nbsp;rokiem lub w&nbsp;czasach ZSRR nie przyjmuje Apostille – najpierw uzyskujemy nowy odpis, potem Apostille. To dwa etapy, razem 1&nbsp;100&nbsp;zł. Tłumaczenie przysięgłe nie jest wliczone; dostawa do&nbsp;Polski – tak.</p>
+              <p class="text-[15px] leading-[1.6] text-paper/55 mt-3 max-w-[92ch]">Akt stanu cywilnego wydany przed 2016&nbsp;rokiem lub w&nbsp;czasach ZSRR nie dostanie Apostille, dlatego najpierw uzyskujemy nowy odpis, a&nbsp;potem Apostille. To dwa etapy, razem 1&nbsp;100&nbsp;zł. Dostawa do Polski jest w&nbsp;cenie, a&nbsp;tłumaczenie przysięgłe liczymy osobno.</p>
             </div>
           </div>
         </div>
@@ -402,14 +406,14 @@
       <span class="px-6 ticker-247">24/7</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Akt urodzenia</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Akt małżeństwa</span><span class="ticker-dot" aria-hidden="true">●</span>
-      <span class="px-6">Zaświadczenie o niekaralności</span><span class="ticker-dot" aria-hidden="true">●</span>
-      <span class="px-6">Odpis z KRS</span><span class="ticker-dot" aria-hidden="true">●</span>
+      <span class="px-6">Zaświadczenie o&nbsp;niekaralności</span><span class="ticker-dot" aria-hidden="true">●</span>
+      <span class="px-6">Odpis z&nbsp;KRS</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Apostille Ukraina</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Akt zgonu</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Pełnomocnictwo</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Ślub za granicą</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Świadectwo szkolne</span><span class="ticker-dot" aria-hidden="true">●</span>
-      <span class="px-6">InPost paczkomat</span><span class="ticker-dot" aria-hidden="true">●</span>
+      <span class="px-6">Paczkomat InPost</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6 ticker-247">24/7</span><span class="ticker-dot" aria-hidden="true">●</span>
     </div>
     <div class="flex shrink-0 items-center font-cond uppercase tracking-[0.16em] text-[17px] font-extrabold text-ink">
@@ -420,14 +424,14 @@
       <span class="px-6 ticker-247">24/7</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Akt urodzenia</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Akt małżeństwa</span><span class="ticker-dot" aria-hidden="true">●</span>
-      <span class="px-6">Zaświadczenie o niekaralności</span><span class="ticker-dot" aria-hidden="true">●</span>
-      <span class="px-6">Odpis z KRS</span><span class="ticker-dot" aria-hidden="true">●</span>
+      <span class="px-6">Zaświadczenie o&nbsp;niekaralności</span><span class="ticker-dot" aria-hidden="true">●</span>
+      <span class="px-6">Odpis z&nbsp;KRS</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Apostille Ukraina</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Akt zgonu</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Pełnomocnictwo</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Ślub za granicą</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6">Świadectwo szkolne</span><span class="ticker-dot" aria-hidden="true">●</span>
-      <span class="px-6">InPost paczkomat</span><span class="ticker-dot" aria-hidden="true">●</span>
+      <span class="px-6">Paczkomat InPost</span><span class="ticker-dot" aria-hidden="true">●</span>
       <span class="px-6 ticker-247">24/7</span><span class="ticker-dot" aria-hidden="true">●</span>
     </div>
   </div>
@@ -436,7 +440,7 @@
 <!-- ================= 24/7 ================= -->
 <section id="kontakt" class="bg-ink text-paper py-14 md:py-24" aria-labelledby="zawsze">
   <div class="mx-auto max-w-site px-5 sm:px-8">
-    <p class="kicker kicker--light">/ Kontakt i odbiór dokumentów</p>
+    <p class="kicker kicker--light">/ Kontakt i&nbsp;odbiór dokumentów</p>
 
     <div class="s247-grid grid grid-cols-12 gap-y-10 lg:gap-x-12 items-start">
 
@@ -449,12 +453,12 @@
 
         <div class="k-where">
           <div class="k-where-item">
-            <span class="k-where-h">Warszawa – Śródmieście</span>
+            <span class="k-where-h">Warszawa&nbsp;– Śródmieście</span>
             <span class="k-where-t">Dokumenty odbieramy i&nbsp;wydajemy na umówionym spotkaniu w&nbsp;centrum Warszawy, w&nbsp;Śródmieściu.</span>
           </div>
           <div class="k-where-item">
             <span class="k-where-h">Cała Polska i&nbsp;zagranica</span>
-            <span class="k-where-t">Paczkomat InPost, DHL&nbsp;Express, do&nbsp;Ukrainy – Nowa Poczta. W&nbsp;obie strony, z&nbsp;numerem do śledzenia.</span>
+            <span class="k-where-t">Paczkomat InPost w&nbsp;obie strony, za granicę DHL&nbsp;Express, do&nbsp;Ukrainy&nbsp;– Nowa Poczta. Zawsze z&nbsp;numerem do śledzenia.</span>
           </div>
         </div>
 
@@ -478,14 +482,14 @@
               <p class="ws-tz"><span class="ws-tz-city">Warszawa</span><span class="ws-tz-off"></span><span class="ws-tz-dst"></span></p>
               <p class="ws-top">
                 <span class="ws-dot" aria-hidden="true"></span>
-                <span class="ws-state">Sprawdzam godziny…</span>
+                <span class="ws-state">Sprawdzamy godziny…</span>
               </p>
             </div>
             <div class="ws-hours-wrap">
               <ul class="ws-hours">
-                <li><span>Pon.–Pt.</span><span>7:00 – 21:00</span></li>
-                <li><span>Weekend i&nbsp;święta</span><span>7:00 – 21:00</span></li>
-                <li class="ws-note">W&nbsp;weekendy i&nbsp;święta urzędy nieczynne – odpowiadamy, dokumenty składamy w&nbsp;najbliższy dzień roboczy.</li>
+                <li><span>Pn.–pt.</span><span>7:00–21:00</span></li>
+                <li><span>Weekend i&nbsp;święta</span><span>7:00–21:00</span></li>
+                <li class="ws-note">W&nbsp;weekendy i&nbsp;święta urzędy są zamknięte, ale my odpowiadamy jak zwykle, a&nbsp;dokumenty składamy w&nbsp;najbliższy dzień roboczy.</li>
               </ul>
             </div>
           </div>
@@ -503,7 +507,7 @@
             </div>
             <div class="cal-grid" role="grid"></div>
             <span class="cal-tip" role="status" aria-live="polite"></span>
-            <p class="cal-note"><i aria-hidden="true"></i><span>Dni ustawowo wolne od pracy – MSZ, sądy i&nbsp;urzędy nieczynne.</span></p>
+            <p class="cal-note"><i aria-hidden="true"></i><span>Dni ustawowo wolne od pracy&nbsp;– MSZ, sądy i&nbsp;urzędy nieczynne.</span></p>
           </div>
           <a href="/cennik/#wycena" data-quote class="ws-cta">Wyceń teraz<span class="ws-cta-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></a>
         </div>
@@ -516,7 +520,7 @@
 
       <div class="col-span-12 lg:col-span-7">
       <p class="s247-foot text-[17px] leading-[1.55] text-paper/70 max-w-[46ch]">
-        Formularz i&nbsp;WhatsApp działają bez przerwy – nocna wiadomość czeka na nas
+        Formularz i&nbsp;WhatsApp działają bez przerwy&nbsp;– nocna wiadomość czeka na nas
         na samej górze skrzynki. Sprawę zaczynamy od 7:00 rano.
       </p>
       <!-- ścieżka zamówienia – pasek 5 kroków (17.09.2026) -->
@@ -552,11 +556,11 @@
         <div class="legal-wrap"><div class="space-y-3 text-[17px] leading-[1.6] text-paper/70 max-w-[70ch]">
           <p><strong class="text-paper/90">Administrator danych.</strong> Administratorem danych osobowych jest [IMIĘ I&nbsp;NAZWISKO], prowadząca działalność pod nazwą Apostilo, [ADRES DO&nbsp;KORESPONDENCJI], Warszawa, NIP&nbsp;[NIP]. Kontakt: <span data-mail="apostilo|gmail.com">apostilo [at] gmail.com</span>.</p>
           <p><strong class="text-paper/90">Zakres i&nbsp;cel.</strong> Przetwarzamy imię, numer telefonu, adres e-mail oraz dane zawarte w&nbsp;przesłanych skanach dokumentów wyłącznie w&nbsp;celu przygotowania wyceny, wykonania usługi Apostille lub tłumaczenia oraz kontaktu zwrotnego.</p>
-          <p><strong class="text-paper/90">Podstawa prawna.</strong> Art. 6 ust. 1 lit. b RODO (wykonanie umowy lub działania przed jej zawarciem) oraz art. 6 ust. 1 lit. a RODO (zgoda) w&nbsp;zakresie kontaktu marketingowego.</p>
-          <p><strong class="text-paper/90">Odbiorcy.</strong> Dane mogą być przekazywane wyłącznie podmiotom niezbędnym do realizacji usługi: tłumaczom przysięgłym, urzędom (MSZ, sądy, KRK, KRS, USC), operatorom pocztowym i&nbsp;kurierskim oraz dostawcy hostingu.</p>
-          <p><strong class="text-paper/90">Okres przechowywania.</strong> Skany dokumentów usuwamy w&nbsp;ciągu 30 dni od zakończenia usługi. Dane kontaktowe i&nbsp;rozliczeniowe przechowujemy przez okres wymagany przepisami podatkowymi.</p>
+          <p><strong class="text-paper/90">Podstawa prawna.</strong> Art. 6 ust. 1 lit. b RODO (wykonanie umowy lub działania przed jej zawarciem) oraz art. 6 ust. 1 lit. a&nbsp;RODO (zgoda) w&nbsp;zakresie kontaktu marketingowego.</p>
+          <p><strong class="text-paper/90">Odbiorcy.</strong> Dane mogą być przekazywane wyłącznie podmiotom niezbędnym do realizacji usługi: tłumaczom przysięgłym, urzędom (MSZ, sądy, KRK, KRS, USC), operatorom pocztowym i&nbsp;kurierskim, dostawcy hostingu, a&nbsp;przy Dokumentach z&nbsp;Ukrainy&nbsp;– naszemu partnerowi w&nbsp;Ukrainie i&nbsp;ukraińskim urzędom, w&nbsp;zakresie potrzebnym do uzyskania dokumentu lub Apostille (przekazanie do państwa trzeciego na podstawie art.&nbsp;49 ust.&nbsp;1 lit.&nbsp;b RODO).</p>
+          <p><strong class="text-paper/90">Okres przechowywania.</strong> Skany dokumentów usuwamy w&nbsp;ciągu 30&nbsp;dni od zakończenia usługi. Dane kontaktowe i&nbsp;rozliczeniowe przechowujemy przez okres wymagany przepisami podatkowymi.</p>
           <p><strong class="text-paper/90">Prawa użytkownika.</strong> Przysługuje Ci prawo dostępu do danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia oraz wniesienia sprzeciwu i&nbsp;skargi do Prezesa UODO.</p>
-          <p><strong class="text-paper/90">Pliki cookies.</strong> Strona korzysta z&nbsp;plików cookies niezbędnych do jej działania oraz – po wyrażeniu zgody – z&nbsp;cookies analitycznych i&nbsp;marketingowych (Google Analytics, Google Ads). Ustawienia cookies można zmienić w&nbsp;przeglądarce.</p>
+          <p><strong class="text-paper/90">Pliki cookies.</strong> Strona korzysta z&nbsp;plików cookies niezbędnych do jej działania oraz&nbsp;– po wyrażeniu zgody&nbsp;– z&nbsp;cookies analitycznych i&nbsp;marketingowych (Google Analytics, Google Ads). Ustawienia cookies można zmienić w&nbsp;przeglądarce.</p>
         </div></div>
       </details>
 
@@ -567,12 +571,12 @@
         </summary>
         <div class="legal-wrap"><div class="space-y-3 text-[17px] leading-[1.6] text-paper/70 max-w-[70ch]">
           <p><strong class="text-paper/90">§1 Postanowienia ogólne.</strong> Regulamin określa zasady świadczenia usług pośrednictwa w&nbsp;uzyskaniu Apostille, legalizacji dokumentów oraz tłumaczeń przysięgłych przez [IMIĘ I&nbsp;NAZWISKO], prowadzącą działalność pod nazwą Apostilo, NIP&nbsp;[NIP] (dalej: Apostilo).</p>
-          <p><strong class="text-paper/90">§2 Zawarcie umowy.</strong> Umowa zostaje zawarta w&nbsp;chwili akceptacji przez Klienta przedstawionej wyceny – pisemnie, mailowo lub przez komunikator (WhatsApp, Telegram).</p>
+          <p><strong class="text-paper/90">§2 Zawarcie umowy.</strong> Umowa zostaje zawarta w&nbsp;chwili akceptacji przez Klienta przedstawionej wyceny&nbsp;– pisemnie, mailowo lub przez komunikator (WhatsApp, Telegram).</p>
           <p><strong class="text-paper/90">§3 Realizacja i&nbsp;terminy.</strong> Terminy podawane przy wycenie są terminami szacunkowymi i&nbsp;zależą od czasu pracy urzędów. O&nbsp;każdym opóźnieniu niezależnym od Apostilo Klient jest informowany niezwłocznie.</p>
-          <p><strong class="text-paper/90">§4 Ceny i&nbsp;płatności.</strong> Ceny podane na stronie są cenami końcowymi za jednostkę usługi i&nbsp;zawierają opłaty skarbowe. Wiążąca jest wycena indywidualna, która wymienia osobno każdą pozycję zlecenia – Apostille, tłumaczenie, wysyłkę. Cena zmienia się tylko wtedy, gdy dokument okazuje się inny niż na przesłanym zdjęciu; Klient jest o&nbsp;tym informowany przed przyjęciem zlecenia do&nbsp;realizacji. Płatność z&nbsp;góry – BLIK-iem, przelewem lub gotówką, na podstawie wyceny. Zlecenie wchodzi do&nbsp;realizacji po&nbsp;otrzymaniu potwierdzenia płatności.</p>
-          <p><strong class="text-paper/90">§5 Odpowiedzialność.</strong> Apostilo odpowiada za staranne prowadzenie sprawy. Nie ponosi odpowiedzialności za czas rozpatrywania dokumentów przez urzędy ani za opóźnienia operatorów pocztowych. Jeżeli urząd odmówi nadania Apostille na dokument polski, Apostilo zwraca Klientowi całą wpłatę, łącznie z&nbsp;opłatą skarbową. Przy dokumentach z&nbsp;Ukrainy, gdy archiwum lub urząd odmówi wydania duplikatu, zwracana jest przedpłata pomniejszona o&nbsp;koszt przesyłki. Błędy w&nbsp;tłumaczeniu powstałe z&nbsp;winy Apostilo – np. w&nbsp;nazwisku, dacie albo numerze dokumentu – są poprawiane bezpłatnie, także gdy wskaże je urząd.</p>
-          <p><strong class="text-paper/90">§6 Odstąpienie od umowy.</strong> Konsument może odstąpić od umowy w&nbsp;terminie 14 dni. Prawo to nie przysługuje, jeżeli usługa została w&nbsp;pełni wykonana za wyraźną zgodą Klienta przed upływem tego terminu.</p>
-          <p><strong class="text-paper/90">§7 Reklamacje.</strong> Reklamacje przyjmujemy na adres <span data-mail="apostilo|gmail.com">apostilo [at] gmail.com</span>. Rozpatrujemy je w&nbsp;terminie 14 dni roboczych od otrzymania zgłoszenia.</p>
+          <p><strong class="text-paper/90">§4 Ceny i&nbsp;płatności.</strong> Ceny podane na stronie są cenami końcowymi za jednostkę usługi i&nbsp;zawierają opłaty skarbowe. Wiążąca jest wycena indywidualna, która wymienia osobno każdą pozycję zlecenia&nbsp;– Apostille, tłumaczenie, wysyłkę. Cena zmienia się tylko wtedy, gdy dokument okazuje się inny niż na przesłanym zdjęciu; Klient jest o&nbsp;tym informowany przed przyjęciem zlecenia do&nbsp;realizacji. Płatność z&nbsp;góry&nbsp;– BLIK-iem, przelewem lub gotówką, na podstawie wyceny. Zlecenie wchodzi do&nbsp;realizacji po&nbsp;otrzymaniu potwierdzenia płatności.</p>
+          <p><strong class="text-paper/90">§5 Odpowiedzialność.</strong> Apostilo odpowiada za staranne prowadzenie sprawy. Nie ponosi odpowiedzialności za czas rozpatrywania dokumentów przez urzędy ani za opóźnienia operatorów pocztowych. Jeżeli urząd odmówi nadania Apostille na dokument polski, Apostilo zwraca Klientowi całą wpłatę, łącznie z&nbsp;opłatą skarbową. Przy Dokumentach z&nbsp;Ukrainy, gdy archiwum lub urząd odmówi wydania duplikatu, zwracana jest przedpłata pomniejszona o&nbsp;koszt przesyłki. Błędy w&nbsp;tłumaczeniu powstałe z&nbsp;winy Apostilo&nbsp;– np. w&nbsp;nazwisku, dacie albo numerze dokumentu&nbsp;– są poprawiane bezpłatnie, także gdy wskaże je urząd.</p>
+          <p><strong class="text-paper/90">§6 Odstąpienie od umowy.</strong> Konsument może odstąpić od umowy w&nbsp;terminie 14&nbsp;dni. Prawo to nie przysługuje, jeżeli usługa została w&nbsp;pełni wykonana za wyraźną zgodą Klienta przed upływem tego terminu.</p>
+          <p><strong class="text-paper/90">§7 Reklamacje.</strong> Reklamacje przyjmujemy na adres <span data-mail="apostilo|gmail.com">apostilo [at] gmail.com</span>. Rozpatrujemy je w&nbsp;terminie 14&nbsp;dni roboczych od otrzymania zgłoszenia.</p>
         </div></div>
       </details>
     </div>
@@ -611,7 +615,7 @@
             <ul>
             <li class="soft-row relative flex items-baseline justify-between gap-6 px-5 sm:px-9 lg:pl-5 lg:pr-11 py-6 sm:py-9">
               <div>
-                <h3 class="text-[21px] md:text-[24px] font-bold tracking-tight">MSZ – Ministerstwo Spraw Zagranicznych</h3>
+                <h3 class="text-[21px] md:text-[24px] font-bold tracking-tight">MSZ&nbsp;– Ministerstwo Spraw Zagranicznych</h3>
                 <p class="text-[15px] text-paper/60 mt-1">Akty stanu cywilnego, zaświadczenia o&nbsp;niekaralności, dokumenty firmowe, tłumaczenia przysięgłe</p>
               </div>
               <span class="font-cond text-ochre whitespace-nowrap text-[15px]"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></span>
@@ -645,7 +649,7 @@
               <span class="font-light italic">bez wyjazdu z&nbsp;Polski</span>
             </p>
             <p class="mt-3 text-[16px] text-ink/75 max-w-[60ch]">
-              Dyplomy, świadectwa i&nbsp;akty stanu cywilnego – Apostille przez partnera na&nbsp;miejscu,
+              Dyplomy, świadectwa i&nbsp;akty stanu cywilnego&nbsp;– Apostille przez partnera na&nbsp;miejscu,
               duplikaty aktów sprzed 2016&nbsp;roku bez pełnomocnictwa. Bierzemy każdą sprawę: jeśli dokumentu
               nie da się uzyskać, zwracamy przedpłatę&nbsp;– płacisz tylko za wysyłkę.
             </p>
@@ -654,7 +658,7 @@
               Uzyskanie dokumentu <span class="whitespace-nowrap"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span>
             </p>
             <p class="mt-3 text-[15px] text-ink/70 max-w-[60ch]">
-              Akt stanu cywilnego sprzed 2016&nbsp;roku lub z&nbsp;czasów ZSRR wymaga dwóch etapów –
+              Akt stanu cywilnego sprzed 2016&nbsp;roku lub z&nbsp;czasów ZSRR wymaga dwóch etapów&nbsp;–
               najpierw nowy odpis, potem Apostille: razem 1&nbsp;100&nbsp;zł.
               <a href="/apostille-ukraina/" class="underline font-semibold">Terminy, scenariusze i&nbsp;FAQ</a>.
             </p>
@@ -694,27 +698,27 @@
                 <div class="tl-def-panel" data-panel="0">
                   <p class="tl-def-name">Tłumaczenie Przysięgłe</p>
                   <p class="tl-def-text">Wykonuje je tłumacz wpisany na listę Ministra Sprawiedliwości.
-                  Takie tłumaczenie ma pieczęć tłumacza, numer w&nbsp;repertorium i&nbsp;formułę poświadczającą zgodność z&nbsp;oryginałem –
+                  Takie tłumaczenie ma pieczęć tłumacza, numer w&nbsp;repertorium i&nbsp;formułę poświadczającą zgodność z&nbsp;oryginałem&nbsp;–
                   dlatego przyjmują je urzędy, sądy, banki i&nbsp;uczelnie. Jest potrzebne wszędzie tam,
                   gdzie dokument ma wywołać skutki prawne. Jeśli urząd wymaga tłumaczenia
                   z&nbsp;oryginału, pokazujesz go na spotkaniu albo wysyłasz Paczkomatem do wglądu.</p>
                 </div>
                 <div class="tl-def-panel" data-panel="1">
                   <p class="tl-def-name">Tłumaczenie zwykłe</p>
-                  <p class="tl-def-text">Z&nbsp;pieczęcią zwykłego tłumacza, nie przysięgłego – do wniosku wizowego, korespondencji, CV
-                  i&nbsp;własnego użytku. Polskie urzędy i&nbsp;sądy go nie przyjmą. Kosztuje 80&nbsp;zł za stronę,
-                  a&nbsp;strona to tu 1800 znaków ze spacjami; termin – jak przy przysięgłym.</p>
+                  <p class="tl-def-text">Ma pieczęć zwykłego tłumacza, nie przysięgłego, i&nbsp;wystarcza do wniosku wizowego, korespondencji, CV
+                  czy na własny użytek. Polskie urzędy i&nbsp;sądy go nie przyjmą. Kosztuje 80&nbsp;zł za stronę,
+                  przy czym strona liczy tu 1800&nbsp;znaków ze spacjami, a&nbsp;termin jest taki sam jak przy przysięgłym.</p>
                 </div>
               </div>
             </div>
           </div>
           <p class="mt-7 text-[17px] leading-[1.55] text-ink/70 max-w-[42ch]">
-            Do wyceny wystarczy zdjęcie dokumentu – odpowiadamy zwykle w&nbsp;ciągu 15&nbsp;minut. Języki, ceny dokumentów
+            Do wyceny wystarczy zdjęcie dokumentu&nbsp;– odpowiadamy zwykle w&nbsp;ciągu 15&nbsp;minut. Języki, ceny dokumentów
             i&nbsp;terminy znajdziesz na stronie o&nbsp;<a href="/tlumaczenia-przysiegle/" class="underline font-semibold">tłumaczeniach przysięgłych w&nbsp;Warszawie</a>.
           </p>
 
           <a href="/tlumaczenia-przysiegle/" class="price-card mt-9 inline-flex flex-col bg-ink text-paper rounded-[12px] px-7 py-[18px]">
-            <span class="font-cond uppercase tracking-[0.16em] text-[11px] text-paper/60">strona = 1125 znaków ze spacjami</span>
+            <span class="font-cond uppercase tracking-[0.16em] text-[11px] text-paper/60">strona = 1125&nbsp;znaków ze spacjami</span>
             <span class="mt-2 flex items-center font-bold text-[30px] leading-none tracking-tight"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span><span class="chip-mark chip-mark--arrow" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="chip-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span></span>
           </a>
         </div>
@@ -762,7 +766,7 @@
             <div id="tl-data" hidden>
               <div data-title="Urząd Wojewódzki">
                 <p class="tl-lead">Komplet tłumaczeń do spraw pobytowych w&nbsp;Mazowieckim Urzędzie Wojewódzkim: akty, umowy o&nbsp;pracę, zaświadczenia, dyplomy.</p>
-                <p class="tl-meta">Termin 2–4 dni robocze, ekspres na następny dzień roboczy – po uzgodnieniu. <a href="/tlumaczenia-przysiegle/#dla-kogo" class="underline">Więcej o&nbsp;tłumaczeniach</a>.</p>
+                <p class="tl-meta">Termin 2–4&nbsp;dni robocze, ekspres na następny dzień roboczy&nbsp;– po uzgodnieniu. <a href="/tlumaczenia-przysiegle/#dla-kogo" class="underline">Więcej o&nbsp;tłumaczeniach</a>.</p>
               </div>
               <div data-title="USC">
                 <p class="tl-lead">Akty urodzenia, małżeństwa i&nbsp;zgonu, zaświadczenia o&nbsp;zdolności do zawarcia małżeństwa, akty zagraniczne do transkrypcji.</p>
@@ -773,15 +777,15 @@
                 <p class="tl-meta">Zachowujemy układ tabel i&nbsp;pieczęci oryginału. <a href="/tlumaczenia-przysiegle/#dla-kogo" class="underline">Więcej o&nbsp;tłumaczeniach</a>.</p>
               </div>
               <div data-title="Konsulaty">
-                <p class="tl-lead">Dokumenty wizowe, pełnomocnictwa, zgody na wyjazd dziecka – pod wymogi konkretnego konsulatu.</p>
+                <p class="tl-lead">Dokumenty wizowe, pełnomocnictwa, zgody na wyjazd dziecka&nbsp;– zgodnie z&nbsp;wymogami konkretnego konsulatu.</p>
                 <p class="tl-meta">Na życzenie z&nbsp;Apostille MSZ. <a href="/tlumaczenia-przysiegle/#dla-kogo" class="underline">Więcej o&nbsp;tłumaczeniach</a>.</p>
               </div>
               <div data-title="Banki i leasing">
-                <p class="tl-lead">Zaświadczenia o&nbsp;dochodach, umowy, wyciągi bankowe, dokumenty rejestrowe firmy – honorowane przez banki w&nbsp;Polsce.</p>
-                <p class="tl-meta">Od 6&nbsp;stron w&nbsp;jednym zleceniu – rabat 10%. <a href="/tlumaczenia-przysiegle/#dla-kogo" class="underline">Więcej o&nbsp;tłumaczeniach</a>.</p>
+                <p class="tl-lead">Zaświadczenia o&nbsp;dochodach, umowy, wyciągi bankowe, dokumenty rejestrowe firmy&nbsp;– honorowane przez banki w&nbsp;Polsce.</p>
+                <p class="tl-meta">Od 6&nbsp;stron w&nbsp;jednym zleceniu&nbsp;– rabat 10%. <a href="/tlumaczenia-przysiegle/#dla-kogo" class="underline">Więcej o&nbsp;tłumaczeniach</a>.</p>
               </div>
               <div data-title="Uczelnie i szkoły">
-                <p class="tl-lead">Dyplomy i&nbsp;suplementy, świadectwa, wykazy ocen, sylabusy – do rekrutacji i&nbsp;nostryfikacji.</p>
+                <p class="tl-lead">Dyplomy i&nbsp;suplementy, świadectwa, wykazy ocen, sylabusy&nbsp;– do rekrutacji i&nbsp;nostryfikacji.</p>
                 <p class="tl-meta">Razem z&nbsp;Apostille, jeśli uczelnia jej wymaga. <a href="/tlumaczenia-przysiegle/#dla-kogo" class="underline">Więcej o&nbsp;tłumaczeniach</a>.</p>
               </div>
             </div>
@@ -820,7 +824,7 @@
         </h2>
       </div>
       <p class="text-[17px] text-ink/65 max-w-[36ch] md:text-right">
-        Bez wizyt w&nbsp;urzędach – całą sprawę załatwiasz zdalnie.
+        Bez wizyt w&nbsp;urzędach&nbsp;– całą sprawę załatwiasz zdalnie.
       </p>
     </div>
 
@@ -832,10 +836,10 @@
           Wysyłasz zdjęcie dokumentu
         </h3>
         <p class="mt-3 text-[16px] text-paper/70">
-          Zdjęcie z&nbsp;telefonu wystarczy do&nbsp;wyceny – załączasz je w&nbsp;formularzu, a&nbsp;oryginał przekazujesz później.
+          Zdjęcie z&nbsp;telefonu wystarczy do&nbsp;wyceny&nbsp;– załączasz je w&nbsp;formularzu, a&nbsp;oryginał przekazujesz później.
         </p>
         <div class="mt-auto pt-8 flex items-end justify-between gap-4">
-          <p class="font-cond uppercase tracking-[0.14em] text-[13px] font-bold text-paper/80">Wycena w 15 minut</p>
+          <p class="font-cond uppercase tracking-[0.14em] text-[13px] font-bold text-paper/80">Wycena w&nbsp;15&nbsp;minut</p>
           <button type="button" class="step-go" data-step="0"
                   aria-label="Zobacz szczegóły: Wysyłasz zdjęcie dokumentu">
             <svg viewBox="0 0 24 24" class="step-arrow" aria-hidden="true">
@@ -853,10 +857,10 @@
           Akceptujesz wycenę i&nbsp;płacisz
         </h3>
         <p class="mt-3 text-[16px] text-ink/75">
-          Razem z&nbsp;wyceną wysyłamy instrukcję płatności. Przesyłasz potwierdzenie przelewu – i&nbsp;zlecenie wchodzi do&nbsp;realizacji.
+          Razem z&nbsp;wyceną wysyłamy instrukcję płatności. Przesyłasz potwierdzenie przelewu&nbsp;– i&nbsp;zlecenie wchodzi do&nbsp;realizacji.
         </p>
         <div class="mt-auto pt-8 flex items-end justify-between gap-4">
-          <p class="font-cond uppercase tracking-[0.14em] text-[13px] font-bold text-ink/80">Potwierdzenie – wystarczy zrzut ekranu</p>
+          <p class="font-cond uppercase tracking-[0.14em] text-[13px] font-bold text-ink/80">Potwierdzenie&nbsp;– wystarczy zrzut ekranu</p>
           <button type="button" class="step-go" data-step="1"
                   aria-label="Zobacz szczegóły: Akceptujesz wycenę i płacisz">
             <svg viewBox="0 0 24 24" class="step-arrow" aria-hidden="true">
@@ -877,7 +881,7 @@
           Opłaty skarbowe, kolejki, terminy i&nbsp;kontakt z&nbsp;tłumaczem przysięgłym bierzemy na siebie. Informujemy o&nbsp;każdym etapie.
         </p>
         <div class="mt-auto pt-8 flex items-end justify-between gap-4">
-          <p class="font-cond uppercase tracking-[0.14em] text-[13px] font-bold text-ink/80">Zwykle 1–5 dni roboczych</p>
+          <p class="font-cond uppercase tracking-[0.14em] text-[13px] font-bold text-ink/80">Zwykle 1–5&nbsp;dni roboczych</p>
           <button type="button" class="step-go" data-step="2"
                   aria-label="Zobacz szczegóły: Załatwiamy formalności w urzędach i u tłumacza">
             <svg viewBox="0 0 24 24" class="step-arrow" aria-hidden="true">
@@ -898,7 +902,7 @@
           Osobiście w&nbsp;Śródmieściu, Paczkomatem InPost na&nbsp;terenie Polski, kurierem DHL&nbsp;Express za&nbsp;granicę, Nową&nbsp;Pocztą do&nbsp;Ukrainy.
         </p>
         <div class="mt-auto pt-8 flex items-end justify-between gap-4">
-          <p class="font-cond uppercase tracking-[0.14em] text-[13px] font-bold text-ink/75">Skan gotowego dokumentu – od ręki</p>
+          <p class="font-cond uppercase tracking-[0.14em] text-[13px] font-bold text-ink/75">Skan gotowego dokumentu&nbsp;– od ręki</p>
           <button type="button" class="step-go" data-step="3"
                   aria-label="Zobacz szczegóły: Odbierasz gotowy dokument">
             <svg viewBox="0 0 24 24" class="step-arrow" aria-hidden="true">
@@ -926,7 +930,7 @@
       Nie ma jednego okienka. <a href="/apostille/akt-urodzenia/" class="underline">Akty stanu cywilnego</a>, <a href="/apostille/zaswiadczenie-o-niekaralnosci/" class="underline">zaświadczenia z&nbsp;KRK</a>, odpisy z&nbsp;KRS
       i&nbsp;tłumaczenia przysięgłe jadą do MSZ przy ul.&nbsp;Kruczej&nbsp;38/42. <a href="/apostille/pelnomocnictwo/" class="underline">Dokumenty notarialne
       i&nbsp;sądowe</a> najpierw potwierdza Sąd Okręgowy&nbsp;– przy al.&nbsp;„Solidarności”&nbsp;127 albo, dla prawego brzegu
-      Wisły, przy ul.&nbsp;Poligonowej&nbsp;3 – i&nbsp;dopiero potem trafiają do ministerstwa. Pod wszystkie trzy adresy
+      Wisły, przy ul.&nbsp;Poligonowej&nbsp;3&nbsp;– i&nbsp;dopiero potem trafiają do ministerstwa. Pod wszystkie trzy adresy
       jeździmy z&nbsp;dokumentami klientów, a&nbsp;opłaty urzędowe są już w&nbsp;naszych cenach.
     </p>
     <a href="/apostille/gdzie/" class="k-where-link k-where-link--dark">Adresy, godziny, opłaty i&nbsp;kolejność
@@ -954,12 +958,12 @@
             <li><span>Apostille MSZ&nbsp;– ekspres</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="350">350</span>,-&nbsp;zł</b></span></li>
             <li><span>Dokument notarialny&nbsp;– Sąd Okręgowy i&nbsp;MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="380">380</span>,-&nbsp;zł</b></span></li>
             <li><span>Zaświadczenie o&nbsp;niekaralności z&nbsp;Apostille</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="460">460</span>,-&nbsp;zł</b></span></li>
-            <li><span>Tłumaczenie przysięgłe</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ strona</span></span> <span class="fp-note">= 1125 znaków ze spacjami</span></span></li>
-            <li><span>Tłumaczenie zwykłe</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="80">80</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ strona</span></span> <span class="fp-note">= 1800 znaków ze spacjami</span></span></li>
+            <li><span>Tłumaczenie przysięgłe</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ strona</span></span> <span class="fp-note">= 1125&nbsp;znaków ze spacjami</span></span></li>
+            <li><span>Tłumaczenie zwykłe</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="80">80</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ strona</span></span> <span class="fp-note">= 1800&nbsp;znaków ze spacjami</span></span></li>
             <li><span>Apostille Ukraina</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ dokument</span></span></span></li>
             <li><span>Uzyskanie dokumentu z&nbsp;Ukrainy</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ dokument</span></span></span></li>
           </ul>
-          <p class="mt-4">Ceny zawierają opłaty skarbowe. Przy tłumaczeniu od&nbsp;6&nbsp;stron udzielamy 10% rabatu. Ostateczną kwotę podajemy po zobaczeniu dokumentu – zwykle w&nbsp;15 minut.</p>
+          <p class="mt-4">Ceny zawierają opłaty skarbowe. Przy tłumaczeniu od&nbsp;6&nbsp;stron udzielamy 10% rabatu. Ostateczną kwotę podajemy po zobaczeniu dokumentu&nbsp;– zwykle w&nbsp;15&nbsp;minut.</p>
         </div>
       </details>
 
@@ -976,7 +980,7 @@
 
                               <details class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Ile trwa Apostille w Warszawie?</h3>
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Ile trwa Apostille w&nbsp;Warszawie?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
@@ -1000,13 +1004,13 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Tak, i&nbsp;jest to najczęstszy przypadek. Każdy dokument kosztuje tyle, ile w&nbsp;cenniku, ale całość to jedna wycena, jedna płatność i&nbsp;jeden termin. Od 6&nbsp;stron w&nbsp;jednym zleceniu udzielamy 10% rabatu na tłumaczenia – przysięgłe i&nbsp;zwykłe.
+          Tak, i&nbsp;jest to najczęstszy przypadek. Każdy dokument kosztuje tyle, ile w&nbsp;cenniku, ale całość to jedna wycena, jedna płatność i&nbsp;jeden termin. Od 6&nbsp;stron w&nbsp;jednym zleceniu udzielamy 10% rabatu na tłumaczenia&nbsp;– przysięgłe i&nbsp;zwykłe.
         </p>
       </details>
 
           </div>
     <p class="mt-8 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-      Pytania o&nbsp;klauzulę i&nbsp;urzędy – na stronie <a href="/apostille/#faq" class="underline font-semibold">Apostille</a>, o&nbsp;tłumaczenia – na stronie <a href="/tlumaczenia-przysiegle/#faq" class="underline font-semibold">tłumaczeń przysięgłych</a>. O&nbsp;odbiór, wysyłkę i&nbsp;płatność – na stronie <a href="/kontakt/#faq" class="underline font-semibold">kontaktu</a>.
+      O&nbsp;klauzuli i&nbsp;urzędach piszemy więcej na stronie <a href="/apostille/#faq" class="underline font-semibold">Apostille</a>, o&nbsp;tłumaczeniach na stronie <a href="/tlumaczenia-przysiegle/#faq" class="underline font-semibold">tłumaczeń przysięgłych</a>, a&nbsp;o&nbsp;odbiorze, wysyłce i&nbsp;płatności na stronie <a href="/kontakt/#faq" class="underline font-semibold">kontaktu</a>.
     </p>
   </div>
 </section>
@@ -1051,7 +1055,7 @@
         <address class="fl-note fl-where not-italic" style="margin-top:0">
           <span class="fl-w-item">
             <strong>Warszawa – Śródmieście</strong>
-            <span class="fl-soft">Śródmieście · paczkomat InPost</span>
+            <span class="fl-soft">Śródmieście · Paczkomat InPost</span>
           </span>
           <a href="/apostille/gdzie/" class="fl-link fl-w-link"><span class="nl-swap"><span class="nl-a">Gdzie załatwia się Apostille</span><span class="nl-b" aria-hidden="true">Gdzie załatwia się Apostille</span></span></a>
         </address>
@@ -1079,6 +1083,9 @@
           Apostille <a href="/apostille/akt-urodzenia/" class="underline">na akt urodzenia</a> · <a href="/apostille/pelnomocnictwo/" class="underline">na pełnomocnictwo</a> · <a href="/apostille/zaswiadczenie-o-niekaralnosci/" class="underline">na zaświadczenie o&nbsp;niekaralności</a>
           <span class="text-paper/70 text-[17px] align-middle" style="font-weight:900">·</span>
           <span class="font-bold text-paper/70">Zgłoszenia&nbsp;24/7</span>
+        </p>
+        <p class="text-[13px] text-paper/45 mt-1.5">
+          Tłumaczenie przysięgłe <a href="/tlumaczenia-przysiegle/jezyk-angielski/" class="underline">z&nbsp;angielskiego</a> · <a href="/tlumaczenia-przysiegle/ukrainski/" hreflang="uk" lang="uk" class="underline">з&nbsp;української</a> · <a href="/tlumaczenia-przysiegle/rosyjski/" hreflang="ru" lang="ru" class="underline">с&nbsp;русского</a>
         </p>
       </div>
     </div>
@@ -1114,71 +1121,71 @@
         <div class="scheme">
           <figure class="scheme-item">
             <div class="scheme-art"><svg viewBox="0 0 160 120" class="scheme-svg" role="img" aria-hidden="true"><rect x="3" y="3" width="154" height="114" rx="12" fill="#E5E5E1"/><g transform=""><rect x="46" y="18" width="68" height="84" rx="4" fill="#fff" stroke="rgba(31,33,32,.25)"/><rect x="54" y="30" width="52" height="4" rx="2" fill="rgba(31,33,32,.35)"/><rect x="54" y="40" width="52" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><rect x="54" y="48" width="52" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><rect x="54" y="56" width="38" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><circle cx="96" cy="84" r="10" fill="none" stroke="#2E3130" stroke-width="2"/><path d="M90 84h12M96 78v12" stroke="#2E3130" stroke-width="1.5"/></g></svg><span class="scheme-badge is-ok" aria-hidden="true">✓</span></div>
-            <figcaption><b>Cały dokument w kadrze.</b> Zdjęcie prosto z góry, wszystkie cztery rogi widoczne, tło jednolite.</figcaption>
+            <figcaption><b>Cały dokument w&nbsp;kadrze.</b> Zdjęcie prosto z&nbsp;góry, wszystkie cztery rogi widoczne, tło jednolite.</figcaption>
           </figure>
           <figure class="scheme-item">
             <div class="scheme-art"><svg viewBox="0 0 160 120" class="scheme-svg" role="img" aria-hidden="true"><rect x="3" y="3" width="154" height="114" rx="12" fill="#E5E5E1"/><g transform="scale(1.45) translate(-32,-22)"><g transform=""><rect x="46" y="18" width="68" height="84" rx="4" fill="#fff" stroke="rgba(31,33,32,.25)"/><rect x="54" y="30" width="52" height="4" rx="2" fill="rgba(31,33,32,.35)"/><rect x="54" y="40" width="52" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><rect x="54" y="48" width="52" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><rect x="54" y="56" width="38" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><circle cx="96" cy="84" r="10" fill="none" stroke="#2E3130" stroke-width="2"/><path d="M90 84h12M96 78v12" stroke="#2E3130" stroke-width="1.5"/></g></g></svg><span class="scheme-badge is-ok" aria-hidden="true">✓</span></div>
-            <figcaption><b>Czytelne pieczęcie i podpisy.</b> Ostre zdjęcie z bliska – numery i daty muszą dać się przeczytać.</figcaption>
+            <figcaption><b>Czytelne pieczęcie i&nbsp;podpisy.</b> Ostre zdjęcie z&nbsp;bliska&nbsp;– numery i&nbsp;daty muszą dać się przeczytać.</figcaption>
           </figure>
           <figure class="scheme-item">
             <div class="scheme-art"><svg viewBox="0 0 160 120" class="scheme-svg" role="img" aria-hidden="true"><rect x="3" y="3" width="154" height="114" rx="12" fill="#E5E5E1"/><g transform="rotate(-14 80 60) translate(26,6)"><rect x="46" y="18" width="68" height="84" rx="4" fill="#fff" stroke="rgba(31,33,32,.25)"/><rect x="54" y="30" width="52" height="4" rx="2" fill="rgba(31,33,32,.35)"/><rect x="54" y="40" width="52" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><rect x="54" y="48" width="52" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><rect x="54" y="56" width="38" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><circle cx="96" cy="84" r="10" fill="none" stroke="#2E3130" stroke-width="2"/><path d="M90 84h12M96 78v12" stroke="#2E3130" stroke-width="1.5"/></g></svg><span class="scheme-badge is-bad" aria-hidden="true">✕</span></div>
-            <figcaption><b>Nie pod kątem.</b> Ukośne ujęcie i obcięte rogi – urząd nie przyjmie takiego tłumaczenia.</figcaption>
+            <figcaption><b>Nie pod kątem.</b> Ukośne ujęcie i&nbsp;obcięte rogi&nbsp;– urząd nie przyjmie takiego tłumaczenia.</figcaption>
           </figure>
           <figure class="scheme-item">
             <div class="scheme-art"><svg viewBox="0 0 160 120" class="scheme-svg" role="img" aria-hidden="true"><rect x="3" y="3" width="154" height="114" rx="12" fill="#E5E5E1"/><g transform=""><rect x="46" y="18" width="68" height="84" rx="4" fill="#fff" stroke="rgba(31,33,32,.25)"/><rect x="54" y="30" width="52" height="4" rx="2" fill="rgba(31,33,32,.35)"/><rect x="54" y="40" width="52" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><rect x="54" y="48" width="52" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><rect x="54" y="56" width="38" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><circle cx="96" cy="84" r="10" fill="none" stroke="#2E3130" stroke-width="2"/><path d="M90 84h12M96 78v12" stroke="#2E3130" stroke-width="1.5"/></g><path d="M40 3 L92 3 L52 117 L3 117 Z" fill="#fff" opacity=".45"/><path d="M112 3 L157 3 L157 117 L128 117 Z" fill="#2E3130" opacity=".28"/></svg><span class="scheme-badge is-bad" aria-hidden="true">✕</span></div>
-            <figcaption><b>Bez odblasku i cienia.</b> Flesz i cień własnej ręki zasłaniają treść. Najlepiej światło dzienne.</figcaption>
+            <figcaption><b>Bez odblasku i&nbsp;cienia.</b> Flesz i&nbsp;cień własnej ręki zasłaniają treść. Najlepiej światło dzienne.</figcaption>
           </figure>
         </div>
-        <p class="step-lead" style="margin-top:2rem">Jak przekazać nam oryginał – do wyboru:</p>
+        <p class="step-lead" style="margin-top:2rem">Jak przekazać nam oryginał&nbsp;– do wyboru:</p>
         <div class="opts">
           <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" fill="currentColor"/></svg><b>Osobiście</b><span>Spotkanie w&nbsp;centrum Warszawy. Miejsce i&nbsp;godzinę ustalamy przy zleceniu.</span></div>
-          <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M3 6h18v14H3zM3 6l2-3h14l2 3M12 6v14M9 10h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>InPost paczkomat</b><span>Nadaj przesyłkę Paczkomatem InPost. Numer paczkomatu i&nbsp;dane odbiorcy podajemy w&nbsp;wycenie, a&nbsp;Ty przyślij nam zdjęcie koperty z&nbsp;numerem przesyłki.</span></div>
+          <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M3 6h18v14H3zM3 6l2-3h14l2 3M12 6v14M9 10h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>Paczkomat InPost</b><span>Nadaj przesyłkę Paczkomatem InPost. Numer paczkomatu i&nbsp;dane odbiorcy podajemy w&nbsp;wycenie, a&nbsp;Ty przyślij nam zdjęcie koperty z&nbsp;numerem przesyłki.</span></div>
           <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M2 7h11v9H2zM13 10h4l4 3v3h-8zM6.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6ZM17.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>Kurier</b><span>Z&nbsp;innego miasta albo z&nbsp;zagranicy&nbsp;– dowolnym przewoźnikiem, z&nbsp;Ukrainy&nbsp;– Nową Pocztą. Adres podajemy w&nbsp;wycenie.</span></div>
         </div>
         <ul class="rules">
           <li>Zdjęcia z&nbsp;telefonu albo PDF&nbsp;– każda strona osobno, w&nbsp;kolejności dokumentu; razem do 25&nbsp;MB w&nbsp;jednym zgłoszeniu.</li>
           <li>Wszystkie strony, także puste z&nbsp;pieczęcią na odwrocie.</li>
-          <li>Pracę zaczynamy od skanu. Jeśli urząd wymaga tłumaczenia z&nbsp;oryginału, wystarczy pokazać oryginał przy przekazaniu albo odbiorze dokumentów – tłumacz podpisze wtedy tłumaczenie z&nbsp;oryginału.</li>
+          <li>Pracę zaczynamy od skanu. Jeśli urząd wymaga tłumaczenia z&nbsp;oryginału, wystarczy pokazać oryginał przy przekazaniu albo odbiorze dokumentów&nbsp;– tłumacz podpisze wtedy tłumaczenie z&nbsp;oryginału.</li>
         </ul>
     </div>
     <div data-kicker="Krok 2" data-title="Płatność i start realizacji">
-        <p class="step-lead">Wycenę wysyłamy razem z instrukcją płatności. Zlecenie wchodzi do realizacji w momencie, w którym dostaniemy potwierdzenie przelewu – nie trzeba czekać na zaksięgowanie.</p>
+        <p class="step-lead">Wycenę wysyłamy razem z&nbsp;instrukcją płatności. Zlecenie wchodzi do realizacji w&nbsp;momencie, w&nbsp;którym dostaniemy potwierdzenie przelewu&nbsp;– nie trzeba czekać na zaksięgowanie.</p>
         <ol class="flow">
-          <li><span class="flow-dot">1</span><b>Wycena</b>Podajemy cenę i termin. Cena jest ostateczna – opłaty skarbowe są już w niej zawarte.</li>
-          <li><span class="flow-dot">2</span><b>Instrukcja płatności</b>Dane do płatności – BLIK, przelew albo gotówka – wysyłamy tym samym kanałem, którym się kontaktujesz: WhatsApp, Telegram albo e-mail.</li>
-          <li><span class="flow-dot">3</span><b>Potwierdzenie</b>Wystarczy zrzut ekranu z bankowości albo potwierdzenie w PDF.</li>
+          <li><span class="flow-dot">1</span><b>Wycena</b>Podajemy cenę i&nbsp;termin. Cena jest ostateczna&nbsp;– opłaty skarbowe są już w&nbsp;niej zawarte.</li>
+          <li><span class="flow-dot">2</span><b>Instrukcja płatności</b>Dane do płatności wysyłamy tym samym kanałem, którym do nas piszesz: e-mailem, na WhatsAppie albo w&nbsp;Telegramie. Zapłacisz BLIK-iem, przelewem albo gotówką na spotkaniu.</li>
+          <li><span class="flow-dot">3</span><b>Potwierdzenie</b>Wystarczy zrzut ekranu z&nbsp;bankowości albo potwierdzenie w&nbsp;PDF.</li>
           <li><span class="flow-dot">4</span><b>Start</b>Po potwierdzeniu zlecenie trafia do realizacji tego samego dnia roboczego.</li>
         </ol>
         <ul class="rules">
-          <li>Wycena jest bezpłatna i niezobowiązująca – płacisz dopiero wtedy, gdy ją akceptujesz.</li>
-          <li>Fakturę wystawiamy na życzenie – wystarczy podać dane przy zleceniu.</li>
-          <li>Wycena jest wiążąca: kwota z wyceny jest kwotą końcową, nie doliczamy nic po drodze.</li>
+          <li>Wycena jest bezpłatna i&nbsp;niezobowiązująca&nbsp;– płacisz dopiero wtedy, gdy ją akceptujesz.</li>
+          <li>Fakturę wystawiamy na życzenie&nbsp;– wystarczy podać dane przy zleceniu.</li>
+          <li>Wycena jest wiążąca: kwota z&nbsp;wyceny jest kwotą końcową, nie doliczamy nic po drodze.</li>
         </ul>
     </div>
     <div data-kicker="Krok 3" data-title="Realizacja zlecenia">
-        <p class="step-lead">Od momentu potwierdzenia wpłaty sprawa jest po naszej stronie: opłaty skarbowe, kolejki, terminy i kontakt z tłumaczem przysięgłym. Etapy 2 i 3 uruchamiamy w zależności od tego, czego dotyczy zlecenie.</p>
+        <p class="step-lead">Od momentu potwierdzenia wpłaty sprawa jest po naszej stronie: opłaty skarbowe, kolejki, terminy i&nbsp;kontakt z&nbsp;tłumaczem przysięgłym. Etapy 2 i&nbsp;3 uruchamiamy w&nbsp;zależności od tego, czego dotyczy zlecenie.</p>
         <ol class="flow">
           <li><span class="flow-dot">1</span><b>Start</b>Po potwierdzeniu wpłaty zlecenie trafia do realizacji tego samego dnia roboczego.</li>
-          <li><span class="flow-dot">2</span><b>Tłumaczenie – jeśli jest w zleceniu</b>Dokument trafia do tłumacza z listy Ministra Sprawiedliwości.</li>
-          <li><span class="flow-dot">3</span><b>Urząd – jeśli potrzebne Apostille</b>Składamy komplet w MSZ lub Sądzie Okręgowym i pilnujemy terminu.</li>
-          <li><span class="flow-dot">4</span><b>Gotowe</b>Wysyłamy skan tego samego dnia, oryginał przekazujemy w wybrany sposób.</li>
+          <li><span class="flow-dot">2</span><b>Tłumaczenie&nbsp;– jeśli jest w&nbsp;zleceniu</b>Dokument trafia do tłumacza z&nbsp;listy Ministra Sprawiedliwości.</li>
+          <li><span class="flow-dot">3</span><b>Urząd&nbsp;– jeśli potrzebna jest Apostille</b>Składamy komplet w&nbsp;MSZ lub Sądzie Okręgowym i&nbsp;pilnujemy terminu.</li>
+          <li><span class="flow-dot">4</span><b>Gotowe</b>Wysyłamy skan tego samego dnia, oryginał przekazujemy w&nbsp;wybrany sposób.</li>
         </ol>
         <ul class="rules">
           <li>O&nbsp;każdym etapie informujemy tym kanałem, którym do nas piszesz&nbsp;– e-mailem, na WhatsAppie albo w&nbsp;Telegramie. Nie trzeba dopytywać.</li>
           <li>Jeśli urząd wezwie do uzupełnienia braków formalnych, poprawiamy dokumenty bez dopłaty za obsługę.</li>
-          <li>Termin ekspresowy ustalamy z góry i potwierdzamy na piśmie.</li>
+          <li>Termin ekspresowy ustalamy z&nbsp;góry i&nbsp;potwierdzamy na piśmie.</li>
         </ul>
     </div>
     <div data-kicker="Krok 4" data-title="Odbiór gotowego dokumentu">
-        <p class="step-lead">Skan gotowego dokumentu wysyłamy od ręki, a oryginał przekazujemy w wygodny dla Ciebie sposób.</p>
+        <p class="step-lead">Skan gotowego dokumentu wysyłamy od ręki, a&nbsp;oryginał przekazujemy w&nbsp;wygodny dla Ciebie sposób.</p>
         <div class="opts">
           <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" fill="currentColor"/></svg><b>Osobiście</b><span>Spotkanie w&nbsp;centrum Warszawy. Miejsce i&nbsp;godzinę ustalamy przy zleceniu.</span></div>
-          <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M3 6h18v14H3zM3 6l2-3h14l2 3M12 6v14M9 10h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>InPost paczkomat</b><span>Wysyłka tego samego dnia roboczego, jeśli dokument jest gotowy do 15:00.</span></div>
-          <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M2 7h11v9H2zM13 10h4l4 3v3h-8zM6.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6ZM17.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>Kurier</b><span>Za granicę – DHL Express, do Ukrainy – Nowa Poczta. Zawsze z numerem do śledzenia przesyłki.</span></div>
+          <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M3 6h18v14H3zM3 6l2-3h14l2 3M12 6v14M9 10h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>Paczkomat InPost</b><span>Wysyłka tego samego dnia roboczego, jeśli dokument jest gotowy do 15:00.</span></div>
+          <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M2 7h11v9H2zM13 10h4l4 3v3h-8zM6.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6ZM17.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>Kurier</b><span>Za granicę&nbsp;– DHL Express, do Ukrainy&nbsp;– Nowa Poczta. Zawsze z&nbsp;numerem do śledzenia przesyłki.</span></div>
         </div>
         <ul class="rules">
-          <li>Skan w PDF trafia na WhatsApp lub e-mail zaraz po odbiorze z urzędu.</li>
-          <li>Oryginał wydajemy tylko osobie wskazanej w zleceniu albo wysyłamy na wskazany adres.</li>
+          <li>Skan w&nbsp;PDF trafia na WhatsApp lub e-mail zaraz po odbiorze z&nbsp;urzędu.</li>
+          <li>Oryginał wydajemy tylko osobie wskazanej w&nbsp;zleceniu albo wysyłamy na wskazany adres.</li>
           <li>Gotowe dokumenty czekają na odbiór do 60&nbsp;dni.</li>
         </ul>
     </div>

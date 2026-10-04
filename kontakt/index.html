@@ -6,6 +6,10 @@
 <!-- Защита (28.09.2026): браузер выполняет только наши скрипты; новый внешний сервис (gtag, карта) – сначала вписать сюда -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ga0M3hxX7BbNMOsk8k9ra3P80+aMOd6HTfkftF5FpXw='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://formspree.io https://script.google.com https://script.googleusercontent.com; form-action 'self' https://formspree.io https://script.google.com; object-src 'none'; frame-src 'none'; base-uri 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preload" href="/assets/fonts/fira-sans-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-900-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 
 <title>Kontakt i odbiór dokumentów – Apostille Warszawa | Apostilo</title>
 <meta name="description" content="Apostille i tłumaczenia przysięgłe w Warszawie: wycena ze zdjęcia zwykle w 15 min. Tel. +48 507 588 155, codziennie 7:00–21:00. Odbiór: centrum lub InPost.">
@@ -95,11 +99,6 @@
         "addressRegion": "Mazowieckie",
         "addressCountry": "PL"
       },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 52.2287,
-        "longitude": 21.0155
-      },
       "areaServed": [
         {
           "@type": "City",
@@ -185,15 +184,15 @@
     { "@type": "Question", "name": "Czy mogę przyjść do biura?",
       "acceptedAnswer": { "@type": "Answer", "text": "Nie prowadzimy biura z recepcją – cały kontakt idzie przez formularz, telefon i komunikatory, a dokumenty odbieramy na umówionym spotkaniu. Spotykamy się w Śródmieściu, w samym centrum Warszawy – łatwo tam dojechać z każdej dzielnicy. Dzięki temu nie płacisz za lokal – tylko za sprawę." } },
     { "@type": "Question", "name": "Jak umówić spotkanie, żeby przekazać dokument?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Najprościej w kalendarzu wyżej na tej stronie: wybierz dzień roboczy i porę – rano, w południe albo wieczorem – a otworzy się WhatsApp z gotową wiadomością – termin potwierdzamy w odpowiedzi. Możesz też po prostu napisać albo zadzwonić. Spotkanie w Śródmieściu ustalamy zwykle na ten sam lub następny dzień roboczy." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Najprościej w kalendarzu wyżej na tej stronie: wybierz dzień roboczy i porę (rano, w południe albo wieczorem), a otworzy się WhatsApp z gotową wiadomością. Termin potwierdzimy w odpowiedzi. Możesz też po prostu napisać albo zadzwonić. Spotkanie w Śródmieściu ustalamy zwykle na ten sam lub następny dzień roboczy." } },
     { "@type": "Question", "name": "Jak wysłać dokument do Apostille Paczkomatem InPost?",
       "acceptedAnswer": { "@type": "Answer", "text": "W wycenie dostajesz od nas gotowe dane do nadania: numer paczkomatu docelowego, numer telefonu i e-mail odbiorcy. Dokument włóż do sztywnej koperty, żeby się nie zgiął. Zrób zdjęcie koperty z numerem przesyłki i wyślij nam na WhatsApp, Telegram albo e-mail – od tej chwili śledzimy ją razem z Tobą. Gotowy dokument odsyłamy do wskazanego przez Ciebie paczkomatu. Przy zamówieniu od 350 zł wysyłka w obie strony jest w cenie, przy mniejszym – 30 zł w jedną stronę." } },
     { "@type": "Question", "name": "Jak wysłać dokument z zagranicy albo z Ukrainy?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Oryginał wysyłasz sam, dowolnym przewoźnikiem – adres podajemy w wycenie. Zrób zdjęcie koperty z numerem przesyłki i wyślij nam na WhatsApp, Telegram albo e-mail – od tej chwili śledzimy ją razem z Tobą. Gotowy dokument odsyłamy DHL Express, od drzwi do drzwi, za podpisem, a na Ukrainę – Nową Pocztą za 150 zł. Koszt DHL zależy od regionu i znasz go przed płatnością: w wycenie jest osobną pozycją. Wolisz innego przewoźnika? Zamów kuriera, a miejsce i godzinę odbioru w Śródmieściu ustalimy z Tobą – przekażemy mu przesyłkę." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Oryginał wysyłasz sam, dowolnym przewoźnikiem – adres podajemy w wycenie. Zrób zdjęcie koperty z numerem przesyłki i wyślij nam na WhatsApp, Telegram albo e-mail – od tej chwili śledzimy ją razem z Tobą. Gotowy dokument odsyłamy DHL Express, od drzwi do drzwi, za podpisem, a do Ukrainy – Nową Pocztą za 150 zł. DHL kosztuje około 300 zł za przesyłkę, a dokładną kwotę, zależną od regionu, znasz przed płatnością – w wycenie jest osobną pozycją. Wolisz innego przewoźnika? Zamów kuriera, a miejsce i godzinę odbioru w Śródmieściu ustalimy z Tobą – przekażemy mu przesyłkę." } },
     { "@type": "Question", "name": "Jak i kiedy płacę?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Z góry, po akceptacji wyceny – BLIK-iem, przelewem albo gotówką na spotkaniu, przy przekazaniu dokumentów. Kwota z wyceny jest końcowa: opłaty urzędowe i sądowe są w cenie, a wysyłka – osobną pozycją (po Polsce przy zamówieniu od 350 zł w cenie, za granicę zawsze doliczana). Zlecenie wchodzi do realizacji po potwierdzeniu płatności – wystarczy zrzut ekranu z aplikacji banku." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Z góry, po akceptacji wyceny – BLIK-iem, przelewem albo gotówką na spotkaniu, przy przekazaniu dokumentów. Kwota z wyceny jest końcowa: opłaty urzędowe i sądowe są w cenie, a wysyłka – osobną pozycją (po Polsce przy zamówieniu od 350 zł w cenie, DHL za granicę – około 300 zł, a przy Dokumentach z Ukrainy Nowa Poczta w obie strony jest w cenie). Zlecenie wchodzi do realizacji po potwierdzeniu płatności – wystarczy zrzut ekranu z aplikacji banku." } },
     { "@type": "Question", "name": "Kiedy odsyłacie gotowy dokument?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Skan gotowego dokumentu wysyłamy od ręki, gdy tylko odbierzemy go z urzędu. Oryginał nadajemy tego samego dnia roboczego, jeśli jest gotowy do 15:00 – w innym razie następnego rano. Odbiór osobisty umawiamy na najbliższy wygodny termin." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Skan gotowego dokumentu wysyłamy od ręki, gdy tylko odbierzemy go z urzędu. Oryginał nadajemy tego samego dnia roboczego, jeśli jest gotowy do 15:00 – w innym razie następnego dnia rano. Odbiór osobisty umawiamy na najbliższy wygodny termin." } },
     { "@type": "Question", "name": "Czy pracujecie w soboty i święta?",
       "acceptedAnswer": { "@type": "Answer", "text": "Tak – odbieramy telefon i odpisujemy codziennie od 7:00 do 21:00, także w weekendy i dni ustawowo wolne. Urzędy – MSZ, sądy, USC – są wtedy nieczynne, więc w te dni przyjmujemy zgłoszenia i wyceniamy, a dokumenty składamy w najbliższy dzień roboczy. Kalendarz wyżej na tej stronie pokazuje, które dni odpadają." } },
     { "@type": "Question", "name": "W jakim języku mogę napisać?",
@@ -288,10 +287,10 @@
 <section class="relative overflow-hidden bg-ink text-paper pt-8 pb-16 md:pt-14 md:pb-24">
   <div class="relative mx-auto max-w-site px-5 sm:px-8">
     <p class="font-cond uppercase tracking-[0.18em] text-[15px] font-semibold text-paper/70 mb-6">Kontakt</p>
-    <h1 class="tracking-tightest leading-[0.95] text-[36px] sm:text-[52px] md:text-[64px] font-black h1-page">Kontakt – Warszawa Centrum, spotkania w&nbsp;Śródmieściu</h1>
+    <h1 class="tracking-tightest leading-[0.95] text-[36px] sm:text-[52px] md:text-[64px] font-black h1-page">Kontakt&nbsp;– Warszawa Centrum, spotkania w&nbsp;Śródmieściu</h1>
     <p class="mt-6 text-[17px] leading-[1.6] text-paper/80 max-w-[62ch]">
       Potrzebujesz Apostille, legalizacji dokumentu albo tłumaczenia przysięgłego w&nbsp;Warszawie?
-      Wyślij zdjęcie w&nbsp;formularzu – wycenę robimy zwykle w&nbsp;15 minut. Z&nbsp;pytaniami napisz albo zadzwoń, gdzie Ci wygodniej: odpowiada człowiek, nie bot. Zgłoszenia przyjmujemy całą dobę, odpowiadamy od 7:00 do 21:00
+      Wyślij zdjęcie w&nbsp;formularzu&nbsp;– wycenę robimy zwykle w&nbsp;15&nbsp;minut. Z&nbsp;pytaniami napisz albo zadzwoń, jak Ci wygodniej: odpowiada człowiek, nie bot. Zgłoszenia przyjmujemy całą dobę, odpowiadamy od 7:00 do 21:00
       codziennie, także w&nbsp;weekendy i&nbsp;święta.
     </p>
     <!-- ссылка-стрелка привязана к абзацу (стоит сразу под ним), кнопки – ниже, после воздуха -->
@@ -318,7 +317,7 @@
   <div id="ws" class="ws kt mx-auto max-w-site px-5 sm:px-8">
     <div class="kt-top">
       <div>
-        <p class="kicker kicker--light">/ Kontakt i odbiór dokumentów</p>
+        <p class="kicker kicker--light">/ Kontakt i&nbsp;odbiór dokumentów</p>
         <h2 id="zawsze" class="tracking-tightest leading-[0.9] text-[44px] sm:text-[68px] lg:text-[82px] font-black">
           <span class="text-ochre">24/7.</span><br>
           Wyślij dokument.<br>
@@ -344,7 +343,7 @@
       <div class="kt-group">
         <div class="kt-doc">
           <h3 class="kt-h text-[22px] md:text-[26px] font-bold tracking-tight">Dokumenty <span class="font-light italic">– przez formularz</span></h3>
-          <p class="kt-text">Zdjęcie lub skan załączasz w&nbsp;formularzu wyceny, a&nbsp;wycenę dostajesz e-mailem – zwykle w&nbsp;15 minut. Wszystko trafia w&nbsp;jedno miejsce i&nbsp;nic nie ginie w&nbsp;czatach.</p>
+          <p class="kt-text">Zdjęcie lub skan załączasz w&nbsp;formularzu wyceny, a&nbsp;wycenę dostajesz e-mailem&nbsp;– zwykle w&nbsp;15&nbsp;minut. Wszystko trafia w&nbsp;jedno miejsce i&nbsp;nic nie ginie w&nbsp;czatach.</p>
           <div class="kt-actions">
             <div class="cta-btns" role="group" aria-label="Zamów wycenę">
               <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
@@ -358,12 +357,12 @@
             <li class="kt-ch">
               <span class="kt-ch-h">Telefon</span>
               <a class="kt-ch-v" href="tel:+48507588155" aria-label="Telefon: +48 507 588 155">+48 507 588 155</a>
-              <span class="kt-ch-t">Nie wiesz, od czego zacząć? Zadzwoń – odbiera człowiek i&nbsp;spokojnie wszystko wyjaśni. Rozmawiamy po polsku, ukraińsku, rosyjsku i&nbsp;angielsku. Jeśli nie odbieramy, jesteśmy w&nbsp;urzędzie&nbsp;– oddzwonimy.</span>
+              <span class="kt-ch-t">Nie wiesz, od czego zacząć? Zadzwoń&nbsp;– odbiera człowiek i&nbsp;spokojnie wszystko wyjaśni. Rozmawiamy po polsku, ukraińsku, rosyjsku i&nbsp;angielsku. Jeśli nie odbieramy, jesteśmy w&nbsp;urzędzie&nbsp;– oddzwonimy.</span>
             </li>
             <li class="kt-ch">
               <span class="kt-ch-h">WhatsApp</span>
               <a class="kt-ch-v" href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie" aria-label="WhatsApp: +48 507 588 155">+48 507 588 155</a>
-              <span class="kt-ch-t">Pytania o&nbsp;dokument, termin i&nbsp;cenę. Samo zdjęcie dokumentu – przez formularz.</span>
+              <span class="kt-ch-t">Pytania o&nbsp;dokument, termin i&nbsp;cenę. Samo zdjęcie dokumentu&nbsp;– przez formularz.</span>
             </li>
             <li class="kt-ch">
               <span class="kt-ch-h">Telegram</span>
@@ -392,14 +391,14 @@
         <h3 class="kt-h text-[22px] md:text-[26px] font-bold tracking-tight">Kiedy odpowiadamy</h3>
         <p class="ws-top">
           <span class="ws-dot" aria-hidden="true"></span>
-          <span class="ws-state">Sprawdzam godziny…</span>
+          <span class="ws-state">Sprawdzamy godziny…</span>
         </p>
         <p class="ws-msg">czas lokalny</p>
         <ul class="ws-hours">
           <!-- 30.09.2026 (аналитика К4): вместо двух одинаковых строк – наши часы и дни урядов; data-now – когда строка подсвечена (app.js) -->
-          <li data-now="always"><span>Odpowiadamy</span><span>codziennie 7:00 – 21:00</span></li>
+          <li data-now="always"><span>Odpowiadamy</span><span>codziennie 7:00–21:00</span></li>
           <li data-now="weekday"><span>Urzędy</span><span>pn.–pt., bez świąt</span></li>
-          <li class="ws-note">W&nbsp;weekendy i&nbsp;święta urzędy nieczynne – odpowiadamy, dokumenty składamy w&nbsp;najbliższy dzień roboczy.</li>
+          <li class="ws-note">W&nbsp;weekendy i&nbsp;święta urzędy są zamknięte, ale my odpowiadamy jak zwykle, a&nbsp;dokumenty składamy w&nbsp;najbliższy dzień roboczy.</li>
         </ul>
       </div>
     </div>
@@ -407,7 +406,8 @@
     <!-- 3. Запись на встречу: параметры (время дня · место) · календарь · окна «Rano / Południe / Wieczór».
          app.js переносит .cal-opts в .cal-opts-slot, а блок окон (.cal-book) – в .cal-book-slot -->
     <div class="kt-row">
-      <div class="cal kt-cal" id="cal" data-book>
+      <!-- 04.10.2026 Грег: окна встречи – в левой колонке под местом, календарь – на две трети блока (модификатор kt-cal--wide, только PL) -->
+      <div class="cal kt-cal kt-cal--wide" id="cal" data-book>
         <div class="kt-cal-intro">
           <h3 class="kt-h text-[22px] md:text-[26px] font-bold tracking-tight">Umów spotkanie</h3>
           <p class="kt-text">Dokumenty odbieramy i&nbsp;wydajemy na umówionym spotkaniu w&nbsp;centrum Warszawy, w&nbsp;Śródmieściu. Nie prowadzimy biura z&nbsp;recepcją: miejsce i&nbsp;godzinę ustalamy z&nbsp;góry.</p>
@@ -422,7 +422,7 @@
             </span>
           </div>
           <div class="cal-grid" role="group" aria-label="Kalendarz: dni robocze i dni ustawowo wolne od pracy"></div>
-          <p class="cal-note"><i aria-hidden="true"></i><span>Dni ustawowo wolne od pracy – MSZ, sądy i&nbsp;urzędy nieczynne.</span></p>
+          <p class="cal-note"><i aria-hidden="true"></i><span>Dni ustawowo wolne od pracy&nbsp;– MSZ, sądy i&nbsp;urzędy nieczynne.</span></p>
         </div>
         <div class="kt-cal-side cal-book-slot"></div>
         <span class="cal-tip" role="status" aria-live="polite"></span>
@@ -434,7 +434,7 @@
 <!-- ================= ODBIÓR I WYSYŁKA ================= -->
 <section id="odbior" class="bg-ink text-paper py-16 md:py-28">
   <div class="relative mx-auto max-w-site px-5 sm:px-8">
-    <p class="kicker kicker--light">/ Odbiór i wysyłka</p>
+    <p class="kicker kicker--light">/ Odbiór i&nbsp;wysyłka</p>
     <h2 class="h2-swap tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
       Jak przekazać i&nbsp;odebrać dokument
     </h2>
@@ -456,14 +456,14 @@
           <!-- 25.09.2026 (стенд docs/odbior, ход 5): ответы – строками того же уровня, что способы справа («Polska – InPost») -->
           <div class="ob-lead text-[17px] leading-[1.55] max-w-[42ch]">
             <p class="ob-ans"><b>Przy tłumaczeniu</b>&nbsp;– nie od razu.</p>
-            <p>Żeby zacząć, wystarczy skan albo zdjęcie. Oryginał jest potrzebny tylko wtedy, gdy urząd wymaga tłumaczenia „z&nbsp;oryginału” – pokazujesz go przy odbiorze w&nbsp;Warszawie, a&nbsp;spoza Warszawy wysyłasz do wglądu i&nbsp;wraca do Ciebie razem z&nbsp;tłumaczeniem.</p>
+            <p>Żeby zacząć, wystarczy skan albo zdjęcie. Oryginał jest potrzebny tylko wtedy, gdy urząd wymaga tłumaczenia „z&nbsp;oryginału”&nbsp;– pokazujesz go przy odbiorze w&nbsp;Warszawie, a&nbsp;spoza Warszawy wysyłasz do wglądu i&nbsp;wraca do Ciebie razem z&nbsp;tłumaczeniem.</p>
             <p class="ob-ans"><b>Przy Apostille</b>&nbsp;– tak, od początku.</p>
-            <p>Pieczęć trafia na oryginał, więc bez niego nie zaczniemy. Apostille z&nbsp;tłumaczeniem – tak samo.</p>
+            <p>Apostille trafia na oryginał, więc bez niego nie zaczniemy. Tak samo, gdy zamawiasz Apostille razem z&nbsp;tłumaczeniem.</p>
           </div>
           <!-- 25.09.2026 (стенд docs/odbior, п. 2): совет про конверт – про оригинал, стоит под ответами, а не под способами доставки -->
-          <p class="ob-note"><b class="font-bold">Wysyłasz Oryginał?</b> Zrób zdjęcie koperty i&nbsp;podaj nam numer przesyłki – na WhatsApp, Telegram albo e-mail. Od tej chwili pilnujemy jej razem z&nbsp;Tobą.</p>
+          <p class="ob-note"><b class="font-bold">Wysyłasz Oryginał?</b> Zrób zdjęcie koperty i&nbsp;podaj nam numer przesyłki&nbsp;– na WhatsApp, Telegram albo e-mail. Od tej chwili pilnujemy jej razem z&nbsp;Tobą.</p>
         <div class="ob-cta" role="group" aria-label="Skontaktuj się z nami">
-          <p class="ob-cta-h">Skontaktuj się z nami</p>
+          <p class="ob-cta-h">Skontaktuj się z&nbsp;nami</p>
           <a href="/cennik/#wycena" data-quote class="cta-btn ob-cta-main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
           <div class="ob-seg">
             <a href="tel:+48507588155" aria-label="Zadzwoń: +48 507 588 155"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg><span>Zadzwoń</span></a>
@@ -478,20 +478,20 @@
           </h3>
           <ul class="so-list ob-acc mt-4">
           <li><details name="ob" id="osobiscie" open><summary><h4><b>Osobiście</b> <span class="font-light">– Warszawa Centrum</span></h4></summary><div class="so-card">
-            <p class="ob-t">Śródmieście – kilka kroków od metra Centrum i&nbsp;Pałacu Kultury. Dokładne miejsce i&nbsp;termin ustalamy przy zleceniu, zwykle na ten sam lub następny dzień roboczy.</p>
+            <p class="ob-t">Śródmieście&nbsp;– kilka kroków od metra Centrum i&nbsp;Pałacu Kultury. Dokładne miejsce i&nbsp;termin ustalamy przy zleceniu, zwykle na ten sam lub następny dzień roboczy.</p>
           </div></details></li>
           <li><details name="ob" id="inpost"><summary><h4><b>Polska</b> <span class="font-light">– InPost</span></h4></summary><div class="so-card">
-            <p class="ob-t">Numer paczkomatu i&nbsp;dane odbiorcy podajemy w&nbsp;wycenie. Przy zamówieniu od&nbsp;350&nbsp;zł wysyłka w&nbsp;obie strony jest w&nbsp;cenie, przy mniejszym – 30&nbsp;zł w&nbsp;jedną stronę.</p>
+            <p class="ob-t">Numer paczkomatu i&nbsp;dane odbiorcy podajemy w&nbsp;wycenie. Przy zamówieniu od&nbsp;350&nbsp;zł wysyłka w&nbsp;obie strony jest w&nbsp;cenie, przy mniejszym&nbsp;– 30&nbsp;zł w&nbsp;jedną stronę.</p>
           </div></details></li>
           <li><details name="ob" id="nowa-poczta"><summary><h4><b>Ukraina</b> <span class="font-light">– Nowa Poczta</span></h4></summary><div class="so-card">
-            <p class="ob-t">Oryginał z&nbsp;Ukrainy możesz wysłać Nową Pocztą – adres podajemy w&nbsp;wycenie.</p>
-            <p class="ob-t">Za 150 zł gotowy dokument odsyłamy Nową Pocztą pod wskazany adres lub do oddziału&nbsp;– z&nbsp;numerem do śledzenia. Przy <a href="/apostille-ukraina/" class="underline">Dokumentach z&nbsp;Ukrainy</a> przesyłka w&nbsp;obie strony jest w&nbsp;cenie.</p>
+            <p class="ob-t">Oryginał z&nbsp;Ukrainy możesz wysłać Nową Pocztą&nbsp;– adres podajemy w&nbsp;wycenie.</p>
+            <p class="ob-t">Za 150&nbsp;zł gotowy dokument odsyłamy Nową Pocztą pod wskazany adres lub do oddziału&nbsp;– z&nbsp;numerem do śledzenia. Przy <a href="/apostille-ukraina/" class="underline">Dokumentach z&nbsp;Ukrainy</a> przesyłka w&nbsp;obie strony jest w&nbsp;cenie.</p>
           </div></details></li>
           <li><details name="ob" id="dhl"><summary><h4><b>Zagranica</b> <span class="font-light">– DHL&nbsp;Express</span></h4></summary><div class="so-card">
-            <p class="ob-t">Oryginał wysyłasz sam, na adres z&nbsp;wyceny. Gotowy dokument odsyłamy DHL&nbsp;Express – od&nbsp;drzwi do&nbsp;drzwi, za&nbsp;podpisem. Koszt zależy od regionu i&nbsp;znasz go przed płatnością.</p>
+            <p class="ob-t">Oryginał wysyłasz sam, na adres z&nbsp;wyceny. Gotowy dokument odsyłamy DHL&nbsp;Express&nbsp;– od&nbsp;drzwi do&nbsp;drzwi, za&nbsp;podpisem. Kosztuje to około 300&nbsp;zł, dokładna kwota zależy od regionu i&nbsp;znasz ją przed płatnością.</p>
           </div></details></li>
           <li><details name="ob" id="wlasny-koszt"><summary><h4><b>Własny koszt</b> <span class="font-light">– dowolna firma</span></h4></summary><div class="so-card">
-            <p class="ob-t">Gotowy dokument możesz odebrać przez dowolną firmę kurierską – wybierasz ją i&nbsp;opłacasz sam. Zamów kuriera, a&nbsp;miejsce i&nbsp;godzinę odbioru w&nbsp;Śródmieściu ustalimy z&nbsp;Tobą&nbsp;– przygotujemy, zapakujemy i&nbsp;przekażemy przesyłkę Twojemu kurierowi.</p>
+            <p class="ob-t">Gotowy dokument możesz odebrać przez dowolną firmę kurierską&nbsp;– wybierasz ją i&nbsp;opłacasz sam. Zamów kuriera, a&nbsp;miejsce i&nbsp;godzinę odbioru w&nbsp;Śródmieściu ustalimy z&nbsp;Tobą&nbsp;– przygotujemy, zapakujemy i&nbsp;przekażemy przesyłkę Twojemu kurierowi.</p>
           </div></details></li>
         </ul>
         </div>
@@ -499,7 +499,7 @@
       <!-- от 1024px кнопки – полосой по низу плашки (Грег, 24.09.2026, стенд m-obcta 4б); уже 1024 – блок .ob-cta в колонке -->
       <!-- 03.10.2026 Грег: вместо линии над полосой кнопок – перфорация для отрыва (как талон), модификатор ob-strip--perf, только PL -->
       <div class="ob-strip ob-strip--perf" role="group" aria-label="Napisz lub zadzwoń">
-        <p class="ob-strip-h">Skontaktuj się z nami</p>
+        <p class="ob-strip-h">Skontaktuj się z&nbsp;nami</p>
         <div class="cta-btns">
           <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
           <a href="https://t.me/apostilo?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
@@ -509,12 +509,12 @@
     </div>
 
     <div class="kt-steps mt-10" data-kroki>
-      <h3 class="text-[22px] md:text-[26px] font-bold tracking-tight">Jak wygląda zlecenie – pięć kroków</h3>
+      <h3 class="text-[22px] md:text-[26px] font-bold tracking-tight">Jak wygląda zlecenie&nbsp;– pięć kroków</h3>
       <ol class="kt-steps-list">
-        <li><b>Zdjęcie lub skan.</b> Załączasz w&nbsp;<a href="/cennik/#wycena" data-quote class="underline">formularzu wyceny</a>. Piszesz, do czego dokument jest potrzebny, w&nbsp;jakim kraju i&nbsp;<a href="/apostille/#kolejnosc" class="underline">na którym dokumencie ma być Apostille</a> – oryginale, tłumaczeniu czy obu.</li>
-        <li><b>Wycena.</b> Odpowiedź przychodzi e-mailem, zwykle w&nbsp;15 minut: cena końcowa z&nbsp;opłatami urzędowymi i&nbsp;termin.</li>
+        <li><b>Zdjęcie lub skan.</b> Załączasz je w&nbsp;<a href="/cennik/#wycena" data-quote class="underline">formularzu wyceny</a>. Piszesz, do czego dokument jest potrzebny, w&nbsp;jakim kraju i&nbsp;<a href="/apostille/#kolejnosc" class="underline">na którym dokumencie ma być Apostille</a>&nbsp;– oryginale, tłumaczeniu czy obu.</li>
+        <li><b>Wycena.</b> Odpowiedź przychodzi e-mailem, zwykle w&nbsp;15&nbsp;minut: cena końcowa z&nbsp;opłatami urzędowymi i&nbsp;termin.</li>
         <li><b>Płatność z&nbsp;góry.</b> BLIK, przelew albo gotówka przy spotkaniu; dane do płatności są w&nbsp;tym samym e-mailu.</li>
-        <li><b>Potwierdzenie.</b> Wystarczy zrzut ekranu z&nbsp;banku – od tej chwili zlecenie jest w&nbsp;realizacji.</li>
+        <li><b>Potwierdzenie.</b> Wystarczy zrzut ekranu z&nbsp;banku&nbsp;– od tej chwili zlecenie jest w&nbsp;realizacji.</li>
         <li><b>Oryginał i&nbsp;odbiór.</b> Przekazujesz oryginał na spotkaniu albo wysyłasz. Skan gotowego dokumentu dostajesz od ręki, oryginał odbierasz osobiście lub kurierem.</li>
       </ol>
     </div>
@@ -526,7 +526,7 @@
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker kicker--light">/ Gdzie</p>
     <h2 class="h2-swap tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
-      Gdzie w&nbsp;Warszawie załatwia się Apostille
+      Urzędy, w&nbsp;których składamy Twój dokument
     </h2>
     <p class="mt-6 text-[17px] leading-[1.6] text-paper/80 max-w-[62ch]">
       Nie ma jednego okienka. O&nbsp;tym, do&nbsp;którego urzędu trafia dokument, decyduje to,
@@ -560,21 +560,21 @@
       </div>
 
       <div class="gdz-note">
-        <p><b>Opłaty urzędowe są już wliczone w&nbsp;nasze ceny.</b> Terminy, okręgi sądów, które dokumenty dokąd trafiają
-        i&nbsp;kolejność – na stronie <a href="/apostille/gdzie/" class="underline font-semibold">Gdzie w&nbsp;Warszawie załatwia się Apostille</a>.</p>
+        <p><b>Opłaty urzędowe są już wliczone w&nbsp;nasze ceny.</b> Terminy, okręgi sądów, kolejność i&nbsp;to, który dokument trafia
+        do którego urzędu, opisujemy na stronie <a href="/apostille/gdzie/" class="underline font-semibold">Gdzie w&nbsp;Warszawie załatwia się Apostille</a>.</p>
       </div>
     </div>
 
     <div class="gdz-cta">
       <!-- слоган не трогаем (Грег, 21.09.2026); под ним – ссылка на страницу «приехать дороже, чем заказать» -->
       <div>
-        <p class="gdz-cta-t">Wolisz nie rezerwować wizyt i&nbsp;nie jeździć po&nbsp;urzędach? Wyślij zdjęcie dokumentu – resztę załatwiamy&nbsp;my.</p>
-        <p class="gdz-cta-more gdz-key-more"><a href="/cennik/" class="k-where-link k-where-link--paper">Cennik Apostille i&nbsp;<span class="whitespace-nowrap">Tłumaczeń<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a></p>
+        <p class="gdz-cta-t">Wolisz nie rezerwować wizyt i&nbsp;nie jeździć po&nbsp;urzędach? Wyślij zdjęcie dokumentu&nbsp;– resztę załatwiamy&nbsp;my.</p>
+        <p class="gdz-cta-more gdz-key-more"><a href="/cennik/" class="k-where-link k-where-link--paper">Cennik Apostille i&nbsp;Tłumaczeń <span class="whitespace-nowrap">Przysięgłych<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a></p>
       </div>
-      <div class="cta-btns" role="group" aria-label="Zamów wycenę lub napisz na komunikatorze">
+      <div class="cta-btns" role="group" aria-label="Napisz na komunikatorze">
         <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20Apostille%20lub%20t%C5%82umaczenie" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
         <a href="https://t.me/apostilo?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20Apostille%20lub%20t%C5%82umaczenie" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
-        <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <!-- 03.10.2026 (Грег): «Zamów wycenę» из ряда снята – главная теперь всплывающая (.m-dock); WhatsApp и Telegram остаются -->
       </div>
     </div>
   </div>
@@ -595,7 +595,7 @@
           <span class="chev chev--light shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-paper/80 max-w-[70ch]">
-          Nie – całą sprawę załatwisz zdalnie. Do wyceny wystarczy skan albo zdjęcie w formularzu wyceny. Oryginał przekazujesz na spotkaniu w&nbsp;centrum Warszawy albo wysyłasz Paczkomatem InPost – numer paczkomatu podajemy w&nbsp;wycenie. Z&nbsp;zagranicy wysyłasz go dowolnym przewoźnikiem, a&nbsp;z&nbsp;Ukrainy&nbsp;– Nową Pocztą; gotowy dokument odsyłamy DHL Express albo Nową Pocztą. <a href="/apostille-bez-przyjazdu/" class="underline font-semibold">Ile kosztuje przyjazd, a&nbsp;ile zlecenie</a>.
+          Nie&nbsp;– całą sprawę załatwisz zdalnie. Do wyceny wystarczy skan albo zdjęcie w&nbsp;formularzu wyceny. Oryginał przekazujesz na spotkaniu w&nbsp;centrum Warszawy albo wysyłasz Paczkomatem InPost&nbsp;– numer paczkomatu podajemy w&nbsp;wycenie. Z&nbsp;zagranicy wysyłasz go dowolnym przewoźnikiem, a&nbsp;z&nbsp;Ukrainy&nbsp;– Nową Pocztą; gotowy dokument odsyłamy DHL Express albo Nową Pocztą. <a href="/apostille-bez-przyjazdu/" class="underline font-semibold">Ile kosztuje przyjazd, a&nbsp;ile zlecenie</a>.
         </p>
       </details>
 
@@ -605,7 +605,7 @@
           <span class="chev chev--light shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-paper/80 max-w-[70ch]">
-          Nie prowadzimy biura z&nbsp;recepcją – cały kontakt idzie przez formularz, telefon i&nbsp;komunikatory, a&nbsp;dokumenty odbieramy na umówionym spotkaniu. Spotykamy się w Śródmieściu, w samym centrum Warszawy – łatwo tam dojechać z każdej dzielnicy. Dzięki temu nie płacisz za lokal – tylko za sprawę.
+          Nie prowadzimy biura z&nbsp;recepcją&nbsp;– cały kontakt idzie przez formularz, telefon i&nbsp;komunikatory, a&nbsp;dokumenty odbieramy na umówionym spotkaniu. Spotykamy się w&nbsp;Śródmieściu, w&nbsp;samym centrum Warszawy&nbsp;– łatwo tam dojechać z&nbsp;każdej dzielnicy. Dzięki temu nie płacisz za lokal&nbsp;– tylko za sprawę.
         </p>
       </details>
 
@@ -615,7 +615,7 @@
           <span class="chev chev--light shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-paper/80 max-w-[70ch]">
-          Najprościej w&nbsp;kalendarzu wyżej na tej stronie: wybierz dzień roboczy i&nbsp;porę&nbsp;– rano, w&nbsp;południe albo wieczorem – a&nbsp;otworzy się WhatsApp z&nbsp;gotową wiadomością – termin potwierdzamy w&nbsp;odpowiedzi. Możesz też po prostu napisać albo zadzwonić. Spotkanie w Śródmieściu ustalamy zwykle na ten sam lub następny dzień roboczy.
+          Najprościej w&nbsp;kalendarzu wyżej na tej stronie: wybierz dzień roboczy i&nbsp;porę (rano, w&nbsp;południe albo wieczorem), a&nbsp;otworzy się WhatsApp z&nbsp;gotową wiadomością. Termin potwierdzimy w&nbsp;odpowiedzi. Możesz też po prostu napisać albo zadzwonić. Spotkanie w&nbsp;Śródmieściu ustalamy zwykle na ten sam lub następny dzień roboczy.
         </p>
       </details>
 
@@ -625,27 +625,27 @@
           <span class="chev chev--light shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-paper/80 max-w-[70ch]">
-          W&nbsp;wycenie dostajesz od nas gotowe dane do nadania: numer paczkomatu docelowego, numer telefonu i&nbsp;e-mail odbiorcy. Dokument włóż do sztywnej koperty, żeby się nie zgiął. Zrób zdjęcie koperty z numerem przesyłki i wyślij nam na WhatsApp, Telegram albo e-mail – od tej chwili śledzimy ją razem z Tobą. Gotowy dokument odsyłamy do wskazanego przez Ciebie paczkomatu. Przy zamówieniu od 350 zł wysyłka w obie strony jest w cenie, przy mniejszym – 30 zł w jedną stronę.
+          W&nbsp;wycenie dostajesz od nas gotowe dane do nadania: numer paczkomatu docelowego, numer telefonu i&nbsp;e-mail odbiorcy. Dokument włóż do sztywnej koperty, żeby się nie zgiął. Zrób zdjęcie koperty z&nbsp;numerem przesyłki i&nbsp;wyślij nam na WhatsApp, Telegram albo e-mail&nbsp;– od tej chwili śledzimy ją razem z&nbsp;Tobą. Gotowy dokument odsyłamy do wskazanego przez Ciebie paczkomatu. Przy zamówieniu od 350&nbsp;zł wysyłka w&nbsp;obie strony jest w&nbsp;cenie, przy mniejszym&nbsp;– 30&nbsp;zł w&nbsp;jedną stronę.
         </p>
       </details>
 
       <details class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Jak wysłać dokument z zagranicy albo z Ukrainy?</h3>
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Jak wysłać dokument z&nbsp;zagranicy albo z&nbsp;Ukrainy?</h3>
           <span class="chev chev--light shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-paper/80 max-w-[70ch]">
-          Oryginał wysyłasz sam, dowolnym przewoźnikiem – adres podajemy w&nbsp;wycenie. Zrób zdjęcie koperty z numerem przesyłki i wyślij nam na WhatsApp, Telegram albo e-mail – od tej chwili śledzimy ją razem z Tobą. Gotowy dokument odsyłamy DHL&nbsp;Express, od drzwi do drzwi, za podpisem, a na Ukrainę – Nową Pocztą za 150&nbsp;zł. Koszt DHL zależy od regionu i znasz go przed płatnością: w wycenie jest osobną pozycją. Wolisz innego przewoźnika? Zamów kuriera, a&nbsp;miejsce i&nbsp;godzinę odbioru w&nbsp;Śródmieściu ustalimy z&nbsp;Tobą&nbsp;– przekażemy mu przesyłkę.
+          Oryginał wysyłasz sam, dowolnym przewoźnikiem&nbsp;– adres podajemy w&nbsp;wycenie. Zrób zdjęcie koperty z&nbsp;numerem przesyłki i&nbsp;wyślij nam na WhatsApp, Telegram albo e-mail&nbsp;– od tej chwili śledzimy ją razem z&nbsp;Tobą. Gotowy dokument odsyłamy DHL&nbsp;Express, od drzwi do drzwi, za podpisem, a&nbsp;do Ukrainy&nbsp;– Nową Pocztą za 150&nbsp;zł. DHL kosztuje około 300&nbsp;zł za przesyłkę, a&nbsp;dokładną kwotę, zależną od regionu, znasz przed płatnością&nbsp;– w&nbsp;wycenie jest osobną pozycją. Wolisz innego przewoźnika? Zamów kuriera, a&nbsp;miejsce i&nbsp;godzinę odbioru w&nbsp;Śródmieściu ustalimy z&nbsp;Tobą&nbsp;– przekażemy mu przesyłkę.
         </p>
       </details>
 
       <details class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Jak i kiedy płacę?</h3>
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Jak i&nbsp;kiedy płacę?</h3>
           <span class="chev chev--light shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-paper/80 max-w-[70ch]">
-          Z&nbsp;góry, po akceptacji wyceny – <span class="whitespace-nowrap">BLIK-iem</span>, przelewem albo gotówką na spotkaniu, przy przekazaniu dokumentów. Kwota z&nbsp;wyceny jest końcowa: opłaty urzędowe i&nbsp;sądowe są w&nbsp;cenie, a&nbsp;wysyłka – osobną pozycją (po Polsce przy zamówieniu od&nbsp;350&nbsp;zł w&nbsp;cenie, za granicę zawsze doliczana). Zlecenie wchodzi do realizacji po potwierdzeniu płatności – wystarczy zrzut ekranu z&nbsp;aplikacji banku.
+          Z&nbsp;góry, po akceptacji wyceny&nbsp;– <span class="whitespace-nowrap">BLIK-iem</span>, przelewem albo gotówką na spotkaniu, przy przekazaniu dokumentów. Kwota z&nbsp;wyceny jest końcowa: opłaty urzędowe i&nbsp;sądowe są w&nbsp;cenie, a&nbsp;wysyłka&nbsp;– osobną pozycją (po Polsce przy zamówieniu od&nbsp;350&nbsp;zł w&nbsp;cenie, DHL za granicę&nbsp;– około 300&nbsp;zł, a&nbsp;przy Dokumentach z&nbsp;Ukrainy Nowa Poczta w&nbsp;obie strony jest w&nbsp;cenie). Zlecenie wchodzi do realizacji po potwierdzeniu płatności&nbsp;– wystarczy zrzut ekranu z&nbsp;aplikacji banku.
         </p>
       </details>
 
@@ -655,24 +655,24 @@
           <span class="chev chev--light shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-paper/80 max-w-[70ch]">
-          Skan gotowego dokumentu wysyłamy od ręki, gdy tylko odbierzemy go z&nbsp;urzędu. Oryginał nadajemy tego samego dnia roboczego, jeśli jest gotowy do 15:00 – w&nbsp;innym razie następnego rano. Odbiór osobisty umawiamy na najbliższy wygodny termin.
+          Skan gotowego dokumentu wysyłamy od ręki, gdy tylko odbierzemy go z&nbsp;urzędu. Oryginał nadajemy tego samego dnia roboczego, jeśli jest gotowy do 15:00&nbsp;– w&nbsp;innym razie następnego dnia rano. Odbiór osobisty umawiamy na najbliższy wygodny termin.
         </p>
       </details>
 
       <details class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Czy pracujecie w soboty i święta?</h3>
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Czy pracujecie w&nbsp;soboty i&nbsp;święta?</h3>
           <span class="chev chev--light shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-paper/80 max-w-[70ch]">
-          Tak – odbieramy telefon i&nbsp;odpisujemy codziennie od 7:00 do 21:00, także w&nbsp;weekendy i&nbsp;dni ustawowo wolne. Urzędy – MSZ, sądy, USC – są wtedy nieczynne, więc w&nbsp;te dni przyjmujemy zgłoszenia i&nbsp;wyceniamy, a&nbsp;dokumenty składamy w&nbsp;najbliższy dzień roboczy. Kalendarz wyżej na tej stronie pokazuje, które dni odpadają.
+          Tak&nbsp;– odbieramy telefon i&nbsp;odpisujemy codziennie od 7:00 do 21:00, także w&nbsp;weekendy i&nbsp;dni ustawowo wolne. Urzędy&nbsp;– MSZ, sądy, USC&nbsp;– są wtedy nieczynne, więc w&nbsp;te dni przyjmujemy zgłoszenia i&nbsp;wyceniamy, a&nbsp;dokumenty składamy w&nbsp;najbliższy dzień roboczy. Kalendarz wyżej na tej stronie pokazuje, które dni odpadają.
         </p>
       </details>
 
 
       <details class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">W jakim języku mogę napisać?</h3>
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">W&nbsp;jakim języku mogę napisać?</h3>
           <span class="chev chev--light shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-paper/80 max-w-[70ch]">
@@ -682,10 +682,10 @@
     </div>
 
     <p class="mt-8 text-[17px] leading-[1.6] text-paper/80 max-w-[70ch]">
-      Pytania o&nbsp;urzędy i&nbsp;klauzulę – na stronie <a href="/apostille/#faq" class="underline font-semibold">Apostille</a>,
-      o&nbsp;tłumaczenia – <a href="/tlumaczenia-przysiegle/#faq" class="underline font-semibold">Tłumaczenia przysięgłe</a>,
-      o&nbsp;dokumenty wydane w&nbsp;Ukrainie – <a href="/apostille-ukraina/#faq" class="underline font-semibold">Dokumenty z&nbsp;Ukrainy</a>.
-      Ceny wszystkich usług – w&nbsp;<a href="/cennik/" class="underline font-semibold">cenniku</a>.
+      O&nbsp;urzędach i&nbsp;klauzuli piszemy więcej na stronie <a href="/apostille/#faq" class="underline font-semibold">Apostille</a>,
+      o&nbsp;tłumaczeniach na stronie <a href="/tlumaczenia-przysiegle/#faq" class="underline font-semibold">Tłumaczenia przysięgłe</a>,
+      a&nbsp;o&nbsp;dokumentach wydanych w&nbsp;Ukrainie na stronie <a href="/apostille-ukraina/#faq" class="underline font-semibold">Dokumenty z&nbsp;Ukrainy</a>.
+      Ceny wszystkich usług znajdziesz w&nbsp;<a href="/cennik/" class="underline font-semibold">cenniku</a>.
     </p>
   </div>
 </section>
@@ -729,7 +729,7 @@
         <address class="fl-note fl-where not-italic" style="margin-top:0">
           <span class="fl-w-item">
             <strong>Warszawa – Śródmieście</strong>
-            <span class="fl-soft">Śródmieście · paczkomat InPost</span>
+            <span class="fl-soft">Śródmieście · Paczkomat InPost</span>
           </span>
           <a href="/apostille/gdzie/" class="fl-link fl-w-link"><span class="nl-swap"><span class="nl-a">Gdzie załatwia się Apostille</span><span class="nl-b" aria-hidden="true">Gdzie załatwia się Apostille</span></span></a>
         </address>
@@ -757,6 +757,9 @@
           Apostille <a href="/apostille/akt-urodzenia/" class="underline">na akt urodzenia</a> · <a href="/apostille/pelnomocnictwo/" class="underline">na pełnomocnictwo</a> · <a href="/apostille/zaswiadczenie-o-niekaralnosci/" class="underline">na zaświadczenie o&nbsp;niekaralności</a>
           <span class="text-paper/70 text-[17px] align-middle" style="font-weight:900">·</span>
           <span class="font-bold text-paper/70">Zgłoszenia&nbsp;24/7</span>
+        </p>
+        <p class="text-[13px] text-paper/45 mt-1.5">
+          Tłumaczenie przysięgłe <a href="/tlumaczenia-przysiegle/jezyk-angielski/" class="underline">z&nbsp;angielskiego</a> · <a href="/tlumaczenia-przysiegle/ukrainski/" hreflang="uk" lang="uk" class="underline">з&nbsp;української</a> · <a href="/tlumaczenia-przysiegle/rosyjski/" hreflang="ru" lang="ru" class="underline">с&nbsp;русского</a>
         </p>
       </div>
     </div>

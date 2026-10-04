@@ -401,11 +401,11 @@ JC.v[20] = { en:'Tear-off perforation', name:'Отрывной край', at:'#p
 /* 47. Линия подписи бланка, 03.10.2026 (третья пачка; бланковая типографика – двуязычные подписи полей 12 👍).
    #przysiegle-czy-zwykle («/ Definicja»): левая колонка длиннее правой на ~7 строк, под правой колонкой – пустое поле ~190px.
    В его правом нижнем углу – поле подписи, каким кончается любой перевод: точечная линейка 220px и под ней подпись поля на двух
-   языках – «PODPIS TŁUMACZA» узким капсом 11px и ниже мельче «підпис перекладача». Сама линия ПУСТАЯ: подпись не имитируем,
+   языках – «PODPIS TŁUMACZA» узким капсом 11px и ниже мельче «підпис перекладача». Линия была пустой («подпись не имитируем»); 03.10.2026 Грег попросил подпись – см. .v47-podpis,
    это только поле бланка. Намёк: каждый присяжный перевод подписан тем, кто его сделал.
    Отличие от задания: подпись поля – в две строки (польская капсом, под ней украинская строчными, как поля бланка в 12), а не одной
    строкой через «/»: одна строка капсом с разрядкой выходит ~265px и шире линейки в 220px.
-   Место (края – по соседям): правый край линейки – правый край правой колонки; точки – на базовой линии последней строки левой
+   Место: линейка – по середине правой колонки (Грег, 03.10.2026 – перенёс от правого края колонки); точки – на базовой линии последней строки левой
    колонки, то есть обе колонки кончаются на одной линии: слева – текстом, справа – полем подписи. Подпись поля – под линейкой,
    по её середине. Если левая колонка длиннее правой меньше чем на 3 строки – линейка в 56px под последней строкой правой.
    На сайте в этом же поле стоят пометки варианта 17 («[pieczęć okrągła]», «[podpis nieczytelny]») – вверху слева, по левому краю
@@ -419,7 +419,16 @@ JC.v[47] = { en:'Blank signature line', name:'Линия подписи блан
     /* точечная линейка – как отточие в бланке (12) */
     '.v47-dots{display:block;height:3px;background:radial-gradient(circle,rgba(31,33,32,.42) 0 .75px,rgba(31,33,32,0) 1.1px) 0 100%/4.5px 3px repeat-x}' +
     '.v47-pl{display:block;margin-top:8px;font-size:11px;font-weight:500;letter-spacing:.14em;margin-right:-.14em;text-transform:uppercase;line-height:1;white-space:nowrap;color:rgba(31,33,32,.6)}' +
-    '.v47-ua{display:block;margin-top:5px;font-size:10.5px;font-weight:400;letter-spacing:.03em;line-height:1;white-space:nowrap;color:rgba(31,33,32,.48)}',
+    '.v47-ua{display:block;margin-top:5px;font-size:10.5px;font-weight:400;letter-spacing:.03em;line-height:1;white-space:nowrap;color:rgba(31,33,32,.48)}' +
+    /* подпись (Грег, 03.10.2026: «добавь такую подпись, довольно крупную… В svg всё»; потом – снимок образца целиком:
+       «ещё раз повтори», «по этому контуру»; по пробе-контуру: «отрисовать как в оригинале, уменьшить тряску…, и затем для сайта
+       уже уменьшить»; наконец: «сделай эту подпись подобной к тем карандашным надписям»):
+       hand/v47-podpis.svg 290×96.7 – образец hand/v47-podpis-wzor.png, восстановленный по средней линии с его же нажимами
+       (генератор hand/v47-trace_podpis.py), графитовым карандашом – та же фактура, что у пометок варианта 17 над линией
+       (графит #2E3130, крапины, верже, зерно, стёртость; нарисовано вдвое крупнее показа, как они), линия ≈1.7px, opacity .9
+       без наложения – как у .v17-note. Начинается в 52px левее линейки и уходит на ~18px за её конец. Низ строчных
+       (в файле y 87.4) – на 2px ниже точек, ствол прописной уходит под линию левее подписи поля; до пометок 17 сверху ~11px. */
+    '.v47-podpis{position:absolute;left:-52px;top:-83.9px;width:290px;height:96.7px;max-width:none;opacity:.9}',
   apply:function(d, b, win){
     function build(){
       Array.prototype.forEach.call(d.querySelectorAll('.v47-sig'), function(x){ x.parentNode.removeChild(x); });
@@ -438,8 +447,9 @@ JC.v[47] = { en:'Blank signature line', name:'Линия подписи блан
       if (win.getComputedStyle(d.body).position === 'static') d.body.style.position = 'relative';
       var s = d.createElement('div'); s.className = 'v47-sig'; s.setAttribute('aria-hidden', 'true');
       /* линейка 3px высотой, середина точки – в 1.5px над её низом: низ линейки на .5px ниже базовой линии */
-      s.style.left = (rb.x + rb.w - 220).toFixed(1) + 'px'; s.style.top = (base + .5 - 3).toFixed(1) + 'px';
-      s.innerHTML = '<span class="v47-dots"></span><span class="v47-pl" lang="pl">podpis tłumacza</span><span class="v47-ua" lang="uk">підпис перекладача</span>';
+      s.style.left = (rb.x + (rb.w - 220) / 2).toFixed(1) + 'px';   /* по середине правой колонки (Грег, 03.10.2026: «перенеси» – было у правого края) */ s.style.top = (base + .5 - 3).toFixed(1) + 'px';
+      s.innerHTML = '<span class="v47-dots"></span><span class="v47-pl" lang="pl">podpis tłumacza</span><span class="v47-ua" lang="uk">підпис перекладача</span>' +
+        '<img class="v47-podpis" src="/assets/img/papier/v47-podpis.svg" alt="" width="290" height="97">';
       d.body.appendChild(s);
     }
     setTimeout(function(){
@@ -489,16 +499,17 @@ JC.v[49] = { en:'Pencil sum by the discount', name:'Подсчёт каранд�
           if (btn) { var q = P.box(btn); if (q.y < y1 && q.y + q.h > y0) mx = Math.max(mx, q.x + q.w); }
           return mx;
         }
+        /* кегль: Грег, 03.10.2026 – «увеличь это на 36%»: было 22 → 20 → 18px, стало 30 (22 × 1.36) → 27 → 24.5px; прежние – запасные, если крупный не входит */
         var X = null, Y = null, fs = 0;
         /* 0) 03.10 Грег (стрелкой на снимке): счёт стоит не у «−10%», а ниже – справа от мелкой сноски «Cena 90 zł za stronę dotyczy…»
               (.gt-note), в пустом месте левой колонки: в 36px от правого края строк сноски, по высоте – по её середине */
         var note = card.querySelector('.gt-note');
         if (note) { var nrg = d.createRange(); nrg.selectNodeContents(note); var nl = P.lines(nrg), nb = P.box(note), nr = 0;
           nl.forEach(function(l){ nr = Math.max(nr, l.x + l.w); });
-          [22, 20, 18].some(function(f){ var sc = f / FS0, w = W0 * sc, h = H0 * sc, x = nr + 36, top = nb.y + (nb.h - h) / 2;
+          [30, 27, 24.5, 22, 20, 18].some(function(f){ var sc = f / FS0, w = W0 * sc, h = H0 * sc, x = nr + 36, top = nb.y + (nb.h - h) / 2;
             if (nl.length && x + w <= numL - 24) { fs = f; X = x; Y = top; return true; } return false; }); }
         /* 1) слева от «−10%»: нижняя строка – на его базовой линии (запасное место, если у сноски не входит) */
-        if (!fs) [22, 20, 18].some(function(f){
+        if (!fs) [30, 27, 24.5, 22, 20, 18].some(function(f){
           var sc = f / FS0, w = W0 * sc, top = base - (B0 + LH0) * sc, x = numL - 16 - w;
           var tr = textRight(top - 6, top + H0 * sc + 6);
           if (x >= Math.max(tr + 20, cb.x + 20)) { fs = f; X = x; Y = top + 2; return true; }   /* +2px: из-за наклона конец нижней строки поднимается на ~4px */
@@ -506,8 +517,8 @@ JC.v[49] = { en:'Pencil sum by the discount', name:'Подсчёт каранд�
         });
         /* 2) запасное место – над «1125», в пустом правом верху плашки */
         if (!fs && r11) {
-          var sc2 = 20 / FS0, h2 = H0 * sc2, top2 = r11.y + r11.h * .2 - 16 - h2;   /* верх цифр «1125» ≈ .2 рамки строки */
-          if (top2 >= cb.y + 24 && r11.x + W0 * sc2 <= cb.x + cb.w - 24 && textRight(top2 - 6, top2 + h2 + 6) + 20 <= r11.x) { fs = 20; X = r11.x; Y = top2; }
+          var sc2 = 27 / FS0, h2 = H0 * sc2, top2 = r11.y + r11.h * .2 - 16 - h2;   /* верх цифр «1125» ≈ .2 рамки строки */
+          if (top2 >= cb.y + 24 && r11.x + W0 * sc2 <= cb.x + cb.w - 24 && textRight(top2 - 6, top2 + h2 + 6) + 20 <= r11.x) { fs = 27; X = r11.x; Y = top2; }
         }
         if (!fs) return;
         var s = fs / FS0, bl = B0 * s;

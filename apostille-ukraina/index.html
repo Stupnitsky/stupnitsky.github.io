@@ -6,8 +6,12 @@
 <!-- Защита (28.09.2026): браузер выполняет только наши скрипты; новый внешний сервис (gtag, карта) – сначала вписать сюда -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ga0M3hxX7BbNMOsk8k9ra3P80+aMOd6HTfkftF5FpXw='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://formspree.io https://script.google.com https://script.googleusercontent.com; form-action 'self' https://formspree.io https://script.google.com; object-src 'none'; frame-src 'none'; base-uri 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preload" href="/assets/fonts/fira-sans-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-900-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 
-<title>Apostille na dokumenty z Ukrainy bez wyjazdu | Apostilo</title>
+<title>Apostille na Dokumenty z Ukrainy bez wyjazdu | Apostilo</title>
 <meta name="hdr-sub" content="Dokumenty z Ukrainy"><meta name="hdr-par" content="/apostille/"><!-- подпись в шапке: «/ Apostille / Имя» (app.js) -->
 <meta name="description" content="Apostille na dyplom, świadectwo i akt stanu cywilnego z Ukrainy bez wyjazdu: 550 zł za dokument, wysyłka w obie strony w cenie. Uzyskujemy duplikaty.">
 <link rel="canonical" href="https://apostilo.pl/apostille-ukraina/">
@@ -24,7 +28,7 @@
 <meta property="og:site_name" content="Apostilo">
 <meta property="og:locale" content="pl_PL">
 <meta property="og:url" content="https://apostilo.pl/apostille-ukraina/">
-<meta property="og:title" content="Apostille na dokumenty z Ukrainy bez wyjazdu | Apostilo">
+<meta property="og:title" content="Apostille na Dokumenty z Ukrainy bez wyjazdu | Apostilo">
 <meta property="og:description" content="Apostille na dyplom, świadectwo i akt stanu cywilnego z Ukrainy bez wyjazdu: 550 zł za dokument, wysyłka w obie strony w cenie. Uzyskujemy duplikaty.">
 <meta property="og:image" content="https://apostilo.pl/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -44,7 +48,8 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Apostille na dokumenty z Ukrainy",
+  "@id": "https://apostilo.pl/apostille-ukraina/#service",
+  "name": "Apostille na Dokumenty z Ukrainy",
   "serviceType": "Apostille i uzyskiwanie dokumentów z Ukrainy",
   "provider": {
     "@type": "ProfessionalService",
@@ -65,18 +70,44 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Apostilo",
+      "item": "https://apostilo.pl/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Apostille",
+      "item": "https://apostilo.pl/apostille/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Dokumenty z Ukrainy",
+      "item": "https://apostilo.pl/apostille-ukraina/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "Czy ukraiński dokument w ogóle potrzebuje Apostille w Polsce?",
       "acceptedAnswer": { "@type": "Answer", "text": "W internecie krąży wersja, że umowa między Polską a Ukrainą o pomocy prawnej z 1993 roku zwalnia z Apostille. Bywa, że urząd przyjmie ukraiński dokument bez klauzuli, ale urzędy wojewódzkie, USC i uczelnie często o nią proszą, także do karty pobytu. Dlatego zapytaj tam, gdzie składasz dokumenty – a jeśli Apostille będzie potrzebna, uzyskamy ją bez Twojego wyjazdu." } },
     { "@type": "Question", "name": "Czy mogę zrobić Apostille sam przez „Diję”?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Możesz, ale polskie urzędy nie przyjmują elektronicznego Apostille – tylko papierowe. Od lutego 2026 Ukraina ma nowy tryb: elektroniczny rejestr, opłata 670 hrywien, trzy dni robocze w urzędzie. Różnica między tymi trzema dniami a naszymi 2–3 tygodniami to logistyka: papierowy dokument trzeba złożyć, odebrać i przywieźć do Polski." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Możesz, ale polskie urzędy nie przyjmują elektronicznej Apostille, tylko papierową. W Ukrainie samo nadanie bywa szybkie, a nasze 10–14 dni to logistyka: papierowy dokument trzeba złożyć, odebrać i przywieźć do Polski." } },
     { "@type": "Question", "name": "Czy potrzebne jest pełnomocnictwo?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Nie – ani konsularne, ani notarialne. Do uzyskania duplikatu wystarczą cztery zdjęcia z telefonu: stary dokument (jeśli jest), paszport wewnętrzny, numer identyfikacyjny, adres zameldowania. Dla porównania: w konsulacie pełnomocnictwo kosztuje 125–250 zł i wymaga zapisu na termin." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Nie – ani konsularne, ani notarialne. Do uzyskania duplikatu wystarczą zdjęcia z telefonu i kilka danych: stary dokument (jeśli jest), paszport wewnętrzny, numer identyfikacyjny i adres zameldowania. Nie musisz więc umawiać się w konsulacie ani płacić tam za pełnomocnictwo." } },
     { "@type": "Question", "name": "Mój akt urodzenia jest sprzed 2016 roku. Co teraz?",
       "acceptedAnswer": { "@type": "Answer", "text": "Na taki akt Apostille nie zostanie nadana. Uzyskujemy nowy odpis w ukraińskim urzędzie stanu cywilnego (bez Twojego wyjazdu i bez pełnomocnictwa), a potem Apostille na nim. Razem 1 100 zł i 5–6 tygodni. To nie ślepa uliczka, tylko dwa etapy zamiast jednego." } },
     { "@type": "Question", "name": "Dokument jest z Doniecka, Mariupola, Chersonia. Da się?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Możliwe, jeśli archiwum zdążono przenieść na tereny kontrolowane przez Ukrainę – a dowiedzieć się tego można tylko składając wniosek. Termin od półtora miesiąca, bez gwarancji. Jeśli archiwum nie zachowało się, zwracamy przedpłatę – z Twojej strony zostaje wyłącznie koszt przesyłki. Bierzemy takie sprawy, bo nic nie ryzykujesz poza wysyłką." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Możliwe, jeśli archiwum zdążono przenieść na tereny kontrolowane przez Ukrainę – a dowiedzieć się tego można tylko, składając wniosek. Termin od półtora miesiąca, bez gwarancji. Jeśli archiwum nie zachowało się, zwracamy przedpłatę – z Twojej strony zostaje wyłącznie koszt przesyłki. Bierzemy takie sprawy, bo nic nie ryzykujesz poza wysyłką." } },
     { "@type": "Question", "name": "Czy tłumaczenie jest w cenie?",
       "acceptedAnswer": { "@type": "Answer", "text": "Nie. Cena 550 zł to Apostille z opłatami urzędowymi w Ukrainie i wysyłką w obie strony. Tłumaczenie przysięgłe na polski rozliczamy osobno, 90 zł za stronę – robimy je po Apostille, bo klauzula też podlega tłumaczeniu. Wszystko w jednym zleceniu, dostajesz komplet gotowy do urzędu." } },
     { "@type": "Question", "name": "W Ukrainie jest taniej. Dlaczego u was 550 zł?",
@@ -84,7 +115,7 @@
     { "@type": "Question", "name": "Jakie dokumenty z Ukrainy są potrzebne do karty pobytu?",
       "acceptedAnswer": { "@type": "Answer", "text": "Najczęściej akt urodzenia (własny i dzieci), akt małżeństwa, dyplom lub świadectwo przy pobycie na studia lub do pracy w zawodzie – z Apostille i tłumaczeniem przysięgłym. Zaświadczenie o niekaralności zwykle uzyskasz sam w „Diji”, a my je tłumaczymy. Listę dokumentów podaje urząd w wezwaniu – dołącz ją do formularza wyceny, a wycenimy cały komplet." } },
     { "@type": "Question", "name": "Czy mogę zamówić z innego kraju niż Polska?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Tak, w zakresie uzyskania dokumentu i Apostille: dokument powstaje w Kijowie i jedzie Nową Pocztą prosto do Ciebie, do dowolnego kraju Unii. Tłumaczenie przysięgłe z ukraińskiego na polski robimy dla polskich urzędów. Jeśli dokument trafi do urzędu w innym kraju, zapytaj tam, jakie tłumaczenie przyjmą." } }
+      "acceptedAnswer": { "@type": "Answer", "text": "Tak, jeśli chodzi o uzyskanie dokumentu i Apostille: gotowy dokument wyślemy z Kijowa Nową Pocztą prosto do Ciebie, do dowolnego kraju Unii. Tłumaczenie przysięgłe z ukraińskiego na polski robimy dla polskich urzędów. Jeśli dokument trafi do urzędu w innym kraju, zapytaj tam, jakie tłumaczenie przyjmą." } }
   ]
 }
 </script>
@@ -174,13 +205,15 @@
 <section class="relative overflow-hidden pt-8 pb-16 md:pt-14 md:pb-24">
   <div class="relative mx-auto max-w-site px-5 sm:px-8">
     <p class="font-cond uppercase tracking-[0.18em] text-[15px] font-semibold text-ink/75 mb-6">Apostille Ukraina</p>
-    <h1 class="tracking-tightest leading-[0.95] text-[36px] sm:text-[52px] md:text-[64px] font-black h1-page">Apostille na dokumenty z&nbsp;Ukrainy – bez wyjazdu z&nbsp;Polski</h1>
+    <h1 class="tracking-tightest leading-[0.95] text-[36px] sm:text-[52px] md:text-[64px] font-black h1-page">Apostille na Dokumenty z&nbsp;Ukrainy&nbsp;– bez wyjazdu z&nbsp;Polski</h1>
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
       Apostille na ukraiński dyplom, świadectwo, akt urodzenia czy małżeństwa uzyskujemy przez partnera na miejscu,
-      więc nie musisz jechać do Ukrainy. Przyda się, jeśli polski urząd, uczelnia albo pracodawca poprosi o&nbsp;dokument
+      więc nie musisz jechać do Ukrainy. Apostille na dokument wydany po 2016&nbsp;roku kosztuje u&nbsp;nas 550&nbsp;zł razem
+      z&nbsp;opłatami w&nbsp;Ukrainie i&nbsp;wysyłką w&nbsp;obie strony, a&nbsp;gotowy dokument masz zwykle po 10–14&nbsp;dniach.
+      Przyda się, jeśli polski urząd, uczelnia albo pracodawca poprosi o&nbsp;dokument
       z&nbsp;Apostille&nbsp;– na przykład do karty pobytu czy w&nbsp;USC. Ty wysyłasz zdjęcia, my prowadzimy sprawę w&nbsp;Kijowie,
       gotowy dokument z&nbsp;klauzulą wraca do Warszawy, a&nbsp;jeśli potrzebujesz <a href="/tlumaczenia-przysiegle/ukrainski/" hreflang="uk" class="underline font-semibold">tłumaczenia przysięgłego</a>,
-      zrobimy je tutaj&nbsp;– osobno od ceny Apostille. Jeśli dokumentu nie ma na rękach, uzyskujemy duplikat.
+      zrobimy je tutaj&nbsp;– osobno od ceny Apostille. Jeśli dokumentu już nie masz, uzyskujemy duplikat.
     </p>
     <!-- ссылка-стрелка привязана к абзацу (стоит сразу под ним), кнопки – ниже, после воздуха -->
     <p class="hero-more">
@@ -190,19 +223,20 @@
     </p>
     <div class="mt-8 bg-terra text-ink rounded-[26px] p-7 sm:p-10">
       <p class="tracking-tightest leading-[1.05] text-[24px] sm:text-[30px] md:text-[34px] font-black max-w-[30ch]">
-        Bierzemy każdą sprawę. Jeśli dokumentu nie da się uzyskać, zwracamy przedpłatę –
+        Bierzemy każdą sprawę. Jeśli dokumentu nie da się uzyskać, zwracamy przedpłatę&nbsp;–
         <span class="font-light italic">płacisz tylko za wysyłkę.</span>
       </p>
       <p class="mt-4 text-[16px] leading-[1.55] text-ink/75 max-w-[60ch]">
-        Archiwum na terenach okupowanych, uczelnia, której już nie ma, świadectwo, które zostało w&nbsp;mieszkaniu –
-        i&nbsp;tak próbujemy. Nikt nie wie z&nbsp;góry, czy archiwum zdążono wywieźć; dowiedzieć się można tylko
+        Archiwum na terenach okupowanych, uczelnia, której już nie ma, świadectwo, które zostało w&nbsp;mieszkaniu&nbsp;–
+        i&nbsp;tak próbujemy. Nikt nie wie z&nbsp;góry, czy archiwum zdążono wywieźć; dowiedzieć się można tylko,
         składając wniosek. Ryzykujesz wyłącznie kosztem przesyłki.
       </p>
     </div>
     <!-- главное действие – форма заявки (панель wyceny), перед ней мессенджеры; как в hero /kontakt/ (21.09.2026) -->
-    <div class="cta-btns hero-cta" role="group" aria-label="Zamów wycenę lub napisz na komunikatorze">
+    <div class="cta-btns hero-cta hero-cta--4" role="group" aria-label="Zamów wycenę, zadzwoń lub napisz na komunikatorze">
       <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20dokument%20z%20Ukrainy%20do%20Apostille" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
       <a href="https://t.me/apostilo?text=Dzie%C5%84%20dobry%2C%20mam%20dokument%20z%20Ukrainy%20do%20Apostille" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="tel:+48507588155" class="cta-btn" aria-label="Zadzwoń: +48 507 588 155">Zadzwoń<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
       <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
     </div>
   </div>
@@ -216,49 +250,50 @@
       Apostille od razu czy najpierw duplikat
     </h2>
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
-      O&nbsp;cenie i&nbsp;terminie decyduje rok wydania i&nbsp;stan dokumentu. Trzy pytania, na które odpowiadasz
-      sam, zanim napiszesz – a&nbsp;my i&nbsp;tak sprawdzamy zdjęcie przed wyceną, bo zdarza się dokument,
-      którego apostillować nie wolno: zatarta pieczęć, naderwany róg, laminat.
+      O&nbsp;cenie i&nbsp;terminie decyduje rok wydania i&nbsp;stan dokumentu. Na trzy pytania poniżej odpowiesz sam,
+      zanim napiszesz, a&nbsp;my i&nbsp;tak sprawdzamy zdjęcie przed wyceną, bo na niektórych dokumentach Apostille
+      nie zostanie nadana: z&nbsp;zatartą pieczęcią, z&nbsp;naderwanym rogiem albo zalaminowanych.
     </p>
 
-    <div class="slab gdz mt-9 md:mt-12 bg-ink text-paper rounded-[9px] px-2 sm:px-4 py-2 sm:py-3">
+    <div class="gdz gdz--light gdz--ap mt-9 md:mt-12 bg-sand text-ink rounded-[26px] px-2 sm:px-4 py-2 sm:py-3">
       <div class="ap3">
         <div class="ap3-cell px-4 sm:px-6 py-7 lg:py-9">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Scenariusz 1</span>
-          <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Dokument na rękach, po 2016</h3>
+          <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Masz dokument wydany po&nbsp;2016</h3>
           <p class="gdz-full">Akt stanu cywilnego wydany po 2016&nbsp;roku, dyplom, świadectwo, dokument notarialny lub sądowy</p>
-          <p class="ap-desc">Apostille trafia na Twój oryginał. Nic nie trzeba uzyskiwać – dokument jedzie do Kijowa, dostaje klauzulę i&nbsp;wraca. Najszybsza droga.</p>
+          <p class="ap-desc">Apostille trafia na Twój oryginał. Nic nie trzeba uzyskiwać&nbsp;– dokument jedzie do Kijowa, dostaje klauzulę i&nbsp;wraca. Najszybsza droga.</p>
           <dl class="gdz-meta">
-            <div><dt>Termin</dt><dd>2–3 tygodnie, dokumenty o&nbsp;wykształceniu ok. 2&nbsp;tygodnie</dd></div>
+            <div><dt>Termin</dt><dd>zwykle 10–14&nbsp;dni, dokumenty o&nbsp;wykształceniu ok. 2&nbsp;tygodnie</dd></div>
           </dl>
           <p class="slab-price"><span>Apostille</span><span class="sp-val"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span></p>
         </div>
         <div class="ap3-cell px-4 sm:px-6 py-7 lg:py-9">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Scenariusz 2</span>
           <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Akt sprzed 2016 lub radziecki</h3>
-          <p class="gdz-full">Świadectwo urodzenia, małżeństwa, zgonu wydane przed 2016&nbsp;rokiem albo w&nbsp;czasach ZSRR</p>
-          <p class="ap-desc">Takie dokumenty nigdzie nie dostaną Apostille. Najpierw uzyskujemy nowy odpis w&nbsp;ukraińskim urzędzie stanu cywilnego, potem Apostille. Dwa etapy, dwie pozycje w&nbsp;cenie – najczęstszy przypadek u&nbsp;klientów po trzydziestce.</p>
+          <p class="gdz-full">Akt urodzenia, małżeństwa lub zgonu wydany przed 2016&nbsp;rokiem albo w&nbsp;czasach ZSRR</p>
+          <p class="ap-desc">Takie dokumenty nigdzie nie dostaną Apostille. Najpierw uzyskujemy nowy odpis w&nbsp;ukraińskim urzędzie stanu cywilnego, potem Apostille. Dwa etapy, dwie pozycje w&nbsp;cenie&nbsp;– najczęstszy przypadek u&nbsp;klientów po trzydziestce.</p>
           <dl class="gdz-meta">
-            <div><dt>Termin</dt><dd>5–6 tygodni razem</dd></div>
+            <div><dt>Termin</dt><dd>5–6&nbsp;tygodni razem</dd></div>
           </dl>
           <p class="slab-price"><span>Duplikat + Apostille</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span></p>
         </div>
         <div class="ap3-cell px-4 sm:px-6 py-7 lg:py-9">
           <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-paper/50 mb-2">Scenariusz 3</span>
           <h3 class="text-[22px] md:text-[28px] font-bold tracking-tightest leading-none">Dokumentu nie ma</h3>
-          <p class="gdz-full">Zgubiony przy wyjeździe, został w&nbsp;mieszkaniu, spłonął – albo nigdy nie był na rękach</p>
-          <p class="ap-desc">Wystarczy zdjęcie ukraińskiego paszportu wewnętrznego, numer identyfikacyjny i&nbsp;adres zameldowania w&nbsp;Ukrainie. Bez pełnomocnictwa – ani konsularnego, ani notarialnego. Uzyskujemy odpis i&nbsp;od razu Apostille.</p>
+          <p class="gdz-full">Zgubiony przy wyjeździe, został w&nbsp;mieszkaniu, spłonął&nbsp;– albo nigdy nie trafił w&nbsp;Twoje ręce</p>
+          <p class="ap-desc">Wystarczy zdjęcie ukraińskiego paszportu wewnętrznego, numer identyfikacyjny i&nbsp;adres zameldowania w&nbsp;Ukrainie. Bez pełnomocnictwa&nbsp;– ani konsularnego, ani notarialnego. Uzyskujemy nowy odpis, a&nbsp;jeśli urząd w&nbsp;Polsce chce Apostille, od razu ją dokładamy.</p>
           <dl class="gdz-meta">
-            <div><dt>Termin</dt><dd>od 3 tygodni duplikat, 5–6 tygodni z&nbsp;Apostille</dd></div>
+            <div><dt>Termin</dt><dd>od 3&nbsp;tygodni duplikat, <span class="whitespace-nowrap">5–6&nbsp;tygodni</span> z&nbsp;Apostille</dd></div>
           </dl>
           <p class="slab-price"><span>Uzyskanie dokumentu</span><span class="sp-val"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> / dokument</span></p>
+          <p class="slab-price"><span>Z&nbsp;Apostille</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span></p>
         </div>
       </div>
       <div class="gdz-note">
         <p><b>Ceny są końcowe.</b> W&nbsp;cenie: opłaty urzędowe w&nbsp;Ukrainie i&nbsp;wysyłka w&nbsp;obie strony Nową Pocztą.
-        Tłumaczenie przysięgłe na polski rozliczamy osobno – 90&nbsp;zł za stronę. Pozycje „Apostille” i&nbsp;„uzyskanie
-        dokumentu” stoją obok siebie celowo: akt stanu cywilnego sprzed 2016&nbsp;roku zawsze przechodzi oba etapy. Przy akcie wydanym w&nbsp;2016&nbsp;roku wariant zależy od blankietu – podamy go po zdjęciu.
-        Wszystkie pozycje w&nbsp;jednym miejscu – <a href="/cennik/#ukraina" class="underline font-semibold">cennik Dokumentów z&nbsp;Ukrainy</a>.</p>
+        Tłumaczenie przysięgłe na polski rozliczamy osobno&nbsp;– 90&nbsp;zł za stronę. Pozycje „Apostille” i&nbsp;„uzyskanie
+        dokumentu” stoją obok siebie celowo: akt stanu cywilnego sprzed 2016&nbsp;roku zawsze przechodzi oba etapy. Przy akcie wydanym w&nbsp;2016&nbsp;roku wariant zależy od blankietu&nbsp;– podamy go po zdjęciu.
+        Wszystkie pozycje znajdziesz w&nbsp;jednym miejscu, w&nbsp;<a href="/cennik/#ukraina" class="underline font-semibold">cenniku Dokumentów z&nbsp;Ukrainy</a>.</p>
       </div>
     </div>
   </div>
@@ -276,16 +311,16 @@
           </h2>
           <p class="mt-6 text-[17px] leading-[1.6] text-ink/75 max-w-[56ch]">
             Do nostryfikacji, rekrutacji na studia i&nbsp;do pracy w&nbsp;zawodzie polska uczelnia lub urząd chce
-            dyplomu z&nbsp;Apostille – i&nbsp;prawie zawsze także dodatku (suplementu) z&nbsp;ocenami, bo to
+            dyplomu z&nbsp;Apostille&nbsp;– i&nbsp;prawie zawsze także dodatku (suplementu) z&nbsp;ocenami, bo to
             osobny dokument z&nbsp;osobną klauzulą. Apostille nadaje Ministerstwo Edukacji i&nbsp;Nauki Ukrainy.
-            Dyplom masz na rękach, niczego nie trzeba uzyskiwać – dlatego to najszybszy scenariusz.
+            Dyplom masz u&nbsp;siebie, więc niczego nie trzeba uzyskiwać&nbsp;– dlatego to najszybszy scenariusz.
           </p>
           <p class="mt-4 text-[17px] leading-[1.6] text-ink/75 max-w-[56ch]">
-            <b class="font-bold text-ink">Kiedy wydano Twój dyplom?</b> Współczesny dyplom z&nbsp;dodatkiem – około dwóch tygodni.
-            Stary papierowy dyplom z&nbsp;papierowym dodatkiem – rozpatrywany dłużej, 1–1,5 miesiąca. Dyplom radziecki
-            – też się da, duplikat nie jest potrzebny, termin około półtora miesiąca. Nie uda się tylko wtedy,
-            gdy uczelni już nie ma albo została na terenach okupowanych i&nbsp;archiwum nie wywieziono – ale próbujemy
-            i&nbsp;wtedy, a&nbsp;Ty ryzykujesz wyłącznie kosztem przesyłki.
+            <b class="font-bold text-ink">Termin zależy od tego, kiedy wydano dyplom.</b> Współczesny dyplom z&nbsp;dodatkiem dostaje Apostille
+            w&nbsp;ciągu około dwóch tygodni. Stary papierowy dyplom z&nbsp;papierowym dodatkiem ministerstwo rozpatruje dłużej,
+            1–1,5&nbsp;miesiąca. Dyplom radziecki też dostanie Apostille bez duplikatu, zwykle w&nbsp;ciągu półtora miesiąca.
+            Nie uda się tylko wtedy, gdy uczelni już nie ma albo została na terenach okupowanych, a&nbsp;archiwum nie wywieziono.
+            Próbujemy jednak i&nbsp;wtedy, a&nbsp;Ty ryzykujesz wyłącznie kosztem przesyłki.
           </p>
         </div>
         <div class="col-span-12 lg:col-span-5 flex flex-col justify-end gap-4">
@@ -295,12 +330,10 @@
             <li><span>Dyplom + dodatek</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="1100">1&nbsp;100</span>,-&nbsp;zł</b></span></li>
           </ul>
           <p class="text-[15px] leading-[1.6] text-ink/70 max-w-[40ch]">
-            Do dokumentów o&nbsp;wykształceniu potrzebna jest Twoja zgoda na przetwarzanie danych – wzór wysyłamy
+            Do dokumentów o&nbsp;wykształceniu potrzebna jest Twoja zgoda na przetwarzanie danych&nbsp;– wzór wysyłamy
             z&nbsp;wyceną. Tłumaczenie przysięgłe dyplomu z&nbsp;dodatkiem robimy po Apostille, w&nbsp;Warszawie, i&nbsp;liczymy je osobno&nbsp;– 90&nbsp;zł za stronę.
           </p>
-          <a href="/cennik/#wycena" data-quote class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn btn-center">
-            Wyślij zdjęcie dyplomu <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
-          </a>
+          <!-- 03.10.2026 (Грег): кнопка заявки здесь снята – главная теперь всплывающая (.m-dock, «Ekspresowa wycena»). Было: контурная .btn.btn-center «Wyślij zdjęcie dyplomu» -->
         </div>
       </div>
     </div>
@@ -312,20 +345,20 @@
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ Terminy</p>
     <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
-      Ile to trwa – uczciwie, bez „indywidualnie”
+      Ile to trwa&nbsp;– uczciwie, bez „indywidualnie”
     </h2>
     <div class="ua-terms mt-9">
-      <div class="ua-term"><span class="ua-term-h">Dokumenty o&nbsp;wykształceniu<small>współczesny dyplom, świadectwo, dodatek</small></span><span class="ua-term-v">≈ 2 tygodnie</span><span class="ua-term-t">Najszybszy przypadek. Apostille nadaje Ministerstwo Edukacji i&nbsp;Nauki Ukrainy (MON).</span></div>
-      <div class="ua-term"><span class="ua-term-h">Akty stanu cywilnego po 2016<small>urodzenia, małżeństwa, zgonu</small></span><span class="ua-term-v">2–3 tygodnie</span><span class="ua-term-t">Apostille na Twoim oryginale.</span></div>
-      <div class="ua-term"><span class="ua-term-h">Dokumenty sądowe, notarialne, pełnomocnictwa</span><span class="ua-term-v">2–3 tygodnie</span><span class="ua-term-t">Jeśli dokument masz na rękach. Dokumentów sądowych nie uzyskujemy za inną osobę.</span></div>
-      <div class="ua-term"><span class="ua-term-h">Stary papierowy dyplom, dyplom radziecki</span><span class="ua-term-v">1–1,5 miesiąca</span><span class="ua-term-t">Rozpatrywany dłużej niż współczesny, ale duplikat nie jest potrzebny.</span></div>
-      <div class="ua-term"><span class="ua-term-h">Uzyskanie duplikatu w&nbsp;Ukrainie</span><span class="ua-term-v">od 3 tygodni</span><span class="ua-term-t">Dolicza się do Apostille, nie zastępuje go.</span></div>
-      <div class="ua-term"><span class="ua-term-h">Akt sprzed 2016 lub radziecki<small>duplikat plus Apostille</small></span><span class="ua-term-v">5–6 tygodni</span><span class="ua-term-t">Dwa etapy, dwie pozycje w&nbsp;cenie.</span></div>
-      <div class="ua-term"><span class="ua-term-h">Archiwa terenów przyfrontowych i&nbsp;okupowanych</span><span class="ua-term-v">od 1,5 miesiąca</span><span class="ua-term-t">Terminu nie da się podać – nie wiadomo, ile zajmie poszukiwanie. Przy odmowie zwracamy przedpłatę.</span></div>
+      <div class="ua-term"><span class="ua-term-h">Dokumenty o&nbsp;wykształceniu<small>współczesny dyplom, świadectwo, dodatek</small></span><span class="ua-term-v">≈ 2&nbsp;tygodnie</span><span class="ua-term-t">Najszybszy przypadek. Apostille nadaje Ministerstwo Edukacji i&nbsp;Nauki Ukrainy.</span></div>
+      <div class="ua-term"><span class="ua-term-h">Akty stanu cywilnego po 2016<small>urodzenia, małżeństwa, zgonu</small></span><span class="ua-term-v">10–14&nbsp;dni</span><span class="ua-term-t">Apostille na Twoim oryginale.</span></div>
+      <div class="ua-term"><span class="ua-term-h">Dokumenty sądowe, notarialne, pełnomocnictwa</span><span class="ua-term-v">2–3&nbsp;tygodnie</span><span class="ua-term-t">Jeśli masz dokument u&nbsp;siebie. Dokumentów sądowych nie uzyskujemy za inną osobę.</span></div>
+      <div class="ua-term"><span class="ua-term-h">Stary papierowy dyplom, dyplom radziecki</span><span class="ua-term-v">1–1,5&nbsp;miesiąca</span><span class="ua-term-t">Rozpatrywany dłużej niż współczesny, ale duplikat nie jest potrzebny.</span></div>
+      <div class="ua-term"><span class="ua-term-h">Uzyskanie duplikatu w&nbsp;Ukrainie</span><span class="ua-term-v">od 3&nbsp;tygodni</span><span class="ua-term-t">Dolicza się do Apostille, nie zastępuje jej.</span></div>
+      <div class="ua-term"><span class="ua-term-h">Akt sprzed 2016 lub radziecki<small>duplikat plus Apostille</small></span><span class="ua-term-v">5–6&nbsp;tygodni</span><span class="ua-term-t">Dwa etapy, dwie pozycje w&nbsp;cenie.</span></div>
+      <div class="ua-term"><span class="ua-term-h">Archiwa terenów przyfrontowych i&nbsp;okupowanych</span><span class="ua-term-v">od 1,5&nbsp;miesiąca</span><span class="ua-term-t">Terminu nie da się podać&nbsp;– nie wiadomo, ile zajmie poszukiwanie. Przy odmowie zwracamy przedpłatę.</span></div>
     </div>
     <p class="mt-8 text-[15px] leading-[1.6] text-ink/60 max-w-[70ch]">
       Terminy dotyczą zwykłego trybu pracy urzędów. Podczas alarmów powietrznych i&nbsp;przerw w&nbsp;dostawie prądu
-      przyjmowanie i&nbsp;wydawanie dokumentów w&nbsp;Ukrainie zatrzymuje się, czasem na pół dnia – wtedy termin się
+      przyjmowanie i&nbsp;wydawanie dokumentów w&nbsp;Ukrainie zatrzymuje się, czasem na pół dnia&nbsp;– wtedy termin się
       przesuwa. Informujemy o&nbsp;każdym etapie i&nbsp;uprzedzamy, gdy tylko widzimy opóźnienie.
     </p>
   </div>
@@ -336,20 +369,20 @@
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <p class="kicker">/ Zanim napiszesz</p>
     <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
-      Czego nie da się apostillować
+      Czego nie da się zrobić
     </h2>
     <div class="ap-docs mt-8">
       <div class="ap-doc">
-        <h3>Apostille elektroniczne z&nbsp;„Diji”</h3>
-        <p>W&nbsp;Polsce nie jest przyjmowane – tylko papierowe. Kto zrobi Apostille sam przez aplikację, dostanie dokument, którego polski urząd nie przyjmie, i&nbsp;straci pieniądze oraz czas. Papierową klauzulę trzeba fizycznie przywieźć do Polski – to właśnie robimy.</p>
+        <h3>Elektroniczna Apostille z&nbsp;„Diji”</h3>
+        <p>Polskie urzędy jej nie przyjmują&nbsp;– uznają tylko papierową. Kto zrobi Apostille sam przez aplikację, dostanie dokument, którego polski urząd nie przyjmie, i&nbsp;straci pieniądze oraz czas. Papierową klauzulę trzeba fizycznie przywieźć do Polski i&nbsp;właśnie to robimy.</p>
       </div>
       <div class="ap-doc">
         <h3>Dokument zalaminowany</h3>
-        <p>Na laminacie Apostille nie zostanie nadana. Rozwiązanie: nowy odpis w&nbsp;urzędzie stanu cywilnego, potem Apostille – scenariusz drugi.</p>
+        <p>Na laminacie Apostille nie zostanie nadana. Wtedy zamawiamy nowy odpis w&nbsp;urzędzie stanu cywilnego, a&nbsp;potem uzyskujemy na nim Apostille, jak w&nbsp;scenariuszu drugim.</p>
       </div>
       <div class="ap-doc">
         <h3>Akt sprzed 2016 i&nbsp;dokumenty radzieckie</h3>
-        <p>Nie apostilluje się ich nigdzie. Zawsze przez duplikat. Wyjątek: dyplomy – stare i&nbsp;radzieckie apostilluje się bez duplikatu, tylko dłużej.</p>
+        <p>Takie akty nigdzie nie dostaną Apostille, dlatego zawsze zaczynamy od duplikatu. Wyjątkiem są dyplomy: stare i&nbsp;radzieckie dostają Apostille bez duplikatu, tylko trwa to dłużej.</p>
       </div>
       <div class="ap-doc">
         <h3>Zaświadczenie z&nbsp;policji drogowej</h3>
@@ -357,11 +390,11 @@
       </div>
       <div class="ap-doc">
         <h3>Uzyskanie dokumentów sądowych</h3>
-        <p>Też nie da się za inną osobę. Apostille na wyrok, który masz na rękach – tak, uzyskamy ją.</p>
+        <p>Ich też nie da się uzyskać za inną osobę. Jeśli jednak masz wyrok u&nbsp;siebie, uzyskamy na niego Apostille.</p>
       </div>
       <div class="ap-doc">
         <h3>Zaświadczenie o&nbsp;niekaralności</h3>
-        <p>Większość klientów uzyskuje je sama w&nbsp;„Diji” – to jedyny dokument, który przechodzi tam w&nbsp;całości online. Do nas trafia już tylko po tłumaczenie przysięgłe. Uzyskanie z&nbsp;Apostille – na zapytanie.</p>
+        <p>Większość klientów uzyskuje je sama w&nbsp;„Diji”, bo to jedyny dokument, który można tam załatwić w&nbsp;całości online. Do nas trafia już tylko do tłumaczenia przysięgłego. Zaświadczenie z&nbsp;Apostille uzyskamy na Twoją prośbę.</p>
       </div>
     </div>
   </div>
@@ -379,7 +412,7 @@
         <p class="text-[17px] leading-[1.6] text-ink/75">
           Dokumenty jadą jedną przesyłką Nowej Poczty, z&nbsp;zadeklarowaną wartością i&nbsp;ubezpieczeniem.
           Numer śledzenia dostajesz w&nbsp;dniu nadania i&nbsp;widzisz drogę dokumentu w&nbsp;obie strony.
-          Przed wysyłką skanujemy każdą stronę – skan zostaje u&nbsp;Ciebie i&nbsp;u&nbsp;nas.
+          Przed wysyłką skanujemy każdą stronę&nbsp;– skan zostaje u&nbsp;Ciebie i&nbsp;u&nbsp;nas.
         </p>
         <p class="mt-4 text-[17px] leading-[1.6] text-ink/75">
           Pracujemy z&nbsp;krajem, w&nbsp;którym trwają działania wojenne, i&nbsp;obiecywanie zerowego ryzyka byłoby
@@ -390,12 +423,12 @@
       <div>
         <p class="text-[17px] leading-[1.6] text-ink/75">
           Jedyny wyjątek to dokumenty, których duplikatu nie ma skąd wziąć: archiwa na terenach okupowanych.
-          Jeśli Twój dokument jest stamtąd, powiedz od razu – ustalimy razem, czy w&nbsp;ogóle warto wysyłać oryginał,
+          Jeśli Twój dokument jest stamtąd, powiedz od razu&nbsp;– ustalimy razem, czy w&nbsp;ogóle warto wysyłać oryginał,
           czy lepiej od początku iść drogą duplikatu.
         </p>
         <p class="mt-4 text-[17px] leading-[1.6] text-ink/75">
           Wolisz nie rozstawać się z&nbsp;jedynym oryginałem? W&nbsp;Ukrainie notariusz może sporządzić poświadczoną
-          kopię, a&nbsp;Apostille trafia na nią – powiedz o&nbsp;tym przy wycenie. Zasady odpowiedzialności
+          kopię, a&nbsp;Apostille trafia na nią&nbsp;– powiedz o&nbsp;tym przy wycenie. Zasady odpowiedzialności
           i&nbsp;reklamacji opisuje <a href="/#regulamin" class="underline font-semibold">Regulamin</a>.
         </p>
       </div>
@@ -413,11 +446,11 @@
     <div class="kt-steps" data-kroki>
       <ol class="kt-steps-list">
         <li><b>Zdjęcia i&nbsp;opis.</b> Wysyłasz zdjęcie dokumentu (jeśli jest), ukraińskiego paszportu wewnętrznego, numer identyfikacyjny i&nbsp;adres zameldowania w&nbsp;Ukrainie. Piszesz, do czego dokument jest potrzebny w&nbsp;Polsce.</li>
-        <li><b>Weryfikacja i&nbsp;wycena.</b> Sprawdzamy rok wydania, stan pieczęci, laminat – i&nbsp;mówimy, czy to Apostille od razu, czy najpierw duplikat. Podajemy cenę końcową i&nbsp;termin.</li>
-        <li><b>Płatność z&nbsp;góry.</b> BLIK, przelew albo gotówka. Przy sprawach archiwalnych z&nbsp;terenów przyfrontowych – przedpłata zwrotna w&nbsp;razie odmowy, poza kosztem przesyłki.</li>
-        <li><b>Oryginał.</b> Przekazujesz na spotkaniu w&nbsp;centrum Warszawy albo wysyłasz Paczkomatem. Jeśli dokumentu nie ma – ten krok pomijasz. Pełnomocnictwo nie jest potrzebne.</li>
+        <li><b>Weryfikacja i&nbsp;wycena.</b> Sprawdzamy rok wydania, stan pieczęci, laminat&nbsp;– i&nbsp;mówimy, czy to Apostille od razu, czy najpierw duplikat. Podajemy cenę końcową i&nbsp;termin.</li>
+        <li><b>Płatność z&nbsp;góry.</b> BLIK, przelew albo gotówka. Jeśli dokumentu nie da się uzyskać, zwracamy przedpłatę&nbsp;– płacisz tylko za wysyłkę.</li>
+        <li><b>Oryginał.</b> Przekazujesz go na spotkaniu w&nbsp;centrum Warszawy albo wysyłasz Paczkomatem. Jeśli dokumentu nie masz, ten krok pomijasz. Pełnomocnictwo nie jest potrzebne.</li>
         <li><b>Ukraina i&nbsp;powrót.</b> Dokument jedzie Nową Pocztą do Kijowa, dostaje Apostille (lub najpierw duplikat), wraca do Warszawy. Informujemy o&nbsp;każdym etapie.</li>
-        <li><b>Tłumaczenie i&nbsp;odbiór.</b> Jeśli potrzebujesz tłumaczenia przysięgłego, tłumaczymy dokument razem z&nbsp;klauzulą&nbsp;– płacisz za nie osobno, 90&nbsp;zł za stronę. Komplet odbierasz osobiście albo Paczkomatem – gotowy do złożenia w&nbsp;urzędzie.</li>
+        <li><b>Tłumaczenie i&nbsp;odbiór.</b> Jeśli potrzebujesz tłumaczenia przysięgłego, tłumaczymy dokument razem z&nbsp;klauzulą&nbsp;– płacisz za nie osobno, 90&nbsp;zł za stronę. Komplet odbierasz osobiście albo Paczkomatem&nbsp;– gotowy do złożenia w&nbsp;urzędzie.</li>
       </ol>
     </div>
   </div>
@@ -434,7 +467,7 @@
     <div class="border-t border-ink/15">
       <details class="group border-b border-ink/15" open>
         <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Czy ukraiński dokument w ogóle potrzebuje Apostille w Polsce?</h3>
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Czy ukraiński dokument w&nbsp;ogóle potrzebuje Apostille w&nbsp;Polsce?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
@@ -451,9 +484,8 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Możesz, ale polskie urzędy nie przyjmują elektronicznego Apostille – tylko papierowe. Od lutego 2026 Ukraina
-          ma nowy tryb: elektroniczny rejestr, opłata 670&nbsp;hrywien, trzy dni robocze w&nbsp;urzędzie. Różnica między
-          tymi trzema dniami a&nbsp;naszymi 2–3 tygodniami to logistyka: papierowy dokument trzeba złożyć, odebrać
+          Możesz, ale polskie urzędy nie przyjmują elektronicznej Apostille, tylko papierową. W&nbsp;Ukrainie samo nadanie
+          bywa szybkie, a&nbsp;nasze 10–14&nbsp;dni to logistyka: papierowy dokument trzeba złożyć, odebrać
           i&nbsp;przywieźć do Polski.
         </p>
       </details>
@@ -464,83 +496,83 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Nie – ani konsularne, ani notarialne. Do uzyskania duplikatu wystarczą cztery zdjęcia z&nbsp;telefonu: stary
-          dokument (jeśli jest), paszport wewnętrzny, numer identyfikacyjny, adres zameldowania. Dla porównania:
-          w&nbsp;konsulacie pełnomocnictwo kosztuje 125–250&nbsp;zł i&nbsp;wymaga zapisu na termin.
+          Nie&nbsp;– ani konsularne, ani notarialne. Do uzyskania duplikatu wystarczą zdjęcia z&nbsp;telefonu i&nbsp;kilka danych: stary
+          dokument (jeśli jest), paszport wewnętrzny, numer identyfikacyjny i&nbsp;adres zameldowania. Nie musisz więc
+          umawiać się w&nbsp;konsulacie ani płacić tam za pełnomocnictwo.
         </p>
       </details>
 
       <details class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Mój akt urodzenia jest sprzed 2016 roku. Co teraz?</h3>
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Mój akt urodzenia jest sprzed 2016&nbsp;roku. Co teraz?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
           Na taki akt Apostille nie zostanie nadana. Uzyskujemy nowy odpis w&nbsp;ukraińskim urzędzie stanu cywilnego
           (bez Twojego wyjazdu i&nbsp;bez pełnomocnictwa), a&nbsp;potem Apostille na nim. Razem 1&nbsp;100&nbsp;zł
-          i&nbsp;5–6 tygodni. To nie ślepa uliczka, tylko dwa etapy zamiast jednego.
+          i&nbsp;5–6&nbsp;tygodni. To nie ślepa uliczka, tylko dwa etapy zamiast jednego.
         </p>
       </details>
 
       <details class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Dokument jest z Doniecka, Mariupola, Chersonia. Da się?</h3>
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Dokument jest z&nbsp;Doniecka, Mariupola, Chersonia. Da się?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Możliwe, jeśli archiwum zdążono przenieść na tereny kontrolowane przez Ukrainę – a&nbsp;dowiedzieć się tego
-          można tylko składając wniosek. Termin od półtora miesiąca, bez gwarancji. Jeśli archiwum nie zachowało
-          się, zwracamy przedpłatę – z&nbsp;Twojej strony zostaje wyłącznie koszt przesyłki. Bierzemy takie sprawy,
+          Możliwe, jeśli archiwum zdążono przenieść na tereny kontrolowane przez Ukrainę&nbsp;– a&nbsp;dowiedzieć się tego
+          można tylko, składając wniosek. Termin od półtora miesiąca, bez gwarancji. Jeśli archiwum nie zachowało
+          się, zwracamy przedpłatę&nbsp;– z&nbsp;Twojej strony zostaje wyłącznie koszt przesyłki. Bierzemy takie sprawy,
           bo nic nie ryzykujesz poza wysyłką.
         </p>
       </details>
 
       <details class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Czy tłumaczenie jest w cenie?</h3>
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Czy tłumaczenie jest w&nbsp;cenie?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
           Nie. Cena 550&nbsp;zł to Apostille z&nbsp;opłatami urzędowymi w&nbsp;Ukrainie i&nbsp;wysyłką w&nbsp;obie strony.
-          <a href="/tlumaczenia-przysiegle/ukrainski/" hreflang="uk" class="underline font-semibold">Tłumaczenie przysięgłe na polski</a> rozliczamy osobno, 90&nbsp;zł za stronę – robimy je po Apostille,
+          <a href="/tlumaczenia-przysiegle/ukrainski/" hreflang="uk" class="underline font-semibold">Tłumaczenie przysięgłe na polski</a> rozliczamy osobno, 90&nbsp;zł za stronę&nbsp;– robimy je po Apostille,
           bo klauzula też podlega tłumaczeniu. Wszystko w&nbsp;jednym zleceniu, dostajesz komplet gotowy do urzędu.
         </p>
       </details>
 
       <details class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">W Ukrainie jest taniej. Dlaczego u was 550 zł?</h3>
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">W&nbsp;Ukrainie jest taniej. Dlaczego u&nbsp;was 550&nbsp;zł?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
           Bo sprzedajemy co innego niż pieczątkę: sprawdzenie dokumentu przed zapłatą, pilnowanie terminów,
-          ubezpieczoną przesyłkę w&nbsp;obie strony, zwrot przedpłaty przy odmowie archiwum i&nbsp;odpowiedź po polsku – plus
+          ubezpieczoną przesyłkę w&nbsp;obie strony, zwrot przedpłaty przy odmowie archiwum i&nbsp;odpowiedź po polsku&nbsp;– plus
           odbiór osobisty w&nbsp;centrum Warszawy, jeśli nie chcesz oddawać oryginału kurierowi. Prowadzimy sprawę do dokumentu
-          gotowego do złożenia w urzędzie, nie tylko do klauzuli. Tłumaczenie przysięgłe, jeśli go potrzebujesz, zrobimy
+          gotowego do złożenia w&nbsp;urzędzie, nie tylko do klauzuli. Tłumaczenie przysięgłe, jeśli go potrzebujesz, zrobimy
           w&nbsp;tym samym zleceniu, ale liczymy je osobno&nbsp;– 90&nbsp;zł za stronę.
         </p>
       </details>
 
       <details class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Jakie dokumenty z Ukrainy są potrzebne do karty pobytu?</h3>
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Jakie dokumenty z&nbsp;Ukrainy są potrzebne do karty pobytu?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
           Najczęściej akt urodzenia (własny i&nbsp;dzieci), akt małżeństwa, dyplom lub świadectwo przy pobycie na
-          studia lub do pracy w&nbsp;zawodzie – z&nbsp;Apostille i&nbsp;tłumaczeniem przysięgłym. Zaświadczenie
+          studia lub do pracy w&nbsp;zawodzie&nbsp;– z&nbsp;Apostille i&nbsp;tłumaczeniem przysięgłym. Zaświadczenie
           o&nbsp;niekaralności zwykle uzyskasz sam w&nbsp;„Diji”, a&nbsp;my je tłumaczymy. Listę dokumentów
-          podaje urząd w&nbsp;wezwaniu – dołącz ją do <a href="/cennik/#wycena" data-quote class="underline">formularza wyceny</a>, a&nbsp;wycenimy cały komplet.
+          podaje urząd w&nbsp;wezwaniu&nbsp;– dołącz ją do <a href="/cennik/#wycena" data-quote class="underline">formularza wyceny</a>, a&nbsp;wycenimy cały komplet.
         </p>
       </details>
 
       <details class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Czy mogę zamówić z innego kraju niż Polska?</h3>
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Czy mogę zamówić z&nbsp;innego kraju niż Polska?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Tak, w&nbsp;zakresie uzyskania dokumentu i&nbsp;Apostille: dokument powstaje w&nbsp;Kijowie i&nbsp;jedzie Nową
+          Tak, jeśli chodzi o&nbsp;uzyskanie dokumentu i&nbsp;Apostille: gotowy dokument wyślemy z&nbsp;Kijowa Nową
           Pocztą prosto do Ciebie, do dowolnego kraju Unii. Tłumaczenie przysięgłe z&nbsp;ukraińskiego na polski robimy
           dla polskich urzędów. Jeśli dokument trafi do urzędu w&nbsp;innym kraju, zapytaj tam, jakie tłumaczenie przyjmą.
         </p>
@@ -548,9 +580,9 @@
     </div>
 
     <p class="mt-8 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-      Pytania o&nbsp;polskie Apostille – na stronie <a href="/apostille/#faq" class="underline font-semibold">Apostille</a>,
-      o&nbsp;tłumaczenia – <a href="/tlumaczenia-przysiegle/#faq" class="underline font-semibold">Tłumaczenia przysięgłe</a>,
-      o&nbsp;odbiór i&nbsp;płatność – <a href="/kontakt/#faq" class="underline font-semibold">kontakt</a>.
+      O&nbsp;polskiej Apostille piszemy więcej na stronie <a href="/apostille/#faq" class="underline font-semibold">Apostille</a>,
+      o&nbsp;tłumaczeniach na stronie <a href="/tlumaczenia-przysiegle/#faq" class="underline font-semibold">Tłumaczenia przysięgłe</a>,
+      a&nbsp;o&nbsp;odbiorze i&nbsp;płatności na stronie <a href="/kontakt/#faq" class="underline font-semibold">kontaktu</a>.
     </p>
   </div>
 </section>
@@ -594,7 +626,7 @@
         <address class="fl-note fl-where not-italic" style="margin-top:0">
           <span class="fl-w-item">
             <strong>Warszawa – Śródmieście</strong>
-            <span class="fl-soft">Śródmieście · paczkomat InPost</span>
+            <span class="fl-soft">Śródmieście · Paczkomat InPost</span>
           </span>
           <a href="/apostille/gdzie/" class="fl-link fl-w-link"><span class="nl-swap"><span class="nl-a">Gdzie załatwia się Apostille</span><span class="nl-b" aria-hidden="true">Gdzie załatwia się Apostille</span></span></a>
         </address>
@@ -622,6 +654,9 @@
           Apostille <a href="/apostille/akt-urodzenia/" class="underline">na akt urodzenia</a> · <a href="/apostille/pelnomocnictwo/" class="underline">na pełnomocnictwo</a> · <a href="/apostille/zaswiadczenie-o-niekaralnosci/" class="underline">na zaświadczenie o&nbsp;niekaralności</a>
           <span class="text-paper/70 text-[17px] align-middle" style="font-weight:900">·</span>
           <span class="font-bold text-paper/70">Zgłoszenia&nbsp;24/7</span>
+        </p>
+        <p class="text-[13px] text-paper/45 mt-1.5">
+          Tłumaczenie przysięgłe <a href="/tlumaczenia-przysiegle/jezyk-angielski/" class="underline">z&nbsp;angielskiego</a> · <a href="/tlumaczenia-przysiegle/ukrainski/" hreflang="uk" lang="uk" class="underline">з&nbsp;української</a> · <a href="/tlumaczenia-przysiegle/rosyjski/" hreflang="ru" lang="ru" class="underline">с&nbsp;русского</a>
         </p>
       </div>
     </div>

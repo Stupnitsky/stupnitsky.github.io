@@ -6,6 +6,10 @@
 <!-- Защита (28.09.2026): браузер выполняет только наши скрипты; новый внешний сервис (gtag, карта) – сначала вписать сюда -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ga0M3hxX7BbNMOsk8k9ra3P80+aMOd6HTfkftF5FpXw='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://formspree.io https://script.google.com https://script.googleusercontent.com; form-action 'self' https://formspree.io https://script.google.com; object-src 'none'; frame-src 'none'; base-uri 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preload" href="/assets/fonts/fira-sans-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-900-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 
 <title>Apostille bez przyjazdu – wysyłka Paczkomatem | Apostilo</title>
 <meta name="hdr-sub" content="Bez przyjazdu"><meta name="hdr-par" content="/apostille/"><!-- подпись в шапке: «/ Apostille / Имя» (app.js) -->
@@ -42,6 +46,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
+  "@id": "https://apostilo.pl/apostille-bez-przyjazdu/#service",
   "name": "Apostille bez przyjazdu do Warszawy",
   "serviceType": "Apostille MSZ dla klientów spoza Warszawy – dokument w obie strony Paczkomatem",
   "provider": {
@@ -96,6 +101,32 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Apostilo",
+      "item": "https://apostilo.pl/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Apostille",
+      "item": "https://apostilo.pl/apostille/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Apostille bez przyjazdu",
+      "item": "https://apostilo.pl/apostille-bez-przyjazdu/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
     {
@@ -119,7 +150,7 @@
       "name": "Jak wysłać dokument do Apostille z innego miasta?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Paczkomatem InPost. Po opłaceniu zlecenia dostajesz gotowe dane do nadania: numer paczkomatu docelowego, numer telefonu i e-mail odbiorcy. Dokument włóż do sztywnej koperty, żeby się nie zgiął, a zdjęcie koperty z numerem przesyłki wyślij nam na WhatsApp, Telegram albo e-mail – od tej chwili śledzimy ją razem z Tobą. Gotowy dokument wraca do paczkomatu, który wskażesz."
+        "text": "Paczkomatem InPost. W wycenie dostajesz gotowe dane do nadania: numer paczkomatu docelowego, numer telefonu i e-mail odbiorcy. Dokument włóż do sztywnej koperty, żeby się nie zgiął, a zdjęcie koperty z numerem przesyłki wyślij nam na WhatsApp, Telegram albo e-mail – od tej chwili śledzimy ją razem z Tobą. Gotowy dokument wraca do paczkomatu, który wskażesz."
       }
     },
     {
@@ -135,7 +166,7 @@
       "name": "Mam akt notarialny z Krakowa – załatwicie wszystko?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Dwa etapy. Pierwszy to Sąd Okręgowy właściwy dla kancelarii notariusza – w Krakowie Sąd Okręgowy w Krakowie, ul. Przy Rondzie 7. Idziesz tam sam, bez zapisów, albo wysyłasz dokument pocztą, a opłata to 26 zł za podpis; w sądzie składamy wyłącznie w Warszawie. Drugi etap to Apostille w MSZ, które działa tylko w Warszawie – oryginał z klauzulą sądu wysyłasz Paczkomatem, a resztę robimy my. Adresy wszystkich sądów okręgowych w Polsce są wyżej na tej stronie, a całą drogę dokumentu od notariusza opisujemy na stronie Apostille na pełnomocnictwo."
+        "text": "Prawie wszystko: pierwszy krok, w sądzie w Krakowie, robisz sam, a resztę bierzemy na siebie. Podpis notariusza poświadcza Sąd Okręgowy w Krakowie przy ul. Przy Rondzie 7. Idziesz tam bez zapisów albo wysyłasz dokument pocztą, a opłata wynosi 26 zł za podpis. My składamy dokumenty tylko w sądach warszawskich. Potem oryginał z klauzulą sądu wysyłasz nam Paczkomatem, a Apostille w MSZ, które działa tylko w Warszawie, uzyskamy za Ciebie. Adresy wszystkich sądów okręgowych w Polsce są wyżej na tej stronie, a całą drogę dokumentu od notariusza opisujemy na stronie Apostille na pełnomocnictwo."
       }
     },
     {
@@ -151,7 +182,7 @@
       "name": "Czy mogę zlecić Apostille z zagranicy?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Tak. Do wyceny wystarczy zdjęcie dokumentu w formularzu. Oryginał przyjmujemy przesyłką DHL Express i tą samą drogą odsyłamy gotowy dokument – koszt przesyłki podajemy w wycenie."
+        "text": "Tak. Do wyceny wystarczy zdjęcie dokumentu w formularzu. Oryginał wysyłasz dowolnym przewoźnikiem na adres z wyceny, a gotowy dokument odsyłamy DHL Express – około 300 zł za przesyłkę, dokładną kwotę podajemy w wycenie."
       }
     }
   ]
@@ -246,7 +277,7 @@
     <h1 class="tracking-tightest leading-[0.95] text-[36px] sm:text-[52px] md:text-[64px] font-black h1-page">Apostille bez przyjazdu do&nbsp;Warszawy</h1>
     <!-- Главный факт страницы первым, до цены (Грег, 24.09.2026): врезка как «Podpis notariusza» в плашке судов -->
     <p class="hero-lead mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
-      <b>MSZ działa tylko w&nbsp;Warszawie</b> – w&nbsp;innych miastach nie ma oddziałów, więc Apostille uzyskasz tylko w&nbsp;stolicy. Możesz przyjechać sam – ale szybciej i&nbsp;spokojniej jest zlecić to nam: wysyłasz zdjęcie dokumentu, potem oryginał Paczkomatem – my rezerwujemy termin, składamy i&nbsp;odbieramy dokument w&nbsp;MSZ, a&nbsp;gotowy wraca do Twojego miasta. 260&nbsp;zł za dokument, z&nbsp;opłatą skarbową w&nbsp;cenie.
+      <b>MSZ nadaje Apostille tylko w&nbsp;Warszawie</b> i&nbsp;nie ma oddziałów w&nbsp;innych miastach. Możesz przyjechać sam, ale szybciej i&nbsp;spokojniej będzie zlecić to nam. Wysyłasz zdjęcie dokumentu, a&nbsp;potem oryginał Paczkomatem. My rezerwujemy termin, składamy i&nbsp;odbieramy dokument w&nbsp;MSZ, a&nbsp;gotowy wraca do Twojego miasta. Kosztuje to 260&nbsp;zł za dokument, razem z&nbsp;opłatą skarbową.
     </p>
     <!-- ссылка-стрелка привязана к абзацу (стоит сразу под ним), кнопки – ниже, после воздуха -->
     <p class="hero-more">
@@ -259,13 +290,14 @@
         Przyjazd do Warszawy kosztuje więcej niż zlecenie u&nbsp;nas.
       </p>
       <p class="mt-4 text-[17px] leading-[1.55] text-ink/75 max-w-[60ch]">
-        Bilet na pociąg w&nbsp;obie strony to często ponad połowa naszej ceny. Samochodem wychodzi jeszcze drożej: paliwo, autostrada, parking w&nbsp;centrum. Do tego dzień wolny z&nbsp;pracy – i&nbsp;żadnej pewności, że w&nbsp;MSZ znajdzie się wolny termin albo że urząd przyjmie dokument.
+        Bilet na pociąg w&nbsp;obie strony to często ponad połowa naszej ceny. Samochodem wychodzi jeszcze drożej: paliwo, autostrada, parking w&nbsp;centrum. Do tego dzień wolny z&nbsp;pracy&nbsp;– i&nbsp;żadnej pewności, że w&nbsp;MSZ znajdzie się wolny termin albo że urząd przyjmie dokument.
       </p>
     </div>
     <!-- главное действие – форма заявки (панель wyceny), перед ней мессенджеры; как в hero остальных подстраниц -->
-    <div class="cta-btns hero-cta" role="group" aria-label="Zamów wycenę lub napisz na komunikatorze">
+    <div class="cta-btns hero-cta hero-cta--4" role="group" aria-label="Zamów wycenę, zadzwoń lub napisz na komunikatorze">
       <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20jestem%20spoza%20Warszawy%20i%20potrzebuj%C4%99%20Apostille" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
       <a href="https://t.me/apostilo?text=Dzie%C5%84%20dobry%2C%20jestem%20spoza%20Warszawy%20i%20potrzebuj%C4%99%20Apostille" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="tel:+48507588155" class="cta-btn" aria-label="Zadzwoń: +48 507 588 155">Zadzwoń<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
       <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
     </div>
   </div>
@@ -282,7 +314,7 @@
       Jedziesz sam do&nbsp;MSZ czy załatwiasz Apostille zdalnie, z&nbsp;domu
     </h2>
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
-      Opłatę skarbową 60&nbsp;zł za dokument płacisz tak czy inaczej – jadąc do MSZ osobiście albo zlecając Apostille zdalnie, bo w&nbsp;naszych 260&nbsp;zł ta opłata już jest. Różnica leży gdzie indziej. Przy wizycie osobistej dochodzą bilet albo paliwo, dzień wolny i&nbsp;szukanie terminu w&nbsp;e-Konsulacie. Bez wizyty wysyłasz zdjęcie dokumentu do wyceny online, a&nbsp;oryginał – Paczkomatem albo kurierem. Jeśli urząd go nie przyjmie, ryzyko jest po naszej stronie.
+      Opłatę skarbową 60&nbsp;zł za dokument płacisz tak czy inaczej&nbsp;– jadąc do MSZ osobiście albo zlecając Apostille zdalnie, bo w&nbsp;naszych 260&nbsp;zł ta opłata już jest. Różnica leży gdzie indziej. Przy wizycie osobistej dochodzą bilet albo paliwo, dzień wolny i&nbsp;szukanie terminu w&nbsp;e-Konsulacie. Bez wizyty wysyłasz zdjęcie dokumentu do wyceny online, a&nbsp;oryginał&nbsp;– Paczkomatem albo kurierem. Jeśli urząd go nie przyjmie, ryzyko jest po naszej stronie.
     </p>
     <!-- Подзаголовок-вопрос под запрос «ile kosztuje apostille» (24.09.2026): раскрывают его карточки сравнения ниже -->
     <h3 class="cmp-ask">Ile naprawdę kosztuje Apostille <span>z&nbsp;wizytą w&nbsp;MSZ i&nbsp;bez niej</span></h3>
@@ -295,11 +327,11 @@
       <div class="cmp-side cmp-old">
         <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-ink/60 mb-2">Jedziesz sam</span>
         <h3 class="cmp-h">Dzień w&nbsp;drodze</h3>
-        <p class="cmp-lead">Rezerwacja terminu, dojazd, wizyta w&nbsp;MSZ i&nbsp;powrót – a&nbsp;czasem drugi przyjazd.</p>
+        <p class="cmp-lead">Rezerwacja terminu, dojazd, wizyta w&nbsp;MSZ i&nbsp;powrót&nbsp;– a&nbsp;czasem drugi przyjazd.</p>
         <dl class="cmp-rows">
           <div><dt>Koszt</dt><dd><b>60&nbsp;zł</b> opłaty, płatnej przed wizytą, plus bilet albo paliwo i&nbsp;parking</dd></div>
           <div><dt>Czas</dt><dd>dzień wolny z&nbsp;pracy</dd></div>
-          <div><dt>Termin</dt><dd>kiedy e-Konsulat da wolną godzinę – bywa za kilka dni</dd></div>
+          <div><dt>Termin</dt><dd>kiedy e-Konsulat da wolną godzinę&nbsp;– bywa za kilka dni</dd></div>
           <div><dt>Ryzyko</dt><dd>brak klauzuli sądu to kolejny przyjazd</dd></div>
         </dl>
       </div>
@@ -311,16 +343,15 @@
         <h3 class="cmp-h">Zdjęcie i&nbsp;wysyłka Oryginału</h3>
         <p class="cmp-lead">Wycena po zdjęciu, oryginał Paczkomatem w&nbsp;obie strony, w&nbsp;MSZ jesteśmy my.</p>
         <dl class="cmp-rows">
-          <div><dt>Koszt</dt><dd><b>260&nbsp;zł</b> – opłata skarbowa w&nbsp;cenie; Paczkomat w&nbsp;obie strony w&nbsp;cenie od&nbsp;350&nbsp;zł</dd></div>
+          <div><dt>Koszt</dt><dd><b>260&nbsp;zł</b>&nbsp;– opłata skarbowa w&nbsp;cenie; Paczkomat w&nbsp;obie strony w&nbsp;cenie od&nbsp;350&nbsp;zł</dd></div>
           <div><dt>Czas</dt><dd>kilka minut: zdjęcie w&nbsp;formularzu, płatność i&nbsp;wysyłka oryginału wygodnym sposobem</dd></div>
-          <div><dt>Termin</dt><dd>zwykle 1–3&nbsp;dni robocze, ekspres – złożenie tego samego dnia</dd></div>
+          <div><dt>Termin</dt><dd>zwykle 1–3&nbsp;dni robocze, ekspres&nbsp;– złożenie tego samego dnia</dd></div>
           <div><dt>Ryzyko</dt><dd>sprawdzamy dokument przed zleceniem; odmowa urzędu = zwrot całej wpłaty</dd></div>
         </dl>
       </div>
     </div>
     <div class="cmp-note">
-        <p><b>Ceny są końcowe.</b> Apostille MSZ – 260&nbsp;zł za dokument, tryb ekspresowy – 350&nbsp;zł, poświadczenie w&nbsp;Sądzie Okręgowym – 120&nbsp;zł (sądy warszawskie). Przy zamówieniu od 350&nbsp;zł Paczkomat w&nbsp;obie strony jest w&nbsp;cenie. Wszystkie pozycje –
-        <a href="/cennik/" class="underline font-semibold">Cennik Apostille i&nbsp;tłumaczeń przysięgłych</a>.</p>
+        <p><b>Ceny są końcowe:</b> Apostille w&nbsp;MSZ kosztuje 260&nbsp;zł za dokument, w&nbsp;trybie ekspresowym 350&nbsp;zł, a&nbsp;poświadczenie w&nbsp;jednym z&nbsp;warszawskich sądów okręgowych 120&nbsp;zł. Przy zamówieniu od 350&nbsp;zł Paczkomat w&nbsp;obie strony jest w&nbsp;cenie. Wszystkie pozycje znajdziesz w&nbsp;<a href="/cennik/" class="underline font-semibold">cenniku Apostille i&nbsp;tłumaczeń przysięgłych</a>.</p>
       </div>
   </div>
 </section>
@@ -335,7 +366,7 @@
       Apostille wysyłką w&nbsp;3–5&nbsp;dni roboczych z&nbsp;każdego miasta w&nbsp;Polsce
     </h2>
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
-      Apostille zdalnie to trzy odcinki: Paczkomat&nbsp;InPost do Warszawy, MSZ i&nbsp;Paczkomat z&nbsp;powrotem. Liczymy je od dnia, w&nbsp;którym nadajesz kopertę, do dnia, w&nbsp;którym odbierasz gotowy dokument – bez wizyty w&nbsp;MSZ i&nbsp;bez dnia wolnego.
+      Apostille zdalnie to trzy odcinki: Paczkomat&nbsp;InPost do Warszawy, MSZ i&nbsp;Paczkomat z&nbsp;powrotem. Liczymy je od dnia, w&nbsp;którym nadajesz kopertę, do dnia, w&nbsp;którym odbierasz gotowy dokument&nbsp;– bez wizyty w&nbsp;MSZ i&nbsp;bez dnia wolnego.
     </p>
     <!-- Маршрут (Грег, 25.09.2026: идея 7 со стенда docs/typografia/ – «встроить в сайт»): три отрезка – схемой пешего
          маршрута, как прогулка по Вене (Fonts inspirations/136951.png). Список .route-legs – для экранных чтецов
@@ -344,11 +375,11 @@
     <div class="route route--map mt-8 bg-sand rounded-[26px] p-7 sm:p-10">
       <ol class="route-legs">
         <li><span class="route-k">Twoje miasto → Warszawa</span><span class="route-n">1&nbsp;dzień</span><span class="route-t">Paczkomat zwykle dowozi kopertę następnego dnia roboczego.</span></li>
-        <li><span class="route-k">MSZ, ul.&nbsp;Krucza</span><span class="route-n">zwykle 1–3&nbsp;dni</span><span class="route-t">Rezerwujemy termin, składamy i&nbsp;odbieramy dokument z&nbsp;klauzulą. Ekspres – składamy tego samego dnia.</span></li>
+        <li><span class="route-k">MSZ, ul.&nbsp;Krucza</span><span class="route-n">zwykle 1–3&nbsp;dni</span><span class="route-t">Rezerwujemy termin, składamy i&nbsp;odbieramy dokument z&nbsp;klauzulą. Ekspres&nbsp;– składamy tego samego dnia.</span></li>
         <li><span class="route-k">Warszawa → Twoje miasto</span><span class="route-n">1&nbsp;dzień</span><span class="route-t">Gotowy dokument wraca do paczkomatu, który wskażesz.</span></li>
       </ol>
       <div class="rt-map" aria-hidden="true">
-        <p class="rt-rot rt-rot--key" data-leg="2"><i class="rt-dot"></i>MSZ, ul.&nbsp;Krucza – zwykle 1–3&nbsp;dni</p>
+        <p class="rt-rot rt-rot--key" data-leg="2"><i class="rt-dot"></i>MSZ, ul.&nbsp;Krucza&nbsp;– zwykle 1–3&nbsp;dni</p>
         <div class="rt-col rt-col--a">
           <i class="rt-ln rt-ln--top" data-leg="1"></i>
           <span class="rt-st" data-leg="1">Twoje miasto</span>
@@ -371,12 +402,12 @@
         <p class="rt-rot rt-rot--b" data-leg="3">i&nbsp;z&nbsp;powrotem do paczkomatu</p>
       </div>
       <div class="route-foot">
-        <p class="route-sum"><b>Razem 3–5&nbsp;dni roboczych, w&nbsp;ekspresie 2–3.</b> Nadajesz w&nbsp;poniedziałek – dokument z&nbsp;Apostille zwykle wraca do Ciebie jeszcze w&nbsp;tym samym tygodniu.</p>
+        <p class="route-sum"><b>Razem 3–5&nbsp;dni roboczych, w&nbsp;ekspresie 2–3.</b> Nadajesz w&nbsp;poniedziałek&nbsp;– dokument z&nbsp;Apostille zwykle wraca do Ciebie jeszcze w&nbsp;tym samym tygodniu.</p>
       </div>
     </div>
-    <p class="route-far"><span>Odległość nie zmienia terminu</span> – Paczkomat jedzie przez noc.</p>
+    <p class="route-far"><span>Odległość nie zmienia terminu</span>&nbsp;– Paczkomat jedzie przez noc.</p>
     <p class="mt-4 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
-      Tak samo liczymy Apostille z&nbsp;Krakowa, Wrocławia, Gdańska, Poznania, Łodzi, Katowic, Lublina, Szczecina, Bydgoszczy, Białegostoku, Rzeszowa i&nbsp;Olsztyna. Dokument notarialny albo sądowy najpierw poświadcza Sąd Okręgowy w&nbsp;Twoim mieście – ten czas zależy od sądu, więc doliczamy go osobno.
+      Tak samo liczymy Apostille z&nbsp;Krakowa, Wrocławia, Gdańska, Poznania, Łodzi, Katowic, Lublina, Szczecina, Bydgoszczy, Białegostoku, Rzeszowa i&nbsp;Olsztyna. Dokument notarialny albo sądowy najpierw poświadcza Sąd Okręgowy w&nbsp;Twoim mieście&nbsp;– ten czas zależy od sądu, więc doliczamy go osobno.
       <a href="#twoj-sad" class="underline font-semibold">Znajdź swój Sąd Okręgowy</a>.
     </p>
   </div>
@@ -387,11 +418,11 @@
 <section class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
     <div class="gdz-cta" style="margin-top:0">
-      <p class="gdz-cta-t">Wolisz nie rezerwować wizyt i&nbsp;nie jeździć po&nbsp;urzędach? Wyślij zdjęcie dokumentu – resztę załatwiamy&nbsp;my.</p>
-      <div class="cta-btns" role="group" aria-label="Zamów wycenę lub napisz na komunikatorze">
+      <p class="gdz-cta-t">Wolisz nie rezerwować wizyt i&nbsp;nie jeździć po&nbsp;urzędach? Wyślij zdjęcie dokumentu&nbsp;– resztę załatwiamy&nbsp;my.</p>
+      <div class="cta-btns" role="group" aria-label="Napisz na komunikatorze">
       <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20jestem%20spoza%20Warszawy%20i%20potrzebuj%C4%99%20Apostille" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
       <a href="https://t.me/apostilo?text=Dzie%C5%84%20dobry%2C%20jestem%20spoza%20Warszawy%20i%20potrzebuj%C4%99%20Apostille" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
-      <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <!-- 03.10.2026 (Грег): «Zamów wycenę» из ряда снята – главная теперь всплывающая (.m-dock); WhatsApp и Telegram остаются -->
     </div>
     </div>
   </div>
@@ -405,12 +436,12 @@
       Apostille z&nbsp;Krakowa, Wrocławia, Gdańska <br>i&nbsp;każdego innego miasta
     </h2>
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
-      Klauzulę Apostille na akty stanu cywilnego, zaświadczenia o&nbsp;niekaralności, dokumenty notarialne, sądowe i&nbsp;firmowe oraz <a href="/tlumaczenia-przysiegle/" class="underline font-semibold">tłumaczenia przysięgłe</a> nadaje MSZ – i&nbsp;robi to wyłącznie w&nbsp;Warszawie, przy ul.&nbsp;Kruczej. W&nbsp;żadnym innym mieście nie ma jego oddziału, więc zostają trzy drogi: dzień w&nbsp;podróży, list do MSZ i&nbsp;czekanie do 30&nbsp;dni albo koperta w&nbsp;paczkomacie i&nbsp;dokument z&nbsp;powrotem zwykle w&nbsp;<span class="whitespace-nowrap">3–5</span>&nbsp;dni roboczych.
+      Klauzulę Apostille na akty stanu cywilnego, zaświadczenia o&nbsp;niekaralności, dokumenty notarialne, sądowe i&nbsp;firmowe oraz <a href="/tlumaczenia-przysiegle/" class="underline font-semibold">tłumaczenia przysięgłe</a> nadaje MSZ&nbsp;– i&nbsp;robi to wyłącznie w&nbsp;Warszawie, przy ul.&nbsp;Kruczej. W&nbsp;żadnym innym mieście nie ma jego oddziału, więc zostają trzy drogi: dzień w&nbsp;podróży, list do MSZ i&nbsp;czekanie do 30&nbsp;dni albo koperta w&nbsp;paczkomacie i&nbsp;dokument z&nbsp;powrotem zwykle w&nbsp;<span class="whitespace-nowrap">3–5</span>&nbsp;dni roboczych.
     </p>
     <div class="mt-8 bg-terra text-ink rounded-[26px] p-7 sm:p-10">
       <p class="so-hero"><span>Każde miasto</span> z&nbsp;paczkomatem to&nbsp;już nasz&nbsp;zasięg.</p>
       <p class="mt-4 text-[17px] leading-[1.55] text-ink/75 max-w-[60ch]">
-        Dokument z&nbsp;zagranicy przyjmujemy przesyłką DHL&nbsp;Express i&nbsp;tą samą drogą odsyłamy. Jesteś akurat w&nbsp;Warszawie? Oryginał przekażesz na umówionym spotkaniu w&nbsp;Śródmieściu –
+        Z&nbsp;zagranicy wysyłasz oryginał dowolnym przewoźnikiem na adres z&nbsp;wyceny, a&nbsp;gotowy dokument odsyłamy DHL&nbsp;Express&nbsp;– około 300&nbsp;zł za przesyłkę. Jesteś akurat w&nbsp;Warszawie? Oryginał przekażesz na umówionym spotkaniu w&nbsp;Śródmieściu&nbsp;–
         <a href="/kontakt/#cal" class="underline font-semibold">umów spotkanie</a>.
       </p>
       <!-- Зацеп (24.09.2026): ссылка к плашке судов ниже; плашки городов убраны по просьбе Грега -->
@@ -424,12 +455,12 @@
       <img src="/assets/img/ico-sad.svg" alt="" aria-hidden="true" class="so-crest" width="50" height="54">
       <span class="slab-kicker block font-cond uppercase tracking-[0.18em] text-[11px] text-ink/60 mb-3">Sądy</span>
       <p class="so-lead">
-        Pierwszy krok robisz u&nbsp;siebie, <span>drugi – my w&nbsp;Warszawie.</span>
+        Pierwszy krok robisz u&nbsp;siebie, <span>drugi&nbsp;– my w&nbsp;Warszawie.</span>
       </p>
       <!-- 25.09.2026: абзац разбит на два шага, как в тезисе; сумма – жирным в кегле текста (strong, не b – b здесь 19px врезка) -->
       <div class="so-text">
-        <p><b>Podpis notariusza</b> poświadcza Sąd Okręgowy, w&nbsp;którego okręgu działa kancelaria – ten w&nbsp;Twoim mieście, nie warszawski. Zanosisz go tam sam, bez zapisów, albo wysyłasz pocztą, a&nbsp;opłata to <strong>26&nbsp;zł</strong> za podpis.</p>
-        <p>Z&nbsp;klauzulą sądu wysyłasz oryginał Paczkomatem, a&nbsp;MSZ, które działa tylko w&nbsp;Warszawie, załatwiamy my. W&nbsp;sądzie składamy wyłącznie w&nbsp;Warszawie – <a href="/apostille/gdzie/" class="underline font-semibold">oba sądy warszawskie</a>.</p>
+        <p><b>Podpis notariusza</b> poświadcza Sąd Okręgowy, w&nbsp;którego okręgu działa kancelaria, czyli ten w&nbsp;Twoim mieście, a&nbsp;nie warszawski. Dokument zanosisz tam sam, bez zapisów, albo wysyłasz pocztą, a&nbsp;opłata wynosi <strong>26&nbsp;zł</strong> za podpis.</p>
+        <p>Z&nbsp;klauzulą sądu wysyłasz oryginał Paczkomatem, a&nbsp;Apostille w&nbsp;MSZ, które działa tylko w&nbsp;Warszawie, załatwiamy my. Sami składamy dokumenty tylko w&nbsp;<a href="/apostille/gdzie/" class="underline font-semibold">dwóch sądach warszawskich</a>.</p>
       </div>
       <ul class="so-list">
         <li><details name="so" id="sad-bialystok"><summary>Białystok</summary><div class="so-card"><p class="so-court">Sąd&nbsp;Okręgowy w&nbsp;Białymstoku</p><p class="so-addr">ul. Skłodowskiej-Curie 1 <i>· pok. A&nbsp;126</i></p><p class="so-hours"><span class="so-hr"><span>pn.–pt.</span> <b>9:00–14:00</b></span></p><p class="so-go"><a href="https://bialystok.so.gov.pl/informacje/legalizacja-dokumentow.html" target="_blank" rel="noopener">Legalizacja na stronie sądu&nbsp;↗</a></p></div></details></li>
@@ -486,7 +517,7 @@
           </ul></details></li>
       </ul>
       <!-- Нет города в стопке → заявка (главное действие), не расширяем список (Грег, 24.09.2026) -->
-      <p class="so-more"><b>Potrzebujesz konsultacji?</b> Napisz do&nbsp;nas albo prześlij zdjęcie dokumentu przez formularz – zwykle w&nbsp;15&nbsp;minut podpowiemy, który sąd go poświadczy i&nbsp;co dalej.
+      <p class="so-more"><b>Potrzebujesz konsultacji?</b> Napisz do&nbsp;nas albo prześlij zdjęcie dokumentu przez formularz&nbsp;– zwykle w&nbsp;15&nbsp;minut podpowiemy, który sąd go poświadczy i&nbsp;co dalej.
         <a href="/cennik/#wycena" data-quote class="k-where-link k-where-link--dark">Prześlij zdjęcie dokumentu<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></a></p>
     </div>
   </div>
@@ -503,10 +534,10 @@
       <ol class="kt-steps-list">
         <li><b>Zdjęcie dokumentu.</b> Załączasz je w&nbsp;formularzu wyceny i&nbsp;piszesz, do jakiego kraju dokument jedzie.</li>
         <li><b>Sprawdzenie i&nbsp;wycena.</b> Zwykle w&nbsp;ciągu 15&nbsp;minut mówimy, czy dokument idzie od razu do MSZ, czy najpierw do Sądu Okręgowego, i&nbsp;podajemy cenę końcową z&nbsp;terminem.</li>
-        <li><b>Płatność z&nbsp;góry.</b> BLIK albo przelew. Kwota z&nbsp;wyceny zawiera opłaty urzędowe – niczego nie dopłacasz osobno.</li>
-        <li><b>Oryginał do paczkomatu.</b> Po płatności dostajesz dane do nadania. Dokument wkładasz do sztywnej koperty, a&nbsp;zdjęcie koperty z&nbsp;numerem przesyłki wysyłasz nam na WhatsApp, Telegram albo e-mail – od tej chwili śledzimy ją razem z&nbsp;Tobą.</li>
-        <li><b>MSZ w&nbsp;Warszawie.</b> Rezerwujemy termin, składamy dokument i&nbsp;odbieramy go z&nbsp;klauzulą Apostille – zwykle w&nbsp;1–3&nbsp;dni robocze.</li>
-        <li><b>Powrót do Twojego miasta.</b> Gotowy dokument odsyłamy do wskazanego paczkomatu albo kurierem – na terenie Polski i&nbsp;za granicę.</li>
+        <li><b>Płatność z&nbsp;góry.</b> BLIK albo przelew. Kwota z&nbsp;wyceny zawiera opłaty urzędowe&nbsp;– niczego nie dopłacasz osobno.</li>
+        <li><b>Oryginał do paczkomatu.</b> Dane do nadania masz już w&nbsp;wycenie. Dokument wkładasz do sztywnej koperty, a&nbsp;zdjęcie koperty z&nbsp;numerem przesyłki wysyłasz nam na WhatsApp, Telegram albo e-mail&nbsp;– od tej chwili śledzimy ją razem z&nbsp;Tobą.</li>
+        <li><b>MSZ w&nbsp;Warszawie.</b> Rezerwujemy termin, składamy dokument i&nbsp;odbieramy go z&nbsp;klauzulą Apostille&nbsp;– zwykle w&nbsp;1–3&nbsp;dni robocze.</li>
+        <li><b>Powrót do Twojego miasta.</b> Gotowy dokument odsyłamy do wskazanego paczkomatu albo kurierem&nbsp;– na terenie Polski i&nbsp;za granicę.</li>
       </ol>
     </div>
   </div>
@@ -527,7 +558,7 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Apostille MSZ – nie. Referat ds.&nbsp;Legalizacji MSZ działa tylko w&nbsp;Warszawie, przy ul.&nbsp;Kruczej 38/42, i&nbsp;to tam trafiają akty stanu cywilnego, zaświadczenia o&nbsp;niekaralności, dokumenty notarialne, sądowe i&nbsp;firmowe oraz tłumaczenia przysięgłe. W&nbsp;innych miastach MSZ nie ma oddziałów. Przyjeżdżać jednak nie trzeba: dokument wysyłasz Paczkomatem, a&nbsp;my składamy go i&nbsp;odbieramy w&nbsp;MSZ. Pełną listę dokumentów znajdziesz <a href="/apostille/#dokumenty" class="underline font-semibold">na stronie o&nbsp;Apostille</a>.
+          Apostille MSZ&nbsp;– nie. Referat ds.&nbsp;Legalizacji MSZ działa tylko w&nbsp;Warszawie, przy ul.&nbsp;Kruczej 38/42, i&nbsp;to tam trafiają akty stanu cywilnego, zaświadczenia o&nbsp;niekaralności, dokumenty notarialne, sądowe i&nbsp;firmowe oraz tłumaczenia przysięgłe. W&nbsp;innych miastach MSZ nie ma oddziałów. Przyjeżdżać jednak nie trzeba: dokument wysyłasz Paczkomatem, a&nbsp;my składamy go i&nbsp;odbieramy w&nbsp;MSZ. Pełną listę dokumentów znajdziesz <a href="/apostille/#dokumenty" class="underline font-semibold">na stronie o&nbsp;Apostille</a>.
         </p>
       </details>
 
@@ -537,7 +568,7 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Zlecenie. Sam bilet na pociąg w&nbsp;obie strony to często ponad połowa naszej ceny, a&nbsp;samochodem dochodzą paliwo, autostrada i&nbsp;parking w&nbsp;centrum Warszawy. Do tego dzień wolny z&nbsp;pracy i&nbsp;opłata skarbowa 60&nbsp;zł, którą płacisz tak czy inaczej. U&nbsp;nas Apostille MSZ kosztuje 260&nbsp;zł za dokument – z&nbsp;opłatą skarbową w&nbsp;cenie.
+          Zlecenie. Sam bilet na pociąg w&nbsp;obie strony to często ponad połowa naszej ceny, a&nbsp;samochodem dochodzą paliwo, autostrada i&nbsp;parking w&nbsp;centrum Warszawy. Do tego dzień wolny z&nbsp;pracy i&nbsp;opłata skarbowa 60&nbsp;zł, którą płacisz tak czy inaczej. U&nbsp;nas Apostille MSZ kosztuje 260&nbsp;zł za dokument&nbsp;– z&nbsp;opłatą skarbową w&nbsp;cenie.
         </p>
       </details>
 
@@ -547,7 +578,7 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Paczkomatem InPost. Po opłaceniu zlecenia dostajesz gotowe dane do nadania: numer paczkomatu docelowego, numer telefonu i&nbsp;e-mail odbiorcy. Dokument włóż do sztywnej koperty, żeby się nie zgiął, a&nbsp;zdjęcie koperty z&nbsp;numerem przesyłki wyślij nam na WhatsApp, Telegram albo e-mail – od tej chwili śledzimy ją razem z&nbsp;Tobą. Gotowy dokument wraca do paczkomatu, który wskażesz.
+          Paczkomatem InPost. W&nbsp;wycenie dostajesz gotowe dane do nadania: numer paczkomatu docelowego, numer telefonu i&nbsp;e-mail odbiorcy. Dokument włóż do sztywnej koperty, żeby się nie zgiął, a&nbsp;zdjęcie koperty z&nbsp;numerem przesyłki wyślij nam na WhatsApp, Telegram albo e-mail&nbsp;– od tej chwili śledzimy ją razem z&nbsp;Tobą. Gotowy dokument wraca do paczkomatu, który wskażesz.
         </p>
       </details>
 
@@ -557,17 +588,17 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Zwykle 3–5&nbsp;dni roboczych od nadania do odbioru: Paczkomat do&nbsp;Warszawy jedzie dzień, MSZ nadaje Apostille w&nbsp;1–3&nbsp;dni robocze, a&nbsp;powrót do Twojego paczkomatu to kolejny dzień. W&nbsp;trybie ekspresowym – 2–3&nbsp;dni. Dokument notarialny albo sądowy najpierw poświadcza Sąd Okręgowy właściwy dla notariusza lub sądu, który go wydał – ten czas doliczamy osobno. Czasem MSZ musi potwierdzić autentyczność dokumentu w&nbsp;urzędzie, który go wydał – np. zaświadczenia z&nbsp;wydziału komunikacji albo orzeczenia o&nbsp;niepełnosprawności. Wtedy wydanie Apostille trwa dłużej, od tygodnia do nawet miesiąca. Na ten etap nie mamy wpływu: dokument składamy od razu, a&nbsp;o&nbsp;każdym opóźnieniu informujemy Cię tego samego dnia.
+          Zwykle 3–5&nbsp;dni roboczych od nadania do odbioru: Paczkomat do&nbsp;Warszawy jedzie dzień, MSZ nadaje Apostille w&nbsp;1–3&nbsp;dni robocze, a&nbsp;powrót do Twojego paczkomatu to kolejny dzień. W&nbsp;trybie ekspresowym&nbsp;– 2–3&nbsp;dni. Dokument notarialny albo sądowy najpierw poświadcza Sąd Okręgowy właściwy dla notariusza lub sądu, który go wydał&nbsp;– ten czas doliczamy osobno. Czasem MSZ musi potwierdzić autentyczność dokumentu w&nbsp;urzędzie, który go wydał&nbsp;– np. zaświadczenia z&nbsp;wydziału komunikacji albo orzeczenia o&nbsp;niepełnosprawności. Wtedy wydanie Apostille trwa dłużej, od tygodnia do nawet miesiąca. Na ten etap nie mamy wpływu: dokument składamy od razu, a&nbsp;o&nbsp;każdym opóźnieniu informujemy Cię tego samego dnia.
         </p>
       </details>
 
       <details class="group border-b border-ink/15">
         <summary class="flex items-center justify-between gap-6 py-6">
-          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Mam akt notarialny z&nbsp;Krakowa – załatwicie wszystko?</h3>
+          <h3 class="text-[20px] sm:text-[24px] font-semibold tracking-tight">Mam akt notarialny z&nbsp;Krakowa&nbsp;– załatwicie wszystko?</h3>
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Dwa etapy. Pierwszy to Sąd Okręgowy właściwy dla kancelarii notariusza – w&nbsp;Krakowie Sąd Okręgowy w&nbsp;Krakowie, ul. Przy Rondzie 7. Idziesz tam sam, bez zapisów, albo wysyłasz dokument pocztą, a&nbsp;opłata to 26&nbsp;zł za podpis; w&nbsp;sądzie składamy wyłącznie w&nbsp;Warszawie. Drugi etap to Apostille w&nbsp;MSZ, które działa tylko w&nbsp;Warszawie – oryginał z&nbsp;klauzulą sądu wysyłasz Paczkomatem, a&nbsp;resztę robimy my. Adresy wszystkich sądów okręgowych w&nbsp;Polsce są wyżej na tej stronie, a&nbsp;całą drogę dokumentu od notariusza opisujemy na stronie <a href="/apostille/pelnomocnictwo/" class="underline font-semibold">Apostille na pełnomocnictwo</a>.
+          Prawie wszystko: pierwszy krok, w&nbsp;sądzie w&nbsp;Krakowie, robisz sam, a&nbsp;resztę bierzemy na siebie. Podpis notariusza poświadcza Sąd Okręgowy w&nbsp;Krakowie przy ul.&nbsp;Przy Rondzie&nbsp;7. Idziesz tam bez zapisów albo wysyłasz dokument pocztą, a&nbsp;opłata wynosi 26&nbsp;zł za podpis. My składamy dokumenty tylko w&nbsp;sądach warszawskich. Potem oryginał z&nbsp;klauzulą sądu wysyłasz nam Paczkomatem, a&nbsp;Apostille w&nbsp;MSZ, które działa tylko w&nbsp;Warszawie, uzyskamy za Ciebie. Adresy wszystkich sądów okręgowych w&nbsp;Polsce są wyżej na tej stronie, a&nbsp;całą drogę dokumentu od notariusza opisujemy na stronie <a href="/apostille/pelnomocnictwo/" class="underline font-semibold">Apostille na pełnomocnictwo</a>.
         </p>
       </details>
 
@@ -577,7 +608,7 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Zwracamy całą wpłatę, razem z&nbsp;opłatą skarbową 60&nbsp;zł&nbsp;– o&nbsp;jej zwrot z&nbsp;urzędu miasta występujemy już sami. Dlatego oglądamy zdjęcie dokumentu, zanim przyjmiemy zlecenie – i&nbsp;mówimy wprost, gdy klauzuli nie da się nadać: zwykła kserokopia, dokument zalaminowany, zatarta pieczęć.
+          Zwracamy całą wpłatę, razem z&nbsp;opłatą skarbową 60&nbsp;zł&nbsp;– o&nbsp;jej zwrot z&nbsp;urzędu miasta występujemy już sami. Dlatego oglądamy zdjęcie dokumentu, zanim przyjmiemy zlecenie&nbsp;– i&nbsp;mówimy wprost, gdy klauzuli nie da się nadać: zwykła kserokopia, dokument zalaminowany, zatarta pieczęć.
         </p>
       </details>
 
@@ -587,7 +618,7 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Tak. Do wyceny wystarczy zdjęcie dokumentu w&nbsp;formularzu. Oryginał przyjmujemy przesyłką DHL&nbsp;Express i&nbsp;tą samą drogą odsyłamy gotowy dokument – koszt przesyłki podajemy w&nbsp;wycenie.
+          Tak. Do wyceny wystarczy zdjęcie dokumentu w&nbsp;formularzu. Oryginał wysyłasz dowolnym przewoźnikiem na adres z&nbsp;wyceny, a&nbsp;gotowy dokument odsyłamy DHL&nbsp;Express&nbsp;– około 300&nbsp;zł za przesyłkę, dokładną kwotę podajemy w&nbsp;wycenie.
         </p>
       </details>
     </div>
@@ -633,7 +664,7 @@
         <address class="fl-note fl-where not-italic" style="margin-top:0">
           <span class="fl-w-item">
             <strong>Warszawa – Śródmieście</strong>
-            <span class="fl-soft">Śródmieście · paczkomat InPost</span>
+            <span class="fl-soft">Śródmieście · Paczkomat InPost</span>
           </span>
           <a href="/apostille/gdzie/" class="fl-link fl-w-link"><span class="nl-swap"><span class="nl-a">Gdzie załatwia się Apostille</span><span class="nl-b" aria-hidden="true">Gdzie załatwia się Apostille</span></span></a>
         </address>
@@ -661,6 +692,9 @@
           Apostille <a href="/apostille/akt-urodzenia/" class="underline">na akt urodzenia</a> · <a href="/apostille/pelnomocnictwo/" class="underline">na pełnomocnictwo</a> · <a href="/apostille/zaswiadczenie-o-niekaralnosci/" class="underline">na zaświadczenie o&nbsp;niekaralności</a>
           <span class="text-paper/70 text-[17px] align-middle" style="font-weight:900">·</span>
           <span class="font-bold text-paper/70">Zgłoszenia&nbsp;24/7</span>
+        </p>
+        <p class="text-[13px] text-paper/45 mt-1.5">
+          Tłumaczenie przysięgłe <a href="/tlumaczenia-przysiegle/jezyk-angielski/" class="underline">z&nbsp;angielskiego</a> · <a href="/tlumaczenia-przysiegle/ukrainski/" hreflang="uk" lang="uk" class="underline">з&nbsp;української</a> · <a href="/tlumaczenia-przysiegle/rosyjski/" hreflang="ru" lang="ru" class="underline">с&nbsp;русского</a>
         </p>
       </div>
     </div>

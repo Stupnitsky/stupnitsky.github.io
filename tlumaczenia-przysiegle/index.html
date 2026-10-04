@@ -6,6 +6,10 @@
 <!-- Защита (28.09.2026): браузер выполняет только наши скрипты; новый внешний сервис (gtag, карта) – сначала вписать сюда -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ga0M3hxX7BbNMOsk8k9ra3P80+aMOd6HTfkftF5FpXw='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://formspree.io https://script.google.com https://script.googleusercontent.com; form-action 'self' https://formspree.io https://script.google.com; object-src 'none'; frame-src 'none'; base-uri 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preload" href="/assets/fonts/fira-sans-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-900-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 
 <title>Tłumacz przysięgły Warszawa – ukraiński, rosyjski, angielski</title>
 <meta name="description" content="Tłumaczenia przysięgłe w Warszawie i online: ukraiński, rosyjski, angielski – 90 zł za stronę. Akt urodzenia, prawo jazdy – wycena zwykle w 15 minut.">
@@ -136,19 +140,19 @@
     { "@type": "Question", "name": "Jak liczy się strona Tłumaczenia Przysięgłego?",
       "acceptedAnswer": { "@type": "Answer", "text": "Strona obliczeniowa to 1125 znaków ze spacjami gotowego tłumaczenia, liczonych w tekście docelowym, nie w oryginale. Każda rozpoczęta strona liczy się jako cała. Opisy pieczęci, podpisów i adnotacji oraz uwagi tłumacza też wchodzą do tekstu, dlatego akt z kilkoma pieczęciami bywa dłuższy, niż wygląda. Liczbę stron podajemy przed zleceniem." } },
     { "@type": "Question", "name": "Ile trwa Tłumaczenie Przysięgłe?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Standardowo 2–4 dni robocze od potwierdzenia płatności; pojedynczy akt lub zaświadczenie zwykle szybciej. Ekspres na następny dzień roboczy – po uzgodnieniu, zależnie od języka i objętości. Jeśli dokument potrzebuje też Apostille, doliczamy 1–3 dni robocze na MSZ. Uzyskanie Apostille na Dokumenty z Ukrainy trwa dłużej: na akty wydane po 2016 roku zwykle 2–3 tygodnie, a przy aktach sprzed 2016 roku trzeba najpierw uzyskać duplikat, więc razem 5–6 tygodni. Przy akcie wydanym w 2016 roku wariant zależy od blankietu – podamy go po zdjęciu." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Standardowo 2–4 dni robocze od potwierdzenia płatności. Akt lub prawo jazdy (1 strona) – zwykle następnego dnia roboczego, skan tego samego dnia. Ekspres na następny dzień roboczy – po uzgodnieniu, zależnie od języka i objętości. Jeśli dokument potrzebuje też Apostille, doliczamy 1–3 dni robocze na MSZ. Uzyskanie Apostille na Dokumenty z Ukrainy trwa dłużej: na akty wydane po 2016 roku zwykle 10–14 dni, a przy aktach sprzed 2016 roku trzeba najpierw uzyskać duplikat, więc razem 5–6 tygodni. Przy akcie wydanym w 2016 roku wariant zależy od blankietu – podamy go po zdjęciu." } },
     { "@type": "Question", "name": "W jakich językach wykonujecie Tłumaczenia Przysięgłe?",
       "acceptedAnswer": { "@type": "Answer", "text": "Najczęściej ukraiński, rosyjski i angielski – w obie strony, z polskiego i na polski. Niemiecki, hiszpański, włoski, niderlandzki i francuski – przez współpracujących tłumaczy przysięgłych. Inne języki obsługujemy po uzgodnieniu, wystarczy zapytać." } },
     { "@type": "Question", "name": "Czy muszę dostarczyć Oryginał dokumentu?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Do wyceny i do tłumaczenia wystarczy czytelny skan lub zdjęcie. Oryginał jest potrzebny, gdy urząd wymaga tłumaczenia „z oryginału” – wtedy pokazujesz go na spotkaniu albo wysyłasz Paczkomatem do wglądu. Tłumacz porównuje go ze skanem i wpisuje odpowiednią formułę, a wysłany oryginał wraca do Ciebie razem z tłumaczeniem. Oryginał jest też niezbędny, jeśli dokument ma dostać Apostille." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Nie zawsze. Do wyceny i do tłumaczenia wystarczy czytelny skan lub zdjęcie. Oryginał jest potrzebny, gdy urząd wymaga tłumaczenia „z oryginału” – wtedy pokazujesz go na spotkaniu albo wysyłasz Paczkomatem do wglądu. Tłumacz porównuje go ze skanem i wpisuje odpowiednią formułę, a wysłany oryginał wraca do Ciebie razem z tłumaczeniem. Oryginał jest też niezbędny, jeśli dokument ma dostać Apostille." } },
     { "@type": "Question", "name": "Czy tłumaczenie zrobione za granicą jest ważne w Polsce?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Zwykle nie. Polskie urzędy przyjmują tłumaczenia wykonane przez tłumacza przysięgłego z polskiej listy albo poświadczone przez polskiego konsula. Tłumaczenie notarialne z Ukrainy czy tłumaczenie „certified” z Wielkiej Brytanii trzeba zrobić od nowa w Polsce – tanie w kraju wydania, ale bezużyteczne w okienku." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Zwykle nie. Polskie urzędy przyjmują tłumaczenia wykonane przez tłumacza przysięgłego z polskiej listy albo poświadczone przez polskiego konsula. Tłumaczenie notarialne z Ukrainy czy tłumaczenie „certified” z Wielkiej Brytanii trzeba zrobić od nowa w Polsce, bo polski urząd go nie przyjmie." } },
     { "@type": "Question", "name": "Czy Tłumaczenie Przysięgłe można zamówić online?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Tak. Zdjęcie albo skan dokumentu załączasz w formularzu wyceny, cenę i termin dostajesz e-mailem, zwykle w 15 minut, a płacisz dopiero po akceptacji wyceny, przed rozpoczęciem tłumaczenia – BLIK-iem albo przelewem. Gotowe tłumaczenie odbierasz na spotkaniu w centrum Warszawy albo w Paczkomacie w dowolnym mieście. Jeśli odbiorca przyjmuje wersję elektroniczną, tłumacz może wydać plik PDF z kwalifikowanym podpisem elektronicznym." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Tak. Zdjęcie albo skan dokumentu załączasz w formularzu wyceny, cenę i termin dostajesz e-mailem, zwykle w 15 minut, a płacisz dopiero po akceptacji wyceny, przed rozpoczęciem tłumaczenia – BLIK-iem albo przelewem. Gotowe tłumaczenie odbierasz na spotkaniu w centrum Warszawy albo w Paczkomacie w dowolnym mieście. Jeśli odbiorca przyjmuje wersję elektroniczną, na zapytanie przygotujemy PDF z kwalifikowanym podpisem elektronicznym tłumacza – nie w każdym języku." } },
     { "@type": "Question", "name": "Czy Tłumaczenie Przysięgłe może być elektroniczne?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Tak – tłumacz może wydać plik PDF podpisany kwalifikowanym podpisem elektronicznym. Przyjmuje go część urzędów i instytucji online, ale nie da się na nim uzyskać Apostille i nie każde okienko go akceptuje. Jeśli nie wiesz, co przyjmie odbiorca – zamów wersję papierową, a skan i tak dostaniesz od ręki." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Tak. Tłumaczenie w PDF z kwalifikowanym podpisem elektronicznym tłumacza przygotujemy na zapytanie – nie w każdym języku, dlatego napisz o tym w formularzu. Taki plik przyjmuje część urzędów i instytucji online, ale nie da się na nim uzyskać Apostille i nie każde okienko go akceptuje. Jeśli nie wiesz, co przyjmie odbiorca – zamów wersję papierową, a skan i tak dostaniesz od ręki." } },
     { "@type": "Question", "name": "Czy na tłumaczenie można uzyskać Apostille?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Tak. MSZ potwierdza wtedy podpis tłumacza przysięgłego – jest to potrzebne, gdy polskie tłumaczenie ma być użyte za granicą. Apostille MSZ nadaje tylko na papierowym oryginale tłumaczenia z odręcznym podpisem i pieczęcią tłumacza, a nie na skanie. Kolejność zależy od odbiorcy dokumentu: najczęściej Apostille na dokument, potem tłumaczenie, na końcu Apostille na tłumaczenie – tak wymagają np. Włochy i Hiszpania. Bywa też, że wystarczy Apostille na samo tłumaczenie. Wymagania sprawdź tam, gdzie składasz dokument – warianty Apostille z tłumaczeniem przysięgłym opisujemy na osobnej stronie." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Tak. MSZ potwierdza wtedy podpis tłumacza przysięgłego. Apostille przydaje się, gdy polskie tłumaczenie ma trafić za granicę, a odbiorca o nią poprosi. Apostille MSZ nadaje tylko na papierowym oryginale tłumaczenia z odręcznym podpisem i pieczęcią tłumacza, a nie na skanie. Kolejność zależy od odbiorcy dokumentu: najczęściej Apostille na dokument, potem tłumaczenie, na końcu Apostille na tłumaczenie – tak wymagają np. Włochy i Hiszpania. Bywa też, że wystarczy Apostille na samo tłumaczenie. Wymagania sprawdź tam, gdzie składasz dokument – warianty Apostille z tłumaczeniem przysięgłym opisujemy na osobnej stronie." } },
     { "@type": "Question", "name": "Czy mogę zlecić tłumaczenie kilku dokumentów naraz?",
       "acceptedAnswer": { "@type": "Answer", "text": "Tak, i to najczęstszy przypadek – komplet do karty pobytu czy do USC to zwykle kilka dokumentów. Od 6 stron w jednym zleceniu udzielamy 10% rabatu na tłumaczenie – liczą się strony tłumaczeń przysięgłych i zwykłych. Wszystkie dokumenty, które potrzebują Apostille, składamy w MSZ w jednym terminie." } },
     { "@type": "Question", "name": "Czy Tłumaczenie Przysięgłe ma termin ważności?",
@@ -246,13 +250,13 @@
 <section class="relative overflow-hidden pt-8 pb-16 md:pt-14 md:pb-24">
   <div class="relative mx-auto max-w-site px-5 sm:px-8">
     <p class="font-cond uppercase tracking-[0.18em] text-[15px] font-semibold text-ink/75 mb-6">Tłumaczenia przysięgłe</p>
-    <h1 class="tracking-tightest leading-[0.95] text-[36px] sm:text-[52px] md:text-[64px] font-black h1-page">Tłumacz przysięgły w&nbsp;Warszawie – ukraiński, rosyjski, angielski</h1>
+    <h1 class="tracking-tightest leading-[0.95] text-[36px] sm:text-[52px] md:text-[64px] font-black h1-page">Tłumacz przysięgły w&nbsp;Warszawie&nbsp;– ukraiński, rosyjski, angielski</h1>
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
       <!-- лид под запросы (Грег, 26.09.2026, подсказки Google: ищут документ + цену, учреждения почти не ищут):
            документы – как их вбивают (akt urodzenia, prawo jazdy, dokumenty samochodowe, dyplom, zaświadczenie o niekaralności),
            три языка в обе стороны, цена и срок, «online», Warszawa и Paczkomat, Apostille в том же заказе -->
       Tłumaczymy akty urodzenia i&nbsp;małżeństwa, prawa jazdy, dokumenty samochodowe, dyplomy i&nbsp;zaświadczenia
-      o&nbsp;niekaralności – z&nbsp;ukraińskiego, rosyjskiego i&nbsp;angielskiego na polski oraz z&nbsp;polskiego.
+      o&nbsp;niekaralności&nbsp;– z&nbsp;ukraińskiego, rosyjskiego i&nbsp;angielskiego na polski oraz z&nbsp;polskiego.
       To tłumaczenia przysięgłe, więc przyjmują je urzędy, sądy i&nbsp;banki w&nbsp;całej Polsce. Strona kosztuje 90&nbsp;zł,
       a&nbsp;gotowe tłumaczenie dostajesz zwykle w&nbsp;ciągu <span class="whitespace-nowrap">2–4</span> dni roboczych. Zamawiasz online: zdjęcie dokumentu załączasz
       w&nbsp;<a href="/cennik/#wycena" data-quote class="underline">formularzu wyceny</a>, a&nbsp;tłumaczenie odbierasz
@@ -266,9 +270,10 @@
       </a>
     </p>
     <!-- главное действие – форма заявки (панель wyceny), перед ней мессенджеры; как в hero /kontakt/ (21.09.2026) -->
-    <div class="cta-btns hero-cta" role="group" aria-label="Zamów wycenę lub napisz na komunikatorze">
+    <div class="cta-btns hero-cta hero-cta--4" role="group" aria-label="Zamów wycenę, zadzwoń lub napisz na komunikatorze">
       <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20t%C5%82umaczenie%20przysi%C4%99g%C5%82e" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
       <a href="https://t.me/apostilo?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20t%C5%82umaczenie%20przysi%C4%99g%C5%82e" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="tel:+48507588155" class="cta-btn" aria-label="Zadzwoń: +48 507 588 155">Zadzwoń<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
       <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
     </div>
     <!-- Образец перевода «po polsku» (25.09.2026, идея 4 стенда docs/typografia/): документ на своём языке → он же по-польски.
@@ -339,10 +344,10 @@
         <li class="lng-cell lng-cell--void" aria-hidden="true"></li><li class="lng-cell lng-cell--void" aria-hidden="true"></li><li class="lng-cell lng-cell--void" aria-hidden="true"></li>
       </ul>
     </div>
-    <p class="lng-foot"><span class="lng-tag">UA / RU / EN&nbsp; zawsze dostępne</span><span class="lng-price"><span>90,-&nbsp;zł / strona&nbsp;·</span> <span>1125 znaków ze&nbsp;spacjami</span></span></p>
+    <p class="lng-foot"><span class="lng-tag">UA / RU / EN&nbsp; zawsze dostępne</span><span class="lng-price"><span>90,-&nbsp;zł / strona&nbsp;·</span> <span>1125&nbsp;znaków ze&nbsp;spacjami</span></span></p>
     <p class="lng-note text-[17px] leading-[1.6] max-w-[62ch]">
-      <b class="font-bold">Niemiecki, włoski, francuski, hiszpański i&nbsp;niderlandzki</b> – przez współpracujących tłumaczy
-      przysięgłych. Termin i&nbsp;cena za stronę zależą od języka – podajemy je przy wycenie. <b class="font-bold">Pozostałe języki</b> –
+      <b class="font-bold">Niemiecki, włoski, francuski, hiszpański i&nbsp;niderlandzki</b>&nbsp;– przez współpracujących tłumaczy
+      przysięgłych. Termin i&nbsp;cena za stronę zależą od języka&nbsp;– podajemy je przy wycenie. <b class="font-bold">Pozostałe języki</b>&nbsp;–
       zapytaj, sprawdzimy dostępność.
     </p>
   </div>
@@ -360,32 +365,32 @@
     <div class="ap-cols mt-8">
       <div>
         <p class="text-[17px] leading-[1.6] text-ink/75">
-          <b class="font-bold text-ink">Tłumaczenie przysięgłe</b> (w&nbsp;przepisach – poświadczone, potocznie też uwierzytelnione)
+          <b class="font-bold text-ink">Tłumaczenie przysięgłe</b> (w&nbsp;przepisach&nbsp;– poświadczone, potocznie też uwierzytelnione)
           wykonuje tłumacz wpisany na listę Ministra
           Sprawiedliwości. Takie tłumaczenie ma pieczęć tłumacza, numer w&nbsp;repertorium i&nbsp;formułę poświadczającą zgodność
-          z&nbsp;oryginałem – dlatego przyjmują je urzędy, sądy, banki i&nbsp;uczelnie. Jest potrzebne wszędzie tam,
+          z&nbsp;oryginałem&nbsp;– dlatego przyjmują je urzędy, sądy, banki i&nbsp;uczelnie. Jest potrzebne wszędzie tam,
           gdzie dokument ma wywołać skutki prawne: karta pobytu, ślub, transkrypcja aktu, sprawa w&nbsp;sądzie,
           kredyt, nostryfikacja dyplomu. Tłumacz opisuje w&nbsp;nim wszystko, co widzi: pieczęcie, podpisy,
-          znaki wodne, skreślenia – i&nbsp;zaznacza, czy tłumaczył z&nbsp;oryginału, czy z&nbsp;kopii. Strona takiego tłumaczenia
+          znaki wodne, skreślenia&nbsp;– i&nbsp;zaznacza, czy tłumaczył z&nbsp;oryginału, czy z&nbsp;kopii. Strona takiego tłumaczenia
           (1125&nbsp;znaków ze spacjami) kosztuje 90&nbsp;zł, a&nbsp;gotowe tłumaczenie dostajesz zwykle w&nbsp;ciągu <span class="whitespace-nowrap">2–4</span>&nbsp;dni roboczych.
         </p>
         <p class="mt-4 text-[17px] leading-[1.6] text-ink/75">
           <b class="font-bold text-ink">Tłumaczenie zwykłe</b> ma pieczęć zwykłego tłumacza, a&nbsp;nie przysięgłego, dlatego polskie
           urzędy, sądy i&nbsp;USC go nie przyjmą. Najczęściej wystarcza za to do wniosku wizowego, korespondencji, CV czy strony
-          internetowej. Kosztuje 80&nbsp;zł za stronę – tu strona to 1800 znaków ze spacjami, a&nbsp;termin jest ten sam: zwykle <span class="whitespace-nowrap">2–4</span> dni robocze. Przy dłuższych tekstach wychodzi prawie o&nbsp;połowę taniej niż przysięgłe, a&nbsp;przy krótkim dokumencie różnica jest niewielka.
+          internetowej. Kosztuje 80&nbsp;zł za stronę&nbsp;– tu strona to 1800&nbsp;znaków ze spacjami, a&nbsp;termin jest ten sam: zwykle <span class="whitespace-nowrap">2–4</span> dni robocze. Przy dłuższych tekstach wychodzi prawie o&nbsp;połowę taniej niż przysięgłe, a&nbsp;przy krótkim dokumencie różnica jest niewielka.
         </p>
       </div>
       <div>
         <p class="text-[17px] leading-[1.6] text-ink/75">
           <b class="font-bold text-ink">Którego potrzebujesz?</b> Urzędy, sądy, banki i&nbsp;uczelnie przyjmują tylko
-          tłumaczenie przysięgłe. W&nbsp;innych sprawach – na przykład przy wizie albo u&nbsp;pracodawcy – wymagania bywają
+          tłumaczenie przysięgłe. W&nbsp;innych sprawach&nbsp;– na przykład przy wizie albo u&nbsp;pracodawcy&nbsp;– wymagania bywają
           różne, dlatego zanim zamówisz, zapytaj tam, gdzie składasz dokument, jakiego tłumaczenia potrzebują.
           Wykonamy jedno i&nbsp;drugie.
         </p>
         <p class="mt-4 text-[17px] leading-[1.6] text-ink/75">
           <b class="font-bold text-ink">Z&nbsp;Oryginału czy z&nbsp;kopii?</b> Do wyceny i&nbsp;do pracy tłumacza wystarczy
           dobry skan albo zdjęcie. Jeśli urząd wymaga tłumaczenia „z&nbsp;oryginału”, oryginał pokazujesz na
-          spotkaniu albo wysyłasz Paczkomatem do wglądu – tłumacz porównuje go ze skanem i&nbsp;wpisuje odpowiednią formułę,
+          spotkaniu albo wysyłasz Paczkomatem do wglądu&nbsp;– tłumacz porównuje go ze skanem i&nbsp;wpisuje odpowiednią formułę,
           a&nbsp;dokument wraca do Ciebie razem z&nbsp;tłumaczeniem.
           Bez oryginału tłumaczenie ma adnotację „z&nbsp;kopii”, co część urzędów akceptuje, a&nbsp;część nie.
         </p>
@@ -408,15 +413,15 @@
       </h2>
       <div class="tl-fin-cols">
         <div>
-          <p class="tl-fin-t"><b>Dokumenty.</b> Zdjęcie albo skan załączasz w&nbsp;formularzu o&nbsp;każdej porze, a&nbsp;my odpowiadamy ceną końcową i&nbsp;terminem – zwykle w&nbsp;15 minut, codziennie <span class="whitespace-nowrap">7:00–21:00</span>. Wycena jest bezpłatna i&nbsp;do niczego nie zobowiązuje.</p>
+          <p class="tl-fin-t"><b>Dokumenty.</b> Zdjęcie albo skan załączasz w&nbsp;formularzu o&nbsp;każdej porze, a&nbsp;my odpowiadamy ceną końcową i&nbsp;terminem&nbsp;– zwykle w&nbsp;15&nbsp;minut, codziennie <span class="whitespace-nowrap">7:00–21:00</span>. Wycena jest bezpłatna i&nbsp;do niczego nie zobowiązuje.</p>
           <div class="cta-btns"><a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a></div>
         </div>
         <div>
-          <p class="tl-fin-t"><b>Rozmowa.</b> Nie wiesz, jakiego tłumaczenia potrzebujesz? Zadzwoń – codziennie <span class="whitespace-nowrap">7:00–21:00</span>, po polsku, ukraińsku, rosyjsku lub angielsku.</p>
+          <p class="tl-fin-t"><b>Rozmowa.</b> Nie wiesz, jakiego tłumaczenia potrzebujesz? Zadzwoń&nbsp;– codziennie <span class="whitespace-nowrap">7:00–21:00</span>, po polsku, ukraińsku, rosyjsku lub angielsku.</p>
           <div class="cta-btns"><a href="tel:+48507588155" class="cta-btn" aria-label="Zadzwoń: +48 507 588 155, 7:00–21:00">+48 507 588 155<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a></div>
         </div>
         <div>
-          <p class="tl-fin-t"><b>Pytanie.</b> Język, termin, odbiór – napisz na komunikatorze.</p>
+          <p class="tl-fin-t"><b>Pytanie.</b> Język, termin, odbiór&nbsp;– napisz na komunikatorze.</p>
           <div class="cta-btns"><a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20t%C5%82umaczenie%20przysi%C4%99g%C5%82e" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a><a href="https://t.me/apostilo?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20t%C5%82umaczenie%20przysi%C4%99g%C5%82e" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a></div>
         </div>
       </div>
@@ -438,7 +443,7 @@
     <div class="ap-docs mt-8">
       <div class="ap-doc">
         <h3>Urząd Wojewódzki</h3>
-        <p>Komplet tłumaczeń do spraw pobytowych w&nbsp;Mazowieckim Urzędzie Wojewódzkim – karta pobytu, pobyt stały, obywatelstwo. Akty stanu cywilnego, dokumenty dzieci i&nbsp;małżonka, umowy o&nbsp;pracę, zaświadczenia o&nbsp;zatrudnieniu i&nbsp;dochodach, zaświadczenia o&nbsp;niekaralności, dokumenty mieszkaniowe, dyplomy i&nbsp;kwalifikacje. Termin standardowy <span class="whitespace-nowrap">2–4</span> dni robocze, ekspres na następny dzień roboczy – po uzgodnieniu.</p>
+        <p>Tłumaczymy komplety dokumentów do wniosków o&nbsp;kartę pobytu, pobyt stały i&nbsp;obywatelstwo w&nbsp;Mazowieckim Urzędzie Wojewódzkim. Najczęściej są to akty stanu cywilnego, dokumenty dzieci i&nbsp;małżonka, umowy o&nbsp;pracę, zaświadczenia o&nbsp;zatrudnieniu, dochodach i&nbsp;niekaralności, dokumenty mieszkaniowe, dyplomy i&nbsp;świadectwa kwalifikacji zawodowych. Standardowo trwa to <span class="whitespace-nowrap">2–4&nbsp;dni</span> robocze, a&nbsp;ekspres na następny dzień roboczy jest możliwy po uzgodnieniu.</p>
       </div>
       <div class="ap-doc">
         <h3>Urząd Stanu Cywilnego</h3>
@@ -450,15 +455,15 @@
       </div>
       <div class="ap-doc">
         <h3>Konsulaty</h3>
-        <p>Dokumenty do spraw wizowych, paszportowych i&nbsp;obywatelstwa, przygotowane zgodnie z&nbsp;wymogami konkretnej placówki: zaproszenia i&nbsp;potwierdzenia zakwaterowania, pełnomocnictwa i&nbsp;oświadczenia, zgody na wyjazd dziecka za granicę. Na życzenie kompletujemy dokumenty z&nbsp;Apostille MSZ do użycia za granicą. Do samej wizy zwykle wystarczy tłumaczenie zwykłe – 80&nbsp;zł za 1800 znaków.</p>
+        <p>Dokumenty do spraw wizowych i&nbsp;paszportowych oraz do wniosków o&nbsp;obywatelstwo, przygotowane zgodnie z&nbsp;wymogami konkretnej placówki: zaproszenia i&nbsp;potwierdzenia zakwaterowania, pełnomocnictwa i&nbsp;oświadczenia, zgody na wyjazd dziecka za granicę. Na życzenie kompletujemy dokumenty z&nbsp;Apostille MSZ do użycia za granicą. Do samej wizy najczęściej wystarczy tłumaczenie zwykłe&nbsp;– 80&nbsp;zł za 1800&nbsp;znaków.</p>
       </div>
       <div class="ap-doc">
         <h3>Banki i&nbsp;leasing</h3>
-        <p>Tłumaczenia do wniosków kredytowych, leasingowych i&nbsp;obsługi firmowej, honorowane przez banki działające w&nbsp;Polsce: zaświadczenia o&nbsp;zatrudnieniu i&nbsp;dochodach, umowy o&nbsp;pracę, zlecenia i&nbsp;kontrakty B2B, wyciągi bankowe, dokumenty rejestrowe firmy – KRS, CEIDG, umowa spółki, pełnomocnictwa. Od 6&nbsp;stron w&nbsp;jednym zleceniu – rabat 10%. Na życzenie wystawiamy fakturę.</p>
+        <p>Tłumaczenia do wniosków kredytowych, leasingowych i&nbsp;obsługi firmowej, honorowane przez banki działające w&nbsp;Polsce: zaświadczenia o&nbsp;zatrudnieniu i&nbsp;dochodach, umowy o&nbsp;pracę i&nbsp;umowy zlecenia, kontrakty B2B, wyciągi bankowe, dokumenty rejestrowe firmy&nbsp;– KRS, CEIDG, umowa spółki, pełnomocnictwa. Od 6&nbsp;stron w&nbsp;jednym zleceniu&nbsp;– rabat 10%. Na życzenie wystawiamy fakturę.</p>
       </div>
       <div class="ap-doc">
         <h3>Uczelnie i&nbsp;szkoły</h3>
-        <p>Dokumenty do rekrutacji, uznania wykształcenia i&nbsp;nostryfikacji: dyplomy ukończenia studiów i&nbsp;suplementy, świadectwa szkolne i&nbsp;maturalne, wykazy ocen, programy studiów i&nbsp;sylabusy, zaświadczenia o&nbsp;toku studiów. Razem z&nbsp;Apostille, jeśli uczelnia jej wymaga: dla <a href="/apostille-ukraina/" class="underline font-semibold">Dokumentów z&nbsp;Ukrainy</a> uzyskujemy ją przez partnera w&nbsp;Ukrainie, dyplomy z&nbsp;innych krajów dostają Apostille w&nbsp;kraju wydania.</p>
+        <p>Dokumenty do rekrutacji, uznania wykształcenia i&nbsp;nostryfikacji: dyplomy ukończenia studiów i&nbsp;suplementy, świadectwa szkolne i&nbsp;maturalne, wykazy ocen, programy studiów i&nbsp;sylabusy, zaświadczenia o&nbsp;toku studiów. Jeśli uczelnia wymaga Apostille, przy <a href="/apostille-ukraina/" class="underline font-semibold">Dokumentach z&nbsp;Ukrainy</a> uzyskujemy ją przez partnera w&nbsp;Ukrainie, a&nbsp;na dyplomach z&nbsp;innych krajów nadaje ją urząd w&nbsp;kraju wydania.</p>
       </div>
     </div>
   </div>
@@ -470,24 +475,24 @@
     <div class="bg-sand text-ink rounded-[26px] p-7 sm:p-12 gt-card">
       <div class="grid grid-cols-12 gap-8">
         <div class="col-span-12 lg:col-span-7">
-          <p class="kicker">/ Cena i termin</p>
+          <p class="kicker">/ Cena i&nbsp;termin</p>
           <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
             Ile kosztuje Tłumaczenie Przysięgłe
           </h2>
           <p class="mt-6 text-[17px] leading-[1.6] text-ink/75 max-w-[56ch]">
-            Strona tłumaczenia przysięgłego z&nbsp;ukraińskiego, rosyjskiego i&nbsp;angielskiego – na polski i&nbsp;z&nbsp;polskiego – kosztuje 90&nbsp;zł.
-            Chodzi o&nbsp;stronę obliczeniową: 1125 znaków ze spacjami gotowego tłumaczenia, tak jak
+            Strona tłumaczenia przysięgłego z&nbsp;ukraińskiego, rosyjskiego i&nbsp;angielskiego&nbsp;– na polski i&nbsp;z&nbsp;polskiego&nbsp;– kosztuje 90&nbsp;zł.
+            Chodzi o&nbsp;stronę obliczeniową: 1125&nbsp;znaków ze spacjami gotowego tłumaczenia, tak jak
             przewiduje rozporządzenie Ministra Sprawiedliwości. Każda rozpoczęta strona liczy się jako cała.
             Standardowy akt urodzenia czy małżeństwa z&nbsp;Ukrainy lub Białorusi i&nbsp;plastikowe prawo jazdy z&nbsp;Ukrainy,
-            Białorusi lub Rosji zajmują po jednej stronie, a&nbsp;jeśli akt ma Apostille – dwie, bo tłumaczymy też klauzulę. Dokładną liczbę stron podajemy
+            Białorusi lub Rosji zajmują po jednej stronie, a&nbsp;jeśli akt ma Apostille&nbsp;– dwie, bo tłumaczymy też klauzulę. Dokładną liczbę stron podajemy
             po zobaczeniu dokumentu, przed zleceniem. Sprawdź, <a href="#dokumenty" class="underline">ile stron mają typowe dokumenty</a>.
           </p>
           <p class="mt-4 text-[17px] leading-[1.6] text-ink/75 max-w-[56ch]">
-            Termin standardowy to <span class="whitespace-nowrap">2–4</span> dni robocze od potwierdzenia płatności. Ekspres na następny dzień
-            roboczy – po uzgodnieniu, zależnie od języka i&nbsp;objętości. Zaznacz „Sprawa pilna” w&nbsp;formularzu,
+            Termin standardowy to <span class="whitespace-nowrap">2–4</span> dni robocze od potwierdzenia płatności. Akt lub prawo jazdy (1&nbsp;strona)&nbsp;– zwykle następnego dnia roboczego, skan tego samego dnia. Ekspres na następny dzień
+            roboczy&nbsp;– po uzgodnieniu, zależnie od języka i&nbsp;objętości. Zaznacz „Sprawa pilna” w&nbsp;formularzu,
             a&nbsp;cenę ekspresu podamy w&nbsp;wycenie. Skan gotowego tłumaczenia wysyłamy
-            od ręki, oryginał z&nbsp;pieczęcią odbierasz na spotkaniu albo dostajesz Paczkomatem – przy zleceniu
-            od&nbsp;350&nbsp;zł wysyłka jest w&nbsp;cenie, przy mniejszym kosztuje 30&nbsp;zł w&nbsp;jedną stronę.
+            od ręki, oryginał z&nbsp;pieczęcią odbierasz na spotkaniu albo dostajesz Paczkomatem&nbsp;– przy zleceniu
+            od&nbsp;350&nbsp;zł wysyłka jest w&nbsp;cenie, przy mniejszym kosztuje 30&nbsp;zł za każdą przesyłkę.
           </p>
         </div>
         <div class="col-span-12 lg:col-span-5 flex flex-col justify-end gap-4 gt-c5">
@@ -499,8 +504,8 @@
                из Украины, Беларуси или России – 1 (Грег, 27.09.2026), права других стран – по фото.
                Стили – «Go Tabular» в конце styles.css -->
           <ul class="faq-price gt-sr">
-            <li><span>Tłumaczenie przysięgłe – ukraiński, rosyjski, angielski</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ strona</span></span></span></li>
-            <li><span>Od 6 stron w&nbsp;zleceniu</span><b class="font-bold">rabat 10%</b></li>
+            <li><span>Tłumaczenie przysięgłe&nbsp;– ukraiński, rosyjski, angielski</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ strona</span></span></span></li>
+            <li><span>Od 6&nbsp;stron w&nbsp;zleceniu</span><b class="font-bold">rabat 10%</b></li>
           </ul>
           <div class="gt gt--ap gt--tl" aria-hidden="true">
             <div class="gt-clip"><i></i><i></i><i></i></div>
@@ -511,13 +516,13 @@
           </div>
           <p class="text-[15px] leading-[1.6] text-ink/70 max-w-[40ch] gt-note">
             Cena 90&nbsp;zł za stronę dotyczy ukraińskiego, rosyjskiego i&nbsp;angielskiego. Liczba stron zależy od dokumentu
-            i&nbsp;kierunku tłumaczenia, dlatego cenę dokumentu podajemy w&nbsp;wycenie, zwykle w&nbsp;15 minut. Tłumaczenie zwykłe
-            kosztuje 80&nbsp;zł za 1800 znaków, a&nbsp;inne języki wyceniamy osobno. Wszystkie stawki są
+            i&nbsp;kierunku tłumaczenia, dlatego cenę dokumentu podajemy w&nbsp;wycenie, zwykle w&nbsp;15&nbsp;minut. Tłumaczenie zwykłe
+            kosztuje 80&nbsp;zł za 1800&nbsp;znaków, a&nbsp;inne języki wyceniamy osobno. Wszystkie stawki są
             w&nbsp;<a href="/cennik/#tlumaczenia" class="underline font-semibold">cenniku tłumaczeń</a>.
           </p>
           <!-- Кнопка как в фразе-часах #jak-to-dziala (.tl-go-go), отдельной плашкой, крупно и чуть выше, под сноской (Грег, 27–28.09.2026) – .tl-go-go--gt.
                Была контурная .btn: <a href="/cennik/#wycena" data-quote class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn btn-center gt-btn">Zamów wycenę …</a> -->
-          <a href="/cennik/#wycena" data-quote class="tl-go-go tl-go-go--gt gt-btn">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+          <!-- 03.10.2026 (Грег): кнопка заявки здесь снята – главная теперь всплывающая (.m-dock, «Ekspresowa wycena»). Было: .tl-go-go.tl-go-go--gt.gt-btn «Zamów wycenę» -->
         </div>
       </div>
     </div>
@@ -540,9 +545,9 @@
     </p>
     <ol class="tl-go">
       <li><span class="tl-go-n">1</span><b>Zdjęcie dokumentu</b><span>Robisz je telefonem i&nbsp;załączasz w&nbsp;formularzu wyceny. Wystarczy czytelny skan albo zdjęcie.</span></li>
-      <li><span class="tl-go-n">2</span><b>Bezpłatna wycena zwykle w&nbsp;15 minut</b><span>E-mailem dostajesz liczbę stron, termin i&nbsp;cenę końcową, liczoną po 90&nbsp;zł za stronę. Płacisz dopiero po akceptacji wyceny, przed rozpoczęciem tłumaczenia: <span class="whitespace-nowrap">BLIK-iem</span>, przelewem albo gotówką na spotkaniu.</span></li>
-      <li><span class="tl-go-n">3</span><b>Tłumaczenie</b><span>Zwykle <span class="whitespace-nowrap">2–4</span> dni robocze od płatności, ekspres na następny dzień roboczy – po uzgodnieniu. Skan gotowego tłumaczenia wysyłamy od ręki.</span></li>
-      <li><span class="tl-go-n">4</span><b>Odbiór</b><span>Na spotkaniu w&nbsp;Śródmieściu albo w&nbsp;Paczkomacie (od&nbsp;350&nbsp;zł wysyłka w&nbsp;cenie, poniżej – 30&nbsp;zł), a&nbsp;jeśli odbiorca przyjmuje wersję elektroniczną – jako plik PDF z&nbsp;kwalifikowanym podpisem. Jeśli urząd wymaga tłumaczenia z&nbsp;oryginału, pokazujesz go przy odbiorze albo wysyłasz do wglądu – wraca razem z&nbsp;tłumaczeniem.</span></li>
+      <li><span class="tl-go-n">2</span><b>Bezpłatna wycena zwykle w&nbsp;15&nbsp;minut</b><span>E-mailem dostajesz liczbę stron, termin i&nbsp;cenę końcową, liczoną po 90&nbsp;zł za stronę. Płacisz dopiero po akceptacji wyceny, przed rozpoczęciem tłumaczenia: <span class="whitespace-nowrap">BLIK-iem</span>, przelewem albo gotówką na spotkaniu.</span></li>
+      <li><span class="tl-go-n">3</span><b>Tłumaczenie</b><span>Zwykle <span class="whitespace-nowrap">2–4</span> dni robocze od płatności, ekspres na następny dzień roboczy&nbsp;– po uzgodnieniu. Skan gotowego tłumaczenia wysyłamy od ręki.</span></li>
+      <li><span class="tl-go-n">4</span><b>Odbiór</b><span>Na spotkaniu w&nbsp;Śródmieściu albo w&nbsp;Paczkomacie (od&nbsp;350&nbsp;zł wysyłka w&nbsp;cenie, poniżej&nbsp;– 30&nbsp;zł). Wersję elektroniczną, czyli PDF z&nbsp;kwalifikowanym podpisem tłumacza, przygotujemy na zapytanie. Jeśli urząd wymaga tłumaczenia z&nbsp;oryginału, pokazujesz go przy odbiorze albo wysyłasz do wglądu&nbsp;– wraca razem z&nbsp;tłumaczeniem.</span></li>
     </ol>
     <!-- Грег, 27.09.2026 (стенд docs/jak-cta/, вариант 10): блок кончается фразой-часами, кнопка стоит внутри фразы.
          Время живое (app.js, .tl-go-now): днём «Jest 14:32. Zamów wycenę teraz, a cenę i termin dostaniesz e-mailem, zwykle w 15 minut»,
@@ -570,11 +575,11 @@
     </h2>
     <p class="mt-6 text-[17px] leading-[1.6] text-ink/70 max-w-[62ch]">
       Tłumaczenie przysięgłe standardowego aktu urodzenia lub małżeństwa z&nbsp;Ukrainy lub Białorusi to jedna strona, czyli
-      90&nbsp;zł. Tak samo jest z&nbsp;plastikowym prawem jazdy z&nbsp;Ukrainy, Białorusi lub Rosji – na przykład gdy wymieniasz je na polskie –
+      90&nbsp;zł. Tak samo jest z&nbsp;plastikowym prawem jazdy z&nbsp;Ukrainy, Białorusi lub Rosji&nbsp;– na przykład gdy wymieniasz je na polskie&nbsp;–
       i&nbsp;z&nbsp;zaświadczeniem o&nbsp;studiowaniu.
-      Strona to 1125 znaków ze spacjami gotowego tłumaczenia – razem z&nbsp;opisem pieczęci i&nbsp;podpisów. Liczba stron
-      zależy od dokumentu i&nbsp;kierunku: ten sam akt z&nbsp;polskiego czy z&nbsp;angielskiego może wyjść dłuższy niż z&nbsp;ukraińskiego.
-      Dokładnie znamy ją z&nbsp;góry tylko przy kilku dokumentach – przy pozostałych liczbę stron i&nbsp;cenę podajemy po zdjęciu,
+      Strona to 1125&nbsp;znaków ze spacjami gotowego tłumaczenia&nbsp;– razem z&nbsp;opisem pieczęci i&nbsp;podpisów. Liczba stron
+      zależy od dokumentu i&nbsp;kierunku: podobny akt z&nbsp;polskiego czy z&nbsp;angielskiego może wyjść dłuższy niż z&nbsp;ukraińskiego.
+      Dokładnie znamy ją z&nbsp;góry tylko przy kilku dokumentach&nbsp;– przy pozostałych liczbę stron i&nbsp;cenę podajemy po zdjęciu,
       zanim cokolwiek zlecisz.
     </p>
     <ul class="tl-doc">
@@ -616,8 +621,8 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Poprawimy je bezpłatnie. Jeśli urząd wskaże błąd po naszej stronie – na przykład w&nbsp;nazwisku, dacie albo numerze
-          dokumentu – wydamy poprawione tłumaczenie.
+          Poprawimy je bezpłatnie. Jeśli urząd wskaże błąd po naszej stronie&nbsp;– na przykład w&nbsp;nazwisku, dacie albo numerze
+          dokumentu&nbsp;– wydamy poprawione tłumaczenie.
         </p>
       </details>
 
@@ -627,7 +632,7 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Tłumaczenie przysięgłe ma pieczęć i&nbsp;podpis tłumacza wpisanego na listę Ministra Sprawiedliwości, dlatego przyjmują je urzędy, sądy, banki i&nbsp;uczelnie. Kosztuje 90&nbsp;zł za stronę 1125 znaków ze spacjami. Tłumaczenie zwykłe też ma pieczęć, ale zwykłego tłumacza, nie przysięgłego – wystarcza do korespondencji, CV i&nbsp;często do wniosku wizowego, a&nbsp;kosztuje 80&nbsp;zł za stronę 1800 znaków. Jeśli nie wiesz, którego potrzebujesz, zapytaj tam, gdzie składasz dokument.
+          Tłumaczenie przysięgłe ma pieczęć i&nbsp;podpis tłumacza wpisanego na listę Ministra Sprawiedliwości, dlatego przyjmują je urzędy, sądy, banki i&nbsp;uczelnie. Kosztuje 90&nbsp;zł za stronę 1125&nbsp;znaków ze spacjami. Tłumaczenie zwykłe też ma pieczęć, ale zwykłego tłumacza, nie przysięgłego&nbsp;– wystarcza do korespondencji, CV i&nbsp;często do wniosku wizowego, a&nbsp;kosztuje 80&nbsp;zł za stronę 1800&nbsp;znaków. Jeśli nie wiesz, którego potrzebujesz, zapytaj tam, gdzie składasz dokument.
         </p>
       </details>
 
@@ -637,7 +642,7 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Strona obliczeniowa to 1125 znaków ze spacjami gotowego tłumaczenia, liczonych w&nbsp;tekście
+          Strona obliczeniowa to 1125&nbsp;znaków ze spacjami gotowego tłumaczenia, liczonych w&nbsp;tekście
           docelowym, nie w&nbsp;oryginale. Każda rozpoczęta strona liczy się jako cała. Opisy pieczęci,
           podpisów i&nbsp;adnotacji oraz uwagi tłumacza też wchodzą do tekstu, dlatego akt z&nbsp;kilkoma pieczęciami
           bywa dłuższy, niż wygląda. Liczbę stron podajemy przed zleceniem.
@@ -650,11 +655,11 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Standardowo <span class="whitespace-nowrap">2–4</span> dni robocze od potwierdzenia płatności; pojedynczy akt lub zaświadczenie zwykle
-          szybciej. Ekspres na następny dzień roboczy – po uzgodnieniu, zależnie od języka i&nbsp;objętości.
+          Standardowo <span class="whitespace-nowrap">2–4</span> dni robocze od potwierdzenia płatności. Akt lub prawo jazdy (1&nbsp;strona)&nbsp;– zwykle następnego dnia roboczego,
+          skan tego samego dnia. Ekspres na następny dzień roboczy&nbsp;– po uzgodnieniu, zależnie od języka i&nbsp;objętości.
           Jeśli dokument potrzebuje też Apostille, doliczamy <span class="whitespace-nowrap">1–3</span> dni robocze na MSZ. Uzyskanie Apostille
           na <a href="/apostille-ukraina/" class="underline font-semibold">Dokumenty z&nbsp;Ukrainy</a> trwa dłużej: na akty
-          wydane po 2016 roku zwykle <span class="whitespace-nowrap">2–3</span> tygodnie, a&nbsp;przy aktach sprzed 2016 roku trzeba najpierw uzyskać duplikat, więc razem <span class="whitespace-nowrap">5–6</span> tygodni. Przy akcie wydanym w&nbsp;2016&nbsp;roku wariant zależy od blankietu – podamy go po zdjęciu.
+          wydane po 2016&nbsp;roku zwykle <span class="whitespace-nowrap">10–14&nbsp;dni</span>, a&nbsp;przy aktach sprzed 2016&nbsp;roku trzeba najpierw uzyskać duplikat, więc razem <span class="whitespace-nowrap">5–6</span> tygodni. Przy akcie wydanym w&nbsp;2016&nbsp;roku wariant zależy od blankietu&nbsp;– podamy go po zdjęciu.
         </p>
       </details>
 
@@ -664,8 +669,8 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Najczęściej <a href="/tlumaczenia-przysiegle/ukrainski/" hreflang="uk" class="underline font-semibold">ukraiński</a>, <a href="/tlumaczenia-przysiegle/rosyjski/" hreflang="ru" class="underline font-semibold">rosyjski</a> i&nbsp;<a href="/tlumaczenia-przysiegle/jezyk-angielski/" class="underline font-semibold">angielski</a> – w&nbsp;obie strony, z&nbsp;polskiego i&nbsp;na polski.
-          Niemiecki, hiszpański, włoski, niderlandzki i&nbsp;francuski – przez współpracujących tłumaczy przysięgłych.
+          Najczęściej <a href="/tlumaczenia-przysiegle/ukrainski/" hreflang="uk" class="underline font-semibold">ukraiński</a>, <a href="/tlumaczenia-przysiegle/rosyjski/" hreflang="ru" class="underline font-semibold">rosyjski</a> i&nbsp;<a href="/tlumaczenia-przysiegle/jezyk-angielski/" class="underline font-semibold">angielski</a>&nbsp;– w&nbsp;obie strony, z&nbsp;polskiego i&nbsp;na polski.
+          Niemiecki, hiszpański, włoski, niderlandzki i&nbsp;francuski&nbsp;– przez współpracujących tłumaczy przysięgłych.
           Inne języki obsługujemy po uzgodnieniu, wystarczy zapytać.
         </p>
       </details>
@@ -676,8 +681,8 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Do wyceny i&nbsp;do tłumaczenia wystarczy czytelny skan lub zdjęcie. Oryginał jest potrzebny, gdy
-          urząd wymaga tłumaczenia „z&nbsp;oryginału” – wtedy pokazujesz go na spotkaniu albo wysyłasz Paczkomatem
+          Nie zawsze. Do wyceny i&nbsp;do tłumaczenia wystarczy czytelny skan lub zdjęcie. Oryginał jest potrzebny, gdy
+          urząd wymaga tłumaczenia „z&nbsp;oryginału”&nbsp;– wtedy pokazujesz go na spotkaniu albo wysyłasz Paczkomatem
           do wglądu. Tłumacz porównuje go ze skanem i&nbsp;wpisuje odpowiednią formułę, a&nbsp;wysłany oryginał wraca do Ciebie
           razem z&nbsp;tłumaczeniem. Oryginał jest też niezbędny, jeśli dokument ma dostać Apostille.
         </p>
@@ -691,8 +696,7 @@
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
           Zwykle nie. Polskie urzędy przyjmują tłumaczenia wykonane przez tłumacza przysięgłego z&nbsp;polskiej
           listy albo poświadczone przez polskiego konsula. Tłumaczenie notarialne z&nbsp;Ukrainy czy tłumaczenie
-          „certified” z&nbsp;Wielkiej Brytanii trzeba zrobić od nowa w&nbsp;Polsce – tanie w&nbsp;kraju wydania,
-          ale bezużyteczne w&nbsp;okienku.
+          „certified” z&nbsp;Wielkiej Brytanii trzeba zrobić od nowa w&nbsp;Polsce, bo polski urząd go nie przyjmie.
         </p>
       </details>
 
@@ -702,7 +706,7 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Tak. Zdjęcie albo skan dokumentu załączasz w&nbsp;<a href="/cennik/#wycena" data-quote class="underline font-semibold">formularzu wyceny</a>, cenę i&nbsp;termin dostajesz e-mailem, zwykle w&nbsp;15&nbsp;minut, a&nbsp;płacisz dopiero po akceptacji wyceny, przed rozpoczęciem tłumaczenia – <span class="whitespace-nowrap">BLIK-iem</span> albo przelewem. Gotowe tłumaczenie odbierasz na spotkaniu w&nbsp;centrum Warszawy albo w&nbsp;Paczkomacie w&nbsp;dowolnym mieście. Jeśli odbiorca przyjmuje wersję elektroniczną, tłumacz może wydać plik PDF z&nbsp;kwalifikowanym podpisem elektronicznym.
+          Tak. Zdjęcie albo skan dokumentu załączasz w&nbsp;<a href="/cennik/#wycena" data-quote class="underline font-semibold">formularzu wyceny</a>, cenę i&nbsp;termin dostajesz e-mailem, zwykle w&nbsp;15&nbsp;minut, a&nbsp;płacisz dopiero po akceptacji wyceny, przed rozpoczęciem tłumaczenia&nbsp;– <span class="whitespace-nowrap">BLIK-iem</span> albo przelewem. Gotowe tłumaczenie odbierasz na spotkaniu w&nbsp;centrum Warszawy albo w&nbsp;Paczkomacie w&nbsp;dowolnym mieście. Jeśli odbiorca przyjmuje wersję elektroniczną, na zapytanie przygotujemy PDF z&nbsp;kwalifikowanym podpisem elektronicznym tłumacza&nbsp;– nie w&nbsp;każdym języku.
         </p>
       </details>
 
@@ -712,9 +716,9 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Tak – tłumacz może wydać plik PDF podpisany kwalifikowanym podpisem elektronicznym. Przyjmuje go
+          Tak. Tłumaczenie w&nbsp;PDF z&nbsp;kwalifikowanym podpisem elektronicznym tłumacza przygotujemy na zapytanie&nbsp;– nie w&nbsp;każdym języku, dlatego napisz o&nbsp;tym w&nbsp;formularzu. Taki plik przyjmuje
           część urzędów i&nbsp;instytucji online, ale nie da się na nim uzyskać Apostille i&nbsp;nie
-          każde okienko go akceptuje. Jeśli nie wiesz, co przyjmie odbiorca – zamów wersję papierową, a&nbsp;skan
+          każde okienko go akceptuje. Jeśli nie wiesz, co przyjmie odbiorca&nbsp;– zamów wersję papierową, a&nbsp;skan
           i&nbsp;tak dostaniesz od ręki.
         </p>
       </details>
@@ -725,11 +729,11 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Tak. MSZ potwierdza wtedy podpis tłumacza przysięgłego – jest to potrzebne, gdy polskie tłumaczenie ma być
-          użyte za granicą. Apostille MSZ nadaje tylko na papierowym oryginale tłumaczenia z&nbsp;odręcznym podpisem
+          Tak. MSZ potwierdza wtedy podpis tłumacza przysięgłego. Apostille przydaje się, gdy polskie tłumaczenie ma trafić
+          za granicę, a&nbsp;odbiorca o&nbsp;nią poprosi. Apostille MSZ nadaje tylko na papierowym oryginale tłumaczenia z&nbsp;odręcznym podpisem
           i&nbsp;pieczęcią tłumacza, a&nbsp;nie na skanie. Kolejność zależy od odbiorcy dokumentu: najczęściej Apostille na dokument, potem tłumaczenie, na końcu
-          Apostille na tłumaczenie – tak wymagają np. Włochy i&nbsp;Hiszpania. Bywa też, że wystarczy Apostille na samo
-          tłumaczenie. Wymagania sprawdź tam, gdzie składasz dokument – warianty <a href="/apostille/#z-tlumaczeniem" class="underline font-semibold">Apostille
+          Apostille na tłumaczenie&nbsp;– tak wymagają np. Włochy i&nbsp;Hiszpania. Bywa też, że wystarczy Apostille na samo
+          tłumaczenie. Wymagania sprawdź tam, gdzie składasz dokument&nbsp;– warianty <a href="/apostille/#z-tlumaczeniem" class="underline font-semibold">Apostille
           z&nbsp;tłumaczeniem przysięgłym</a> opisujemy na osobnej stronie.
         </p>
       </details>
@@ -740,8 +744,8 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Tak, i&nbsp;to najczęstszy przypadek – komplet do karty pobytu czy do USC to zwykle kilka dokumentów.
-          Od 6&nbsp;stron w&nbsp;jednym zleceniu udzielamy 10% rabatu na tłumaczenie – liczą się strony tłumaczeń przysięgłych
+          Tak, i&nbsp;to najczęstszy przypadek&nbsp;– komplet do karty pobytu czy do USC to zwykle kilka dokumentów.
+          Od 6&nbsp;stron w&nbsp;jednym zleceniu udzielamy 10% rabatu na tłumaczenie&nbsp;– liczą się strony tłumaczeń przysięgłych
           i&nbsp;zwykłych. Wszystkie dokumenty, które potrzebują
           Apostille, składamy w&nbsp;MSZ w&nbsp;jednym terminie.
         </p>
@@ -753,7 +757,7 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Nie. Tłumaczenie jest ważne tak długo, jak dokument, z&nbsp;którego powstało. Termin mają niektóre dokumenty – urząd może na przykład żądać zaświadczenia o&nbsp;niekaralności wydanego w&nbsp;ostatnich miesiącach. Wtedy tłumaczymy nowy dokument, a&nbsp;samego tłumaczenia nie trzeba „odświeżać”.
+          Nie. Tłumaczenie jest ważne tak długo, jak dokument, z&nbsp;którego powstało. Termin mają niektóre dokumenty&nbsp;– urząd może na przykład żądać zaświadczenia o&nbsp;niekaralności wydanego w&nbsp;ostatnich miesiącach. Wtedy tłumaczymy nowy dokument, a&nbsp;samego tłumaczenia nie trzeba „odświeżać”.
         </p>
       </details>
 
@@ -763,7 +767,7 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Nie. Tłumaczenie poświadczone przez tłumacza przysięgłego z&nbsp;listy Ministra Sprawiedliwości jest ważne w&nbsp;całej Polsce – urząd w&nbsp;Krakowie przyjmie je tak samo jak w&nbsp;Warszawie. Dlatego zlecenie prowadzimy zdalnie, a&nbsp;gotowe tłumaczenie wysyłamy Paczkomatem do dowolnego miasta.
+          Nie. Tłumaczenie poświadczone przez tłumacza przysięgłego z&nbsp;listy Ministra Sprawiedliwości jest ważne w&nbsp;całej Polsce&nbsp;– urząd w&nbsp;Krakowie przyjmie je tak samo jak w&nbsp;Warszawie. Dlatego zlecenie prowadzimy zdalnie, a&nbsp;gotowe tłumaczenie wysyłamy Paczkomatem do dowolnego miasta.
         </p>
       </details>
 
@@ -773,14 +777,14 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Tak. Klauzula Apostille jest częścią dokumentu, więc tłumaczymy ją razem z&nbsp;nim – dotyczy to na przykład <a href="/apostille-ukraina/" class="underline font-semibold">Dokumentów z&nbsp;Ukrainy</a>. Jej tekst wliczamy do liczby stron: standardowy akt urodzenia lub małżeństwa z&nbsp;Ukrainy lub Białorusi to 1&nbsp;strona, a&nbsp;z&nbsp;Apostille – <a href="#dokumenty" class="underline font-semibold">2&nbsp;strony, czyli 180&nbsp;zł</a>. Przy innych dokumentach liczbę stron razem z&nbsp;klauzulą podajemy w&nbsp;wycenie.
+          Tak. Klauzula Apostille jest częścią dokumentu, więc tłumaczymy ją razem z&nbsp;nim&nbsp;– dotyczy to na przykład <a href="/apostille-ukraina/" class="underline font-semibold">Dokumentów z&nbsp;Ukrainy</a>. Jej tekst wliczamy do liczby stron: standardowy akt urodzenia lub małżeństwa z&nbsp;Ukrainy lub Białorusi to 1&nbsp;strona, a&nbsp;z&nbsp;Apostille&nbsp;– <a href="#dokumenty" class="underline font-semibold">2&nbsp;strony, czyli 180&nbsp;zł</a>. Przy innych dokumentach liczbę stron razem z&nbsp;klauzulą podajemy w&nbsp;wycenie.
         </p>
       </details>
     </div>
 
     <p class="mt-8 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-      Pytania o&nbsp;klauzulę i&nbsp;urzędy – na stronie <a href="/apostille/#faq" class="underline font-semibold">Apostille w&nbsp;Warszawie</a>.
-      O&nbsp;odbiór, wysyłkę i&nbsp;płatność – na stronie <a href="/kontakt/#faq" class="underline font-semibold">kontaktu</a>.
+      O&nbsp;klauzuli i&nbsp;urzędach piszemy więcej na stronie <a href="/apostille/#faq" class="underline font-semibold">Apostille w&nbsp;Warszawie</a>,
+      a&nbsp;o&nbsp;odbiorze, wysyłce i&nbsp;płatności na stronie <a href="/kontakt/#faq" class="underline font-semibold">kontaktu</a>.
     </p>
   </div>
 </section>
@@ -825,7 +829,7 @@
         <address class="fl-note fl-where not-italic" style="margin-top:0">
           <span class="fl-w-item">
             <strong>Warszawa – Śródmieście</strong>
-            <span class="fl-soft">Śródmieście · paczkomat InPost</span>
+            <span class="fl-soft">Śródmieście · Paczkomat InPost</span>
           </span>
           <a href="/apostille/gdzie/" class="fl-link fl-w-link"><span class="nl-swap"><span class="nl-a">Gdzie załatwia się Apostille</span><span class="nl-b" aria-hidden="true">Gdzie załatwia się Apostille</span></span></a>
         </address>
@@ -853,6 +857,9 @@
           Apostille <a href="/apostille/akt-urodzenia/" class="underline">na akt urodzenia</a> · <a href="/apostille/pelnomocnictwo/" class="underline">na pełnomocnictwo</a> · <a href="/apostille/zaswiadczenie-o-niekaralnosci/" class="underline">na zaświadczenie o&nbsp;niekaralności</a>
           <span class="text-paper/70 text-[17px] align-middle" style="font-weight:900">·</span>
           <span class="font-bold text-paper/70">Zgłoszenia&nbsp;24/7</span>
+        </p>
+        <p class="text-[13px] text-paper/45 mt-1.5">
+          Tłumaczenie przysięgłe <a href="/tlumaczenia-przysiegle/jezyk-angielski/" class="underline">z&nbsp;angielskiego</a> · <a href="/tlumaczenia-przysiegle/ukrainski/" hreflang="uk" lang="uk" class="underline">з&nbsp;української</a> · <a href="/tlumaczenia-przysiegle/rosyjski/" hreflang="ru" lang="ru" class="underline">с&nbsp;русского</a>
         </p>
       </div>
     </div>

@@ -6,8 +6,12 @@
 <!-- Защита (28.09.2026): браузер выполняет только наши скрипты; новый внешний сервис (gtag, карта) – сначала вписать сюда -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ga0M3hxX7BbNMOsk8k9ra3P80+aMOd6HTfkftF5FpXw='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://formspree.io https://script.google.com https://script.googleusercontent.com; form-action 'self' https://formspree.io https://script.google.com; object-src 'none'; frame-src 'none'; base-uri 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preload" href="/assets/fonts/fira-sans-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-900-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 
-<title>Apostille Warszawa – MSZ i Sąd Okręgowy | Apostilo</title>
+<title>Apostille i legalizacja dokumentów Warszawa | Apostilo</title>
 <meta name="description" content="Apostille i legalizacja w Warszawie bez wizyty w MSZ: 260 zł z opłatą skarbową, zwykle 1–3 dni robocze. Oryginał oddajesz w centrum albo Paczkomatem.">
 <link rel="canonical" href="https://apostilo.pl/apostille/">
 <link rel="alternate" hreflang="pl" href="https://apostilo.pl/apostille/">
@@ -91,7 +95,7 @@
     },
     {
       "@type": "Offer",
-      "name": "Uzyskanie dokumentu z KRK lub KRS (bez Apostille)",
+      "name": "Uzyskanie dokumentu z KRK, KRS lub USC (bez Apostille)",
       "priceCurrency": "PLN",
       "price": "200"
     },
@@ -152,7 +156,7 @@
     { "@type": "Question", "name": "Kiedy zamiast Apostille potrzebna jest legalizacja?",
       "acceptedAnswer": { "@type": "Answer", "text": "Gdy kraj, do którego trafi dokument, nie należy do Konwencji haskiej – na przykład Zjednoczone Emiraty Arabskie, Egipt czy Tajlandia. MSZ nie nadaje wtedy Apostille, tylko legalizuje dokument, a potem trzeba go jeszcze potwierdzić w konsulacie tego państwa, zwykle za osobną opłatą. Legalizację w MSZ zrobimy za Ciebie w tej samej cenie co Apostille, czyli za 260 zł. Do konsulatu idziesz już sam, bo tego etapu nie prowadzimy." } },
     { "@type": "Question", "name": "Czy opłaca się zrobić Apostille samemu?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Samodzielnie zapłacisz tylko opłatę skarbową, czyli 60 zł. Najpierw trzeba jednak umówić wizytę w systemie e-Konsulat. MSZ udostępnia nowe terminy rano w dni robocze, na najbliższe dwa tygodnie, więc wolny termin bywa dopiero za kilka dni. Opłatę wnosisz wcześniej – w kasie urzędu miasta, na poczcie albo przelewem, bo w MSZ zapłacić się nie da. Wizyta wypada w dzień roboczy, o godzinie z rezerwacji, więc zwykle trzeba zwolnić się z pracy. Można też wysłać dokument do MSZ pocztą, ale na odpowiedź czeka się wtedy do 30 dni. Jeśli dokument jest od notariusza, najpierw zanosisz go do Sądu Okręgowego i odbierasz najwcześniej po dwóch dniach roboczych. U nas Apostille kosztuje 260 zł razem z opłatą skarbową. Wysyłasz zdjęcie w formularzu, oryginał przekazujesz w centrum Warszawy albo nadajesz w Paczkomacie, a wszystkim innym, od rezerwacji po odbiór z urzędu, zajmujemy się my. Aktualne zasady MSZ znajdziesz na gov.pl, a jeśli mieszkasz poza Warszawą, zobacz, ile kosztuje sam dojazd." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Zależy, ile wart jest Twój czas: sam zapłacisz tylko 60 zł opłaty skarbowej, ale czekają Cię rezerwacja i wizyta w urzędzie. Najpierw trzeba umówić wizytę w systemie e-Konsulat. MSZ udostępnia nowe terminy rano w dni robocze, na najbliższe dwa tygodnie, więc wolny termin bywa dopiero za kilka dni. Opłatę wnosisz wcześniej – w kasie urzędu miasta, na poczcie albo przelewem, bo w MSZ zapłacić się nie da. Wizyta wypada w dzień roboczy, o godzinie z rezerwacji, więc zwykle trzeba zwolnić się z pracy. Można też wysłać dokument do MSZ pocztą, ale na odpowiedź czeka się wtedy do 30 dni. Jeśli dokument jest od notariusza, najpierw zanosisz go do Sądu Okręgowego i odbierasz najwcześniej po dwóch dniach roboczych. U nas Apostille kosztuje 260 zł razem z opłatą skarbową. Wysyłasz zdjęcie w formularzu, oryginał przekazujesz w centrum Warszawy albo nadajesz w Paczkomacie, a wszystkim innym, od rezerwacji po odbiór z urzędu, zajmujemy się my. Aktualne zasady MSZ znajdziesz na gov.pl, a jeśli mieszkasz poza Warszawą, zobacz, ile kosztuje sam dojazd." } },
     { "@type": "Question", "name": "Czy Apostille jest potrzebna w Unii Europejskiej?",
       "acceptedAnswer": { "@type": "Answer", "text": "Tak. W praktyce urzędy, sądy, pracodawcy i banki w innych krajach Unii wymagają Apostille tak samo jak poza nią, dlatego zakładaj, że będzie potrzebna. Jeśli odbiorca wprost napisze, że jej nie chce, po prostu jej nie zamawiasz." } }
   ]
@@ -258,9 +262,10 @@
       </a>
     </p>
     <!-- главное действие – форма заявки (панель wyceny), перед ней мессенджеры; как в hero /kontakt/ (21.09.2026) -->
-    <div class="cta-btns hero-cta" role="group" aria-label="Zamów wycenę lub napisz na komunikatorze">
+    <div class="cta-btns hero-cta hero-cta--4" role="group" aria-label="Zamów wycenę, zadzwoń lub napisz na komunikatorze">
       <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20Apostille" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
       <a href="https://t.me/apostilo?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20Apostille" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="tel:+48507588155" class="cta-btn" aria-label="Zadzwoń: +48 507 588 155">Zadzwoń<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
       <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
     </div>
     <!-- Go Tabular из hero /cennik/ (01.10.2026): тот же вставной песочный блок со столбцом цен справа, только с 1280px
@@ -269,7 +274,7 @@
       <div class="gt-blk"><div class="gt-clip"><i></i><i></i><i></i><i></i></div></div>
       <div class="gt-col">
         <span class="gt-n">260</span><span class="gt-l"><b>Apostille MSZ</b><small><i class="gt-z">zł</i> / dokument</small></span>
-        <span class="gt-n">120</span><span class="gt-l"><b>Sąd Okręgowy</b><small><i class="gt-z">zł</i> / podpis</small></span>
+        <span class="gt-n">380</span><span class="gt-l"><b>Dokument<br>od&nbsp;notariusza</b><small><i class="gt-z">zł</i> / dokument</small></span>
         <span class="gt-n">550</span><span class="gt-l"><b>Dokumenty<br>z&nbsp;Ukrainy</b><small><i class="gt-z">zł</i> / dokument</small></span>
         <span class="gt-n">90</span><span class="gt-l"><b>Tłumaczenie</b><small><i class="gt-z">zł</i> / strona</small></span>
       </div>
@@ -291,7 +296,7 @@
         <span class="k-where-link k-where-link--dark ua-hop-go">Apostille na Dokumenty z&nbsp;Ukrainy <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span>
       </span>
       <span class="ua-hop-list">
-        <span class="ua-hop-row"><span class="ua-hop-n">Akt stanu cywilnego wydany po 2016&nbsp;roku<small>zwykle <span class="whitespace-nowrap">2–3</span>&nbsp;tygodnie</small></span><b>550,-&nbsp;zł</b></span>
+        <span class="ua-hop-row"><span class="ua-hop-n">Akt stanu cywilnego wydany po 2016&nbsp;roku<small>zwykle <span class="whitespace-nowrap">10–14</span>&nbsp;dni</small></span><b>550,-&nbsp;zł</b></span>
         <span class="ua-hop-row"><span class="ua-hop-n">Dyplom albo świadectwo<small>około dwóch tygodni, a&nbsp;dyplom z&nbsp;dodatkiem z&nbsp;ocenami kosztuje 1&nbsp;100&nbsp;zł</small></span><b>550,-&nbsp;zł</b></span>
         <span class="ua-hop-row"><span class="ua-hop-n">Stary akt, także radziecki, na który najpierw uzyskujemy duplikat<small>zwykle <span class="whitespace-nowrap">5–6</span>&nbsp;tygodni</small></span><b>1&nbsp;100,-&nbsp;zł</b></span>
       </span>
@@ -360,15 +365,15 @@
           </p>
           <dl class="gdz-meta">
             <div><dt>Termin</dt><dd>KRK <span class="whitespace-nowrap">1–2</span>&nbsp;dni robocze, KRS od ręki, potem MSZ</dd></div>
-            <div><dt>Opłata</dt><dd>opłata rejestru i&nbsp;pełnomocnictwa&nbsp;– w&nbsp;naszej cenie</dd></div>
-            <div><dt>Sam dokument</dt><dd><b class="gdz-fee">200&nbsp;zł</b> za uzyskanie z&nbsp;KRK lub KRS, bez Apostille</dd></div>
+            <div><dt>Opłaty</dt><dd>za zaświadczenie i&nbsp;pełnomocnictwo&nbsp;– w&nbsp;naszej cenie</dd></div>
+            <div><dt>Sam dokument</dt><dd><b class="gdz-fee">200&nbsp;zł</b> za uzyskanie z&nbsp;KRK, KRS lub USC, bez Apostille</dd></div>
           </dl>
           <p class="slab-price"><span>Z&nbsp;Apostille</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="460">460</span>,-&nbsp;zł</b></span></p>
         </div>
       </div>
 
       <div class="gdz-note" id="najpierw-sad">
-        <p><b>Kolejność ma znaczenie.</b> Dokument od&nbsp;notariusza najpierw potwierdza Sąd Okręgowy
+        <p><b>Kolejność ma znaczenie.</b> Dokument od&nbsp;notariusza najpierw poświadcza Sąd Okręgowy
         i&nbsp;dopiero potem trafia do&nbsp;MSZ. Złożony od&nbsp;razu w&nbsp;ministerstwie wraca bez klauzuli&nbsp;–
         a&nbsp;to stracony tydzień. Adresy i&nbsp;godziny urzędów znajdziesz na stronie
         <a href="/apostille/gdzie/" class="underline">Gdzie w&nbsp;Warszawie załatwia się Apostille</a>.</p>
@@ -387,7 +392,7 @@
     <div class="ap-docs mt-8">
       <div class="ap-doc" id="akt-urodzenia">
         <h3>Akt urodzenia, małżeństwa, zgonu</h3>
-        <p>MSZ nadaje Apostille na odpisie z&nbsp;USC&nbsp;– zupełnym, skróconym albo wielojęzycznym, nigdy na kserokopii&nbsp;– za 260&nbsp;zł, zwykle w&nbsp;<span class="whitespace-nowrap">1–3</span>&nbsp;dni robocze. Tak samo uzyskasz ją na zaświadczeniach z&nbsp;USC potrzebnych do ślubu za granicą.</p>
+        <p>MSZ nadaje Apostille na odpisie z&nbsp;USC: zupełnym, skróconym albo wielojęzycznym, ale nigdy na kserokopii. U&nbsp;nas kosztuje to 260&nbsp;zł i&nbsp;trwa zwykle <span class="whitespace-nowrap">1–3</span>&nbsp;dni robocze. Tak samo uzyskasz ją na zaświadczeniach z&nbsp;USC potrzebnych do ślubu za granicą.</p>
         <a href="/apostille/akt-urodzenia/" class="k-where-link k-where-link--dark">Apostille na akt urodzenia
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
         </a>
@@ -442,12 +447,12 @@
     <div class="bg-sand text-ink rounded-[26px] p-7 sm:p-12 gt-card">
       <div class="grid grid-cols-12 gap-8">
         <div class="col-span-12 lg:col-span-7">
-          <p class="kicker">/ Terminy i ceny</p>
+          <p class="kicker">/ Terminy i&nbsp;ceny</p>
           <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
             Ile trwa i&nbsp;ile kosztuje Apostille w&nbsp;Warszawie
           </h2>
           <p class="mt-6 text-[17px] leading-[1.6] text-ink/75 max-w-[56ch]">
-            Apostille w&nbsp;MSZ kosztuje 260&nbsp;zł, a&nbsp;gotowy dokument masz zwykle po <span class="whitespace-nowrap">1–3</span>&nbsp;dniach roboczych. Jeśli się
+            Apostille w&nbsp;MSZ kosztuje 260&nbsp;zł razem z&nbsp;opłatą skarbową, a&nbsp;gotowy dokument masz zwykle po <span class="whitespace-nowrap">1–3</span>&nbsp;dniach roboczych. Jeśli się
             spieszysz, w&nbsp;trybie ekspresowym za 350&nbsp;zł składamy go tego samego dnia&nbsp;– pod warunkiem, że oryginał
             i&nbsp;potwierdzenie płatności mamy do 11:00, a&nbsp;sam dokument nie wymaga wcześniejszego tłumaczenia.
             Dokumenty notarialne i&nbsp;sądowe nie mają trybu ekspresowego, bo najpierw muszą przejść przez Sąd Okręgowy,
@@ -458,7 +463,7 @@
             wolne od pracy się nie liczą, bo MSZ i&nbsp;sądy są wtedy nieczynne. Skan gotowego dokumentu wysyłamy
             od ręki, a&nbsp;oryginał odbierasz na spotkaniu w&nbsp;centrum Warszawy albo dostajesz Paczkomatem. Przy zleceniu
             od 350&nbsp;zł przesyłka jest w&nbsp;cenie, przy mniejszym kosztuje 30&nbsp;zł w&nbsp;jedną stronę. Za granicę wysyłamy
-            kurierem DHL Express, a&nbsp;jego koszt podajemy w&nbsp;wycenie.
+            kurierem DHL Express&nbsp;– około 300&nbsp;zł za przesyłkę, dokładną kwotę podajemy w&nbsp;wycenie.
           </p>
         </div>
         <div class="col-span-12 lg:col-span-5 flex flex-col justify-end gap-4 gt-c5">
@@ -467,15 +472,17 @@
           <ul class="faq-price gt-sr">
             <li><span>Apostille MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></li>
             <li><span>Poświadczenie w&nbsp;Sądzie Okręgowym (przed Apostille MSZ)</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span></li>
-            <li><span>Uzyskanie dokumentu KRK / KRS (bez Apostille)</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>,-&nbsp;zł</b></span></li>
+            <li><span>Sąd i&nbsp;MSZ&nbsp;– dokument od notariusza z&nbsp;Apostille</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="380">380</span>,-&nbsp;zł</b></span></li>
+            <li><span>Uzyskanie dokumentu z&nbsp;KRK, KRS lub USC (bez Apostille)</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>,-&nbsp;zł</b></span></li>
+            <li><span>KRK z&nbsp;Apostille</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="460">460</span>,-&nbsp;zł</b></span></li>
             <li><span>Tłumaczenie przysięgłe</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ strona</span></span></span></li>
           </ul>
           <div class="gt gt--ap" id="ceny" aria-hidden="true">
             <div class="gt-clip"><i></i><i></i><i></i><i></i></div>
             <div class="gt-col">
               <span class="gt-n">260</span><span class="gt-l"><b>Apostille MSZ</b><small>,-&nbsp;zł / dokument</small></span>
-              <span class="gt-n">120</span><span class="gt-l"><b>Sąd Okręgowy</b><small>,-&nbsp;zł + MSZ</small></span>
-              <span class="gt-n">200</span><span class="gt-l"><b>KRK / KRS</b><small>,-&nbsp;zł bez Apostille</small></span>
+              <span class="gt-n">380</span><span class="gt-l"><b>Sąd i&nbsp;MSZ</b><small>,-&nbsp;zł / dokument</small></span>
+              <span class="gt-n">460</span><span class="gt-l"><b>KRK<br>z&nbsp;Apostille</b><small>,-&nbsp;zł / dokument</small></span>
               <span class="gt-n">90</span><span class="gt-l"><b>Tłumaczenie</b><small>,-&nbsp;zł / strona</small></span>
             </div>
           </div>
@@ -485,9 +492,7 @@
             są na <a href="https://www.gov.pl/web/dyplomacja/apostille" target="_blank" rel="noopener" class="underline font-semibold">gov.pl</a>. Ostateczną kwotę podajemy po zobaczeniu dokumentu, zwykle w&nbsp;15&nbsp;minut.
             Pełny <a href="/cennik/#apostille" class="underline font-semibold">cennik Apostille i&nbsp;tłumaczeń</a>.
           </p>
-          <button type="button" data-quote class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn btn-center gt-btn">
-            Wyceń dokument <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
-          </button>
+          <!-- 03.10.2026 (Грег): кнопка заявки здесь снята – главная теперь всплывающая (.m-dock, «Ekspresowa wycena»). Было: контурная .btn.btn-center.gt-btn «Wyceń dokument» -->
         </div>
       </div>
     </div>
@@ -555,7 +560,7 @@
      Единого порядка нет – решает учреждение и страна; клиент сам называет вариант. Стили – .zap-* в styles.css. -->
 <section id="z-tlumaczeniem" class="pb-16 md:pb-28">
   <div class="mx-auto max-w-site px-5 sm:px-8">
-    <p class="kicker">/ Apostille &amp; Tłumaczenie</p>
+    <p class="kicker">/ Apostille i&nbsp;tłumaczenie</p>
     <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
       Tłumaczenie i&nbsp;Apostille w&nbsp;jednym miejscu
     </h2>
@@ -747,7 +752,7 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Samodzielnie zapłacisz tylko opłatę skarbową, czyli 60&nbsp;zł. Najpierw trzeba jednak umówić wizytę w&nbsp;systemie
+          Zależy, ile wart jest Twój czas: sam zapłacisz tylko 60&nbsp;zł opłaty skarbowej, ale czekają Cię rezerwacja i&nbsp;wizyta w&nbsp;urzędzie. Najpierw trzeba umówić wizytę w&nbsp;systemie
           <a href="https://legalizacja.msz.gov.pl/" target="_blank" rel="noopener" class="underline font-semibold"><span class="whitespace-nowrap">e-Konsulat</span></a>. MSZ udostępnia nowe terminy rano w&nbsp;dni robocze, na najbliższe dwa tygodnie,
           więc wolny termin bywa dopiero za kilka dni. Opłatę wnosisz wcześniej&nbsp;– w&nbsp;kasie
           urzędu miasta, na poczcie albo przelewem, bo w&nbsp;MSZ zapłacić się nie da. Wizyta wypada w&nbsp;dzień roboczy,
@@ -856,7 +861,7 @@
         <address class="fl-note fl-where not-italic" style="margin-top:0">
           <span class="fl-w-item">
             <strong>Warszawa – Śródmieście</strong>
-            <span class="fl-soft">Śródmieście · paczkomat InPost</span>
+            <span class="fl-soft">Śródmieście · Paczkomat InPost</span>
           </span>
           <a href="/apostille/gdzie/" class="fl-link fl-w-link"><span class="nl-swap"><span class="nl-a">Gdzie załatwia się Apostille</span><span class="nl-b" aria-hidden="true">Gdzie załatwia się Apostille</span></span></a>
         </address>
@@ -884,6 +889,9 @@
           Apostille <a href="/apostille/akt-urodzenia/" class="underline">na akt urodzenia</a> · <a href="/apostille/pelnomocnictwo/" class="underline">na pełnomocnictwo</a> · <a href="/apostille/zaswiadczenie-o-niekaralnosci/" class="underline">na zaświadczenie o&nbsp;niekaralności</a>
           <span class="text-paper/70 text-[17px] align-middle" style="font-weight:900">·</span>
           <span class="font-bold text-paper/70">Zgłoszenia&nbsp;24/7</span>
+        </p>
+        <p class="text-[13px] text-paper/45 mt-1.5">
+          Tłumaczenie przysięgłe <a href="/tlumaczenia-przysiegle/jezyk-angielski/" class="underline">z&nbsp;angielskiego</a> · <a href="/tlumaczenia-przysiegle/ukrainski/" hreflang="uk" lang="uk" class="underline">з&nbsp;української</a> · <a href="/tlumaczenia-przysiegle/rosyjski/" hreflang="ru" lang="ru" class="underline">с&nbsp;русского</a>
         </p>
       </div>
     </div>

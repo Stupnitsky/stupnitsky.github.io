@@ -6,6 +6,10 @@
 <!-- Защита (28.09.2026): браузер выполняет только наши скрипты; новый внешний сервис (gtag, карта) – сначала вписать сюда -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-ga0M3hxX7BbNMOsk8k9ra3P80+aMOd6HTfkftF5FpXw='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://formspree.io https://script.google.com https://script.googleusercontent.com; form-action 'self' https://formspree.io https://script.google.com; object-src 'none'; frame-src 'none'; base-uri 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preload" href="/assets/fonts/fira-sans-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-900-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fira-sans-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 
 <title>Apostille na akt urodzenia, małżeństwa i zgonu | Apostilo</title>
 <meta name="description" content="Apostille na odpis aktu urodzenia, małżeństwa lub zgonu w MSZ w Warszawie: 260 zł z opłatą skarbową, zwykle 1–3 dni robocze. Komplet do ślubu – 520 zł.">
@@ -151,7 +155,7 @@
       "name": "Wyślecie gotowe dokumenty za granicę?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Tak. Skan gotowego dokumentu wysyłamy od razu, a oryginał – kurierem DHL Express, którego koszt podajemy w wycenie. Do Ukrainy wysyłamy Nową Pocztą za 150 zł, a po Polsce przy zleceniu od 350 zł przesyłka jest w cenie."
+        "text": "Tak. Skan gotowego dokumentu wysyłamy od razu, a oryginał – kurierem DHL Express, około 300 zł za przesyłkę, dokładnie w wycenie. Do Ukrainy wysyłamy Nową Pocztą za 150 zł, a po Polsce przy zleceniu od 350 zł przesyłka jest w cenie, przy mniejszym – 30 zł w jedną stronę."
       }
     }
   ]
@@ -262,9 +266,10 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg>
       </a>
     </p>
-    <div class="cta-btns hero-cta" role="group" aria-label="Zamów wycenę lub napisz na komunikatorze">
+    <div class="cta-btns hero-cta hero-cta--4" role="group" aria-label="Zamów wycenę, zadzwoń lub napisz na komunikatorze">
       <a href="https://wa.me/48507588155?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20Apostille%20na%20akt%20urodzenia" target="_blank" rel="noopener" class="cta-btn">WhatsApp<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
       <a href="https://t.me/apostilo?text=Dzie%C5%84%20dobry%2C%20mam%20pytanie%20o%20Apostille%20na%20akt%20urodzenia" target="_blank" rel="noopener" class="cta-btn">Telegram<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
+      <a href="tel:+48507588155" class="cta-btn" aria-label="Zadzwoń: +48 507 588 155">Zadzwoń<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
       <a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Zamów wycenę<span class="cta-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></a>
     </div>
   </div>
@@ -383,11 +388,11 @@
     <div class="bg-sand text-ink rounded-[26px] p-7 sm:p-12">
       <div class="grid grid-cols-12 gap-8">
         <div class="col-span-12 lg:col-span-7">
-          <p class="kicker">/ Terminy i ceny</p>
+          <p class="kicker">/ Terminy i&nbsp;ceny</p>
           <h2 class="tracking-tightest leading-[0.95] text-[34px] sm:text-[48px] font-black">
             Ile trwa i&nbsp;ile kosztuje Apostille na odpis
           </h2>
-          <p class="ile-big"><b>260,-&nbsp;zł</b> <span>zwykle <span class="whitespace-nowrap">1–3</span>&nbsp;dni robocze</span></p>
+          <p class="ile-big"><b>260,-&nbsp;zł</b> <span>z&nbsp;opłatą skarbową, zwykle <span class="whitespace-nowrap">1–3</span>&nbsp;dni&nbsp;robocze</span></p>
           <p class="mt-6 text-[17px] leading-[1.6] text-ink/75 max-w-[56ch]">
             Apostille na odpis kosztuje 260&nbsp;zł, a&nbsp;gotowy dokument masz zwykle po <span class="whitespace-nowrap">1–3</span>&nbsp;dniach roboczych. W&nbsp;trybie
             ekspresowym za 350&nbsp;zł składamy go w&nbsp;MSZ tego samego dnia, jeśli oryginał i&nbsp;potwierdzenie płatności mamy do 11:00.
@@ -397,7 +402,7 @@
             <a href="/tlumaczenia-przysiegle/" class="underline font-semibold">Tłumaczenie przysięgłe</a> liczymy osobno, a&nbsp;Apostille na tłumaczeniu kosztuje tyle samo co na oryginale. Skan gotowego
             dokumentu wysyłamy od ręki, a&nbsp;oryginał odbierasz w&nbsp;centrum Warszawy albo dostajesz Paczkomatem: przy zleceniu
             od 350&nbsp;zł przesyłka jest w&nbsp;cenie, przy mniejszym kosztuje 30&nbsp;zł w&nbsp;jedną stronę. Za granicę wysyłamy kurierem
-            DHL Express, a&nbsp;jego koszt podajemy w&nbsp;wycenie.
+            DHL Express&nbsp;– około 300&nbsp;zł za przesyłkę, dokładną kwotę podajemy w&nbsp;wycenie.
           </p>
         </div>
         <div class="col-span-12 lg:col-span-5 flex flex-col justify-end gap-6">
@@ -414,9 +419,7 @@
             Ostateczną kwotę podajemy po zobaczeniu dokumentu, zwykle w&nbsp;15&nbsp;minut. Gdyby MSZ odmówiło Apostille, zwracamy całą
             wpłatę razem z&nbsp;opłatą skarbową. Pełny <a href="/cennik/#apostille" class="underline font-semibold">cennik</a>.
           </p>
-          <button type="button" data-quote class="inline-flex items-center rounded-[12px] px-6 py-[18px] font-semibold w-fit btn btn-center gt-btn">
-            Wyceń dokument <span class="btn-mark" aria-hidden="true"><span><svg viewBox="0 0 24 24" class="btn-chev"><path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="butt" stroke-linejoin="miter"/></svg></span></span>
-          </button>
+          <!-- 03.10.2026 (Грег): кнопка заявки здесь снята – главная теперь всплывающая (.m-dock, «Ekspresowa wycena»). Было: контурная .btn.btn-center.gt-btn «Wyceń dokument» -->
         </div>
       </div>
     </div>
@@ -464,7 +467,7 @@
           <span class="chev shrink-0" aria-hidden="true">+</span>
         </summary>
         <p class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
-          Tak. Skan gotowego dokumentu wysyłamy od razu, a&nbsp;oryginał&nbsp;– kurierem DHL Express, którego koszt podajemy w&nbsp;wycenie. Do Ukrainy wysyłamy Nową Pocztą za 150&nbsp;zł, a&nbsp;po Polsce przy zleceniu od 350&nbsp;zł przesyłka jest w&nbsp;cenie.
+          Tak. Skan gotowego dokumentu wysyłamy od razu, a&nbsp;oryginał&nbsp;– kurierem DHL Express, około 300&nbsp;zł za przesyłkę, dokładnie w&nbsp;wycenie. Do Ukrainy wysyłamy Nową Pocztą za 150&nbsp;zł, a&nbsp;po Polsce przy zleceniu od 350&nbsp;zł przesyłka jest w&nbsp;cenie, przy mniejszym&nbsp;– 30&nbsp;zł w&nbsp;jedną stronę.
         </p>
       </details>
     </div>
@@ -544,7 +547,7 @@
         <address class="fl-note fl-where not-italic" style="margin-top:0">
           <span class="fl-w-item">
             <strong>Warszawa – Śródmieście</strong>
-            <span class="fl-soft">Śródmieście · paczkomat InPost</span>
+            <span class="fl-soft">Śródmieście · Paczkomat InPost</span>
           </span>
           <a href="/apostille/gdzie/" class="fl-link fl-w-link"><span class="nl-swap"><span class="nl-a">Gdzie załatwia się Apostille</span><span class="nl-b" aria-hidden="true">Gdzie załatwia się Apostille</span></span></a>
         </address>
@@ -572,6 +575,9 @@
           Apostille <a href="/apostille/akt-urodzenia/" class="underline">na akt urodzenia</a> · <a href="/apostille/pelnomocnictwo/" class="underline">na pełnomocnictwo</a> · <a href="/apostille/zaswiadczenie-o-niekaralnosci/" class="underline">na zaświadczenie o&nbsp;niekaralności</a>
           <span class="text-paper/70 text-[17px] align-middle" style="font-weight:900">·</span>
           <span class="font-bold text-paper/70">Zgłoszenia&nbsp;24/7</span>
+        </p>
+        <p class="text-[13px] text-paper/45 mt-1.5">
+          Tłumaczenie przysięgłe <a href="/tlumaczenia-przysiegle/jezyk-angielski/" class="underline">z&nbsp;angielskiego</a> · <a href="/tlumaczenia-przysiegle/ukrainski/" hreflang="uk" lang="uk" class="underline">з&nbsp;української</a> · <a href="/tlumaczenia-przysiegle/rosyjski/" hreflang="ru" lang="ru" class="underline">с&nbsp;русского</a>
         </p>
       </div>
     </div>

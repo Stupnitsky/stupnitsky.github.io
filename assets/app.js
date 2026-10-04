@@ -37,7 +37,7 @@
           msgFri: 'Napisz teraz – w sobotę pracujemy po uzgodnieniu, najpóźniej odpiszemy w poniedziałek od 7:00.',
           msgSat: 'Napisz, a potwierdzimy termin. Standardowo wracamy w poniedziałek od 7:00.',
           msgSun: 'Zgłoszenie przyjmiemy teraz, odpowiemy w poniedziałek od 7:00.',
-          msgOff: 'Odpowiadamy normalnie. Urzędy dziś nieczynne – dokumenty złożymy w najbliższy dzień roboczy.', holiday: 'Dzień ustawowo wolny', msgNext: 'Napisz teraz – odpowiemy w najbliższy dzień roboczy od 7:00.',
+          msgOff: 'Odpowiadamy jak zwykle, ale urzędy są dziś zamknięte, więc dokumenty złożymy w najbliższy dzień roboczy.', holiday: 'Dzień ustawowo wolny', msgNext: 'Napisz teraz – odpowiemy w najbliższy dzień roboczy od 7:00.',
           book: { hint: 'Kliknij dostępny dzień – wybierzesz porę spotkania.', tz: 'czas warszawski', pick: 'Wybierz porę spotkania', cta: 'Umów spotkanie', note: 'Dokładną godzinę potwierdzimy w odpowiedzi.', late: 'Na dziś jest już za późno – wybierz inny dzień.', placeL: 'Miejsce spotkania',
                   parts: ['Rano','Południe','Wieczór'], place: 'Śródmieście, centrum Warszawy',
                   msg: 'Dzień dobry! Chcę umówić spotkanie w Śródmieściu: {date}, {part}, godz. {time} czasu warszawskiego.' },
@@ -2837,7 +2837,11 @@
      (польские страницы). Стоит ДО панели wyceny: кнопка «Otwórz formularz wyceny» и ссылки на форму внутри шагов получают
      data-quote-обработчик панели вместе со всеми. Исходный список остаётся в разметке (без JS виден он), при сборке скрыт.
      Смена шагов – по шагу (Грег: «нелинейная прокрутка – карточка должна побыть в центре»): x – непрерывная позиция прокрутки
-     0…M, k = floor(x) – текущий слайд; отрезок слайда i заполняется, пока читаешь i−1. Стили – .kk-* в конце styles.css. */
+     0…M, k = floor(x) – текущий слайд. Стили – .kk-* в конце styles.css.
+     Индикатор – точки в пилюле, как у галерей apple.com (Грег, 04.10.2026: «реализуй по такому же принципу и у нас на сайте», кнопка повтора
+     рядом с пилюлей не нужна): точка на каждый слайд, включая слайд заявки; у текущего слайда точка вытянута в полоску, и полоска
+     заполняется, пока его читают (доля x − k); заполнилась – слайд сменился, полоска снова стала точкой, вытянулась следующая.
+     Раньше были N равных отрезков под карточкой (отрезок слайда i заполнялся, пока читаешь i−1). */
   (function(){
     var blocks = document.querySelectorAll('.kt-steps[data-kroki]');
     if (!blocks.length) return;
@@ -2855,7 +2859,7 @@
         return { t:b ? b.innerHTML.trim().replace(/\.$/, '') : '', tt:b ? b.textContent.trim().replace(/\.$/, '') : '', x:c.innerHTML.trim() };
       });
       var N = steps.length, M = N + 1;   /* M – шаги и слайд заявки */
-      var root = el('div', 'kk'), pin = el('div', 'kk-pin'), st = el('div', 'kk-st'), nav = el('div', 'kk-nav'), seg = el('ol', 'kk-seg');
+      var root = el('div', 'kk'), pin = el('div', 'kk-pin'), st = el('div', 'kk-st'), nav = el('div', 'kk-nav'), seg = el('ol', 'kk-dots');
       var cs = steps.map(function(s, i){
         return el('article', 'kk-c', '<div class="kk-in"><p class="kk-t">' + pair(s.t) + '</p><p class="kk-x">' + s.x + '</p></div><span class="kk-wm" aria-hidden="true">' + (i + 1) + '</span>');
       });
@@ -2864,10 +2868,9 @@
         '<p class="kk-btn"><a href="/cennik/#wycena" data-quote class="cta-btn cta-btn--main">Otwórz formularz wyceny<span class="cta-mark" aria-hidden="true">' + CHEV + '</span></a></p></div>');
       cs.push(cta);
       cs.forEach(function(c, i){ c.style.zIndex = String(100 - i); st.appendChild(c); });
-      /* отрезки – у слайдов 1…N (у первого нет: он всегда полный), последний – слайд заявки */
+      /* точки – у всех слайдов 0…N, последняя – слайд заявки */
       var names = steps.map(function(s){ return s.tt; }).concat('Prześlij zdjęcia');
-      seg.style.setProperty('--n', N);
-      var ls = []; for (var j = 1; j <= N; j++) (function(i){
+      var ls = []; for (var j = 0; j <= N; j++) (function(i){
         var li = el('li', '', '<button type="button"><span class="bar"><i></i></span></button>'); li._i = i;
         li.firstChild.setAttribute('aria-label', names[i]); seg.appendChild(li); ls.push(li);
       })(j);
@@ -2896,11 +2899,12 @@
       function upd(){
         if (root.style.display === 'none') return;
         var x = prog() * M, k = Math.min(M - 1, Math.floor(x));
-        ls.forEach(function(li){ li.firstChild.firstChild.firstChild.style.setProperty('--f', clamp(x - li._i + 1, 0, 1).toFixed(3)); });
+        ls.forEach(function(li){ li.firstChild.firstChild.firstChild.style.setProperty('--f', clamp(x - li._i, 0, 1).toFixed(3)); });
         if (k === cur) return; cur = k;
         cs.forEach(function(c, i){ var dd = i - k; c.style.setProperty('--d', dd);
           c.classList.toggle('is-cur', dd === 0); c.classList.toggle('is-past', dd < 0); c.classList.toggle('is-next', dd > 0); c.classList.toggle('is-deep', dd > 3); });
-        ls.forEach(function(li){ li.classList.toggle('on', li._i === k); li.classList.toggle('done', li._i < k); });
+        ls.forEach(function(li){ li.classList.toggle('on', li._i === k); li.classList.toggle('done', li._i < k);
+          if (li._i === k) li.firstChild.setAttribute('aria-current', 'step'); else li.firstChild.removeAttribute('aria-current'); });
       }
       function go(i){
         var t = root.getBoundingClientRect().top + window.scrollY;
@@ -3064,6 +3068,12 @@
           /* заголовок панели «Sfotografuj telefonem…» здесь не к месту – клиенту ещё нечего фотографировать */
           var fhA = qd.querySelector('.qd-fh-a'), fhB = qd.querySelector('.qd-fh-b');
           if (fhA && fhB) { fhA.textContent = 'Napisz, dokąd'; fhB.textContent = 'i\u00a0na kiedy potrzebujesz dokumentu'; }
+          /* 04.10.2026 (аналитика 02.10, Ф13): фото здесь не просили – экран после отправки не говорит «zdjęcia dotarły»,
+             а обещает то же, что страница: wniosek i pełnomocnictwo do podpisania. Страница только PL */
+          var dH = qd.querySelector('.qd-done .qd-formhead'), dS = qd.querySelector('.qd-done .qd-formsub'), dSafe = qd.querySelector('.qd-done .qd-safe');
+          if (dH) dH.textContent = 'Dziękujemy, wiadomość dotarła.';
+          if (dS) dS.innerHTML = 'Cenę końcową, termin oraz wniosek i\u00a0pełnomocnictwo do podpisania wyślemy na <b class="qd-done-email"></b> zwykle w\u00a0ciągu 15\u00a0minut, codziennie 7:00–21:00. Płacisz dopiero wtedy, gdy zaakceptujesz wycenę.';
+          if (dSafe) dSafe.hidden = true;
         }
         bind();
         return qd;
@@ -3186,6 +3196,7 @@
     var GAP = 24;      /* зазор до нижнего края окна */
     var FOOT = 63;     /* зазор до края контента – такой же, как у боковой стрелки «наверх» */
     var EARLY = 0.10;  /* показываем на 10% высоты окна раньше, чем якоря уйдут за верх */
+    var wideQ = window.matchMedia ? window.matchMedia('(min-width:1150px)') : null;
     var ticking = false;
 
     function apply(){
@@ -3197,7 +3208,9 @@
       dock.classList.toggle('is-on', on);
 
       var h = dock.offsetHeight;
-      var top = vh - GAP - h;
+      /* от 1150px плитка стоит слева, а справа – кнопка «Ekspresowa wycena» (.m-dock: 68px высотой, 18px от низа окна):
+         середины на одной линии (Грег, 03.10.2026) */
+      var top = vh - (wideQ && wideQ.matches ? 18 + (68 - h) / 2 : GAP) - h;
       if (main) {
         var max = main.getBoundingClientRect().bottom - FOOT - h;
         if (max < top) top = max;
@@ -3851,7 +3864,7 @@
    Уже 1150px (27.09.2026: и на планшете – там в шапке нет кнопки заявки). Видна с первого экрана, пока главная кнопка hero
    не в окне (нет её – после полэкрана); на /cennik/ уступает плавающим якорям прайса (.cn-dock). Прячется,
    пока на экране видна другая главная кнопка страницы (.cta-btn--main в <main>) – двух одинаковых рядом не бывает, –
-   у конца контента (подвал – шторка, ориентир – низ <main>), при открытом меню и панели заявки.
+   у конца контента (подвал – шторка, ориентир – низ <main>; от 1150px там не прячется, а встаёт над подвалом), при открытом меню и панели заявки.
    Текст и адрес берутся у кнопки заявки в шапке (.navlink--plate) – на ua/ru/en кнопка сама на своём языке;
    нажатие передаётся ей, панель заявки открывает её обработчик. Стрелка «наверх» встаёт над доком (событие mdock). */
 (function () {
@@ -3866,32 +3879,70 @@
   dock.className = 'm-dock';
   dock.innerHTML = '<a class="cta-btn cta-btn--main" href="' + plate.getAttribute('href') + '"></a>';
   var a = dock.firstChild;
-  a.textContent = label;
+  /* от 1150px у дока параметры плашки шапки и подпись жёлтой полосы меню «Ekspresowa wycena» (Грег, 03.10.2026): две подписи,
+     какую показать – решает styles.css (.md-s / .md-l); нет полосы меню – одна прежняя */
+  var floorT = document.querySelector('#mobile-nav .mnd-floor .mnd-t'), wide = floorT ? (floorT.textContent || '').trim() : '';
+  ['md-s', 'md-l'].forEach(function (c, i) { var s = document.createElement('span'); s.className = c; s.textContent = i && wide ? wide : label; a.appendChild(s); });
   a.insertAdjacentHTML('beforeend', chev);
   a.addEventListener('click', function (e) {
     if (e.metaKey || e.ctrlKey || e.shiftKey) return;
     if (plate.hasAttribute('data-quote')) { e.preventDefault(); plate.click(); }
   });
   document.body.appendChild(dock);
+  /* свечение вокруг кнопки (от 1150px, только на страницах со светом лампы – styles.css); отдельным слоем, а не внутри дока:
+     mix-blend-mode из слоя с z-index на страницу не действует */
+  var glow = document.createElement('div'); glow.className = 'm-dock-glow'; glow.setAttribute('aria-hidden', 'true'); document.body.appendChild(glow);
+  /* стекло под кнопкой (от 1150px): охра дока ложится на него умножением – насыщенная и при этом прозрачная, как плашка шапки;
+     тоже отдельным слоем – внутри слоя с умножением backdrop-filter страницу не видит. Ширину кнопки ему передаёт apply() */
+  var glass = document.createElement('div'); glass.className = 'm-dock-glass'; glass.setAttribute('aria-hidden', 'true'); document.body.appendChild(glass);
+  /* белый свет под тёмной кнопкой в покое – как под плашкой меню; при наведении его сменяет охра .m-dock-glow (Грег, 03.10.2026) */
+  var lamp = document.createElement('div'); lamp.className = 'm-dock-lamp'; lamp.setAttribute('aria-hidden', 'true'); document.body.appendChild(lamp);
 
   var mains = [].slice.call(main.querySelectorAll('.cta-btn--main, .gt-btn, .tl-go-go'));   /* .gt-btn – кнопка заявки в плитах цен, .tl-go-go – во фразе-часах #jak-to-dziala */
   var first = mains[0] || null;
-  var cn = document.querySelector('.cn-dock');   /* /cennik/: плавающие якоря прайса внизу окна (от 640px) – пока они видны, док не показываем */
+  var darks = [].slice.call(document.querySelectorAll('.slab, section.bg-ink'));   /* без .footer-tone: подвал закреплён под страницей, его рамка всегда у низа окна */
+  var cn = document.querySelector('.cn-dock');   /* /cennik/: плавающие якоря прайса внизу окна (от 640px) – уже 1150px, пока они видны, док не показываем */
+  var deskQ = window.matchMedia('(min-width:1150px)');
   if (cn && window.MutationObserver) new MutationObserver(req).observe(cn, { attributes: true, attributeFilter: ['class'] });
-  var on = false, ticking = false;
+  var on = false, ticking = false, dockW = -1, dockLift = 0;
   function seen(el) {
     if (!el.offsetParent && getComputedStyle(el).position !== 'fixed') return false;   /* скрытые (display:none) не считаются */
-    var r = el.getBoundingClientRect();
-    return r.bottom > 0 && r.top < window.innerHeight && r.width > 0;
+    /* 04.10.2026 (аналитика 02.10, К1): кнопка карточки «Krok po kroku», лежащей под стопкой, и кнопка под стеклом шапки
+       глазу не видны, а раньше считались видимыми – кнопка заявки пропадала на 3–4 экрана. Видимой считаем кнопку,
+       у которой в окне хотя бы половина высоты (Н5 аналитики переводов: 19px кнопки hero у низа окна гасили док) */
+    if (el.closest('.kk-c') && !el.closest('.kk-c.is-cur')) return false;
+    var r = el.getBoundingClientRect(), top = window.innerWidth >= 1150 ? 110 : 0;
+    return r.width > 0 && r.bottom - r.height / 2 > top && r.top + r.height / 2 < window.innerHeight;
   }
   function apply() {
     ticking = false;
     var vh = window.innerHeight, show = phone.matches;
     if (show && (root.classList.contains('menu-open') || root.classList.contains('qd-open'))) show = false;
-    if (show && cn && cn.classList.contains('is-on') && getComputedStyle(cn).display !== 'none') show = false;   /* position:fixed – offsetParent всегда null */
+    /* от 1150px якоря стоят слева, кнопка – справа, друг другу не мешают (Грег, 03.10.2026); уже – обе по центру, док уступает */
+    if (show && cn && !deskQ.matches && cn.classList.contains('is-on') && getComputedStyle(cn).display !== 'none') show = false;   /* position:fixed – offsetParent всегда null */
     if (show) show = first ? !seen(first) : window.scrollY > vh * 0.5;   /* с первого экрана, пока кнопки hero не в окне (Грег, 27.09.2026) */
     if (show && mains.some(seen)) show = false;
-    if (show && main.getBoundingClientRect().bottom < vh + 40) show = false;
+    /* конец контента (подвал – шторка, ориентир – низ <main>). Уже 1150px кнопка там прячется, как раньше. От 1150px –
+       не исчезает, а остаётся на странице (Грег, 03.10.2026: «в конце сайта перед футером не исчезает, а фиксируется на
+       странице»): встаёт над низом <main> и уезжает вверх вместе с ним, пока открывается подвал.
+       Подъём --dock-lift – на док, стекло и свечение (styles.css) */
+    var mb = main.getBoundingClientRect().bottom;
+    if (show && !deskQ.matches && mb < vh + 40) show = false;
+    /* где встаёт (Грег: «положение кнопки при зацепе должно быть красивым, пропорциональным»): не вплотную к подвалу, а в 63px
+       над краем контента – тот же зазор, что у стрелки «наверх» и якорей прайса, и столько же у кнопки справа до края окна
+       на 1440 (правый край плашки меню): в углу страницы она стоит с равными полями. 18px – её обычный отступ от низа окна */
+    var lift = deskQ.matches ? Math.max(0, Math.round(vh - mb + 63 - 18)) : 0;
+    if (lift !== dockLift) { dockLift = lift; [dock, glass, glow, lamp].forEach(function (e) { e.style.setProperty('--dock-lift', lift + 'px'); }); }
+    /* от 1150px (styles.css): стекло и свечение – по ширине кнопки (--dock-w); над тёмным блоком (те же, что у шапки)
+       кнопка – как тёмная плашка меню (охра 78 % с размытием), свечение – осветлением. Место дока – «дома», без выезда */
+    if (show) {
+      var dr = dock.getBoundingClientRect(), db = vh - (parseFloat(getComputedStyle(dock).bottom) || 0), dt = db - dr.height;
+      if (dr.width !== dockW) { dockW = dr.width; [glass, glow, lamp].forEach(function (e) { e.style.setProperty('--dock-w', dockW + 'px'); }); }
+      dock.classList.toggle('on-dark', darks.some(function (d0) {
+        var d = d0.getBoundingClientRect();
+        return d.top < db && d.bottom > dt && d.left < dr.right && d.right > dr.left;
+      }));
+    }
     if (show !== on) {
       on = show;
       dock.classList.toggle('is-on', on);
@@ -3904,6 +3955,7 @@
   window.addEventListener('resize', req);
   /* меню и панель заявки меняют класс у <html> – следим за ним */
   if (window.MutationObserver) new MutationObserver(req).observe(root, { attributes: true, attributeFilter: ['class'] });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(req);   /* шрифт подписи догрузился – ширина кнопки для стекла (--dock-w) заново */
   apply();
 })();
 
@@ -3987,7 +4039,7 @@
         var town = opt.textContent.split(' → ')[0];
         via.textContent = court === 'warszawa'
           ? town + ' należy do jednego z\u00a0warszawskich sądów okręgowych.'
-          : town + ' nie ma własnego sądu okręgowego. Podpis notariusza z\u00a0tego miasta poświadcza:';
+          : town + ' nie ma własnego Sądu Okręgowego. Podpis notariusza z\u00a0tego miasta poświadcza:';
       }
     }
   }
