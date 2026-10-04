@@ -221,9 +221,20 @@
         function(cb){ paper({ seed:162, size:510, laid:{ step:5, a:.012, w:1.21 } }, cb); }];
       (function next(i){
         if (i === jobs.length) { html.style.setProperty('--papier-czern', L.map(function(l){ return 'url(' + l[0] + ')'; }).join(','));
-          html.style.setProperty('--papier-czern-s', L.map(function(l){ return l[1] + 'px ' + l[1] + 'px'; }).join(',')); html.classList.add('papier-czern-ready'); return; }
+          html.style.setProperty('--papier-czern-s', L.map(function(l){ return l[1] + 'px ' + l[1] + 'px'; }).join(',')); html.classList.add('papier-czern-ready'); later(stopka); return; }
         later(function(){ jobs[i](function(u, sz){ L[i] = [u, sz]; next(i + 1); }); });
       })(0);
+    }
+    /* 2а) охристый подвал – бумага (Грег, 04.10.2026: «задать фактуру и несколько ворсинок и пятнышек для футера»). Фактура – та же, что у жёлтой
+       плашки (--papier-plate под охристой вуалью --papier-veil-y, уже готовы), поверх неё две редкие плитки: ворсинки с тёмными пятнышками
+       (1024px) и светлые пятнышки с парой светлых ворсинок (840px) – размеры разные, чтобы узор не повторялся в такт. В окне подвала
+       (≈530px высоты) на 1440 это около дюжины ворсинок и десятка пятнышек. Стили – html.papier-stopka-ready в styles.css. */
+    function stopka(){
+      later(function(){ paper({ seed:311, size:1024, fibers:[{ n:22, len:[4, 30], w:[.4, .85], dark:[.14, .3], light:[.3, .55], share:.3, curl:.8 }],
+          specks:{ n:9, r:[.5, 1.8], a:[.25, .6] } }, function(a){
+        later(function(){ paper({ seed:312, size:840, fibers:[{ n:6, len:[5, 24], w:[.35, .7], light:[.35, .6], share:1, curl:.8 }],
+            specks:{ n:6, r:[.4, 1.3], a:[.35, .65], color:'rgba(255,255,255,1)' } }, function(b){
+          html.style.setProperty('--papier-stopka', 'url(' + a + '),url(' + b + ')'); html.classList.add('papier-stopka-ready'); }); }); }); });
     }
     /* 3) свет по разделам. Грег, 04.10.2026: «при повторном выезде включи данный эффект» – свет включается каждый раз, когда раздел снова входит
        в окно, а не один раз: раздел зажигается (is-lit), когда его верх поднялся выше 78 % высоты окна (или он входит сверху при прокрутке назад),
@@ -247,6 +258,28 @@
     (doc.fonts && doc.fonts.ready ? doc.fonts.ready : Promise.resolve()).then(function(){ setTimeout(czernPasek, 200); });
     var pt = 0, pw = win.innerWidth;
     win.addEventListener('resize', function(){ clearTimeout(pt); pt = setTimeout(function(){ if (win.innerWidth !== pw) { pw = win.innerWidth; czernPasek(); } }, 250); });
+    /* 5) живой свет лампы */
+    czernLamp();
+  }
+  /* Живой свет лампы – варианты 55–57 стенда docs/czern/ вместе (Грег, 04.10.2026: «55 56 57 объедини в один, только на разных интервалах
+     поставь и с различной очерёдностью»). Свет – слой body::before (styles.css, html.papier-swiatlo), скрипт только меняет его переменные.
+     У каждого движения свой круг со случайной паузой; круги разной длины и идут независимо, поэтому порядок событий всё время другой:
+       дышит    – раз в 7–11 с пятно за 1,4 с становится чуть шире или уже (96–108 %);
+       качается – раз в 11–17 с за 1,6 с уходит влево или вправо (до 3 % ширины окна от середины);
+       мигает   – раз в 19–29 с слабеет на 16 % на 0,15 с, в среднем каждый четвёртый раз – дважды подряд.
+     Первое событие каждого круга – раньше (от половины нижней границы), чтобы страница не стояла полминуты. При prefers-reduced-motion
+     свет стоит. В кадре стенда варианты 55–57 показывают движения по одному и гасят общее атрибутом data-lamp="off" у <html>. */
+  function czernLamp(){
+    if (!html.classList.contains('papier-swiatlo') || win.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    function every(a, b, fn){
+      (function loop(first){ setTimeout(function(){ if (html.getAttribute('data-lamp') !== 'off') fn(); loop(false); },
+        ((first ? a / 2 : a) + Math.random() * (b - a)) * 1000); })(true);
+    }
+    function set(k, v){ html.style.setProperty(k, v); }
+    function dip(){ set('--lamp-o', '.84'); setTimeout(function(){ set('--lamp-o', '1'); }, 150); }
+    every(7, 11, function(){ set('--lamp-s', (.96 + Math.random() * .12).toFixed(3)); });
+    every(11, 17, function(){ set('--lamp-x', ((Math.random() * 2 - 1) * 3).toFixed(2) + 'vw'); });
+    every(19, 29, function(){ dip(); if (Math.random() < .25) setTimeout(dip, 380); });
   }
   /* «zacznij od zdjęcia» под кнопками первого экрана /kontakt/: надпись – assets/img/papier/kontakt-zacznij-od-zdjecia.svg (контуры Liu Jian Mao Cao,
      белый карандаш по чёрной бумаге: docs/papier/hand/v84-make_svg.py → docs/czern/hand/make_white.py; нарисована в 48px, стоит в 27px, −3°),

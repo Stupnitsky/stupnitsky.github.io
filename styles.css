@@ -2320,6 +2320,16 @@ body > main{ background:var(--c-page); }
 /* подвал выше окна (телефон в горизонтали, низкое окно): закреплённый, он не показал бы свой верх –
    класс ставит app.js, запас под main при этом снимается */
 #stopka.is-flow{ position:relative; }
+/* Низ страницы над подвалом (Грег, 03.10.2026): нижние углы main скруглены, как у плашек (26px), и страница бросает
+   тень на подвал, пока он открывается. За вырезами углов лежит фон body (цвет страницы) – в самом низу прокрутки углы
+   пропали бы, поэтому графит подвала продлён вверх на радиус его же тенью без размытия (overflow:hidden подвала её
+   не режет). От 640px: уже подвал в потоке, телефон не трогаем. Тень в режиме html.plain снята (конец файла). */
+@media (min-width:640px){
+  body > main{ border-radius:0 0 26px 26px; box-shadow:0 4px 8px rgba(0,0,0,.5), 0 34px 90px rgba(0,0,0,.8); }
+  /* последняя секция со своим фоном (чёрная /kontakt/ в режиме «без бумаги») закрыла бы углы прямыми – скругляем и её */
+  body > main > section:last-child{ border-radius:0 0 26px 26px; }
+  #stopka{ box-shadow:0 -26px 0 var(--c-graphite); }
+}
 
 /* ===== Футер уже 1280px: нижняя строка в потоке, без наложений (21.09.2026) =====
    Раньше место нижней строки задавал декоративный логотип: он стоял в потоке распоркой
@@ -5420,6 +5430,10 @@ html.papier-czern.papier-ready:not(.plain) .pg-ink .gdz{ background-image:var(--
       без стыков между разделами. Список плиток и их размеры – в --papier-czern / --papier-czern-s. */
 html.papier-czern:not(.plain) .pg-ink main > section.bg-ink{ background-color:transparent; }
 html.papier-czern.papier-czern-ready:not(.plain) body.pg-ink > main{ background-image:var(--papier-czern); background-size:var(--papier-czern-s); }
+/* охристый подвал – та же бумага, что у жёлтой плашки (верже под охристой вуалью), и поверх редкие ворсинки и пятнышки: две плитки
+   --papier-stopka (1024 и 840px) рисует assets/papier.js (stopka в czern). Грег, 04.10.2026: «задать фактуру и несколько ворсинок и пятнышек для футера». */
+html.papier-czern.papier-ready.papier-stopka-ready:not(.plain) .pg-ink .footer-tone{ background-image:var(--papier-stopka), var(--papier-veil-y), var(--papier-plate);
+  background-size:1024px 1024px, 840px 840px, 1370px 1370px, 510px 510px; }
 /* 2б) Отрывная полоса «молнией» с мессенджерами в конце «Gdzie» – вариант 61 стенда docs/czern/ (Грег, 04.10.2026: «на сайт»). Собирает assets/papier.js
       (czernPasek) от 1100px на месте кнопок WhatsApp / Telegram в .gdz-cta: вскрытая отрывная лента в чёрной бумаге, под ней охра подвала, на охре
       «WhatsApp», «Telegram», «Zadzwoń» набором меню; у мессенджеров сразу за словом – облачко меню с тремя точками (всплывает на 1 с по наведению).
@@ -5508,6 +5522,13 @@ html.papier-swiatlo .pg-ink section.bg-ink .cta-btn{ box-shadow:inset 0 1px 0 rg
 html.papier-swiatlo body::before, html.papier-swiatlo body::after{ content:""; position:fixed; inset:0; pointer-events:none; z-index:45; }
 html.papier-swiatlo body::before{ background:radial-gradient(75% 60% at 50% -5%, rgba(255,255,255,1), rgba(255,255,255,0) 70%); mix-blend-mode:soft-light; }
 html.papier-swiatlo body::after{ background:radial-gradient(120% 95% at 50% 15%, rgba(31,33,32,0) 50%, rgba(31,33,32,.208)); mix-blend-mode:multiply; }
+/* Живой свет – варианты 55–57 стенда docs/czern/ вместе (Грег, 04.10.2026: «55 56 57 объедини в один, только на разных интервалах поставь
+   и с различной очерёдностью»): пятно под плашкой меню изредка дышит (--lamp-s), качается (--lamp-x) и мигает (--lamp-o). Значения и паузы –
+   assets/papier.js (czernLamp), у каждого движения свой переход. Слой шире окна на 12 %, чтобы при сдвиге и сжатии у краёв не открывался
+   шов; радиус пятна пересчитан (75 % / 1,12) – в покое оно прежнего размера. При prefers-reduced-motion скрипт свет не трогает. */
+html.papier-swiatlo body::before{ left:-6%; right:-6%; background-image:radial-gradient(66.96% 60% at 50% -5%, rgba(255,255,255,1), rgba(255,255,255,0) 70%);
+  opacity:var(--lamp-o, 1); translate:var(--lamp-x, 0) 0; scale:var(--lamp-s, 1); transform-origin:50% 0;
+  transition:opacity .14s ease-out, translate 1.6s cubic-bezier(.35,0,.25,1), scale 1.4s cubic-bezier(.4,0,.3,1); }
 
 /* /kontakt/ (PL): вся страница на тёмном, как её второй блок #kontakt (Грег, 03.10.2026: «Всю страницу тоже чёрным сделай
    как и второй её блок»). В разметке: body.pg-ink, секциям hero / #odbior / #gdzie / #faq даны bg-ink text-paper – по section.bg-ink
@@ -5549,6 +5570,21 @@ html[lang="pl"] .pg-ink .kt-steps-list li, .pg-ink .kk-all li{ color:rgba(255,25
 .pg-ink .kk-seg button:focus-visible{ outline-color:var(--c-paper); }
 /* в светлых плашках внутри тёмной секции обводка фокуса кнопок остаётся чернильной */
 .pg-ink :is(.bg-terra, .bg-sand, .kk-c) .cta-btn:focus-visible{ outline-color:var(--c-ink); }
+/* подвал – охрой (Грег, 03.10.2026: «футер в цвете охры на странице Kontakt»). Охра – светлый фон, поэтому всё, что читают, –
+   чернильное; служебное (заголовки колонок, мелкая строка копирайта) – чернильным 75 %, на охре это ещё 4,9 : 1. Фоновое слово –
+   чернильным вместо белого, звёздочка – белой. Полоса над подвалом за скруглёнными углами страницы – тоже охрой, тень страницы
+   на подвал – тёплая: чёрная на охре грязнит (обе – из блока «Низ страницы над подвалом»). */
+.pg-ink .footer-tone{ background:var(--c-ochre); color:var(--c-ink); }
+.pg-ink .footer-tone :is(.fl-link, .fl-note, .fl-note strong, .text-paper\/70){ color:var(--c-ink); }
+.pg-ink .footer-tone :is(.fl-h, .fl-note .fl-soft, .text-paper\/45, .text-paper\/35){ color:rgba(31,33,32,.75); }
+.pg-ink .footer-tone .fl-h::after{ background:rgba(31,33,32,.3); }
+.pg-ink .footer-mark{ color:var(--c-ink); }
+.pg-ink .footer-mark .logo{ opacity:.045; }
+.pg-ink .footer-mark .logo b:nth-child(9){ color:var(--c-paper); }
+@media (min-width:640px){
+  .pg-ink #stopka{ box-shadow:0 -26px 0 var(--c-ochre); }
+  body.pg-ink > main{ box-shadow:0 4px 8px rgba(70,44,0,.45), 0 34px 90px rgba(70,44,0,.7); }
+}
 
 /* Галочки у прочитанных вопросов FAQ (Грег, 04.10.2026; вариант 51 стенда docs/czern – на всех страницах PL). Галочку ставит app.js
    («Галочки у прочитанных вопросов FAQ»): svg 34×30 внутри summary, слева от вопроса, на полях списка; штрих рисуется 0,4 с.
@@ -5570,6 +5606,7 @@ html[lang="pl"] .pg-ink .kt-steps-list li, .pg-ink .kk-all li{ color:rgba(255,25
 html.plain .pp-fold-sec{ display:none; }
 html.plain .faq-tick{ display:none; }   /* галочки у прочитанных вопросов FAQ – пометка от руки */
 html.plain .ob-plate--lift{ box-shadow:none; }
+html.plain body > main{ box-shadow:none; }   /* тень страницы на подвал; скруглённые углы остаются */
 @media (min-width:1024px){
   html.plain .ob-strip--perf::before, html.plain .ob-strip--perf::after{ content:none; }
   html.plain .ob-strip--perf .ob-strip-h, html.plain .ob-strip--perf .cta-btns{ border-top-color:rgba(31,33,32,.25); }
