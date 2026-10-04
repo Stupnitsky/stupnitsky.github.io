@@ -5300,6 +5300,20 @@ h2[class*="text-[34px]"]{ text-wrap:balance; }
   #ceny.cn-v3 .cg108h{font-size:34px!important}
   #ceny.cn-v3 .cn-list li .cg90{grid-row:20}   /* «Zamów wycenę» – последней строкой, после цены */
 }
+/* Прайс #ceny – шире и со сроком в колонке (Грег, 03.10.2026: «эти блоки можно расширить», «цены в закрытом виде может ещё
+   уменьшить»; вариант 121 стенда docs/ceny-gt). Группы – во всю сетку, как «Ile zapłacę za…?» и «Co jest w cenie» ниже:
+   у прайса один правый край. Цена свёрнутой строки 36px (было 44), раскрытой – 58px, «Wycena» не растёт. От 1280px лишняя
+   ширина занята сроком: название · срок · цена – сроки строк стоят друг под другом, свёрнутая строка в одну линию;
+   у раскрытой описание и состав идут под названием на две колонки. Уже 1280px срок остаётся под названием. */
+@media (min-width:1024px){ #ceny.cn-v3 .cn-groups > .cn-group.cn-l, #ceny.cn-v3 .cn-groups > .cn-group.cn-r{grid-column:1 / -1!important} }
+#ceny.cn-v3 .cn-group > .cn-list .cn-desc{max-width:72ch}
+@media (min-width:640px){ #ceny.cn-v3 .cn-list li:not(.open) .tcell, #ceny.cn-v3 .cn-list li.open .tcell.xwyc{--tf:36px} }
+@media (min-width:1280px){
+  #ceny.cn-v3 .cn-group > .cn-list li.xh{grid-template-columns:minmax(0,27rem) minmax(0,1fr) auto!important;grid-template-areas:"name meta price" "desc desc price" "sum sum price"!important;column-gap:2rem!important}
+  #ceny.cn-v3 .cn-group > .cn-list li.xh .cn-name{align-self:center}
+  #ceny.cn-v3 .cn-group > .cn-list li.xh .cn-meta{margin-top:0!important;align-self:center}
+  #ceny.cn-v3 .cn-group > .cn-list li.xh.open .cn-meta{align-self:start;margin-top:.2rem!important}
+}
 
 /* /cennik/: кнопки Zadzwoń · Zamów wycenę под подвалом прайса (анкета 02.10.2026), отступ – как между группами */
 .cn-foot .cn-foot-cta{ margin-top:28px; }
@@ -5536,11 +5550,25 @@ html[lang="pl"] .pg-ink .kt-steps-list li, .pg-ink .kk-all li{ color:rgba(255,25
 /* в светлых плашках внутри тёмной секции обводка фокуса кнопок остаётся чернильной */
 .pg-ink :is(.bg-terra, .bg-sand, .kk-c) .cta-btn:focus-visible{ outline-color:var(--c-ink); }
 
+/* Галочки у прочитанных вопросов FAQ (Грег, 04.10.2026; вариант 51 стенда docs/czern – на всех страницах PL). Галочку ставит app.js
+   («Галочки у прочитанных вопросов FAQ»): svg 34×30 внутри summary, слева от вопроса, на полях списка; штрих рисуется 0,4 с.
+   От 1360px галочка в 19px от текста, как на стенде; на 1100–1359px поле страницы 32px – галочка меньше (×.86) и ближе к тексту;
+   уже 1100px галочек нет (как и остальных пометок от руки). Цвет: на светлом – карандаш «260 zł» с /apostille/, на чёрном – охра. */
+#faq details > summary{ position:relative; }
+.faq-tick{ position:absolute; left:-44px; width:34px; height:30px; overflow:visible; pointer-events:none; color:rgb(177,80,31); }
+.faq-tick path{ stroke-dasharray:1; stroke-dashoffset:1; transition:stroke-dashoffset .4s cubic-bezier(.45,.05,.35,1); }
+.faq-tick.is-in path{ stroke-dashoffset:0; }
+.bg-ink .faq-tick{ color:rgba(239,176,31,.92); }
+@media (max-width:1359px){ .faq-tick{ left:-35px; transform:scale(.86); transform-origin:100% 50%; } }
+@media (max-width:1099px){ .faq-tick{ display:none; } }
+@media (prefers-reduced-motion:reduce){ .faq-tick path{ transition:none; } }
+
 /* Режим «без бумаги» (html.plain – ставит app.js, ползунок «Papier» в меню, инструмент Грега; 03.10.2026). Основное гасится само:
    без класса papier у <html> не работают assets/papier*.js и стили html.papier… / html.papier-swiatlo. Здесь – «не цифровое»
    вне этой системы: сгиб бумаги на /tlumaczenia-przysiegle/, перфорация и тень поднятого листа на /kontakt/ (возвращается
    обычная линия). Новое бумажное украшение без html.papier – добавить сюда отмену. */
 html.plain .pp-fold-sec{ display:none; }
+html.plain .faq-tick{ display:none; }   /* галочки у прочитанных вопросов FAQ – пометка от руки */
 html.plain .ob-plate--lift{ box-shadow:none; }
 @media (min-width:1024px){
   html.plain .ob-strip--perf::before, html.plain .ob-strip--perf::after{ content:none; }

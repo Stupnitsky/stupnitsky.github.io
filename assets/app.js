@@ -2063,6 +2063,60 @@
   window.addEventListener('hashchange', openTarget);
   openTarget();
 
+  /* Галочки у прочитанных вопросов FAQ (вариант 51 стенда docs/czern; Грег, 04.10.2026: «классно… я бы сделал 6 разных, с минимальным
+     отличием и потом бы перенёс на все страницы сайта… поправляй и на сайт»). Раскрыл вопрос – слева от него мелком ставится галочка
+     (рисуется 0,4 с) и остаётся, когда вопрос свёрнут: в списке видно, что уже прочитано. Вопрос, раскрытый при загрузке, отмечен сразу.
+     Шесть рисунков галочки одной руки – TICKS: начало, перегиб короткого штриха, излом, перегиб длинного, конец (доли кегля 18px);
+     отличия малые: длина короткого штриха, раствор, наклон, прогиб длинного. Соседним вопросам достаются разные (TICK_ORDER).
+     Место, размер и цвет – .faq-tick в styles.css (на светлом – карандаш rgb(177,80,31), на чёрном – охра; от 1100px).
+     Пока только PL (как все правки вида); в режиме «без бумаги» галочек нет. Числа – общие с docs/czern/v51.js. */
+  (function () {
+    var rootEl = document.documentElement;
+    if (/^\/(ua|ru|en)\//.test(location.pathname) || rootEl.classList.contains('plain')) return;
+    var list = document.querySelectorAll('#faq details');
+    if (!list.length) return;
+    rootEl.setAttribute('data-faq-ticks', '');
+    var NS = 'http://www.w3.org/2000/svg', SZ = 18, PAD = 6;
+    var TICKS = [
+      [0, .5, .14, .66, .34, .9, .58, .3, 1.05, -.18],
+      [.06, .56, .16, .7, .33, .9, .62, .36, 1.1, -.22],
+      [-.02, .46, .12, .64, .36, .88, .66, .44, 1.12, -.06],
+      [.04, .44, .14, .66, .32, .92, .5, .34, .92, -.26],
+      [0, .52, .15, .7, .35, .9, .74, .62, 1.04, -.2],
+      [-.04, .4, .1, .62, .36, .92, .56, .22, 1, -.1]
+    ], TICK_ORDER = [0, 3, 1, 4, 2, 5];
+    function defs() {
+      if (document.getElementById('faq-tick-f')) return;
+      var s = document.createElementNS(NS, 'svg');
+      s.setAttribute('width', '0'); s.setAttribute('height', '0'); s.setAttribute('aria-hidden', 'true'); s.style.position = 'absolute';
+      /* мелок: край смещён по шуму, штрих прорежен зерном – те же числа, что у пера crayon в assets/papier.js */
+      s.innerHTML = '<filter id="faq-tick-f" x="-30%" y="-30%" width="160%" height="160%">' +
+        '<feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="17" result="n"/>' +
+        '<feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G" result="d"/>' +
+        '<feTurbulence type="fractalNoise" baseFrequency="0.9 1.3" numOctaves="3" seed="23" result="g"/>' +
+        '<feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  4.2 0 0 0 -1.25" result="gm"/>' +
+        '<feComposite in="d" in2="gm" operator="in"/></filter>';
+      document.body.appendChild(s);
+    }
+    function tick(det, i, live) {
+      var sum = det.querySelector('summary'), h3 = sum && sum.querySelector('h3');
+      if (!h3 || sum.querySelector('.faq-tick')) return;
+      defs();
+      var t = TICKS[TICK_ORDER[i % 6]], p = function (k) { return (t[k] * SZ + PAD).toFixed(1); };
+      var s = document.createElementNS(NS, 'svg');
+      s.setAttribute('class', 'faq-tick' + (live ? '' : ' is-in')); s.setAttribute('viewBox', '0 0 34 30'); s.setAttribute('aria-hidden', 'true');
+      s.innerHTML = '<g filter="url(#faq-tick-f)"><path pathLength="1" d="M' + p(0) + ' ' + p(1) + 'Q' + p(2) + ' ' + p(3) + ' ' + p(4) + ' ' + p(5) +
+        'Q' + p(6) + ' ' + p(7) + ' ' + p(8) + ' ' + p(9) + '" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g>';
+      sum.appendChild(s);
+      s.style.top = (h3.offsetTop + 1) + 'px';   /* summary – position:relative (styles.css); галочка стоит по первой строке вопроса */
+      if (live) { s.getBoundingClientRect(); s.setAttribute('class', 'faq-tick is-in'); }
+    }
+    Array.prototype.forEach.call(list, function (det, i) {
+      if (det.open) tick(det, i, false);
+      det.addEventListener('toggle', function () { if (det.open) tick(det, i, true); });
+    });
+  })();
+
   // Валидация формы + мягкое сообщение вместо браузерного alert.
   // Форма живёт либо на странице (/cennik/), либо во всплывающей панели – отсюда scope.
   /* Сжатие фото на стороне клиента – до отправки формы.
@@ -2606,6 +2660,9 @@
       if (!n || reduce) return;
       var to = parseInt(n.dataset.price, 10); if (!to) return;
       var from = START[to] != null ? START[to] : Math.round(to * .15), s0 = performance.now();
+      /* своё стартовое число – data-from у .price-num; оно может быть больше итога, тогда число идёт вниз:
+         скидка «−10 %» накручивается от 60 до 10 (Грег, 04.10.2026: «сделай накрутку вниз от 60% до 10%») */
+      if (n.dataset.from != null && !isNaN(parseInt(n.dataset.from, 10))) from = parseInt(n.dataset.from, 10);
       if (n._raf) cancelAnimationFrame(n._raf);
       clearTimeout(n._end);
       (function tick(now){

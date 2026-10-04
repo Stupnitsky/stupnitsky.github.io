@@ -179,6 +179,7 @@
      3) Свет по разделам: раздел за пределами окна стоит в полутьме и «включается» каждый раз, когда входит в окно (верх выше 78 % его высоты).
      4) Пометка карандашом (вариант 32 стенда, Грег: «32 реализуй»; от 1100px): под кнопками первого экрана белым карандашом от руки
         «zacznij od zdjęcia» и стрелка к «Zamów wycenę» – функция czernNotes ниже (ей нужны штрихи, объявленные дальше в файле).
+        Вариант 36 (Грег: «36 на сайт»): в лиде #odbior белым мелком подчёркнуто «Skan gotowego dokumentu dostajesz od ręki» – czernSkan.
      Стили – html.papier-czern в styles.css. */
   /* зерно чёрной бумаги: светлые точки белые, тёмные – чёрные (чернильные на #1F2120 не видны), с мягкими сгустками в 2–4 пикселя.
      Копия JC.cz.grain из docs/czern/lib.js (свой генератор случайности – рисунок тот же, что на стенде). */
@@ -254,7 +255,7 @@
   function czernNotes(){
     Array.prototype.forEach.call(doc.querySelectorAll('.papier-note'), function(e){ e.remove(); });
     if (!win.matchMedia('(min-width:1100px)').matches) return;
-    defs(); czernDzien(); czernFaq();
+    defs(); czernSkan(); czernDzien(); czernFaq();
     var btn = doc.querySelector('main > section .hero-cta .cta-btn--main'), host = btn && btn.closest('section > div'); if (!host) return;
     var B = box(btn), hb = box(host), k = 27 / 48, w = 338.8 * k, h = 69.4 * k, x = B.x + B.w * .62, y = B.y + B.h + 30;
     var im = doc.createElement('img'); im.src = IMG + 'kontakt-zacznij-od-zdjecia.svg'; im.alt = ''; im.setAttribute('aria-hidden', 'true'); im.className = 'papier-note';
@@ -262,6 +263,18 @@
     im.style.cssText = 'left:' + (x - hb.x).toFixed(1) + 'px;top:' + (y - hb.y).toFixed(1) + 'px;transform:rotate(-3deg);transform-origin:0 100%;opacity:.95';
     host.appendChild(im);
     penStroke(arrow([x - 8, y + h * .5], [B.x + B.w * .34, B.y + B.h + 7], -16, rng(321)), 'pencil', 'rgba(236,236,231,.9)', 1.5, host);
+  }
+  /* Белый мелок в #odbior (вариант 36 стенда docs/czern, Грег 03.10.2026: «в 36 белым подчёркиваем», «36 на сайт»): в лиде раздела
+     «Jak przekazać i odebrać dokument» фраза «Skan gotowego dokumentu dostajesz od ręki» подчёркнута одной линией – перо crayon 2.4px, белый
+     тот же, что у карандаша выше; у последней строки вылет 24px с уходом вниз. Линия лежит в колонке раздела (она position:relative) –
+     едет вместе с ней и стоит в полутьме, пока раздел не «включился». Числа – из docs/czern/v36.js, менять вместе. */
+  function czernSkan(){
+    var host = doc.querySelector('#odbior > div'), r = host && find(doc, host, 'Skan gotowego dokumentu dostajesz od ręki'); if (!r) return;
+    var L = lines(r), R = rng(361), ds = [];
+    L.forEach(function(l, i){ var last = i === L.length - 1, y = l.y + l.h * .97, x0 = l.x - 3, x1 = l.x + l.w + (last ? 24 : 3), q = [];
+      for (var j = 0; j <= 7; j++) { var t = j / 7; q.push([x0 + (x1 - x0) * t, y + 1.2 - 2 * t + Math.sin(t * 3 + R()) * 1 + (last && j === 7 ? 4 : 0)]); }
+      ds.push('M' + q.map(function(p){ return p[0].toFixed(1) + ' ' + p[1].toFixed(1); }).join('L')); });
+    penStroke(ds, 'crayon', 'rgba(236,236,231,.9)', 2.4, host).classList.add('papier-note--skan');
   }
   /* «wybierz dzień» под календарём (вариант 37 стенда docs/czern; Грег, 03.10.2026: «37 поменяй место подписи и подчеркни слово, без стрелки
      и на сайт сразу!» – место показал красной линией на снимке): белым карандашом от руки, под календарём, правый край надписи – по правому
