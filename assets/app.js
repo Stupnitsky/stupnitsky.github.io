@@ -450,6 +450,9 @@
     var HOME = { pl: 'Główna', uk: 'Головна', ru: 'Главная', en: 'Home' };
     var pageName = here ? here.firstChild.textContent.trim()
       : /^\/((ua|ru|en)\/)?(index\.html)?$/.test(location.pathname) ? HOME[document.documentElement.lang] : '';
+    /* страница, которой нет в меню (/wycena/, 07.10.2026), называет себя сама: <meta name="hdr-name"> */
+    var nameMeta = document.querySelector('meta[name="hdr-name"]');
+    if (!pageName && nameMeta) pageName = nameMeta.content.trim();
     /* подстраница (Грег, 30.09.2026): «/ Apostille / Niekaralność» – короткое имя берётся из
        <meta name="hdr-sub"> страницы; на главной и разделах меню его нет */
     var subMeta = document.querySelector('meta[name="hdr-sub"]');
@@ -648,6 +651,8 @@
       var pj = parts.join('/');
       if (code === 'pl' && pj === 'tlumaczenia-przysiegle/angielski') return '/tlumaczenia-przysiegle/jezyk-angielski/' + location.hash;
       if (code === 'en' && pj === 'tlumaczenia-przysiegle/jezyk-angielski') return '/tlumaczenia-przysiegle/angielski/' + location.hash;
+      /* /wycena/ есть только по-польски (Грег, 07.10.2026): другой язык – главная этого языка с сразу открытой формой */
+      if (pj === 'wycena') return code === 'pl' ? '/wycena/' : '/' + code + '/#wycena';
       if (code !== 'pl' && PL_ONLY.test(parts.join('/'))) parts.pop();
       /* страницы языков /tlumaczenia-przysiegle/{ukrainski,rosyjski,angielski}/ написаны на своём языке (28.09.2026), польской версии
          у них нет – и «Polski» ведёт на раздел переводов, а не на ту же страницу */
@@ -3132,6 +3137,8 @@
     }
     window.addEventListener('hashchange', byHash);
     byHash();
+    /* /wycena/ – страница-ссылка для клиента после звонка: форма открыта сразу (атрибут у <body>; Грег, 07.10.2026) */
+    if (document.body.hasAttribute('data-quote-auto')) open();
   })();
 
 
