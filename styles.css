@@ -5790,3 +5790,152 @@ html.plain body > main{ box-shadow:none; }   /* тень страницы на �
     #sprawdz .gdz--ap .ap3-cell{ grid-row:span 7; }
   }
 }
+
+/* ===== Новая главная (.gn-*) – установлена 09.10.2026 из docs/glowna-nowa/ =====
+   Только новые классы .gn-*; готовые форматы сайта (.ap-doc, .ua-hop-*, .tl-fin, .cta-btn, .k-where-link)
+   не переопределяются, кроме модификаторов внутри .gn. История – docs/glowna-nowa/. */
+
+.gn h2{ text-wrap:balance; }
+.gn :is(.hero-more){ margin-top:.9rem; }
+
+/* ---------- Первый экран ---------- */
+/* три услуги с ценой: строка = ссылка; формат строк – как .ua-hop-row (имя, мелкая подпись, цена) */
+.gn-ceny{ display:grid; }
+.gn-cena{ display:grid; grid-template-columns:minmax(0,1fr) auto; column-gap:1.25rem; align-items:baseline;
+  padding:1rem 0; border-top:1px solid rgba(31,33,32,.18); color:var(--c-ink); text-decoration:none; }
+.gn-cena:last-child{ border-bottom:1px solid rgba(31,33,32,.18); }
+.gn-cena-n{ display:inline-flex; align-items:center; gap:10px; font-size:22px; font-weight:600; letter-spacing:-.02em; line-height:1.15; }
+.gn-cena-n svg{ width:16px; height:16px; flex:0 0 auto; transition:transform .25s cubic-bezier(.2,.7,.25,1); }
+.gn-cena:hover .gn-cena-n svg, .gn-cena:focus-visible .gn-cena-n svg{ transform:translateX(4px); }
+.gn-cena:focus-visible{ outline:2px solid var(--c-terra); outline-offset:4px; }
+.gn-cena b{ grid-column:2; grid-row:1; font-size:22px; font-weight:700; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.gn-cena b i, .gn-door-h b i{ font-style:normal; font-weight:400; font-size:15px; color:rgba(31,33,32,.68); }  /* единица «/ strona» – служебное */
+.gn-cena small{ grid-column:1 / -1; margin-top:.25rem; font-size:15px; line-height:1.4; max-width:44ch; }
+/* единица уходит под цену: цифры трёх строк стоят в один столбец по правому краю */
+@media (min-width:1024px){
+  .gn-cena b{ position:relative; }
+  .gn-cena b i{ position:absolute; right:0; top:100%; margin-top:.25rem; line-height:1.4; white-space:nowrap; }
+  .gn-cena small{ max-width:36ch; }
+}
+@media (prefers-reduced-motion:reduce){ .gn-cena-n svg{ transition:none; } }
+
+/* ---------- Первый экран: одна крупная цена (вариант 5 стенда docs/glowna-ekran/, выбран 09.10.2026) ----------
+   Услугу переключают три подписи – это радиокнопки с label, скрипт не нужен. Три ссылки-цены стоят в одной клетке
+   сетки (невыбранные скрыты через visibility), поэтому высота блока – по самой высокой, и при переключении
+   ни подписи, ни кнопки ниже не сдвигаются. */
+.gn-one-r{ position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; }
+.gn-one-tabs{ display:flex; gap:1.75rem; border-bottom:1px solid rgba(31,33,32,.18); }
+.gn-one-tabs label{ margin-bottom:-1px; padding:0 0 .8rem; border-bottom:3px solid transparent; font-weight:600; font-size:17px; line-height:1.2;
+  color:rgba(31,33,32,.7); white-space:nowrap; cursor:pointer; transition:color .2s ease; }   /* невыбранная подпись – служебное состояние; контраст 5,7 */
+.gn-one-tabs label:hover{ color:var(--c-ink); }
+#gn-u1:checked ~ .gn-one-tabs label[for="gn-u1"], #gn-u2:checked ~ .gn-one-tabs label[for="gn-u2"], #gn-u3:checked ~ .gn-one-tabs label[for="gn-u3"]{
+  color:var(--c-ink); border-bottom-color:var(--c-ink); }
+#gn-u1:focus-visible ~ .gn-one-tabs label[for="gn-u1"], #gn-u2:focus-visible ~ .gn-one-tabs label[for="gn-u2"], #gn-u3:focus-visible ~ .gn-one-tabs label[for="gn-u3"]{
+  outline:2px solid var(--c-terra); outline-offset:4px; }
+.gn-one .gn-cena, .gn-one .gn-cena:last-child{ grid-area:1 / 1; display:flex; flex-direction:column; align-items:flex-start; padding:1.4rem 0 0; border:0;
+  visibility:hidden; opacity:0; transition:opacity .3s ease; }
+#gn-u1:checked ~ .gn-ceny .gn-cena:nth-child(1), #gn-u2:checked ~ .gn-ceny .gn-cena:nth-child(2), #gn-u3:checked ~ .gn-ceny .gn-cena:nth-child(3){ visibility:visible; opacity:1; }
+.gn-one .gn-cena b{ order:1; position:static; font-size:clamp(72px,9.4vw,132px); font-weight:900; letter-spacing:-.055em; line-height:.85; }
+.gn-one .gn-cena b i{ display:block; position:static; margin:.9rem 0 0; font-size:17px; letter-spacing:0; line-height:1.3; white-space:nowrap; }
+.gn-one .gn-cena small{ order:2; margin-top:.9rem; font-size:17px; line-height:1.4; max-width:none; }
+.gn-one .gn-cena b:has(i) + small{ margin-top:.15rem; }
+.gn-one .gn-cena-n{ order:3; margin-top:.5rem; font-size:17px; letter-spacing:0; }
+@media (max-width:479px){ .gn-one-tabs{ gap:1rem; } .gn-one-tabs label{ font-size:15px; } }
+@media (prefers-reduced-motion:reduce){ .gn-one .gn-cena, .gn-one-tabs label{ transition:none; } }
+
+/* четыре кнопки под ценами – две строки по две; главная – последней (анкета 04.10.2026) */
+.cta-btns.gn-hero-cta{ display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; margin-top:1.75rem; }
+.cta-btns.gn-hero-cta > .cta-btn{ grid-column:auto; }
+.gn-hero-note{ margin-top:1rem; font-size:15px; line-height:1.45; text-wrap:balance; }
+
+/* ---------- Двери по документам ---------- */
+.ap-docs.gn-drzwi{ grid-template-columns:minmax(0,1fr); gap:2rem; margin-top:2.5rem; }
+@media (min-width:768px){ .ap-docs.gn-drzwi{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:2.75rem 3.5rem; margin-top:3.5rem; } }
+.gn-drzwi .ap-doc{ display:flex; flex-direction:column; align-items:flex-start; padding-top:1.25rem; scroll-margin-top:124px;
+  border-top:1px solid rgba(31,33,32,.18); }   /* линия – как у остальных строк страницы, не 2px */
+.gn-door-h{ display:flex; align-items:baseline; justify-content:space-between; gap:1.5rem; width:100%; }
+/* заголовок двери – уровень «заголовок плиты» (600, 26px, lh 1.03), как в #odbior и .ua-hop-q */
+.gn-drzwi .ap-doc .gn-door-h h3{ font-size:26px; font-weight:600; letter-spacing:-.045em; line-height:1.03; }
+.gn-door-h b{ font-size:20px; font-weight:700; white-space:nowrap; font-variant-numeric:tabular-nums; }
+@media (max-width:479px){ .gn-door-h{ flex-wrap:wrap; gap:.35rem 1rem; } }   /* на узком телефоне цена уходит под заголовок, а не за край */
+.gn-drzwi .ap-doc p{ margin-top:.9rem; max-width:58ch; color:var(--c-ink); }
+.gn-drzwi .ap-doc .k-where-link{ margin-top:1rem; font-size:17px; }
+.gn-drzwi .ap-doc p.gn-door-more{ margin-top:.9rem; font-size:15px; line-height:1.5; max-width:none; }
+
+/* Dokumenty z Ukrainy: сетка плашки .ua-hop, но это не ссылка целиком */
+.gn-ua{ display:grid; gap:1.5rem; padding:1.75rem; margin-top:3rem; }
+@media (min-width:640px){ .gn-ua{ padding:2.25rem 2.5rem; } }
+@media (min-width:1024px){ .gn-ua{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:3rem; align-items:start; padding:3rem; margin-top:4rem; } }
+@media (min-width:1024px){ .gn-ua{ column-gap:3.5rem; } }   /* вторая колонка – на оси второй колонки дверей */
+.gn-ua .ua-hop-go{ margin-top:0; }
+.gn-ua .ua-hop-q{ text-wrap:balance; }
+.gn-ua .ua-hop-row{ margin:0; }
+.gn-ua .ua-hop-row:not(:has(> b)) .ua-hop-n{ max-width:none; }
+
+.gn-inne{ margin-top:2.5rem; font-size:17px; line-height:1.6; max-width:70ch; }
+.gn-inne b{ font-weight:700; }
+.gn-inne-go{ margin-top:.6rem; line-height:1.3; }
+.gn-inne-go .k-where-link{ margin-top:0; }
+
+/* ---------- Apostille и перевод одним заказом ---------- */
+.gn-sumy{ display:grid; gap:1.25rem; margin-top:2.5rem; }
+@media (min-width:900px){ .gn-sumy{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:1.5rem; } }
+.gn-suma{ display:flex; flex-direction:column; padding:1.75rem; border-radius:18px; }
+@media (min-width:640px){ .gn-suma{ padding:2.25rem 2.5rem 2.4rem; } }
+.gn-suma h3{ font-size:26px; font-weight:600; letter-spacing:-.045em; line-height:1.03; max-width:20ch; }
+.gn-suma-t{ margin-top:.9rem; font-size:17px; line-height:1.55; max-width:46ch; }
+/* формула – как курсивные .cn-sum в прайсе */
+.gn-suma-f{ margin-top:1.1rem; font-size:17px; line-height:1.5; font-weight:500; font-style:italic; max-width:48ch; }
+.gn-suma-f > i{ font-style:normal; font-weight:700; margin:0 .35em; }
+.gn-suma-r{ margin-top:auto; padding-top:1.5rem; display:flex; flex-wrap:wrap; align-items:baseline; gap:.35rem 1rem; }
+.gn-suma-r b{ font-size:34px; font-weight:700; letter-spacing:-.03em; line-height:1; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.gn-suma-r span{ font-size:15px; line-height:1.4; }
+.gn-sumy-go{ margin-top:1.5rem; line-height:1.3; }
+.gn-sumy-go .k-where-link{ margin-top:0; }
+
+/* ---------- Цена окончательная ---------- */
+.gn-cena-box{ display:grid; gap:2rem; }
+.gn-cena-box h2 + p{ max-width:44ch; }
+@media (min-width:1024px){ .gn-cena-box{ grid-template-columns:minmax(0,6fr) minmax(0,5fr); gap:4rem; align-items:end; } }
+/* факты run-in: жирная фраза с точкой и текст в той же строке; строки – через тонкую линию */
+/* длину строки держит правое поле, а не max-width: линия идёт до края колонки, как у соседних блоков */
+.gn-fakty p{ padding:1rem 0; padding-right:max(0px, calc(100% - 52ch)); border-top:1px solid rgba(31,33,32,.18); font-size:17px; line-height:1.55; }
+.gn-fakty p:last-child{ border-bottom:1px solid rgba(31,33,32,.18); }
+.gn-fakty b{ font-weight:700; }
+.gn-fakty--top{ margin-top:2rem; }
+
+/* ---------- Как заказать: три случая строками ---------- */
+/* две ссылки-стрелки под лидом: страница с адресами урядов и окно «как сфотографировать» */
+.gn-jak-links{ display:flex; flex-wrap:wrap; gap:.5rem 2.5rem; margin-top:.9rem; }
+.gn .gn-jak-links .hero-more{ margin-top:0; }
+.gn-foto.step-card{ width:fit-content; cursor:default; transform:none !important; will-change:auto; }
+.gn-foto.step-card:hover .step-go{ transform:none; }
+.gn-foto .step-go{ display:inline-flex; justify-content:flex-start; margin-top:0; font:inherit; font-weight:600; font-size:17px; cursor:pointer; }
+.gn-foto .step-go:hover{ transform:none; opacity:1; }
+.gn-drogi{ margin-top:2.5rem; }
+.gn-droga{ display:grid; gap:.6rem; padding:1.5rem 0; border-top:1px solid rgba(31,33,32,.18); }
+.gn-droga:last-child{ border-bottom:1px solid rgba(31,33,32,.18); }
+.gn-droga h3{ font-size:26px; font-weight:600; letter-spacing:-.045em; line-height:1.03; }
+.gn-droga p{ font-size:17px; line-height:1.55; max-width:56ch; }
+.gn-droga .k-where-link{ margin-top:0; justify-self:start; }
+@media (min-width:1024px){
+  .gn-droga{ grid-template-columns:minmax(0,3fr) minmax(0,6fr) minmax(0,4fr); column-gap:3rem; align-items:baseline; padding:1.75rem 0; }
+  .gn-droga .k-where-link{ justify-self:end; text-align:right; }
+}
+
+/* ---------- Zanim oddasz Oryginał ---------- */
+.gn-ufaj{ display:grid; gap:2.5rem; }
+@media (min-width:1024px){ .gn-ufaj{ grid-template-columns:minmax(0,585px) minmax(0,1fr); gap:4rem; align-items:start; } }
+.gn-wzor img{ display:block; width:100%; max-width:585px; height:auto; border-radius:14px; border:1px solid rgba(31,33,32,.12); background:#fff; }
+.gn-wzor figcaption{ margin-top:1rem; font-size:15px; line-height:1.55; max-width:52ch; }
+.gn-wzor figcaption b{ font-weight:700; }
+.gn .gn-tel{ margin-top:1.5rem; }
+
+/* ---------- Polityka и Regulamin на светлом ---------- */
+.ws-legal.gn-legal{ margin-top:0; border-top-color:rgba(31,33,32,.18); }
+.gn-legal .ws-legal-item{ border-bottom-color:rgba(31,33,32,.18); }
+.gn-legal .legal-wrap > *{ color:var(--c-ink); }
+
+/* якоря под шапкой: styles.css даёт отступ только section[id], а это details и div */
+.gn-legal .ws-legal-item, .gn-drogi[id]{ scroll-margin-top:88px; }
+@media (min-width:1150px){ .gn-legal .ws-legal-item, .gn-drogi[id]{ scroll-margin-top:124px; } }
