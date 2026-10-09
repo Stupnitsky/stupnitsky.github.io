@@ -1876,7 +1876,7 @@
         if (r > l) nav.style.setProperty('--mnd-w', Math.ceil(r - l) + 'px');
         if (floor && title) {
           var f = floor.getBoundingClientRect(); if (!f.width) return;
-          var k = list.querySelector('.mn-link:nth-child(6)'), kl = 0;
+          var k = list.querySelector('.mn-link:last-child'), kl = 0;
           if (k) { var rg = document.createRange(); rg.selectNodeContents(k); var kr = rg.getBoundingClientRect(); kl = kr.left - kr.width - f.left; }
           var tr = document.createRange(); tr.selectNodeContents(title);   /* ширина самой надписи: блок надписи занимает всю зону */
           floor.style.setProperty('--cl', Math.round(Math.max(tr.getBoundingClientRect().width + 80, kl)) + 'px');

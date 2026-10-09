@@ -404,16 +404,14 @@ html.menu-open .to-top, html.menu-open .cn-dock{ opacity:0 !important; visibilit
 /* широкая плашка (планшет, узкое окно, телефон лёжа): список в две колонки, кнопки двумя рядами по две –
    лист во всю ширину шапки с одной колонкой слева выглядел бы пустым, а лёжа не помещался бы по высоте */
 @media (min-width:560px) and (max-width:1149px){
-  /* колонки (Грег, 21.09.2026; 28.09.2026 Cennik и Częste pytania поменяны местами): слева Apostille, Tłumaczenia,
-     Cennik, справа Częste pytania, Gdzie załatwić, Kontakt. Порядок в разметке прежний (на телефоне список
+  /* колонки (Грег, 21.09.2026; 09.10.2026 «Gdzie załatwić» и «Częste pytania» из меню сняты, пунктов четыре):
+     слева Apostille, Tłumaczenia, справа Cennik, Kontakt. Порядок в разметке прежний (на телефоне список
      идёт одним столбцом в нём же), места в сетке заданы явно */
-  .mn-list{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:repeat(3, auto); column-gap:3rem; }
+  .mn-list{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:repeat(2, auto); column-gap:3rem; }
   .mn-link:nth-child(1){ grid-area:1 / 1; }
-  .mn-link:nth-child(2){ grid-area:2 / 1; }
-  .mn-link:nth-child(3){ grid-area:3 / 1; border-bottom:0; }
-  .mn-link:nth-child(5){ grid-area:1 / 2; }
+  .mn-link:nth-child(2){ grid-area:2 / 1; border-bottom:0; }
+  .mn-link:nth-child(3){ grid-area:1 / 2; }
   .mn-link:nth-child(4){ grid-area:2 / 2; }
-  .mn-link:nth-child(6){ grid-area:3 / 2; }
   #mobile-nav .mn-cta{ margin-top:16px; }
 }
 /* Кнопки в два ряда – от 700px и на телефоне лёжа: сверху телефон и главная справа (Грег, 23.09.2026: «главная
@@ -4965,13 +4963,11 @@ html[lang="pl"] .zap-list small{ color:var(--c-ink); }
 
   /* пункты в две колонки + колонка связи шириной со строку языков (--mnd-w ставит app.js) */
   #mobile-nav .mnd-grid{ display:grid; grid-template-columns:minmax(0,1fr) var(--mnd-w, 340px); column-gap:3rem; align-items:start; }
-  #mobile-nav .mnd-grid .mn-list{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:repeat(3, auto); column-gap:3rem; min-width:0; }
+  #mobile-nav .mnd-grid .mn-list{ display:grid; grid-template-columns:1fr 1fr; grid-template-rows:repeat(2, auto); column-gap:3rem; min-width:0; }
   #mobile-nav .mn-link:nth-child(1){ grid-area:1 / 1; }
-  #mobile-nav .mn-link:nth-child(2){ grid-area:2 / 1; }
-  #mobile-nav .mn-link:nth-child(3){ grid-area:3 / 1; border-bottom:0; }
-  #mobile-nav .mn-link:nth-child(5){ grid-area:1 / 2; }
+  #mobile-nav .mn-link:nth-child(2){ grid-area:2 / 1; border-bottom:0; }
+  #mobile-nav .mn-link:nth-child(3){ grid-area:1 / 2; }
   #mobile-nav .mn-link:nth-child(4){ grid-area:2 / 2; }
-  #mobile-nav .mn-link:nth-child(6){ grid-area:3 / 2; }
   #mobile-nav .mnd-rail{ display:flex; flex-direction:column; min-width:0; }
   #mobile-nav .mnd-rail a{ display:flex; align-items:center; justify-content:space-between; gap:12px; box-sizing:border-box;
     height:calc(var(--mn-fs) * 1.15 + 2 * var(--mn-pad) + 1px); border-bottom:1px solid rgba(31,33,32,.1);
