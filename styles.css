@@ -5939,3 +5939,16 @@ html.plain body > main{ box-shadow:none; }   /* тень страницы на �
 /* якоря под шапкой: styles.css даёт отступ только section[id], а это details и div */
 .gn-legal .ws-legal-item, .gn-drogi[id]{ scroll-margin-top:88px; }
 @media (min-width:1150px){ .gn-legal .ws-legal-item, .gn-drogi[id]{ scroll-margin-top:124px; } }
+
+/* ===== Языковые главные /ua/ /ru/ /en/ – 09.10.2026 =====
+   Тело – перевод польской главной (docs/glowna-nowa/install_lang.py). У страниц класс html.pl-zone:
+   чернильный текст и лид 20px они получают оттуда. Здесь – то, что польской главной даёт html[lang="pl"]. */
+.gn-drzwi .ap-doc p{ font-size:17px; }
+html.pl-zone #faq .faq-price span:not(.fp-unit):not(.fp-note){ color:var(--c-ink); }
+/* подписи-переключатели первого экрана: если три подписи не помещаются в строку (длинные «Документи з України»,
+   «Documents from Ukraine», телефон 320px), последняя переносится на две строки, а не уходит за край;
+   подписи стоят по нижней линии */
+.gn-one-tabs{ align-items:flex-end; }
+.gn-one-tabs label{ white-space:normal; }
+/* /ua/: «Зателефонувати» и «Дізнатися ціну» вдвоём не помещаются в ряд уже 400px – идут во всю ширину под мессенджерами */
+@media (max-width:399px){ html[lang="uk"] .cta-btns.gn-hero-cta > .cta-btn:nth-child(n+3){ grid-column:1 / -1; } }
