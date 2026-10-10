@@ -376,7 +376,8 @@
     /* 44 > зазора 2.5rem у .gdz-cta: шире – полоса переносится под слоган */
     var avail = cta.clientWidth - cta.firstElementChild.offsetWidth - 44; if (avail < 400) return;
     var W = Math.round(Math.min(780, avail)), H = 64, pad = 12, st = 20, rc = 22, OY = H * .62, R = rng2(611), x;
-    var DASH0 = 4, DASH1 = 15, TX = 18.2, TY = 3.6, X0 = rc + st * .6;   /* просечка: штрих от X+4 до X+15 на линии, усик до (X+18.2, ∓3.6) */
+    var DASH0 = 4, DASH1 = 15, TX = 18.2, TY = 3.6, X0 = rc + st * .6 - st;   /* просечка: штрих от X+4 до X+15 на линии, усик до (X+18.2, ∓3.6) */
+    /* X0 на шаг левее (Грег, 10.10.2026: «добавь зубчик один»): первый зубчик – сразу за скруглением левого конца, на 32px от края */
     function f(n){ return n.toFixed(1); }
     function j(a){ return (R() - .5) * a; }
     function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]; }); }
@@ -387,9 +388,13 @@
     cta.classList.add('pasek-on'); cta.insertBefore(w, btns);
     function need(pl){ var m = doc.createElement('div'); m.className = 'pasek-paper'; m.style.cssText = 'position:static;display:inline-flex;visibility:hidden;padding-left:' + pl + 'px';
       m.innerHTML = row(); w.appendChild(m); var n = m.offsetWidth; m.remove(); return n - pad + 14; }
-    var pl = 34, nd = need(pad + pl);
+    var pl = 43, nd = need(pad + pl);   /* поле перед первым словом 43px (Грег, 10.10.2026: «слева на 9px длиннее»; было 34) */
     if (nd > W - 44) { w.classList.add('pasek-tight'); pl = 24; nd = need(pad + pl); }   /* тесно: поля ряда меньше */
     var F = Math.round(Math.min(W - 44, Math.max(W * .84, nd))), XR = F + 24;
+    /* слова прижаты к отрыву (Грег, 10.10.2026: «смести вправо поближе к отрыву»): от конца последнего слова до линии сгиба 40px;
+       левый конец окна тоже подтянут к словам (Грег, 10.10.2026: «подвинь край отрыва ближе к WhatsApp»): полоса укорачивается слева на всё лишнее,
+       поле перед первым словом – прежние 34px (24px в тесном ряду); правый край и язычок стоят на месте (ряд .gdz-cta прижимает полосу вправо) */
+    var F1 = Math.min(F, nd + 29); W -= F - F1; F = F1; XR = F + 24; w.style.width = W + 'px';
     var HW = Math.round(W + pad * 2 + Math.max(0, html.clientWidth - w.getBoundingClientRect().right - pad));   /* просечки – до правого края окна */
     /* край окна по одной просечке: по штриху до X+15, скос по усику, рваная перемычка к началу следующего штриха (рвётся по-разному) */
     function notch(X, y, out){
@@ -417,8 +422,24 @@
       return [[F - X - st - DASH0, y], [a, y]].concat(mid, [[p, y + out * TY], [c, y]]);
     }
     var fxs = Xs.filter(function(X){ return F - X - st - DASH0 > 3 && F - X - DASH1 < F - rc - 4; }).sort(function(a, b2){ return b2 - a; });
-    var Q = 'M0 8' + fxs.map(function(X){ return seg(tab(X, 0, -1), 0, 8); }).join('') + 'L' + f(F - rc) + ' 8A' + rc + ' ' + rc + ' 0 0 1 ' + F + ' ' + f(8 + rc) + 'L' + F + ' ' + f(8 + H - rc) +
-      'A' + rc + ' ' + rc + ' 0 0 1 ' + f(F - rc) + ' ' + f(8 + H) + fxs.slice().reverse().map(function(X){ return seg(tab(X, H, 1).reverse(), 0, 8); }).join('') + 'L0 ' + f(8 + H) + 'Z';
+    /* конец язычка оборван (Грег, 10.10.2026: «сделай этот край оборванным»; раньше – скруглённый, как левый конец окна): неровная линия поперёк
+       полосы – мелкая дрожь через 1,6–5,8px и редкие крупные уступы, глубина 0,5–13px от прежнего прямого края; по обрыву – серая сердцевина бумаги */
+    var qTop = [], qBot = []; fxs.forEach(function(X){ qTop = qTop.concat(tab(X, 0, -1)); }); fxs.slice().reverse().forEach(function(X){ qBot = qBot.concat(tab(X, H, 1).reverse()); });
+    /* после пробы «рванее» Грег вернул: «край отрыва более ровный и почти убрать белый край» – шаг 2–6,5px, дрожь ±1,7px, глубина до 9px, кромка .16 */
+    var rip = [], ry = 0, rd = 3 + R() * 3;
+    while (ry < H) { rip.push([F - rd, ry]); ry += 2 + R() * 4.5; rd += j(3.4) + (R() < .1 ? j(6) : 0); rd = Math.max(.5, Math.min(9, rd)); }
+    rip.push([F - rd, H]);
+    /* язычок завёрнут, а не лежит линейкой (Грег, 10.10.2026: «сделай завёрнутым, вместо ровной линейки»): от сгиба он уходит вверх по дуге –
+       к повороту −11° прибавляется подъём по квадрату расстояния от сгиба, у оборванного конца +CURL px (касательная там около −24°);
+       свет по длине – как на изогнутом листе: блик на перегибе, к концу и у сгиба темнее (градиент ниже, у grainBW).
+       Позже в тот же день Грег: «можно зеркально вниз» – дуга перевёрнута: язычок поднимается от сгиба на −11° и к оборванному концу
+       опускается на CURL px (конец почти горизонтален), тень под ним видна по всей длине */
+    var CURL = 18, room = Math.max(0, Math.min(34, html.clientWidth - w.getBoundingClientRect().right - 8)), VW = Math.max(10, Math.min(F - 5, W - F + room)), U0 = F - VW;
+    function bend(q){ var u = Math.max(0, q[0] - U0) / VW; return f(q[0]) + ' ' + f(8 + q[1] + CURL * u * u); }
+    var RIP = rip.map(bend).join('L');
+    var LAID = '', lx, ly, lq;
+    for (ly = 2.5; ly < H; ly += 5) { lq = []; for (lx = U0 - 12; lx < F + 12; lx += 12) lq.push(bend([lx, ly])); LAID += 'M' + lq.join('L'); }
+    var Q = 'M' + [[0, 0]].concat(qTop, rip, qBot, [[0, H]]).map(bend).join('L') + 'Z';
     var S = '';
     for (x = X0; pad + x + TX < HW; x += st) { S += 'M' + f(pad + x + DASH0) + ' ' + pad + 'h' + (DASH1 - DASH0) + 'l' + f(TX - DASH1) + ' ' + f(-TY); S += 'M' + f(pad + x + DASH0) + ' ' + f(pad + H) + 'h' + (DASH1 - DASH0) + 'l' + f(TX - DASH1) + ' ' + f(TY); }
     var DW = XR + pad * 2 + 8, DH = H + pad * 2, TW = W + pad * 2;
@@ -435,9 +456,14 @@
           '<defs><filter id="pasek-f" x="-2%" y="-14%" width="104%" height="128%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="9" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G"/></filter></defs>' +
           '<path d="' + P + '" fill="none" stroke="rgba(236,236,231,.24)" stroke-width="1" stroke-linejoin="round"/>' +
           '<g filter="url(#pasek-f)" fill="none" stroke="#C9C7BE" stroke-linejoin="round" stroke-linecap="round">' + T + '</g></svg></div>' +
-      '<div class="pasek-flapw" aria-hidden="true" style="top:0;height:' + H + 'px"><div class="pasek-flap" style="width:' + F + 'px;clip-path:path(\'' + Q + '\')"></div><i class="pasek-fold"></i></div>';
+      '<div class="pasek-flapw" aria-hidden="true" style="top:0;height:' + H + 'px"><div class="pasek-flap" style="bottom:' + (-8 - CURL) + 'px;width:' + F + 'px;clip-path:path(\'' + Q + '\')">' +
+        '<svg class="pasek-rim" style="left:0;top:0" width="' + F + '" height="' + (H + 16 + CURL) + '" viewBox="0 0 ' + F + ' ' + (H + 16 + CURL) + '"><path d="' + LAID + '" fill="none" stroke="rgba(0,0,0,.1)" stroke-width=".7"/><path d="' + LAID + '" fill="none" stroke="rgba(255,255,255,.035)" stroke-width=".6" transform="translate(0 .9)"/><path d="M' + RIP + '" fill="none" stroke="#62635F" stroke-opacity=".16" stroke-width="1.4" stroke-linejoin="round" filter="url(#pasek-f)"/></svg></div><i class="pasek-fold"></i></div>';
     var paperEl = w.querySelector('.pasek-paper'), fl = w.querySelector('.pasek-flapw'), ew = w.querySelector('.pasek-edgew'), flap = w.querySelector('.pasek-flap');
-    grainBW({ size:192, seed:612, w:.05, k:.2 }, function(u){ flap.style.backgroundImage = 'linear-gradient(270deg,rgba(0,0,0,.2),rgba(0,0,0,0) 40%),url(' + u + ')'; });
+    /* изнанка язычка – та же бумага с полосами верже, что и чёрный фон (Грег, 10.10.2026: «у нас бумага с полосами, а на обратной почему не видны»;
+       потом: «они не по направлению и с обратной стороны еле заметны совсем, зерна подкинуть можно»): полосы – не плитка, а линии в SVG язычка (LAID,
+       выше), идут по той же дуге, что и края (bend), шаг 5px; на изнанке они еле видны – светлая .035 и тёмная .1; зерно плотнее – .045 / .2;
+       затем «затемни его и зернистость, меньше отблик»: зерно .024 / .24 (светлых точек меньше, тёмных больше), блик перегиба .03 → .012 */
+    grainBW({ size:192, seed:612, w:.024, k:.24 }, function(u){ flap.style.backgroundImage = 'linear-gradient(270deg,rgba(0,0,0,.3) 0,rgba(0,0,0,.1) 24px,rgba(255,255,255,.012) 56px,rgba(255,255,255,0) 90px,rgba(0,0,0,.1) 130px,rgba(0,0,0,0) 172px),url(' + u + ')'; });
     /* облачка: по наведению и фокусу – на 1 с (три точки пробегают один раз), потом гаснет до следующего наведения */
     Array.prototype.forEach.call(w.querySelectorAll('.pasek-a'), function(a){ var hn = a.querySelector('.pasek-hint'), th = 0; if (!hn) return;
       function on(){ clearTimeout(th); hn.classList.add('on'); th = setTimeout(function(){ hn.classList.remove('on'); }, 1000); }
@@ -448,8 +474,7 @@
     paperEl.style.clipPath = 'polygon(0 0,' + f(pad + xf(-pad)) + 'px 0,' + f(pad + xf(H + pad)) + 'px ' + DH + 'px,0 ' + DH + 'px)';
     ew.style.clipPath = 'polygon(0 0,' + f(20 + pad + xf(-pad - 20)) + 'px 0,' + f(20 + pad + xf(H + pad + 20)) + 'px 100%,0 100%)';
     /* язычок выходит за полосу не больше чем на 34px и не дальше 8px от края окна (на 1280 поле страницы 32px – иначе появлялась горизонтальная прокрутка) */
-    var room = Math.max(0, Math.min(34, html.clientWidth - w.getBoundingClientRect().right - 8));
-    fl.style.left = f(F - 3) + 'px'; fl.style.width = f(Math.max(10, Math.min(F - 5, W - F + room))) + 'px'; fl.style.transform = 'rotate(' + deg + 'deg)';
+    fl.style.left = f(F - 3) + 'px'; fl.style.width = f(VW) + 'px'; fl.style.transform = 'rotate(' + deg + 'deg)';
     w.querySelector('.pasek-slits').style.clipPath = 'polygon(' + f(pad + xf(-pad) - 2) + 'px 0,100% 0,100% 100%,' + f(pad + xf(H + pad) - 2) + 'px 100%)';
   }
 
