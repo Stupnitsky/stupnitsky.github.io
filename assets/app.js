@@ -2523,7 +2523,7 @@
         if (ok) {
           stopSlow(); clearInterval(tick);
           if (gas) btn.style.setProperty('--p', '100%');
-          if (window.gtag) gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXX/XXXXXXXX' });   /* только после успеха */
+          if (window.apTrack) apTrack('form');   /* только после успеха; учёт – блок «Zgoda na cookies i kod Google» в конце файла */
           if (txt) { txt.textContent = qt('sent'); setTimeout(showDone, 500); } else showDone();
         } else fail();
       };
@@ -4069,4 +4069,157 @@
   sel.addEventListener('change', show);
   window.addEventListener('hashchange', fromHash);
   if (!fromHash()) show();
+})();
+
+/* Zgoda na cookies i kod Google – GA4 + Google Ads (09.10.2026, do-zapusku п. 3 и 4).
+   Пока GA4 и ADS пустые, блок спит: окна нет, к Google ничего не уходит. Вписали номера – окно появляется само.
+   Режим – «без согласия ничего не грузим»: gtag.js подключается только после «Akceptuję» (или выбора хотя бы одной
+   галочки), до этого запросов к Google нет вообще. Consent Mode v2: по умолчанию всё denied, после выбора – update.
+   Выбор лежит в localStorage 'ap-zgoda' = {v, a (статистика), m (реклама), t}; через 12 месяцев спрашиваем снова.
+   Окно снова открывает любой элемент с [data-zgoda-open] (ссылка в подвале ставится отсюда, кнопка – в Polityce).
+   События: apTrack('form') – после успешной отправки заявки; клики по tel:, wa.me, t.me, почте и [data-quote] – сами.
+   Посмотреть окно без номеров: ?zgoda=1 в адресе (ничего не грузит и выбор не запоминает).
+   CSP: домены Google уже вписаны в <meta http-equiv="Content-Security-Policy"> всех страниц. */
+(function () {
+  var GA4 = '';        /* 'G-XXXXXXXXXX' – поток Google Analytics 4 */
+  var ADS = '';        /* 'AW-XXXXXXXXX' – аккаунт Google Ads */
+  var ADS_FORM = '';   /* 'AW-XXXXXXXXX/метка' – конверсия «заявка отправлена» */
+  var ADS_CALL = '';   /* 'AW-XXXXXXXXX/метка' – конверсия «клик по телефону», если заведём */
+
+  var KEY = 'ap-zgoda', VER = 1, YEAR = 365 * 24 * 3600 * 1000;
+  var preview = /[?&]zgoda=1(?:&|$)/.test(location.search);
+  var active = !!(GA4 || ADS);
+  try { if (window.top !== window && /\/docs\//.test(window.parent.location.pathname) && !preview) return; } catch (e) {}
+
+  var lang = (document.documentElement.getAttribute('lang') || 'pl').toLowerCase().slice(0, 2);
+  if (lang !== 'uk' && lang !== 'ru' && lang !== 'en') lang = 'pl';
+  var TX = {
+    pl: { t: 'Za Twoją zgodą włączymy Google Analytics i Google Ads – pokazują nam, które strony pomagają, a które nie. Bez zgody strona działa tak samo.',
+          no: 'Odrzuć', yes: 'Akceptuję', more: 'Wybiorę sam', save: 'Zapisz wybór', a: 'Statystyka (Google Analytics)', m: 'Reklama (Google Ads)',
+          pol: 'Polityka Prywatności', set: 'Ustawienia cookies', home: '/', label: 'Zgoda na cookies' },
+    uk: { t: 'З вашої згоди ми ввімкнемо Google Analytics і Google Ads – вони показують нам, які сторінки допомагають, а які ні. Без згоди сайт працює так само.',
+          no: 'Відхилити', yes: 'Приймаю', more: 'Оберу сам', save: 'Зберегти вибір', a: 'Статистика (Google Analytics)', m: 'Реклама (Google Ads)',
+          pol: 'Політика конфіденційності', set: 'Налаштування cookies', home: '/ua/', label: 'Згода на cookies' },
+    ru: { t: 'С вашего согласия мы включим Google Analytics и Google Ads – они показывают нам, какие страницы помогают, а какие нет. Без согласия сайт работает так же.',
+          no: 'Отклонить', yes: 'Принимаю', more: 'Выберу сам', save: 'Сохранить выбор', a: 'Статистика (Google Analytics)', m: 'Реклама (Google Ads)',
+          pol: 'Политика конфиденциальности', set: 'Настройки cookies', home: '/ru/', label: 'Согласие на cookies' },
+    en: { t: 'With your consent we’ll turn on Google Analytics and Google Ads – they show us which pages help and which don’t. The site works the same without them.',
+          no: 'Decline', yes: 'Accept', more: 'Let me choose', save: 'Save my choice', a: 'Statistics (Google Analytics)', m: 'Advertising (Google Ads)',
+          pol: 'Privacy Policy', set: 'Cookie settings', home: '/en/', label: 'Cookie consent' }
+  }[lang];
+
+  var ls = null; try { ls = window.localStorage; ls.getItem(KEY); } catch (e) { ls = null; }
+  function read() {
+    if (!ls || preview) return null;
+    try { var s = JSON.parse(ls.getItem(KEY) || 'null'); return s && s.v === VER && Date.now() - s.t < YEAR ? s : null; } catch (e) { return null; }
+  }
+  function write(a, m) {
+    var s = { v: VER, a: a ? 1 : 0, m: m ? 1 : 0, t: Date.now() };
+    if (ls && !preview) try { ls.setItem(KEY, JSON.stringify(s)); } catch (e) {}
+    return s;
+  }
+
+  /* --- Google: Consent Mode v2 и загрузка gtag.js только после согласия --- */
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  function signals(s) {
+    var m = s && s.m ? 'granted' : 'denied', a = s && s.a ? 'granted' : 'denied';
+    return { ad_storage: m, ad_user_data: m, ad_personalization: m, analytics_storage: a };
+  }
+  var loaded = false, state = read();
+  function load() {
+    if (loaded || !active || preview || !state) return;
+    var ga = GA4 && state.a, ads = ADS && state.m;
+    if (!ga && !ads) return;
+    loaded = true; window.gtag = gtag;
+    gtag('consent', 'default', signals(null));
+    gtag('consent', 'update', signals(state));
+    gtag('js', new Date());
+    if (ga) gtag('config', GA4);
+    if (ads) gtag('config', ADS);
+    var sc = document.createElement('script'); sc.async = true;
+    sc.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(ga ? GA4 : ADS);
+    document.head.appendChild(sc);
+  }
+  /* отзыв согласия: сигналы в denied и снять cookies Google с нашего домена */
+  function dropCookies(re) {
+    var host = location.hostname, dom = host.split('.').slice(-2).join('.');
+    document.cookie.split(';').forEach(function (c) {
+      var n = c.split('=')[0].trim();
+      if (!re.test(n)) return;
+      [host, '.' + host, '.' + dom].forEach(function (d) { document.cookie = n + '=; Max-Age=0; path=/; domain=' + d; });
+      document.cookie = n + '=; Max-Age=0; path=/';
+    });
+  }
+  function apply(s) {
+    state = s;
+    if (loaded) { gtag('consent', 'update', signals(s)); if (!s.a) dropCookies(/^(_ga|_gid|_gat)/); if (!s.m) dropCookies(/^_gcl/); }
+    else load();
+  }
+
+  /* --- события --- */
+  function ev(name, p) { if (loaded) gtag('event', name, p || {}); }
+  window.apTrack = function (kind) {
+    if (kind !== 'form') return;
+    ev('generate_lead', { method: 'form', page: location.pathname });
+    if (ADS_FORM && state && state.m) ev('conversion', { send_to: ADS_FORM });
+  };
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('a[href], [data-quote], [data-mail]') : null; if (!t) return;
+    var h = t.getAttribute('href') || '', page = location.pathname;
+    if (/^tel:/.test(h)) { ev('contact', { method: 'phone', page: page }); if (ADS_CALL && state && state.m) ev('conversion', { send_to: ADS_CALL }); }
+    else if (/wa\.me\//.test(h)) ev('contact', { method: 'whatsapp', page: page });
+    else if (/t\.me\//.test(h)) ev('contact', { method: 'telegram', page: page });
+    else if (/^mailto:/.test(h) || t.hasAttribute('data-mail')) ev('contact', { method: 'email', page: page });
+    else if (t.hasAttribute('data-quote')) ev('quote_open', { page: page });
+  }, true);
+
+  /* --- окно --- */
+  var box = null;
+  function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+  function close() { if (box) { box.remove(); box = null; } }
+  function open(top) {
+    if (box) return;
+    var cur = read() || { a: 0, m: 0 };
+    box = el('div', top ? 'zg zg--top' : 'zg');   /* открыли ссылкой (в т. ч. из политики внутри панели заявки) – поверх панели */ box.setAttribute('role', 'region'); box.setAttribute('aria-label', TX.label);
+    var p = el('p', 'zg-t', TX.t + ' ');
+    var pol = el('a', 'zg-pol', TX.pol); pol.href = TX.home + '#polityka-prywatnosci'; p.appendChild(pol);
+    var opts = el('div', 'zg-opts'); opts.hidden = true;
+    var boxes = {};
+    [['a', TX.a], ['m', TX.m]].forEach(function (o) {
+      var lab = el('label', 'zg-opt'), inp = el('input'); inp.type = 'checkbox'; inp.checked = !!cur[o[0]];
+      boxes[o[0]] = inp; lab.appendChild(inp); lab.appendChild(el('span', '', o[1])); opts.appendChild(lab);
+    });
+    var row = el('div', 'zg-btns');
+    var no = el('button', 'zg-b', TX.no), yes = el('button', 'zg-b', TX.yes), more = el('button', 'zg-more', TX.more);
+    [no, yes, more].forEach(function (b) { b.type = 'button'; });
+    no.addEventListener('click', function () { apply(write(0, 0)); close(); });
+    yes.addEventListener('click', function () { apply(write(1, 1)); close(); });
+    more.addEventListener('click', function () {
+      if (opts.hidden) { opts.hidden = false; more.textContent = TX.save; return; }
+      apply(write(boxes.a.checked, boxes.m.checked)); close();
+    });
+    row.appendChild(no); row.appendChild(yes); row.appendChild(more);
+    box.appendChild(p); box.appendChild(opts); box.appendChild(row);
+    document.body.appendChild(box);
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest ? e.target.closest('[data-zgoda-open]') : null; if (!t) return;
+    e.preventDefault(); open(true);
+  });
+
+  /* ссылка «Ustawienia cookies» в подвале – рядом с «Polityka Prywatności»; только когда код Google включён */
+  function footLink() {
+    if (!active && !preview) return;
+    Array.prototype.forEach.call(document.querySelectorAll('footer a.fl-link[href$="#polityka-prywatnosci"]'), function (a) {
+      if (a.parentNode.querySelector('[data-zgoda-open]')) return;
+      var b = a.cloneNode(true); b.setAttribute('href', '#'); b.setAttribute('data-zgoda-open', '');
+      Array.prototype.forEach.call(b.querySelectorAll('.nl-a, .nl-b'), function (s) { s.textContent = TX.set; });
+      if (!b.querySelector('.nl-a')) b.textContent = TX.set;
+      a.parentNode.insertBefore(b, a.nextSibling);
+    });
+  }
+
+  function start() { footLink(); if (state) load(); else if (active || preview) open(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();

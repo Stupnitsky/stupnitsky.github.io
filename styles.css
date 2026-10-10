@@ -5801,6 +5801,32 @@ html.plain body > main{ box-shadow:none; }   /* тень страницы на �
   }
 }
 
+/* Окно согласия на cookies (.zg, 09.10.2026) – собирает assets/app.js, блок «Zgoda na cookies i kod Google».
+   Появляется, только когда в app.js вписаны номера Google (или с ?zgoda=1 в адресе – посмотреть вид).
+   Две кнопки одинаковые нарочно: отказаться должно быть так же просто, как согласиться.
+   Белая плашка, а не тёмная: читается и на светлых страницах, и на чёрной /kontakt/. Слой 90 – над меню и
+   всплывающей кнопкой, под окнами шагов (100) и панелью заявки (110). */
+.zg{ position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom, 0px)); transform:translateX(-50%); z-index:90;
+  width:min(640px, calc(100% - 24px)); box-sizing:border-box; padding:22px 24px 20px; border-radius:26px;
+  background:var(--c-paper); color:var(--c-ink); box-shadow:0 18px 50px rgba(31,33,32,.22), 0 0 0 1px rgba(31,33,32,.08);
+  font-size:16px; line-height:1.45; animation:zg-in .45s ease both; }
+@keyframes zg-in{ from{ opacity:0; transform:translate(-50%, 12px); } to{ opacity:1; transform:translate(-50%, 0); } }
+.zg-t{ margin:0; }
+.zg-pol{ color:inherit; text-decoration:underline; text-underline-offset:3px; white-space:nowrap; }
+.zg-opts{ display:grid; gap:10px; margin-top:16px; }
+.zg-opts[hidden]{ display:none; }
+.zg-opt{ display:flex; align-items:center; gap:10px; cursor:pointer; }
+.zg-opt input{ width:18px; height:18px; margin:0; accent-color:var(--c-ink); }
+.zg-btns{ display:flex; flex-wrap:wrap; align-items:center; gap:10px 12px; margin-top:18px; }
+.zg-b{ flex:1 1 150px; min-height:46px; padding:0 18px; border:0; border-radius:12px; background:var(--c-ink); color:var(--c-paper);
+  font:inherit; font-size:17px; font-weight:600; cursor:pointer; transition:background-color .2s ease; }
+.zg-b:hover{ background:var(--c-graphite); }
+.zg-more{ flex:0 0 auto; padding:10px 4px; border:0; background:none; color:inherit; font:inherit; cursor:pointer;
+  text-decoration:underline; text-underline-offset:3px; }
+.zg-b:focus-visible, .zg-more:focus-visible, .zg-pol:focus-visible{ outline:2px solid var(--c-terra); outline-offset:2px; }
+@media (prefers-reduced-motion:reduce){ .zg{ animation:none; } }
+.zg--top{ z-index:120; }   /* окно открыто ссылкой «Ustawienia cookies» – в том числе из политики внутри панели заявки (110) */
+
 /* ===== Новая главная (.gn-*) – установлена 09.10.2026 из docs/glowna-nowa/ =====
    Только новые классы .gn-*; готовые форматы сайта (.ap-doc, .ua-hop-*, .tl-fin, .cta-btn, .k-where-link)
    не переопределяются, кроме модификаторов внутри .gn. История – docs/glowna-nowa/. */
