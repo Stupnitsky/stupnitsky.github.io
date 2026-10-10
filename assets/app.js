@@ -986,6 +986,15 @@
     a.addEventListener('mouseenter', function () { a.classList.add('was-hovered'); });
   });
 
+  /* «Częste pytania» в подвале (Грег, 10.10.2026: «вместо главной поднимает чуть выше к блоку FAQ»). В разметке ссылка ведёт
+     на FAQ главной своего языка (/#faq, /ua/#faq…) – так она работает и там, где своего блока нет (/apostille/gdzie/, /wycena/).
+     Если на странице есть свой #faq, ссылка подвала ведёт к нему: адрес при загрузке меняем на «#faq», дальше – обычный
+     переход по якорю (плавная прокрутка и отступ под шапку – из styles.css). Для всех языков: подвал общий. */
+  (function () {
+    if (!document.getElementById('faq')) return;
+    Array.prototype.forEach.call(document.querySelectorAll('#stopka a[href$="#faq"]'), function (a) { a.setAttribute('href', '#faq'); });
+  })();
+
   // Ссылки на юридические тексты раскрывают соответствующий аккордеон
   (function () {
     function openHash(hash) {
