@@ -77,11 +77,6 @@
     "addressRegion": "Mazowieckie",
     "addressCountry": "PL"
   },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 52.2287,
-    "longitude": 21.0155
-  },
   "areaServed": [
     {
       "@type": "City",
@@ -157,12 +152,26 @@
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Апостиль – окружний суд"
+          "name": "Апостиль MSZ – експрес"
         },
         "priceSpecification": {
           "@type": "PriceSpecification",
           "priceCurrency": "PLN",
-          "price": 120,
+          "price": 350,
+          "valueAddedTaxIncluded": true
+        },
+        "url": "https://apostilo.pl/ua/apostille/"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Нотаріальний документ з апостилем – окружний суд і MSZ"
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "PLN",
+          "price": 380,
           "valueAddedTaxIncluded": true
         },
         "url": "https://apostilo.pl/ua/apostille/"
@@ -178,6 +187,21 @@
           "priceCurrency": "PLN",
           "price": 90,
           "unitText": "розрахункова сторінка – 1125 знаків із пробілами",
+          "valueAddedTaxIncluded": true
+        },
+        "url": "https://apostilo.pl/ua/tlumaczenia-przysiegle/"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Звичайний переклад"
+        },
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "priceCurrency": "PLN",
+          "price": 80,
+          "unitText": "розрахункова сторінка – 1800 знаків із пробілами",
           "valueAddedTaxIncluded": true
         },
         "url": "https://apostilo.pl/ua/tlumaczenia-przysiegle/"
@@ -236,7 +260,7 @@
       "name": "Скільки коштує апостиль і переклад?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Апостиль MSZ: 260 zł; Апостиль – окружний суд: 120 zł; Присяжний переклад: 90 zł / сторінка = 1125 знаків із пробілами; Апостиль Україна: 550 zł / документ. Ціни включають державні збори. Від 6 сторінок перекладу даємо знижку 10%. Остаточну суму називаємо після перегляду документа – зазвичай за 15 хвилин."
+        "text": "Апостиль MSZ: 260 zł; Апостиль MSZ – експрес: 350 zł; Нотаріальний документ – окружний суд і MSZ: 380 zł; Присяжний переклад: 90 zł / сторінка = 1125 знаків із пробілами; Звичайний переклад: 80 zł / сторінка = 1800 знаків із пробілами; Апостиль Україна: 550 zł / документ. Ціни включають державні збори. Від 6 сторінок перекладу даємо знижку 10%. Остаточну суму називаємо після перегляду документа – зазвичай за 15 хвилин."
       }
     },
     {
@@ -561,8 +585,10 @@
         <div class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
           <ul class="faq-price">
             <li><span>Апостиль MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>&nbsp;zł</b></span></li>
-            <li><span>Апостиль – окружний суд</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>&nbsp;zł</b></span></li>
+            <li><span>Апостиль MSZ&nbsp;– експрес</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="350">350</span>&nbsp;zł</b></span></li>
+            <li><span>Нотаріальний документ&nbsp;– окружний суд і&nbsp;MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="380">380</span>&nbsp;zł</b></span></li>
             <li><span>Присяжний переклад</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>&nbsp;zł</b></span> <span class="fp-unit">/ сторінка</span></span> <span class="fp-note">= 1125 знаків із пробілами</span></span></li>
+            <li><span>Звичайний переклад</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="80">80</span>&nbsp;zł</b></span> <span class="fp-unit">/ сторінка</span></span> <span class="fp-note">= 1800 знаків із пробілами</span></span></li>
             <li><span>Апостиль Україна</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> <span class="fp-unit">/ документ</span></span></span></li>
           </ul>
           <p class="mt-4">Ціни включають державні збори. Від&nbsp;6&nbsp;сторінок перекладу даємо знижку 10%. Остаточну суму називаємо після перегляду документа – зазвичай за&nbsp;15 хвилин.</p>
@@ -652,11 +678,11 @@
         <div class="legal-wrap" data-nosnippet><div class="space-y-3 text-[17px] leading-[1.6] max-w-[70ch]">
           <p><strong>Адміністратор даних.</strong> Адміністратором персональних даних є [IMIĘ I&nbsp;NAZWISKO], що веде діяльність під назвою Apostilo, [ADRES DO&nbsp;KORESPONDENCJI], Warszawa, NIP&nbsp;[NIP]. Контакт: <span data-mail="apostilo|gmail.com">apostilo [at] gmail.com</span>. Юридично обов’язковою є польська версія цього тексту.</p>
           <p><strong>Обсяг і&nbsp;мета.</strong> Ми обробляємо ім’я, номер телефону, адресу e-mail і&nbsp;дані з&nbsp;надісланих сканів документів виключно для підготовки розрахунку, виконання послуги апостиля чи перекладу та зворотного зв’язку.</p>
-          <p><strong>Правова підстава.</strong> Ст. 6 п. 1 літ. b GDPR (виконання договору або дії до його укладення) та ст. 6 п. 1 літ. a GDPR (згода) щодо маркетингових контактів.</p>
-          <p><strong>Одержувачі.</strong> Дані можуть передаватися лише тим, без кого послугу не виконати: присяжним перекладачам, установам (MSZ, суди, KRK, KRS, USC), поштовим і&nbsp;кур’єрським операторам та хостинг-провайдеру.</p>
-          <p><strong>Строк зберігання.</strong> Скани документів видаляємо протягом 30 днів після завершення послуги. Контактні та розрахункові дані зберігаємо протягом строку, який вимагає податкове законодавство.</p>
+          <p><strong>Правова підстава.</strong> Дані з&nbsp;форми, повідомлень і&nbsp;розмов ми обробляємо на підставі ст.&nbsp;6 п.&nbsp;1 літ.&nbsp;b GDPR&nbsp;– вони потрібні, щоб підготувати розрахунок і&nbsp;виконати послугу. Дані з&nbsp;рахунків і&nbsp;розрахунків зберігаємо, бо цього вимагає податкове законодавство (ст.&nbsp;6 п.&nbsp;1 літ.&nbsp;c GDPR). Статистику відвідувань і&nbsp;облік реклами вмикаємо лише за вашою згодою (ст.&nbsp;6 п.&nbsp;1 літ.&nbsp;a GDPR), і&nbsp;її можна відкликати будь-коли.</p>
+          <p><strong>Одержувачі.</strong> Дані можуть передаватися лише тим, без кого послугу не виконати: присяжним перекладачам, установам (MSZ, суди, KRK, KRS, USC), поштовим і&nbsp;кур’єрським операторам та хостинг-провайдеру. Форму заявки, пошту й&nbsp;диск, на якому зберігаються надіслані фото, обслуговує Google (Google Ireland Limited)&nbsp;– частина даних може потрапити на сервери за межами Європейської економічної зони, на підставі рішення Європейської комісії про достатній рівень захисту або стандартних договірних положень. Якщо ви пишете нам у&nbsp;WhatsApp чи Telegram, ваші повідомлення обробляє також сам месенджер, за власними правилами. У&nbsp;справах із&nbsp;документами з&nbsp;України дані отримують також наш партнер в&nbsp;Україні та українські установи&nbsp;– в&nbsp;обсязі, потрібному для отримання документа чи апостиля (передача до третьої країни на підставі ст.&nbsp;49 п.&nbsp;1 літ.&nbsp;b GDPR).</p>
+          <p><strong>Строк зберігання.</strong> Скани й&nbsp;фото документів видаляємо протягом 30&nbsp;днів після завершення послуги, а&nbsp;якщо після розрахунку ви не оформили замовлення&nbsp;– протягом 30&nbsp;днів після його надсилання. Контактні та розрахункові дані зберігаємо протягом строку, який вимагає податкове законодавство.</p>
           <p><strong>Права користувача.</strong> Ви маєте право на доступ до даних, їх виправлення, видалення, обмеження обробки, перенесення, а&nbsp;також на заперечення і&nbsp;скаргу до Голови UODO.</p>
-          <p><strong>Файли cookies.</strong> Сайт використовує cookies, необхідні для його роботи, а&nbsp;після вашої згоди – аналітичні й&nbsp;маркетингові cookies (Google Analytics, Google Ads). Налаштування cookies можна змінити в&nbsp;браузері.</p>
+          <p><strong>Файли cookies.</strong> Сам сайт не зберігає файлів cookies&nbsp;– у&nbsp;пам’яті браузера лишається тільки ваш вибір щодо згоди. Якщо ви погодитеся, ми ввімкнемо інструменти Google: Google Analytics, який рахує відвідування, і&nbsp;Google Ads, який вимірює ефективність реклами. Тоді Google зберігає власні файли cookies і&nbsp;отримує, зокрема, IP-адресу та адреси відвіданих сторінок. Без згоди ми цих інструментів не запускаємо. Вибір можна змінити будь-коли: <a href="#" class="underline" data-zgoda-open>Налаштування cookies</a>.</p>
         </div></div>
       </details>
 
@@ -773,7 +799,7 @@
 
 <div id="step-data" hidden>
     <div data-kicker="Розрахунок" data-title="Як сфотографувати документ і передати оригінал">
-        <p class="step-lead">Для розрахунку досить фото з телефона. Для присяжного перекладу потрібен чіткий скан або оригінал – нижче показуємо, як зробити фото, яке приймемо одразу.</p>
+        <p class="step-lead">Для розрахунку й&nbsp;для перекладу досить фото з&nbsp;телефона, аби воно було чітким. Нижче показуємо, як зробити фото, яке приймуть і&nbsp;перекладач, і&nbsp;установа.</p>
         <div class="scheme">
           <figure class="scheme-item">
             <div class="scheme-art"><svg viewBox="0 0 160 120" class="scheme-svg" role="img" aria-hidden="true"><rect x="3" y="3" width="154" height="114" rx="12" fill="#E5E5E1"/><g transform=""><rect x="46" y="18" width="68" height="84" rx="4" fill="#fff" stroke="rgba(31,33,32,.25)"/><rect x="54" y="30" width="52" height="4" rx="2" fill="rgba(31,33,32,.35)"/><rect x="54" y="40" width="52" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><rect x="54" y="48" width="52" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><rect x="54" y="56" width="38" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><circle cx="96" cy="84" r="10" fill="none" stroke="#2E3130" stroke-width="2"/><path d="M90 84h12M96 78v12" stroke="#2E3130" stroke-width="1.5"/></g></svg><span class="scheme-badge is-ok" aria-hidden="true">✓</span></div>
@@ -796,12 +822,11 @@
         <div class="opts">
           <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" fill="currentColor"/></svg><b>Особисто</b><span>Зустріч у&nbsp;центрі Варшави. Місце й&nbsp;час узгоджуємо під час замовлення.</span></div>
           <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M3 6h18v14H3zM3 6l2-3h14l2 3M12 6v14M9 10h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>Пачкомат InPost</b><span>Відправте посилку через пачкомат InPost. Номер пачкомата й&nbsp;дані отримувача повідомимо під час замовлення, а&nbsp;ви надішліть нам фото конверта з&nbsp;номером відправлення.</span></div>
-          <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M2 7h11v9H2zM13 10h4l4 3v3h-8zM6.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6ZM17.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>Кур’єр</b><span>З будь-якого міста Польщі, з-за кордону – DHL Express, з&nbsp;України – Нова Пошта.</span></div>
+          <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M2 7h11v9H2zM13 10h4l4 3v3h-8zM6.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6ZM17.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>Кур’єр</b><span>З&nbsp;іншого міста або з-за кордону&nbsp;– будь-яким перевізником, з&nbsp;України&nbsp;– Новою Поштою. Адресу вказуємо в&nbsp;розрахунку.</span></div>
         </div>
         <ul class="rules">
-          <li>Формат PDF або JPG, один файл на документ, до 10&nbsp;MB.</li>
+          <li>Фото з&nbsp;телефона або PDF&nbsp;– кожна сторінка окремо, у&nbsp;тому порядку, як у&nbsp;документі; разом до 25&nbsp;MB в&nbsp;одній заявці.</li>
           <li>Усі сторінки, зокрема порожні з печаткою на звороті.</li>
-          <li>Роздільна здатність скана – щонайменше 300&nbsp;dpi.</li>
           <li>Переклад починаємо зі скана, а&nbsp;для апостиля потрібен оригінал. Якщо установа вимагає перекладу з&nbsp;оригіналу, досить показати оригінал під час передачі або отримання документів – тоді перекладач засвідчить переклад як зроблений з&nbsp;оригіналу.</li>
         </ul>
     </div>

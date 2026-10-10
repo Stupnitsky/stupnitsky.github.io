@@ -77,11 +77,6 @@
     "addressRegion": "Mazowieckie",
     "addressCountry": "PL"
   },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 52.2287,
-    "longitude": 21.0155
-  },
   "areaServed": [
     {
       "@type": "City",
@@ -157,12 +152,26 @@
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Заверение в окружном суде перед апостилем"
+          "name": "Апостиль MSZ – экспресс"
         },
         "priceSpecification": {
           "@type": "PriceSpecification",
           "priceCurrency": "PLN",
-          "price": 120,
+          "price": 350,
+          "valueAddedTaxIncluded": true
+        },
+        "url": "https://apostilo.pl/ru/apostille/"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Нотариальный документ с апостилем – окружной суд и MSZ"
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "PLN",
+          "price": 380,
           "valueAddedTaxIncluded": true
         },
         "url": "https://apostilo.pl/ru/apostille/"
@@ -178,6 +187,21 @@
           "priceCurrency": "PLN",
           "price": 90,
           "unitText": "расчётная страница – 1125 знаков с пробелами",
+          "valueAddedTaxIncluded": true
+        },
+        "url": "https://apostilo.pl/ru/tlumaczenia-przysiegle/"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Обычный перевод"
+        },
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "priceCurrency": "PLN",
+          "price": 80,
+          "unitText": "расчётная страница – 1800 знаков с пробелами",
           "valueAddedTaxIncluded": true
         },
         "url": "https://apostilo.pl/ru/tlumaczenia-przysiegle/"
@@ -236,7 +260,7 @@
       "name": "Сколько стоят апостиль и перевод?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Апостиль MSZ: 260 zł; Заверение в окружном суде: 120 zł; Присяжный перевод: 90 zł / страница = 1125 знаков с пробелами; Апостиль Украина: 550 zł / документ. Цены включают госпошлины. При переводе от 6 страниц даём скидку 10%. Окончательную сумму называем, когда увидим документ, – обычно за 15 минут."
+        "text": "Апостиль MSZ: 260 zł; Апостиль MSZ – экспресс: 350 zł; Нотариальный документ – окружной суд и MSZ: 380 zł; Присяжный перевод: 90 zł / страница = 1125 знаков с пробелами; Обычный перевод: 80 zł / страница = 1800 знаков с пробелами; Апостиль Украина: 550 zł / документ. Цены включают госпошлины. При переводе от 6 страниц даём скидку 10%. Окончательную сумму называем, когда увидим документ, – обычно за 15 минут."
       }
     },
     {
@@ -561,8 +585,10 @@
         <div class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
           <ul class="faq-price">
             <li><span>Апостиль MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>&nbsp;zł</b></span></li>
-            <li><span>Заверение в&nbsp;окружном суде</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>&nbsp;zł</b></span></li>
+            <li><span>Апостиль MSZ&nbsp;– экспресс</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="350">350</span>&nbsp;zł</b></span></li>
+            <li><span>Нотариальный документ&nbsp;– окружной суд и&nbsp;MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="380">380</span>&nbsp;zł</b></span></li>
             <li><span>Присяжный перевод</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>&nbsp;zł</b></span> <span class="fp-unit">/ страница</span></span> <span class="fp-note">= 1125 знаков с пробелами</span></span></li>
+            <li><span>Обычный перевод</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="80">80</span>&nbsp;zł</b></span> <span class="fp-unit">/ страница</span></span> <span class="fp-note">= 1800 знаков с пробелами</span></span></li>
             <li><span>Апостиль Украина</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>&nbsp;zł</b></span> <span class="fp-unit">/ документ</span></span></span></li>
           </ul>
           <p class="mt-4">Цены включают госпошлины. При переводе от&nbsp;6&nbsp;страниц даём скидку 10%. Окончательную сумму называем, когда увидим документ, – обычно за&nbsp;15 минут.</p>
@@ -652,11 +678,11 @@
         <div class="legal-wrap" data-nosnippet><div class="space-y-3 text-[17px] leading-[1.6] max-w-[70ch]">
           <p><strong>Администратор данных.</strong> Администратором персональных данных является [IMIĘ I&nbsp;NAZWISKO], ведущая деятельность под названием Apostilo, [ADRES DO&nbsp;KORESPONDENCJI], Warszawa, NIP&nbsp;[NIP]. Контакт: <span data-mail="apostilo|gmail.com">apostilo [at] gmail.com</span>. Юридически обязательной является польская версия этого текста.</p>
           <p><strong>Объём и&nbsp;цель.</strong> Мы обрабатываем имя, номер телефона, адрес e-mail и&nbsp;данные из&nbsp;присланных сканов документов исключительно для подготовки расчёта, выполнения услуги апостиля или перевода и&nbsp;обратной связи.</p>
-          <p><strong>Правовое основание.</strong> Ст. 6(1)(b) GDPR (исполнение договора или действия до его заключения) и&nbsp;ст. 6(1)(a) GDPR (согласие) – в&nbsp;части маркетинговых контактов.</p>
-          <p><strong>Получатели.</strong> Данные могут передаваться только тем, без кого услугу не выполнить: присяжным переводчикам, учреждениям (MSZ, суды, KRK, KRS, USC), почтовым и&nbsp;курьерским операторам и&nbsp;хостинг-провайдеру.</p>
-          <p><strong>Срок хранения.</strong> Сканы документов удаляем в&nbsp;течение 30 дней после завершения услуги. Контактные и&nbsp;расчётные данные храним в&nbsp;течение срока, требуемого налоговым законодательством.</p>
+          <p><strong>Правовое основание.</strong> Данные из&nbsp;формы, сообщений и&nbsp;разговоров мы обрабатываем на основании ст.&nbsp;6(1)(b) GDPR&nbsp;– они нужны, чтобы подготовить расчёт и&nbsp;выполнить услугу. Данные из&nbsp;счетов и&nbsp;расчётов храним, потому что этого требует налоговое законодательство (ст.&nbsp;6(1)(c) GDPR). Статистику посещений и&nbsp;учёт рекламы включаем только с&nbsp;вашего согласия (ст.&nbsp;6(1)(a) GDPR), и&nbsp;его можно отозвать в&nbsp;любой момент.</p>
+          <p><strong>Получатели.</strong> Данные могут передаваться только тем, без кого услугу не выполнить: присяжным переводчикам, учреждениям (MSZ, суды, KRK, KRS, USC), почтовым и&nbsp;курьерским операторам и&nbsp;хостинг-провайдеру. Форму заявки, почту и&nbsp;диск, на котором хранятся присланные фото, обслуживает Google (Google Ireland Limited)&nbsp;– часть данных может попасть на серверы за пределами Европейской экономической зоны, на основании решения Европейской комиссии о&nbsp;достаточном уровне защиты или стандартных договорных условий. Если вы пишете нам в&nbsp;WhatsApp или Telegram, ваши сообщения обрабатывает и&nbsp;сам мессенджер, по своим правилам. При работе с&nbsp;документами из&nbsp;Украины данные получают также наш партнёр в&nbsp;Украине и&nbsp;украинские учреждения&nbsp;– в&nbsp;объёме, нужном для получения документа или апостиля (передача в&nbsp;третью страну на основании ст.&nbsp;49(1)(b) GDPR).</p>
+          <p><strong>Срок хранения.</strong> Сканы и&nbsp;фото документов удаляем в&nbsp;течение 30&nbsp;дней после завершения услуги, а&nbsp;если после расчёта вы не оформили заказ&nbsp;– в&nbsp;течение 30&nbsp;дней после его отправки. Контактные и&nbsp;расчётные данные храним в&nbsp;течение срока, требуемого налоговым законодательством.</p>
           <p><strong>Права пользователя.</strong> Вы вправе получить доступ к&nbsp;своим данным, исправить и&nbsp;удалить их, ограничить их обработку, перенести их, заявить возражение, а&nbsp;также подать жалобу Председателю UODO (польского органа по защите персональных данных).</p>
-          <p><strong>Файлы cookies.</strong> Сайт использует cookies, необходимые для его работы, а&nbsp;после вашего согласия – аналитические и&nbsp;маркетинговые cookies (Google Analytics, Google Ads). Настройки cookies можно изменить в&nbsp;браузере.</p>
+          <p><strong>Файлы cookies.</strong> Сам сайт не сохраняет файлы cookies&nbsp;– в&nbsp;памяти браузера остаётся только ваш выбор по поводу согласия. Если вы согласитесь, мы включим инструменты Google: Google Analytics, который считает посещения, и&nbsp;Google Ads, который измеряет эффективность рекламы. Тогда Google сохраняет свои файлы cookies и&nbsp;получает, в&nbsp;частности, IP-адрес и&nbsp;адреса посещённых страниц. Без согласия мы эти инструменты не запускаем. Выбор можно изменить в&nbsp;любой момент: <a href="#" class="underline" data-zgoda-open>Настройки cookies</a>.</p>
         </div></div>
       </details>
 
@@ -771,7 +797,7 @@
 
 <div id="step-data" hidden>
     <div data-kicker="Расчёт" data-title="Как сфотографировать документ и передать оригинал">
-        <p class="step-lead">Для расчёта достаточно фото с телефона. Для присяжного перевода нужен чёткий скан или оригинал – ниже показываем, как сделать фото, которое мы примем сразу.</p>
+        <p class="step-lead">И&nbsp;для расчёта, и&nbsp;для перевода достаточно фото с&nbsp;телефона, лишь бы оно было чётким. Ниже показываем, как его сделать, чтобы фото приняли и&nbsp;переводчик, и&nbsp;учреждение.</p>
         <div class="scheme">
           <figure class="scheme-item">
             <div class="scheme-art"><svg viewBox="0 0 160 120" class="scheme-svg" role="img" aria-hidden="true"><rect x="3" y="3" width="154" height="114" rx="12" fill="#E5E5E1"/><g transform=""><rect x="46" y="18" width="68" height="84" rx="4" fill="#fff" stroke="rgba(31,33,32,.25)"/><rect x="54" y="30" width="52" height="4" rx="2" fill="rgba(31,33,32,.35)"/><rect x="54" y="40" width="52" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><rect x="54" y="48" width="52" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><rect x="54" y="56" width="38" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><circle cx="96" cy="84" r="10" fill="none" stroke="#2E3130" stroke-width="2"/><path d="M90 84h12M96 78v12" stroke="#2E3130" stroke-width="1.5"/></g></svg><span class="scheme-badge is-ok" aria-hidden="true">✓</span></div>
@@ -793,13 +819,13 @@
         <p class="step-lead" style="margin-top:2rem">Как передать нам оригинал – на выбор:</p>
         <div class="opts">
           <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" fill="currentColor"/></svg><b>Лично</b><span>Встреча в&nbsp;центре Варшавы. Место и&nbsp;время согласуем при оформлении заказа.</span></div>
-          <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M3 6h18v14H3zM3 6l2-3h14l2 3M12 6v14M9 10h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>Пачкомат InPost</b><span>Отправьте посылку через пачкомат InPost. Номер пачкомата и&nbsp;данные получателя сообщим при оформлении заказа, а&nbsp;вы пришлите нам фото конверта с&nbsp;номером отправления.</span></div>
-          <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M2 7h11v9H2zM13 10h4l4 3v3h-8zM6.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6ZM17.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>Курьер</b><span>Из любого города Польши, из-за границы – DHL Express, из&nbsp;Украины – Новая Почта.</span></div>
+          <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M3 6h18v14H3zM3 6l2-3h14l2 3M12 6v14M9 10h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>Пачкомат InPost</b><span>Отправьте посылку через пачкомат InPost. Номер пачкомата и&nbsp;данные получателя указываем в&nbsp;расчёте, а&nbsp;вы пришлите нам фото конверта с&nbsp;номером отправления.</span></div>
+          <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M2 7h11v9H2zM13 10h4l4 3v3h-8zM6.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6ZM17.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>Курьер</b><span>Из другого города или из-за границы&nbsp;– любым перевозчиком, из&nbsp;Украины&nbsp;– Новой Почтой. Адрес указываем в&nbsp;расчёте.</span></div>
         </div>
         <ul class="rules">
-          <li>Формат PDF или JPG, один файл на документ, до 10&nbsp;MB.</li>
+          <li>Фото с&nbsp;телефона или PDF&nbsp;– каждая страница отдельно, по порядку страниц документа.</li>
           <li>Все страницы, в том числе оборотные, если на них есть только печать.</li>
-          <li>Разрешение скана – не менее 300&nbsp;dpi.</li>
+          <li>Все файлы вместе&nbsp;– до 25&nbsp;MB в&nbsp;одной заявке.</li>
           <li>Перевод начинаем по скану, а&nbsp;для апостиля нужен оригинал. Если учреждение требует перевод с&nbsp;оригинала, достаточно показать оригинал при передаче или получении документов – тогда переводчик заверит перевод как сделанный с&nbsp;оригинала.</li>
         </ul>
     </div>

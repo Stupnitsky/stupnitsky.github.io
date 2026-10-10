@@ -54,7 +54,7 @@
     { "@type": "Offer", "name": "Апостиль MSZ – експрес-режим", "priceCurrency": "PLN", "price": "350", "priceSpecification": { "@type": "PriceSpecification", "price": "350", "priceCurrency": "PLN" } },
     { "@type": "Offer", "name": "Засвідчення підпису в окружному суді (перед апостилем у MSZ)", "priceCurrency": "PLN", "price": "120", "priceSpecification": { "@type": "PriceSpecification", "price": "120", "priceCurrency": "PLN" } },
     { "@type": "Offer", "name": "Нотаріальний документ з апостилем – окружний суд і MSZ", "priceCurrency": "PLN", "price": "380", "priceSpecification": { "@type": "PriceSpecification", "price": "380", "priceCurrency": "PLN" } },
-    { "@type": "Offer", "name": "Отримання документа з KRK або KRS (без апостиля)", "priceCurrency": "PLN", "price": "200", "priceSpecification": { "@type": "PriceSpecification", "price": "200", "priceCurrency": "PLN" } },
+    { "@type": "Offer", "name": "Отримання документа з KRK, KRS або USC (без апостиля)", "priceCurrency": "PLN", "price": "200", "priceSpecification": { "@type": "PriceSpecification", "price": "200", "priceCurrency": "PLN" } },
     { "@type": "Offer", "name": "Довідка про несудимість з апостилем", "priceCurrency": "PLN", "price": "460", "priceSpecification": { "@type": "PriceSpecification", "price": "460", "priceCurrency": "PLN" } },
     { "@type": "Offer", "name": "Легалізація документа в MSZ (для країн поза конвенцією)", "priceCurrency": "PLN", "price": "260", "priceSpecification": { "@type": "PriceSpecification", "price": "260", "priceCurrency": "PLN" } }
   ]
@@ -67,7 +67,7 @@
   "inLanguage": "uk",
   "mainEntity": [
     { "@type": "Question", "name": "Скільки часу потрібно на апостиль у Варшаві?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Зазвичай 1–3 робочі дні, коли документ іде одразу до MSZ. В експрес-режимі, за 350 zł, подаємо документ до MSZ того самого дня, якщо оригінал і підтвердження оплати будуть у нас до 11:00, а перекладати документ перед апостилем не потрібно. Для нотаріальних і судових документів експресу немає, бо спершу їх засвідчує окружний суд, а це щонайменше два робочі дні." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Зазвичай 1–3 робочі дні, коли документ іде одразу до MSZ. В експрес-режимі, за 350 zł, подаємо документ до MSZ того самого дня, якщо оригінал і підтвердження оплати будуть у нас до 11:00, а перекладати документ перед апостилем не потрібно. Для нотаріальних і судових документів експресу немає, бо спершу їх засвідчує окружний суд, а це щонайменше два робочі дні. Іноді MSZ мусить підтвердити справжність документа в установі, яка його видала. Так буває, наприклад, з довідками з відділу транспорту чи рішеннями про інвалідність. Тоді апостиль роблять довше – від тижня до місяця. На цей етап ми не впливаємо: документ подаємо одразу, а про кожну затримку повідомляємо вас того самого дня." } },
     { "@type": "Question", "name": "Де у Варшаві роблять апостиль?",
       "acceptedAnswer": { "@type": "Answer", "text": "У відділі легалізації MSZ на ul. Krucza 38/42 – лише за записом у системі e-Konsulat. Нотаріальні та судові документи спершу засвідчує окружний суд, до округу якого належить нотаріус або суд, що їх видав. У Варшаві це суд на al. „Solidarności” 127, а для правого берега Вісли – на ul. Poligonowa 3. Ми подаємо й забираємо документи у варшавських судах і в MSZ, тож вам не треба ні записуватися, ні приїжджати – докладніше на сторінці контактів." } },
     { "@type": "Question", "name": "Апостиль ставлять на оригінал чи на копію?",
@@ -295,7 +295,7 @@
           <dl class="gdz-meta">
             <div><dt>Термін</dt><dd>KRK <span class="whitespace-nowrap">1–2</span> робочі дні, KRS одразу, потім MSZ</dd></div>
             <div><dt>Збори</dt><dd>за довідку, довіреність і&nbsp;апостиль входять у&nbsp;нашу ціну</dd></div>
-            <div><dt>Лише документ</dt><dd><b class="gdz-fee">200&nbsp;zł</b> за довідку з&nbsp;KRK або витяг з&nbsp;KRS, без апостиля</dd></div>
+            <div><dt>Лише документ</dt><dd><b class="gdz-fee">200&nbsp;zł</b> за отримання документа з&nbsp;KRK, KRS або USC, без апостиля</dd></div>
           </dl>
           <p class="slab-price"><span>З&nbsp;апостилем</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="460">460</span>&nbsp;zł</b></span></p>
         </div>
@@ -376,14 +376,16 @@
             не враховуємо&nbsp;– MSZ і&nbsp;суди тоді не працюють. Скан готового документа надсилаємо одразу,
             а&nbsp;оригінал ви забираєте на зустрічі в&nbsp;центрі Варшави або з&nbsp;пачкомата. Якщо замовлення
             від 350&nbsp;zł, пересилання входить у&nbsp;ціну, а&nbsp;для менших замовлень коштує 30&nbsp;zł в&nbsp;один бік. За кордон
-            надсилаємо кур'єром DHL Express, його вартість вказуємо в&nbsp;розрахунку.
+            надсилаємо кур'єром DHL Express&nbsp;– приблизно 300&nbsp;zł за відправлення, точну суму вказуємо в&nbsp;розрахунку.
           </p>
         </div>
         <div class="col-span-12 lg:col-span-5 flex flex-col justify-end gap-4">
           <ul class="faq-price">
             <li><span>Апостиль MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>&nbsp;zł</b></span></li>
             <li><span>Засвідчення в&nbsp;окружному суді (перед апостилем у&nbsp;MSZ)</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>&nbsp;zł</b></span></li>
-            <li><span>Отримання документа з&nbsp;KRK / KRS (без апостиля)</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>&nbsp;zł</b></span></li>
+            <li><span>Нотаріальний документ&nbsp;– суд і&nbsp;MSZ</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="380">380</span>&nbsp;zł</b></span></li>
+            <li><span>Отримання документа з&nbsp;KRK, KRS або USC (без апостиля)</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="200">200</span>&nbsp;zł</b></span></li>
+            <li><span>Довідка про несудимість з&nbsp;апостилем</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="460">460</span>&nbsp;zł</b></span></li>
             <li><span>Присяжний переклад</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>&nbsp;zł</b></span> <span class="fp-unit">/ сторінка</span></span></span></li>
           </ul>
           <p class="text-[15px] leading-[1.6] text-ink/70 max-w-[40ch]">
@@ -449,6 +451,7 @@
           документ до MSZ того самого дня, якщо оригінал і&nbsp;підтвердження оплати будуть у&nbsp;нас до 11:00, а&nbsp;перекладати
           документ перед апостилем не потрібно. Для нотаріальних і&nbsp;судових документів експресу немає, бо спершу
           їх засвідчує окружний суд, а&nbsp;це щонайменше два робочі дні.
+          Іноді MSZ мусить підтвердити справжність документа в&nbsp;установі, яка його видала. Так буває, наприклад, з&nbsp;довідками з&nbsp;відділу транспорту чи рішеннями про інвалідність. Тоді апостиль роблять довше&nbsp;– від тижня до місяця. На цей етап ми не впливаємо: документ подаємо одразу, а&nbsp;про кожну затримку повідомляємо вас того самого дня.
         </p>
       </details>
       <details class="group border-b border-ink/15">

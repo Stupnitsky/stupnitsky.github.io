@@ -77,11 +77,6 @@
     "addressRegion": "Mazowieckie",
     "addressCountry": "PL"
   },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 52.2287,
-    "longitude": 21.0155
-  },
   "areaServed": [
     {
       "@type": "City",
@@ -157,12 +152,26 @@
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Apostille – Regional Court (Sąd Okręgowy)"
+          "name": "Apostille – Ministry of Foreign Affairs, express"
         },
         "priceSpecification": {
           "@type": "PriceSpecification",
           "priceCurrency": "PLN",
-          "price": 120,
+          "price": 350,
+          "valueAddedTaxIncluded": true
+        },
+        "url": "https://apostilo.pl/en/apostille/"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Notarial document with Apostille – Regional Court (Sąd Okręgowy) and MFA"
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "PLN",
+          "price": 380,
           "valueAddedTaxIncluded": true
         },
         "url": "https://apostilo.pl/en/apostille/"
@@ -178,6 +187,21 @@
           "priceCurrency": "PLN",
           "price": 90,
           "unitText": "page of 1,125 characters with spaces",
+          "valueAddedTaxIncluded": true
+        },
+        "url": "https://apostilo.pl/en/tlumaczenia-przysiegle/"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Ordinary translation"
+        },
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "priceCurrency": "PLN",
+          "price": 80,
+          "unitText": "page of 1,800 characters with spaces",
           "valueAddedTaxIncluded": true
         },
         "url": "https://apostilo.pl/en/tlumaczenia-przysiegle/"
@@ -236,7 +260,7 @@
       "name": "How much do an Apostille and a translation cost?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Apostille MFA: 260,- zł; Apostille – Regional Court: 120,- zł; Sworn translation: 90,- zł / page = 1,125 characters with spaces; Apostille Ukraine: 550,- zł / document. Prices include official fees. Translations of 6 pages or more get 10% off. We confirm the final amount once we have seen the document – usually within 15 minutes."
+        "text": "Apostille MFA: 260,- zł; Apostille MFA – express: 350,- zł; Notarial document – Regional Court and MFA: 380,- zł; Sworn translation: 90,- zł / page = 1,125 characters with spaces; Ordinary translation: 80,- zł / page = 1,800 characters with spaces; Apostille Ukraine: 550,- zł / document. Prices include official fees. Translations of 6 pages or more get 10% off. We confirm the final amount once we have seen the document – usually within 15 minutes."
       }
     },
     {
@@ -561,8 +585,10 @@
         <div class="pb-6 text-[17px] leading-[1.6] text-ink/70 max-w-[70ch]">
           <ul class="faq-price">
             <li><span>Apostille MFA</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="260">260</span>,-&nbsp;zł</b></span></li>
-            <li><span>Apostille – Regional Court</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="120">120</span>,-&nbsp;zł</b></span></li>
+            <li><span>Apostille MFA&nbsp;– express</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="350">350</span>,-&nbsp;zł</b></span></li>
+            <li><span>Notarial document&nbsp;– Regional Court and&nbsp;MFA</span><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="380">380</span>,-&nbsp;zł</b></span></li>
             <li><span>Sworn translation</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="90">90</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ page</span></span> <span class="fp-note">= 1,125 characters with spaces</span></span></li>
+            <li><span>Ordinary translation</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="80">80</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ page</span></span> <span class="fp-note">= 1,800 characters with spaces</span></span></li>
             <li><span>Apostille Ukraine</span><span class="fp-val"><span class="fp-main"><span class="price-hit"><b class="font-bold"><span class="price-num" data-price="550">550</span>,-&nbsp;zł</b></span> <span class="fp-unit">/ document</span></span></span></li>
           </ul>
           <p class="mt-4">Prices include official fees. Translations of 6&nbsp;pages or more get 10% off. We confirm the final amount once we have seen the document – usually within&nbsp;15 minutes.</p>
@@ -652,11 +678,11 @@
         <div class="legal-wrap" data-nosnippet><div class="space-y-3 text-[17px] leading-[1.6] max-w-[70ch]">
           <p><strong>Data controller.</strong> The controller of personal data is [IMIĘ I&nbsp;NAZWISKO], trading as Apostilo, [ADRES DO&nbsp;KORESPONDENCJI], Warszawa, NIP&nbsp;[NIP]. Contact: <span data-mail="apostilo|gmail.com">apostilo [at] gmail.com</span>. The Polish version of this text is legally binding.</p>
           <p><strong>Scope and purpose.</strong> We process your name, phone number, e-mail address and the data contained in the document scans you send solely to prepare a quote, provide the Apostille or translation service and get back to you.</p>
-          <p><strong>Legal basis.</strong> Art. 6(1)(b) GDPR (performance of a contract or steps prior to entering into it) and Art. 6(1)(a) GDPR (consent) for marketing contact.</p>
-          <p><strong>Recipients.</strong> Data may be shared only with parties needed to provide the service: sworn translators, public offices (MSZ, courts, KRK, KRS, USC), postal and courier operators and the hosting provider.</p>
-          <p><strong>Retention period.</strong> We delete document scans within 30 days of completing the service. Contact and billing data are kept for the period required by tax law.</p>
+          <p><strong>Legal basis.</strong> We process the details from the form, your messages and calls under Art.&nbsp;6(1)(b) GDPR&nbsp;– we need them to prepare a quote and provide the service. We keep invoice and billing data because tax law requires it (Art.&nbsp;6(1)(c) GDPR). Visit statistics and advertising measurement are switched on only with your consent (Art.&nbsp;6(1)(a) GDPR), which you can withdraw at any time.</p>
+          <p><strong>Recipients.</strong> Data may be shared only with parties needed to provide the service: sworn translators, public offices (MSZ, courts, KRK, KRS, USC), postal and courier operators and the hosting provider. The quote form, our e-mail and the drive where we keep the photos you send are run by Google (Google Ireland Limited)&nbsp;– some data may reach servers outside the European Economic Area, on the basis of a European Commission adequacy decision or standard contractual clauses. If you write to us on WhatsApp or Telegram, your messages are also processed by the messenger itself, under its own terms. For documents from Ukraine, our partner in Ukraine and Ukrainian offices also receive the data, to the extent needed to obtain the document or the Apostille (transfer to a third country under Art.&nbsp;49(1)(b) GDPR).</p>
+          <p><strong>Retention period.</strong> We delete scans and photos of documents within 30&nbsp;days of completing the service, or&nbsp;– if you don’t place an order after the quote&nbsp;– within 30&nbsp;days of sending it. Contact and billing data are kept for the period required by tax law.</p>
           <p><strong>Your rights.</strong> You have the right to access, rectify and erase your data, restrict processing, data portability, and to object and lodge a complaint with the President of UODO.</p>
-          <p><strong>Cookies.</strong> The site uses cookies necessary for it to work and – with your consent – analytics and marketing cookies (Google Analytics, Google Ads). Cookie settings can be changed in your browser.</p>
+          <p><strong>Cookies.</strong> The site itself does not store cookies&nbsp;– your browser only remembers your consent choice. If you agree, we turn on Google tools: Google Analytics, which counts visits, and Google Ads, which measures how our adverts perform. Google then stores its own cookies and receives, among other things, your IP address and the addresses of the pages you visit. Without your consent we do not run these tools. You can change your choice at any time: <a href="#" class="underline" data-zgoda-open>Cookie settings</a>.</p>
         </div></div>
       </details>
 
@@ -771,7 +797,7 @@
 
 <div id="step-data" hidden>
     <div data-kicker="Quote" data-title="How to photograph the document and hand over the original">
-        <p class="step-lead">A phone photo is enough for a quote. A sworn translation needs a legible scan or the original – below we show how to take a photo we can accept straight away.</p>
+        <p class="step-lead">A phone photo is enough both for a quote and for the translation, as long as it's legible – below we show how to take one that the translator and the office will accept.</p>
         <div class="scheme">
           <figure class="scheme-item"><div class="scheme-art"><svg viewBox="0 0 160 120" class="scheme-svg" role="img" aria-hidden="true"><rect x="3" y="3" width="154" height="114" rx="12" fill="#E5E5E1"/><g transform=""><rect x="46" y="18" width="68" height="84" rx="4" fill="#fff" stroke="rgba(31,33,32,.25)"/><rect x="54" y="30" width="52" height="4" rx="2" fill="rgba(31,33,32,.35)"/><rect x="54" y="40" width="52" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><rect x="54" y="48" width="52" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><rect x="54" y="56" width="38" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><circle cx="96" cy="84" r="10" fill="none" stroke="#2E3130" stroke-width="2"/><path d="M90 84h12M96 78v12" stroke="#2E3130" stroke-width="1.5"/></g></svg><span class="scheme-badge is-ok" aria-hidden="true">✓</span></div><figcaption><b>The whole document in frame.</b> Shot straight from above, all four corners visible, plain background.</figcaption></figure>
           <figure class="scheme-item"><div class="scheme-art"><svg viewBox="0 0 160 120" class="scheme-svg" role="img" aria-hidden="true"><rect x="3" y="3" width="154" height="114" rx="12" fill="#E5E5E1"/><g transform="scale(1.45) translate(-32,-22)"><g transform=""><rect x="46" y="18" width="68" height="84" rx="4" fill="#fff" stroke="rgba(31,33,32,.25)"/><rect x="54" y="30" width="52" height="4" rx="2" fill="rgba(31,33,32,.35)"/><rect x="54" y="40" width="52" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><rect x="54" y="48" width="52" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><rect x="54" y="56" width="38" height="3" rx="1.5" fill="rgba(31,33,32,.2)"/><circle cx="96" cy="84" r="10" fill="none" stroke="#2E3130" stroke-width="2"/><path d="M90 84h12M96 78v12" stroke="#2E3130" stroke-width="1.5"/></g></g></svg><span class="scheme-badge is-ok" aria-hidden="true">✓</span></div><figcaption><b>Legible seals and signatures.</b> A sharp close-up – numbers and dates must be readable.</figcaption></figure>
@@ -781,13 +807,13 @@
         <p class="step-lead" style="margin-top:2rem">How to get the original to us – your choice:</p>
         <div class="opts">
           <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" fill="currentColor"/></svg><b>In person</b><span>A meeting in&nbsp;central Warsaw. We agree the place and time when you order.</span></div>
-          <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M3 6h18v14H3zM3 6l2-3h14l2 3M12 6v14M9 10h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>InPost parcel locker</b><span>Send it via an InPost parcel locker. We'll give you the locker number and recipient details when you order – then just send us a photo of the envelope showing the tracking number.</span></div>
-          <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M2 7h11v9H2zM13 10h4l4 3v3h-8zM6.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6ZM17.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>Courier</b><span>From any city in&nbsp;Poland; from abroad – DHL Express, from&nbsp;Ukraine – Nova Poshta.</span></div>
+          <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M3 6h18v14H3zM3 6l2-3h14l2 3M12 6v14M9 10h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>InPost parcel locker</b><span>Send it via an InPost parcel locker. We give you the locker number and recipient details in the quote – then just send us a photo of the envelope showing the tracking number.</span></div>
+          <div class="opt"><svg viewBox="0 0 24 24" class="opt-ico" aria-hidden="true"><path d="M2 7h11v9H2zM13 10h4l4 3v3h-8zM6.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6ZM17.5 19a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><b>Courier</b><span>From another city or from abroad, use any carrier; from&nbsp;Ukraine, send it by Nova Poshta. We give you the address in the quote.</span></div>
         </div>
         <ul class="rules">
-          <li>PDF or JPG, one file per document, up to 10&nbsp;MB.</li>
+          <li>Phone photos or a PDF – each page separately, in the order of the document.</li>
           <li>All pages, including blank ones with a seal on the back.</li>
-          <li>Scan at 300&nbsp;dpi or more.</li>
+          <li>Up to 25&nbsp;MB in total per request.</li>
           <li>We start the translation from the scan, while an Apostille needs the original. If the office requires a translation from the original, just show the original when handing over or collecting documents – the translator will then sign the translation as made from the original.</li>
         </ul>
     </div>
