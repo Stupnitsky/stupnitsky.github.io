@@ -2383,6 +2383,16 @@ body > main{ background:var(--c-page); }
   .footer-mark .logo{ vertical-align:bottom; }
   .footer-bar{ margin-top:3rem; }
 }
+/* От 1280px (Грег, 10.10.2026; PL и языковые главные): то же устройство, что уже 1280px. Раньше слово стояло распоркой,
+   и зазор между колонками и нижней строкой рос вместе с окном (76px на 1280 → 235px на 1920), а с ним и высота подвала –
+   страница уезжала над ним выше. Теперь слово прижато к низу подвала и на его высоту не влияет, зазор один – 71px от «Kontakt» до «Polityka Prywatności». */
+@media (min-width:1280px){
+  :is(html[lang="pl"], html.pl-zone) .footer-tone .fl-cols{ transform:none; padding-top:3.55rem; }
+  :is(html[lang="pl"], html.pl-zone) .footer-mark{ position:absolute; left:0; right:0; top:auto; margin-top:0;
+    bottom:calc(var(--fm-size, 24.6vw) * -.22); }
+  :is(html[lang="pl"], html.pl-zone) .footer-mark .logo{ vertical-align:bottom; }
+  :is(html[lang="pl"], html.pl-zone) .footer-bar{ margin-top:2.5rem; }
+}
 /* 880–1023px: три равные колонки, нижняя строка по той же сетке –
    юридические ссылки под «Nawigacja», копирайт от левого края «Kontakt» */
 @media (min-width:640px) and (max-width:1023px){
