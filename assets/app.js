@@ -1405,7 +1405,7 @@
 
     // --- запись на встречу ---
     var BOOK = cal.hasAttribute('data-book') && L.book;
-    var WA = 'https://wa.me/48507588155';
+    var WA = 'https://wa.me/48518157581';
     // окна встреч по Варшаве, пн–сб: утро · обед · вечер (подписи – L.book.parts); вс и праздники – записи нет.
     // Точного времени посетитель не выбирает (так решил Грег 21.09.2026) – час внутри окна подтверждается в ответе
     // 03.10.2026 Грег: «9-11 13-15 18-20 укажи это время на сайте» – было 9–10 · 13–15 · 19–20
@@ -2183,7 +2183,7 @@
           sMail: 'Podaj adres e-mail – na niego wyślemy wycenę.', sPhone: 'Podaj numer telefonu – zadzwonimy, jeśli coś będzie niejasne.',
           miss: 'Uzupełnij imię, telefon i wybierz usługę.', busy: 'Chwila – jeszcze przygotowujemy zdjęcia.', sending: 'Wysyłamy…', sent: '✓ Wysłane',
           offline: 'Brak internetu – spróbuj, gdy wróci zasięg.', fail: 'Nie udało się wysłać.',
-          failFull: 'Nie udało się wysłać. Spróbuj jeszcze raz albo zadzwoń: +48 507 588 155.',
+          failFull: 'Nie udało się wysłać. Spróbuj jeszcze raz albo zadzwoń: +48 518 157 581.',
           total: 'Pliki razem ważą {s}, a za jednym razem przyjmiemy do 25 MB. Wyślij teraz część, a resztę osobno tym samym formularzem.' },
     uk: { none: 'Файли не вибрано', pf: ['фото', 'фото', 'фото'], pd: ['файл', 'файли', 'файлів'], file: 'ФАЙЛ',
           sendN: 'Надіслати {n} на оцінку', send: 'Надіслати на оцінку', nEmail: 'e-mail', nPhone: 'номер', and: ' і ', need: 'Вкажіть {x}, щоб надіслати',
@@ -2195,7 +2195,7 @@
           sMail: 'Вкажіть адресу e-mail – на неї надішлемо оцінку.', sPhone: 'Вкажіть номер телефону – зателефонуємо, якщо щось буде незрозуміло.',
           miss: 'Заповніть ім’я, телефон і оберіть послугу.', busy: 'Хвилинку – ще готуємо фото.', sending: 'Надсилаємо…', sent: '✓ Надіслано',
           offline: 'Немає інтернету – спробуйте, коли з’явиться зв’язок.', fail: 'Не вдалося надіслати.',
-          failFull: 'Не вдалося надіслати. Спробуйте ще раз або зателефонуйте: +48 507 588 155.',
+          failFull: 'Не вдалося надіслати. Спробуйте ще раз або зателефонуйте: +48 518 157 581.',
           total: 'Файли разом важать {s}, а за один раз ми приймаємо до 25 МБ. Надішліть частину зараз, а решту окремо через цю ж форму.' },
     ru: { none: 'Файлы не выбраны', pf: ['фото', 'фото', 'фото'], pd: ['файл', 'файла', 'файлов'], file: 'ФАЙЛ',
           sendN: 'Отправить {n} на расчёт', send: 'Отправить на расчёт', nEmail: 'e-mail', nPhone: 'номер', and: ' и ', need: 'Укажите {x}, чтобы отправить',
@@ -2207,7 +2207,7 @@
           sMail: 'Укажите адрес e-mail – на него пришлём расчёт.', sPhone: 'Укажите номер телефона – позвоним, если что-то будет непонятно.',
           miss: 'Заполните имя, телефон и выберите услугу.', busy: 'Секунду – ещё готовим фото.', sending: 'Отправляем…', sent: '✓ Отправлено',
           offline: 'Нет интернета – попробуйте, когда появится связь.', fail: 'Не удалось отправить.',
-          failFull: 'Не удалось отправить. Попробуйте ещё раз или позвоните: +48 507 588 155.',
+          failFull: 'Не удалось отправить. Попробуйте ещё раз или позвоните: +48 518 157 581.',
           total: 'Файлы вместе весят {s}, а за один раз мы принимаем до 25 МБ. Отправьте часть сейчас, а остальное отдельно через эту же форму.' },
     en: { none: 'No files selected', pf: ['photo', 'photos', 'photos'], pd: ['file', 'files', 'files'], file: 'FILE',
           sendN: 'Send {n} for a quote', send: 'Send for a quote', nEmail: 'e-mail', nPhone: 'phone number', and: ' and ', need: 'Enter your {x} to send',
@@ -2219,7 +2219,7 @@
           sMail: 'Enter your e-mail address – we’ll send the quote there.', sPhone: 'Enter your phone number – we’ll call if anything is unclear.',
           miss: 'Please enter your name and phone number, and choose a service.', busy: 'One moment – we’re still preparing your photos.', sending: 'Sending…', sent: '✓ Sent',
           offline: 'No internet connection – try again when you’re back online.', fail: 'Sending failed.',
-          failFull: 'Sending failed. Please try again or call +48 507 588 155.',
+          failFull: 'Sending failed. Please try again or call +48 518 157 581.',
           total: 'Your files add up to {s}, and we can take up to 25 MB at a time. Send some of them now and the rest separately using the same form.' }
   };
   function qt(k) { var d = QD_TX[QD_LANG]; return d && d[k] != null ? d[k] : QD_TX.pl[k]; }
